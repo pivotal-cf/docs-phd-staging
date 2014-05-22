@@ -1,0 +1,854 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>PXF Installation and Administration | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>PXF Installation and Administration</h1><div class="wiki-content group" id="main-content">
+<p align="LEFT">PXF is an extensible framework that allows HAWQ to query external system data. PXF includes built-in connectors for accessing data that exists inside HDFS files, Hive tables, and HBase tables. Users can also create their own connectors to other parallel data stores or processing engines. To create these connectors using <span style="line-height: 1.4285;">JAVA plugins, see the </span> <em style="line-height: 1.4285;">Pivotal Extension Framework API and Reference Guide</em> <span style="line-height: 1.4285;">.</span></p><h2 id="PivotalExtensionFrameworkInstallationandAdministration-Prerequisites"><span style="line-height: 1.4285;">Prerequisites</span></h2><p>Check that the following systems are installed and running before you install PXF:</p><ul><li>HAWQ</li><li>Pivotal Hadoop (PHD)</li><li>Hadoop File System (HDFS) with REST service enabled on the Namenode and all the Datanodes.</li><li>Hive: Check that the Hive Metastore service is available and running everywhere and that you have set the property <em>hive.matastore.uri</em>  in the <em>hive-site.xml</em> file on the Namenode.</li><li><p>HBase</p></li><li>When configuring Secure (Kerberized) HDFS, NameNode port must be 8020 for PXF to function. This limitation will be removed in the next release.</li></ul><h2 id="PivotalExtensionFrameworkInstallationandAdministration-UpgradingfromGPXF">Upgrading from GPXF<span style="font-size: medium;"> </span></h2><p>If you have a previous version of HAWQ, or GPXF installed, see the Pivotal ADS 1.1.3 Release Notes, for instructions about how to upgrade to HAWQ 1.1.x.</p><p>Please note the following:</p><ol><li>DROP the tables created using GPXF and CREATE them again using PXF.</li><li>When you CREATE tables for PXF, remember to perform the following:<ol><li style="margin-left: 30.0px;">Change the protocol name in the LOCATION clause from gpxf to pxf.</li><li style="margin-left: 30.0px;">Ensure that Fragmenter, Accessor, and Resolver are <em>always</em> specified for the table.</li><li style="margin-left: 30.0px;">Check that you have the new names for the Fragmenter, Accessor, and Resolver classes. See the <em>Pivotal Extension Framework API and Reference Guide</em>.</li></ol></li><li>Check that you are using the correct gucs for PXF:</li></ol><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpxf_enable_filter_pushdown -&gt; pxf_enable_filter_pushdown
+gpxf_enable_stat_collection -&gt; pxf_enable_stat_collection
+gpxf_enable_locality_optimizations -&gt; pxf_enable_locality_optimizations</pre>
+</div></div><h2 id="PivotalExtensionFrameworkInstallationandAdministration-InstallingPXF">Installing PXF</h2> <div class="aui-message hint shadowed information-macro">
+<p class="title">Note</p>
+<span class="aui-icon icon-hint"></span>
+<div class="message-content">
+<p>This topic describes how you can install PXF as a separate component, if you did not install it using the Pivotal Hadoop (HD) Enterprise Command Line Interface.</p>
+</div>
+</div>
+<p align="LEFT">This topic contains the following information:</p><ul><li>Installing the PXF JAR File</li><li>Setting up the Java Classpath</li><li>Enabling REST service</li><li>Restarting the Hadoop Cluster</li><li>Testing PXF with HDFS Files</li><li>Installing PXF to Work with Hive</li><li>Testing Hive and PXF Integration</li></ul><p align="LEFT">The following steps are required to install and configure PXF on a PHD 1.1.1 cluster.</p> <div class="aui-message hint shadowed information-macro">
+<p class="title">Notes</p>
+<span class="aui-icon icon-hint"></span>
+<div class="message-content">
+<ul><li>HBase steps are only required for PXF using HBase.</li><li>Hive steps are only required for PXF for Hive.</li><li>All steps must be performed on all nodes, unless noted differently.</li></ul>
+</div>
+</div>
+<h3 id="PivotalExtensionFrameworkInstallationandAdministration-InstallingthePXFJARFile">Installing the PXF JAR File</h3><p align="LEFT">Install the PXF JAR files on all nodes in the cluster:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">sudo rpm -i pxf-2.1.1-x.rpm</pre>
+</div></div><ul><li class="Code">The <em>pxf-2.1.1-x.rpm</em> resides in the Pivotal ADS/HAWQ stack file. For example, <em>PADS-1.1.1-x/pxf-2.1.1-x.noarch.rpm</em></li><li>The script installs the JAR files at the default location at <em>/usr/lib/gphd/pxf-2.1.1</em>. A <em>softlink</em> will be created in <em>/usr/lib/gphd/pxf</em></li></ul><h3 id="PivotalExtensionFrameworkInstallationandAdministration-SettinguptheJavaClasspath">Setting up the Java Classpath</h3><p align="LEFT">Append the following lines to the <em>/etc/gphd/hadoop/conf/hadoop-env.sh</em> on all nodes in the cluster:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">export GPHD_ROOT=/usr/lib/gphd
+export HADOOP_CLASSPATH=\
+$GPHD_ROOT/pxf/pxf.jar:\
+$GPHD_ROOT/publicstage:\
+$GPHD_ROOT/pxf/avro-1.5.4.jar:\
+$GPHD_ROOT/pxf/avro-mapred-1.5.4.jar:\
+/usr/lib/gphd/zookeeper/zookeeper.jar:\
+/usr/lib/gphd/hbase/hbase.jar:\
+/etc/gphd/hbase/conf:\
+$GPHD_ROOT/hive/lib/hive-service-0.11.0-gphd-2.1.0.0.jar:\
+$GPHD_ROOT/hive/lib/libthrift-0.9.0.jar:\
+$GPHD_ROOT/hive/lib/hive-metastore-0.11.0-gphd-2.1.0.0.jar:\
+$GPHD_ROOT/hive/lib/libfb303-0.9.0.jar:\
+$GPHD_ROOT/hive/lib/hive-common-0.11.0-gphd-2.1.0.0.jar:\
+$GPHD_ROOT/hive/lib/hive-exec-0.11.0-gphd-2.1.0.0.jar:\
+
+</pre>
+</div></div><p align="LEFT">This adds the following to the PHD 1.1.1 Java classpath:</p><ul><li>PXF JAR, and staging dir <em>/usr/lib/gphd/publicstage</em> (see<em> "About the Public Directory" </em>below).</li><li>HBase JAR, configuration dir, zookeeper.</li><li>Hive: <span style="line-height: 1.4285;">hive-service, </span> <span style="line-height: 1.4285;">libthrift, </span> <span style="line-height: 1.4285;">hive-metastore, </span> <span style="line-height: 1.4285;">libfb303, </span> <span style="line-height: 1.4285;">hive-common, <span style="line-height: 1.4285;">hive-exec.</span> </span></li><li>Avro: avro, avro-mapred JARs for Avro files and serialization support.</li></ul><h3 id="PivotalExtensionFrameworkInstallationandAdministration-EnablingtheRESTService">Enabling the REST Service </h3><p><span style="font-size: medium;"> </span>To enable REST service, edit the<em> /etc/gphd/hadoop/conf/hdfs-site.xml</em> files on all the nodes:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: html/xml; gutter: false" style="font-size:12px;">&lt;property&gt;
+	&lt;name&gt;dfs.webhdfs.enabled&lt;/name&gt;
+	&lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;</pre>
+</div></div><h3 id="PivotalExtensionFrameworkInstallationandAdministration-RestartingtheCluster"><a name="RTF37323830363a204865616432" rel="nofollow"></a>Restarting the Cluster </h3><ol><li>From the Admin node, use the Pivotal Hadoop (HD) Manager Command Line Interface to start the cluster.</li><li>Optionally, you can examine the classpath with the following command:</li></ol><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">massh /tmp/clientnodes verbose "hadoop classpath"</pre>
+</div></div><h2 id="PivotalExtensionFrameworkInstallationandAdministration-SecurePXF"><span style="color: rgb(0,0,0);">Secure PXF</span></h2><p><span style="color: rgb(0,0,0);">PXF can be used on a secure HDFS cluster. </span><span style="color: rgb(0,0,0);line-height: 1.4285;background-color: transparent;">Read, write and analyze of PXF tables on HDFS files are enabled. </span><span style="color: rgb(0,0,0);line-height: 1.4285;background-color: transparent;">No changes are required to PXF tables that pre-exist from a previous version.</span></p><h3 id="PivotalExtensionFrameworkInstallationandAdministration-Requirements"><span style="color: rgb(0,0,0);line-height: 1.5625;font-size: 16.0px;">Requirements</span></h3><ul><li><span style="color: rgb(0,0,0);">Both HDFS and YARN principals are created and are properly configured.</span></li><li><span style="color: rgb(0,0,0);">HDFS uses port 8020 (see limitations section).</span></li><li><span style="color: rgb(0,0,0);">Hawq is configured to work in secure mode properly, according to the instructions in the Hawq guide.</span></li></ul><h3 id="PivotalExtensionFrameworkInstallationandAdministration-Limitations"><span style="line-height: 1.5625;">Limitations</span></h3><ul><li>The HDFS Namenode port must be 8020. This is a limitation that will be fixed in the next PXF version.</li><li><span style="line-height: 1.4285;background-color: transparent;">HBase/Hive setups that require authentication are currently not supported.</span></li></ul><h3 id="PivotalExtensionFrameworkInstallationandAdministration-CommonErrors"><span>Common Errors</span></h3><p><span style="color: rgb(0,0,0);">Please refer to the troubleshooting section for common errors related to PXF security, and their meaning.</span></p><h2 id="PivotalExtensionFrameworkInstallationandAdministration-ReadingandWritingDatawithPXF"><span style="color: rgb(0,0,0);line-height: 1.25;font-size: 24.0px;">Reading and Writing Data with PXF</span></h2><p>PXF comes with a number of built-in connectors for reading data that exists inside HDFS files, Hive tables, and HBase tables and for writing data into HDFS files. These built-in connectors use the PXF extensible API. You can also use the extensible API to create your own connectors to any other type of parallel data store or processing engine. See <a href="PXFExternalTableandAPIReference.html">Pivotal Extension Framework External Table and API Reference</a> for more information about the API.</p><p>This topic contains the following information:</p><ul><li>Accessing HDFS File Data with PXF (Read + Write)</li><li>Accessing HIVE Data with PXF (Read only)</li><li>Accessing HBASE Data with PXF (Read only)</li><li>Accessing GemFireXD Data with PXF (Read only)</li></ul><h3 id="PivotalExtensionFrameworkInstallationandAdministration-Built-inProfiles">Built-in Profiles</h3><p><span>A profile is a collection of common metadata attributes. Use the convenient and simplified PXF syntax.</span> </p><p>PXF comes with a number of built-in profiles which group together a collection of metadata attributes to achieve a common goal:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Profile</th><th class="confluenceTh">Description</th><th class="confluenceTh" colspan="1">Fragmenter/Accessor/Resolver</th></tr><tr><td class="confluenceTd">HdfsTextSimple</td><td class="confluenceTd"><p>Read or write delimited single line records from or to plain text files on HDFS.</p></td><td class="confluenceTd" colspan="1"><ul><li>HdfsDataFragmenter</li><li>LineBreakAccessor</li><li>StringPassResolver</li></ul></td></tr><tr><td class="confluenceTd">HdfsTextMulti</td><td class="confluenceTd"><p>Read delimited single or multi line records (with quoted linefeeds) from plain text files on <br/>HDFS.<br/> It is not splittable (non parallel) and therefore reading is slower than reading with <br/>HdfsTextSimple.</p></td><td class="confluenceTd" colspan="1"><ul><li>HdfsDataFragmenter</li><li>QuotedLineBreakAccessor</li><li>StringPassResolver</li></ul></td></tr><tr><td class="confluenceTd">Hive</td><td class="confluenceTd">Use this when connected to Hive.</td><td class="confluenceTd" colspan="1"><ul><li>HiveDataFragmenter</li><li>HiveAccessor</li><li>HiveResolver</li></ul></td></tr><tr><td class="confluenceTd">HBase</td><td class="confluenceTd">Use this when connected to an HBase data store engine.</td><td class="confluenceTd" colspan="1"><ul><li>HBaseDataFragmenter</li><li>HBaseAccessor</li><li>HBaseResolver</li></ul><p> </p></td></tr><tr><td class="confluenceTd">Avro</td><td class="confluenceTd">Reading Avro files (i.e fileName.avro).</td><td class="confluenceTd" colspan="1"><ul><li>HdfsDataFragmenter</li><li>AvroFileAccessor</li><li>AvroResolver</li></ul></td></tr><tr><td class="confluenceTd">GemFireXD</td><td class="confluenceTd">Use this when connected connected to GemFireXD</td><td class="confluenceTd" colspan="1"><ul><li>GemFireXDFragmenter</li><li>GemFireXDAccessor</li></ul><p> </p></td></tr></tbody></table></div><h4 id="PivotalExtensionFrameworkInstallationandAdministration-AddingandUpdatingProfiles">Adding and Updating Profiles</h4><p class="diff-block-target diff-block-context"><span style="color: rgb(51,51,51);">Administrators can add new profiles or edit the built-in profiles inside </span><span style="color: rgb(51,51,51);"><em>pxf-profiles.xm</em>l (and apply with the Pivotal Hadoop (HD) Enterprise Command Line Interface). You can use the all the profiles in <em>pxf-profiles.xml</em>.</span></p><p class="diff-block-target diff-block-context">Each profile has a mandatory unique name and an optional description.</p><p class="diff-block-target diff-block-context">In addition, each profile contains a set of plugins that are an extensible set of metadata attributes.</p><h4 class="diff-block-target diff-block-context" id="PivotalExtensionFrameworkInstallationandAdministration-CustomProfileExample">Custom Profile Example</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: html/xml; gutter: false" style="font-size:12px;">&lt;profile&gt; 
+ &lt;name&gt;MyCustomProfile&lt;/name&gt;
+ &lt;description&gt;A Custom Profile Example&lt;/description&gt;
+ &lt;plugins&gt;
+ 	&lt;fragmenter&gt;CustomProfileFragmenter&lt;/fragmenter&gt;
+ 	&lt;accessor&gt;CustomProfileAccessor&lt;/accessor&gt;
+ 	&lt;customPlugin1&gt;MyCustomPluginValue1&lt;/customPlugin1&gt;
+ 	&lt;customPlugin2&gt;MyCustomPluginValue2&lt;/customPlugin2&gt;
+ &lt;/plugins&gt;
+&lt;/profile&gt;</pre>
+</div></div><h2 class="diff-block-target diff-block-context" id="PivotalExtensionFrameworkInstallationandAdministration-AccessingHDFSFileDatawithPXF">Accessing HDFS File Data with PXF </h2> <div class="aui-message hint shadowed information-macro">
+<p class="title">Notes</p>
+<span class="aui-icon icon-hint"></span>
+<div class="message-content">
+<span style="color: rgb(0,0,0);"> </span><ul><li>Pivotal recommends that you test PXF on HDFS before connecting to Hive or HBase.</li><li>PXF on secure HDFS clusters requires NameNode to be configured on port 8020</li><li>HBase/Hive configurations requiring user authentication are not supported</li></ul>
+</div>
+</div>
+<p>The syntax for accessing an HDFS file is as follows: </p><h3 id="PivotalExtensionFrameworkInstallationandAdministration-Syntax">Syntax</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE [READABLE|WRITABLE] EXTERNAL TABLE &lt;tbl name&gt; (&lt;attr list&gt;)
+LOCATION ('pxf://&lt;name node hostname:50070&gt;/&lt;path to file or directory&gt;?Profile=&lt;chosen profile&gt;[&amp;&lt;additional options&gt;=&lt;value&gt;]')
+FORMAT '[TEXT | CSV | CUSTOM]' (&lt;formatting properties&gt;);
+
+SELECT ... FROM &lt;tbl name&gt;; --to read from hdfs with READABLE table.
+INSERT INTO &lt;tbl name&gt; ...; --to write to hdfs with WRITABLE table.</pre>
+</div></div><p>To read the data in the files or to write based on the existing format, you need to select the FORMAT, Profile, or one of the classes.</p><p>This topic describes the following:</p><ul><li>FORMAT clause</li><li>Fragmenter</li><li>Accessor</li><li>Resolver</li></ul> <div class="aui-message hint shadowed information-macro">
+<p class="title">Note</p>
+<span class="aui-icon icon-hint"></span>
+<div class="message-content">
+<p>For more details about the API and classes, see the <a href="PXFExternalTableandAPIReference.html"><em>Pivotal Extension Framework API and Reference Guide</em></a>.</p>
+</div>
+</div>
+<h3 id="PivotalExtensionFrameworkInstallationandAdministration-FORMATclause"><span style="line-height: 1.4285;">FORMAT clause</span></h3><p><span style="line-height: 1.4285;">To read data, use the following formats with any PXF connector:</span></p><ul><li><strong>FORMAT ‘TEXT’</strong>: Use with plain delimited text files on HDFS.</li><li><strong>FORMAT ‘CSV’</strong>: Use with comma-separated value files on HDFS.</li><li><strong>FORMAT ‘CUSTOM’</strong>: Use with other files, such as binary formats. Must always be used with built-in formatter ‘<em>pxfwritable_import</em>’ (for read) or '<em>pxfwritable_export</em>' (for write).</li></ul><h3 id="PivotalExtensionFrameworkInstallationandAdministration-Fragmenter">Fragmenter</h3><p>Always use either [<em>HdfsTextSimple | HdfsTextMulti]</em> Profile or an <em>HdfsDataFragmenter </em>for HDFS file data<em>. </em></p> <div class="aui-message hint shadowed information-macro">
+<p class="title">Note</p>
+<span class="aui-icon icon-hint"></span>
+<div class="message-content">
+<p>For read tables, you must include a Profile or a Fragmenter in the table definition.</p>
+</div>
+</div>
+<h3 id="PivotalExtensionFrameworkInstallationandAdministration-Accessor">Accessor</h3><p>The choice of an Accessor depends on the HDFS data file type. </p><p><strong>Note:</strong> You must include a Profile or an Accessor in the table definition.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><div class="tablesorter-header-inner">File Type</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Accessor</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">FORMAT clause</div></th><th class="confluenceTh" colspan="1"><div class="tablesorter-header-inner">Comments</div></th></tr><tr><td class="confluenceTd">Plain Text delimited</td><td class="confluenceTd">LineBreakAccessor</td><td class="confluenceTd">FORMAT 'TEXT' (&lt;format param list&gt;)</td><td class="confluenceTd" colspan="1"> Read + Write</td></tr><tr><td class="confluenceTd" rowspan="2">Plain Text CSV </td><td class="confluenceTd"><p>LineBreakAccessor</p></td><td class="confluenceTd" rowspan="2">FORMAT 'CSV' (&lt;format param list&gt;) </td><td class="confluenceTd" colspan="1"><p>LineBreakAccessor is parallel and faster.</p><p>Use if each logical data row is a physical data line.</p><p>Read + Write </p></td></tr><tr><td class="confluenceTd" colspan="1">QuotedLineBreakAccessor</td><td class="confluenceTd" colspan="1"><p>QuotedLineBreakAccessor is slower and non parallel.</p><p>Use if the data includes embedded (quoted) linefeed <br/>characters.</p><p>Read Only </p></td></tr><tr><td class="confluenceTd">SequenceFile</td><td class="confluenceTd">SequenceFileAccessor</td><td class="confluenceTd">FORMAT 'CUSTOM' (formatter='pxfwritable_import')</td><td class="confluenceTd" colspan="1"> Read + Write (use formatter='pxfwritable_export' for write)</td></tr><tr><td class="confluenceTd" colspan="1">AvroFile</td><td class="confluenceTd" colspan="1">AvroFileAccessor</td><td class="confluenceTd" colspan="1">FORMAT 'CUSTOM' (formatter='pxfwritable_import')</td><td class="confluenceTd" colspan="1"> Read Only</td></tr></tbody></table></div><h3 id="PivotalExtensionFrameworkInstallationandAdministration-Resolver">Resolver</h3><p>Choose the Resolver format if data records are serialized in the HDFS file. </p><p><strong>Note</strong>: You must include a Profile or a Resolver in the table definition.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><div class="tablesorter-header-inner">Record Serialization</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Resolver</div></th><th class="confluenceTh" colspan="1"><div class="tablesorter-header-inner">Comments</div></th></tr><tr><td class="confluenceTd">Avro</td><td class="confluenceTd">AvroResolver</td><td class="confluenceTd" colspan="1"><ul><li>Avro files include the record schema, Avro serialization can be used in other file types (e.g, Sequence File). </li><li>For Avro serialized records outside an Avro file, include a schema file name (.avsc)<span> in the url under <br/>the optional </span><em>Schema-Data </em>option.</li><li><span>The schema file name must exist in the public stage directory.</span></li><li>Deserialize Only (Read)<span> </span></li></ul></td></tr><tr><td class="confluenceTd">Java Writable</td><td class="confluenceTd">WritableResolver</td><td class="confluenceTd" colspan="1"><ul><li>Include the name of the Java class that uses Writable serialization <span>in the url under the optional </span><em>Schema-Data.</em></li><li><span>The class file must exist in the public stage directory (or in Hadoop's class path).</span></li><li>Deserialize and Serialize (Read + Write)<span> </span></li><li><span><span>See </span></span><span style="line-height: 1.4285;">Customized Writable Schema File Guidelines</span></li></ul></td></tr><tr><td class="confluenceTd">None (plain text)</td><td class="confluenceTd">StringPassResolver</td><td class="confluenceTd" colspan="1"><ul><li>Does not serialize plain text records. The database parses plain records. Passes records as they are.</li><li><span>Deserialize and Serialize (Read + Write)</span></li></ul></td></tr></tbody></table></div><h3 id="PivotalExtensionFrameworkInstallationandAdministration-AdditionalOptions">Additional Options</h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><div class="tablesorter-header-inner">Option Name</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Description</div></th></tr><tr><td class="confluenceTd"><span style="color: rgb(0,0,0);">COMPRESSION_CODEC</span></td><td class="confluenceTd"><ul><li>Useful for WRITABLE PXF tables.</li><li>Specifies the c<span style="color: rgb(0,0,0);">ompression codec class name for compressing the written data. The class must implement the org.apache.hadoop.io.compress.CompressionCodec <br/></span><span style="color: rgb(0,0,0);">interface. </span></li><li><span style="color: rgb(0,0,0);"> </span><span style="color: rgb(0,0,0);">Some valid values are</span><span style="color: rgb(0,0,0);"> </span><span style="color: rgb(0,0,0);">org.apache.hadoop.io.compress.DefaultCodec, org.apache.hadoop.io.compress.GzipCodec, org.apache.hadoop.io.compress.BZip2Codec.</span></li><li><span style="color: rgb(0,0,0);"><span style="color: rgb(0,0,0);"> Note: org.apache.hadoop.io.compress.BZip2Codec is runs in a single thread and can be slow.</span></span></li><li><span style="color: rgb(0,0,0);">This option has no default value. </span></li><li><span style="color: rgb(0,0,0);">When the option is not defined, no compression will be done.</span></li></ul></td></tr><tr><td class="confluenceTd" colspan="1">COMPRESSION_TYPE</td><td class="confluenceTd" colspan="1"><ul><li>Useful WRITABLE PXF tables with SequenceFileAccessor.</li><li>Ignored when COMPRESSION_CODEC is not defined.</li><li>Specifies the compression type for sequence file.</li><li>Valid options are: <ul><li>RECORD - only the value part of each row is compressed.</li><li>BLOCK - both keys and values are collected in 'blocks' separately and compressed.</li></ul></li><li>Default value: RECORD.</li></ul></td></tr><tr><td class="confluenceTd">SCHEMA-DATA</td><td class="confluenceTd"><p>The data schema file used to create and read the HDFS file. <span>For example, you could create an avsc (for Avro), or a java class <br/>(for Writable Serialization) file. Check that the file exists on the public </span><span>directory (see About the Public Directory).</span></p><p><span><span style="color: rgb(0,0,0);">This option has no default value.</span></span></p></td></tr><tr><td class="confluenceTd" colspan="1">THREAD-SAFE</td><td class="confluenceTd" colspan="1"><p>Determines if the table query can run in multithread mode or not. When set to FALSE requests will be handled in a single thread.</p><p>Should be set when a plugin or other element that are not thread safe are used (e.g. compression codec).</p><p>Allowed values: TRUE, FALSE. Default value is TRUE - requests can run in multithread mode.</p></td></tr><tr><td class="confluenceTd" colspan="1"> &lt;custom&gt;</td><td class="confluenceTd" colspan="1"> Any option that is desired to add to the pxf URI string will be accepted and passed along with its value to the Fragmenter, <br/>Accessor, Analyzer and <span>Resolver implementations </span></td></tr></tbody></table></div><h2 id="PivotalExtensionFrameworkInstallationandAdministration-AboutthePublicDirectory">About the Public Directory</h2><p align="LEFT">PXF provides a space to store your customized serializers and schema files on the filesystem. You must add schema files on all the datanodes and restart the cluster. The RPM creates the directory at the default location: <em>/usr/lib/gphd/publicstage</em>.</p><p align="LEFT">Ensure that all HDFS users have read permissions to HDFS services and limit write permissions to specific users.</p><h3 id="PivotalExtensionFrameworkInstallationandAdministration-Recordkeyinkey-valuefileformats">Record key in key-value  file formats</h3><p>For sequence file and other file formats that store rows in a key-value format, the key value can be accessed through HAWQ using the saved keyword '<em>recordkey</em>' as a field name.</p><p>The field type must correspond to the key type, the same as the other fields must match the HDFS data. </p><p>WritableResolver supports read and write of recordkey, which can be of the following Writable hadoop types: <br/><span style="color: rgb(0,0,0);">BooleanWritable, ByteWritable, IntWritable, DoubleWritable, FloatWritable, LongWritable, Text.</span></p><p><span style="color: rgb(0,0,0);">If the <em>recordkey</em> field is not defined, the key is ignored in read, and a default value (segment id as LongWritable) is written in write.</span></p><h3 id="PivotalExtensionFrameworkInstallationandAdministration-Example"><span style="color: rgb(0,0,0);">Example</span></h3><p><span style="color: rgb(0,0,0);">Let's say we have a data schema Babies.class containing 3 fields: (name text, birthday text, weight float). </span></p><p><span style="color: rgb(0,0,0);">An external table must include these three fields, and can either include or ignore the recordkey.</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">-- writable table with recordkey
+CREATE WRITABLE EXTERNAL TABLE babies_registry (recordkey int, name text, birthday text, weight float)
+LOCATION ('pxf://namenode_host:50070/babies_1940s?ACCESSOR=SequenceFileAccessor&amp;RESOLVER=WritableResolver&amp;DATA-SCHEMA=Babies')
+FORMAT 'CUSTOM' (formatter='pxfwritable_export');
+INSERT INTO babies_registry VALUES (123456, "James Paul McCartney", "June 18, 1942", 3.800);
+-- writable table without recordkey
+CREATE WRITABLE EXTERNAL TABLE babies_registry2 (name text, birthday text, weight float)
+LOCATION ('pxf://namenode_host:50070/babies_1940s?ACCESSOR=SequenceFileAccessor&amp;RESOLVER=WritableResolver&amp;DATA-SCHEMA=Babies')
+FORMAT 'CUSTOM' (formatter='pxfwritable_export');
+INSERT INTO babies_registry VALUES ("Richard Starkey", "July 7, 1940", 4.0); -- this record's key will have some default value</pre>
+</div></div><p>The same goes for reading data from an existing file of a key-value format, e.g. a Sequence file.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">-- readable table with recordkey
+CREATE EXTERNAL TABLE babies_1940 (recordkey int, name text, birthday text, weight float)
+LOCATION ('pxf://namenode_host:50070/babies_1940s?ACCESSOR=SequenceFileAccessor&amp;RESOLVER=WritableResolver&amp;DATA-SCHEMA=Babies')
+FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+SELECT * FROM babies_1940; -- retrieves each record's key
+-- readable table without recordkey
+CREATE EXTERNAL TABLE babies_1940_2 (name text, birthday text, weight float)
+LOCATION ('pxf://namenode_host:50070/babies_1940s?ACCESSOR=SequenceFileAccessor&amp;RESOLVER=WritableResolver&amp;DATA-SCHEMA=Babies')
+FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+SELECT * FROM babies_1940_2; -- ignores the records' key</pre>
+</div></div><h2 id="PivotalExtensionFrameworkInstallationandAdministration-CustomizedWritableSchemaFileGuidelines">Customized Writable Schema File Guidelines</h2><p><span style="color: rgb(0,0,0);">When using a WritableResolver, a schema file needs to be defined. The file needs to be a java class file and must be on the class path of PXF.</span></p><p><span style="color: rgb(0,0,0);line-height: 1.4285;">The class file must follow the following requirements:</span></p><ol><li><span style="color: rgb(0,0,0);">Must implement org.apache.hadoop.io.Writable interface. </span></li><li><span style="color: rgb(0,0,0);line-height: 1.4285;">WritableResolver uses reflection to recreate the schema and populate its fields (for both read and write). Then it uses the Writable interface functions to read/write.<br/></span><span style="color: rgb(0,0,0);line-height: 1.4285;">Therefore fields must be public to enable access to them. Private fields will be ignored.</span></li><li><span style="color: rgb(0,0,0);line-height: 1.4285;">Fields are accessed and populated by the order in which they are declared in the class file.</span></li><li><span style="color: rgb(0,0,0);line-height: 1.4285;">Supported field types:</span><br/><span style="color: rgb(0,0,0);line-height: 1.4285;">String, int, double, float, long, short, boolean, byte array.<br/></span><span style="color: rgb(0,0,0);line-height: 1.4285;">Array of any of the above types is supported, but the constructor must define the array size so the reflection will work.</span></li></ol><h2 id="PivotalExtensionFrameworkInstallationandAdministration-AccessingHiveDatawithPXF">Accessing Hive Data with PXF</h2> <div class="aui-message hint shadowed information-macro">
+<p class="title">NOTE</p>
+<span class="aui-icon icon-hint"></span>
+<div class="message-content">
+<p>Check the following before <span style="color: rgb(51,51,51);">adding PXF support on Hive:</span></p><ul><li><span style="color: rgb(51,51,51);">You are running the Hive Metastore service on a machine in your cluster. </span></li><li><span style="color: rgb(51,51,51);">Check that you have set the <em>hive.metastore.uris property</em> in the <em>hive-site.xml</em> on the Namenode.</span></li><li><span style="color: rgb(51,51,51);">The Hive JAR files are installed on the cluster nodes.</span></li></ul><p><span style="color: rgb(51,51,51);">See Setting up the Java Classpath.</span></p>
+</div>
+</div>
+<h3 id="PivotalExtensionFrameworkInstallationandAdministration-Syntax.1">Syntax</h3><p>Hive tables are always defined in a specific way in PXF, regardless of the underlying file storage format. The PXF Hive plugins automatically detect source tables:</p><ul><li>Text based</li><li>SequenceFile</li><li>RCFile</li><li>ORCFile</li></ul><p>The source table can also be a combination of these types. The PXF Hive plugin uses this information to query the data in runtime. The following PXF table definition is valid for any file storage type.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE hivetest(id int, newid int)　
+LOCATION ('pxf://&lt;NN host&gt;:50070/&lt;hive table name&gt;?PROFILE=Hive')
+FORMAT 'custom' (formatter='pxfwritable_import');
+
+SELECT * FROM hivetest;</pre>
+</div></div><p><span style="line-height: 1.4285;"> </span> <strong>Note</strong> <span>: 50070 as noted in the example above is the REST server port on the HDFS NameNode. If a different port is assigned in your installation, use that port.</span></p><h3 id="PivotalExtensionFrameworkInstallationandAdministration-HiveCommandLine">Hive Command Line</h3><p><span style="line-height: 1.4285;">To start the Hive command line and work directly on a Hive table:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: powershell; gutter: false" style="font-size:12px;">/&gt;${HIVE_HOME}/bin/hive</pre>
+</div></div><p>Here's an example of how to create and load data into a sample Hive table from an existing file.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">Hive&gt; CREATE TABLE test (name string, type string, supplier_key int, full_price double) row format delimited fields terminated by ',';
+Hive&gt; LOAD DATA local inpath '/local/path/data.txt' into table test; </pre>
+</div></div><h3 id="PivotalExtensionFrameworkInstallationandAdministration-MappingHiveCollectionTypes"><span style="line-height: 1.5625;">Mapping Hive Collection Types</span></h3><p><span style="line-height: 1.5625;">PXF supports Hive data types that are not primitive types. For example</span> <span style="line-height: 1.4285;">:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE TABLE sales_collections (
+  item STRING, 
+  price FLOAT, 
+  properties ARRAY&lt;STRING&gt;, 
+  hash MAP&lt;STRING,FLOAT&gt;, 
+  delivery_address STRUCT&lt;street:STRING, city:STRING, state:STRING, zip:INT&gt;
+)  
+ROW FORMAT DELIMITED  FIELDS
+TERMINATED BY '\001' COLLECTION ITEMS TERMINATED BY '\002' MAP KEYS TERMINATED BY '\003' LINES TERMINATED BY '\n'  STORED AS TEXTFILE;
+LOAD DATA LOCAL INPATH '/local/path/&lt;some data file&gt;' INTO TABLE sales_collection;</pre>
+</div></div><p><span style="color: rgb(51,51,51);line-height: 1.4285;font-size: 14.0px;">To query a Hive table schema similar to the one in the example you need to define the PXF external table with attributes corresponding to members in the Hive table array and map fields. For example:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE gp_sales_collections(
+  item_name TEXT,
+  item_price REAL,
+  property_type TEXT,
+  property_color TEXT,
+  property_material TEXT,
+  hash_key1 TEXT,
+  hash_val1 REAL,
+  hash_key2 TEXT,
+  hash_val3 REAL,
+  delivery_street TEXT,
+  delivery_city TEXT,
+  delivery_state TEXT,
+  delivery_zip INTEGER
+)
+LOCATION ('pxf://&lt;namenode_host&gt;:50070/sales_collections?PROFILE=Hive')
+FORMAT 'custom' (FORMATTER='pxfwritable_import');</pre>
+</div></div><h3 id="PivotalExtensionFrameworkInstallationandAdministration-PartitionFiltering">Partition Filtering</h3><p align="LEFT">The PXF Hive plugin uses the Hive partitioning feature and directory structure. This enables partition exclusion on HDFS files that contain the Hive table. To use the Partition Filtering feature to reduce network traffic and I/O, run a PXF query using a WHERE clause that refers to a specific partition in the partitioned Hive table.</p><p align="LEFT">To take advantage of PXF Partition filtering push down, name the partition fields in the external table. These names must be the same as those stored in the Hive table. Otherwise, PXF ignores Partition filtering and the filtering is performed on the HAWQ side, impacting performance.</p> <div class="aui-message hint shadowed information-macro">
+<p class="title">NOTE</p>
+<span class="aui-icon icon-hint"></span>
+<div class="message-content">
+<p align="LEFT">The Hive plugin only filters on partition columns but not on other table attributes.</p>
+</div>
+</div>
+<h4 id="PivotalExtensionFrameworkInstallationandAdministration-Example.1">Example</h4><p align="LEFT">Create a Hive tabl<em>e sales_part</em> with 2 partition columns - <em>delivery_state</em> and <em>delivery_city:</em></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE TABLE sales_part (name STRING, type STRING, supplier_key INT, price DOUBLE)
+PARTITIONED BY (delivery_state STRING, delivery_city STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
+</pre>
+</div></div><p>Load data into this Hive table and add some partitions:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: plain; gutter: false" style="font-size:12px;">LOAD DATA LOCAL INPATH '/local/path/data1.txt' INTO TABLE sales_part PARTITION(delivery_state = 'CALIFORNIA', delivery_city = 'San Francisco');
+LOAD DATA LOCAL INPATH '/local/path/data2.txt' INTO TABLE sales_part PARTITION(delivery_state = 'CALIFORNIA', delivery_city = 'Sacramento');
+LOAD DATA LOCAL INPATH '/local/path/data3.txt' INTO TABLE sales_part PARTITION(delivery_state = 'NEVADA'    , delivery_city = 'Reno');
+LOAD DATA LOCAL INPATH '/local/path/data4.txt' INTO TABLE sales_part PARTITION(delivery_state = 'NEVADA'    , delivery_city = 'Las Vegas');</pre>
+</div></div><p align="LEFT">The Hive storage directory should appears as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: plain; gutter: false" style="font-size:12px;">/hive/warehouse/sales_part/delivery_state=CALIFORNIA/delivery_city=’San Francisco’/data1.txt
+/hive/warehouse/sales_part/delivery_state=CALIFORNIA/delivery_city=Sacramento/data2.txt
+/hive/warehouse/sales_part/delivery_state=NEVADA/delivery_city=Reno/data3.txt
+/hive/warehouse/sales_part/delivery_state=NEVADA/delivery_city=’Las Vegas’/data4.txt</pre>
+</div></div><p>To define a PXF table to read this Hive table and take<strong> </strong>advantage of partition filter push down, define the fields corresponding to the Hive partition fields at the end of the attribute list. </p><p>When defining an external table, check that the fields corresponding to the Hive partition fields are at the end of the column list. In HiveQL, issuing a <em>select* </em> statement on a partitioned table shows the partition fields at the end of the record.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE pxf_sales_part(
+  item_name TEXT, 
+  item_type TEXT, 
+  supplier_key INTEGER, 
+  item_price DOUBLE PRECISION, 
+  delivery_state TEXT, 
+  delivery_city TEXT
+)
+LOCATION ('pxf://namenode_host:50070/sales_part?Profile=Hive')
+FORMAT 'custom' (FORMATTER='pxfwritable_import');
+
+SELECT * FROM pxf_sales_part;</pre>
+</div></div><h4 id="PivotalExtensionFrameworkInstallationandAdministration-Example.2">Example </h4><p><span style="line-height: 1.4285;">In the following example the HAWQ query filters the <em>delivery_city</em> partition <em>Sacramento</em>. The filter on </span> <em style="line-height: 1.4285;">item_name</em> <span style="line-height: 1.4285;"> is not pushed down since it is not a partition column. It is </span> <span style="line-height: 1.4285;">performed on the HAWQ side after all the data on <em>Sacramento</em> is transferred for </span> <span style="line-height: 1.4285;">processing.</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">SELECT * FROM pxf_sales_part WHERE delivery_city = 'Sacramento' AND item_name = 'shirt';</pre>
+</div></div><h4 id="PivotalExtensionFrameworkInstallationandAdministration-Example.3"><span style="line-height: 1.4285;">Example</span></h4><p><span style="line-height: 1.4285;">The following HAWQ query reads all the data under <em>delivery_city</em> partition <em>CALIFORNIA</em>, regardless of the city partiti</span><span style="line-height: 1.4285;">on.</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">SELECT * FROM pxf_sales_part WHERE delivery_state = 'CALIFORNIA'</pre>
+</div></div><h2 id="PivotalExtensionFrameworkInstallationandAdministration-AccessingHBaseDatawithPXF">Accessing HBase Data with PXF</h2> <div class="aui-message hint shadowed information-macro">
+<p class="title">NOTE</p>
+<span class="aui-icon icon-hint"></span>
+<div class="message-content">
+<p><span>Before using PXF HBase plugin, verify the following:</span></p><p><span>  - That you have set the </span> <em>Hadoop-env.sh</em> <span> on the Namenode.</span></p><p><span>  - All Datanodes have the <em>hbase.jar</em>, <em>zookeeper.jar</em> and the <em>HBase conf</em> directory set in the <em>HADOOP_CLASSPATH</em>. </span></p><p><span>See <em>Installing PXF</em> for more information.</span></p>
+</div>
+</div>
+<h3 id="PivotalExtensionFrameworkInstallationandAdministration-Syntax.2">Syntax</h3><p><span style="color: rgb(51,51,51);line-height: 1.4285;font-size: 14.0px;"> </span> <span style="color: rgb(51,51,51);line-height: 1.4285;font-size: 14.0px;">To query an <em>HBase</em> table use the following syntax:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE &lt;pxf tblname&gt; (&lt;col list - see details below&gt;)
+LOCATION ('pxf://&lt;NN REST host&gt;:&lt;NN REST port&gt;/&lt;HBase table name&gt;?PROFILE=HBase') 
+FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import');
+ 
+SELECT * FROM &lt;pxf tblname&gt;;</pre>
+</div></div><h2 id="PivotalExtensionFrameworkInstallationandAdministration-ColumnMapping">Column Mapping</h2><p>Most HAWQ external tables (PXF or others) require that the HAWQ table attributes match the source data record layout, and include all the available attributes. However, use the PXF HBase plugin to specify the subset of HBase qualifiers to define the HAWQ PXF table. To set up a clear mapping between each attribute in the PXF table and a specific qualifier in the HBase table, you can use either:</p><ul><li>Directmapping</li><li>Indirect mapping</li></ul><p>In addition, the HBase row key is handled in a special way.</p><h2 id="PivotalExtensionFrameworkInstallationandAdministration-RowKey">Row Key</h2><p>You can use the HBase table row key in several ways. For example, you can see them using query results, or you can run a WHERE clause filter on a range of row key values. To use the row key in the HAWQ query, define the HAWQ table with the reserved PXF attribute <em>recordkey.</em> This attribute name tells PXF to return the record key in any key-value based system and in HBase.</p> <div class="aui-message hint shadowed information-macro">
+<p class="title">NOTE</p>
+<span class="aui-icon icon-hint"></span>
+<div class="message-content">
+<p>Since HBase is byte and not character-based Pivotal recommends that you define the <em>recordkey</em> as type <em>bytea</em>. This may result in better ability to filter data and increase performance.</p>
+</div>
+</div>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE &lt;tname&gt; (recordkey bytea, ... ) LOCATION ('pxf:// ...')</pre>
+</div></div><h3 id="PivotalExtensionFrameworkInstallationandAdministration-DirectMapping">Direct Mapping</h3><p>Use Direct Mapping to map HAWQ table attributes to HBase qualifiers. You can specify the HBase qualifier names of interest, with column family names included, as quoted values. </p><p>For example, you have defined an <span>HBase table called <em>hbase_sales</em> with multiple column families and many qualifiers. To see the following in the resulting attribute section of the CREATE EXTERNAL TABLE:</span></p><ul><li><span><em>rowkey</em></span></li><li><span>qualifier <em>saleid</em> in the column family <em>cf1</em></span></li><li><span>qualifier<em> comments</em> in the column family<em> cf8</em> </span></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE hbase_sales (
+  recordkey bytea,
+  “cf1:saleid” int,
+  “cf8:comments” varchar
+) ...</pre>
+</div></div><p>The PXF HBase plugin uses these attribute names as-is and returns the values of these HBase qualifiers.</p><h3 id="PivotalExtensionFrameworkInstallationandAdministration-IndirectMapping(viaLookupTable)">Indirect Mapping (via Lookup Table)</h3><p>Direct mapping method is fast and intuitive, but using indirect mapping helps to reconcile HBase qualifier names with HAWQ behavior:</p><ul><li>HBase qualifier names that are longer than 32 characters. HAWQ has a 32 character limit on attribute name size.</li><li>HBase qualifier names can be binary or non-printable. HAWQ attribute names are character based.</li></ul><p>In either case, Indirect Mapping uses a lookup table on HBase. You can create the lookup table to store all necessary lookup information. This works as a template for any future queries. The name of the lookup table must be <em>pxflookup </em>and must include the column family named <em>mapping. </em></p><p>Using the sales example in Direct Mapping, if our<em> rowkey</em> represents the HBase table name and the <em>mapping </em>column family includes the actual attribute mapping in the key value form of <em>&lt;hawq attr name&gt;=&lt;hbase cf:qualifier&gt;. </em></p><h4 id="PivotalExtensionFrameworkInstallationandAdministration-Example.4">Example</h4><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">(row key)</th><th class="confluenceTh">mapping</th></tr><tr><td class="confluenceTd">sales</td><td class="confluenceTd">id=cf1:saleid</td></tr><tr><td class="confluenceTd">sales</td><td class="confluenceTd">cmts=cf8:comments</td></tr></tbody></table></div><p><strong>Note</strong>: The mapping assigned new names for each qualifier. You can use these names in your HAWQ table definition:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE hbase_sales (
+  recordkey bytea
+  id int,
+  cmts varchar
+) ...</pre>
+</div></div><p>PXF automatically matches HAWQ to HBase column names when a <em>pxflookup </em>table exists in HBase.</p><h2 id="PivotalExtensionFrameworkInstallationandAdministration-AccessingGemFireDatawithPXF">Accessing GemFire Data with PXF</h2> <div class="aui-message hint shadowed information-macro">
+<p class="title">NOTE</p>
+<span class="aui-icon icon-hint"></span>
+<div class="message-content">
+<p><span>Before using PXF GemFire plugin, verify the following:</span></p><p><span>  - That you have installed the </span> <em>gfxd rpm </em> <span> on the Namenode and on the Datanodes.</span></p><p><span>  - The namenode and all Datanodes have the <em>sqlfire.jar</em> set in the <em>HADOOP_CLASSPATH</em>. </span></p><p><span>See <em>Installing PXF</em> for more information.</span></p>
+</div>
+</div>
+<h3 id="PivotalExtensionFrameworkInstallationandAdministration-Syntax.3">Syntax</h3><p><span style="color: rgb(51,51,51);line-height: 1.4285;font-size: 14.0px;"> </span> <span style="color: rgb(51,51,51);line-height: 1.4285;font-size: 14.0px;">To query an <em>GemFire</em> table use the following syntax:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE &lt;pxf tblname&gt; (&lt;col list&gt;)
+LOCATION ('pxf://&lt;NN REST host&gt;:&lt;NN REST port&gt;/&lt;GemFire table name&gt;?Profile=GemFireXD&amp;&lt;GemFire specific connector options&gt;') 
+FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import');
+ 
+SELECT * FROM &lt;pxf tblname&gt;;</pre>
+</div></div><p>The GemfireXD connector has quite a few connector options that can be used in the LOCATION URI, and are well documented in the GemFire document itself. It is highly recommended to learn them carefully in order to get the expected behavior when querying GemFireXD data through PXF.</p><h2 id="PivotalExtensionFrameworkInstallationandAdministration-Troubleshooting">Troubleshooting</h2><p>The following table describes some common errors while using PXF:</p><p><strong>Table: PXF Errors and Explanation</strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p align="LEFT"><strong>Error</strong></p></td><td class="confluenceTd"><p align="LEFT"><strong>Common Explanation</strong></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>ERROR:  invalid URI pxf://localhost:50070/demo/file1: missing options section</em></p></td><td class="confluenceTd"><p align="LEFT"><em>LOCATION</em> does not include options after the file name: <em>&lt;path&gt;?&lt;key&gt;=&lt;value&gt;&amp;&lt;key&gt;=&lt;value&gt;...</em></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>ERROR:  protocol "pxf" does not exist</em></p></td><td class="confluenceTd"><p align="LEFT">HAWQ is not compiled with PXF<span style="font-size: xx-small;"> </span> protocol. It requires the GPSQL version of HAWQ version.</p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>ERROR:  remote component error: 0</em></p><p align="LEFT">DETAIL:  There is no pxf servlet listening on the host and port specified in the external table url.</p></td><td class="confluenceTd"><p align="LEFT">Wrong server or port or the service is not started.</p><p align="LEFT"> </p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>ERROR:  Missing FRAGMENTER option in the pxf uri: pxf://localhost:50070/demo/file1?a=a</em></p></td><td class="confluenceTd"><p align="LEFT">No <em>FRAGMENTER</em> option was specified in <em>LOCATION</em>.</p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>ERROR:  remote component error: 500</em></p><p align="LEFT"><span style="line-height: 1.4285;">DETAIL:  Problem accessing <em>/gpdb/v&lt;X&gt;/Fragmenter/getFragments</em>. </span> <span style="line-height: 1.4285;">Reason:<em>org.apache.hadoop.mapred.InvalidInputException: Input path does not exist: hdfs://0.0.0.0:8020/demo/file1 </em> </span></p></td><td class="confluenceTd"><p align="LEFT">File or pattern given in<em> LOCATION</em> doesn't exist on specified path. </p></td></tr><tr><td class="confluenceTd"><p align="LEFT">ERROR: <em> remote component error: 500</em></p><p align="LEFT"><span style="line-height: 1.4285;">DETAIL:  Problem accessing<em> /gpdb/v&lt;X&gt;/Fragmenter/getFragments</em>. Reason: <em>org.apache.hadoop.mapred.InvalidInputException: Input Pattern hdfs://0.0.0.0:8020/demo/file*</em> matches 0 files </span></p></td><td class="confluenceTd"><p align="LEFT">File or pattern given in <em>LOCATION</em> doesn't exist on specified path.</p><p align="LEFT"> </p></td></tr><tr><td class="confluenceTd" colspan="1"><em>ERROR:  remote component error: 500 <span style="color: rgb(0,0,0);">PXF not correctly installed in CLASSPATH</span> </em></td><td class="confluenceTd" colspan="1">Cannot find PXF Jar</td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>ERROR:  GPHD component not found</em></p></td><td class="confluenceTd"><p align="LEFT">Either the required data node does not exist or REST service on data node is not started or PXF JAR cannot be found on data node</p></td></tr><tr><td class="confluenceTd" colspan="1"><pre>ERROR:  remote component error (500) </pre><pre>Problem accessing /gpdb/v&lt;X&gt;/Fragmenter/getFragments. Reason: java.io.IOException: Can't get Master Kerberos principal for use as renewer</pre></td><td class="confluenceTd" colspan="1">Secure PXF: YARN isn't properly configured for secure (Kerberized) HDFS installs</td></tr><tr><td class="confluenceTd" colspan="1"><pre>ERROR:  fail to get filesystem credential for uri hdfs://&lt;namenode&gt;:8020/</pre></td><td class="confluenceTd" colspan="1">Secure PXF: Wrong HDFS host or port is not 8020 (see limitations of Secure PXF)</td></tr><tr><td class="confluenceTd" colspan="2"><p align="LEFT"><strong>HBase Specific Errors</strong></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>ERROR:  remote component error: 500</em></p><p align="LEFT">DETAIL:  Problem accessing <em>/gpdb/v&lt;X&gt;/Fragmenter/getFragments</em>. Reason: <em>org.apache.hadoop.hbase.client.NoServerForRegionException: Unable to find region for t1,,99999999999999</em> after 10 tries.</p></td><td class="confluenceTd"><p align="LEFT">HBase service is down, probably HRegionServer.</p><p align="LEFT"> </p><p align="LEFT"> </p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>ERROR:  remote component error: 500</em></p><p align="LEFT">DETAIL:  Problem accessing <em>/gpdb/v&lt;X&gt;/Fragmenter/getFragments</em>. Reason: <em>org.apache.hadoop.hbase.TableNotFoundException:</em> nosuch</p></td><td class="confluenceTd"><p align="LEFT">HBase cannot find the requested table</p><p align="LEFT"> </p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>ERROR:  remote component error: 500 (/HTTP/1.1 500 Internal Server Error</em></p></td><td class="confluenceTd"><p align="LEFT">PXF cannot find a required JAR file, probably HBase's</p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>ERROR:  remote component error: 500 <span style="line-height: 1.4285;">(/HTTP/1.1 500 org/apache/zookeeper/KeeperException</span> </em></p></td><td class="confluenceTd"><p align="LEFT">PXF cannot find Zookeeper's JAR</p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>ERROR:  remote component error: 500 <span style="line-height: 1.4285;">(/HTTP/1.1 500 Illegal HBase column name name</span> </em></p></td><td class="confluenceTd"><p align="LEFT">Required HBase table does not contain the requested column</p></td></tr><tr><td class="confluenceTd" colspan="2"><p align="LEFT"><strong>Hive Specific Errors</strong></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>ERROR:  remote component error: 500</em></p><p align="LEFT">DETAIL:  Problem accessing <em>/gpdb/v&lt;X&gt;/Fragmenter/getFragments</em>. Reason: <em>java.net.ConnectException:</em> Connection refused</p></td><td class="confluenceTd"><p align="LEFT">Hive Metastore service is down.</p><p align="LEFT"> </p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>ERROR:  remote component error: 500</em></p><p align="LEFT">DETAIL:  Problem accessing <em>/gpdb/v&lt;X&gt;/Fragmenter/getFragments</em>. Reason: <em>NoSuchObjectException(<a rel="nofollow">message:default.players</a> table not found)</em></p></td><td class="confluenceTd"><p align="LEFT">Table doesn't exist in Hive.</p></td></tr><tr><td class="confluenceTd" colspan="2"><strong>GemfireXD Specific Errors</strong></td></tr><tr><td class="confluenceTd" colspan="1">No data or wrong data comes back, comes back with very poor performance,</td><td class="confluenceTd" colspan="1">See GemFireXD connector documentation as part of the GemFireXF product document. There are various GemFireXD connector options that need to be used properly in order to get the right results with good performance.</td></tr></tbody></table></div><p><span style="font-size: xx-small;"> <span style="font-size: small;"> </span> </span></p><div><span style="color: rgb(0,0,0);line-height: 30.0px;font-size: 24.0px;"> <br/> </span></div><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

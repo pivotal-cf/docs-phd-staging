@@ -1,0 +1,615 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>HAWQ Overview | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>HAWQ Overview</h1><div class="wiki-content group" id="main-content">
+<h1 id="PivotalHAWQOverview-AbouttheHAWQArchitecture">About the HAWQ Architecture</h1><p>HAWQ is designed as a MPP SQL processing engine optimized for analytics with full transaction support. HAWQ breaks complex queries into small tasks and distributes them to MPP query processing units for execution. The query planner, dynamic pipeline, the leading edge interconnect and the specific query executor optimization for distributed storage work seamlessly to support highest level of performance and scalability.</p><p align="LEFT">HAWQ’s basic unit of parallelism is the segment instance. Multiple segment instances on commodity servers work together to form a single parallel query processing system. A query submitted to HAWQ is optimized, broken into smaller components, and dispatched to segments that work together to deliver a single result set. All relational operations—such as table scans, joins, aggregations, and sorts—execute in parallel across the segments simultaneously. Data from upstream components in the dynamic pipeline are transmitted to downstream components through the scalable User Datagram Protocol (UDP) interconnect.</p><p align="LEFT">Based on Hadoop’s distributed storage, HAWQ has no single point of failure and supports fully-automatic online recovery. System states are continuously monitored, therefore if a segment fails it is automatically removed from the cluster. During this process, the system continues serving customer queries, and the segments can be added back to the system when necessary.</p><p align="LEFT">This section describes all of the components that comprise a HAWQ system, and how they work together:</p><ul><li>About the HAWQ Master</li><li>About the HAWQ Segment</li><li>About the HAWQ Storage</li><li>About the HAWQ Interconnect</li><li>About Redundancy and Failover in HAWQ</li></ul><h2 id="PivotalHAWQOverview-HAWQMaster">HAWQ Master</h2><p align="LEFT">The HAWQ <em>master</em> is the entry point to the system. It is the database process that accepts client connections and processes the SQL commands issued.</p><p align="LEFT">End-users interact with HAWQ (through the master) as they would with a typical PostgreSQL database. They can connect to the database using client programs such as psql or application programming interfaces (APIs) such as JDBC or ODBC.</p><p align="LEFT">The master is where the <em>global system catalog</em> resides. The global system catalog is the set of system tables that contain metadata about the HAWQ system itself. The master does not contain any user data; data resides only on <em>HDFS</em>. The master authenticates client connections, processes incoming SQL commands, distributes workload among segments, coordinates the results returned by each segment, and presents the final results to the client program.</p><h3 id="PivotalHAWQOverview-HAWQSegment">HAWQ Segment</h3><p align="LEFT">In HAWQ, the <em>segments</em> are the units which process the individual data modules simultaneously.</p><p align="LEFT">Segments are stateless, and therefore different from master:</p><ul><li>Does not store the metadata for each database and table</li><li>Does not store data on the local file system. This is different from the Greenplum database.</li></ul><p align="LEFT">The master dispatches the SQL request to the segments along with the related metadata information to process. The metadata contains the HDFS url for the required table. The segment accesses the corresponding data using this URL.</p><h3 id="PivotalHAWQOverview-HAWQStorage">HAWQ Storage</h3><p align="LEFT">HAWQ stores all table data, except the system table, in HDFS. When a user creates a table, the metadata is stored on the master’s local file system and the table content is stored in HDFS.</p><h3 id="PivotalHAWQOverview-HAWQInterconnect">HAWQ Interconnect</h3><p align="LEFT">The <em>interconnect</em> is the networking layer of HAWQ. When a user connects to a database and issues a query, processes are created on each segment to handle the query. The <em>interconnect</em> refers to the inter-process communication between the segments, as well as the network infrastructure on which this communication relies. The interconnect uses standard Ethernet switching fabric.</p><p align="LEFT">By default, the interconnect uses UDP (User Datagram Protocol) to send messages over the network. The Greenplum software performs the additional packet verification beyond what is provided by UDP. This means the reliability is equivalent to Transmission Control Protocol (TCP), and the performance and scalability exceeds TCP. If the interconnect used TCP, HAWQ would have a scalability limit of 1000 segment instances. With UDP as the current default protocol for the interconnect, this limit is not applicable.</p><h2 id="PivotalHAWQOverview-RedundancyandFailoverinHAWQ">Redundancy and Failover in HAWQ</h2><p align="LEFT">HAWQ provides deployment options that protect the system from having a single point of failure. This section explains the redundancy components of HAWQ.</p><ul><li>About Master Mirroring</li><li>About Segment Failover</li><li>About Interconnect Redundancy</li></ul><h3 id="PivotalHAWQOverview-MasterMirroring">Master Mirroring</h3><p align="LEFT">You can also optionally deploy a <em>backup</em> or <em>mirror</em> of the master instance on a separate host from the master node. A backup master host serves as a <em>warm standby</em> in the event that the primary master host becomes unoperational. The standby master is kept up to date by a transaction log replication process, which runs on the standby master host and synchronizes the data between the primary and standby master hosts.</p><p align="LEFT">You can also optionally deploy a <em>backup</em> or <em>mirror</em> of the master instance on a separate host from the master node. A backup master host serves as a <em>warm standby</em> in the event that the primary master host becomes unoperational. The standby master is kept up to date by a transaction log replication process, which runs on the standby master host and synchronizes the data between the primary and standby master hosts.</p><p align="LEFT">Since the master does not contain any user data, only the system catalog tables need to be synchronized between the primary and backup copies. When these tables are updated, changes are automatically copied over to the standby master to ensure synchronization with the primary master.</p><h3 id="PivotalHAWQOverview-SegmentFailover">Segment Failover</h3><p align="LEFT">In HAWQ, the segments are stateless. This ensures faster recovery and better availability.</p><p align="LEFT">When a segment is down, the existing sessions are automatically reassigned to the remaining segments. If a new session is created during segment downtime, it succeeds on the remaining segments.</p><p align="LEFT">When the segments are operational again, the Fault Tolerance Service verifies their state, returning the segment number to normal. All the sessions are automatically reconfigured to use the full computing power.</p><h3 id="PivotalHAWQOverview-InterconnectRedundancy">Interconnect Redundancy</h3><p align="LEFT"><span lang="EN">The <em>interconnect</em> refers to the inter-process communication between the segments and the network infrastructure on which this communication relies. You can achieve a highly available interconnect by deploying dual Gigabit Ethernet switches on your network and redundant Gigabit connections to the HAWQ host (master and segment) servers.</span></p>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

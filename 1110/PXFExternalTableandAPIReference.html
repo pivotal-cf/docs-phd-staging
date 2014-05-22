@@ -1,0 +1,1607 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>PXF External Table and API Reference | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>PXF External Table and API Reference</h1><div class="wiki-content group" id="main-content">
+<p align="LEFT">You can extend PXF functionality and add new services and formats using the Java API without changing HAWQ. The API includes the four classes Fragmenter, Accessor, Resolver, Analyzer. The Fragmenter, Accessor, and Resolver classes must be implemented to add a new service. The Analyzer class is optional.</p><h2 id="PivotalExtensionFrameworkExternalTableandAPIReference-CreatinganExternalTable">Creating an External Table</h2><p align="LEFT">Syntax for an <em>EXTERNAL TABLE</em> that uses the PXF protocol is as follows:.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE ext_table &lt;attr list, ...&gt;
+LOCATION('pxf://&lt;namenode&gt;:&lt;port&gt;/path/to/data?FRAGMENTER=FragmenterForX&amp;ACCESSOR=AccessorForX&amp;RESOLVER=ResolverForX&amp;&lt;Other custom user options&gt;=&lt;value&gt;')FORMAT 'custom'(formatter='pxfwritable_import');</pre>
+</div></div><p> Where:</p><h5 id="PivotalExtensionFrameworkExternalTableandAPIReference-Table:Parametervaluesanddescription">Table: Parameter values and description</h5><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p align="LEFT"><strong>Parameter</strong></p></td><td class="confluenceTd"><p align="LEFT"><strong>Value and description</strong></p></td></tr><tr><td class="confluenceTd"><p align="LEFT">namenode</p></td><td class="confluenceTd"><p align="LEFT">The current host of the PXF service is HDFS Namenode port.</p></td></tr><tr><td class="confluenceTd"><p align="LEFT">REST </p></td><td class="confluenceTd"><p align="LEFT">Port for Namenode, 50070 by default.</p></td></tr><tr><td class="confluenceTd" colspan="1"> path/to/data</td><td class="confluenceTd" colspan="1"> A directory, file name, wildcard pattern, table name, etc</td></tr><tr><td class="confluenceTd" colspan="1"> FRAGMENTER</td><td class="confluenceTd" colspan="1"> The plugin (java class) to use for fragmenting data. Used in READABLE external tables only.</td></tr><tr><td class="confluenceTd" colspan="1"> ACCESSOR</td><td class="confluenceTd" colspan="1">The plugin (java class) to use for accessing the data. Used in READABLE and WRITABLE tables.</td></tr><tr><td class="confluenceTd" colspan="1"> RESOLVER</td><td class="confluenceTd" colspan="1">The plugin (java class) to use for serializing and deserializing the data. Used in READABLE and WRITABLE tables.</td></tr><tr><td class="confluenceTd" colspan="1"> Custom Options</td><td class="confluenceTd" colspan="1">Anything else that is desired to add. Will be passed in runtime to the plugins indicated above. </td></tr></tbody></table></div><p align="LEFT">For more information about this example, see <em>"About the Java Class Services and Formats" and the Pivotal Extension Installation and Administrator Guide.</em></p><h2 id="PivotalExtensionFrameworkExternalTableandAPIReference-AbouttheJavaClassServicesandFormats">About the Java Class Services and Formats</h2><p>The Java class names you must include in the PXF URI are Fragmenter, Accessor, and Resolver. The Fragmenter class  is mandatory for READABLE tables, and not supported for WRITABLE tables. Pivotal recommends that you reuse a previously-defined Accessor or Resolver data format.</p><p>All the attributes are passed from HAWQ as headers to the PXF Java service. The Java service retrieves the source data and converts it to a HAWQ-readable format. You can pass any additional information to the user-implemented services.</p><p>The example in<em> "Creating an External Table"</em> shows the available keys and associated values. The example also contains attributes that are passed in from the HAWQ side. The available keys and associated values are as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">FRAGMENTER: ‘FragmenterForX’
+ACCESSOR: ‘AccessorForX’
+RESOLVER: ‘ResolverForX’
+</pre>
+</div></div><p>These three Java plugins and the optional plugin, Analyzer, extend the <em>com.pivotal.pxf.utilities.Plugin</em> class.</p><p>The Java classes can be described as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/*
+ * Base class for all plugin types (Accessor, Resolver, Fragmenter, Analyzer)
+ * Holds InputData as well (the meta data information used by all plugin types)
+ */
+public class Plugin
+{
+    protected InputData inputData;
+　
+    /*
+     * C'tor
+     */
+    public Plugin(InputData input);
+ 
+    /**
+	 * Checks if the plugin is thread safe or not, based on inputData.
+	 * 
+	 * @return if plugin is thread safe or not
+	 */
+	public boolean isThreadSafe() {
+		return true;
+    }
+}</pre>
+</div></div><p>Attributes are available through the <em>com.pivotal.pxf.utilities.InputData</em> class. The following example shows how <em>inputData.getProperty(‘USERINFO1’)</em> returns <em>optional_info</em>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/*
+ * Common configuration of all MetaData classes
+ * Provides read-only access to common parameters supplied using system properties
+ */
+public class InputData
+{
+    /* Constructor of InputData
+     * Parses greenplum.* configuration variables
+     */
+    public InputData(Map&lt;String, String&gt; paramsMap);
+　
+    /*
+     * Expose the parameters map
+     */
+    public Map&lt;String, String&gt; getParametersMap();
+　
+    /* Copy contructor of InputData
+     * Used to create from an extending class
+     */
+    public InputData(InputData copy);
+　
+    /*
+     * Returns a property as a string type
+     */
+    public String getProperty(String property);
+　
+    /*
+     * returns the number of segments in GP
+     */
+    public int totalSegments();
+　
+    /*
+     * returns the current segment ID
+     */
+    public int segmentId();
+　
+    /* returns the current outputFormat
+     * currently either text or gpdbwritable
+     */
+    public OutputFormat outputFormat();
+　
+    /*
+     * returns the server name providing the service
+     */
+    public String serverName();
+　
+    /*
+     * returns the server port providing the service
+     */
+    public int serverPort();
+　
+    /*
+     * Returns true if there is a filter string to parse
+     */
+    public boolean hasFilter();
+　
+    /*
+     * The filter string
+     */
+    public String filterString();
+　
+    /*
+     * returns the number of columns in Tuple Description
+     */
+    public int columns();
+
+    /*
+     * returns column index from Tuple Description
+     */
+    public ColumnDescriptor getColumn(int index);
+　
+	/*
+     * returns fragment serialized metadata
+     */
+    public byte[] getFragmentMetadata();
+
+	/*
+     * Set fragment serialized metadata
+     */
+	public void setFragmentMetadata(byte[] location);
+    /*
+     * returns fragment user data
+     */
+    public byte[] getFragmentUserData();
+    /*
+     * returns a data fragment index
+     */
+    public int getDataFragment();
+    /*
+     * returns the column descriptor of the recordkey column.
+     * If the recordkey column was not specified by the user in the create table statement,
+     * then getRecordkeyColumn will return null.
+     */
+    public ColumnDescriptor getRecordkeyColumn();
+
+    /* returns the path to the resource required
+     * (might be a file path or a table name)
+     */
+    public String path();
+
+ 	/*
+     * Sets path into given path.
+     */
+	public void setPath(String path);
+    /* returns the path of the schema used for various deserializers
+     * e.g, Avro file name, Java object file name.
+     */
+    public String srlzSchemaName() throws FileNotFoundException, IllegalArgumentException;
+
+    /*
+     * returns the ClassName for the java class that handles the file access
+     */
+    public String accessor();
+    /*
+     * returns the ClassName for the java class that handles the record deserialization
+     */
+    public String resolver();
+　
+    /*
+     * The avroSchema fetched by the AvroResolver and used in case of Avro File
+     * In case of avro records inside a sequence file this variable will be null
+     * and the AvroResolver will not use it.
+     */
+    public Schema GetAvroFileSchema();
+　
+    /*
+     * Returns table name
+     */
+    public String tableName();
+
+    /*
+     * The avroSchema is set from the outside by the AvroFileAccessor
+     */
+    public void SetAvroFileSchema(Schema theAvroSchema);
+ 
+    /*
+     * Returns the compression codec (can be null - means no compression)
+     */
+    public String compressCodec();
+}</pre>
+</div></div><h3 id="PivotalExtensionFrameworkExternalTableandAPIReference-Fragmenter">Fragmenter</h3> <div class="aui-message hint shadowed information-macro">
+<p class="title">Note</p>
+<span class="aui-icon icon-hint"></span>
+<div class="message-content">
+<p>The Fragmenter Plugin reads data into HAWQ. Such tables are called READABLE PXF tables. The Fragmenter Plugin cannot write data out of HAWQ. Such tables are called WRITABLE tables.</p>
+</div>
+</div>
+<p align="LEFT">The Fragmenter is responsible for passing datasource metadata back to HAWQ. It also returns a list of data fragments to the Accessor or Resolver. Each data fragment describes some part of the requested data set. It contains the datasource name, such as the file or table name, including the hostname where it is located. For example, if the source is a HDFS file, the Fragmenter returns a list of data fragments containing a HDFS file block. Each fragment includes the location of the block. If the source data is an HBase table, the Fragmenter returns information about table regions, including their locations.</p><p align="LEFT">The following implementations are shipped with PXF 1.x and higher:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">HdfsDataFragmenter
+HBaseDataFragmenter
+HiveDataFragmenter</pre>
+</div></div><p>The fragmenter uses <em>com.pivotal.pxf.fragmenters.FragmentsOutput</em> to return information:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/*
+ * Class holding information about fragments (FragmentInfo)
+ */
+public class FragmentsOutput
+{
+    public FragmentsOutput();
+    public void addFragment(String sourceName, String[] replicas, byte[] metadata );
+    public void addFragment(String sourceName, String[] replicas, byte[] metadata, String userData);
+    public List&lt;FragmentInfo&gt; getFragments();
+}</pre>
+</div></div><p>Any Fragmenter class needs to extend <em>com.pivotal.pxf.fragmenters.Fragmenter</em>:</p><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-com.pivotal.pxf.fragmenters.Fragmenter">com.pivotal.pxf.fragmenters.Fragmenter</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/*
+ * Interface that defines the splitting of a data resource into fragments that can be processed in parallel
+ * GetFragments returns the fragments information of a given path (source name and location of each fragment).
+ * Used to get fragments of data that could be read in parallel from the different segments.
+ */
+public abstract class Fragmenter extends Plugin
+{
+    protected FragmentsOutput fragments;
+　
+    public Fragmenter(InputData metaData)
+    {
+        super(metaData);
+        fragments = new FragmentsOutput();
+    }
+
+    /*
+     * returns the data fragments
+     */
+    public abstract FragmentsOutput GetFragments() throws Exception;
+}   </pre>
+</div></div><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-ClassDescription">Class Description</h4><p><em>getFragments()</em> returns a string in a JSON format of the retrieved fragment. For example, if the input path is a HDFS directory, the source name for each fragment should include the file name including the path for the fragment.  </p><h3 id="PivotalExtensionFrameworkExternalTableandAPIReference-Accessor"><a name="RTF37363238383a204865616432" rel="nofollow"></a>Accessor</h3><p>The Accessor retrieves specific fragments and passes records back to the Resolver. For example, the Accessor creates a <em>FileInputFormat</em> and a Record Reader for an HDFS file and sends this to the Resolver. In the case of HBase or Hive files, the Accessor returns single rows from an HBase or Hive table. PXF 1.x or higher contains the following implementations:</p><h5 id="PivotalExtensionFrameworkExternalTableandAPIReference-Table:Accessorbaseclasses">Table: Accessor base classes<span lang="EN"> </span></h5><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p align="LEFT"><strong>Accessor class</strong></p></td><td class="confluenceTd"><p align="LEFT"><strong>Description</strong></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>HdfsAtomicDataAccessor</em></p></td><td class="confluenceTd"><p align="LEFT">Base class for accessing datasources which cannot be split. These will be accessed by a single HAWQ segment.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: plain; gutter: false" style="font-size:12px;">QuotedLineBreakAccessor - Accessor for TEXT files that has records with embedded linebreaks</pre>
+</div></div></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>HdfsSplittableDataAccessor</em></p><p align="LEFT"> </p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">Base class for accessing HDFS files using <em>RecordReaders</em>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: plain; gutter: false" style="font-size:12px;">LineBreakAccessor - Accessor for TEXT files (replaced the deprecated TextFileAccessor, LineReaderAccessor)
+AvroFileAccessor - Accessor for Avro files
+</pre>
+</div></div><p><span style="font-size: xx-small;"> </span></p></td></tr><tr><td class="confluenceTd" colspan="1"> HiveAccessor</td><td class="confluenceTd" colspan="1">Accessor for Hive tables </td></tr><tr><td class="confluenceTd" colspan="1">HBaseAccessor </td><td class="confluenceTd" colspan="1">Accessor for HBase tables </td></tr></tbody></table></div><p align="LEFT">The class needs to extend the <em>com.pivotal.pxf.Plugin class,</em> and implement one or both interface<em>s: </em></p><ul><li><em>com.pivotal.pxf.accessors.IReadAccessor</em></li><li><em>com.pivotal.pxf.accessors.IWriteAccessor</em></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/*
+ * Internal interface that defines the access to data on the source
+ * data store (e.g, a file on HDFS, a region of an HBase table, etc).
+ * All classes that implement actual access to such data sources must 
+ * respect this interface
+ */
+public interface IReadAccessor 
+{
+	public boolean openForRead() throws Exception;
+	public OneRow readNextObject() throws Exception;
+	public void closeForRead() throws Exception;
+}
+ 
+/*
+ * An interface for writing data into a data store
+ * (e.g, a sequence file on HDFS).
+ * All classes that implement actual access to such data sources must 
+ * respect this interface
+ */
+public interface IWriteAccessor 
+{
+	public boolean openForWrite() throws Exception;
+	public OneRow writeNextObject(OneRow onerow) throws Exception;
+	public void closeForWrite() throws Exception;
+}
+}
+ </pre>
+</div></div><p><span style="font-size: medium;"> </span></p><p align="LEFT">The Accessor calls o<em>penForRead() to read existing data</em>. After reading the data, it calls c<em>loseForRead()</em>. <em>readNextObject()</em> and returns one of the following:</p><ul><li>a single record, encapsulated in a OneRow object</li><li>null if it reaches <em>EOF</em></li></ul><p align="LEFT">The Accessor calls<em> openForWrite() </em>to write data out.<em> </em>After writing the data, it writes a <em>OneRow</em> object with <em>writeNextObject()</em>, and when done calls <em>closeForWrite()</em>. <em>OneRow</em> represents a key-value item.</p><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-com.pivotal.pxf.format.OneRow:">com.pivotal.pxf.format.OneRow:</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/*
+ * Represents one row in the external system data store. Supports
+ * the general case where one row contains both a record and a
+ * separate key like in the HDFS key/value model for MapReduce
+ * (Example: HDFS sequence file)
+ */
+public class OneRow
+{
+    /*
+     * Default constructor
+     */
+    public OneRow()
+
+    /*
+     * Constructor sets key and data
+     */
+    public OneRow(Object inKey, Object inData)
+
+    /*
+     * Copy constructor
+     */
+    public OneRow(OneRow copy)
+　
+    /*
+     * Setter for key
+     */
+    public void setKey(Object inKey)
+　
+    /*
+     * Setter for data
+     */
+    public void setData(Object inData)
+    /*
+     * Accessor for key
+     */
+    public Object getKey()
+　
+    /*
+     * Accessor for data
+     */
+    public Object getData()
+　
+    /*
+     * Show content
+     */
+    public String toString()
+}</pre>
+</div></div><h3 id="PivotalExtensionFrameworkExternalTableandAPIReference-Resolver">Resolver</h3><p>The Resolver deserializes records in the <em>OneRow</em> format and serializes them to a list of <em>OneField</em> objects. PXF converts a <em>OneField</em> object to a HAWQ-readable <em>GPDBWritable</em> format. PXF 1.x or higher contains the following implementations:</p><h5 id="PivotalExtensionFrameworkExternalTableandAPIReference-Table:Resolverbaseclasses">Table: Resolver base classes<span lang="EN"> </span></h5><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p align="LEFT"><strong>Resolver class</strong></p></td><td class="confluenceTd"><p align="LEFT"><strong>Description</strong></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>StringPassResolver</em></p><p align="LEFT"> </p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">Supports:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">GPBWritable VARCHAR</pre>
+</div></div><p><em>StringPassResolver </em>replaced the deprecated <em>TextResolver. </em>It passes whole records (composed of any data types) as strings without parsing them</p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>WritableResolver</em></p></td><td class="confluenceTd"><p align="LEFT">Resolver for custom Hadoop Writable implementations. Custom class can be specified with the schema<em> {{,}}</em> and supports the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">GPDBWritable.BOOLEAN
+GPDBWritable.INTEGER
+GPDBWritable.BIGINT
+GPDBWritable.REAL
+GPDBWritable.FLOAT8
+GPDBWritable.VARCHAR
+GPDBWritable.BYTEA</pre>
+</div></div></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>AvroResolver</em></p></td><td class="confluenceTd"><p align="LEFT">Supports the same field objects as <em>WritableResolver</em>. </p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>HBaseResolver</em></p></td><td class="confluenceTd"><p align="LEFT">Supports the same field objects as <em>WritableResolver</em> and also supports the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">GPDBWritable.SMALLINT
+GPDBWritable.NUMERIC
+GPDBWritable.TEXT
+GPDBWritable.BPCHAR
+GPDBWritable.TIMESTAMP</pre>
+</div></div></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>HiveResolver</em></p><p align="LEFT"> </p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">Supports the same field objects as <em>WritableResolver</em> and also supports the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">GPDBWritable.SMALLINT
+GPDBWritable.TEXT
+GPDBWritable.TIMESTAMP</pre>
+</div></div></td></tr></tbody></table></div><p>The class needs to extend the <em>com.pivotal.pxf.resolvers.Plugin class </em>, and implement one or both interface<em>s: </em></p><ul><li><em>com.pxf.resolvers.IReadResolver</em></li><li><em>com.pxf.resolvers.IWriteResolver</em></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/*
+ * Interface that defines the deserialization of one record brought from
+ * the data Accessor. Every implementation of a deserialization method
+ * (e.g, Writable, Avro, ...) must implement this interface.
+ */
+public interface IReadResolver
+{  
+    public List&lt;OneField&gt; getFields(OneRow row) throws Exception;
+}
+ 
+/*
+* Interface that defines the serialization of data read from the DB
+* into a OneRow object.
+* Every implementation of a serialization method 
+* (e.g, Writable, Avro, ...) must implement this interface.
+*/
+public interface IWriteResolver
+{
+    public OneRow setFields(DataInputStream inputStream) throws Exception;
+}</pre>
+</div></div> <div class="aui-message hint shadowed information-macro">
+<p class="title">Notes</p>
+<span class="aui-icon icon-hint"></span>
+<div class="message-content">
+<ul><li>getFields should return a list of <em>com.pivotal.pxf.format.OneField</em>, each representing a single field.</li><li><em>setFields </em>should return a single <em>OneRow </em>object, given an input stream.</li></ul>
+</div>
+</div>
+<p> </p><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-com.pivotal.pxf.format.OneField">com.pivotal.pxf.format.OneField</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/*
+ * Defines one field on a deserialized record.
+ * 'type' is in OID values recognized by GPDBWritable
+ * 'val' is the actual field value
+ */
+public class OneField
+{
+    public OneField() {}
+    public OneField(int Type, Object Val)
+    {
+        type = Type;
+        val = Val;
+    }
+
+    public int type;
+    public Object val;
+}</pre>
+</div></div><p> </p><p>The value of <em>Type</em> should follow the <em>com.pivotal.pxf.hadoop.io.GPDBWritable</em> type <em>enums</em>. <em>Val</em> is the appropriate Java class. Supported types are as follows:</p><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-Table:Resolversupportedtypes">Table: Resolver supported types</h4><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p align="LEFT"><strong>GPDBWritable recognized OID</strong></p></td><td class="confluenceTd"><p align="LEFT"><strong>Field value</strong></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>GPDBWritable.SMALLINT</em></p></td><td class="confluenceTd"><p align="LEFT"><em>Short</em></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>GPDBWritable.INTEGER</em></p></td><td class="confluenceTd"><p align="LEFT"><em>Integer</em></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>GPDBWritable.BIGINT</em></p></td><td class="confluenceTd"><p align="LEFT"><em>Long</em></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>GPDBWritable.REAL </em></p></td><td class="confluenceTd"><p align="LEFT"><em>Float</em></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>GPDBWritable.FLOAT8</em></p></td><td class="confluenceTd"><p align="LEFT"><em>Double</em></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>GPDBWritable.NUMERIC</em></p></td><td class="confluenceTd"><p align="LEFT"><em>String ( "651687465135468432168421") </em></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>GPDBWritable.BOOLEAN</em></p></td><td class="confluenceTd"><p align="LEFT">Boolean</p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>GPDBWritable.VARCHAR</em></p><p align="LEFT"><em> </em></p></td><td class="confluenceTd"><p align="LEFT"><em>GPDBWritable.BPCHAR</em></p><p align="LEFT"><em>GPDBWritable..TEXT - String</em></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>GPDBWritable.BYTEA</em></p></td><td class="confluenceTd"><p align="LEFT"><em>byte [] </em></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>GPDBWritable.TIMESTAMP</em></p></td><td class="confluenceTd"><p align="LEFT"><em>Timestamp</em></p></td></tr></tbody></table></div><h3 id="PivotalExtensionFrameworkExternalTableandAPIReference-Analyzer">Analyzer</h3><p align="LEFT">The Analyzer provides PXF statistical data for the HAWQ query optimizer. For a detailed explanation about HAWQ statistical data gathering, see <em>ANALYZE</em> in the <em>Pivotal ADS Administrator Guide</em>. Implement the PXF Analyzer for the HDFS text, sequence, and AVRO files. For HBase tables and Hive tables, the Analyzer returns default values.</p><p align="LEFT"><strong>Notes</strong>:</p><ul><li>The new <em>boolean guc pxf_enable_stat_collection</em> requests statistics. The default value is <em>on</em>. When you turn it off, the statistics collected reflect default values.</li><li>Pivotal recommends that you implement the Analyzer to return an estimated result as fast as possible.</li></ul><p align="LEFT">The class needs to extend <em>com.pivotal.pxf.analyzers.Analyzer</em>.</p><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-com.pivotal.pxf.analyzers.Analyzer">com.pivotal.pxf.analyzers.Analyzer</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/*
+ * Abstract class that defines getting statistics for ANALYZE.
+ * GetEstimatedStats returns statistics for a given path
+ * (block size, number of blocks, number of tuples (rows)).
+ * Used when calling ANALYZE on a PXF external table, to get
+ * table's statistics that are used by the optimizer to plan queries.
+ */
+public abstract class Analyzer extends Plugin
+{
+    public Analyzer(InputData metaData)
+    {
+        super(metaData);
+    }
+　
+    /*
+     * path is a data source name (e.g, file, dir, wildcard, table name)
+     * returns the data statistics in json format
+     *
+     * NOTE: It is highly recommended to implement an extremely fast logic
+     * that returns *estimated* statistics. Scanning all the data for exact
+     * statistics is considered bad practice.
+     */
+    public String GetEstimatedStats(String data) throws Exception
+    {
+        /* Return default values */
+        return DataSourceStatsInfo.dataToJSON(new DataSourceStatsInfo());
+    }
+}</pre>
+</div></div><p align="LEFT"><em>GetEstimatedStats</em> creates a<em> DataSourceStatsInfo</em> class, and returns the result <em>DataSourceStatsInfo.dataToJSON</em>.</p><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-com.pivotal.pxf.analyzers.DataSourceStatsInfo">com.pivotal.pxf.analyzers.DataSourceStatsInfo</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/*
+ * DataSourceStatsInfo is a public class that represents the size
+ * information of given path.
+ */
+public class DataSourceStatsInfo
+{
+    public DataSourceStatsInfo(long blockSize, long numberOfBlocks, long numberOfTuples);
+
+    /*
+     * Default values
+     */
+    public DataSourceStatsInfo();
+
+    /*
+     * Given a FragmentsSizeInfo, serialize it in JSON to be used as the result string for Hawq. An example result is as 
+     * follows:
+     * {"PXFFilesSize":{"blockSize":67108864,"numberOfBlocks":1,"numberOfTuples":5}}
+     */
+    public static String dataToJSON(DataSourceStatsInfo info) throws IOException;
+
+    /*
+     * Given a size info structure, convert it to be readable. Intended
+     * for debugging purposes only. 'datapath' is the data path
+     * part of the original URI (e.g., table name, *.csv, etc).
+     */
+    public static String dataToString(DataSourceStatsInfo info, String datapath);
+　
+    public long getBlockSize();
+　
+    public long getNumberOfBlocks();
+　
+    public long getNumberOfTuples();
+}
+ </pre>
+</div></div><h2 id="PivotalExtensionFrameworkExternalTableandAPIReference-AboutCustomProfiles">About Custom Profiles</h2><p>Administrators can add new profiles or edit the built-in profiles in <span style="line-height: 1.4285;background-color: transparent;"><em>pxf-profiles.xml</em> file. You need to apply the changes using ICM reconfigure.  All PXF users can use the profiles in <em>pxf-profiles.xml</em>.</span></p><p>Each profile mandatory unique name, and an optional description.</p><p>In addition, each profile contains a set of plugins that are an extensible set of metadata attributes.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>Custom Profile Example</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: html/xml; gutter: false" style="font-size:12px;">&lt;profile&gt;
+	&lt;name&gt;MyCustomProfile&lt;/name&gt;
+    &lt;description&gt;A Custom Profile Example&lt;/description&gt;
+    &lt;plugins&gt;
+    	&lt;fragmenter&gt;CustomProfileFragmenter&lt;/fragmenter&gt;
+        &lt;accessor&gt;CustomProfileAccessor&lt;/accessor&gt;
+        &lt;customPlugin1&gt;MyCustomPluginValue1&lt;/customPlugin1&gt;
+	&lt;customPlugin2&gt;MyCustomPluginValue2&lt;/customPlugin2&gt;
+    &lt;/plugins&gt;
+&lt;/profile&gt;</pre>
+</div></div><h2 id="PivotalExtensionFrameworkExternalTableandAPIReference-AboutQueryFilterPush-Down">About Query Filter Push-Down</h2><p>If a query includes a number of WHERE clause filters,  HAWQ may push all or some queries to PXF. If pushed to PXF, the Accessor can use the filtering information when accessing the data source to fetch tuples. These filters only return records that pass filter evaluation conditions. This reduces data processing and reduces network traffic from the SQL engine.</p><p><span>This topic includes the following information:</span></p><ul><li>Filter Availability and Ordering<span> </span></li><li><span>Creating a Filter Builder class</span></li><li><span>Filter Operations</span></li><li><span>Sample Implementation</span></li><li><span>Using Filters</span></li></ul><h3 id="PivotalExtensionFrameworkExternalTableandAPIReference-FilterAvailabilityandOrdering">Filter Availability and Ordering</h3><p><span style="color: rgb(51,51,51);">PXF allows push-down filtering if the following rules are met:</span></p><ul><li><span> <span>Only</span> single expressions or a group of AND'ed expressions - no OR'ed expressions.</span></li><li><span>Only expressions of supported data types and operators. See the <em>Pivotal Extension Framework Installation and Administration Guide</em> for more information.</span></li></ul><p><span>FilterParser scans the pushed down filter list and uses the user's build() implementation to build the filter. </span></p><ul><li><span>For simple expressions (e.g, a &gt;= 5) FilterParser places column objects on the left of the expression and therefore constants on the right. </span></li><li><span>For compound expressions (e.g &lt;expression&gt; AND &lt;expression&gt;) it handles three cases in the build() function:</span></li></ul><ol><ol><li>Simple Expression: &lt;Column Index&gt; &lt;Operation&gt; &lt;Constant&gt;</li><li><span>Compound Expression: &lt;Filter Object&gt; AND &lt;Filter Object&gt;</span></li><li><span>Compound Expression: &lt;List of Filter Objects&gt; AND &lt;Filter Object&gt;</span></li></ol></ol><h3 class="p1" id="PivotalExtensionFrameworkExternalTableandAPIReference-CreatingaFilterBuilderClass">Creating a Filter Builder Class</h3><p class="p2">To check if a filter queried PXF, call the <em>InputData hasFilter()</em> function:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> /*
+  * Returns true if there is a filter string to parse
+  */
+ public boolean hasFilter()
+ {
+     return filterStringValid;
+ }
+</pre>
+</div></div><p class="p1">If <em>hasFilter()</em> returns <em>false</em>, there is no filter information. If it returns <em>true</em>, PXF parses the serialized filter string into a meaningful filter object to use later. To do so, create a filter builder class that implements the <em>FilterParser.IFilterBuilder </em> <span>interface:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> /*
+  * Interface a user of FilterParser should implement
+  * This is used to let the user build filter expressions in the manner she 
+  * sees fit
+  *
+  * When an operator is parsed, this function is called to let the user decide
+  * what to do with it operands.
+  */
+ interface IFilterBuilder
+ {
+     public Object build(Operation operation, Object left, Object right) throws Exception;
+ }</pre>
+</div></div><p>While PXF parses the serialized filter string from the incoming HAWQ query, it calls the <em>build() interface</em> function. PXF calls this function for each condition or filter pushed down to PXF. Implementing this function returns some Filter object or representation that the Accessor or Resolver uses in runtime to filter out records. The<em> build()</em> function accepts an Operation as input, and left and right operands.</p><h3 id="PivotalExtensionFrameworkExternalTableandAPIReference-FilterOperations">Filter Operations</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> /*
+  * Operations supported by the parser
+  */
+ public enum Operation
+ {
+     HDOP_LT, //less than
+     HDOP_GT, //greater than
+     HDOP_LE, //less than or equal
+     HDOP_GE, //greater than or equal
+     HDOP_EQ, //equal
+     HDOP_NE, //not equal
+     HDOP_AND //AND'ed conditions
+ };
+</pre>
+</div></div><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-FilterOperands">Filter Operands</h4><p>There are three types of operands:</p><ul><li>Column Index</li><li>Constant</li><li>Filter Object</li></ul><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-ColumnIndex">Column Index</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> /*
+  * The class represents a column index
+  * It used to know the type of an operand in the stack
+  */
+ public class ColumnIndex
+ {
+     private int index;
+     
+     public ColumnIndex(int idx)
+     {
+         index = idx;
+     }
+ 
+     public int index()
+     {
+         return index;
+     }
+ }</pre>
+</div></div><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-Constant">Constant</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> /*
+  * The class represents a constant object (String, Long, ...)
+  * It used to know the type of an operand in the stack
+  */
+ public class Constant
+ {
+      private Object constant;
+
+      public Constant(Object obj)
+      {
+          constant = obj;
+      }
+ 
+      public Object constant()
+      {
+          return constant;
+      }
+ }</pre>
+</div></div><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-FilterObject">Filter Object</h4><p>Filter Objects can be internal, such as those you define; or external, those that the remote system uses. For example, for HBase, you define the HBase <em>Filter </em>class (<span><em>org.apache.hadoop.hbase.filter.Filter</em>), while for Hive, you use an internal default representation created by the PXF framework, called <em>BasicFilter </em>. You can decide the filter object to use, including writing a new one. <em>BasicFilter</em> is the most common:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> /*
+  * Basic filter provided for cases where the target storage system does not provide it's own filter
+  * For example: Hbase storage provides it's own filter but for a Writable based record in a SequenceFile
+  * there is no filter provided and so we need to have a default
+  */
+ static public class BasicFilter
+ {
+     private Operation oper;
+     private ColumnIndex column;
+     private Constant constant;
+ 
+     /*
+      * C'tor
+      */
+     public BasicFilter(Operation inOper, ColumnIndex inColumn, Constant inConstant)
+     {
+         oper = inOper;
+         column = inColumn;
+         constant = inConstant;
+     }
+ 
+     /*
+      * returns oper field
+      */
+     public Operation getOperation()
+     {
+         return oper;
+     }
+ 
+     /*
+      * returns column field
+      */
+     public ColumnIndex getColumn()
+     {
+         return column;
+     }
+ 
+     /*
+      * returns constant field
+      */
+     public Constant getConstant()
+     {
+         return constant;
+     }
+ }</pre>
+</div></div><h3 id="PivotalExtensionFrameworkExternalTableandAPIReference-SampleImplementation">Sample Implementation</h3><p><span>Let's look at the following sample implementation of the filter builder class and its <em>build()</em> function that handles all 3 cases. Let's assume that BasicFilter was used to hold our filter operations</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">public class MyDemoFilterBuilder implements FilterParser.IFilterBuilder
+{
+	private InputData inputData;
+
+	public MyDataFilterBuilder(InputData input)
+	{
+		inputData = input;
+	}
+
+	/*
+	 * Translates a filterString into a FilterParser.BasicFilter or a list of such filters
+	 */
+	public Object getFilterObject(String filterString) throws Exception
+	{
+		FilterParser parser = new FilterParser(this);
+		Object result = parser.parse(filterString);
+
+		if (!(result instanceof FilterParser.BasicFilter) &amp;&amp; !(result instanceof List))
+			throw new Exception("String " + filterString + " resolved to no filter");
+
+		return result;
+	}
+ 
+	public Object build(FilterParser.Operation opId, 
+						Object leftOperand, 
+						Object rightOperand) throws Exception
+	{
+		if (leftOperand instanceof FilterParser.BasicFilter)
+		{
+			//sanity check
+			if (opId != FilterParser.Operation.HDOP_AND || !(rightOperand instanceof FilterParser.BasicFilter))
+				throw new Exception("Only AND is allowed between compound expressions");
+
+			//case 3
+			if (leftOperand instanceof List)
+				return handleCompoundOperations((List&lt;FilterParser.BasicFilter&gt;)leftOperand, (FilterParser.BasicFilter)rightOperand);
+			//case 2
+			else 
+				return handleCompoundOperations((FilterParser.BasicFilter)leftOperand, (FilterParser.BasicFilter)rightOperand);
+		}
+
+		//sanity check
+		if (!(rightOperand instanceof FilterParser.Constant))
+			throw new Exception("expressions of column-op-column are not supported");
+
+		//case 1 (assume column is on the left)
+		return handleSimpleOperations(opId, (FilterParser.ColumnIndex)leftOperand, (FilterParser.Constant)rightOperand);
+	}
+
+	private FilterParser.BasicFilter handleSimpleOperations(FilterParser.Operation opId,
+															FilterParser.ColumnIndex column,
+															FilterParser.Constant constant)
+	{
+		return new FilterParser.BasicFilter(opId, column, constant);
+	}
+
+	private  List handleCompoundOperations(List&lt;FilterParser.BasicFilter&gt; left, 
+									   FilterParser.BasicFilter right)
+	{
+		left.add(right);
+		return left;
+	}
+
+	private List handleCompoundOperations(FilterParser.BasicFilter left, 
+										  FilterParser.BasicFilter right)
+	{
+		List&lt;FilterParser.BasicFilter&gt; result = new LinkedList&lt;FilterParser.BasicFilter&gt;();
+
+	 	result.add(left);
+		result.add(right);
+		return result;
+	}
+}</pre>
+</div></div><p>Here is an example of creating a filter builder class to implement the Filter interface, implement the <em>build()</em> function, and generate the Filter object. To do this, use either the Accessor, Resolver, or both to call the <em>getFilterObject</em> function:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">if (inputData.hasFilter())
+{
+	String filterStr = inputData.filterString();
+	DemoFilterBuilder demobuilder = new DemoFilterBuilder(inputData);
+	Object filter = demobuilder.getFilterObject(filterStr);
+	...
+}</pre>
+</div></div><h3 id="PivotalExtensionFrameworkExternalTableandAPIReference-UsingFilters">Using Filters</h3><p>Once you have built the FIlter object(s), you can use them to read data and filter out records that do not meet the filter conditions:</p><ol><li>Check whether you have a single or multiple filters.</li><li>Evaluate each filter and iterate over each filter in the list. Disqualify the record if a filter conditions fail.</li></ol><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">if (filter instanceof List)
+{
+	for (Object f : (List)filter)
+		&lt;evaluate f&gt;; //may want to break if evaluation results in negative answer for any filter.
+}
+else
+{
+	&lt;evaluate filter&gt;;
+}</pre>
+</div></div><p>Example of evaluating a single filter:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">//Get our BasicFilter Object
+FilterParser.BasicFilter bFilter = (FilterParser.BasicFilter)filter;
+
+ 
+//Get operation and operator values
+FilterParser.Operation op = bFilter.getOperation(); 
+int colIdx = bFilter.getColumn().index();
+String val = bFilter.getConstant().constant().toString();
+
+//Get more info about the column if desired
+ColumnDescriptor col = input.getColumn(colIdx);
+String colName = filterColumn.columnName();
+ 
+//Now evaluate it against the actual column value in the record...</pre>
+</div></div><h2 class="p2" id="PivotalExtensionFrameworkExternalTableandAPIReference-Reference">Reference</h2><p align="LEFT">This section contains the following information:</p><ul><li>External Table Samples</li><li>Plugin Examples</li><li>Configuration Files</li></ul><h3 id="PivotalExtensionFrameworkExternalTableandAPIReference-ExternalTableExamples">External Table Examples</h3><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-Example1">Example 1</h4><p align="LEFT">Shows an external table that can analyze all <em>Sequencefiles </em>that are populated <em>Writable </em>serialized records and exist inside the hdfs directory <em>sales/2012/01</em>. <em>SaleItem.class</em> is a java class that implements the <em>Writable </em>interface and describes a java record that includes three class members.</p><p align="LEFT"><strong>Note</strong>: In this example the class member names do not necessarily match the database attribute names, but the types match. <em>SaleItem.class</em> must exist in the classpath of every Datanode.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE jan_2012_sales (id int, total int, comments varchar) 
+LOCATION ('pxf://10.76.72.26:50070/sales/2012/01/*.seq?fragmenter=HdfsDataFragmenter&amp;accessor=SequenceFileAccessor&amp;resolver=WritableResolver&amp;data-schema=SaleItem')
+FORMAT ‘custom’ (formatter='pxfwritable_import');</pre>
+</div></div><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-Example2">Example 2</h4><p align="LEFT">Shows an external table that can analyze an HBase table called<em> sales</em>. It has 10 column families <em>(cf1 – cf10)</em> and many qualifier names in each family. This example focuses on the <em>rowkey</em>, the qualifier<em> saleid</em> inside column family <em>cf1</em>, and the qualifier <em>comments</em> inside column family <em>cf8</em> and uses Direct Mapping:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE hbase_sales (hbaserowkey text, "cf1:saleid" int, "cf8:comments" varchar)
+LOCATION
+('pxf://10.76.72.26:50070/sales?fragmenter=HBaseDataFragmenter&amp;accessor=HBaseAccessor&amp;resolver=HBaseResolver')
+FORMAT ‘custom’ (formatter='pxfwritable_import');</pre>
+</div></div><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-Example3">Example 3</h4><p align="LEFT">This example uses Indirect Mapping. Note how the attribute name changes and how they correspond to the HBase lookup table. Executing a <em>SELECT from my_hbase_sales</em>, the attribute names automatically convert to their HBase correspondents.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE my_hbase_sales (hbaserowkey text, id int, cmts varchar) 
+LOCATION
+('pxf://10.76.72.26:8080/sales?fragmenter=HBaseDataFragmenter&amp;accessor=HBaseAccessor&amp;resolver=HBaseResolver')
+FORMAT ‘custom’ (formatter='pxfwritable_import');</pre>
+</div></div><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-Example4">Example 4</h4><p>Shows an example for writable table of compressed data. </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE WRITABLE EXTERNAL TABLE sales_aggregated_2012 (id int, total int, comments varchar) 
+LOCATION
+('pxf://10.76.72.26:8080/sales/2012/aggregated?accessor=LineBreakAccessor&amp;resolver=StringPassResolver&amp;compression_codec=org.apache.hadoop.io.compress.BZip2Codec')
+FORMAT ‘TEXT’;</pre>
+</div></div><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-Example5">Example 5</h4><p>Shows an example for writable table into sequence file, using schema file. Note that for write, the formatter is <em>pxfwritable_export.</em></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE WRITABLE EXTERNAL TABLE sales_max_2012 (id int, total int, comments varchar) 
+LOCATION
+('pxf://10.76.72.26:8080/sales/2012/max?fragmenter=HdfsDataFragmenter&amp;accessor=SequenceFileAccessor&amp;resolver=WritableResolver&amp;data-schema=SaleItem')
+FORMAT ‘custom’ (formatter='pxfwritable_export');</pre>
+</div></div><h3 id="PivotalExtensionFrameworkExternalTableandAPIReference-PluginExamples">Plugin Examples</h3><p align="LEFT">This section contains sample dummy implantations of all four plug-ins. It also contains a usage example.</p><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-DummyFragmenter">Dummy Fragmenter</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">package com.pivotal.pxf.examples;
+import java.net.InetAddress;
+import com.pivotal.pxf.utilities.InputData;
+import com.pivotal.pxf.utilities.Plugin;
+import com.pivotal.pxf.fragmenters.Fragmenter;
+import com.pivotal.pxf.fragmenters.FragmentsOutput;
+public class DummyFragmenter extends Fragmenter
+{
+public DummyFragmenter(InputData metaData)
+{
+super(metaData);
+
+}
+/*
+* path is a data source name (e.g, file, dir, wildcard, table name).
+* returns the data fragments
+*/
+
+public FragmentsOutput GetFragments() throws Exception
+{
+String localhostname = java.net.InetAddress.getLocalHost().getHostName();
+String[] localHosts = new String[] { localhostname, localhostname }; 
+fragments.addFragment(this.inputData.path() + ".1" /* source name */,
+                      localHosts /* available hosts list */,
+                      "fragment1".getBytes());
+fragments.addFragment(this.inputData.path() + ".2" /* source name */,
+   					  localHosts /* available hosts list */,
+                      "fragment2".getBytes());
+fragments.addFragment(this.inputData.path() + ".3" /* source name */,
+                      localHosts /* available hosts list */,
+                      "fragment3".getBytes());
+
+return fragments;
+
+}
+
+}</pre>
+</div></div><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-DummyAccessor">Dummy Accessor</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">package com.pivotal.pxf.examples;
+
+import com.pivotal.pxf.format.OneRow;
+import com.pivotal.pxf.utilities.InputData;
+import com.pivotal.pxf.utilities.Plugin;
+import com.pivotal.pxf.accessors.IReadAccessor;
+
+import com.pivotal.pxf.accessors.IWriteAccessor; 
+ 
+/*
+ * Internal interface that defines the access to a file on HDFS.  All classes
+ * that implement actual access to an HDFS file (sequence file, avro file,...)
+ * must respect this interface
+ * Dummy implementation, for documentation
+ */
+public class DummyAccessor extends Plugin implements IReadAccessor
+,IWriteAccessor
+{
+    private int rowNumber;
+    private int fragmentNumber;
+    private Log Log; 
+    
+    public DummyAccessor(InputData metaData)
+    {
+	super(metaData);
+        rowNumber = 0;
+        fragmentNumber = 0;
+        Log = LogFactory.getLog(DummyAccessor.class);
+    }
+
+    public boolean openForRead() throws Exception
+    {
+        /* fopen or similar */
+        return true;
+    }
+
+    public OneRow readNextObject() throws Exception
+    {
+        /* return next row , &lt;key=fragmentNo.rowNo, val=rowNo,text,fragmentNo&gt;*/
+        /* check for EOF */
+        if (fragmentNumber &gt; 0) 
+            return null; /* signal EOF, close will be called */
+
+        int fragment = this.inputData.getDataFragment();
+		String fragmentMetadata = new String(this.inputData.getFragmentMetadata());
+        /* generate row */
+        OneRow row = new OneRow(Integer.toString(fragment) + "." + Integer.toString(rowNumber), /* key */
+                                Integer.toString(rowNumber) + "," + fragmentMetadata + "," + Integer.toString(fragment) /* value */);
+        /* advance */
+        rowNumber += 1;
+        if (rowNumber == 2) {
+            rowNumber = 0;
+            fragmentNumber += 1;
+        } 
+        /* return data */
+        return row;
+    }
+
+
+    public void closeForRead() throws Exception
+    {
+        /* fclose or similar */
+    }
+
+    
+    @Override     
+    public boolean openForWrite() throws Exception {         
+	/* fopen or similar */         
+	return true;     
+     }       
+ 
+     @Override     
+     public boolean writeNextObject(OneRow onerow) throws Exception {         
+	Log.info(onerow.getData());         
+	return true;     
+     }       
+ 
+     @Override     
+     public void closeForWrite() throws Exception {         
+	/* fclose or similar */     
+     } 
+}</pre>
+</div></div><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-DummyResolver">Dummy Resolver</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">package com.pivotal.pxf.examples;
+import java.util.List;
+import java.util.LinkedList;
+  
+import com.pivotal.pxf.format.OneField;
+import com.pivotal.pxf.format.OneRow;
+import com.pivotal.pxf.utilities.InputData;
+import com.pivotal.pxf.utilities.Plugin;
+import com.pivotal.pxf.resolvers.IReadResolver;
+import com.pivotal.pxf.resolvers.IWriteResolver;
+import com.pivotal.pxf.hadoop.io.GPDBWritable;
+  
+/*
+ * Class that defines the deserializtion of one record brought from the external input data.
+ * Every implementation of a deserialization method (Writable, Avro, BP, Thrift, ...)
+ * must inherit this abstract class
+ * Dummy implementation, for documentation
+ */
+public class DummyResolver extends Plugin implements IReadResolver, IWriteResolver
+{
+    private int rowNumber;
+ 
+    public DummyResolver(InputData metaData)
+    {
+       super(metaData);
+       rowNumber = 0;
+    }
+  
+  
+    public List&lt;OneField&gt; getFields(OneRow row) throws Exception
+    {
+        /* break up the row into fields */
+        List&lt;OneField&gt; output = new LinkedList&lt;OneField&gt;();
+        String[] fields = ((String)row.getData()).split(",");
+  
+  
+        output.add(new OneField(GPDBWritable.INTEGER /* type */,Integer.parseInt(fields[0]) /* value */));
+        output.add(new OneField(GPDBWritable.VARCHAR ,fields[1]));
+        output.add(new OneField(GPDBWritable.INTEGER ,Integer.parseInt(fields[2])));
+  
+        return output;
+    }
+ 
+ 
+    @Override
+    public OneRow setFields(DataInputStream inputStream) throws Exception {
+       /* should read inputStream row by row */
+       if (rowNumber &gt; 5)
+           return null;
+       return new OneRow(null, new String("row number " + rowNumber++));
+    }
+
+
+ </pre>
+</div></div><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-DummyAnalyzer">Dummy Analyzer</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">package com.pivotal.pxf.examples;
+　
+import com.pivotal.pxf.utilities.InputData;
+import com.pivotal.pxf.utilities.Plugin;
+import com.pivotal.pxf.analyzers.Analyzer;
+import com.pivotal.pxf.analyzers.DataSourceStatsInfo;
+/*
+* Abstract class that defines getting statistics for ANALYZE.
+* GetEstimatedStats returns statistics for a given path
+* (block size, number of blocks, number of tuples).
+* Used when calling ANALYZE on a PXF external table,
+* to get table's statistics that are used by the optimizer to plan queries.
+* Dummy implementation, for documentation
+*/
+
+public class DummyAnalyzer extends Analyzer
+{
+public DummyAnalyzer(InputData metaData)
+{
+super(metaData);
+
+}
+/*
+* path is a data source name (e.g, file, dir, wildcard, table name).
+* returns the data statistics in json format
+*/
+
+public String GetEstimatedStats(String data) throws Exception
+{
+return DataSourceStatsInfo.dataToJSON(new DataSourceStatsInfo(16 /* disk block size in bytes */,
+3 /* number of disk blocks */,
+2 /* number of rows in disk block (avg) */));
+
+}</pre>
+</div></div><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-UsageExample">Usage Example</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">psql=# CREATE EXTERNAL TABLE dummy_tbl (int1 integer, word text, int2 integer)
+location
+('pxf://localhost:50070/eran_location?FRAGMENTER=com.pivotal.pxf.examples.DummyFragmenter&amp;ACCESSOR=com.pivotal.pxf.examples.DummyAccessor&amp;RESOLVER=com.pivotal.pxf.examples.DummyResolver&amp;ANALYZER=com.pivotal.pxf.examples.DummyAnalyzer') format'custom' (formatter = 'pxfwritable_import');
+　
+CREATE EXTERNAL TABLE
+psql=# SELECT * FROM dummy_tbl;
+int1 | word | int2
+------+------+------
+0 | fragment1 | 0
+1 | fragment1 | 0
+0 | fragment2 | 0
+1 | fragment2 | 0
+0 | fragment3 | 0
+1 | fragment3 | 0
+(6 rows)
+psql=# CREATE WRITABLE EXTERNAL TABLE dummy_tbl_write (int1 integer, word text, int2 integer)
+location
+('pxf://localhost:50070/eran_location?ACCESSOR=com.pivotal.pxf.examples.DummyAccessor&amp;RESOLVER=com.pivotal.pxf.examples.DummyResolver') 
+format'custom' (formatter = 'pxfwritable_import');
+　
+CREATE EXTERNAL TABLE
+psql=# INSERT INTO dummy_tbl_write VALUES (1, 'a', 11), (2, 'b', 22);
+INSERT 0 2
+
+
+</pre>
+</div></div><h3 id="PivotalExtensionFrameworkExternalTableandAPIReference-ConfigurationFiles">Configuration Files</h3><p align="LEFT">This section contains sample environment variable files for HDFS, HIVE, and HBase:</p><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-hadoop-env.sh">hadoop-env.sh</h4><p align="LEFT">You can use this file to configure the following types of configurations:</p><ul><li>HDFS only</li><li>HDFS and HBase</li><li>HDFS, HBase, and Hive</li></ul><h5 id="PivotalExtensionFrameworkExternalTableandAPIReference-HDFSonly">HDFS only</h5><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export GPHD_ROOT=/usr/lib/gphd
+export HADOOP_CLASSPATH=\
+$HADOOP_CLASSPATH:\
+$GPHD_ROOT/pxf/pxf.jar:\
+$GPHD_ROOT/publicstage:\
+$GPHD_ROOT/pxf/avro-1.5.4.jar:\
+$GPHD_ROOT/pxf/avro-mapred-1.5.4.jar:\
+$GPHD_ROOT/hadoop-mapreduce-2.0.2_alpha_gphd_2_0_1_0/
+hadoop-mapreduce-client-core-2.0.2-alpha-gphd-2.0.1.0-SNAPSHOT.jar:\</pre>
+</div></div><h5 id="PivotalExtensionFrameworkExternalTableandAPIReference-HDFSandHBase">HDFS and HBase</h5><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export GPHD_ROOT=/usr/lib/gphd
+export GPHD_CONF=/etc/gphd
+export HADOOP_CLASSPATH=\
+$HADOOP_CLASSPATH:\
+$GPHD_ROOT/pxf/pxf.jar:\
+$GPHD_ROOT/publicstage:\
+$GPHD_ROOT/pxf/avro-1.5.4.jar:\
+$GPHD_ROOT/pxf/avro-mapred-1.5.4.jar:\
+$GPHD_ROOT/zookeeper/zookeeper.jar:\
+$GPHD_ROOT/hbase/hbase.jar:\
+$GPHD_CONF/hbase/conf:\
+$GPHD_ROOT/hadoop-mapreduce-2.0.2_alpha_gphd_2_0_1_0/hadoop-mapreduce-client-core-2.0.2-alpha-gphd-2.0.1.0-SNAPSHOT.jar:\</pre>
+</div></div><h5 id="PivotalExtensionFrameworkExternalTableandAPIReference-HDFS,HBase,andHive">HDFS, HBase, and Hive</h5><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export GPHD_ROOT=/usr/lib/gphd
+export GPHD_CONF=/etc/gphd
+export HIVELIB_ROOT=$GPHD_ROOT/hive/lib
+export HADOOP_CLASSPATH=\
+$HADOOP_CLASSPATH:\
+$GPHD_ROOT/pxf/pxf.jar:\
+$GPHD_ROOT/publicstage:\
+$GPHD_ROOT/pxf/avro-1.5.4.jar:\
+$GPHD_ROOT/pxf/avro-mapred-1.5.4.jar:\
+$GPHD_ROOT/zookeeper/zookeeper.jar:\
+$GPHD_ROOT/hbase/hbase.jar:\
+$GPHD_CONF/hbase/conf:\
+$HIVELIB_ROOT/hive-service-0.9.1-gphd-2.0.1.jar:\
+$HIVELIB_ROOT/libthrift-0.7.0.jar:\
+$HIVELIB_ROOT/hive-metastore-0.9.1-gphd-2.0.1.jar:\
+$HIVELIB_ROOT/libfb303-0.7.0.jar:\
+$HIVELIB_ROOT/hive-common-0.9.1-gphd-2.0.1.jar:\
+$HIVELIB_ROOT/hive-exec-0.9.1-gphd-2.0.1.jar:\
+$GPHD_ROOT/hadoop-mapreduce-2.0.2_alpha_gphd_2_0_1_0/hadoop-mapreduce-client-core-2.0.2-alpha-gphd-2.0.1.0-SNAPSHOT.jar:\</pre>
+</div></div><h4 id="PivotalExtensionFrameworkExternalTableandAPIReference-hbase-site.xml">hbase-site.xml</h4><p align="LEFT">You can use this file to configure the following types of configurations:</p><ul><li>HBase</li><li>HDFS, HBase and Hive</li></ul><h5 id="PivotalExtensionFrameworkExternalTableandAPIReference-HBase">HBase</h5><p align="LEFT">The Java Class path requires the PXF JAR file. <em>hbase-site.xml</em> needs to be configured to match the hbase settings on all nodes (Namenode and Datanodes).</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export GPHD_ROOT=/usr/lib/gphd
+export GPHD_CONF=/etc/gphd
+export HADOOP_CLASSPATH=\
+$HADOOP_CLASSPATH:\
+$GPHD_ROOT/pxf/pxf.jar:\
+$GPHD_ROOT/publicstage:\
+$GPHD_ROOT/pxf/avro-1.5.4.jar:\
+$GPHD_ROOT/pxf/avro-mapred-1.5.4.jar:\
+$GPHD_ROOT/zookeeper/zookeeper.jar:\
+$GPHD_ROOT/hbase/hbase.jar:\</pre>
+</div></div><h5 id="PivotalExtensionFrameworkExternalTableandAPIReference-HDFS,HBaseandHive">HDFS, HBase and Hive</h5><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export GPHD_ROOT=/usr/lib/gphd
+export HIVELIB_ROOT=$GPHD_ROOT/hive/lib
+export HADOOP_CLASSPATH=\
+$GPHD_ROOT/pxf/pxf.jar:\
+$GPHD_ROOT/publicstage:\
+$GPHD_ROOT/pxf/avro-1.5.4.jar:\
+$GPHD_ROOT/pxf/avro-mapred-1.5.4.jar:\
+$GPHD_ROOT/zookeeper/zookeeper.jar:\
+$GPHD_ROOT/hbase/hbase.jar:\</pre>
+</div></div><p align="LEFT"><strong> <span style="font-size: xx-small;"> <strong> <strong> </strong> <strong> </strong> <strong> </strong> <strong> </strong> <span style="font-size: xx-small;"> </span> </strong> <strong> </strong> <strong> </strong> <strong> </strong> <span style="font-size: xx-small;"> </span> </span> </strong></p>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

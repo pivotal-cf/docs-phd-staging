@@ -1,0 +1,615 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>DataLoader Copy Strategy and Transfer Policy | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>DataLoader Copy Strategy and Transfer Policy</h1><div class="wiki-content group" id="main-content">
+<p>When loading from different data sources, the user must define the job spec, copy strategy, and transfer policy before submitting a job for Data Loader to run. </p><p>Copy Strategy defines the loading job scheduling strategy. Different copy strategies are used depending on the loading requirements. There could be more than one strategies applicable to a loading scenario. In general, there are 2 categories of strategies corresponding to batch and streaming jobs respectively:</p><ol><li>Batch Job: Uniform, Locality, LocalFS, Dynamic</li><li>Streaming Job: Push streaming</li></ol><p>A Job Specification File (also known as a Transfer Spec or JobSpec) is an XML-based file that defines the job being submitted. The Job Specification section provides information on contents of these files and gives examples. If jobs are submitted through the UI forms, you simply select appropriate entries. </p><h2 id="DataLoaderCopyStrategyandTransferPolicy-CopyStrategy">Copy Strategy</h2><p>DataLoader supports 6 copy strategies, shown in the table below.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Strategy Name Supported Target</p></th><th class="confluenceTh"><span style="color: rgb(0,0,0);">Description </span></th><th class="confluenceTh"><span style="color: rgb(0,0,0);">Supported Source </span></th><th class="confluenceTh"><span style="color: rgb(0,0,0);">Supported Target</span></th></tr><tr><td class="confluenceTd">locality</td><td class="confluenceTd"><p>Locality Copy Strategy exploits the location information from the data source, such that the job splits created by Job Planner will be assigned to workers having the highest possibility being co-located with the data blocks, thus reducing inter-machine traffic. Locality will be achieved during reads when DataLoader is deployed on source HDFS cluster, and during writes when deployed on destination HDFS cluster.</p></td><td class="confluenceTd">HDFS</td><td class="confluenceTd">HDFS/HDFS2 supports concat*</td></tr><tr><td class="confluenceTd">localfs</td><td class="confluenceTd"><p>LocalFS strategy is a special case of Locality strategy where source data is on the local disks of the DataLoader worker nodes. The location information must be used to verify that the workers are copying from the disk mounted on the same server, as the local file system can not be accessed from a remote machine via DataLoader. LocalFS strategy tells the DataLoader scheduler to assign the file splits only to the host where the files are stored. <br/>LocalFS strategy supports additional optimization on top of host level assignment. In transfer specification files, users can identify the disk where the files are stored, and can specify the number of worker processes to copy from one disk. DataLoader scheduler will schedule the specified number of worker processes per disk to maximize usage of the available disk bandwidth available. <br/>Localfs strategy is NOT supported with YARN/MapReduce2</p></td><td class="confluenceTd">Raw file system</td><td class="confluenceTd"><span>HDFS, HDFS2</span></td></tr><tr><td class="confluenceTd">uniform</td><td class="confluenceTd">Uniform strategy uniformly assigns loading tasks to all the loader machines according to file size.</td><td class="confluenceTd">FTP, NFS</td><td class="confluenceTd"><span>HDFS, HDFS2</span></td></tr><tr><td class="confluenceTd">dynamic</td><td class="confluenceTd"><p>Dynamic strategy is a batch copy strategy where the copy tasks are assigned on demand rather than pre-allocated in batch mode, i.e., rather than generating the job spits beforehand, the copy tasks are pooled and allocated to workers at run time. This strategy is used when a large number of small files must be copied.</p><p>In a heterogeneous environment, it is easy to see long tail effects if the tasks are assigned more or less uniformly. The benefits of using dynamic strategy is that, the workers will be kept busy as long as there are still tasks to work on, whereas if a static allocation is used, some workers will finish and exit early and leave the stragglers running till complete. The downside of using dynamic strategy is, when there are large volume of data needs to be copied, usually the number of workers will scale up, and they will compete for the tasks to run, which inevitably causes contention and eventually hurts scalability.</p></td><td class="confluenceTd">NFS, FTP, HDFS, HDFS2 </td><td class="confluenceTd"><span>HDFS, HDFS2</span></td></tr><tr><td class="confluenceTd">connection limited</td><td class="confluenceTd">This limits the connections to data sources by the specified number of workers. This strategy is used when users are loading from FTP, or other data sources where the connections need to be throttled per the configured server capacity. </td><td class="confluenceTd">FTP</td><td class="confluenceTd"><span>HDFS, HDFS2</span></td></tr><tr><td class="confluenceTd" colspan="1">pushstream</td><td class="confluenceTd" colspan="1">Pushstream copy strategy is used when a user submits a pushstream job. This strategy will allow the user to specify the number of workers to support the client it is connecting to. Similar to pull streaming job, Data Loader scheduler will over provision the number of required workers to support the job to make sure the low latency scheduling can be achieved. </td><td class="confluenceTd" colspan="1">n/a</td><td class="confluenceTd" colspan="1"><span>HDFS, HDFS2</span></td></tr><tr><td class="confluenceTd" colspan="1">intelligent</td><td class="confluenceTd" colspan="1"><p>With this strategy, DataLoader will automatically pick the suitable copy strategy for the user scenario. For example, if copying from HDFS, and target HDFS supports concat, then locality strategy will be<br/>selected; if copied from local file system, localfs strategy will be selected; otherwise uniform strategy will be used.</p></td><td class="confluenceTd" colspan="1">All file sources</td><td class="confluenceTd" colspan="1"><span>HDFS, HDFS2</span></td></tr></tbody></table></div><h2 id="DataLoaderCopyStrategyandTransferPolicy-IntelligentCopy"><span style="color: rgb(0,0,0);font-size: 20.0px;line-height: 1.5;">Intelligent Copy</span></h2><p>In Intelligent Copy, the DataLoader determines the best strategy based on the source and target data store configuration.</p><p>The table below shows how the strategy is selected.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Sourcre Datastore</th><th class="confluenceTh">Desitnation Datastore</th><th class="confluenceTh">Intelligent Approach</th></tr><tr><td class="confluenceTd">HDFS</td><td class="confluenceTd"><p>HDFS with concat support</p></td><td class="confluenceTd">locality strategy</td></tr><tr><td class="confluenceTd">HDFS</td><td class="confluenceTd"><p>HDFS without concat support</p></td><td class="confluenceTd">uniform stragegy</td></tr><tr><td class="confluenceTd">Local FS</td><td class="confluenceTd"><p>HDFS with concat support</p></td><td class="confluenceTd">localfs with chunking</td></tr><tr><td class="confluenceTd">Local FS</td><td class="confluenceTd"><p>HDFS without concat support</p></td><td class="confluenceTd">localfs</td></tr><tr><td class="confluenceTd" colspan="1">NFS</td><td class="confluenceTd" colspan="1"><p>HDFS with concat support</p></td><td class="confluenceTd" colspan="1">uniform strategy with chunking</td></tr><tr><td class="confluenceTd" colspan="1">NFS</td><td class="confluenceTd" colspan="1"><p>HDFS without concat support</p></td><td class="confluenceTd" colspan="1">uniform strategy</td></tr><tr><td class="confluenceTd" colspan="1">FTP</td><td class="confluenceTd" colspan="1">\</td><td class="confluenceTd" colspan="1">uniform strategy</td></tr></tbody></table></div><h2 id="DataLoaderCopyStrategyandTransferPolicy-SupportedCopy/TransferCombinations"><span style="color: rgb(0,0,0);font-size: 20.0px;line-height: 1.5;">Supported Copy/Transfer Combinations</span></h2><p>The tables below show the supported combinations of copy strategies and transfer policies for the different types of data stores.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Source Data Store Type</p></th><th class="confluenceTh"><p>Supported Copy Strategy</p></th><th class="confluenceTh"><p>Supported Policy</p></th><th class="confluenceTh"><p>File Transfer Spec</p></th></tr><tr><td class="confluenceTd"><p>HDFS</p></td><td class="confluenceTd"><p>locality  <br class="atl-forced-newline"/> uniform <br class="atl-forced-newline"/> dynamic <br class="atl-forced-newline"/> intelligent*</p></td><td class="confluenceTd"><p>Chunking (If destination data store support concat) <br class="atl-forced-newline"/> Bandwidth-throttling <br class="atl-forced-newline"/> Overwrite <br class="atl-forced-newline"/> worker-number  <br class="atl-forced-newline"/> Compression (chunking needs to be disabled)</p></td><td class="confluenceTd"><p>folder <br class="atl-forced-newline"/> file <br class="atl-forced-newline"/> glob <br class="atl-forced-newline"/> list</p></td></tr><tr><td class="confluenceTd"><p>NFS</p></td><td class="confluenceTd"><p>uniform <br class="atl-forced-newline"/> dynamic <br class="atl-forced-newline"/> intelligent*</p></td><td class="confluenceTd"><p>Chunking (if destination cluster support concat) <br class="atl-forced-newline"/> Bandwidth-throttling <br class="atl-forced-newline"/> Overwrite <br class="atl-forced-newline"/> worker-number <br class="atl-forced-newline"/> Compression (chunking needs to be disabled)</p></td><td class="confluenceTd"><p>folder <br class="atl-forced-newline"/> file <br class="atl-forced-newline"/> glob <br class="atl-forced-newline"/> list</p></td></tr><tr><td class="confluenceTd"><p>LocalFS</p></td><td class="confluenceTd"><p>localfs <br class="atl-forced-newline"/> intelligent*</p></td><td class="confluenceTd"><p>Chunking <br class="atl-forced-newline"/> Bandwidth-throttling <br class="atl-forced-newline"/> Overwrite <br class="atl-forced-newline"/><span style="color: rgb(0,0,0);">worker-number</span><br class="atl-forced-newline"/><span style="color: rgb(0,0,0);">worker-per-disk</span><br class="atl-forced-newline"/> Compression (chunking needs to be disabled)</p></td><td class="confluenceTd"><p>folder <br class="atl-forced-newline"/> file <br class="atl-forced-newline"/> glob <br class="atl-forced-newline"/> list</p></td></tr><tr><td class="confluenceTd"><p>FTP</p></td><td class="confluenceTd"><p>uniform <br class="atl-forced-newline"/> connection limited <br class="atl-forced-newline"/> dynamic <br class="atl-forced-newline"/> intelligent*</p></td><td class="confluenceTd"><p>Bandwidth-throttling <br class="atl-forced-newline"/> Overwrite <br class="atl-forced-newline"/> worker-number  <br class="atl-forced-newline"/> Compression (chunking needs to be disabled) </p></td><td class="confluenceTd"><p>folder <br class="atl-forced-newline"/> file <br class="atl-forced-newline"/> glob <br class="atl-forced-newline"/> list</p></td></tr></tbody></table></div><p>Note: by using <em>intelligent</em> strategy, Dataloader will choose the appropriate strategy for performing the copy.</p><h3 id="DataLoaderCopyStrategyandTransferPolicy-ThecombinationforPushStreamjobs">The combination for Push Stream jobs </h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Source Data Store Type</p></th><th class="confluenceTh"><p>Copy Strategy</p></th><th class="confluenceTh"><p>Policy</p></th><th class="confluenceTh"><p>File Transfer Spec</p></th></tr><tr><td class="confluenceTd"><p>N/A <br class="atl-forced-newline"/>For push stream scenarios, DataLoader accepts events and/or messages from any active client.</p></td><td class="confluenceTd"><p>pushstream intelligent*</p></td><td class="confluenceTd"><p>worker-number <br class="atl-forced-newline"/>Compression Bandwidth-throttling <br class="atl-forced-newline"/><br class="atl-forced-newline"/><br class="atl-forced-newline"/></p></td><td class="confluenceTd"><p>The Job Specification/Transfer spec must specify the root path in the destination FS. <br class="atl-forced-newline"/><br class="atl-forced-newline"/>All messages/events DataLoader has received will be serialized in files <br class="atl-forced-newline"/>under that root path following certain naming conventions.</p></td></tr></tbody></table></div>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

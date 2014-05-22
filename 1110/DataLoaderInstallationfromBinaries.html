@@ -1,0 +1,730 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>DataLoader Installation from Binaries | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>DataLoader Installation from Binaries</h1><div class="wiki-content group" id="main-content">
+<p><style type="text/css">/*<![CDATA[*/
+div.rbtoc1390012352009 {padding: 0px;}
+div.rbtoc1390012352009 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1390012352009 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc rbtoc1390012352009">
+<ul class="toc-indentation">
+<li><a href="#DataLoaderInstallationfromBinaries-Packages">Packages</a>
+<ul class="toc-indentation">
+<li><a href="#DataLoaderInstallationfromBinaries-BinaryDistribution:">Binary Distribution:</a></li>
+</ul>
+</li>
+<li><a href="#DataLoaderInstallationfromBinaries-Prerequisites">Prerequisites</a>
+<ul class="toc-indentation">
+<li><a href="#DataLoaderInstallationfromBinaries-CreateUser">Create User</a></li>
+<li><a href="#DataLoaderInstallationfromBinaries-PivotalHDandZookeeperClusterInstallation">Pivotal HD and Zookeeper Cluster Installation</a></li>
+<li><a href="#DataLoaderInstallationfromBinaries-InstallJDK">Install JDK</a></li>
+</ul>
+</li>
+<li><a href="#DataLoaderInstallationfromBinaries-InstallDataLoader">Install DataLoader</a>
+<ul class="toc-indentation">
+<li><a href="#DataLoaderInstallationfromBinaries-DownloadandExtracttheDataLoaderBinaries">Download and Extract the DataLoader Binaries</a></li>
+</ul>
+</li>
+<li><a href="#DataLoaderInstallationfromBinaries-ConfigureDataLoader">Configure DataLoader</a></li>
+<li><a href="#DataLoaderInstallationfromBinaries-StartDataLoaderServices">Start DataLoader Services</a></li>
+<li><a href="#DataLoaderInstallationfromBinaries-StopDataLoaderServices">Stop DataLoader Services</a></li>
+</ul>
+</div></p><p>This document describe the deployment of DataLoader 2.0.4 using the binaries distribution.</p><p>A properly-configured Hadoop cluster is required, and HDFS, MapReduce, and Zookeeper must be available for DataLoader to use. For Hadoop/Zookeeper deployment instructions using the Pivotal HD distribution, refer to the Pivotal HD Installation and Administrator Guide.</p><h2 id="DataLoaderInstallationfromBinaries-Packages">Packages</h2><p>DataLoader is distributed as either RPM packages, or as a binary distribution. The installation procedures for the binary distribution are similar to the RPM installation. Use the installation procedure below for the binary distribution. </p><h3 id="DataLoaderInstallationfromBinaries-BinaryDistribution:">Binary Distribution:</h3><p>DataLoader uses two binary packages that are deployed to the Client and Master, nodes, which can be the same.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="highlight-blue confluenceTd" data-highlight-colour="blue"><p>Package Name</p></td><td class="highlight-blue confluenceTd" data-highlight-colour="blue"><p>Description</p></td><td class="highlight-blue confluenceTd" data-highlight-colour="blue"><p>Deployment Nodes</p></td></tr><tr><td class="confluenceTd"><p>dataloader-cli-2.0.4.tar.gz</p></td><td class="confluenceTd"><p>dataloader-cli-2.0.4.tar.gz provides essential files for setting up the DataLoader client.</p></td><td class="confluenceTd"><p>Client node</p></td></tr><tr><td class="confluenceTd"><p>dataloader-service-2.0.4.tar.gz</p></td><td class="confluenceTd"><p>dataloader-service-2.0.4.tar.gz provides essential files for setting up the DataLoader master.</p></td><td class="confluenceTd"><p>Master node</p></td></tr></tbody></table></div><h2 id="DataLoaderInstallationfromBinaries-Prerequisites">Prerequisites</h2><h3 id="DataLoaderInstallationfromBinaries-CreateUser">Create User</h3><p>Two user accounts are needed for DataLoader: <em>dladmin</em> for installation and <em>dataloader</em> for running the service.</p><ol><li><p>Create the <em>dladmin</em> account on the installation host. Add dladmin to the sudoers list.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># vi /etc/sudoers
+</pre>
+</div></div><p>This should take you to a text editor with the /etc/sudoers file already opened. Add the following line to the file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">dladmin ALL=(ALL) NOPASSWD: ALL
+</pre>
+</div></div><p>and save/exit the editor.</p></li><li><p>Change to the dladmin user.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[root@centos62-2 ~] su - dladmin</pre>
+</div></div></li><li><p>Create a dataloader account on the master node, then add it to the root group.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[dladmin@centos62-2 ~]$ sudo useradd dataloader
+[dladmin@centos62-2 ~]$ sudo usermod -G root dataloader
+</pre>
+</div></div></li></ol><h3 id="DataLoaderInstallationfromBinaries-PivotalHDandZookeeperClusterInstallation">Pivotal HD and Zookeeper Cluster Installation</h3><p>To install the Pivotal HD and ZK cluster, refer to the <em>Pivotal HD Enterprise Installation and Administrator Guide</em> for deployment instructions.  </p><p>DataLoader requires additional configurationfor the HDFS cluster, as shown below.</p><p>For HDFS 1.x</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;dfs.support.append&lt;/name&gt;
+    &lt;value&gt;true&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</pre>
+</div></div><p>For HDFS 2.x:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;configuration&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.support.append&lt;/name&gt;
+      &lt;value&gt;true&lt;/value&gt;
+   &lt;/property&gt;
+&lt;/configuration&gt;
+</pre>
+</div></div><h3 id="DataLoaderInstallationfromBinaries-InstallJDK">Install JDK</h3><p>1. Install the JDK: Download and install the Oracle JDK1.6 (Java SE6 or JDK 6) from: <a class="external-link" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" rel="nofollow">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></p><p>2. After installing the JDK, set the JAVA_HOME environment variable to point to where you installed the JDK. On a typical Linux installation with Oracle JDK 1.6, the value of this variable should be /usr/java/default/.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export JAVA_HOME=/usr/java/default/
+</pre>
+</div></div><p>3. Add $JAVA_HOME/bin into your PATH environment  variable. On a Linux platform using the bash shell, add the following lines into the file ~/.bashrc:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export PATH=$JAVA_HOME/bin:$PATH
+</pre>
+</div></div><h2 id="DataLoaderInstallationfromBinaries-InstallDataLoader">Install DataLoader</h2><h3 id="DataLoaderInstallationfromBinaries-DownloadandExtracttheDataLoaderBinaries">Download and Extract the DataLoader Binaries</h3><p>Create a folder named /opt/dataloader, or in another location where you want to install dataloader.<br/> Change the owner of the dataloader folder to dladmin.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[dladmin@centos62-2 dladmin]$ sudo mkdir /opt/dataloader
+[dladmin@centos62-2 opt]$ sudo chown dladmin:dladmin /opt/dataloader
+</pre>
+</div></div><p>Download and copy the  PHDTools tarball to /home/dladmin/ on the host. Make sure the tarball has read permission for user 'dladmin'. Extract the tarball.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[dladmin@centos62-2 dladmin]$ wget http://hdsh129.lss.emc.com/dist/artemis/latest/PHDTools-1.0.1-bin-xx.tar.gz
+[dladmin@centos62-2 dladmin]$ tar -xzvf PHDTools-1.0.1-bin-xx.tar.gz
+</pre>
+</div></div><p><strong>Note:</strong> xx in the Package Name is the package build number.</p><p>Copy the dataloader-service and dataloader-cli tar balls to /opt/dataloader.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[dladmin@centos62-2 dataloader]$ cp /home/gpadmin/PHDTools-1.0.1-bin-18/dataloader/* /opt/dataloader
+</pre>
+</div></div><p>Untar the tar balls.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[dladmin@centos62-2 dataloader]$ sudo tar -xzvf dataloader-service-2.0.4.tar.gz
+[dladmin@centos62-2 dataloader]$ sudo tar -xzvf dataloader-cli-2.0.4.tar.gz
+</pre>
+</div></div><p>The following code sample shows the structure of the directories and files that appear under /opt/dataloader</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[dladmin@centos62-2 dataloader]$ ls -l
+total 178956
+drwxr-xr-x 2 dladmin dladmin      4096 Jul  2 05:59 bin
+drwxr-xr-x 4 dladmin dladmin      4096 Jul  2 06:02 conf
+drwxrwxr-x 3 dladmin dladmin      4096 Jul  2 06:03 data
+-rw-r--r-- 1 dladmin dladmin  18726533 Jul  2 05:58 dataloader-cli-2.0.4.tar.gz
+-rw-r--r-- 1 dladmin dladmin 164491899 Jul  2 05:58 dataloader-service-2.0.4.tar.gz
+drwxr-xr-x 9 dladmin dladmin      4096 Jun 25 10:01 lib
+drwxrwxr-x 2 dladmin dladmin      4096 Jul  2 06:03 log
+drwxrwxr-x 2 dladmin dladmin      4096 Jul  2 06:03 pid
+drwxr-xr-x 5 dladmin dladmin      4096 Jun 25 10:07 plugins
+</pre>
+</div></div><p>Change the ownership of the base folder so that its owner is dataloader:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[dladmin@centos62-2 dataloader] sudo chown -R dataloader:dataloader /opt/dataloader
+</pre>
+</div></div><h2 id="DataLoaderInstallationfromBinaries-ConfigureDataLoader">Configure DataLoader</h2><p>Based on the installation directory you specified in the dl-cluster.conf file and your PHD/ZK cluster configuration, modify this file to configure DataLoader, as shown:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[dladmin@centos62-2 dataloader] sudo vi /opt/dataloader/conf/dataloader-env.sh
+</pre>
+</div></div><p>The following configuration options must be modified to run DataLoader in distributed mode. If no default is given, the option must be specified.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="highlight-blue confluenceTh" data-highlight-colour="blue"><p>Parameter</p></th><th class="highlight-blue confluenceTh" data-highlight-colour="blue"><p>Explanation</p></th><th class="highlight-blue confluenceTh" data-highlight-colour="blue"><p>Default value</p></th><th class="highlight-blue confluenceTh" data-highlight-colour="blue"><p>Options</p></th></tr><tr><td class="confluenceTd"><p>DATALOADER_ZK_QUORUM</p></td><td class="confluenceTd"><p>List of Zookeeper nodes in comma separated format.  This must be the same as used in the Zookeeper cluster configuration, which is usually found in the zk_cfg file.</p></td><td class="confluenceTd"><p>None. Must be specified</p></td><td class="confluenceTd"><p>N/A</p></td></tr><tr><td class="confluenceTd"><p>DATALOADER_SERVICE_IP</p></td><td class="confluenceTd"><p>IP address the services will bind to. "localhost" cannot be used.</p></td><td class="confluenceTd"><p>Must be specified except when running standalone mode, when CLI is installed on the service node.</p></td><td class="confluenceTd"><p>N/A</p></td></tr><tr><td class="confluenceTd"><p>EXECUTOR_TYPE</p></td><td class="confluenceTd"><p>Hadoop cluster version that DataLoader is running on. DataLoader supports Hadoop 1.0 (GPHD 1.2) and Hadoop 2.0(PHD 1.x) . Other distributions, including Apache, have not been not tested.</p></td><td class="confluenceTd"><p>mrv2</p></td><td class="confluenceTd"><p>mrv1/mrv2</p></td></tr><tr><td class="confluenceTd"><p>HADOOP_INSTALL</p></td><td class="confluenceTd"><p>The Hadoop installation directory. DataLoader uses it to set the classpath. Make sure this value is set correctly.</p></td><td class="confluenceTd"><p>$ HADOOP_INSTALL</p><p>If this shell env variable is not exported, or the value is empty, the parameter must be specified manually.</p></td><td class="confluenceTd"><p>N/A</p></td></tr><tr><td class="confluenceTd"><p>HADOOP_CONF_DIR</p></td><td class="confluenceTd"><p>The Hadoop configuration directory .If you are using install_worker in the tarball to install the worker, this value must be set. Otherwise, setting this parameter optional</p></td><td class="confluenceTd"><p>$HADOOP_CONF_DIR</p><p><span>If this shell env variable is not exported, or the value is empty, the parameter must be specified manually.</span></p></td><td class="confluenceTd"><p> </p></td></tr><tr><td class="confluenceTd"><p>DATALOADER_EXECUTOR_CAPACITY</p></td><td class="confluenceTd"><p>The total number of slots (MRv1) or containers (MRv2) that are available to DataLoader. This value must be set for DataLoader to run correctly.</p></td><td class="confluenceTd"><p>No default value, must be specified except when using Standalone mode.</p></td><td class="confluenceTd"><p> </p></td></tr><tr><td class="confluenceTd"><p>DATALOADER_DATA_DIR</p></td><td class="confluenceTd"><p>The location where DataLoader data files are placed.</p></td><td class="confluenceTd"><p>In tarball installation, this parameter is set to $DATALOADER_HOME/data (/opt/dataloader/data)</p></td><td class="confluenceTd"><p> </p></td></tr><tr><td class="confluenceTd"><p>DATALOADER_LOG_DIR</p></td><td class="confluenceTd"><p>The location where DataLoader log files are place.</p></td><td class="confluenceTd"><p>In tarball installation, this parameter is set to $[DATALOADER_HOME/log <br/> /opt/dataloader/log)</p></td><td class="confluenceTd"><p> </p></td></tr></tbody></table></div><h2 id="DataLoaderInstallationfromBinaries-StartDataLoaderServices">Start DataLoader Services</h2><ol><li><p>Change the file ownership for the Linux account login. Change the permission of the  /etc/shadow  file to be readable by the root group:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo chmod g+r /etc/shadow
+</pre>
+</div></div></li><li><p>Login to the DataLoader master node as <span style="color: rgb(0,0,0);">dladmin</span>, and go to the /bin directory of the DataLoader install location:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$su - dladmin
+$cd /opt/dataloader/bin/
+</pre>
+</div></div></li></ol><p>DataLoader supports Standalone mode without needing an existing Hadoop cluster. To start DataLoader service in Standalone mode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u dataloader ./dataloader.sh start -s
+</pre>
+</div></div><p>To start DataLoader service In pseudo-distributed mode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u dataloader ./dataloader.sh start -p
+</pre>
+</div></div><p>To start DataLoader service in distributed mode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u dataloader ./dataloader.sh start -d
+</pre>
+</div></div><h2 id="DataLoaderInstallationfromBinaries-StopDataLoaderServices">Stop DataLoader Services</h2><p>To stop DataLoader service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u dataloader ./dataloader.sh stop
+</pre>
+</div></div><p><span style="color: rgb(0,0,0);font-size: 20.0px;line-height: 1.5;">Configure DataLoader CLI</span></p><p>To use the DataLoader CLI for managing jobs and datastores, CLI must be configured for use.<br/> The CLI configuration file is found at: $DATALOADER_HOME/conf/dataloader-cli.conf. It is a text file with key/value pair content. Its contents are shown below.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Name</p></th><th class="confluenceTh"><p>Default value</p></th><th class="confluenceTh"><p>Description</p></th></tr><tr><td class="confluenceTd"><p>dataloader.api.url</p></td><td class="confluenceTd"><p>http://localhost:12321/</p></td><td class="confluenceTd"><p>This is the location of the DataLoader scheduler's restful interface address. If CLI is installed on the same machine as the Dataloader service package, this value doesn't need to be changed.</p></td></tr><tr><td class="confluenceTd"><p>dataloader.zk.address</p></td><td class="confluenceTd"><p>localhost:12181</p></td><td class="confluenceTd"><p>This is the ZooKeeper address used by DataLoader service. If you are running in Standalone mode, this value doesn't need to be changed; otherwise, change the value to the actual ZooKeeper addresses: for example: <em>host1:2181,host2:2181</em></p></td></tr><tr><td class="confluenceTd"><p>dataloader.cli.queue.max.buffer</p></td><td class="confluenceTd"><p>32768</p></td><td class="confluenceTd"><p>The maximum number of un-acknowledged messages held in the client</p></td></tr></tbody></table></div><p>If using pseudo-distributed mode, you can use default values, provided you are not using an external Zookeeper.</p>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

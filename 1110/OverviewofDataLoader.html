@@ -1,0 +1,621 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>Overview of DataLoader | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>Overview of DataLoader</h1><div class="wiki-content group" id="main-content">
+<p align="left">Pivotal DataLoader is an advanced Big Data ingesting tool. It focuses on loading Big Data into Hadoop clusters. It is an enterprise solution for staged, batch data-loading for offline data analytics as well as for realtime data streaming for online incremental data analytics. It also allows easy migration of data between large data cluster deployments.</p><p align="left">DataLoader leverages Hadoop MapReduce to run loading jobs as a set of Map tasks. DataLoader can dynamically scale the execution of data loading tasks to maximize the system resource. With single node deployment, it linearly scales out on disk numbers up to the maximum machine bandwidth. With multi-node cluster deployment, it linearly scales out on machine numbers up to the maximum network bandwidth. This horizontal scalability promises optimized and best possible throughput.</p><p align="left">Staged, batch data loading is useful when throughput, linear scalability, and resource efficiency are priorities. In batch mode, Pivotal DataLoader can efficiently load large volumes of data.</p><p>Real time data streaming is useful in cases where latency, reliability, availability and connectivity are desired. Pivotal DataLoader can load large numbers of data feeds in real time, with linear scalability support.</p><p>DataLoader loads data into HDFS. DataLoader provides PXF adaptors to import files and streams in text or Avro format into HAWQ for real-time querying. For more information, refer to <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF"&gt;Loading Files and Push Streams into HAWQ Using PXF</a>. </p><p>DataLoader partitions data into chunks when needed, splits jobs into multiple tasks, schedules the tasks, and handles job failures. Source data locality and network topology is taken into account.<img class="confluence-embedded-image" data-image-src="attachments/63899737/64192753.png" src="attachments/63899737/64192753.png"/></p><p>DataLoader provides an easy-to-use interface to:</p><ul><li>Configure, start, and manage loading jobs from the user interface</li><li><p align="left">Manage jobs and data streams from the user interface GUI or command line</p></li><li>Monitor job progress</li><li><p align="left">Define transformations to be applied in the data loading pipeline</p></li></ul><h2 id="OverviewofDataLoader-PivotalDataLoaderComponents">Pivotal DataLoader Components</h2><p>DataLoader consists of the following components:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="highlight-green confluenceTh" data-highlight-colour="green">Component</th><th class="highlight-green confluenceTh" data-highlight-colour="green">Description</th></tr><tr><td class="confluenceTd">DataLoader Manager</td><td class="confluenceTd"><p align="left">Provides an operational and administrative graphical user interface.</p><span><span> </span></span></td></tr><tr><td class="confluenceTd">DataLoader CLI</td><td class="confluenceTd"><p align="left">A command line tool that interacts with DataLoader Manager to provide the command line access for loading job operation.</p><span><span> </span></span></td></tr><tr><td class="confluenceTd">DataLoader Scheduler</td><td class="confluenceTd"><span><span><span> </span></span></span>Provides a job and task scheduling service. It also provides REST programmatic interface for integration with other tools.<span><span> </span></span></td></tr><tr><td class="confluenceTd">DataLoader Web UI</td><td class="confluenceTd"><p align="left">A basic web console which interacts with DataLoader Manager to help user submit batch jobs.</p><span><span> </span></span></td></tr><tr><td class="confluenceTd">DataLoader Worker</td><td class="confluenceTd"><p align="left">Tasks that can be spawned on multiple nodes for transfer of source data.</p><span><span> </span></span></td></tr></tbody></table></div><h3 id="OverviewofDataLoader-SupportedPlatforms">Supported Platforms</h3><p>DataLoader 2.0</p><ul><li>Red Hat Enterprise 6.1-64 bit and 6.2-64 bit</li><li>CentOS 6.1-64 bit and 6.2-64 bit</li><li>Browser: Firefox version 21</li></ul><h2 id="OverviewofDataLoader-DataLoaderCapabilities">DataLoader Capabilities</h2><p>DataLoader provides the following features.</p><p align="left"><strong>Distributed, Parallel Loading Engine</strong></p><ul><li>DataLoader provides a "big data pipe" of "data lanes" for moving big data in bulk or as streams in parallel.</li><li>DataLoader supports bulk/batch loading with high throughput for big data and streaming with low latency for fast data.</li></ul><p align="left"><strong>Job loading with linear scalability through Job Scheduler</strong></p><ul><li>DataLoader leverages commodity hardware for linear scalability: the more machine resources, the higher the aggregated processing power and IO bandwidth.</li><li>Resource scheduling provides best throughput and/or low latency</li><li>Optional bandwidth throttling helps limit bandwidth congestion</li><li>Copy strategies with source and destination optimization</li></ul><p><strong>Pluggable architecture to support multiple data stores</strong></p><ul><li>DataLoader provides pluggable data stores and data source protocols.</li></ul><p><strong>Pluggable data transformation</strong></p><ul><li>User-defined “data pipelines” with compression, encryption, filtering and related functions; pluggable through JAR files. Transformation is executed at the time of writing the data as part of the map task.</li></ul><p><strong>Web UI</strong><br/>The web interface allows you to:</p><ul><li>Configure, start, and manage loading jobs from the user interface</li><li>Manage jobs and data streams from the user interface UI or command line</li><li>Monitor job progress</li></ul><p><strong>User authentication</strong><br/>DataLoader allows multiple users to login and create data loading jobs. Access control is provided through Linux OS-level authentication.</p><p><strong>Data import to HAWQ</strong><br/>DataLoader provides PXF adaptors to allow push stream data and text files to be loaded into HAWQ for real-time querying.</p><h2 id="OverviewofDataLoader-APIintegrationpoints">API integration points</h2><p><span>DataLoader will provide RESTful APIs for integration with other ETL tools in the future. Currently, Flume integration is supported out of box.</span></p><h2 id="OverviewofDataLoader-PlanningyourLoadingArchitecture">Planning your Loading Architecture</h2><p><span>This topic describes the Pivotal DataLoader components, and the RPMs included in the package and provides a brief overview of installation.</span><br/>DataLoader consists of the following core components:</p><ul><li>DataLoader Service</li></ul><p style="margin-left: 60.0px;">This component includes manager service, scheduling and other key services.</p><ul><li>DataLoader CLI</li></ul><p style="margin-left: 60.0px;">The DataLoader command line tool (CLI) allows users to access all DataLoader functionality.<br/>DataLoader 2.0 features an extremely flexible deployment architecture. The CLI and service component can be installed together on one node or separately on different nodes. For example, you might install DataLoader service on server hardware, but run CLI service from a laptop that has a network connection to the Data Service node. DataLoader 2.0 can execute loading jobs locally on the service node, or run the loading job on a Hadoop cluster where HDFS, MapReduce and Zookeeper are available to use.<br/>Depending on how DataLoader will be used, the following are typical scenarios supported by DataLoader.</p><h3 id="OverviewofDataLoader-RunningDataLoaderonaproductionHadoopcluster"><span>Running DataLoader on a production Hadoop cluster</span></h3><p><span>DataLoader Service can be installed on an edge node of the destination Hadoop cluster (1.x or 2.x). If the Hadoop DataNodes has connectivity with the data sources, DataLoader can leverage the Hadoop nodes to run Map "worker" tasks to load data in parallel. No installation is needed for DataLoader worker nodes (map tasks); the required files are loaded into Hadoop DistributedCache for use at runtime.</span></p><p>If there is limited external connectivity of Hadoop DataNodes (as in a DCA), DataLoader can run on the edge node in a pseudo-distributed mode to achieve parallel data transfer. In this case, the user must install a Hadoop cluster (1.x or 2.x) in pseudo-distributed mode on the edge node. For DCA, DataLoader will be installed in the DIA or mdw module.<br/>The following shows a suggested network deployment for this configuration.</p><p><img class="confluence-embedded-image" data-image-src="attachments/63899737/64192637.png" src="attachments/63899737/64192637.png"/></p><p>In this case, since the Pivotal HD cluster will be running other workloads as well, direct access to the local file system for data loading is not recommended.</p><p> </p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<strong>Note:</strong> The DataLoader service node does not need to be co-located with the Hadoop Master Node.
+                    </div>
+</div>
+<p><br/>Suggested uses might be loading from a NFS/FTP server or a stream.</p><h3 id="OverviewofDataLoader-RunningtheDataLoaderonthestagedsourcecluster">Running the DataLoader on the staged source cluster</h3><p><span>When source data is on multiple disks, or protecting the production HDFS cluster performance is a priority, it is recommended to set up dedicated staging cluster where DataLoader can be co-located with other ETL jobs. DataLoader can be installed on the dedicated hardware to load data from the source such as FTP servers, NFS servers, HDFS, HTTP etc.</span></p><p><span> </span><br/>In this scenario, a Hadoop cluster is deployed on the staging nodes, with DataNodes on the nodes that have source data on local disks. DataLoader service is deployed on an edge node. No worker node installation is needed, as required files are loaded into Hadoop DistributedCache for use at runtime.</p><p align="left">This scenario also applies to when the destination Hadoop cluster is in a DCA that has limited external connectivity. In such case, DataLoader can be deployed on the DIA or mdw module.</p><p align="left"><img class="confluence-embedded-image" data-image-src="attachments/63899737/64192636.png" src="attachments/63899737/64192636.png"/></p><p><span lang="EN"> </span><span>The staging cluster, using the storage disks that come with the hardware,</span></p><p>provides data storage in following forms.</p><h4 id="OverviewofDataLoader-LocalFileSystem:"><span>Local File System:</span></h4><p><span>DataLoader can access the local file system directly. Users can mount disks to</span><br/>the servers in the cluster to load data directly from disks. DataLoader has<br/>additional optimizations to support loading from local disk, through LocalFS<br/>copy.</p><h4 id="OverviewofDataLoader-HDFScluster:">HDFS cluster:</h4><p><span>DataLoader HDFS is installed on the staging cluster for use by DataLoader. HDFS can also be used as the interim storage to run MR/Pig/Hive jobs for ETL or other processing purposed before moving data into a production Hadoop cluster.</span></p><p>Use Staged Data Loading for:</p><ul><li>Loading from NFS/FTP file stores</li><li>Pivotal DataLoader Installation and User Guide – Chapter 1: Before You Begin</li><li>Loading from staging cluster storage (HDFS, Local file system with data on mounted disk)</li><li>Loading from data/event collection system (Flume, Http stream etc)</li><li>Loading from backend/legacy systems via Data/Application integration frameworks/brokers such as databases, APIs and messaging systems.</li></ul><p><strong>Note:</strong> DataLoader provides an open Data Access Framework and API (data store framework/API) and supports data integration/API integration using Springframework and libraries (Springframework, Spring Integration, Spring Data etc.).</p><h3 id="OverviewofDataLoader-ClustertoClusterDataCopy/DataMigration">Cluster to Cluster Data Copy/Data Migration</h3><p><span>DataLoader can be used to copy HDFS data between Hadoop clusters. No dedicated hardware is needed: the DataLoader service node can be installed on any of the nodes. DataLoader jobs can be configured to run either on the source Hadoop cluster or destination Hadoop cluster. The following diagram shows the configuration for running DataLoader on the source Hadoop cluster.</span></p><p><img class="confluence-embedded-image" data-image-src="attachments/63899737/64192756.png" src="attachments/63899737/64192756.png"/></p><h3 id="OverviewofDataLoader-Pseudo-distributedMode">Pseudo-distributed Mode</h3><p> If you are not able to install DataLoader on a Pivotal HD cluster, you can use the pseudo-distributed mode on a single node. An example might be a DCA where DataNodes do not have external connectivity, so that DataLoader would need to be installed on a Master or DIA node. Pseudo-distributed mode will have a lower throughput than distributed mode.<br/>A typical deployment for pseudo-distributed mode is shown below.</p><p><img class="confluence-embedded-image" data-image-src="attachments/63899737/64192638.png" src="attachments/63899737/64192638.png"/></p><p>To increase loading speed, we recommend you deploy Hadoop on the single node with pseudo mode configuration. This will give DataLoader the capability to run multiple processes, and pin DataLoader loader process per disk to maximize hardware usage. In this mode, first deploy Hadoop in pseudo-distributed mode, then deploy DataLoader on that node and configure as pseudo-distributed.<br/><span style="color: rgb(0,0,0);"> </span></p><h2 id="OverviewofDataLoader-DataAvailability"><span style="color: rgb(0,0,0);">Data Availability</span></h2><h3 id="OverviewofDataLoader-FailureModes"><span>Failure Modes</span></h3><p><span>DataLoader is built on a master-slave architecture. The master node consists of job management and scheduler services that use a database to store job data and Zookeeper for runtime state data. Scheduler uses YARN/MR1 for resource management and runtime job execution. DataLoader slaves are processes that are scheduled to run on a Hadoop cluster when a job is submitted.</span><br/>Failures can be one of two types.</p><ul><li>Hadoop cluster failures:</li></ul><p style="margin-left: 60.0px;">DataLoader needs Hadoop Mapreduce/HDFS and Zookeeper to be available to run DataLoader jobs. Any failure of these services can cause DataLoader job failure. In Hadoop 1.0 and 2.0, Jobtracker/Yarn and NameNode have single points failure. Please refer to the related documentation on high availability features and configurations of these components and services.</p><ul><li><span>DataLoader component failures:</span></li></ul><p style="margin-left: 60.0px;">DataLoader master runs on a single node but also keeps a very light weight job state on the local filesystem. The runtime state is kept in Zookeeper, which is a highly available system. After a job is submitted, the existing batch job and push streaming jobs continue to run without master node intervention. (This feature is not yet available for push and pull streaming.)</p><h3 id="OverviewofDataLoader-FailureRecovery">Failure Recovery</h3><p><span>When Hadoop failure occurs, DataLoader detects the failure and places the job into failed state. Jobs can be resumed after the Hadoop cluster is back online. For Hadoop failure recovery, refer to the Hadoop documentation.</span><br/>Use of highly available system hardware can protect against job data loss caused by disk failure. If the data is still available after system restart, you can then simply restart DataLoader master service to automatically recover the jobs from last run.</p><h3 id="OverviewofDataLoader-BatchLoadingDataAvailabilty"><span>Batch Loading Data Availabilty</span></h3><p><span>In batch file copy, DataLoader relies on Hadoop high availability and does not store interim user data. Thus, when errors occur, there are no data loss or availability issues. When system and master services are restarted, the DataLoader master recovers the job state from the database and Zookeeper. If the master should fail, jobs continue to run, as they are map tasks.</span></p><h3 id="OverviewofDataLoader-StreamingJobDataAvailability">Streaming Job Data Availability</h3><p><span>Availability is achieved through 1) reliable event transfer between the DataLoader client and worker, and 2) making the stream data durable via checkpointing.</span></p><h3 id="OverviewofDataLoader-ReliableEventTransfer">Reliable Event Transfer</h3><p><span>The push stream client first contacts the DataLoader cluster, selects the least loaded worker, and establishes a push stream connection between the client and the selected worker. The client then sends the event data to the worker.</span><br/>After the event data have been received by the worker and checkpointed on disk, the worker delivers the acknowledgment (ACK) back to the client in asynchronously mode thus the client is not blocked by the worker. All ACKs are queued on the worker side in a distributed, persistence queue backed by the Zookeeper cluster so ACKs are not lost even if there is a network or client failure. The ACKs are piggybacked to the client when the client contacts the DataLoader cluster. The client is responsible for ensuring all the ACKs are received for the events it tends to send. The client consider the event to be reliably sent to DataLoader only when the ACK has been received by the client.<br/>For a given event, the event RPC API is idempotent, i.e. the client can repeatedly send the same event many times, but the worker only accepts the event once. The duplicated event received by DataLoader workers are dropped silently. The client can send an empty event to query all pending ACKs to check whether an event has been durably received by DataLoader workers.</p><h3 id="OverviewofDataLoader-EventDataDurability">Event Data Durability</h3><p><span>The worker receives the data and store it in an internal memory buffer. The worker starts to checkpoint the event data in memory to disk when any of the following conditions are met:</span></p><ul><li>The event data size stored in memory exceeds the configured threshold.</li><li>The number of events stored in memory has exceeded the configured number of messages.</li><li>The elapsed time since last checkpointing has exceeded the configured checkpointing interval.</li></ul><p>The DataLoader worker stores checkpointing data on HDFS so the data can be accessed by all workers reliably. For all the events for which the client has received ACKs, the event data is considered durable and is guaranteed to be sent to the destination even in the face of worker failure.</p><h3 id="OverviewofDataLoader-WorkerFailureHandling">Worker Failure Handling</h3><p><span>During the push stream job, if any worker fails, the streaming client library detects the failure and it automatically redirects the client to make a connection to another active worker and continue to send data to the new worker. Concurently, the push stream job scheduler launches another worker instance to take over the event data received by the failed worker. The data left by the failed worker includes the following:</span></p><ul><li>The data checkpointed on the shared storage.</li><li>Undelivered ACK in the persistent queue.</li></ul><p><span>The new worker first processes the data by sending the events to the destination and managing the ACK queue. After the left-over event messages are processed, it opens new client connections.</span></p><p>In the event of a master failure, the user restarts the master services; the workers continue to transfer data independent of the master as the workers are managed by the Hadoop cluster, to be specifically MapReduce as it stands today.</p>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

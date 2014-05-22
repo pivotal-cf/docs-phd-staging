@@ -1,0 +1,897 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>HVE (Hadoop Virtualization Extensions) | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>HVE (Hadoop Virtualization Extensions)</h1><div class="wiki-content group" id="main-content">
+<p>Hadoop was first designed for typically running on commodity hardware and native OS. Hadoop Virtualization Extensions were developed to enhance Hadoop running in cloud and virtualization environments.</p><h2 id="HVE(HadoopVirtualizationExtensions)-TopologyAwareness">Topology Awareness</h2><p>Hadoop Virtualization Extensions (HVE) allow Hadoop clusters implemented on virtualized infrastructure full awareness of the topology on which they are running, thus enhancing the reliability and performance of these clusters.</p><p>HVE should be enabled in the following situations:</p><ul><li>When there is more than one Hadoop VM per physical host in virtualized environments</li><li>When Datanodes and TaskTrackers exist in separate virtual machines in virtualized environments, so as to achieve graceful scaling of the compute component of the Hadoop cluster.</li><li>When there is a topology layer between host and rack (e.g. chassis), which can affect the failure/locality group between hosts, in non-virtualized environments.</li></ul><h3 id="HVE(HadoopVirtualizationExtensions)-TopologyAwarenessConfigurationandVerification">Topology Awareness Configuration and Verification</h3><p><strong>Sample Setup</strong></p><p>This setup has 2 logical racks, 2 physical hosts (install ESXi and managed by vCenter) per rack, and 2 DN/CN (VM in ESXi) nodes per host. There is also one NameNode/Jobtracker and a client node that can be used to start jobs.</p><p>In this setup, each DN/CN node has 4 vCPUs, 16G memory and 200G (Non-SSD) disks.</p><p>The NameNode and JobTracker are installed on another dedicated VM with 4vCPU, 4G Memory and 100G disks.</p><p>Node Distribution on Hosts:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><strong>Rack 1</strong></td><td class="confluenceTd"><strong>Host 1</strong></td><td class="confluenceTd"><strong>NameNode and JobTracker</strong></td><td class="confluenceTd"><strong>DN1</strong></td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd"><strong>Host 2</strong></td><td class="confluenceTd"><strong>DN2</strong></td><td class="confluenceTd"><strong>NN3</strong></td></tr><tr><td class="confluenceTd"><strong>Rack 2</strong></td><td class="confluenceTd"><strong>Host 3</strong></td><td class="confluenceTd"><strong>DN4</strong></td><td class="confluenceTd"><strong>DN5</strong></td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd"><strong>Host 4</strong></td><td class="confluenceTd"><strong>DN6</strong></td><td class="confluenceTd"><strong>DN7</strong></td></tr></tbody></table></div><p><strong>Enable topology awareness (Hadoop V2)</strong></p><ol><li><p>Add the following line to <code>core-site.xml</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;topology.script.file.name&lt;/name&gt;
+  &lt;value&gt;/hadoop/hadoop-smoke/etc/hadoop/topology.sh&lt;/value&lt;!-- point to topology.sh location.--&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;net.topology.impl&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.net.NetworkTopologyWithNodeGroup&lt;/value&gt;
+  &lt;description&gt; The default implementation of NetworkTopology which is classic three layer one.
+  &lt;/description&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;net.topology.nodegroup.aware&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+  &lt;description&gt; By default, network topology is not aware of nodegroup layer.
+  &lt;/description&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;dfs.block.replicator.classname&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.hdfs.server.blockmanagement.BlockPlacementPolicyWithNodeGroup&lt;/value&gt;
+  &lt;description&gt; The default implementation of ReplicationTargetChooser.
+  &lt;/description&gt;
+&lt;/property&gt;</pre>
+</div></div></li><li><p>Add the following line to <code>yarn-site.xml</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;description&gt;The class to use as scheduled requests.&lt;/description&gt;
+  &lt;name&gt;yarn.resourcemanager.scheduled.requests.class&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.mapreduce.v2.app.rm.ScheduledRequestsWithNodeGroup&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;description&gt; The boolean value to identify if the cluster is deployed on an environment which needs an additional layer (node group) between node and rack for network topology.
+  &lt;/description&gt;
+  &lt;name&gt;net.topology.with.nodegroup&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;description&gt;The class to use as AbstractSchedulerElementsFactory in RM scheduler.&lt;/description&gt;
+  &lt;name&gt;yarn.resourcemanager.scheduler.elements.factory.impl&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerElementsFactoryWithNodeGroup&lt;/value&gt;
+&lt;/property&gt;</pre>
+</div></div><p> </p><p><strong>Topology.data sample:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[root@namenode enable]# cat topology.data
+10.111.57.223(VM IP)   /Rack1/NodeGroup1
+10.111.57.224   /Rack1/NodeGroup1
+10.111.57.225   /Rack1/NodeGroup2
+10.111.57.226   /Rack2/NodeGroup1
+10.111.57.227   /Rack2/NodeGroup1
+10.111.57.228   /Rack2/NodeGroup2
+10.111.57.229   /Rack2/NodeGroup2</pre>
+</div></div><p><strong>Topology.sh sample:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[root@namenode enable]# cat topology.sh
+#! /bin/bash
+HADOOP_CONF=/hadoop/hadoop-smoke/etc/hadoop  
+# this is the location of topology.data
+while [ $# -gt 0 ] ; do
+  nodeArg=$1
+  exec&lt; ${HADOOP_CONF}/topology.data
+  result=""
+  while read line ; do
+    ar=( $line )
+    if [ "${ar[0]}" = "$nodeArg" ] ; then
+      result="${ar[1]}"
+    fi
+  done
+  shift
+  if [ -z "$result" ] ; then
+    echo -n "/default/rack "
+  else
+    echo -n "$result "
+  fi
+done</pre>
+</div></div></li><li><p>Verify HVE is enabled:</p>Run the TestDFSIO script:</li></ol><p style="margin-left: 30.0px;">The output is as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">1)HVE enabled:
+Job Counters
+Launched map tasks=100
+Launched reduce tasks=1
+Data-local map tasks=26
+NODEGROUP_LOCAL_MAPS=49
+Rack-local map tasks=25
+2)HVE disabled:
+ Job Counters
+Launched map tasks=100
+Launched reduce tasks=1
+Data-local map tasks=20
+Rack-local map tasks=80</pre>
+</div></div><h2 id="HVE(HadoopVirtualizationExtensions)-Elasticity">Elasticity</h2><p>HVE Elastic Resource Extension enables the adaption of MapReduce tasks to changing resources on nodes/clusters where Hadoop clusters are deployed on virtualization by sharing resource with VMs from other clusters or applications.</p><h3 id="HVE(HadoopVirtualizationExtensions)-Overview">Overview</h3><p>Currently, the Hadoop resource model is static at the node level, assuming the node resources are not changed while the cluster is running. This design and implementation are based on an assumption that all cluster resources are dedicated for Hadoop MapReduce jobs, so they are fully available at all times. This assumption does not hold when users want to deploy multiple applications on the same cluster, e.g. deploying HBase and MapReduce on the same HDFS cluster. In particular, in an era of cloud computing, it is common for Hadoop clusters to be deployed on virtualization by sharing resource with VMs from other clusters or applications.</p><p>The HVE elastic resource feature addresses scenarios in which nodes' resources are possibly changed, so that scheduling of MapReduce tasks on these nodes can adapted to changing resources, as represented in the figure below.</p><p>With this feature, APIs (CLI and JMX interface) and script tools are provided to get/set map and reduce task slots on Hadoop cluster nodes for MR jobs.</p><h3 id="HVE(HadoopVirtualizationExtensions)-FunctionList">Function List</h3><p>Below are functionalities included in this elastic feature:<br/>Function List</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Function</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd"><p>Configuration   </p></td><td class="confluenceTd">Enable/disable elastic resource feature on Hadoop cluster by specifying a configuration property when starting MR cluster.</td></tr><tr><td class="confluenceTd">List nodes' status</td><td class="confluenceTd">List the status of all the nodes or nodes specified by user, including its tracker_name, hostname, health status, slot number, etc.</td></tr><tr><td class="confluenceTd">Set map/reduce slot on specific node</td><td class="confluenceTd">Set map/reduce slot number to a node specified by user via CLI or JMX interface.</td></tr><tr><td class="confluenceTd"><p>Set map/reduce slot on nodes in batch mode</p></td><td class="confluenceTd">Set map/reduce slot number on nodes specified by a node-slot mapping file.</td></tr></tbody></table></div><p> </p><h3 id="HVE(HadoopVirtualizationExtensions)-Configuration">Configuration</h3><p>Elastic resource feature is disabled by default. To enable elastic resource, make the following changes to the Hadoop configuration.</p><p>In <code>mapred-site.xml</code>, add the following property to enable the elastic resource feature:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;mapreduce.dynamic.resource.enabled&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;</pre>
+</div></div><p>Also, specifying the node's map and reduce slot number in <code>mapred-site.xml</code> will also be the upper limit of node's slot resource. Any slot number update, if greater than this value, will be replaced with the value specified here. In following example, the maximum map slot number is 5 and maximum reduce slot number is 2.</p><p><strong>Map:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;mapred.map.tasks&lt;/name&gt;
+  &lt;value&gt;5&lt;/value&gt;
+&lt;/property&gt;
+</pre>
+</div></div><p><strong>Reduce:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+
+  &lt;name&gt;mapred.reduce.tasks&lt;/name&gt;
+
+  &lt;value&gt;2&lt;/value&gt;
+
+&lt;/property&gt;</pre>
+</div></div><p> </p><h3 id="HVE(HadoopVirtualizationExtensions)-CommandLineInterface">Command Line Interface</h3><h5 id="HVE(HadoopVirtualizationExtensions)-ListallCLIs">List all CLIs</h5><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">yarn rmadmin
+           [-refreshQueues]
+           [-refreshNodes]
+           [-refreshUserToGroupsMappings]
+           [-refreshSuperUserGroupsConfiguration]
+           [-refreshAdminAcls]
+           [-refreshServiceAcl]
+           [-getGroups [username]]
+           [-updateNodeResource [NodeID][MemSize][Cores]]
+           [-help [cmd]]
+ 
+yarn node
+ -all               Works with -list to list all nodes.
+ -list              List all running nodes. Supports optional use of
+                    -states to filter nodes based on node state, all -all
+                    to list all nodes.
+ -states &lt;States&gt;   Works with -list to filter nodes based on input
+                    comma-separated list of node states.
+ -status &lt;NodeId&gt;   Prints the status report of the node.</pre>
+</div></div><h5 id="HVE(HadoopVirtualizationExtensions)-ListNodes">List Nodes</h5><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">yarn node -list -all</pre>
+</div></div><h5 id="HVE(HadoopVirtualizationExtensions)-GetNodeStatus">Get Node Status</h5><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">yarn node -status &lt;NodeId&gt;</pre>
+</div></div><h5 id="HVE(HadoopVirtualizationExtensions)-Setnoderesourcecapacity">Set node resource capacity</h5><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">yarn rmadmin -updateNodeResource [NodeID][MemSize][Cores]</pre>
+</div></div><p><strong>Example</strong><span> </span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>List all nodes</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">yarn node -list -all
+
+Total Nodes:8
+         Node-Id	     Node-State	Node-Http-Address	Number-of-Running-Containers
+hdsh2-a172.lss.emc.com:37804	        RUNNING	hdsh2-a172.lss.emc.com:8042	                           0
+hdsh2-a173.lss.emc.com:45310	        RUNNING	hdsh2-a173.lss.emc.com:8042	                           0
+hdsh2-a159.lss.emc.com:60596	        RUNNING	hdsh2-a159.lss.emc.com:8042	                           0
+hdsh2-a158.lss.emc.com:51694	        RUNNING	hdsh2-a158.lss.emc.com:8042	                           0
+hdsh2-a157.lss.emc.com:37348	        RUNNING	hdsh2-a157.lss.emc.com:8042	                           0
+hdsh2-a174.lss.emc.com:33263	        RUNNING	hdsh2-a174.lss.emc.com:8042	                           0
+hdsh2-a160.lss.emc.com:34460	        RUNNING	hdsh2-a160.lss.emc.com:8042	                           0
+hdsh2-a171.lss.emc.com:49469	        RUNNING	hdsh2-a171.lss.emc.com:8042	                           0</pre>
+</div></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>Get node status</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">yarn node -status hdsh2-a172.lss.emc.com:37804
+
+Node Report : 
+	Node-Id : hdsh2-a172.lss.emc.com:37804
+	Rack : /dc/rc2
+	Node-State : RUNNING
+	Node-Http-Address : hdsh2-a172.lss.emc.com:8042
+	Last-Health-Update : Wed 15/Jan/14 03:38:08:402CST
+	Health-Report : 
+	Containers : 0
+	Memory-Used : 0MB
+	Memory-Capacity : 2048MB
+	CPU-Used : 0 vcores
+	CPU-Capacity : 2 vcores</pre>
+</div></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>Set node resource capacity</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">yarn rmadmin -updateNodeResource hdsh2-a172.lss.emc.com:37804 2048 2</pre>
+</div></div><p><span><br/></span></p><h3 id="HVE(HadoopVirtualizationExtensions)-Deprecated">Deprecated</h3>
+<div class="expand-container" id="expander-2096899186">
+<div class="expand-control" id="expander-control-2096899186">
+<span class="expand-control-icon"></span><span class="expand-control-text">Previous version</span>
+</div>
+<div class="expand-content" id="expander-content-2096899186"><h5 id="HVE(HadoopVirtualizationExtensions)-ListallCLIsofMRAdmin">List all CLIs of MRAdmin</h5><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop mradmin
+ [-refreshServiceAcl]
+ [-refreshQueues]
+ [-refreshUserToGroupsMappings]
+ [-refreshSuperUserGroupsConfiguration]
+ [-refreshNodes]
+ [-listNodes]
+ [-nodeStatus &lt;tracker name&gt;]
+ [-setSlot &lt;tracker name&gt; &lt;map | reduce&gt; &lt;slot number&gt;]
+ [-setSlotByHost &lt;hosname&gt; &lt;map|reduce&gt; &lt;slot number&gt;]
+ [-help [cmd]] </pre>
+</div></div><h5 id="HVE(HadoopVirtualizationExtensions)-ListNodes.1">List Nodes</h5><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop mradmin -listNodes</pre>
+</div></div><h5 id="HVE(HadoopVirtualizationExtensions)-GetNodeStatus.1">Get Node Status</h5><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop mradmin -nodeStatus &lt;TRACKER-NAME&gt;\</pre>
+</div></div><h5 id="HVE(HadoopVirtualizationExtensions)-SetSlotNumberwithTracker_Name">Set Slot Number with Tracker_Name</h5><p><strong>Map:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop mradmin -setSlot &lt;TRACKER_NAME&gt; map &lt;NUM&gt;</pre>
+</div></div><p><strong>Reduce:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop mradmin -setSlot &lt;TRACKER_NAME&gt; reduce &lt;NUM&gt;</pre>
+</div></div><h5 id="HVE(HadoopVirtualizationExtensions)-SetSlotNumberwithHostname">Set Slot Number with Hostname</h5><p><strong>Map:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop mradmin -setSlotByHost &lt;HOSTNAME&gt; map &lt;NUM&gt;</pre>
+</div></div><p><strong>Reduce:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop mradmin -setSlotByHost &lt;HOSTNAME&gt; reduce &lt;NUM&gt;</pre>
+</div></div><h5 id="HVE(HadoopVirtualizationExtensions)-UpdatingSlotsinBatchmode">Updating Slots in Batch mode</h5><p><strong>Batch Updating Slots Script</strong></p><p>Location: <code>${HADOOP_HOME}/bin/update-slots.sh</code></p><p>The script will apply the slot updating operation in batch mode on nodes by resolving a slot description file.</p><p><strong>Slot Description File</strong></p><p>Location: <code>${HADOOP_HOME}/conf/slots</code></p><p>Also, you can also specify the location of this file in running this script tool:</p><p>Usage: update-slots.sh  PATH_TO_SLOT_ FILE</p><p>The slot description file format is as following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hostname1    map_slots    reduce_slots
+hostname2    map_slots    reduce_slots
+hostname3    map_slots    reduce_slots
+...</pre>
+</div></div><p>Below is an example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop@Hadoop:~ $ cat ${HADOOP_HOME}/conf/slots
+Hadoop-01   2   2
+Hadoop-02   1   1</pre>
+</div></div><p><strong>Example</strong> <br/>The setup of cluster with 3 nodes is as following:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Hostname</th><th class="confluenceTh">Role</th></tr><tr><td class="confluenceTd">NameNode</td><td class="confluenceTd">JobTracker / NameNode</td></tr><tr><td class="confluenceTd">Hadoop-01</td><td class="confluenceTd">TaskTracker / DataNode</td></tr><tr><td class="confluenceTd">Hadoop-02</td><td class="confluenceTd">TaskTracker / DataNode</td></tr></tbody></table></div><p> </p><ol><li><strong>CLI<br/> <br/> </strong><ol><li><p><strong>listNodes:<br/> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop@NameNode:~$ hadoop mradmin -listNodes
+TaskTracker                                                                             Health UsedMap MaxMap UsedReduce MaxReduce
+tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722      OK         0                 2               0                  2
+tracker_Hadoop-01:localhost.localdomain/127.0.0.1:48516      OK         0                 1               0                  1
+</pre>
+</div></div><p><strong> <br/> </strong></p></li><li><p><strong>nodeStatus:<br/> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop@NameNode:~$ hadoop mradmin -nodeStatus tracker_Hadoop-01:localhost.localdomain/127.0.0.1:48516
+{
+  "failures" : 0,
+  "slots" : {
+    "map_slots" : 1,
+    "reduce_slots" : 1,
+    "reduce_slots_used" : 0,
+    "map_slots_used" : 0
+  },
+  "tracker_name" : "tracker_Hadoop-01:localhost.localdomain/127.0.0.1:48516",
+  "hostname" : "Hadoop-01",
+  "health" : "OK",
+  "last_seen" : 1359570978699
+}
+hadoop@NameNode:~$ hadoop mradmin -nodeStatus tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722
+{
+  "failures" : 0,
+  "slots" : {
+    "map_slots" : 2,
+    "reduce_slots" : 2,
+    "reduce_slots_used" : 0,
+    "map_slots_used" : 0
+  },
+  "tracker_name" : "tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722",
+  "hostname" : "Hadoop-02",
+  "health" : "OK",
+  "last_seen" : 1359570988442
+}</pre>
+</div></div><p><strong> <br/> <br/> </strong></p></li><li><p><strong>setSlot (map):<br/> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop@NameNode:~$ hadoop mradmin -setSlot tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722 map 1
+Set map slot of tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722 successfully.
+hadoop@NameNode:~$ hadoop mradmin -listNodes
+TaskTracker                                                                               Health UsedMap MaxMap UsedReduce MaxReduce
+tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722       OK         0                1               0                   2
+tracker_Hadoop-01:localhost.localdomain/127.0.0.1:48516       OK         0                1               0                   1</pre>
+</div></div><p><strong> <br/> <br/> </strong></p></li><li><p><strong>setSlot (reduce):<br/> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop@NameNode:~$ hadoop mradmin -setSlot tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722 reduce 1
+Set reduce slot of tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722 successfully.
+hadoop@NameNode:~$ hadoop mradmin -listNodes
+TaskTracker                                                                               Health UsedMap MaxMap UsedReduce MaxReduce
+tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722       OK          0               1               0                    1
+tracker_Hadoop-01:localhost.localdomain/127.0.0.1:48516       OK          0               1               0                    1</pre>
+</div></div><p><strong> <br/> <br/> </strong></p></li><li><p><strong>setSlotByHost (map):<br/> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop@NameNode:~$ hadoop mradmin -setSlotByHost Hadoop-01 map 1
+Set map slot of tracker_Hadoop-01:localhost.localdomain/127.0.0.1:48516 successfully.
+hadoop@NameNode:~$ hadoop mradmin -listNodes
+TaskTracker                                                                                Health UsedMap MaxMap UsedReduce MaxReduce
+tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722       OK           0              2                0                   2
+tracker_Hadoop-01:localhost.localdomain/127.0.0.1:48516       OK           0              1                0                   2</pre>
+</div></div><p><strong> <br/> <br/> </strong></p></li><li><p><strong>setSlot (reduce):<br/> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop@NameNode:~$ hadoop mradmin -setSlotByHost Hadoop-01 reduce 1
+Set reduce slot of tracker_Hadoop-01:localhost.localdomain/127.0.0.1:48516 successfully.
+hadoop@NameNode:~$ hadoop mradmin -listNodes
+TaskTracker                                                                               Health UsedMap MaxMap UsedReduce MaxReduce
+tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722       OK           0               2              0                   2
+tracker_Hadoop-01:localhost.localdomain/127.0.0.1:48516       OK           0               1              0                   1</pre>
+</div></div></li></ol><strong> <br/> </strong></li><li><strong>Batch Updating Slots</strong><ol><li><p><strong>Use the slot description file by default:<br/> <br/> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop@NameNode:~/hadoop-1.2.0$ bin/update-slots.sh
+Set map slot of tracker_Hadoop-01:localhost.localdomain/127.0.0.1:48516 successfully.
+Set reduce slot of tracker_Hadoop-01:localhost.localdomain/127.0.0.1:48516 successfully.
+Set map slot of tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722 successfully.
+Set reduce slot of tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722 successfully.
+hadoop@NameNode:~/hadoop-1.2.0$ hadoop mradmin -listNodes
+TaskTracker                                                                                Health UsedMap MaxMap UsedReduce MaxReduce
+tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722       OK           0               1              0                  1
+tracker_Hadoop-01:localhost.localdomain/127.0.0.1:48516       OK           0               2              0                  2</pre>
+</div></div><p><strong> <br/> </strong></p></li><li><p><strong>Specify the slot description file:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop@NameNode:~/hadoop-1.2.0$ bin/update-slots.sh slot_desc_file
+Set map slot of tracker_Hadoop-01:localhost.localdomain/127.0.0.1:48516 successfully.
+Set reduce slot of tracker_Hadoop-01:localhost.localdomain/127.0.0.1:48516 successfully.
+Set map slot of tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722 successfully.
+Set reduce slot of tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722 successfully.
+hadoop@NameNode:~/hadoop-1.2.0$ hadoop mradmin -listNodes
+TaskTracker                                                                                Health UsedMap MaxMap UsedReduce MaxReduce
+tracker_Hadoop-02:localhost.localdomain/127.0.0.1:35722       OK           0               1              0                   1
+tracker_Hadoop-01:localhost.localdomain/127.0.0.1:48516       OK           0               1              0                   1</pre>
+</div></div></li></ol></li></ol></div>
+</div>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

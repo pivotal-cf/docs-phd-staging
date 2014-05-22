@@ -1,0 +1,833 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>PHD Service Broker for Pivotal CF v1.0.0.0 | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>PHD Service Broker for Pivotal CF v1.0.0.0</h1><div class="wiki-content group" id="main-content">
+<p><span class="confluence-anchor-link" id="PivotalHDServiceBrokerforPivotalCFv1.x-PHDServiceBrokerOnly"></span></p><p>The Pivotal HD Service Broker component is provided for download and install with the PHD 1.1.x distributions. This broker, when installed and configured, allows Cloud Foundry applications to bind to and use non-CF PHD clusters.</p><h2 id="PivotalHDServiceBrokerforPivotalCFv1.x-Availability">Availability</h2><p>This component is available as a download with PHD releases starting with PHD 1.1.1.</p><h2 id="PivotalHDServiceBrokerforPivotalCFv1.x-Installation">Installation</h2><ol><li>Download and untar the <code>phd-cf-broker-1.0.0.0-1.tar</code> package.</li><li>Change to the installation directory:<br/><code>cd phd-cf-broker-1.0.0.0-1/</code></li><li>Make a copy of the sample <code>phd.yml</code> file:<code><br/>cp phd.example.yml to phd.yml</code></li><li>Edit the <code>phd.yml</code> to reflect your cluster configuration and the Cloud Controller info (see sections below for instructions).</li><li>Install the broker by running: <br/><code>./install.sh</code></li><li>Start the broker by running:<br/><code>service pcf-phd-broker start</code></li></ol><p>After installation you can the configuration file in <code>/etc/pcf/phd-broker/conf/phd.yml</code>. Any changes will not take effect until you restart the broker (<code>service pcf-phd-broker restart</code>).</p><h2 id="PivotalHDServiceBrokerforPivotalCFv1.x-ConfigurationandAdministration">Configuration and Administration</h2><h3 id="PivotalHDServiceBrokerforPivotalCFv1.x-Start/Stop/StatusCommands">Start/Stop/Status Commands</h3><p>After installation the following standard service commands will be available.</p><ul><li><code>service pcf-phd-broker start</code></li><li><code>service pcf-phd-broker stop</code></li><li><code>service pcf-phd-broker restart</code></li><li><code>service pcf-phd-broker try-restart</code></li><li><code>service pcf-phd-broker status</code></li></ul><h3 id="PivotalHDServiceBrokerforPivotalCFv1.x-UtilityCommands">Utility Commands</h3><p>After installation the following utility command is provided:</p><ul><li><code>phd-broker-tokenize</code></li></ul><p>Since the service broker requires several system passwords to be able to provision application users, and it is a security risk to have these in cleartext, this command provides a means to encrypt passwords. The command has two options: <code>--tokenize-secret</code> and<code> --tokenize-string</code> as indicated below. It generates an encrypted token that can be used in the <code>phd.yml</code> configuration file instead of the cleartext password. The encryption is currently fixed at 128 bits and is protected by a broker created keytab file readable only by the broker user (and <code>root</code> on the host).</p><p>Command options:</p><p><code>--tokenize-secret  </code>Prompts user to enter the password twice for verification. Password is not echoed to terminal. Outputs encrypted token.</p><p><code>--tokenize-string &lt;string&gt;</code>   Encrypts string and outputs encrypted token.</p><p>You must run this tool as <code>root</code> or the phdbroker user (<code>sudo -u phdbroker phd-broker-tokenize &lt;options&gt;</code>).</p><p>The full command path is <code>/usr/bin/phd-broker-tokenize</code>.</p><p>The token should be copied and entered into the appropriate place in your <code>phd.yml</code> file. For example if you wanted to create an encrypted token for the host password you would run <code>phd-broker-tokenize --tokenize-secret</code>, enter the password twice for verification, then copy the resulting field into the value part for the <code>host:</code> key in your provisioner configuration (see examples below).</p><h3 id="PivotalHDServiceBrokerforPivotalCFv1.x-ConfiguringCommunicationwiththeCFCloudController">Configuring Communication with the CF Cloud Controller</h3><p>By default, the service broker does not talk to the Cloud Controller. If it finds a key <code>advertise-interval</code>, it will start advertising to the Cloud Controller repeatedly at the interval indicated by the value for that key (in milli-seconds).</p><h4 id="PivotalHDServiceBrokerforPivotalCFv1.x-NetworkConfigurationtoallowExternalBrokertotalktoCloudFoundry">Network Configuration to allow External Broker to talk to Cloud Foundry</h4><p>If your Cloud Foundry deployment is on a different private network than your PHD installation you need to place the HA proxy component of the CF runtime on a network that has access to your PHD installation.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p> If your Cloud Foundry deployment is on the same network as your PHD installation skip this section.</p>
+</div>
+</div>
+<p>Cloud Foundry requires a DNS (either external, such as Route 53, or internal) setup that resolves all CF services. If the CF domain name ends with, for example, <code>.my-org.com</code>, the DNS must resolve all <code>*.my-org.com</code> to the HA Proxy component within the CF runtime. If Pivotal CF is installed in a private subnet, an external Service Broker will not be able to communicate with the CF runtime. Therefore, in order for your external Service Broker to talk to the CF runtime components, the HA proxy is required to have an external IP. The standard installation of Pivotal CF only provisions one interface for all their components including the HA Proxy, so you need to make the changes after CF runtime deployment to add the external interface.</p><p>To configure an external interface, the admin has to perform the following steps :</p><ol><li>Install the CF runtime component</li><li>Modify the generated BOSH deployment manifest to add a second network:<br/><ul><li>The generated BOSH manifest can be found in the <code>/var/tempest/workspaces/default/deployments/</code> directory of the Pivotal CF VM</li><li><p>An example of the BOSH manifest specifying a second (external) network interface is shown below.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">     ...
+     ...
+    networks:
+    - name: default
+      subnets:
+      - range: 192.168.0.0/24
+        gateway: 192.168.0.1
+        dns:
+        - 192.168.0.11
+        - 10.5.215.126
+        static:
+        - 192.168.0.15
+        .....
+        - 192.168.0.60
+        reserved:
+        .....
+        - 192.168.0.81-192.168.0.254
+        cloud_properties:
+          name: VLAN_AS
+    - name: external
+      subnets:
+      - range: 10.5.215.0/22
+        gateway: 10.5.212.1
+        static:
+        - 10.5.215.26
+        dns:
+        - 192.168.0.11
+        - 10.5.215.126
+        cloud_properties:
+          name: VM Network
+     ...
+     ... </pre>
+</div></div></li></ul></li><li><p>Associate second network to the HA Proxy job:<br/>For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">     ...
+     ...  
+    jobs:
+    ...
+    - name: ha_proxy
+      template: haproxy
+      instances: 1
+      resource_pool: ha_proxy
+      persistent_disk: 0
+      networks:
+      - name: default
+        static_ips:
+        - 192.168.0.15
+      - name: external
+        default: [dns, gateway]
+        static_ips:
+        - 10.5.215.26
+     ...
+     ...</pre>
+</div></div></li><li>Re-deploy using the BOSH CLI command: <code>bosh deploy</code>.</li></ol><h3 id="PivotalHDServiceBrokerforPivotalCFv1.x-ConfiguringProvisioners">Configuring Provisioners</h3><p>An example template (<code>phd.yml.example</code>) is provided to start. In this file places where cluster specific information is needed (such as FQDN of namenode) are indicated. Additional keys for service provisioning are indicated below. Copy the example template to <code>phd.yml</code> in the installation directory before installing or editing. If you want to edit this file after installation you must restart the service broker after editing the file.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>Support for Kerberzed clusters is an alpha feature and full certification of CF applications working with Kerberized clusters is not yet available.</p>
+</div>
+</div>
+<h4 id="PivotalHDServiceBrokerforPivotalCFv1.x-HDFSProvisionerSettings">HDFS Provisioner Settings</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">host: &lt;host to use for provisioning e.g., namenode&gt;
+host_user: &lt;username to login as; must be able to run useradd/usermode/usedel commands&gt;
+host_password: &lt;password for host_user&gt;
+auth_type: &lt;simple || kerberos ; default is simple&gt;
+hdfs_admin_user: &lt;hdfs admin user&gt;
+hdfs_user_dir: &lt;optional; directory (leading / included, no trailing /) used for creating user directories; default is /instances.&gt;
+hdfs_uri: &lt;URI for HDFS)&gt;</pre>
+</div></div><p>The next two settings are applicable only to HDFS provisioners and are useful on non-CF deployed clusters to allow the use of distributed shell tools. The <code>client_hosts_file</code> is only used when creating the provision instance (admin) user. The files must not contain duplicate hosts. This is required for Kerberized clusters.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">server_hosts_path: &lt;required only for kerberized clusters; path to file containing server hosts, default is null&gt;
+client_hosts_path: &lt;required only for kerberized clusters; path to file containing client hosts, default is null&gt;</pre>
+</div></div><p>These next five settings allow a parameterized description of the user creation command to be provided. Keywords: <code>$HOST_PATH</code> is replaced by the applicable<code> [server | client]_hosts_path</code> value;<code> $USER</code> is replaced by the<code> host_user</code>; <code>$GROUP</code> by the group.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>You may omit <code>$GROUP</code> and specify the group in your <code>user/group</code> <code>add/delete</code>  commands but always use <code>$USER</code> in user add commands; DO NOT specify the username (this is assigned by the SB).</p>
+</div>
+</div>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">addgroup_command: &lt;optional; group add command&gt;
+client_adduser_command: &lt;optional; user add command for Hadoop client hosts&gt;
+server_adduser_command: &lt;optional; user add command for Hadoop server hosts&gt;
+delgroup_command: &lt;optional; group delete command&gt;
+deluser_command: &lt;optional; user delete command&gt;</pre>
+</div></div> <div class="aui-message success shadowed information-macro">
+<span class="aui-icon icon-success"></span>
+<div class="message-content">
+<p>If you want to create server or client user accounts on multiple hosts for non-CF clusters you can do so by:</p><ol><li>Set the <code>server_hosts_path</code> and/or <code>client_hosts_path</code> parameters to point to your hosts files;</li><li>Set all the <code>add/delete</code> command values so that they use the command format required by the distributed shell tool you are using.</li></ol>
+</div>
+</div>
+<div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>The HDFS PROVISION and BIND requests both create a user and return a user ID. For PROVISION (cli create service) only if client_hosts_path is non-empty the broker will create a user with shell on client systems. This user is for admin purposes and not user application usage. If auth_type is "kerberos" a password, representing the user's Kerberos principal password, will also be returned in both BIND an PROVISION.</p>
+</div>
+</div>
+<h4 id="PivotalHDServiceBrokerforPivotalCFv1.x-HAWQProvisionerSettings">HAWQ Provisioner Settings</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">host: &lt;HAWQ master host FQDN; default is null&gt;
+port: &lt;HAWQ master port for client connections; default is 5432&gt;
+database: postgres &lt;database to use for admin actions; default is postgres&gt;
+username: &lt;HAWQ superuser; default is gpadmin&gt;
+password: &lt;HAWQ superuser password; default is empty string&gt;
+auth_type: &lt;simple || kerberos ; default is simple&gt;</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>only indicate "kerberos" if HAWQ is configured to use kerberos for incoming client connections. If HAWQ is running on top of kerberized HDFS but is not using kerberos for incoming client authentication use "simple". The HAWQ provisioner will return a "password" key: value for logging into the HAWQ database in the BIND response for both auth types. Note that unlike the BIND response the HAWQ PROVISION (cli create service command) response does not create a user and will not include a password.</p>
+</div>
+</div>
+<h4 id="PivotalHDServiceBrokerforPivotalCFv1.x-KerberosConfigurationSettings">Kerberos Configuration Settings</h4> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>Support for Kerberized clusters is currently an alpha feature as use of Cloud Foundry applications provisioned on Kerberized clusters has not yet been certified.</p>
+</div>
+</div>
+<div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>If you are provisioning on a Kerberized cluster the host the SB is on must be able to communicate with other hosts using any distributed shell tools you are using. For PHD this would typically require that the broker be on the PCC/ICM admin host.</p>
+</div>
+</div>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">auth_type: kerberos
+kadmin_host: &lt;optional; specify the host to login to to run "kadmin" if not localhost; default null&gt;
+kadmin_host_user: &lt;optional; user to login to kadmin_host with; default host_user&gt;
+kadmin_host_password: &lt;optional; password to login to kadmin_host with; default host_password&gt;
+kadmin_realm: &lt;Kerberos realm to use, if not default; optional&gt;
+kadmin_user: &lt;optional; Kerberos kadmin username; expect admin to be of form user/admin&gt;
+kadmin_password: &lt;optional; Kerberos kadmin password&gt;
+hdfs_kuser_password: &lt;required for HDFS provisioners only; kerberos password for HDFS admin user&gt;</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>For HDFS and HAWQ provisioners if the <code>auth_type</code> is set to <code>kerberos</code> and the provision succeeds a key: value of password: <code>&lt;password&gt;</code> will be returned in credentials and represent the Kerberos password.</p>
+</div>
+</div>
+<h4 id="PivotalHDServiceBrokerforPivotalCFv1.x-DefaultsandExamples">Defaults and Examples</h4><p>HDFS non-kerberized group and user <code>add/delete</code> command defaults:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">addgroup_command: sudo groupadd $GROUP
+client_adduser_command: sudo useradd -s /bin/bash $USER -g $GROUP
+server_adduser_command: sudo useradd -s /sbin/nologin -M $USER -g $GROUP
+delgroup_command: sudo groupdel $GROUP
+deluser_command: sudo userdel -f $USER</pre>
+</div></div><p>HDFS kerberized group and user <code>add/delete</code> command defaults:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">addgroup_command: sudo massh $HOST_PATH bombed "sudo groupadd $GROUP"
+client_adduser_command: sudo massh $HOST_PATH bombed "sudo useradd -s /bin/bash -g $GROUP $USER"
+server_adduser_command: sudo massh $HOST_PATH bombed "sudo useradd -M -s /sbin/nologin -g $GROUP $USER"
+delgroup_command: sudo massh $HOST_PATH bombed "groupdel $GROUP"
+deluser_command: sudo massh $HOST_PATH bombed "userdel -f $USER"</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>If kadmin login info is not provided the administrator must add the principal manually before the app will be able to access services.</p>
+</div>
+</div>
+<p>Example HDFS provisioner config:</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>The host here should be the namenode host.</p>
+</div>
+</div>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">provisioner-conf:
+    host: centos61-2.localdomain
+    host_user: root
+    host_password: $SBENCTOKEN$:65QjariqLfoVSYoG+pFA4g==
+    hdfs_admin_user: hdfs
+    hdfs_user_dir: /user
+    hdfs_uri: hdfs://centos61-2.localdomain:8020</pre>
+</div></div><p> </p><p>Example HAWQ provisioner config:</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>The host here should be the HAWQ master host.</p>
+</div>
+</div>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">provisioner-conf:
+    host: centos61-2.localdomain
+    port: 5432
+    database: postgres
+    username: gpadmin
+    password: $SBENCTOKEN$:LTFofttf0nusNPuYSMdpfA==</pre>
+</div></div><p> </p><p>Example HDFS provisioner config (kerberized):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">provisioner-conf:
+    host: centos61-2.localdomain
+    host_user: root
+    host_password: $SBENCTOKEN$:FYY6dJCkBF4q29w5pujnLQ==
+    hdfs_admin_user: hdfs
+    hdfs_user_dir: /user
+    hdfs_uri: hdfs://centos61-2.localdomain:8020
+    auth_type: kerberos
+    kadmin_host: localhost
+    kadmin_realm: PHD.BIGDATA.COM
+    kadmin_user: user
+    kadmin_password: $SBENCTOKEN$:MCI8fHu8mtmGeJPrtwj/gA==
+    hdfs_kuser_password: $SBENCTOKEN$:PiElHTjkSRImZ+cW0psO+g==
+    server_hosts_path: /etc/pcf/phd-broker/conf/shosts.txt
+    client_hosts_path: /etc/pcf/phd-broker/conf/chosts.txt
+    addgroup_command: massh $HOST_PATH bombed "sudo groupadd $GROUP"
+    client_adduser_command: massh $HOST_PATH bombed "/usr/sbin/useradd -s /bin/bash -g $GROUP $USER"
+    server_adduser_command: massh $HOST_PATH bombed "/usr/sbin/useradd -s /sbin/nologin -M -g $GROUP $USER"</pre>
+</div></div><p> </p><p>Example HAWQ provisioner config (kerberized):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">provisioner-conf:
+    host: centos61-2.localdomain
+    port: 5432
+    database: postgres
+    username: gpadmin
+    password: $SBENCTOKEN$:/TKi8odkeogeBwtmrEt/4w==
+    auth_type: kerberos
+    kadmin_realm: PHD.BIGDATA.COM
+    kadmin_host: localhost
+    kadmin_host_user: kdcadmin
+    kadmin_host_password: $SBENCTOKEN$:aJ4UCMQMm3Z7RF6uokQndg==
+    kadmin_user: user
+    kadmin_password: $SBENCTOKEN$:zs/SwCKgue8iTLVw4d2lXA==</pre>
+</div></div>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

@@ -1,0 +1,1115 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>PHD 1.1.1 Stack - Binary Package | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>PHD 1.1.1 Stack - Binary Package</h1><div class="wiki-content group" id="main-content">
+<h1 id="PivotalHD1.1.1Stack-BinaryPackage-/*&lt;![CDATA[*/div.rbtoc1390012350158{padding:0px;}div.rbtoc1390012350158ul{list-style:disc;margin-left:0px;}div.rbtoc1390012350158li{margin-left:0px;padding-left:0px;}/*]]&gt;*/AccessingPHD1.1.1StackBinaryPackageVersionTableI"><style type="text/css">/*<![CDATA[*/
+div.rbtoc1390012350158 {padding: 0px;}
+div.rbtoc1390012350158 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1390012350158 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc rbtoc1390012350158">
+<ul class="toc-indentation">
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-AccessingPHD1.1.1StackBinaryPackage">Accessing PHD 1.1.1 Stack Binary Package</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-VersionTable">Version Table</a></li>
+</ul>
+</li>
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-Installation">Installation</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-Prerequisites">Prerequisites</a></li>
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-Hadoop">Hadoop</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-HDFSsetup">HDFS setup</a></li>
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-YARNsetupandrun">YARN setup and run</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-YARNsetup">YARN setup</a></li>
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-YARNtorunMap/Reduce">YARN to run Map/Reduce</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-Zookeeper">Zookeeper</a></li>
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-HBase">HBase</a></li>
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-Hive">Hive</a></li>
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-HCatalog">HCatalog</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-WebCatalog(Optional)">WebCatalog (Optional)</a></li>
+</ul>
+</li>
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-Pig">Pig</a></li>
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-Mahout">Mahout</a></li>
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-Sqoop">Sqoop</a></li>
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-Flume">Flume</a></li>
+<li><a href="#PivotalHD1.1.1Stack-BinaryPackage-Oozie">Oozie</a></li>
+</ul>
+</li>
+</ul>
+</div></h1><p>Pivotal HD 1.1.1 is a full Apache Hadoop distribution with Pivotal add-ons and a native integration with the Pivotal Greenplum database.</p><p>PHD 1.1.1 Stack supports YARN (a.k.a. MRv2) resource manager. You can submit Map/Reduce job via the new MapReduce interface.</p><p>The RPM distribution of PHD 1.1 contains the following components:</p><ul><li><strong>Hadoop 2.0.5-alpha</strong></li><li><strong>Pig 0.12.0</strong></li><li><strong>Zookeeper 3.4.5</strong></li><li><strong>HBase 0.94.8</strong></li><li><strong>Hive 0.11.0</strong></li><li><strong>HCatalog 0.11.0</strong></li><li><strong>Mahout 0.7</strong></li><li><strong>Flume 1.3.1</strong></li><li><strong>Sqoop 1.4.2</strong></li></ul><h2 id="PivotalHD1.1.1Stack-BinaryPackage-AccessingPHD1.1.1StackBinaryPackage">Accessing PHD 1.1.1 Stack Binary Package</h2><p>You can download the PHD 1.1.1 Stack Binary Packages from EMC Download Center.</p><p>This is a single <code>tar.gz</code> file containing all the components: <code>PHD-1.1.1.0-bin-xx.tar.gz</code>. ( where "x" denotes a digital number )</p><p>The content of this tar file looks like this:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">PHD-1.1.1.0-bin-35/flume/tar/apache-flume-1.3.1-gphd-2.1.1.0-bin.tar.gz
+PHD-1.1.1.0-bin-35/hadoop/tar/hadoop-2.0.5-alpha-gphd-2.1.1.0.tar.gz
+PHD-1.1.1.0-bin-35/hbase/tar/hbase-0.94.8-gphd-2.1.1.0-security.tar.gz
+PHD-1.1.1.0-bin-35/hive/tar/hive-0.11.0-gphd-2.1.1.0.tar.gz
+PHD-1.1.1.0-bin-35/mahout/tar/mahout-distribution-0.7-gphd-2.1.1.0.tar.gz
+PHD-1.1.1.0-bin-35/oozie/tar/oozie-3.3.2-gphd-2.1.1.0-distro.tar.gz
+PHD-1.1.1.0-bin-35/pig/tar/pig-0.12.0-gphd-2.1.1.0.tar.gz
+PHD-1.1.1.0-bin-35/sqoop/tar/sqoop-1.4.2-gphd-2.1.1.0.tar.gz
+PHD-1.1.1.0-bin-35/zookeeper/tar/zookeeper-3.4.5-gphd-2.1.1.0.tar.gz</pre>
+</div></div><p>Note: md5 files are not listed here.</p><h3 id="PivotalHD1.1.1Stack-BinaryPackage-VersionTable">Version Table</h3><p>Here's the PHD version number for each components in this package:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Component</th><th class="confluenceTh">PHD Version</th><th class="confluenceTh">Version Placeholder</th></tr><tr><td class="confluenceTd">ZooKeeper</td><td class="confluenceTd"><pre>3.4.5-gphd-2.1.1.0</pre></td><td class="confluenceTd">&lt;PHD_ZOOKEEPER_VERSION&gt;</td></tr><tr><td class="confluenceTd">Hadoop</td><td class="confluenceTd"><pre>2.0.5-alpha-gphd-2.1.1.0</pre></td><td class="confluenceTd">&lt;PHD_HADOOP_VERSION&gt;</td></tr><tr><td class="confluenceTd">HBase</td><td class="confluenceTd"><pre>0.94.8-gphd-2.1.1.0</pre></td><td class="confluenceTd">&lt;PHD_HBASE_VERSION&gt;</td></tr><tr><td class="confluenceTd">Hive</td><td class="confluenceTd"><pre>0.11.0-gphd-2.1.1.0</pre></td><td class="confluenceTd">&lt;PHD_HIVE_VERSION&gt;</td></tr><tr><td class="confluenceTd">HCatalog</td><td class="confluenceTd"><pre>0.11.0-gphd-2.1.1.0</pre></td><td class="confluenceTd">&lt;PHD_HCATALOG_VERSION&gt;</td></tr><tr><td class="confluenceTd">Pig</td><td class="confluenceTd"><pre>0.12.0-gphd-2.1.1.0</pre></td><td class="confluenceTd">&lt;PHD_PIG_VERSION&gt;</td></tr><tr><td class="confluenceTd">Mahout</td><td class="confluenceTd"><pre>0.7-gphd-2.1.1.0</pre></td><td class="confluenceTd">&lt;PHD_MAHOUT_VERSION&gt;</td></tr><tr><td class="confluenceTd">Flume</td><td class="confluenceTd"><pre>1.3.1-gphd-2.1.1.0</pre></td><td class="confluenceTd">&lt;PHD_FLUME_VERSION&gt;</td></tr><tr><td class="confluenceTd">Sqoop</td><td class="confluenceTd"><pre>1.4.2-gphd-2.1.1.0</pre></td><td class="confluenceTd">&lt;PHD_SQOOP_VERSION&gt;</td></tr><tr><td class="confluenceTd">Oozie</td><td class="confluenceTd"><pre>3.3.2-gphd-2.1.1.0</pre></td><td class="confluenceTd">&lt;PHD_OOZIE_VERSION&gt;</td></tr></tbody></table></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>In the sections below, we will use the values in the "Version Placeholder" to replace the actual PHD Version. When installing, please replace it back to the actual version value.</p>
+</div>
+</div>
+<h2 id="PivotalHD1.1.1Stack-BinaryPackage-Installation">Installation</h2><p>This section provides instructions for installing and running the Pivotal HD 1.1.1 components from the downloaded binary tarball files.</p><p>The installation instructions provided here are intended only as a Quick Start guide that will start the services on one single host. Refer to Apache Hadoop documentation for information about other installation configurations. <a class="external-link" href="http://hadoop.apache.org/docs/r2.0.5-alpha/" rel="nofollow">http://hadoop.apache.org/docs/r2.0.5-alpha/</a></p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>All packages used during this process should come from same PHD distribution tarball, do not mix using package from different tarballs.</p>
+</div>
+</div>
+<h3 id="PivotalHD1.1.1Stack-BinaryPackage-Prerequisites">Prerequisites</h3><p>Follow the instructions below to install the Hadoop components (cluster install):</p><ul><li><p>If not created already, add a new user <strong> <code>hadoop</code> </strong> and switch to that user. All packages should be installed by user <code> <strong>hadoop</strong> </code>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ useradd hadoop
+$ passwd hadoop
+$ su - hadoop</pre>
+</div></div></li><li><p>Make sure Oracle Java Run-time (JRE) 1.7 is installed on the system and set environment variable <code>JAVA_HOME</code> to point to the directory where JRE is installed. Appending the following script snippet to the file <code>~/.bashrc</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>~/.bashrc</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">export JAVA_HOME=/usr/java/default
+</pre>
+</div></div><p>Make sure the<code> ~/.bashrc</code> file take effect:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ source ~/.bashrc</pre>
+</div></div></li><li><p>SSH (both client and server) command is required. Set up password-less SSH login according to the following commands.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>Password-less SSH login is required to be setup on HDFS name node to each HDFS data node, also on YARN resource manager to each YARN node manager.</p><p>Because we are setting up a single node cluster, which means the only machine is the HDFS name node, YARN resource manager, and the only HDFS data node YARN node manager. So the setup is easier.</p>
+</div>
+</div>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;"># Assume you already log into the single node with user hadoop
+$ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+ $ cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+ 
+# Set the permissions on the file on each slave host
+$ chmod 0600 ~/.ssh/authorized_keys
+</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>On a real cluster (distributed), use the following scripts, to setup password-less SSH login, it needs to be executed twice, once on HDFS name node, another once on YARN resource manager node, unless you setup HDFS name node and YARN resource manager on same machine. (For your reference only, not needed for this single node cluster installation)</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;"># First login to the master host (YARN resource manager or HDFS name node).
+# Replace master@host-master with the real user name and host name of your master host.
+$ ssh master@host-master
+$ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+ $ cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+ 
+# copy authorized_keys to each slave hosts (YARN node manager or HDFS data node) in the cluster using scp
+# Replace slave@host-slave with the real user name and host name of your slave host, and do it for each of your slave host.
+ # NOTE: if an authorized_keys file already exists for # the user, rename your file authorized_keys2
+$ scp ~/.ssh/authorized_keys slave@host-slave:~/.ssh/
+
+# Set the permissions on the file on each slave host
+# Replace slave@host-slave with the real user name and host name of your slave host, and do it for each of your slave host.
+ $ ssh slave@host-slave
+$ chmod 0600 ~/.ssh/authorized_keys
+</pre>
+</div></div>
+</div>
+</div>
+</li></ul><h3 id="PivotalHD1.1.1Stack-BinaryPackage-Hadoop">Hadoop</h3><ol><li><p>Unpack the Hadoop tarball file</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;"> $ tar zxf hadoop-&lt;PHD_HADOOP_VERSION&gt;.tar.gz
+</pre>
+</div></div></li><li><p>Edit file ~/.bashrc to update environment <code>HADOOP_HOME</code> and <code>HADOOP_HDFS_HOME</code> to be the directory where tarball file is extracted, and add <code>hadoop</code> to file search path.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>~/.bashrc</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;"># export HADOOP_HOME, HADOOP_HDFS_HOME
+export HADOOP_HOME=/path/to/hadoop
+
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export PATH=$HADOOP_HOME/bin:$PATH</pre>
+</div></div></li><li><p>And make sure the ~/.bashrc file take effect:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ source ~/.bashrc</pre>
+</div></div></li><li><p>In the sections below, all the shell commands, unless explicitly specified, are run from directory <code>$HADOOP_HOME</code>.</p></li></ol><h4 id="PivotalHD1.1.1Stack-BinaryPackage-HDFSsetup">HDFS setup</h4><ol><li><p>Modify the file <code>$HADOOP_HOME/etc/hadoop/core-site.xml</code>, add the following to the configuration section</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>$HADOOP_HOME/etc/hadoop/core-site.xml</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: html/xml; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;fs.defaultFS&lt;/name&gt;
+  &lt;value&gt;hdfs://localhost:8020/&lt;/value&gt;
+&lt;/property&gt;</pre>
+</div></div></li><li><p>Modify the file <code>$HADOOP_HOME/etc/hadoop/hdfs-site.xml</code>, add the following to the configuration section:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>$HADOOP_HOME/etc/hadoop/hdfs-site.xml</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: html/xml; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;dfs.replication&lt;/name&gt;
+  &lt;value&gt;1&lt;/value&gt;
+&lt;/property&gt;</pre>
+</div></div></li><li><p>Format the HDFS name node directory using default configurations:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ $HADOOP_HDFS_HOME/bin/hdfs namenode -format</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>The default location for storing the name node data is: <code>/tmp/hadoop-hadoop/dfs/name/</code></p>
+</div>
+</div>
+</li><li><p>Start name node service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ $HADOOP_HDFS_HOME/sbin/hadoop-daemon.sh start namenode</pre>
+</div></div></li><li><p>Start each data node service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ $HADOOP_HDFS_HOME/sbin/hadoop-daemon.sh start datanode</pre>
+</div></div></li><li><p>After the name node and data node services are started, you can access the HDFS dashboard at http://localhost:50070/, if you are on using name node machine.If you using browser to open that dashboard from another machine, replace <code>localhost</code> in the URL with the full host name of your name node machine.</p><p>You can also do some test with the command line:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ $HADOOP_HDFS_HOME/bin/hdfs dfs -ls /
+$ $HADOOP_HDFS_HOME/bin/hdfs dfs -mkdir -p /user/hadoop
+#you can see a full list of hdfs dfs command options
+$ $HADOOP_HDFS_HOME/bin/hdfs dfs
+#put a local file to hdfs
+$ $HADOOP_HDFS_HOME/bin/hdfs dfs -copyFromLocal /etc/passwd /user/hadoop/</pre>
+</div></div></li><li><p>To stop data node service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ $HADOOP_HDFS_HOME/sbin/hadoop-daemon.sh stop datanode</pre>
+</div></div></li><li><p>To stop name node service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ $HADOOP_HDFS_HOME/sbin/hadoop-daemon.sh stop namenode</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>HDFS data node and name node services are required to be started for running the examples below.</p>
+</div>
+</div>
+</li></ol><h4 id="PivotalHD1.1.1Stack-BinaryPackage-YARNsetupandrun">YARN setup and run</h4><h5 id="PivotalHD1.1.1Stack-BinaryPackage-YARNsetup">YARN setup</h5><ol><li><p>Modify the configuration file <code>$HADOOP_HOME/etc/hadoop/yarn-site.xml</code>, add the following to the configuration section:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>$HADOOP_HOME/etc/hadoop/yarn-site.xml</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: html/xml; gutter: false" style="font-size:12px;">  &lt;property&gt;
+    &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+    &lt;value&gt;mapreduce.shuffle&lt;/value&gt;
+  &lt;/property&gt;
+
+  &lt;property&gt;
+    &lt;name&gt;yarn.nodemanager.aux-services.mapreduce.shuffle.class&lt;/name&gt;
+    &lt;value&gt;org.apache.hadoop.mapred.ShuffleHandler&lt;/value&gt;
+  &lt;/property&gt;
+
+  &lt;property&gt;
+    &lt;description&gt;Classpath for typical applications.&lt;/description&gt;
+    &lt;name&gt;yarn.application.classpath&lt;/name&gt;
+	&lt;value&gt;$HADOOP_CONF_DIR,$HADOOP_COMMON_HOME/share/hadoop/common/*,$HADOOP_COMMON_HOME/share/hadoop/common/lib/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*,$HADOOP_YARN_HOME/share/hadoop/yarn/*,$HADOOP_YARN_HOME/share/hadoop/yarn/lib/*&lt;/value&gt;
+  &lt;/property&gt;</pre>
+</div></div></li><li><p>Create basic directory on HDFS system for YARN usage:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ $HADOOP_HDFS_HOME/bin/hdfs dfs -mkdir /tmp
+$ $HADOOP_HDFS_HOME/bin/hdfs dfs -chmod -R 1777 /tmp
+$ $HADOOP_HDFS_HOME/bin/hdfs dfs -mkdir -p /user/hadoop 
+$ $HADOOP_HDFS_HOME/bin/hdfs dfs -mkdir -p /user/history
+$ $HADOOP_HDFS_HOME/bin/hdfs dfs -chmod -R 1777 /user/history</pre>
+</div></div></li><li><p>Start YARN resource manager service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ $HADOOP_HOME/sbin/yarn-daemon.sh start resourcemanager</pre>
+</div></div></li><li><p>You can access the Resource Manager dashboard at: http://localhost:8088/, Replace the <code>localhost</code> in the URL for the full name of your resource manager host if you open that dashboard from another machine.</p></li><li><p>Start YARN node manager service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ $HADOOP_HOME/sbin/yarn-daemon.sh start nodemanager</pre>
+</div></div></li><li><p>You can access the node manager dashboard at: http://localhost:8042/. Replace the <code>localhost</code> in the URL for the full name of your node manager host if you open that dashboard from another machine.</p><p>At this time, you can do something with the YARN now.</p></li><li><p>If you want to stop YARN services now:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ $HADOOP_HOME/sbin/yarn-daemon.sh stop nodemanager
+$ $HADOOP_HOME/sbin/yarn-daemon.sh stop resourcemanager
+</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>YARN resource manager and node manager services are required to be started for running the following Map/Reduce examples.</p>
+</div>
+</div>
+</li></ol><h5 id="PivotalHD1.1.1Stack-BinaryPackage-YARNtorunMap/Reduce">YARN to run Map/Reduce</h5><ol><li><p>Modify the file <code>$HADOOP_HOME/etc/hadoop/mapred-site.xml</code> (you may copy it from <code>$HADOOP_HOME/etc/hadoop/mapred-site.xml.template</code>), add the following to the configuration section:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>$HADOOP_HOME/etc/hadoop/mapred-site.xml</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: html/xml; gutter: false" style="font-size:12px;">  &lt;property&gt;
+    &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
+    &lt;value&gt;yarn&lt;/value&gt;
+  &lt;/property&gt;</pre>
+</div></div></li><li><p>Make sure YARN resource manager and node manager services are started (if not, refer to the "YARN Setup" step 2, 3).</p></li><li><p>If you want to track the mapreduce history, you can start the Map/Reduce history server service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ $HADOOP_HOME/sbin/mr-jobhistory-daemon.sh start historyserver</pre>
+</div></div></li><li><p>You can access the server dashboard at: http://localhost:19888/</p></li><li><p>Run Map/Reduce example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ cd $HADOOP_HOME
+$ bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-&lt;PHD_HADOOP_VERSION&gt;.jar pi 2 10000</pre>
+</div></div><p>This command will submit the Map/Reduce job to calculate the PI value.</p><p>For more example, you can run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-&lt;PHD_HADOOP_VERSION&gt;.jar</pre>
+</div></div><p>It will show you a list of example programs you can run.</p><p>When the job is running, you can view the application progress at the resource manager dashboard.</p></li></ol><h3 id="PivotalHD1.1.1Stack-BinaryPackage-Zookeeper">Zookeeper</h3><ol><li><p>Unpack the Zookeeper tarball <code>zookeeper-&lt;PHD_ZOOKEEPER_VERSION&gt;.tar.gz</code> and add the <code>ZK_HOME</code> environment variable by appending the following to <code>~/.bashrc</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>~/.bashrc</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;"># Add ZK_HOME to the path
+export ZK_HOME=/path/to/zookeeper
+PATH=$PATH:$ZK_HOME/bin
+</pre>
+</div></div></li><li><p>And make sure the <code>~/.bashrc</code> file take effect:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>~/.bashrc</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ source ~/.bashrc</pre>
+</div></div></li><li><p>Go to the folder <code>$ZK_HOME/conf</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ cd $ZK_HOME/conf
+$ cp zoo_sample.cfg zoo.cfg
+</pre>
+</div></div><p>Since you are running Zookeeper on a single node, no need to change the configuration file.</p></li><li><p>Start Zookeeper server service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ cd $ZK_HOME
+$ bin/zkServer.sh start
+</pre>
+</div></div></li><li><p>Confirm that Zookeeper is running properly by running the following test:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ cd $ZK_HOME
+$ bin/zkCli.sh
+&gt; create /zk_test my_data
+&gt; get /zk_test
+&gt; quit
+</pre>
+</div></div></li><li><p>To stop the Zookeeper server service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ cd $ZK_HOME
+$ bin/zkServer.sh stop</pre>
+</div></div></li></ol><h3 id="PivotalHD1.1.1Stack-BinaryPackage-HBase">HBase</h3><p>Following is an example of installing an instance of HBase that is running in pseudo-distributed mode. There is also an option to install a standalone or fully distributed HBase. Refer to Apache HBase documentation for information about other installation configurations. <a class="external-link" href="http://hbase.apache.org/book/book.html" rel="nofollow">http://hbase.apache.org/book/book.html</a></p><ol><li><p>Unpack the HBase tar file <code>hbase-&lt;PHD_HBASE_VERSION&gt;.tar.gz</code>, the extracted folder is referred as <code>$HBASE_HOME</code>, edit file <code>$HBASE_HOME/conf/hbase-site.xml</code> to add the following properties:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>$HBASE_HOME/conf/hbase-site.xml</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: html/xml; gutter: false" style="font-size:12px;">&lt;configuration&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.rootdir&lt;/name&gt;
+    &lt;value&gt;hdfs://localhost:8020/hbase&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.cluster.distributed&lt;/name&gt;
+    &lt;value&gt;true&lt;/value&gt;
+    &lt;description&gt;mode: fully distributed, not to manage zookeeper&lt;/description&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt;
+    &lt;value&gt;localhost&lt;/value&gt;
+  &lt;/property&gt;
+&lt;/configuration&gt;
+</pre>
+</div></div></li><li><p>Edit <code>$HBASE_HOME/conf/hbase-env.sh</code> to turn off the HBase management:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>$HBASE_HOME/conf/hbase-env.sh</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">HBASE_MANAGES_ZK=false
+</pre>
+</div></div></li><li><p>HBase has the hadoop jars in the <code>$HBASE_HOME/lib</code> dir. If you are already have &lt;PHD_HADOOP_VERSION&gt; version of Hadoop jar libraries in that directory, you can omit this step. Otherwise, you need:</p><ol><li>Delete the <code>$HBASE_HOME/lib/hadoop-*.jar</code> files.</li><li>Copy the <code>$HADOOP_HOME/*<strong>/</strong>hadoop-.jar</code> files to  <code>$HBASE_HOME/lib/</code>.</li></ol></li><li><p>Start HBase:</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>Before starting HBase, please make sure Zookeeper server is running.</p>
+</div>
+</div>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ $HBASE_HOME/bin/start-hbase.sh
+</pre>
+</div></div></li><li><p>You can check the status of HBase at the following location: http://localhost:60010. If you using browser to open that dashboard from another machine, replace <code>localhost</code> in the URL with the full host name of your HBase master machine.</p></li><li><p>Confirm that HBase is installed and running properly by conducting the following test:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ cd $HBASE_HOME
+$ bin/hbase shell
+hbase(main):003:0&gt; create 'test', 'cf'
+hbase(main):003:0&gt; list 'test'
+hbase(main):004:0&gt; put 'test', 'row1', 'cf:a', 'value1'
+hbase(main):005:0&gt; put 'test', 'row2', 'cf:b', 'value2'
+hbase(main):006:0&gt; put 'test', 'row3', 'cf:c', 'value3'
+hbase(main):007:0&gt; scan 'test'
+hbase(main):008:0&gt; get 'test',  'row1'
+hbase(main):012:0&gt; disable 'test'
+hbase(main):013:0&gt; drop 'test'
+hbase(main):014:0&gt; exit</pre>
+</div></div></li><li><p>To stop HBase:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ $HBASE_HOME/bin/stop-hbase.sh</pre>
+</div></div></li></ol><h3 id="PivotalHD1.1.1Stack-BinaryPackage-Hive">Hive</h3><ol><li><p>Unpack the Hive tarball <code>hive-&lt;PHD_HIVE_VERSION&gt;.tar.gz</code> and append the following environment variables to <code>~/.bashrc</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>~/.bashrc</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">export HIVE_HOME=/path/to/hive
+export PATH=$HIVE_HOME/bin:$PATH
+export CLASSPATH=$HIVE_HOME/lib:$CLASSPATH</pre>
+</div></div></li><li><p>Make sure the <code>~/.bashrc</code> file take effect:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ source ~/.bashrc</pre>
+</div></div></li><li><p>Create <code>/user/hive/warehouse</code> (aka <code>hive.metastore.warehouse.dir</code>) and set them group write access in HDFS:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ $HADOOP_HOME/bin/hadoop fs -mkdir       /user/hive/warehouse
+$ $HADOOP_HOME/bin/hadoop fs -chmod g+w   /user/hive/warehouse</pre>
+</div></div></li><li><p>Test Hive:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ cd $HIVE_HOME
+$ bin/hive
+hive&gt; CREATE TABLE pokes (foo INT, bar STRING);
+hive&gt; LOAD DATA LOCAL INPATH './examples/files/kv1.txt' OVERWRITE INTO TABLE pokes;
+hive&gt; SELECT a.* FROM pokes a where foo=400;
+hive&gt; DROP TABLE pokes;
+hive&gt; quit;</pre>
+</div></div></li></ol><h3 id="PivotalHD1.1.1Stack-BinaryPackage-HCatalog">HCatalog</h3><ol><li><p>HCatalog is contained in the same tarball as Hive. After you extracted tarball <code>hive-&lt;PHD_HIVE_VERSION&gt;.tar.gz</code>, append the following environment variables to <code>~/.bashrc</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>~/.bashrc</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">export HCAT_HOME=$HIVE_HOME/hcatalog
+export HCAT_PREFIX=$HCAT_HOME
+export HIVE_CONF_DIR=$HIVE_HOME/conf
+export HADOOP_LIBEXEC_DIR=$HADOOP_HOME/libexec</pre>
+</div></div></li><li><p>Make sure the <code>~/.bashrc</code> file take effect:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>bash</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ source ~/.bashrc</pre>
+</div></div></li><li><p>Now you can run some HCatalog commands to verify your setup is OK. You should see similar output as shown below. Some trivial output is omitted for better illustration:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>bash</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ cd $HCAT_HOME
+$ bin/hcat -e "create table pokes (foo int, bar string)"
+OK
+Time taken: 9.625 seconds
+$ bin/hcat -e "show tables"
+OK
+pokes
+Time taken: 7.783 seconds
+$ bin/hcat -e "describe pokes"
+OK
+foo                     int                     None                
+bar                     string                  None    
+Time taken: 7.301 seconds
+$ bin/hcat -e "alter table pokes add columns (new_col int)"
+OK
+Time taken: 7.003 seconds
+$ bin/hcat -e "describe pokes"
+OK
+foo                     int                     None                
+bar                     string                  None                
+new_col                 int                     None                
+Time taken: 7.014 seconds
+$ bin/hcat -e "drop table pokes"
+OK
+Time taken: 9.78 seconds
+$ exit</pre>
+</div></div></li></ol><h4 id="PivotalHD1.1.1Stack-BinaryPackage-WebCatalog(Optional)">WebCatalog (Optional)</h4><ol><li><p>After you installed HCatalog, manually copy the configure file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ cp $HCAT_HOME/etc/webhcat/webhcat-default.xml $HIVE_CONF_DIR/webhcat-site.xml</pre>
+</div></div></li><li><p>Then edit the file you just copied:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>webhcat-site.xml</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: html/xml; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;templeton.exec.envs&lt;/name&gt;
+  &lt;value&gt;...,HIVE_CONF_DIR,HADOOP_LIBEXEC_DIR&lt;/value&gt;
+  &lt;description&gt;The environment variables passed through to exec.&lt;/description&gt;
+&lt;/property&gt;</pre>
+</div></div><p>Please be noted the "..." in above script-let means the original value of the property. You need to append two more variable name to value of this property.</p></li><li><p>Start WebCatalog service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ cd $HCAT_HOME
+$ sbin/webhcat_server.sh start</pre>
+</div></div><p>Note that starting WebCatalog service will write something under current directory, so ensure current user has permission to write in current directory.</p></li><li><p>Now you can run test:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ curl http://localhost:50111/templeton/v1/ddl/database/?user.name=hadoop</pre>
+</div></div></li><li><p>Stop WebCatalog service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>bash</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ cd $HCAT_HOME
+$ sbin/webhcat_server.sh stop</pre>
+</div></div></li></ol><h3 id="PivotalHD1.1.1Stack-BinaryPackage-Pig">Pig</h3><ol><li><p>Unpack the Hive tarball <code>pig-&lt;PHD_PIG_VERSION&gt;.tar.gz</code> and append the following environment variables to <code>~/.bashrc</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export PIG_HOME=/path/to/pig
+export PATH=$PIG_HOME/bin:$PATH
+export CLASSPATH=$PIG_HOME/lib:$CLASSPATH</pre>
+</div></div></li><li><p>Make sure the <code>~/.bashrc</code> file take effect:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ source ~/.bashrc</pre>
+</div></div></li><li><p>Test Pig:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">[hadoop@localhost ~]$ hadoop fs -put /etc/passwd passwd
+[hadoop@localhost ~]$ pig
+grunt&gt; A = load 'passwd' using PigStorage(':');
+grunt&gt; B = foreach A generate $0 as id;
+grunt&gt; dump B;
+(root)
+(bin)
+(daemon)
+...
+(flume)
+(sqoop)
+(oozie)
+grunt&gt; quit;</pre>
+</div></div><p>The output in the above commands are omitted, after the <strong> <code>dump B</code> </strong> command, a Map/Reduce job should be started, and you should find users defined in your <code>/etc/passwd</code> file is listed in the output.</p></li><li>Piggybank usage:<br/><p>Piggybank is a java library which includes a lot of useful Pig UDFs. Piggybank provides UDFs for different Pig storage functions, math functions, string functions and datetime functions, etc.</p><p>You can find piggybank jar file in ${PIG_HOME}/piggybank.jar. You can also find the library jars which piggybank depends on in ${PIG_HOME}/lib/. </p><p>You can use the following script to register piggybank library in your pig script.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">register ${PIG_HOME}/lib/avro-*.jar
+register ${PIG_HOME}/lib/commons-*.jar
+register ${PIG_HOME}/lib/groovy-all-*.jar
+register ${PIG_HOME}/lib/guava-*.jar
+register ${PIG_HOME}/lib/jackson-*.jar
+register ${PIG_HOME}/lib/joda-time-*.jar
+register ${PIG_HOME}/lib/json-simple-*.jar
+register ${PIG_HOME}/lib/parquet-pig-bundle-*.jar
+register ${PIG_HOME}/lib/protobuf-java-*.jar
+register ${PIG_HOME}/lib/snappy-java-*.jar
+register ${PIG_HOME}/piggybank.jar</pre>
+</div></div><p><strong>Note</strong>: Some UDFs(like HiveColumnarStorage) need class in Hive's jar. If you want to use these functions, Hive must be installed on the host too. </p><p>You can register any piggybank jars as needed with above pig code. Additionally, use the following script to register piggybank and hive jars in your pig script.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">register ${HIVE_HOME}/hive-exec-*.jar
+register ${HIVE_HOME}/hive-common-*.jar</pre>
+</div></div></li></ol><h3 id="PivotalHD1.1.1Stack-BinaryPackage-Mahout">Mahout</h3><ol><li><p>Unpack the Mahout <code>mahout-distribution-&lt;PHD_MAHOUT_VERSION&gt;.tar.gz</code> and append the following environment variables to <code>~/.bashrc</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>~/.bashrc</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">export MAHOUT_HOME=/path/to/mahout
+export PATH=$MAHOUT_HOME/bin:$PATH
+export CLASSPATH=$MAHOUT_HOME/lib:$CLASSPATH</pre>
+</div></div></li><li><p>Make sure the <code>~/.bashrc</code> file take effect:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ source ~/.bashrc</pre>
+</div></div></li><li><p>Test (make sure HDFS and Map/Reduce service are running):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ wget http://archive.ics.uci.edu/ml/databases/synthetic_control/synthetic_control.data
+$ $HADOOP_HDFS_HOME/bin/hdfs dfs -mkdir -p /user/hadoop/testdata
+$ $HADOOP_HDFS_HOME/bin/hdfs dfs -put synthetic_control.data testdata
+$ $MAHOUT_HOME/bin/mahout org.apache.mahout.clustering.syntheticcontrol.kmeans.Job
+$ $HADOOP_HDFS_HOME/bin/hdfs dfs -ls -R output</pre>
+</div></div></li></ol><h3 id="PivotalHD1.1.1Stack-BinaryPackage-Sqoop">Sqoop</h3><ol><li><p>Install and Deploy MySQL</p></li><li><p>Unpack the Sqoop <code>sqoop-&lt;PHD_SQOOP_VERSION&gt;.tar.gz</code> and append the following environment variables to <code>~/.bashrc</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>~/.bashrc</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">export SQOOP_HOME=/path/to/sqoop
+export PATH=$SQOOP_HOME/bin:$PATH
+export CLASSPATH=$SQOOP_HOME/lib:$CLASSPATH</pre>
+</div></div></li><li><p>Make sure the <code>~/.bashrc</code> file take effect:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ source ~/.bashrc</pre>
+</div></div></li><li><p>Move file <code>mysql-connector-java.jar</code> to directory <code>/usr/share/java/</code> and make a symbolic link point to it at sqoop's <code>lib</code> folder:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ ln -sf /usr/share/java/mysql-connector-java.jar $SQOOP_HOME/lib/mysql-connector-java.jar</pre>
+</div></div></li><li><p>Create user <strong> <code>hadoop</code> </strong> in MySQL system, and grant all privileges to the user:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ mysql -u root [-p]
+
+mysql&gt; insert into mysql.user(Host,User,Password) values("%","hadoop",password("hadoop"));
+mysql&gt; GRANT ALL PRIVILEGES ON *.* TO 'hadoop'@'%' identified by 'hadoop';
+mysql&gt; flush privileges;</pre>
+</div></div></li><li><p>Start MySQL service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ service mysqld start</pre>
+</div></div></li><li><p>Now do some test, first, create a table <strong> <code>student</code> </strong> in MySQL system:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ mysql
+mysql&gt; use test
+CREATE TABLE student (id INT PRIMARY KEY, name VARCHAR(100));
+insert into student (id, name) values (1, "Elena");
+insert into student (id, name) values (2, "Stephan");
+insert into student (id, name) values (3, "Damon");
+exit</pre>
+</div></div></li><li>Create a user home folder in HDFS, you are using user <strong> <code>hadoop</code> </strong>, create directory <code>/user/hadoop</code> in HDFS.</li><li><p>With user <strong> <code>hadoop</code> </strong> to execute:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">[hadoop@localhost]$ sqoop import --connect jdbc:mysql://localhost/test --table student --username hadoop --target-dir hdfs://localhost/tmp/sqoop_output"</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>If you installed MySQL on another machine, replace the <code>localhost</code> part in the jdbc url with the real MySQL server name in the command.</p>
+</div>
+</div>
+<p>You should see a Map/Reduce job started to import data from the MySQL table to HDFS.</p></li></ol><h3 id="PivotalHD1.1.1Stack-BinaryPackage-Flume">Flume</h3><ol><li><p>Unpack the Flume <code>apache-flume-&lt;PHD_FLUME_VERSION&gt;-bin.tar.gz</code> and append the following environment variables to <code>~/.bashrc</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>~/.bashrc</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">export FLUME_HOME=/path/to/flume</pre>
+</div></div></li><li><p>Make sure the <code>~/.bashrc</code> file take effect:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ source ~/.bashrc</pre>
+</div></div></li><li><p>Create a Flume configuration file under <code>$FLUME_HOME</code> (assume you name it as example.conf), which you probably copy from <code>$FLUME_HOME/conf/flume-conf.properties.template</code>, according to the following example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>example.conf</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: plain; gutter: false" style="font-size:12px;"># example.conf: A single-node Flume configuration
+     
+# Name the components on this agent
+a1.sources = r1
+a1.sinks = k1
+a1.channels = c1
+     
+# Describe/configure the source
+a1.sources.r1.type = netcat
+a1.sources.r1.bind = localhost
+a1.sources.r1.port = 44444
+     
+# Describe the sink
+a1.sinks.k1.type = logger
+     
+# Use a channel which buffers events in memory
+a1.channels.c1.type = memory
+a1.channels.c1.capacity = 1000
+a1.channels.c1.transactionCapacity = 100
+     
+# Bind the source and sink to the channel
+a1.sources.r1.channels = c1
+a1.sinks.k1.channel = c1</pre>
+</div></div></li><li><p>Run example use the example configuration to verify Flume is working properly.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ cd $FLUME_HOME
+$ bin/flume-ng agent --conf-file example.conf --name a1 -Dflume.root.logger=INFO,console
+(note: on the above command, "a1" refers to the agent name set in file example.conf)</pre>
+</div></div></li></ol><h3 id="PivotalHD1.1.1Stack-BinaryPackage-Oozie">Oozie</h3><ol><li><p>Download and unpack Apache Tomcat 6.0.37 package</p></li><li><p>Download Ext JS 2.2 package from <a class="external-link" href="http://extjs.com/deploy/ext-2.2.zip" rel="nofollow">http://extjs.com/deploy/ext-2.2.zip</a> and extract it to <code>/tmp</code></p></li><li><p>Unpack the Oozie <code>oozie-&lt;PHD_OOZIE_VERSION&gt;-distro.tar.gz</code> and append the following environment variables to <code>~/.bashrc</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>~/.bashrc</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">export CATALINA_HOME=/path/to/tomcat
+export OOZIE_HOME=/path/to/oozie</pre>
+</div></div></li><li><p>Make sure the <code>~/.bashrc</code> file take effect:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ source ~/.bashrc</pre>
+</div></div></li><li><p>Add the following configuration in Hadoop's configuration file <code>$HADOOP_HOME/etc/core-site.xml</code> and restart Hadoop:</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>Replace <code>${username}</code> as your real user name which you use to start Oozie service (Probably user <code>hadoop</code>).</p>
+</div>
+</div>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>core-site.xml</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: html/xml; gutter: false" style="font-size:12px;">  &lt;!-- OOZIE --&gt;
+  &lt;property&gt;
+    &lt;name&gt;hadoop.proxyuser.${username}.hosts&lt;/name&gt;
+    &lt;value&gt;*&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;hadoop.proxyuser.${username}.groups&lt;/name&gt;
+    &lt;value&gt;*&lt;/value&gt;
+  &lt;/property&gt;</pre>
+</div></div></li><li><p>Make a copy of Hadoop configuration file for Oozie:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ cp $HADOOP_HOME/etc/hadoop/* $OOZIE_HOME/conf/hadoop-conf</pre>
+</div></div></li><li><p>Initialize Oozie database:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ $OOZIE_HOME/bin/ooziedb.sh create -sqlfile oozie.sql -run</pre>
+</div></div></li><li><p>Setup Oozie:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ $OOZIE_HOME/bin/oozie-setup.sh prepare-war -hadoop 2.x $HADOOP_HOME -extjs /tmp/ext2.2</pre>
+</div></div></li><li><p>Setup Oozie share library. Replace <code>namenode-hostname</code> and <code>namenode-port</code> according to your Hadoop configurations:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ $OOZIE_HOME/bin/oozie-setup.sh sharelib create -fs hdfs://${namenode-hostname}:${namenode-port} -locallib $OOZIE_HOME/oozie-sharelib.tar.gz</pre>
+</div></div></li><li><p>Start Oozie service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ $OOZIE_HOME/bin/oozied.sh start</pre>
+</div></div></li><li><p>Run an Oozie example:</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>Replace <code>${username}</code> with your real user name when running the following commands</p>
+</div>
+</div>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ cd $OOZIE_HOME
+$ tar xvf oozie-examples.tar.gz
+$ sed -e 's/jobTracker=localhost:8021/jobTracker=localhost:8032/' examples/apps/map-reduce/job.properties &gt; temp; cp temp examples/apps/map-reduce/job.properties
+$ hdfs dfs -mkdir -p /user/${username}
+$ hdfs dfs -put examples/ /user/${username}
+$ ./bin/oozie job -oozie http://localhost:11000/oozie -config examples/apps/ssh/job.properties  -run
+$ ./bin/oozie job -oozie http://localhost:11000/oozie -config examples/apps/map-reduce/job.properties -run</pre>
+</div></div></li></ol>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

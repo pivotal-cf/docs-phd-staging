@@ -1,0 +1,1024 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>HAWQ Installation | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>HAWQ Installation</h1><div class="wiki-content group" id="main-content">
+<p> </p><p align="LEFT">This document describes how you can install HAWQ manually. HAWQ can be installed along with Pivotal HD Enterprise using the Command Line Interface (CLI); however, if you choose to not install HAWQ using the CLI, then you need to follow the instructions in this chapter.</p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Note:</p>
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>This document does not describe how to install the Pivotal Extension Framework (PXF), which enables SQL querying on data in the Hadoop components such as HBase, Hive, and any other distributed data file types. To install Pivotal Extension Framework (PXF), see the <em>Pivotal Extension Framework Installation and User Guide</em>.</p>
+</div>
+</div>
+<p align="LEFT">To install HAWQ manually, perform the following tasks:</p><ul><li>Review the System Requirements</li><li>Prepare HDFS</li><li>Install HAWQ</li><li>Run a Basic Query</li><li>Review the HAWQ Configuration Parameter Reference section</li></ul> <div class="aui-message warning shadowed information-macro">
+<p class="title">Note:</p>
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+                            These tasks should be performed for <em>all</em> hosts in your HAWQ array (master, standby master and segments).
+                    </div>
+</div>
+<h1 id="PivotalHAWQInstallationGuide-SystemRequirements">System Requirements</h1><p align="LEFT">Check that you meet the following system requirements before you install HAWQ:</p><p align="LEFT"><strong>Operating System:</strong></p><ul><li>RedHat 6.4 and 6.2, 64 bit</li><li>CentOS 6.4 and 6.2, 64 bit</li></ul><p align="LEFT"><strong>Minimum CPU:</strong> Pentium Pro compatible (P3/Athlon and above)</p><p align="LEFT"><strong>Minimum Memory: </strong>16 GB RAM per server</p><p align="LEFT"><strong>Disk Requirements:</strong></p><ul><li>150MB per host for Greenplum installation</li><li>Approximately 300MB per segment instance for meta data</li><li>Appropriate free space for data: disks should have at least 30% free space (no more than 70% capacity)</li><li>High-speed, local storage</li></ul><p align="LEFT"><strong>Network Requirements:</strong></p><ul><li>Gigabit Ethernet within the array</li><li>Dedicated, non-blocking switch</li></ul><p align="LEFT"><strong>Software and Utilities:</strong> bash shell, GNU tar, and GNU zip</p><h2 id="PivotalHAWQInstallationGuide-PreparingHDFS">Preparing HDFS</h2><p align="LEFT">You need to complete the following steps to configure HDFS:</p><ol><li><p>To make sure HDFS block files can be read by other users, configure OS file system umask to 022.</p><pre>Add the following line into ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
+
+umask 022
+</pre><p>Add the following parameter to hdfs-site.xml</p><pre>&lt;property&gt;
+  &lt;name&gt;dfs.datanode.data.dir.perm&lt;/name&gt;
+  &lt;value&gt;755&lt;/value&gt;
+  &lt;description&gt;Permissions for the directories on on the local filesystem where
+  the DFS data node store its blocks. The permissions can either be octal or
+  symbolic.&lt;/description&gt;
+&lt;/property&gt;</pre></li><li>Edit the <em>/hdfs-install-directory/etc/hadoop/hdfs-site.xml</em> file. To do this, change the <em>dfs.block.local-path-access.user </em>to the user who starts HDFS if the short circuit feature is enabled in libhdfs3. See the HAWQ Parameter Reference section for more information.</li><li><p>Set the<em> dfs.namenode.name.dir</em> and <em>dfs.datanode.data.dir</em> to your preferred path as shown in the example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;configuration&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.support.append&lt;/name&gt;
+      &lt;value&gt;true&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+       &lt;name&gt;dfs.client.read.shortcircuit&lt;/name&gt;
+       &lt;value&gt;true&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+       &lt;name&gt;dfs.block.local-path-access.user&lt;/name&gt;
+       &lt;value&gt;gpadmin&lt;/value&gt;
+       &lt;description&gt;
+             specify the user allowed to do short circuit read
+       &lt;/description &gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
+&lt;value&gt;file:/home/gpadmin/hadoop-2.0.0-alpha/dfs/name&lt;/value&gt;
+&lt;/property&gt;
+    property&gt;
+      &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;
+      &lt;value&gt;file:/home/gpadmin/hadoop-2.0.0-alpha/dfs/data&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.replication&lt;/name&gt;
+      &lt;value&gt;3&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.datanode.max.transfer.threads&lt;/name&gt;
+      &lt;value&gt;40960&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+&lt;/property&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.client.socket-timeout&lt;/name&gt;
+      &lt;value&gt;300000000&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.datanode.handler.count&lt;/name&gt;
+      &lt;value&gt;60&lt;/value&gt;
+   &lt;/property&gt;
+&lt;property&gt; 
+&lt;name&gt;ipc.client.connection.maxidletime&lt;/name&gt;
+&lt;value&gt;3600000&lt;/value&gt; 
+
+&lt;/property&gt; 
+&lt;property&gt; 
+&lt;name&gt;ipc.server.handler.queue.size&lt;/name&gt; 
+&lt;value&gt;3300&lt;/value&gt; 
+
+&lt;/property&gt; 
+
+&lt;/property&gt;
+   &lt;property&gt;
+&lt;name&gt;ipc.client.connection&lt;/name&gt;
+      &lt;value&gt;3&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.datanode.max.transfer.threads&lt;/name&gt;
+      &lt;value&gt;40960&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+&lt;/property&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.replication&lt;/name&gt;
+      &lt;value&gt;3&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.namenode.accesstime.precision&lt;/name&gt;
+      &lt;value&gt;-1&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;</pre>
+</div></div></li><li><p align="LEFT">To configure the JVM, edit the<em> /hdfs-install-directory/etc/hadoop/hadoop-env.sh</em></p><p align="LEFT">This configures the memory usage of the primary and secondary namenodes and datanode. <span style="color: rgb(34,34,34);">For example, on servers with 48GB memory, if HDFS and HAWQ are on two separate clusters, Pivotal recommends that the namenodes use 40GB (-Xmx40960m), while each datanode uses 6GB and with a stack size of 256KB (-Xmx6144m -Xss256k).</span></p></li><li><p align="LEFT">To verify that HDFS has started, run the following command sequence.</p><ol><li><p>List the directory:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop fs -ls /</pre>
+</div></div></li><li><p>Create a test directory: </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop fs -mkdir /test</pre>
+</div></div><p><em> <br/> </em></p></li><li><p>Put a test file <em>(/path/file</em>) into the HDFS root directory:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop fs -put /path/file /</pre>
+</div></div></li><li><p>Perform a get on<em> /file</em> from HDFS to the current local file system directory:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop fs -get /file ./</pre>
+</div></div></li></ol></li></ol><h2 id="PivotalHAWQInstallationGuide-InstallingHAWQ">Installing HAWQ</h2><p align="LEFT">This section contains the following procedures to help you install HAWQ:</p><ul><li>Install the HAWQ Binaries</li><li>Creating the gpadmin User</li><li>Setting the OS Parameters</li><li>Editing the Configuration Files</li><li>Ensuring that HDFS works</li></ul><h3 id="PivotalHAWQInstallationGuide-InstalltheHAWQBinaries">Install the HAWQ Binaries</h3><p align="LEFT">There are two ways HAWQ is released, as an RPM and a binary tarball.</p><h4 id="PivotalHAWQInstallationGuide-ToInstalltheRPMRelease">To Install the RPM Release</h4><ol><li><p>Log in to the master host as <em>root</em>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> $ su - root</pre>
+</div></div></li><li><p>Launch the installer using rpm. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> # rpm –ivh hawq-dev-dev.x86_64.rpm</pre>
+</div></div><p><br/>The installer installs HAWQ to the default install path (<em>/usr/local/hawq-dev</em>), and creates the soft link <em>/usr/local/hawq</em> for <em>/usr/local/hawq-dev</em>.</p></li><li><p>Source the path file from your master host’s HAWQ installation directory:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> # source /usr/local/hawq/greenplum_path.sh</pre>
+</div></div></li><li><p>Create a file called <em>hostfile </em>that includes host names in your HAWQ system using segment hosts. Make sure there are no blank lines or extra spaces. For example, if you have a standby master and three segments per host, your file will look something like this:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">smdw 
+sdw1 
+sdw2 
+sdw3</pre>
+</div></div></li><li><p>Perform the ssh key exchange by running the following command. This allows you to log in to all hosts as root user without a password prompt. Use the <em>hostfile </em>file you used for installation.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> gpssh-exkeys -f hostfile</pre>
+</div></div></li><li><p>Run the following command to reference the <em>hostfile </em>file you just created and copy the HAWQ rpm file (<em>hawq-dev-dev.x86_64.rpm</em>) to all hosts:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpscp -f hostfile 
+hawq-dev-dev.x86_64.rpm =:~/</pre>
+</div></div></li><li><p>Run the following command to install HAWQ to all hosts:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># gpssh -f hostfile -e "rpm -ivh hawq-dev-dev.x86_64.rpm"</pre>
+</div></div></li></ol><h4 id="PivotalHAWQInstallationGuide-ToInstallfromaBinaryTarball"><span style="line-height: 1.5625;">To Install from a Binary Tarball</span></h4><ol><li><p>Log in to the master host as root.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> # su - root</pre>
+</div></div></li><li><p>Copy the HAWQ tarball to the binary directory you want to install HAWQ, go to the binary directory and uncompress the tarball. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># cp /path/to/hawq-dev-dev.tar.gz /usr/local
+# cd /usr/local
+# tar xf hawq-dev-dev.tar.gz</pre>
+</div></div><p>A HAWQ directory is generated.</p><p><span style="line-height: 1.4285;background-color: transparent;"> <br/> </span></p></li><li><p>Open the file <em>/usr/local/greenplum_path.sh</em> and edit the <em>GPHOME</em> parameter to set it to <em>/usr/local/hawq .</em></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> GPHOME=/usr/local/hawq</pre>
+</div></div></li><li><p>Source the path file from your master host’s HAWQ installation directory:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> # source /usr/local/hawq/greenplum_path.sh</pre>
+</div></div><p><br/> <span style="line-height: 1.4285;">Create a file called </span> <em style="line-height: 1.4285;">hosttfile</em> <span style="line-height: 1.4285;"> that includes host names used in your HAWQ system in segment hosts format. Make sure there are no blank lines or extra spaces. For example, if you have a standby mnaster and three segments per host, your file will look something like this:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">smdw
+sdw1
+sdw2
+sdw3</pre>
+</div></div><p><span style="line-height: 1.4285;"> <br/> </span></p></li><li><p><span style="line-height: 1.4285;">Perform the </span> <em style="line-height: 1.4285;">ssh</em> <span style="line-height: 1.4285;"> key exchange by running the following command. This allows you to log in to </span> <em style="line-height: 1.4285;">all_hosts</em> <span style="line-height: 1.4285;"> as root </span> <em style="line-height: 1.4285;">user</em> <span style="line-height: 1.4285;"> without a password prompt. Use the </span> <em style="line-height: 1.4285;">all_hosts</em> <span style="line-height: 1.4285;"> file you used for installation:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> # gpssh-exkeys -f all_hosts
+
+</pre>
+</div></div><p><span style="line-height: 1.4285;"> <br/> </span></p></li><li><p><span style="line-height: 1.4285;">Run the following commands to reference the hostfile file you just created and copy the HAWQ binary directory (</span> <em style="line-height: 1.4285;">/usr/local/hawq-dev</em> <span style="line-height: 1.4285;">) to all hosts:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># gpscp -r -f hostfile hawq-dev =:/usr/local/
+# gpssh -f hostfile -e "ln -s  /usr/local/hawq-dev /usr/local/hawq"</pre>
+</div></div><p><span style="line-height: 1.4285;"> <br/> </span></p></li></ol><h3 id="PivotalHAWQInstallationGuide-CreatingthegpadminUser"> <span style="color: rgb(0,0,0);line-height: 1.5;font-family: Arial , sans-serif;font-size: 20.0px;">Creating the gpadmin User</span></h3><ol><li><p>Create the <em>gpadmin</em> user account on each host:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># gpssh -f all_hosts -e '/usr/sbin/useradd gpadmin’ 
+# gpssh –f all_hosts -e 'echo -e "changeme\nchangeme" | passwd gpadmin'</pre>
+</div></div></li><li><p>Log in to the master host as <em>gpadmin</em>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> $ su - gpadmin</pre>
+</div></div></li><li><p>Source the path file from the HAWQ installation directory:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> $ source /usr/local/hawq/greenplum_path.sh</pre>
+</div></div></li><li><p>Run the following command to do the <em>ssh</em> key exchange to enable you to log in to all hosts without a password prompt as <em>gpadmin</em> user. Use the <em>all_hosts</em> file you used for installation:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> $ gpssh-exkeys -f all_hosts</pre>
+</div></div><p><br/> <span style="line-height: 1.4285;">Use the </span> <em style="line-height: 1.4285;">gpssh</em> <span style="line-height: 1.4285;"> utility to add the above command line to the profile file. For example:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> $ gpssh -f all_hosts -e "echo source /usr/local/ hawq/greenplum_path.sh &gt;&gt; .bashrc"
+
+</pre>
+</div></div><p><span style="line-height: 1.4285;"> <br/> </span></p></li><li><p><span style="line-height: 1.4285;">Use the </span> <em style="line-height: 1.4285;">gpssh</em> <span style="line-height: 1.4285;"> utility to confirm that the Greenplum software was installed on all hosts. Use the </span> <em style="line-height: 1.4285;">all_hosts</em> <span style="line-height: 1.4285;"> file you used for installation. For example:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> $ gpssh -f all_hosts -e "ls -l $GPHOME" </pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<p class="title">Note:</p>
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+                            You may want to change the default configuration parameters in <em>/usr/local/ hawq/etc/hdfs-client.xml</em> for <em>libhdfs3</em>. See the topic, HAWQ Configuration Parameter Reference.
+                    </div>
+</div>
+</li><li><p><span style="font-size: small;"> </span>Log in to the master host as <em>root</em>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> $ su - root</pre>
+</div></div></li></ol><h3 id="PivotalHAWQInstallationGuide-SettingtheOSParameters"><a name="RTF35373737323a204865616432" rel="nofollow"></a>Setting the OS Parameters</h3><p align="LEFT">This topic describes the OS parameter options that you need to set up for the following:</p><ul><li>Linux</li><li>RHEL</li><li>Security Configuration</li><li>XFS</li></ul><h4 id="PivotalHAWQInstallationGuide-Linux"><a name="RTF35343732343a20426f64793a" rel="nofollow"></a>Linux</h4> <div class="aui-message warning shadowed information-macro">
+<p class="title">Note:</p>
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>Pivotal recommends that you do not set the <em>vm.overcommit_memory parameter</em> if you run HAWQ on small memory virtual machines. If you set this parameter you may encounter out of memory issues.</p>
+</div>
+</div>
+<p align="LEFT"><br/> Set the following parameters in the <em style="line-height: 1.4285;background-color: transparent;">/etc/sysctl.conf</em> file and reboot:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">xfs_mount_options = rw,noatime,inode64,allocsize=16m 
+sysctl.kernel.shmmax = 500000000 
+sysctl.kernel.shmmni = 4096
+sysctl.kernel.shmall = 4000000000
+sysctl.kernel.sem = 250 512000 100 2048
+sysctl.kernel.sysrq = 1 
+sysctl.kernel.core_uses_pid = 1 
+sysctl.kernel.msgmnb = 65536 
+sysctl.kernel.msgmax = 65536 
+sysctl.kernel.msgmni = 2048 
+sysctl.net.ipv4.tcp_syncookies = 0
+sysctl.net.ipv4.ip_forward = 0 
+sysctl.net.ipv4.conf.default.accept_source_route = 0 
+sysctl.net.ipv4.tcp_tw_recycle = 1 
+sysctl.net.ipv4.tcp_max_syn_backlog = 200000 
+sysctl.net.ipv4.conf.all.arp_filter = 1 
+sysctl.net.ipv4.ip_local_port_range = 1025 65535 
+sysctl.net.core.netdev_max_backlog = 200000 
+sysctl.vm.overcommit_memory = 2
+sysctl.fs.nr_open = 3000000
+sysctl.kernel.threads-max = 798720
+sysctl.kernel.pid_max = 798720
+#increase network 
+sysctl.net.core.rmem_max = 2097152
+sysctl.net.core.wmen_max = 2097152</pre>
+</div></div><h4 id="PivotalHAWQInstallationGuide-RHEL"><span style="color: rgb(0,0,0);line-height: 1.5625;font-size: 16.0px;">RHEL</span></h4><p align="LEFT">RHEL version 6.x platforms, the above parameters do not include the <em>sysctl</em>. prefix, as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">xfs_mount_options = rw,noatime,inode64,allocsize=16m 
+kernel.shmmax = 500000000
+kernel.shmmni = 4096
+kernel.shmall = 4000000000
+kernel.sem = 250 512000 100 2048
+kernel.sysrq = 1
+kernel.core_uses_pid = 1
+kernel.msgmnb = 65536
+kernel.msgmax = 65536
+kernel.msgmni = 2048
+net.ipv4.tcp_syncookies = 0 
+net.ipv4.ip_forward = 0 
+net.ipv4.conf.default.accept_source_route = 0 
+net.ipv4.tcp_tw_recycle = 1 
+net.ipv4.tcp_max_syn_backlog = 200000 
+net.ipv4.conf.all.arp_filter = 1 
+net.ipv4.ip_local_port_range = 1025 65535 
+net.core.netdev_max_backlog = 200000 
+vm.overcommit_memory = 2
+fs.nr_open = 3000000
+kernel.threads-max = 798720
+kernel.pid_max = 798720
+# increase network
+net.core.rmem_max=2097152
+net.core.wmem_max=2097152</pre>
+</div></div><h4 id="PivotalHAWQInstallationGuide-SecurityConfiguration">Security Configuration</h4><p align="LEFT">Set the following parameters (in the exact sequence displayed in the example) in the /etc/security/limits.conf file after updating the /etc/sysctl.conf:</p><p align="LEFT" style="margin-left: 60.0px;">soft nofile 2900000</p><p align="LEFT" style="margin-left: 60.0px;">hard nofile 2900000</p><p align="LEFT" style="margin-left: 60.0px;">soft nproc 131072</p><p align="LEFT" style="margin-left: 60.0px;">hard nproc 131072</p><h4 id="PivotalHAWQInstallationGuide-XFS"><a name="RTF39373636343a20426f64793a" rel="nofollow"></a>XFS</h4><p align="LEFT">XFS is the preferred file system on Linux platforms for data storage. Pivotal recommends the following xfs mount options:</p><p align="LEFT" style="margin-left: 30.0px;">rw,noatime,inode64,allocsize=16m</p><p align="LEFT">See the Linux manual page (man) for the mount command for more information about using that command (man mount opens the man page).</p><p align="LEFT">The Linux disk I/O scheduler for disk access supports different policies, such as CFQ, AS, and deadline.</p><p align="LEFT">Pivotal recommends the following scheduler option:</p><p align="LEFT" style="margin-left: 30.0px;">deadline</p><p align="LEFT">To specify a scheduler, run the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># echo schedulername &gt; /sys/block/devname/queue/scheduler</pre>
+</div></div><p align="LEFT">For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># echo deadline &gt; /sys/block/sbd/queue/scheduler</pre>
+</div></div><p> </p><p align="LEFT">Each disk device file should have a read-ahead (blockdev) value of 16384. To verify the read-ahead value of a disk device:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># /sbin/blockdev --getra devname</pre>
+</div></div><p align="LEFT">For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> # /sbin/blockdev --getra /dev/sdb</pre>
+</div></div><p> </p><p align="LEFT">To set blockdev (read-ahead) on a device:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> # /sbin/blockdev --setra bytes devname</pre>
+</div></div><p align="LEFT" style="margin-left: 30.0px;">For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> # /sbin/blockdev --setra 16385 /dev/sdb</pre>
+</div></div><p align="LEFT"> </p><p align="LEFT">Refer to the Linux manual page (man) for the blockdev command for more information about using that command (man blockdev opens the man page).</p><h3 id="PivotalHAWQInstallationGuide-EditingtheConfigurationFiles">Editing the Configuration Files</h3><p align="LEFT">Edit the /etc/hosts file and make sure that it includes the host names and all interface address names for every machine participating in your HAWQ system.</p><ol><li><p>Run the following command to copy the /etc/sysctl.conf file and /etc/security/limits.conf file to the same location of all hosts:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># gpscp -f all_hosts /etc/sysctl.conf =:/etc
+# gpscp -f all_hosts /etc/security/limits.conf =:/etc/security</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<p class="title">Note:</p>
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+                            You may need to configure other parameters(for example, scheduler configuration)on all hosts.
+                    </div>
+</div>
+</li><li><p>Create or choose a directory that will serve as your master data storage area. This directory should have sufficient disk space for your data and be owned by the gpadmin user and group. For example, run the following commands as root: </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># mkdir /data/master</pre>
+</div></div></li><li><p>Change ownership of this directory to the gpadmin user. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># chown -R gpadmin /data/master</pre>
+</div></div></li><li><p>Using gpssh, create the master data directory location on your standby master as well. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># gpssh -h smdw -e 'mkdir /data/master'
+# gpssh -h smdw -e 'chown -R gpadmin /data/master'</pre>
+</div></div></li><li><p>Create a file called seg_hosts. This file should have only one machine configured host name for each segment host. For example, if you have three segment hosts:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sdw1
+sdw2
+sdw3</pre>
+</div></div></li><li><p>Using gpssh, create the data directory locations on all segment hosts at once using the seg_hosts file you just created. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># gpssh -f seg_hosts -e 'mkdir /data/primary'
+# gpssh -f seg_hosts -e 'chown gpadmin /data/primary'</pre>
+</div></div></li><li><p>To use JBOD, create temporary directory locations for the master, standby, and all the segments. The following example uses two disks with the workfile names /data1/tmp and /data2/tmp.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># dirs="/data1/tmp /data2/tmp"
+# mkdir $dirs# chown -R gpadmin $dirs.
+# gpssh -h smdw -e "mkdir $dirs"
+# gpssh -h smdw -e "chown -R gpadmin $dirs"
+# gpssh -f seg_hosts -e "mkdir $dirs"
+# gpssh -f seg_hosts -e "chown -R gpadmin $dirs"</pre>
+</div></div></li><li><p>Log in to the master host as gpadmin. Make a copy of the gpinitsystem_config file to use as a starting point. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ su - gpadmin$ cp 
+$GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config /home/gpadmin/gpconfigs/gpinitsystem_config
+ </pre>
+</div></div></li><li><p>Open the file you just copied in a text editor. Set all of the required parameters according to your environment. A HAWQ system must contain a master instance and at least two segment instances (even if setting up a single node system). The DATA_DIRECTORY parameter is what determines how many segments per host will be created. Here is an example of the required parameters in the gpinitsystem_config file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">ARRAY_NAME="EMC GP-SQL"
+SEG_PREFIX=gpseg
+PORT_BASE=40000
+declare -a TEMP_DIRECTORY=(/data1/tmp /data2/tmp)
+declare -a DATA_DIRECTORY=(/data/primary /data/primary)
+MASTER_HOSTNAME=mdw
+MASTER_DIRECTORY=/data/master
+MASTER_PORT=5432
+TRUSTED SHELL=ssh
+CHECK_POINT_SEGMENT=8
+ENCODING=UNICODE
+DFS_NAME=hdfs
+DFS_URL=mdw:9000/gpsql</pre>
+</div></div></li></ol><h3 id="PivotalHAWQInstallationGuide-EnsuringthatHDFSworks">Ensuring that HDFS works</h3><p>Make sure that your hdfs is working and change the following parameters in the gpinitsystem_config:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">DFS_NAME=hdfs   
+DFS_URL=namenode-host-name:8020/hawq</pre>
+</div></div><p> </p><p>Save and close the file.</p><p>Run the following command referencing the path and file name of your initialization configuration file (gpinitsystem_config) and host file (seg_hosts). For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ cd ~
+$ gpinitsystem -c gpconfigs/gpinitsystem_config -h seg_hosts</pre>
+</div></div><p><br/> <span style="line-height: 1.4285;">For a fully redundant system (with a standby master and a spread mirror configuration) include the -s and -S options. For example:</span></p><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ gpinitsystem -c gpconfigs/gpinitsystem_config -h seg_hosts -s standby_master_hostname
+
+</pre>
+</div></div><p><span style="line-height: 1.4285;"> <br/> </span></p><p>The utility verifies your setup information and ensures that it can connect to each host and access the data directories specified in your configuration. If all of the pre-checks are successful, the utility prompts you to confirm your configuration. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">=&gt; Continue with Greenplum creation? Yy/Nn 
+Press y to start the initialization.</pre>
+</div></div><p><br/> <span style="line-height: 1.4285;background-color: transparent;">The utility begins setup and initialization of the master and each segment instance in the system. Each segment instance is set up in parallel. Depending on the number of segments, this process can take a while.</span></p><p>Set the MASTER_DATA_DIRECTORY environment variable. For example, add the following line to the profile of the master host:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export MASTER_DATA_DIRECTORY=/data/master/gpseg-1</pre>
+</div></div><p><h2 id="PivotalHAWQInstallationGuide-HAWQonSecureHDFS">HAWQ on Secure HDFS</h2><h3 id="PivotalHAWQInstallationGuide-Requirements">Requirements</h3><ul><li>A secure HDFS installation</li><li>HDFS on wire encryption (<code>dfs.encrypt.data.transfer</code>) MUST be set to <code>false</code>.</li><li>A new un-initialized HAWQ instance or a stopped already initialized HAWQ instance that was previously running on non-secured HDFS</li></ul><h3 id="PivotalHAWQInstallationGuide-Preparation">Preparation</h3><ol><li>If HAWQ is already initialized and running stop HAWQ using "service hawq stop" or "&lt;<span>HAWQ installation directory</span>&gt;/bin/<code>gpstop"</code>.</li><li>Secure the HDFS cluster using the instructions provided in the <em>Pivotal HD Stack and Tool Reference Guide</em> or using available security tools.</li><li>Insure HDFS is running properly in secured mode.</li><li>Insure that the property <code>dfs.encrypt.data.transfer</code> is set to <code>false</code> in the <code>hdfs-site.xml</code> for your cluster.</li></ol><h3 id="PivotalHAWQInstallationGuide-Configuration">Configuration</h3><ol><li><p>Generate a "postgres" principal and keytab file as shown below:</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>The form of principal for the HAWQ master is <code>postgres@REALM</code>, where <code>postgres</code> is the default service name of HAWQ and <code>REALM</code> is the default realm in the cluster's Kerberos configuration. In the examples below we use <code>EXAMPLE.COM</code> for the <code>REALM</code> part; this should be replaced by your cluster's actual <code>REALM</code>.</p>
+</div>
+</div>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin: addprinc -randkey postgres@EXAMPLE.COM
+kadmin: ktadd -k /etc/security/keytab/hawq.service.keytab postgres@EXAMPLE.COM </pre>
+</div></div></li><li><p>Move this keytab file to the appropriate keytab directory on the HAWQ master node (for example, <code>/etc/security/phd/keytab/</code>).</p></li><li><p>Set the ownership of the keytab file to <code>gpadmin:gpadmin</code> and the permissions to 400.</p></li><li><p>Refer to your <code>gpinitsystem_config</code> file (typically in <code>/etc/gphd/hawq/conf</code>) to determine your configured HAWQ HDFS data directory (typically <code>/hawq_data</code>). This will be the last part of the <code>DFS_URL</code> value. For example if <code>DFS_URL</code> is set to <code> centos61-2:8020/hawq_data </code> then your HAWQ HDFS data directory is <code>/hawq_data.</code></p></li><li><p>Create (if required) the HAWQ HDFS data directory in HDFS, and assign ownership as <code>postgres:gpadmin</code> and permissions 755.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<ul><li>If HAWQ has already been initialized and the directory exists just modify the owner and permissions as shown.</li><li>You need to have HDFS super-user permissions to create or modify a directory in HDFS root. If necessary create an "hdfs" principal to accomplish this task.</li></ul>
+</div>
+</div>
+</li><li>Create in HDFS (if not present) the directory <code>/user/gpadmin</code> with ownership <code>gpadmin:gpadmin</code> and permissions 777.</li><li><p>Modify the <code>hdfs-client.xml</code> file (typically in <code>/usr/lib/gphd/hawq/etc</code>) on the master node and ALL segment server nodes by adding the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;hadoop.security.authentication&lt;/name&gt;
+  &lt;value&gt;kerberos&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.namenode.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;HDFS_NAMENODE_PRINCIPAL&lt;/value&gt;
+&lt;/property&gt;</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<ul><li><code>hdfs-client.xml</code> is in <code>&lt;HAWQ installation directory&gt;/etc</code>, typically <code>/usr/lib/gphd/hawq/etc</code>.</li><li>These property blocks should be in the file but commented out, if so uncomment and edit the values.</li><li><code>HDFS_NAMENODE_PRINCIPAL</code> should be value from your cluster's <code>hdfs-site.xml</code> file.</li><li>Make sure the namenode principal value is correct.</li></ul>
+</div>
+</div>
+</li><li><p>Edit your <code>gpinitsystem_config</code> file (typically in<code> /etc/gphd/hawq/conf</code>) and add (or uncomment if they are present and commented out):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">KERBEROS_KEYFILE=/path/to/keytab/file
+ENABLE_SECURE_FILESYSTEM=on	</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<ul><li>Make sure there is no space between the <code>key=value</code>; for example: <code>ENABLE_SECURE_FILESYSTEM = on</code> will cause errors because there are spaces.</li><li>Make sure the value of <code>KERBEROS_KEYFILE</code> is the full path of where you placed the <code>hawq.service.keytab</code> file on the master.</li></ul>
+</div>
+</div>
+</li><li>After you have completed all these steps you can start or initialize HAWQ:<ol><li>If HAWQ was already initialized on non-secured HDFS before this process, start it using "service hawq start" or "&lt;HAWQ installation directory&gt;/bin/gpstart".</li><li>If HAWQ has not been initialized you may now initialize HAWQ.</li></ol></li><li>Verify HAWQ is operating properly, if not see next section.</li></ol><h3 id="PivotalHAWQInstallationGuide-Troubleshooting">Troubleshooting</h3><p>If initialization or start-up fails you can look into the gpinitsystem log output and the namenode logs to see if you can pinpoint the cause. Possible causes:</p><ul><li>Incorrect values in your <code>hdfs-client.xml</code></li><li><code>hdfs-client.xml</code> not updated on master and all segment servers</li><li>Unable to login with Kerberos; possible bad keytab or principal for "postgres"<ul><li>Validate on master by doing: <code> <br/>kinit -k &lt;keytab dir path&gt;/hawq.service.keytab postgres@EXAMPLE.COM </code></li></ul></li><li>Wrong HAWQ HDFS data directory or directory permissions: Check your <code>gpinitsystem_config</code> <strong> </strong>file and the <code>DFS_URL</code> value and the directory permissions.</li><li>Unable to create the HAWQ HDFS data directory errors: insure that you have created the proper directory as specified in <code>gpinitsystem_config</code> and that the ownership and permissions are correct.</li></ul></p><h2 id="PivotalHAWQInstallationGuide-RunningaBasicQuery"><span style="color: rgb(0,0,0);">Running a Basic Query</span></h2><p align="LEFT" style="margin-left: 30.0px;">You can run the create database query to test that HAWQ is running:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">changl1-mbp:gpsql changl1$ psql -d postgres
+psql (8.2.15)
+Type "help" for help.
+postgres=# create database tpch;
+CREATE DATABASE
+postgres=# \c tpch
+You are now connected to database "tpch" as user "changl1".
+tpch=# create table t (i int);
+NOTICE:  Table doesn't have 'DISTRIBUTED BY' clause -- Using column named 'i' as the Greenplum Database data distribution key for this table.
+HINT:  The 'DISTRIBUTED BY' clause determines the distribution of data. Make sure column(s) chosen are the optimal data distribution key to minimize skew.
+CREATE TABLE
+tpch=# \timing
+Timing is on.
+tpch=# insert into t select generate_series(1,100);
+INSERT 0 100
+Time: 311.390 ms
+tpch=# select count(*) from t;
+count
+-------
+100
+(1 row)
+Time: 7.266 ms</pre>
+</div></div><h2 id="PivotalHAWQInstallationGuide-InstallingCryptographicFunctionsforPostgreSQL">Installing Cryptographic Functions for PostgreSQL</h2><p>The pgcrypto package contains the cryptographic functions for PostgreSQL. It must be installed separately from the main installation. </p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Note:</p>
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+                            Your HAWQ installation must be running, or the pgcrypto package will fail to install.
+                    </div>
+</div>
+<p>All the cryptographic functions run inside database server. That means that all the data and passwords move between pgcrypto and the client application in clear-text. This means you must:</p><ul><li>Connect locally or use SSL connections.</li><li>Trust both system and database administrator.</li></ul><p>The pgcrypto package can be installed either through automated or manual installation.</p><h3 id="PivotalHAWQInstallationGuide-Upgradingfrom1.1.3to1.1.4">Upgrading from 1.1.3 to 1.1.4</h3><p>The pgcrypto package is not distributed with 1.1.4 version of HAWQ. You will have to use the pgcrypto package from 1.1.3 distribution and reinstall pgcrypto after the upgrade is done. Follow the installation instructions below.</p><h3 id="PivotalHAWQInstallationGuide-AutomatedInstallationofpgcrypto">Automated Installation of  pgcrypto</h3><p>These installation instructions assume you have obtained a precompiled build of pgcrypto from Pivotal.</p><p>1. Extract files from the pgcrypto package. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">mkdir pgcrypto
+mv pgcrypto.tgz pgcrypto
+tar -xzvf pgcryto/pgcrypto.tgz</pre>
+</div></div><p>2. Run pgcrypto_install.sh script with the hostfile as argument. The hosts file must contain hostname of each segment, one per line.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">cd pgcrypto
+./pgcrypto_install.sh -f ~/hostfile</pre>
+</div></div><h3 id="PivotalHAWQInstallationGuide-Uninstallingpgcrypto"><span>Uninstalling pgcrypto</span></h3><p>To uninstall the pgcrypto objects, use uninstall_pgcrypto.sql.</p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Note:</p>
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+                            This script does not remove dependent user created objects.
+                    </div>
+</div>
+<h3 id="PivotalHAWQInstallationGuide-InstallingPL/R">Installing PL/R</h3><p>The following instructions assume that you have downloaded a precompiled build of PL/R from Pivotal.</p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Note:</p>
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>Check the name of your plr package. If it is plr-1.1.4.0-5152.x86_64.tgz,download the latest version plr-1.1.4.0-5664.x86_64.tgz for HAWQ 1.1.4.0 from Pivotal. The new package contains the file plr.sql with the necessary PL/R helper functions.</p>
+</div>
+</div>
+<p>1. Create a directory named plr and extract the archive in it.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">mkdir plr
+mv plr*.tgz plr
+tar -xzf plr*.tgz -C plr</pre>
+</div></div><p> 2. Run the plr_install.sh script with the hostfile as argument. The hosts file must contain hostname of each segment, one per line..</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">cd plr;
+./plr_install.sh -f ~/hostfile</pre>
+</div></div><p>3. After the installation finishes successfully, restart the HAWQ instance.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">source $GPHOME/greenplum_path.sh
+gpstop -ar</pre>
+</div></div><p>4. Create the plr language. Connect to a database using PSQL and run the following SQL command. </p><div class="line number1 index0 alt2"><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">psql -d template1 -c "CREATE LANGUAGE plr"</pre>
+</div></div><p> You are now ready to create new PLR functions. A library of convenient PLR functions may be found in $GPHOME/share/postgresql/contrib/plr.sql. These functions may be installed by executing plr.sql, as follows:</p></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">psql -d template1 -f $GPHOME/share/postgresql/contrib/plr.sql</pre>
+</div></div><h2 id="PivotalHAWQInstallationGuide-HAWQConfigurationParameterReference">HAWQ Configuration Parameter Reference</h2><p align="LEFT">Describes the configuration in the path $HAWQ_install_path/etc/hdfs-client.xml.</p><p align="LEFT" style="margin-left: 30.0px;"><span style="font-size: medium;"> <span style="font-size: medium;"> </span> </span></p><div class="table-wrap"><table class="confluenceTable"><tbody style="margin-left: 30.0px;"><tr style="margin-left: 30.0px;"><td class="highlight-green confluenceTd" data-highlight-colour="green" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">Parameter</p></td><td class="highlight-green confluenceTd" data-highlight-colour="green" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">Description</p></td><td class="highlight-green confluenceTd" data-highlight-colour="green" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">Default value</p></td><td class="highlight-green confluenceTd" data-highlight-colour="green" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">Comments</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">ipc.client.connection.maxidletime</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The idle timeout interval of a rpc channel, rpc channel will exit if timeout occurs.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">10000 (ms) </p></td><td class="confluenceTd"> </td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">ipc.client.connect.max.retries</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The max retry times when a rpc channel failed to connect to the server for any reason except timeout.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">1</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">ipc.client.connect.max.retries</p><p align="LEFT"> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The max retry times when a rpc channel failed to connect to the server for any reason except timeout.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">1</p><p align="LEFT"> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">ipc.client.connect.max.retries.on.timeouts</p><p align="LEFT"> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The max retry times when a rpc channel failed to connect to the server since timeout.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">1</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">ipc.client.connect.timeout</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The timeout interval for a rpc channel to connect to the server.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">10000 (ms)</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">ipc.client.write.timeout</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The timeout interval for a rpc channel to write data into socket </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">10000 (ms)</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">ipc.client.tcpnodela </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">To set rpc channel to tcpnodelay mode</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">true </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.ConfigKey.type</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">Default checksum type, valid value is: CRC32, CRC32C, NULL</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">CRC32C </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">Must be set to the same value as the HDFS side.</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.bytes-per-ConfigKey</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The size of chunk to calculate checksum.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">512</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.datanode.rpc.timeout</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The timeout interval to the client to wait for the datanode to finish a rpc call.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">3</p></td><td class="confluenceTd"> </td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.namenode.rpc.timeout</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The timeout interval to the client to wait for the namenode to finish a rpc call.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">3600000</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.client-write-packet-size</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The packet size for the output stream.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">65536</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.client.block.write.retries </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The packet size for the output stream.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">3 </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.client.close.file.timeout</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The timeout interval to the output stream to wait for close file operation completion.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">3600000 (ms)</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.client.block.write.timeout</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">Time of timeout interval to the output stream to write data into socket.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">3600000 (ms)</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.prefetchsize</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The number of blocks which metadatas will be prefetched.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">10</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.client_local_block_read_buffer</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The buffer size if read block from local file system instead of network. </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">1048576</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.client.socket.write.timeout</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The timeout interval for socket write operation. </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">3600000 (ms)</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.client.socket.read.timeout </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The timeout interval for socket write operation.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">3600000 (ms) </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.client.socket.connect.timeout</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The timeout interval to setup a tcp socket connection, include resolve host name.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">3600000 (ms)</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.client.read.verifychecksum</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">Input stream will verify checksum.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">true </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.client.enable.read.from.loca</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">Enable input stream to read block directly from local file system. Need to configure on server.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">true</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.log.file.prefix</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The libhdfs3 log file prefix, see glog document.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">libhdfs3</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.log.stderr</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">Output libhdfs3 log to stderr.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">true</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.replication</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The default number of replica.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">3</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">dfs.blocksize</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">The default block size, can be overwritten when create output stream.</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT" style="margin-left: 30.0px;">67108864</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p align="LEFT"> </p></td></tr></tbody></table></div><p align="LEFT" style="margin-left: 30.0px;"><span style="font-size: medium;"> <span lang="EN"> </span> </span></p><p align="LEFT" style="margin-left: 30.0px;">　</p>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

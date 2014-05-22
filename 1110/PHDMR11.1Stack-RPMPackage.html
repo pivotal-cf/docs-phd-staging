@@ -1,0 +1,1167 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>PHD MR1 1.1 Stack - RPM Package | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>PHD MR1 1.1 Stack - RPM Package</h1><div class="wiki-content group" id="main-content">
+<h1 id="PivotalHDMR11.1Stack-RPMPackage-/*&lt;![CDATA[*/div.rbtoc1390012350294{padding:0px;}div.rbtoc1390012350294ul{list-style:disc;margin-left:0px;}div.rbtoc1390012350294li{margin-left:0px;padding-left:0px;}/*]]&gt;*/AccessingPHDMR11.1InstallationPrerequisitiesInstal"><style type="text/css">/*<![CDATA[*/
+div.rbtoc1390012350294 {padding: 0px;}
+div.rbtoc1390012350294 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1390012350294 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc rbtoc1390012350294">
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-AccessingPHDMR11.1">Accessing PHDMR1 1.1</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Installation">Installation</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Prerequisities">Prerequisities</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-InstallationNotes">Installation Notes</a></li>
+</ul>
+</li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HadoopHDFS">Hadoop HDFS</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HadoopHDFSRPMPackages">Hadoop HDFS RPM Packages</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Prerequisites:CorePackageSetup">Prerequisites: Core Package Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HDFSNamenodeSetup">HDFS Namenode Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HDFSDatanodeSetup">HDFS Datanode Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HDFSSecondaryNamenodeSetup">HDFS Secondary Namenode Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HadoopHDFSConfiguration">Hadoop HDFS Configuration</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Usage">Usage</a></li>
+</ul>
+</li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HadoopMR1">Hadoop MR1</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HadoopMR1RPMPackages"><strong>Hadoop MR1 RPM Packages</strong></a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-CorePackageSetup">Core Package Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Hadoop-mr1JobTrackerSetup">Hadoop-mr1 JobTracker Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Hadoop-mr1TaskTrackerSetup">Hadoop-mr1 TaskTracker Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HadoopMR1Configuration">Hadoop MR1 Configuration</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Usage.1">Usage</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StartingHadoop-MR1">Starting Hadoop-MR1</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StartingHadoop-mr1JobTracker">Starting Hadoop-mr1 JobTracker</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StartingHadoop-mr1TaskTracker">Starting Hadoop-mr1 TaskTracker</a></li>
+</ul>
+</li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-UsingHadoop-mr1">Using Hadoop-mr1</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StopHadoop-mr1">Stop Hadoop-mr1</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Zookeeper">Zookeeper</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-ZookeeperRPMPackages">Zookeeper RPM Packages</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-ZookeeperServerSetup">Zookeeper Server Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-ZookeeperClientSetup">Zookeeper Client Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-ZookeeperConfiguration">Zookeeper Configuration</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Usage.2">Usage</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StartingtheZookeeperDaemon">Starting the Zookeeper Daemon</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-AccessingtheZookeeperservice">Accessing the Zookeeper service</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StoppingtheZookeeperDaemon">Stopping the Zookeeper Daemon</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HBase">HBase</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Prerequisites">Prerequisites</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HBaseRPMPackages">HBase RPM Packages</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HBaseMasterSetup">HBase Master Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HBaseRegionServerSetup">HBase RegionServer Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HBaseClientSetup">HBase Client Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HBaseThriftServerSetup">HBase Thrift Server Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-RESTServerSetup">REST Server Setup<strong> </strong></a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HBaseConfiguration">HBase Configuration</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HBasePost-InstallationConfiguration">HBase Post-Installation Configuration</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Usage.3">Usage</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StartingtheHBaseDaemon">Starting the HBase Daemon</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StartingtheHRegionServerdaemon">Starting the HRegionServer daemon</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StartingtheHbaseThriftserverdaemon">Starting the Hbase Thrift server daemon</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StartingtheHbaseRestserverdaemon">Starting the Hbase Rest server daemon<strong> </strong></a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-AccessingtheHBaseservice">Accessing the HBase service</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StoppingtheHBasedaemon">Stopping the HBase daemon</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StoppingtheHRegionServerdaemon">Stopping the HRegionServer daemon</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StoppingtheHbaseThriftserverdaemon">Stopping the Hbase Thrift server daemon</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StoppingtheHbaseRestserverdaemon">Stopping the Hbase Rest server daemon</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Hive">Hive</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HiveComponents">Hive Components</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Prerequisites.1">Prerequisites</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HiveRPMPackages">Hive RPM Packages</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-InstallingHive">Installing Hive</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-SetupPostgreSQLontheHIVE_METASTORENode">Set up PostgreSQL on the HIVE_METASTORE Node</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-SetuptheHIVE_METASTORE">Set up the HIVE_METASTORE</a></li>
+</ul>
+</li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HiveClientSetup">Hive Client Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HiveThriftServerSetup">Hive Thrift Server Setup<strong> </strong></a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HiveServer2Setup">Hive Server2 Setup<strong> </strong></a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HiveMetaStoreServerSetup">Hive MetaStore Server Setup<strong> </strong></a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HiveConfiguration">Hive Configuration</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HivePost-installationConfiguration">Hive Post-installation Configuration</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HiveUsage">Hive Usage</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StartHiveClient">Start Hive Client</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StartBeelineClient">Start Beeline Client</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Start/StopHiveThriftServer">Start/Stop Hive Thrift Server</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Start/StopHiveServer2">Start/Stop Hive Server2<strong> </strong></a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Start/StopHiveMetastoreServer">Start/Stop Hive Metastore Server<strong> </strong></a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-ConfiguringaSecureHiveCluster">Configuring a Secure Hive Cluster</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Hcatalog">Hcatalog</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Prerequisites.2">Prerequisites</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HcatalogRPMPackages">Hcatalog RPM Packages</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HcatalogClientSetup">Hcatalog Client Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HcatalogServerSetup">Hcatalog Server Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-WebhcatSetup">Webhcat Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-WebhcatServerSetup">Webhcat Server Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-HcatalogConfiguration">Hcatalog Configuration</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Usage.4">Usage</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StartHcatalogClient">Start Hcatalog Client</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Start/StopHcatalogServer">Start/Stop Hcatalog Server<strong> </strong></a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Start/StopWebhcatServer">Start/Stop Webhcat Server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Pig">Pig</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Prerequisites.3">Prerequisites</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-PigRPMPackages">Pig RPM Packages</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-PigClientSetup">Pig Client Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-PigConfiguration">Pig Configuration</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Usage.5">Usage</a></li>
+</ul>
+</li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Mahout">Mahout</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Prerequisites.4">Prerequisites</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-MahoutRPMPackages">Mahout RPM Packages</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-MahoutClientSetup">Mahout Client Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-MahoutConfiguration">Mahout Configuration</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Usage.6">Usage</a></li>
+</ul>
+</li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Flume">Flume</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Prerequisites.5">Prerequisites</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-FlumeRPMPackages">Flume RPM Packages</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-FlumeClientSetup">Flume Client Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-FlumeAgentSetup">Flume Agent Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-FlumeConfiguration">Flume Configuration</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Usage.7">Usage</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StartingFlumeClient">Starting Flume Client</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Starting/StoppingFlumeAgentServer">Starting/Stopping Flume Agent Server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Sqoop">Sqoop</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Prerequisites.6">Prerequisites</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-SqoopRPMPackages">Sqoop RPM Packages</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-SqoopClientSetup">Sqoop Client Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-SqoopMetastoreSetup">Sqoop Metastore Setup</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-SqoopConfiguration">Sqoop Configuration</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Usage.8">Usage</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-StartingSqoopClient">Starting Sqoop Client</a></li>
+<li><a href="#PivotalHDMR11.1Stack-RPMPackage-Starting/StoppingSqoopMetastoreServer">Starting/Stopping Sqoop Metastore Server<strong> <br/> </strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></h1><p>Pivotal HD 1.x supports YARN (MR2) resource manager by default. For those customers who don't want to deploy a YARN-based cluster, we provide MR1 files from our PHD 1.1 release as optional manually-installable software, instructions for which are provided here:</p><p>Pivotal HD 1.1 is a full Apached Hadoop distribution with Pivotal add-ons and a native integration with the Pivotal Greenplum database.</p><p>The RPM distribution of PHDMR1 1.1 contains the following:</p><ul><li><strong>HDFS 2.0.5-alpha</strong></li><li><strong>Hadoop MR1 1.0.3 </strong></li><li><strong>Pig 0.10.1 </strong></li><li><strong>Zookeeper 3.4.5</strong></li><li><strong>HBase 0.94.8</strong></li><li><strong>Hive 0.11.0</strong></li><li><strong>Hcatalog 0.11.0</strong></li><li><strong>Mahout 0.7</strong></li><li><strong>Flume 1.3.1</strong></li><li><strong>Sqoop 1.4.2</strong></li></ul><h2 id="PivotalHDMR11.1Stack-RPMPackage-AccessingPHDMR11.1">Accessing PHDMR1 1.1</h2><p>You can download the package from EMC Download Center, expand the package in your working_dir:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ tar zxvf PHDMR1-1.1.0.0-nn.tar.gz
+$ ls -l PHDMR1-1.1.0.0-nn
+total 44
+drwxr-xr-x 3 hadoop hadoop 4096 Jun 26 04:38 flume
+drwxr-xr-x 3 hadoop hadoop 4096 Jun 26 04:38 hadoop
+drwxr-xr-x 3 hadoop hadoop 4096 Jun 26 04:38 hadoop-mr1
+drwxr-xr-x 3 hadoop hadoop 4096 Jun 26 04:38 hbase
+drwxr-xr-x 3 hadoop hadoop 4096 Jun 26 04:38 hive
+drwxr-xr-x 3 hadoop hadoop 4096 Jun 26 04:38 hcatalog
+drwxr-xr-x 3 hadoop hadoop 4096 Jun 26 04:38 mahout
+drwxr-xr-x 3 hadoop hadoop 4096 Jun 26 04:38 pig
+-rw-rw-r-- 1 hadoop hadoop  406 Jun 26 04:38 README
+drwxr-xr-x 3 hadoop hadoop 4096 Jun 26 04:38 sqoop
+drwxr-xr-x 3 hadoop hadoop 4096 Jun 26 04:38 utility
+drwxr-xr-x 3 hadoop hadoop 4096 Jun 26 04:38 zookeeper</pre>
+</div></div><p> </p><p>We define the replaced string which will be used in the following sections for each component.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Component</th><th class="confluenceTh" style="text-align: center;">PHD Version</th><th class="confluenceTh" style="text-align: center;">Replaced String</th></tr><tr><td class="confluenceTd">Hadoop</td><td class="confluenceTd"><code>2.0.5_alpha_gphd_2_1_0_0</code></td><td class="confluenceTd"><p><code>&lt;PHD_HADOOP_VERSION&gt;</code></p></td></tr><tr><td class="confluenceTd">MR1</td><td class="confluenceTd"><code>1.0.3_gphd_2_1_0_0</code></td><td class="confluenceTd"><code>&lt;PHD_MR1_VERSION&gt;</code></td></tr><tr><td class="confluenceTd">HBase</td><td class="confluenceTd"><code>0.94.8_gphd_2_1_0_0</code></td><td class="confluenceTd"><code>&lt;PHD_HBASE_VERSION&gt;</code></td></tr><tr><td class="confluenceTd" colspan="1">Hive</td><td class="confluenceTd" colspan="1"><code>0.11.0_gphd_2_1_0_0</code></td><td class="confluenceTd" colspan="1"><code>&lt;PHD_HIVE_VERSION&gt;</code></td></tr><tr><td class="confluenceTd" colspan="1">Pig</td><td class="confluenceTd" colspan="1"><code>0.10.1_gphd_2_1_0_0</code></td><td class="confluenceTd" colspan="1"><code>&lt;PHD_PIG_VERSION&gt;</code></td></tr><tr><td class="confluenceTd" colspan="1">Mahout</td><td class="confluenceTd" colspan="1"><code>0.7_gphd_2_1_0_0</code></td><td class="confluenceTd" colspan="1"><code>&lt;PHD_MAHOUT_VERSION&gt;</code></td></tr><tr><td class="confluenceTd" colspan="1">HCatalog</td><td class="confluenceTd" colspan="1"><code>0.10.1_gphd_2_1_0_0</code></td><td class="confluenceTd" colspan="1"><code>&lt;PHD_HCATALOG_VERSION&gt;</code></td></tr><tr><td class="confluenceTd" colspan="1">Sqoop</td><td class="confluenceTd" colspan="1"><code>1.4.2_gphd_2_1_0_0</code></td><td class="confluenceTd" colspan="1"><code>&lt;PHD_SQOOP_VERSION&gt;</code></td></tr><tr><td class="confluenceTd" colspan="1">Flume</td><td class="confluenceTd" colspan="1"><code>1.3.1_gphd_2_1_0_0</code></td><td class="confluenceTd" colspan="1"><code>&lt;PHD_FLUME_VERSION&gt;</code></td></tr><tr><td class="confluenceTd" colspan="1">Zookeeper</td><td class="confluenceTd" colspan="1"><code>3.4.5_gphd_2_1_0_0</code></td><td class="confluenceTd" colspan="1"><code>&lt;PHD_ZOOKEEPER_VERSION&gt;</code></td></tr><tr><td class="confluenceTd" colspan="1">bigtop-jsvc</td><td class="confluenceTd" colspan="1"><code>1.0.15_gphd_2_1_0_0</code></td><td class="confluenceTd" colspan="1"><code>&lt;PHD_BIGTOP_JSVC_VERSION&gt;</code></td></tr><tr><td class="confluenceTd" colspan="1">bigtop-utils</td><td class="confluenceTd" colspan="1"><code>0.4.0_gphd_2_1_0_0</code></td><td class="confluenceTd" colspan="1"><code>&lt;PHD_BIGTOP_UTILS_VERSION&gt;</code></td></tr></tbody></table></div><h2 id="PivotalHDMR11.1Stack-RPMPackage-Installation">Installation</h2><p>This section describes how to manually install, configure, and use Pivotal HD 1.1.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-Prerequisities">Prerequisities</h3><ul><li>Oracle Java Development Kit (JDK) 1.7. Oracle JDK must be installed on every machine before getting started on each Hadoop component.</li><li>You must ensure that time synchronization and DNS are functioning correctly on all client and server machines. For example, you can run the following command to sync the time with NTP server:</li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">service ntpd stop; ntpdate 10.32.97.146; service ntpd start</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-InstallationNotes">Installation Notes</h3><p>In this section we install packages by running:</p><p style="margin-left: 30.0px;"><code>rpm ivh &lt;package_name.-&lt;version&gt;.rpm</code></p><p>Within this documentation, <code>nn</code> within the rpm file names represents the rpm build number. It is different for different components.</p><h2 id="PivotalHDMR11.1Stack-RPMPackage-HadoopHDFS">Hadoop HDFS</h2><p>This section provides instructions for installing each of the following core Hadoop RPMs:</p><ul><li>HDFS Namenode Setup</li><li>HDFS Datanode Setup</li><li>HDFS Secondary Namenode Setup</li></ul><h3 id="PivotalHDMR11.1Stack-RPMPackage-HadoopHDFSRPMPackages">Hadoop HDFS RPM Packages</h3><p>Pivotal provides the following RPMs as part of this release. The core packages provide all executables, libraries, configurations, and documentation for Hadoop and is required on every node in the Hadoop cluster as well as the client workstation that will access the Hadoop service. The daemon packages provide a convenient way to manage Hadoop HDFS daemons as Linux services, which rely on the core package.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hadoop-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Core</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>bigtop-utils, zookeeper-core</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Hadoop core packages provides the common core packages for running Hadoop</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Every node in the Hadoop cluster and the client workstation that will access the Hadoop service.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hadoop-hdfs-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Core</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>hadoop, bigtop-jsvc</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Hadoop HDFS core packages provides the common files for running HFS.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Every node in the HDFS cluster and the client workstation that will access the HDFS.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hadoop-hdfs-namenode-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>hadoop-hdfs</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package for Hadoop Namenode, which provides a convenient method to manage Namenode start/stop as a Linux service.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Only on HDFS Namenode server.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hadoop-hdfs-datanode-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>hadoop-hdfs</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package for Hadoop Datanode, which provides a convenient method to manage datanode start/stop as a Linux service.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Install on all HDFS Datanodes.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hadoop-hdfs-secondarynamenode-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>hadoop-hdfs</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package for Hadoop SecondaryNamenode, which provides a convenient method to manage SecondaryNamenode start/stop as a Linux service.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Install on one server that will be acting as the Secondary Namenode.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hadoop-hdfs-journalnode-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>hadoop-hdfs</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package for Hadoop JournalNode, which provides a convenient method to manage journalnode start/stop as a Linux service.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Install on all HDFS JournalNodes.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hadoop-hdfs-zkfc-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>hadoop-hdfs</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package for Hadoop zkfc, which provides a convenient method to manage zkfc start/stop as a Linux service.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Install on all HDFS zkfc nodes.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hadoop-hdfs-fuse-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Core</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>hadoop-libhdfs, hadoop-client</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Binaries that can be used to mount hdfs as a local directory.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Install on the servers that want to mount the HDFS.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hadoop-libhdfs-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Core</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>hadoop-hdfs</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Native implementation of the HDFS.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Install on servers that you want to run native hdfs.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hadoop-httpfs-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Core</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>bigtop-tomcat, hadoop, hadoop-hdfs</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>HttpFS is a server that provides a REST HTTP gateway supporting all HDFS File System operations (read and write).</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Install on servers that will be serving REST HDFS service</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hadoop-doc-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Doc</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>N/A</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Document package provides the Hadoop document.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Install on whichever host that user want to read hadoop documentation.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hadoop-conf-pseudo-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Configuration</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>hadoop-hdfs-datanode, hadoop-hdfs-secondarynamenode, hadoop-yarn-resourcemanager, hadoop-hdfs-namenode, hadoop-yarn-nodemanager, hadoop-mapreduce-historyserver</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>A set of configuration files for running Hadoop in pseudo-distributed mode on one single server.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Install on the pseudo--distributed host.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hadoop-client-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Library</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>N/A</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>A set of symbolic link which gathers the libraries for programming Hadoop and submit Hadoop jobs.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Clients nodes that will be used to submit hadoop jobs.</p></td></tr></tbody></table></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-Prerequisites:CorePackageSetup">Prerequisites: Core Package Setup</h3><p>You must perform the following steps on all the nodes in the Hadoop cluster and its client nodes:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/utility/rpm/bigtop-utils-&lt;PHD_BIGTOP_UTILS_VERSION&gt;-nn.noarch.rpm
+$ sudo rpm -ivh working_dir/zookeeper/rpm/zookeeper-&lt;PHD_ZOOKEEPER_VERSION&gt;-nn.noarch.rpm
+$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm
+Where working_dir is the directory where you want the rpms expanded.</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HDFSNamenodeSetup">HDFS Namenode Setup</h3><p>Install the Hadoop Namenode package on the workstation that will serve as HDFS Namenode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/utility/rpm/bigtop-jsvc-&lt;PHD_BIGTOP_JSVC_VERSION&gt;-nn.x86_64.rpm
+$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-hdfs-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm
+$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-hdfs-namenode-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HDFSDatanodeSetup">HDFS Datanode Setup</h3><p>Install the Hadoop Datanode package on the workstation that will serve as HDFS Datanode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/utility/rpm/bigtop-jsvc-&lt;PHD_BIGTOP_JSVC_VERSION&gt;-nn.x86_64.rpm
+$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-hdfs-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm
+$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-hdfs-datanode-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HDFSSecondaryNamenodeSetup">HDFS Secondary Namenode Setup</h3><p>Install the Hadoop Secondary Namenode package on the workstation that will serve as HDFS Secondary Namenode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/utility/rpm/bigtop-jsvc-&lt;PHD_BIGTOP_JSVC_VERSION&gt;-nn.x86_64.rpm
+$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-hdfs-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm
+$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-secondarynamenode-2.0.5_gphd_2_0_3_0-nn.x86_64.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HadoopHDFSConfiguration">Hadoop HDFS Configuration</h3><p>The configuration files for Hadoop are located here: <code>/etc/gphd/hadoop/conf/</code></p><p>Out of the box by default it is a symbolic link to <code>/etc/gphd/hadoop-version/conf.empty</code> template directory.</p><p>You can make modifications to these configuration templates or create your own configuration set. If you want to use a different configuration folder, edit the <code>/etc/gphd/hadoop/conf</code> symbolic link to point to the folder you want to utilize at runtime.</p><p>If you want to run Hadoop 2.0 in one host in pseudo-distributed mode on one single host, you can make sure all the dependent packages of hadoop-conf-pseudo have been installed on your host and then install the hadoop-conf-pseudo package:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-conf-pseudo-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm</pre>
+</div></div><p>Refer to Apache Hadoop 2.0.5-alpha documentation for how to configure Hadoop in distributed mode. This documentation describes how to use Hadoop in a pseudo-distributed mode.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-Usage">Usage</h3><p>After installing the daemon package for Hadoop, you can start the daemons.</p><p><strong>Starting HDFS</strong></p><p>HDFS includes three main components: Namenode, Datanode, Secondary Namenode.</p><p><strong>To start the Namenode daemon:</strong></p><p>You need to format the Namenode before starting it, as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u hdfs hdfs namenode -format</pre>
+</div></div><p><br/> <strong>Note</strong>: You only have to do this once. But if you have changed the hadoop namenode configuration, you may need to run this again.<br/> Then start the Namenode by running</p><p>Either:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hadoop-hdfs-namenode start</pre>
+</div></div><p>or:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo hdfs hadoop-hdfs-namenode start</pre>
+</div></div><p>When Namenode is started, you can visit its dashboard at: http://localhost:50070/</p><p><strong>To start the Datanode daemon:</strong></p><p>Run either:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hadoop-hdfs-datanode start</pre>
+</div></div><p>or:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo hdfs hadoop-hdfs-datanode start</pre>
+</div></div><p><br/> <strong>To start the Secondary Namenode daemon:</strong></p><p>Run either:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hadoop-hdfs-secondarynamenode start</pre>
+</div></div><p>or:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo hdfs hadoop-hdfs-secondarynamenode start</pre>
+</div></div><p><strong>Using HDFS</strong></p><p>When the HDFS components are started, you can try some HDFS usage, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u hdfs hdfs dfs -ls /
+$ sudo -u hdfs hdfs dfs -mkdir -p /user/hadoop
+$ sudo -u hdfs hdfs dfs -chown -R hadoop:hadoop /user/hadoop
+#you can see a full list of hdfs dfs command options
+$ hdfs dfs
+$ bin/hdfs dfs -copyFromLocal /etc/passwd /user/hadoop/</pre>
+</div></div><p><strong>Note</strong>: By default, the root folder is owned by user <code>hdfs</code>, so you have to use <code>sudo -u hdfs ***</code> to execute the first few commands.</p><p><strong>Shutting down HDFS</strong></p><p><strong>Stop the Namenode Daemon:</strong></p><p>Run either:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hadoop-hdfs-namenode stop</pre>
+</div></div><p>or:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo hdfs hadoop-hdfs-namenode stop</pre>
+</div></div><p><br/> <strong>Stop the Datanode Daemon:</strong></p><p>Run either:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hadoop-hdfs-datanode stop</pre>
+</div></div><p>or:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo hdfs hadoop-hdfs-datanode stop</pre>
+</div></div><p><strong>Stop the Secondary Namenode Daemon:</strong></p><p>Run either:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hadoop-hdfs-secondarynamenode stop</pre>
+</div></div><p>or:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo hdfs hadoop-hdfs-secondarynamenode stop</pre>
+</div></div><p> </p><h2 id="PivotalHDMR11.1Stack-RPMPackage-HadoopMR1">Hadoop MR1</h2><p>This section provides instructions for installing each of the following core Hadoop MR1 RPMs:</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-HadoopMR1RPMPackages"><strong>Hadoop MR1 RPM Packages</strong></h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><strong>hadoop-mr1-&lt;PHD_MR1_VERSION&gt;-nn.x86_64.rpm</strong></td></tr><tr><td class="confluenceTd"><strong>Type</strong></td><td class="confluenceTd">Core</td></tr><tr><td class="confluenceTd"><strong>Requires</strong></td><td class="confluenceTd">bigtop-utils, hdfs core</td></tr><tr><td class="confluenceTd"><strong>Description</strong></td><td class="confluenceTd">Hadoop core packages provides the common core packages for running Hadoop</td></tr><tr><td class="confluenceTd"><strong>Install on nodes</strong></td><td class="confluenceTd">Every node in the Hadoop cluster and the client workstation that will access the Hadoop service.</td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><strong>hadoop-mr1-jobtracker-&lt;PHD_MR1_VERSION&gt;-nn.x86_64.rpm</strong></td></tr><tr><td class="confluenceTd"><strong>Type</strong></td><td class="confluenceTd">Daemon</td></tr><tr><td class="confluenceTd"><strong>Requires</strong></td><td class="confluenceTd">hadoop-mr1</td></tr><tr><td class="confluenceTd"><strong>Description</strong></td><td class="confluenceTd">Hadoop YARN core packages provides common files for running YARN.</td></tr><tr><td class="confluenceTd"><strong>Install on nodes</strong></td><td class="confluenceTd">Install on the JobTracker node.</td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><strong>hadoop-mr1-tasktracker-&lt;PHD_MR1_VERSION&gt;-nn.x86_64.rpm</strong></td></tr><tr><td class="confluenceTd"><strong>Type</strong></td><td class="confluenceTd">Daemon</td></tr><tr><td class="confluenceTd"><strong>Requires</strong></td><td class="confluenceTd">hadoop-mr1</td></tr><tr><td class="confluenceTd"><strong>Description</strong></td><td class="confluenceTd">Daemon scripts package for Hadoop YARN ResourceManager, which provides a convenient method to manage ResourceManager start/stop as a Linux service.</td></tr><tr><td class="confluenceTd"><strong>Install on nodes</strong></td><td class="confluenceTd">Install on the TaskTracker node.</td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><strong>hadoop-mr1-conf-pseudo-&lt;PHD_MR1_VERSION&gt;-nn.x86_64.rpm</strong></td></tr><tr><td class="confluenceTd"><strong>Type</strong></td><td class="confluenceTd">Configuration</td></tr><tr><td class="confluenceTd"><strong>Requires</strong></td><td class="confluenceTd">hadoop-mr1, hadoop-mr1-jobtracker, hadoop-mr1-tasktracker, hadoop-hdfs-datanode, hadoop-hdfs-secondarynamenode, hadoop-yarn-resourcemanager, hadoop-hdfs-namenode</td></tr><tr><td class="confluenceTd"><strong>Description</strong></td><td class="confluenceTd">A set of configuration files for running Hadoop in pseudo-distributed mode on one single server.</td></tr><tr><td class="confluenceTd"><strong>Install on nodes</strong></td><td class="confluenceTd">Install on the pseudo-distributed host.</td></tr></tbody></table></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-CorePackageSetup">Core Package Setup</h3><p>You must perform the following steps on all the nodes in the Hadoop cluster and its client nodes:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/utility/rpm/bigtop-utils-&lt;PHD_BIGTOP_UTILS_VERSION&gt;-nn.noarch.rpm
+ $ sudo rpm -ivh working_dir/zookeeper/rpm/zookeeper-&lt;PHD_ZOOKEEPER_VERSION&gt;-nn.noarch.rpm
+ $ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-&lt;PHD_HADOOP_VERSION&gt;-nn.x86_64.rpm
+ $ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-hdfs-&lt;PHD_HADOOP_VERSION&gt; -nn.x86_64.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-Hadoop-mr1JobTrackerSetup">Hadoop-mr1 JobTracker Setup</h3><p>Install the Hadoop-mr1 JobTracker package on the workstation that will serve as the Hadoop-mr1 JobTracker:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/hadoop-mr1/rpm/hadoop-mr1-jobtracker-&lt;PHD_MR1_VERSION&gt;-nn.x86_64.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-Hadoop-mr1TaskTrackerSetup">Hadoop-mr1 TaskTracker Setup</h3><p>Install the Hadoop-mr1 TaskTracker package on the workstation that will serve as the Hadoop-mr1 TaskTracker:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/hadoop-mr1/rpm/hadoop-mr1-tasktracker-&lt;PHD_MR1_VERSION&gt;-nn.x86_64.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HadoopMR1Configuration">Hadoop MR1 Configuration</h3><p>The configuration files for Hadoop MR1 are located here:<code> /etc/gphd/hadoop/conf/</code></p><p>Out of the box by default it is a symbolic link to<code> /etc/gphd/hadoop-version/conf.empty</code> template directory.</p><p>You can make modifications to these configuration templates or create your own configuration set. If you want to use a different configuration folders, adjust the <code>/etc/gphd/hadoop/conf</code> symbolic link to point to the folder you want to utilize at runtime.</p><p>If you want to run Hadoop MR1 in one host in pseudo-distributed mode on one single host, you can go through all the above setup steps on your host and then install the hadoop-mr1-conf-pseudo package:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/hadoop-mr1/rpm/hadoop-mr1-conf-pseudo-&lt;PHD_MR1_VERSION&gt;-nn.x86_64.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-Usage.1">Usage</h3><h4 id="PivotalHDMR11.1Stack-RPMPackage-StartingHadoop-MR1">Starting Hadoop-MR1</h4><p>Before you start Hadoop, you need to create some working directories on HDFS, as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">// create mapred.system.dir
+# sudo -u hdfs hdfs dfs -mkdir -p /mapred/system
+# sudo -u hdfs hdfs dfs -chown -R mapred:hadoop /mapred 
+
+// create mapreduce.jobtracker.staging.root.dir staging directory
+# sudo -u hdfs hdfs dfs -mkdir -p /user
+
+</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-StartingHadoop-mr1JobTracker">Starting Hadoop-mr1 JobTracker</h4><p>To start the hadoop-mr1 jobtracker daemon:</p><p>Either:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hadoop-mr1-jobtracker start</pre>
+</div></div><p>or:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo /etc/init.d/hadoop-mr1-jobtracker start</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-StartingHadoop-mr1TaskTracker">Starting Hadoop-mr1 TaskTracker</h4><p>To start the hadoop-mr1 tasktracker daemon:</p><p>Either:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hadoop-mr1-tasktracker start</pre>
+</div></div><p>or:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo /etc/init.d/hadoop-mr1-tasktracker start</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-UsingHadoop-mr1">Using Hadoop-mr1</h3><p>After JobTracker and TaskTracker are started, you can now submit MapReduce Jobs.</p><p><strong>Note</strong>: Make sure HDFS daemons are running, and create the home directory <code>/user/${user.name}</code> for each MapReduce user on hdfs. In these examples we use the user <code>hadoop</code>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo -u hdfs hdfs dfs -mkdir -p /user/hadoop
+sudo -u hdfs hdfs dfs -chown hadoop:hadoop /user/hadoop</pre>
+</div></div><p>Here is an example MapReduce job:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">su - hadoop
+$ hadoop-mr1 jar /usr/lib/gphd/hadoop-mr1-&lt;PHD_MR1_VERSION&gt;/hadoop-examples-*.jar pi 2 10000</pre>
+</div></div><p>This will run the PI generation example. You can track the progress of this job at the JobTracker dashboard: http://jobtracker-host:50030/.</p><h4 id="PivotalHDMR11.1Stack-RPMPackage-StopHadoop-mr1">Stop Hadoop-mr1</h4><p><strong>Stop Hadoop-mr1 JobTracker</strong> <br/> To stop the hadoop-mr1 jobtracker daemon:<br/> Either:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hadoop-mr1-jobtracker stop</pre>
+</div></div><p>or:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo /etc/init.d/hadoop-mr1-jobtracker stop</pre>
+</div></div><p><br/> <strong>Stop Hadoop-mr1 TaskTracker</strong> <br/> To stop the hadoop-mr1 tasktracker daemon:<br/> Either:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> $ sudo service hadoop-mr1-tasktracker stop</pre>
+</div></div><p>or:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo /etc/init.d/hadoop-mr1-tasktracker stop </pre>
+</div></div><p><span class="confluence-anchor-link" id="PivotalHDMR11.1Stack-RPMPackage-Zookeeper"></span></p><h2 id="PivotalHDMR11.1Stack-RPMPackage-Zookeeper">Zookeeper</h2><p>The base version of ZooKeeper is Apache ZooKeeper 3.4.5.</p><p>ZooKeeper is a high-performance coordination service for distributed applications.</p><p>This section describes how to install, configure, and use Zookeeper.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-ZookeeperRPMPackages">Zookeeper RPM Packages</h3><p>Pivotal HD provides the following RPMs as part of this release. The core package provides all executable, libraries, configurations, and documentation for Zookeeper and is required on every node in the Zookeeper cluster as well as the client workstation that will access the Zookeeper service. The daemon packages provide a convenient way to manage Zookeeper daemons as Linux services, which rely on the core package.</p><p><strong>Note</strong>: Zookeeper doesn't require Hadoop Core Packages.</p><p> </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>zookeeper-&lt;PHD_ZOOKEEPER_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Core</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>N/A</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Zookeeper core package which provides the executable, libraries, configuration files and documentations.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Every node in the ZooKeeper cluster, and the client workstations which will access the ZooKeeper service.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>zookeeper-server-&lt;PHD_ZOOKEEPER_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Deamon</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>ZooKeeper Core Package</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package for Zookeeper server, which provides a convenient method to manage Zookeeper server start/stop as a Linux service.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>N/A</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>zookeeper-doc-&lt;PHD_ZOOKEEPER_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Documentation</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>N/A</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Zookeeper documentation.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>N/A</p></td></tr></tbody></table></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-ZookeeperServerSetup">Zookeeper Server Setup</h3><p>Install the Zookeeper core package and the Zookeeper server daemon package on the workstation that will serve as the zookeeper server, as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/zookeeper/rpm/zookeeper-&lt;PHD_ZOOKEEPER_VERSION&gt;-nn.noarch.rpm
+$ sudo rpm -ivh working_dir/zookeeper/rpm/zookeeper-server-&lt;PHD_ZOOKEEPER_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><p>Where working_dir is the directory where you want the rpms expanded.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-ZookeeperClientSetup">Zookeeper Client Setup</h3><p>Install the Zookeeper core package on the client workstation to access the Zookeeper service, as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/zookeeper/rpm/zookeeper-&lt;PHD_ZOOKEEPER_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-ZookeeperConfiguration">Zookeeper Configuration</h3><p>Zookeeper configuration files are in the following location: <code>/etc/gphd/zookeeper/conf</code></p><p>This is the default configuration for quick reference and modification. It is a symbolic link to /etc/gphd/zookeeper-version/conf.dist template set.</p><p>You can make modifications to these configuration templates or create your own configuration set. If you want to use a different configuration folders, adjust the symbolic link<code> /etc/gphd/zookeeper</code> to point to the folder you want to utilize at runtime.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-Usage.2">Usage</h3><h4 id="PivotalHDMR11.1Stack-RPMPackage-StartingtheZookeeperDaemon">Starting the Zookeeper Daemon</h4><p>After installing the daemon package for Zookeeper, the Zookeeper server daemon will start automatically at system startup by default.</p><p>You can start the daemons manually by using the following commands.</p><p>Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service zookeeper-server start</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-AccessingtheZookeeperservice">Accessing the Zookeeper service</h4><p>To access the Zookeeper service on a client machine, use the command zookeeper-client directly in shell:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ zookeeper-client
+ In the ZK shell:
+ &gt; ls
+ &gt; create /zk_test my_data
+ &gt; get /zk_test
+ &gt; quit</pre>
+</div></div><p><br/> You can get a list of available commands by inputting "?" in the zookeeper shell.</p><h4 id="PivotalHDMR11.1Stack-RPMPackage-StoppingtheZookeeperDaemon">Stopping the Zookeeper Daemon</h4><p>You can stop the Zookeeper server daemon manually using the following commands:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> </pre>
+</div></div><p><span class="confluence-anchor-link" id="PivotalHDMR11.1Stack-RPMPackage-HBase"></span></p><h2 id="PivotalHDMR11.1Stack-RPMPackage-HBase">HBase</h2><p>The base version of HBase changed to Apache HBase 0.94.8.</p><p>HBase is a scalable, distributed database that supports structured data storage for large tables.</p><p>This section specifies how to install, configure, and use HBase.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-Prerequisites">Prerequisites</h3><p>As HBase is built on top of Hadoop and Zookeeper, the Hadoop and Zookeeper core packages must be installed for HBase to operate correctly.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-HBaseRPMPackages">HBase RPM Packages</h3><p>Pivotal HD provides the following RPMs as part of this release. The core package provides all executables, libraries, configurations and documentation for HBase and is required on every node in HBase cluster as well as the client workstation that wants to access the HBase service. The daemon packages provide a convenient way to manage HBase daemons as Linux services, which rely on the core package.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hbase-&lt;PHD_HBASE_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Core</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Hadoop HDFS Packages and ZooKeeper Core Package</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>HBase core package provides all executables, libraries, configuration files and documentations.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hbase-master-&lt;PHD_HBASE_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>HBase Core Package</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package for HMaster, which provides a convenient method to manage HBase HMaster server start/stop as a Linux service.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hbase-regionserver-&lt;PHD_HBASE_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>HBase Core Package</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package for HRegionServer, which provides a convenient method to manage HBase HRegionServer start/stop as a Linux service.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hbase-thrift-&lt;PHD_HBASE_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon (thrift service)</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>HBase Core Package</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package to provide HBase service through thrift.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hbase-rest-&lt;PHD_HBASE_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon (Restful service)</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>HBase Core Package</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package to provide HBase service through REST.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hbase-doc-&lt;PHD_HBASE_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Documentation</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>HBase Core Package</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>HBase documentation.</p></td></tr></tbody></table></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HBaseMasterSetup">HBase Master Setup</h3><p>Install the HBase core package and the HBase master daemon package on the workstation that will serve as the HMaster:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/hbase/rpm/hbase-&lt;PHD_HBASE_VERSION&gt;-nn.noarch.rpm 
+$ sudo rpm -ivh working_dir/hbase/rpm/hbase-master-&lt;PHD_HBASE_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HBaseRegionServerSetup">HBase RegionServer Setup</h3><p>Install the HBase core package and the HBase regionserver daemon package on the workstation that will serve as the HRegionServer:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/hbase/rpm/hbase-&lt;PHD_HBASE_VERSION&gt;-nn.noarch.rpm
+$ sudo rpm -ivh working_dir/hbase/rpm/hbase-regionserver-&lt;PHD_HBASE_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HBaseClientSetup">HBase Client Setup</h3><p>Install the HBase core package on the client workstation that will access the HBase service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/hbase/rpm/hbase-&lt;PHD_HBASE_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HBaseThriftServerSetup">HBase Thrift Server Setup</h3><p><strong> [OPTIONAL]</strong></p><p>Install the HBase core package and the HBase thrift daemon package to provide HBase service through Apache Thrift:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/hbase/rpm/hbase-&lt;PHD_HBASE_VERSION&gt;-nn.noarch.rpm
+$ sudo rpm -ivh working_dir/hbase/rpm/hbase-thrift-&lt;PHD_HBASE_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-RESTServerSetup">REST Server Setup<strong> </strong></h3><p><strong>[OPTIONAL]</strong></p><p>Install the HBase core package and the HBase rest daemon package to provide HBase service through Restful interface:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/hbase/rpm/hbase-&lt;PHD_HBASE_VERSION&gt;-nn.noarch.rpm
+$ sudo rpm -ivh working_dir/hbase/rpm/hbase-rest-&lt;PHD_HBASE_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HBaseConfiguration">HBase Configuration</h3><p>The configuration files for HBase are located here: <code>/etc/gphd/hbase/conf/</code></p><p>This is the default configuration for quick reference and modification.</p><p><code>/etc/gphd/hbase</code> is a symbolic link to <code>/etc/gphd/hbase-version/</code>; and the conf folder is a symbolic link to the exact configuration directory.</p><p>You can make modifications to these configuration templates or create your own configuration set. If you want to use a different configuration folders, adjust the symbolic link<code> /etc/gphd/hbase/conf</code> to point to the folder you want to utilize at runtime.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-HBasePost-InstallationConfiguration">HBase Post-Installation Configuration</h3><ol><li>Login to one of the cluster nodes.</li><li><p>Create the <code> <code>hbase.rootdir<br/> </code> </code></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u hdfs hdfs dfs -mkdir -p /hbase</pre>
+</div></div></li><li><p>Set permissions for the <code> <code> <code>hbase.rootdir<br/> </code> </code> </code></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u hdfs hdfs dfs -chown hbase:hadoop /hbase</pre>
+</div></div></li><li><p>Set the ownership for <code> <code> <code> <code>hbase.rootdir<br/> </code> </code> </code> </code></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u hdfs hadoop fs -chown hbase:hadoop /hbase</pre>
+</div></div></li><li><p>Add hbase user to the hadoop group if not already present using</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ usermod -G hadoop hbase</pre>
+</div></div></li></ol><h3 id="PivotalHDMR11.1Stack-RPMPackage-Usage.3">Usage</h3><h4 id="PivotalHDMR11.1Stack-RPMPackage-StartingtheHBaseDaemon">Starting the HBase Daemon</h4><p>After installing the daemon package for HBase, the HBase server daemons will start automatically at system startup by default.<br/> You can start the daemons manually by using the following commands:</p><p>Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hbase-master start</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-StartingtheHRegionServerdaemon">Starting the HRegionServer daemon</h4><p>You can start the daemons manually by using the following commands:</p><p>Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hbase-regionserver start</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-StartingtheHbaseThriftserverdaemon">Starting the Hbase Thrift server daemon</h4><p><strong> [OPTIONAL]</strong></p><p>You can start the daemons manually by using the following commands:<br/> Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hbase-thrift start</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-StartingtheHbaseRestserverdaemon">Starting the Hbase Rest server daemon<strong> </strong></h4><p><strong>[OPTIONAL]</strong></p><p>You can start the daemons manually by using the following commands:</p><p>Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hbase-rest start</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-AccessingtheHBaseservice">Accessing the HBase service</h4><p>To access the HBase service on a client machine, use the command hbase directly in shell:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ hbase</pre>
+</div></div><p>Or you can use this command to enter the hbase console:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ hbase shell</pre>
+</div></div><p>In the HBase shell, you can run some test commands, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hbase(main):003:0&gt; create 'test', 'cf'
+hbase(main):003:0&gt; list 'test'
+hbase(main):004:0&gt; put 'test', 'row1', 'cf:a', 'value1'
+hbase(main):005:0&gt; put 'test', 'row2', 'cf:b', 'value2'
+hbase(main):006:0&gt; put 'test', 'row3', 'cf:c', 'value3'
+hbase(main):007:0&gt; scan 'test'
+hbase(main):008:0&gt; get 'test',  'row1'
+hbase(main):012:0&gt; disable 'test'
+hbase(main):013:0&gt; drop 'test'
+hbase(main):014:0&gt; quit</pre>
+</div></div><p>Type help to get help for the HBase shell.</p><h4 id="PivotalHDMR11.1Stack-RPMPackage-StoppingtheHBasedaemon">Stopping the HBase daemon</h4><p>You can stop the daemons manually by using the following commands:</p><p>Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hbase-master stop</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-StoppingtheHRegionServerdaemon">Stopping the HRegionServer daemon</h4><p>You can stop the daemons manually by using the following commands:</p><p>Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hbase-regionserver stop</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-StoppingtheHbaseThriftserverdaemon">Stopping the Hbase Thrift server daemon</h4><p><strong>[OPTIONAL]</strong></p><p>You can stop the daemons manually by using the following commands:</p><p>Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hbase-thrift stop</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-StoppingtheHbaseRestserverdaemon">Stopping the Hbase Rest server daemon</h4><p><strong> [OPTIONAL]</strong></p><p>You can stop the daemons manually by using the following commands:</p><p>Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hbase-rest stop</pre>
+</div></div><p><span class="confluence-anchor-link" id="PivotalHDMR11.1Stack-RPMPackage-Hive"></span></p><h2 id="PivotalHDMR11.1Stack-RPMPackage-Hive">Hive</h2><p>The base version of Hive is Apache Hive 0.11.0.</p><p>Hive is a data warehouse infrastructure that provides data summarization and ad hoc querying.</p><p>This section specifies how to install, configure, and use Hive.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-HiveComponents">Hive Components</h3><p>A Hive installation consists of the following components:</p><ul><li><code>hive-server</code></li><li><code>hive-metastore</code></li><li><code>hive-dbserver</code></li></ul><h3 id="PivotalHDMR11.1Stack-RPMPackage-Prerequisites.1">Prerequisites</h3><p>As Hive is built on top of Hadoop, HBase and Zookeeper, the Hadoop, HBase and Zookeeper core packages must be installed for Hive to operate correctly. <br/> The following prerequisites must be also met before installing Hive:</p><ul><li>PostgresSQL Server</li><li>Hive Metastore backed by a DB Server.</li></ul><p style="margin-left: 30.0px;">h<code>ive/gphd/warehouse</code> <br/> <code> hive.metastore.local = false</code></p><h3 id="PivotalHDMR11.1Stack-RPMPackage-HiveRPMPackages">Hive RPM Packages</h3><p>Hive consists of one core package and a thrift sever daemon package that provides Hive service through thrift.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hive-&lt;PHD_HIVE_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Core</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Hadoop, HBase Core Packages</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Hive core package provides the executables, libraries, configuration files and documentations.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Hive Client workstation</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hive-server-&lt;PHD_HIVE_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon (thrift server)</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Hive Core Package</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package to provide Hive service through thrift</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Hive Thrift server node</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hive-metastore-&lt;PHD_HIVE_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Deamon (Metastore server)</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Hive Core Package</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package to provide Hive metadata information through metastore server.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Hive Metastore server node</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hive-server2-&lt;PHD_HIVE_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon (hive server2)</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Hive Core Package</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package to provide Hive Server2.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Hive Thrift server node</p></td></tr></tbody></table></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-InstallingHive">Installing Hive</h3><h4 id="PivotalHDMR11.1Stack-RPMPackage-SetupPostgreSQLontheHIVE_METASTORENode">Set up PostgreSQL on the HIVE_METASTORE Node</h4><ol><li>Choose one of the cluster nodes to be the <code>HIVE_METASTORE</code>.</li><li>Login to the nominated <code>HIVE_METASTORE</code> node as root.</li><li><p>Execute the following commands</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ yum install postgresql-server</pre>
+</div></div></li><li><p>Initialize the database:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ service postgresql initdb</pre>
+</div></div></li><li><p>Open the <code>/var/lib/pgsql/data/postgresql.conf</code> file and set the following values:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">listen_addresses = '*'
+ standard_conforming_strings = off</pre>
+</div></div></li><li><p>Open the<code> /var/lib/pgsql/data/pg_hba.conf</code> file and comment out all the lines starting with <code>host</code> and <code>local</code> by adding <code>#</code> to start of the line.<br/>Add following lines:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">local all all trust 
+ host all all 0.0.0.0 0.0.0.0 trust</pre>
+</div></div></li><li><p>Create <code>/etc/sysconfig/pgsql/postgresql</code> file and add:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">PGPORT=10432</pre>
+</div></div></li><li><p>Start the database:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ service postgresql start</pre>
+</div></div></li><li><p>Create the user, database:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u postgres createuser -U postgres -p 10432 -a hive 
+$ sudo -u postgres createdb -U postgres -p 10432 metastore </pre>
+</div></div></li></ol><h4 id="PivotalHDMR11.1Stack-RPMPackage-SetuptheHIVE_METASTORE">Set up the HIVE_METASTORE</h4><ol><li><p>Install Hive metastore using:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ yum install postgresql-jdbc
+$ sudo rpm -ivh working_dir/hive/rpm/hive-&lt;PHD_HIVE_VERSION&gt;-nn.noarch.rpm
+$ sudo rpm -ivh working_dir/hive/rpm/hive-metastore-&lt;PHD_HIVE_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div></li><li><p>Open the<code> /etc/gphd/hive/conf/hive-site.xml</code> and change it to following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;configuration&gt;
+ &lt;property&gt;
+   &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;
+   &lt;value&gt;hive&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+   &lt;name&gt;hive.metastore.uris&lt;/name&gt;
+   &lt;value&gt;thrift://&lt;CHANGE_TO HIVE_METASTORE_ADDRESS{_}&gt;:9083&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+   &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;
+   &lt;value&gt;jdbc:postgresql://&lt;CHANGE_TO_HIVE_METASTORE_ADDRESS&gt;:10432/metastore&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+   &lt;name&gt;hive.metastore.warehouse.dir&lt;/name&gt;
+   &lt;value&gt;/hive/gphd/warehouse&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+   &lt;name&gt;hive.hwi.war.file&lt;/name&gt;
+   &lt;value&gt;/usr/lib/gphd/hive/lib/hive-hwi-0.9.1-gphd-2.0.1.0.war&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+   &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;
+   &lt;value&gt;org.postgresql.Driver&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+   &lt;name&gt;datanucleus.autoCreateSchema&lt;/name&gt;
+   &lt;value&gt;false&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+   &lt;name&gt;hive.metastore.local&lt;/name&gt;
+   &lt;value&gt;false&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+   &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;
+   &lt;value&gt;hive&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+   &lt;name&gt;hive.metastore.execute.setugi&lt;/name&gt;
+   &lt;value&gt;true&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;/configuration&gt; </pre>
+</div></div><p><strong>Note</strong>: Replace <code>&lt;<em>CHANGE_TO_HIVE_METASTORE_ADDRESS</em>&gt;</code> in above file.</p><p> </p></li><li><p> Create file /etc/gphd/hive/conf/hive-env.sh and add the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export HADOOP_HOME="/usr/lib/gphd/hadoop"
+export HADOOP_CONF_DIR="/etc/gphd/hadoop/conf"
+export HADOOP_MAPRED_HOME="/usr/lib/gphd/hadoop-mapreduce"
+export HIVE_CONF_DIR="/etc/gphd/hive/conf"</pre>
+</div></div><p>Make it executable using:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">chmod +x /etc/gphd/hive/conf/hive-env.sh</pre>
+</div></div></li><li><p>Edit file <code>/etc/gphd/hadoop/conf/hadoop-env.sh</code> and add the following before export<code> HADOOP_CLASSPATH</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export HIVELIB_HOME=$GPHD_HOME/hive/lib
+export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:\ 
+$HIVELIB_HOME/hive-service-0.9.1-gphd-2.0.1.0.jar:\
+$HIVELIB_HOME/libthrift-0.7.0.jar:\
+$HIVELIB_HOME/hive-metastore-0.9.1-gphd-2.0.1.0.jar:\
+$HIVELIB_HOME/libfb303-0.7.0.jar:\
+$HIVELIB_HOME/hive-common-0.9.1-gphd-2.0.1.0.jar:\
+$HIVELIB_HOME/hive-exec-0.9.1-gphd-2.0.1.0.jar:\
+$HIVELIB_HOME/postgresql-jdbc.jar</pre>
+</div></div></li><li><p>Link postgresql jar:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ ln -s /usr/share/java/postgresql-jdbc.jar /usr/lib/gphd/hive/lib/postgresql-jdbc.jar</pre>
+</div></div></li><li><p>Create the schema:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u postgres psql -U hive -d metastore -p 10432 -f 
+/usr/lib/gphd/hive-0.9.1_gphd_2_0_2_0/scripts/metastore/upgrade/postgres/hive-schema-0.9.0.postgres.sql</pre>
+</div></div></li><li><p>Start the hive-metastore:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ service hive-metastore start</pre>
+</div></div></li></ol><p>:<strong>Note</strong>: MySQL is no longer supported. Please migrate from MySQL to PostgreSQL.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-HiveClientSetup">Hive Client Setup</h3><p>Hive is a Hadoop client-side library. Install the Hive core package on the client workstation:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> $ sudo rpm -ivh working_dir/hive/rpm/hive-&lt;PHD_HIVE_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HiveThriftServerSetup">Hive Thrift Server Setup<strong> </strong></h3><p><strong>[OPTIONAL]</strong></p><p>Install the Hive core package and Hive thrift daemon package to provide Hive service through thrift.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> $ sudo rpm -ivh working_dir/hive/rpm/hive-&lt;PHD_HIVE_VERSION&gt;-nn.noarch.rpm
+ $ sudo rpm -ivh working_dir/hive/rpm/hive-server-&lt;PHD_HIVE_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HiveServer2Setup">Hive Server2 Setup<strong> </strong></h3><p><strong>[OPTIONAL]</strong></p><p>Install the Hive core package and Hive thrift daemon package to provide Hive service through thrift.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/hive/rpm/hive-&lt;PHD_HIVE_VERSION&gt;-nn.noarch.rpm
+$ sudo rpm -ivh working_dir/hive/rpm/hive-server2-&lt;PHD_HIVE_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HiveMetaStoreServerSetup">Hive MetaStore Server Setup<strong> </strong></h3><p><strong>[OPTIONAL]</strong> <br/> Install the Hive core package and Hive Metastore daemon package to provide Hive metadata information through centralized Metastore service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/hive/rpm/hive-&lt;PHD_HIVE_VERSION&gt;-nn.noarch.rpm
+$ sudo rpm -ivh working_dir/hive/rpm/hive-metastore-&lt;PHD_HIVE_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HiveConfiguration">Hive Configuration</h3><p>The configuration files for Hive are located here: /etc/gphd/hive/conf/</p><p>This is the default configuration for quick reference and modification. It is a symbolic link to /etc/gphd/hive-version/conf</p><p>You can make modifications to this configuration template or create your own. If you want to use a different configuration folder, adjust the symbolic link /etc/gphd/hive/conf to point to the folder you want to utilize at runtime.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-HivePost-installationConfiguration">Hive Post-installation Configuration</h3><ol><li><p>Login to one of the cluster nodes as root.</p></li><li><p>Create the <code>hive.warehouse.dir</code></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u hdfs hadoop fs -mkdir -p /hive/gphd/warehouse</pre>
+</div></div></li><li><p>Set permissions for the <code> <code>hive.warehouse.dir<br/> </code> </code></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u hdfs hadoop fs -chmod 775 /hive/gphd/warehouse</pre>
+</div></div></li><li><p>Set the ownership for the <code> <code>hive.warehouse.dir<br/> </code> </code></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u hdfs hadoop fs -chown hadoop:hadoop /hive/gphd/warehouse</pre>
+</div></div></li><li><p>Add hive user to hadoop group if not already present using</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ usermod -G hadoop hive</pre>
+</div></div></li></ol><h3 id="PivotalHDMR11.1Stack-RPMPackage-HiveUsage">Hive Usage</h3><h4 id="PivotalHDMR11.1Stack-RPMPackage-StartHiveClient">Start Hive Client</h4><p>To run Hive on a client machine, use the hive command directly in shell:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ hive</pre>
+</div></div><p><br/> You can check the Hive command usage by:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ hive -help</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-StartBeelineClient">Start Beeline Client</h4><p>HiveServer2 supports a new command shell Beeline that works with HiveServer2:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ beeline</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-Start/StopHiveThriftServer">Start/Stop Hive Thrift Server</h4><p><strong>[Optional]</strong></p><p>You can start/stop Hive thrift server daemon as follows:</p><p>Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hive-server start
+$ sudo service hive-server stop</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-Start/StopHiveServer2">Start/Stop Hive Server2<strong> </strong></h4><p><strong>[Optional]</strong> <br/> You can start/stop Hive server2 daemon as follows:</p><p>Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hive-server2 start
+$ sudo service hive-server2 stop</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-Start/StopHiveMetastoreServer">Start/Stop Hive Metastore Server<strong> </strong></h4><p><strong>[Optional]</strong> <br/> You can start/stop Hive Metastore server daemon as follows:</p><p>Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hive-metastore start
+$ sudo service hive-metastore stop</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-ConfiguringaSecureHiveCluster">Configuring a Secure Hive Cluster</h4><p>If you are running Hive in a standalone mode using a local or embedded MetaStore you do not need to make any modifications.</p><p>The Hive MetaStore supports Kerberos authentication for Thrift clients. Follow the instructions provided in the <a href="Security.html">Security</a> section to configure Hive for a security-enabled HD cluster.</p><p><span class="confluence-anchor-link" id="PivotalHDMR11.1Stack-RPMPackage-Hcatalog"></span></p><h2 id="PivotalHDMR11.1Stack-RPMPackage-Hcatalog">Hcatalog</h2><p>The base version of Hcatalog is Apache Hcatalog 0.11.0.</p><p>HCatalog is a metadata and table management system.</p><p>This section specifies how to install, configure, and use Hcatalog.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-Prerequisites.2">Prerequisites</h3><p>Hcatalog is built on top of Hadoop, HBase , Hive and Zookeeper, so the Hadoop, HBase, Hive and Zookeeper core packages must be installed for Hcatalog to operate correctly.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-HcatalogRPMPackages">Hcatalog RPM Packages</h3><p>Hcatalog consists of one core package and a thrift sever daemon package that provides Hive service through thrift.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hcatalog-&lt;PHD_HCATALOG_VERSION&gt;-nn.noarch.rpm</strong></p><p> </p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Core</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Hadoop, HBase and Hive Core Packages.</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Hcatalog core package provides the executables, libraries, configuration files and documentations.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Hcatalog Client workstation.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>hcatalog-server-&lt;PHD_HCATALOG_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon (hcatalog server).</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Hcatalog Core Package.</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package to provide Hive service through thrift.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Hcatalog server node.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>webhcat-&lt;PHD_HCATALOG_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Libraries.</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Hcatalog Core Package.</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package to provide Hive metadata information through metastore server.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Webhcat server node.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>webhcat-server-&lt;PHD_HCATALOG_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon(webhcata server).</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Hcatalog and Webhcat Core Package.</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package to provide Webhcat Server.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Webhcat server node.</p></td></tr></tbody></table></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HcatalogClientSetup">Hcatalog Client Setup</h3><p>Hcatalog is a Hadoop client-side library. Install the Hcatalog core package on the client workstation.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/hive/rpm/hcatalog-&lt;PHD_HCATALOG_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HcatalogServerSetup">Hcatalog Server Setup</h3><p><strong>[OPTIONAL]</strong></p><p>Install the Hcatalog core package and Hcatalog thrift daemon package to provide Hcatalog service.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/hcatalog/rpm/hcatalog-&lt;PHD_HCATALOG_VERSION&gt;-nn.noarch.rpm
+$ sudo rpm -ivh working_dir/hcatalog/rpm/hcatalog-server-&lt;PHD_HCATALOG_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-WebhcatSetup">Webhcat Setup</h3><p><strong>[OPTIONAL]</strong></p><p>Install the Hcatalog core package and Webhcat package to provide Webhcat libraries.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/hcatalog/rpm/hcatalog-&lt;PHD_HCATALOG_VERSION&gt;-nn.noarch.rpm
+$ sudo rpm -ivh working_dir/hcatalog/rpm/webhcat-&lt;PHD_HCATALOG_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-WebhcatServerSetup">Webhcat Server Setup</h3><p><strong>[OPTIONAL]</strong></p><p>Install the Hcatalog core package and Hive Metastore daemon package to provide Hive metadata information through centralized Metastore service.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> $ sudo rpm -ivh working_dir/hcatalog/rpm/hcatalog-&lt;PHD_HCATALOG_VERSION&gt;-nn.noarch.rpm
+ $ sudo rpm -ivh working_dir/hcatalog/rpm/webhcat-&lt;PHD_HCATALOG_VERSION&gt;-nn.noarch.rpm
+ $ sudo rpm -ivh working_dir/hcatalog/rpm/webhcat-server-&lt;PHD_HCATALOG_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-HcatalogConfiguration">Hcatalog Configuration</h3><p>The configuration files for Hcatalog are located here:<code> /etc/gphd/hive/conf/</code></p><p>This is the default configuration for quick reference and modification. It is a symbolic link to<code> /etc/gphd/hive-version/conf</code></p><p>You can make modifications to this configuration template or create your own. If you want to use a different configuration folder, adjust the symbolic link <code>/etc/gphd/hive/conf</code> to point to the folder you want to utilize at runtime.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-Usage.4">Usage</h3><h4 id="PivotalHDMR11.1Stack-RPMPackage-StartHcatalogClient">Start Hcatalog Client</h4><p>To run Hcatalog on a client machine, use the hive command directly in shell:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ hcat</pre>
+</div></div><p><br/> You can check the hive command usage by running:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ hcat -help</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-Start/StopHcatalogServer">Start/Stop Hcatalog Server<strong> </strong></h4><p>You can start/stop Hcatalog server daemon as follows:</p><p>Either:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hcatalog-server start
+$ sudo service hcatalog-server stop</pre>
+</div></div><p>or:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo /etc/init.d/hcatalog-server start
+$ sudo /etc/init.d/hcatalog-server stop</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-Start/StopWebhcatServer">Start/Stop Webhcat Server</h4><p>You can start/stop Webhcat server daemon as follows:</p><p>Either:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service webhcat-server start
+$ sudo service webhcat-server stop</pre>
+</div></div><p>or:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo /etc/init.d/webhcat-server start 
+$ sudo /etc/init.d/webhcat-server stop</pre>
+</div></div><p><span class="confluence-anchor-link" id="PivotalHDMR11.1Stack-RPMPackage-Pig"></span></p><h2 id="PivotalHDMR11.1Stack-RPMPackage-Pig">Pig</h2><p>The base version of Pig is Apache Pig 0.10.1.</p><p>Pig is a high-level data-flow language and execution framework for parallel computation.</p><p>This section specifies how to install, configure, and use Pig.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-Prerequisites.3">Prerequisites</h3><p>As Pig is built on top of Hadoop the Hadoop package must be installed to run Pig correctly.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-PigRPMPackages">Pig RPM Packages</h3><p>Pig has only one core package.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>pig-&lt;PHD_PIG_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Core</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Hadoop Core Packages</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Pig core package provides executable, libraries, configuration files and documentation.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Pig client workstation</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>pig-doc-&lt;PHD_PIG_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Documentation</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>N/A</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Pig documentation.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>N/A</p></td></tr></tbody></table></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-PigClientSetup">Pig Client Setup</h3><p>Pig is a Hadoop client-side library. Install the Pig package on the client workstation:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/pig/rpm/pig-&lt;PHD_PIG_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-PigConfiguration">Pig Configuration</h3><p>The configuration files for Pig are located here: <code>/etc/gphd/pig/conf/</code></p><p>This is the default configuration templates for quick reference and modification.</p><p>You can modify these configuration templates or create your own configuration set. If you want to use a different configuration folder, adjust the symbolic link conf under<code> /etc/gphd/pig/</code> to point to the folder you want to utilize at runtime.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-Usage.5">Usage</h3><p>To run Pig scripts on a client machine, use the command pig directly in shell:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ pig COMMAND</pre>
+</div></div><p>You can check the pig command usage by:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ pig -help</pre>
+</div></div><p><span class="confluence-anchor-link" id="PivotalHDMR11.1Stack-RPMPackage-Mahout"></span></p><h2 id="PivotalHDMR11.1Stack-RPMPackage-Mahout">Mahout</h2><p>The base version of Mahout is Apache Mahout 0.7.</p><p>Mahout is a scalable machine learning and data mining library.</p><p>This section specifies how to install, configure, and use Mahout.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-Prerequisites.4">Prerequisites</h3><p>Mahout is built on top of Hadoop, so the Hadoop package must be installed to get Mahout running.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-MahoutRPMPackages">Mahout RPM Packages</h3><p>Mahout has only one core package.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>mahout-&lt;PHD_MAHOUT_VERSION&gt;-nn.noarch.rpm</strong></p><p> </p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Core</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Hadoop Core Packages</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Mahout core package provides executable, libraries, configuration files and documentations.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Mahout clie.nt workstation</p></td></tr></tbody></table></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-MahoutClientSetup">Mahout Client Setup</h3><p>Mahout is a Hadoop client-side library. Install the Mahout package on the client workstation:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> $ sudo rpm -ivh working_dir/mahout/rpm/mahout-&lt;PHD_MAHOUT_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-MahoutConfiguration">Mahout Configuration</h3><p>You can find the configuration files for Mahout in the following location: <code>/etc/gphd/mahout/conf/</code></p><p>This is the default configuration templates for quick reference and modification.</p><p>You can modify these configuration templates or create your own configuration set. If you want to use a different configuration folder, adjust the symbolic link conf under <code>/etc/gphd/mahout/</code> to point to the folder you want to utilize at runtime.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-Usage.6">Usage</h3><p>To run Mahout scripts on a client machine, use the command mahout directly in shell:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> $ mahout PROGRAM</pre>
+</div></div><p><br/> You can check the full list of mahout programs by running:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ mahout</pre>
+</div></div><p><span class="confluence-anchor-link" id="PivotalHDMR11.1Stack-RPMPackage-Flume"></span></p><h2 id="PivotalHDMR11.1Stack-RPMPackage-Flume">Flume</h2><p>The base version of Flume is Apache Flume 1.3.1.</p><p>Flume is a distributed, reliable, and available service for efficiently collecting, aggregating, and moving large amounts of log data. It has a simple and flexible architecture based on streaming data flows. It is robust and fault tolerant with tunable reliability mechanisms and many failover and recovery mechanisms. It uses a simple extensible data model that allows for online analytic application. For more info, please refer to the Apache Flume page: <a class="external-link" href="http://flume.apache.org/" rel="nofollow"> http://flume.apache.org/ </a></p><p>This section specifies how to install, configure, and use Flume.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-Prerequisites.5">Prerequisites</h3><p>As Flume is built on top of Hadoop, the Hadoop package must be installed to get Flume running correctly. <br/> (Hadoop core and hadoop hdfs should be installed)</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-FlumeRPMPackages">Flume RPM Packages</h3><p>Flume consists of one core package and a flume-agent sever daemon package.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>flume-&lt;PHD_FLUME_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Core</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Hadoop Core Packages</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Flume core package provides executable, libraries, configuration files and documentations.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Flume client workstation.</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>flume-agent-&lt;PHD_FLUME_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon (Flume Agent server)</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Flume core Package</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package to provide Flume service for generating, processing, and delivering data.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Flume agent server node.</p></td></tr></tbody></table></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-FlumeClientSetup">Flume Client Setup</h3><p>Flume is a Hadoop client-side library. Install the Flume package on the client workstation:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/flume/rpm/flume-&lt;PHD_FLUME_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><p><strong>Note</strong>: User flume and group flume should be created with correct configuration, including uid, gid, home_dir and shell. Check in following paths: <code>/etc/passwd, /etc/group</code></p><h3 id="PivotalHDMR11.1Stack-RPMPackage-FlumeAgentSetup">Flume Agent Setup</h3><p><strong>[Optional]</strong></p><p>Install the Flume core package and Flume agent daemon package to provide Flume service for generating, processing, and delivering data:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/flume/rpm/flume-&lt;PHD_FLUME_VERSION&gt;-nn.noarch.rpm 
+$ sudo rpm -ivh working_dir/flume/rpm/flume-agent-&lt;PHD_FLUME_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-FlumeConfiguration">Flume Configuration</h3><p>The configuration files for Flume are located here:<code> /etc/gphd/flume/conf/</code></p><p>This is the default configuration templates for quick reference and modification.</p><p>You can modify these configuration templates or create your own configuration set. If you want to use a different configuration folder, adjust the symbolic link conf under<code> /etc/gphd/flume/</code> to point to the folder you want to utilize at runtime.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-Usage.7">Usage</h3><h4 id="PivotalHDMR11.1Stack-RPMPackage-StartingFlumeClient">Starting Flume Client</h4><p>To run Flume scripts on a client machine, use the command flume-ng directly in shell:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ flume-ng</pre>
+</div></div><p><br/> You can check the flume-ng command usage by running:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ flume-ng --help</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-Starting/StoppingFlumeAgentServer">Starting/Stopping Flume Agent Server</h4><p>You can start/stop Flume agent server daemon as follows:</p><p>Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service flume-agent start
+$ sudo service flume-agent stop
+$ sudo service flume-agent status</pre>
+</div></div><p><span class="confluence-anchor-link" id="PivotalHDMR11.1Stack-RPMPackage-Sqoop"></span></p><h2 id="PivotalHDMR11.1Stack-RPMPackage-Sqoop">Sqoop</h2><p>The base version of Sqoop is Apache Sqoop 1.4.2.</p><p>Sqoop is a tool designed for efficiently transferring bulk data between A<a class="external-link" href="http://hadoop.apache.org/" rel="nofollow">pache Hadoop </a>and structured datastores such as relational databases. For more details, please refer to the Apache Sqoop page: <a class="external-link" href="http://sqoop.apache.org/" rel="nofollow"> http://sqoop.apache.org/ </a></p><p>This section specifies how to install, configure, and use Sqoop.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-Prerequisites.6">Prerequisites</h3><p>As Sqoop is built on top of Hadoop and HBase, the Hadoop and HBase package must be installed to get Flume running correctly.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-SqoopRPMPackages">Sqoop RPM Packages</h3><p>Flume consists of one core package and a sqoop-metastore sever daemon package.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>sqoop-&lt;PHD_SQOOP_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Core</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Hadoop, HBase Core Packages</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Sqoop core package provides executable, libraries, configuration files and documentations.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Sqoop. client workstation</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><strong>sqoop-metastore-&lt;PHD_SQOOP_VERSION&gt;-nn.noarch.rpm</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon (Sqoop Metastore server)</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Sqoop core Package</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon scripts package to provide shared metadata repository for Sqoop.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Sqoop metastore server node</p></td></tr></tbody></table></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-SqoopClientSetup">Sqoop Client Setup</h3><p>Sqoop is a Hadoop client-side library. Install the Sqoop package on the client workstation:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/sqoop/rpm/sqoop-&lt;PHD_SQOOP_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><p><strong>Note</strong>: User sqoop and group sqoop should be created with correct configuration: <code>uid sqoop, gid sqoop, homedir /home/sqoop, shell /sbin/nologin</code>. Check in following path: <code>/etc/passwd</code> and <code>/etc/group</code> .</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-SqoopMetastoreSetup">Sqoop Metastore Setup</h3><p><strong>[Optional]</strong></p><p>Install the Sqoop core package and Sqoop agent daemon package to provide shared metadata repository for Sqoop. sqoop-metastore has the dependency with sqoop-core package:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/sqoop/rpm/sqoop-&lt;PHD_SQOOP_VERSION&gt;-nn.noarch.rpm
+$ sudo rpm -ivh working_dir/sqoop/rpm/sqoop-metastore-&lt;PHD_SQOOP_VERSION&gt;-nn.noarch.rpm</pre>
+</div></div><h3 id="PivotalHDMR11.1Stack-RPMPackage-SqoopConfiguration">Sqoop Configuration</h3><p>The configuration files for Flume are located here: <code>/etc/gphd/sqoop/conf/</code></p><p>This is the default configuration templates for quick reference and modification.</p><p>You can modify these configuration templates or create your own configuration set. If you want to use a different configuration folder, adjust the symbolic link conf under<code> /etc/gphd/sqoop/</code> to point to the folder you want to utilize at runtime.</p><h3 id="PivotalHDMR11.1Stack-RPMPackage-Usage.8">Usage</h3><h4 id="PivotalHDMR11.1Stack-RPMPackage-StartingSqoopClient">Starting Sqoop Client</h4><p>To run Sqoop scripts on a client machine, use the command sqoop directly in shell:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sqoop</pre>
+</div></div><p>You can check the sqoop command usage by running:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sqoop help</pre>
+</div></div><h4 id="PivotalHDMR11.1Stack-RPMPackage-Starting/StoppingSqoopMetastoreServer">Starting/Stopping Sqoop Metastore Server<strong> <br/> </strong></h4><p>You can start/stop Sqoop metastore server daemon as follows:</p><p>Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service sqoop-metastore start
+$ sudo service sqoop-metastore stop
+$ sudo service sqoop-metastore status</pre>
+</div></div><p> </p><p> </p>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

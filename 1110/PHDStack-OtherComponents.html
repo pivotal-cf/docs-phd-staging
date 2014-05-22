@@ -1,0 +1,773 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>PHD Stack - Other Components | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                                  <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>PHD Stack - Other Components</h1><div class="wiki-content group" id="main-content">
+<h1 id="PivotalHDStack-OtherComponents-/*&lt;![CDATA[*/div.rbtoc1390012350427{padding:0px;}div.rbtoc1390012350427ul{list-style:disc;margin-left:0px;}div.rbtoc1390012350427li{margin-left:0px;padding-left:0px;}/*]]&gt;*/SpringDataInstallingSpringDataHadoopInstallingSprin"><style type="text/css">/*<![CDATA[*/
+div.rbtoc1390012350427 {padding: 0px;}
+div.rbtoc1390012350427 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1390012350427 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc rbtoc1390012350427">
+<ul class="toc-indentation">
+<li><a href="#PivotalHDStack-OtherComponents-SpringData">Spring Data</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDStack-OtherComponents-InstallingSpringDataHadoop">Installing Spring Data Hadoop</a></li>
+<li><a href="#PivotalHDStack-OtherComponents-InstallingSpringDataHadoopthroughRPM">Installing Spring Data Hadoop through RPM</a></li>
+<li><a href="#PivotalHDStack-OtherComponents-SpringDataHadoop">Spring Data Hadoop</a></li>
+</ul>
+</li>
+<li><a href="#PivotalHDStack-OtherComponents-HDFSRackAwareness">HDFS Rack Awareness</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDStack-OtherComponents-Usage">Usage</a></li>
+</ul>
+</li>
+<li><a href="#PivotalHDStack-OtherComponents-Vaidya">Vaidya</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDStack-OtherComponents-Overview">Overview</a></li>
+<li><a href="#PivotalHDStack-OtherComponents-InstallingVaidyaFiles">Installing Vaidya Files</a></li>
+<li><a href="#PivotalHDStack-OtherComponents-EnablingandDisablingVaidya">Enabling and Disabling Vaidya</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDStack-OtherComponents-EnablingVaidya">Enabling Vaidya</a></li>
+<li><a href="#PivotalHDStack-OtherComponents-DisablingVaidya">Disabling Vaidya</a></li>
+</ul>
+</li>
+<li><a href="#PivotalHDStack-OtherComponents-UsingVaidyatoAnalyzeJobs">Using Vaidya to Analyze Jobs</a></li>
+<li><a href="#PivotalHDStack-OtherComponents-VaidyaConfigurationRules">Vaidya Configuration Rules</a>
+<ul class="toc-indentation">
+<li><a href="#PivotalHDStack-OtherComponents-DisablingaRule">Disabling a Rule</a></li>
+<li><a href="#PivotalHDStack-OtherComponents-ChangingtheImportanceofaRule">Changing the Importance of a Rule</a></li>
+<li><a href="#PivotalHDStack-OtherComponents-ChangingSuccessThreshold">Changing Success Threshold</a></li>
+<li><a href="#PivotalHDStack-OtherComponents-ChangingInputParameters">Changing Input Parameters</a></li>
+<li><a href="#PivotalHDStack-OtherComponents-Other">Other</a></li>
+<li><a href="#PivotalHDStack-OtherComponents-AddingaNewRule">Adding a New Rule</a></li>
+<li><a href="#PivotalHDStack-OtherComponents-CreatingaJavaBinaryforaNewRule">Creating a Java Binary for a New Rule</a></li>
+<li><a href="#PivotalHDStack-OtherComponents-CreatingXMLConfigurationForaNewRule">Creating XML Configuration For a New Rule</a></li>
+<li><a href="#PivotalHDStack-OtherComponents-Deployingfiles">Deploying files</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#PivotalHDStack-OtherComponents-DataLoader">DataLoader</a></li>
+</ul>
+</div></h1><p>Pivotal HD 1.1.x is a full Apache Hadoop distribution with Pivotal add-ons and a native integration with the Pivotal Greenplum database.</p><p class="confluence-link">This section includes information about the following:</p><ul><li>Spring Data</li><li>HVE (Hadoop Virtualization Extensions)</li><li>HDFS Rack Awareness</li><li>Vaidya</li><li>DataLoader</li></ul><p>For information about the installation, configuration, and use of the USS component is provided in the <a href="USSUnifiedStorageSystem.html">USS</a> chapter.</p><p><span class="confluence-anchor-link" id="PivotalHDStack-OtherComponents-SpringData"></span></p><h2 id="PivotalHDStack-OtherComponents-SpringData">Spring Data</h2><p>Spring for Apache Hadoop provides support for writing Apache Hadoop applications that benefit from the features of Spring, Spring Batch, and Spring Integration. For more information, please refer to the Spring Data official page: <a class="external-link" href="http://www.springsource.org/spring-data/hadoop" rel="nofollow"> http://www.springsource.org/spring-data/hadoop </a></p><h3 id="PivotalHDStack-OtherComponents-InstallingSpringDataHadoop">Installing Spring Data Hadoop</h3><ol><li><p>Download and copy Pivotal HD Tools Tarball to<code> /home/gpadmin/</code>. Make sure the tarball has read permission for user gpadmin. To extract the PHDTools tarball execute the following command:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[root@hdp2-w17 gpadmin]# chown gpadmin:gpadmin PHDTools-version.tar.gz
+[root@hdp2-w17 gpadmin]# ls lrt PHDToolsversion.tar.gz
+rw-rr- 1 gpadmin gpadmin 499930679 Mar 20 20:12 PHDTools-version.tar.gz
+
+[root@hdp2-w17 gpadmin]# sudo su - gpadmin
+
+[gpadmin@hdp2-w17 ~]$ tar xzvf PHDTools-version.tar.gz
+[gpadmin@hdp2-w17 ~]$ ls -lrt GPHD*
+drwxrwxr-x 5 gpadmin gpadmin      4096 Mar 20 00:35 PHDTools-version
+rw-rr- 1 gpadmin gpadmin 499930679 Mar 20 20:12 PHDTools-version.tar.gz
+
+[gpadmin@hdp2-w17 ~]$ cd PHDTools-version/spring-data-hadoop/rpm/
+[gpadmin@hdp2-w17 rpm]$ ls -lrt
+total 1580
+rw-rw-r- 1 gpadmin gpadmin 1610604 Mar 20 00:04 spring-data-hadoop-1.0.1.RC1-3.noarch.rpm
+rw-rw-r- 1 gpadmin gpadmin      76 Mar 20 00:44 spring-data-hadoop-1.0.1.RC1-3.noarch.rpm.md5 </pre>
+</div></div></li></ol><h3 id="PivotalHDStack-OtherComponents-InstallingSpringDataHadoopthroughRPM">Installing Spring Data Hadoop through RPM</h3><p>To install Spring Data Hadoop through RPM execute the following command:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin@hdp2-w17 rpm]$ pwd
+/home/gpadmin/PHDTools-version/spring-data-hadoop/rpm
+  
+[gpadmin@hdp2-w17 rpm]$ sudo rpm -ivh spring-data-hadoop-1.0.1.RC1-3.noarch.rpm
+Preparing...               
+########################################### [100%]    
+1:spring-data-hadoop     
+########################################### [100%]
+[gpadmin@hdp2-w17 rpm]$ sudo rpm -qa |grep spring
+spring-data-hadoop-1.0.1.RC1-3.noarch</pre>
+</div></div><h3 id="PivotalHDStack-OtherComponents-SpringDataHadoop">Spring Data Hadoop</h3><p>By default, Spring Data Hadoop is installed to <code>/usr/local/gphd/</code> directory.<br/> The following documentation is installed:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin@hdp2-w17 ~]$ cd /usr/local/gphd/spring-data-hadoop-1.0.1.RC1
+ [gpadmin@hdp2-w17 spring-data-hadoop-1.0.1.RC1]$ ls -lrt
+ total 36
+ rw-rr- 1 root root   861 Oct 11 01:32 readme.txt
+ rw-rr- 1 root root 11357 Oct 11 01:32 license.txt
+ rw-rr- 1 root root  1151 Mar  4 06:19 notice.txt
+ drwxr-xr-x 2 root root  4096 Mar 20 20:49 dist
+ drwxr-xr-x 4 root root  4096 Mar 20 20:49 docs
+ drwxr-xr-x 3 root root  4096 Mar 20 20:49 schema
+ drwxr-xr-x 2 root root  4096 Mar 20 20:49 samples</pre>
+</div></div><p>Please refer to the readme.txt and files within the <code> docs/</code> directory to start using Spring Data Hadoop.</p><p> </p><p> </p><p><span class="confluence-anchor-link" id="PivotalHDStack-OtherComponents-HDFSAwareness"></span></p><h2 id="PivotalHDStack-OtherComponents-HDFSRackAwareness">HDFS Rack Awareness</h2><p>HDFS rack awareness is a key feature to achieve localized I/O (locality).</p><p>With respect to read and write separately, HDFS has:</p><ul><li>BlockPlacementPolicy for write locality: namenode will look up network topology and construct a list of chosen nodes (pipeline) for a requesting a block to locate, based on algorithms provided by a BlockPlacementPolicy.</li><li>Block pseudo distance sort for read locality: when reading a block, after obtaining all the located blocks, namenode sorts these located blocks based on their topological distance with client. The closer nodes get higher priority for read.</li></ul><p>Both operations need to reference network topology, which is managed by the rack awareness feature. The rack awareness feature includes:</p><ul><li>A topology resolving framework: when datanodes register themselves on a namenode, that namenode will resolve their network location using their host name or ip, using DNSToSwitchMapping. This is a pluggable component that allows users to define their own topology based on their network layout. The most commonly used DNSToSwitchMapping is ScriptBasedMapping, which calls a shell script.</li><li>An in-memory topology tree: all registered datanodes' network locations are kept in a topology tree.</li></ul><p><strong>Problem: Ignored off-cluster clients</strong></p><p>The problem of the current implementation is that it do not support off-cluster clients. The figure below is an example of off-cluster clients:</p><p><img class="confluence-embedded-image" height="213" src="attachments/63900262/64192680.png" width="328"/></p><p>In this figure, node <strong>dn1</strong> is a datanode and its network location is /d1/r1, and so on for <strong>dn2</strong> and <strong>dn3</strong>. Node <strong>client0</strong> is an off-cluster node, which means there is no datanode deployed on <strong>client0</strong>. In this case, <strong>client0</strong> has no chance to register itself in the topology tree of the namenode. Therefore both read and write operations select random nodes even though <strong>dn1</strong> is closer (more preferable) than either <strong>dn2</strong> or <strong>dn3</strong>.This problem will cause performance issues in the following cases:</p><ul><li>When a mapreduce cluster is not exactly co-located: some mapreduce clusters share the same hdfs cluster with other mapreduce clusters, or in some cases a mapreduce cluster will cover several hdfs clusters. In those cases, a big portion of I/O will be off-cluster client operations which can not benefit from localized I/O.</li><li>When a physical cluster is not dedicated to hadoop: a physical cluster may not be dedicated to hadoop and other supporting systems such as data loading tools may share the same cluster. In that case, the data loading tool can not benefit from localized I/O, even if the tool and hdfs shares the same rack/data center. The problem may even more common in virtualized environment.</li></ul><p><strong>Solution: Design</strong></p><p>To tackle this problem, we changed the logic in block placement policy and block pseudo distance sort. We also resolved the network location of the client.</p><p><strong>Resolving client location</strong> <br/> Resolving the client location: we reused the framework that resolves datanodes. However, since we did not add client network locations into topology tree (as explained below), we have to cache client locations to avoid unnecessary resolve operations.</p><p>As a result, we introduced two LRU caches:</p><ul><li>A black list for those clients who have no valid location or whose locations do not share the same rack with any datanode.</li><li>A white list opposite to the black list, for those clients who are not datanodes but share the same rack with at least one datanode.</li></ul><p>Referring to the diagram of ignored off-cluster clients, the table below lists some examples of location cache.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="3"><p>Location Cache Examples</p></td></tr><tr><td class="confluenceTd"><p><strong>HostName</strong></p></td><td class="confluenceTd"><p><strong>Location</strong></p></td><td class="confluenceTd"><p><strong>Cache</strong></p></td></tr><tr><td class="confluenceTd"><p>client1</p></td><td class="confluenceTd"><p>d1/r1</p></td><td class="confluenceTd"><p>white list</p></td></tr><tr><td class="confluenceTd"><p>client2</p></td><td class="confluenceTd"><p>d2/r1</p></td><td class="confluenceTd"><p>black list</p></td></tr><tr><td class="confluenceTd"><p>client4</p></td><td class="confluenceTd"><p>null</p></td><td class="confluenceTd"><p>black lis</p></td></tr></tbody></table></div><p><br class="atl-forced-newline"/> The size of LRU cache is configurable so you can limit the memory usage of namenode.</p><p><strong>Block placement policy</strong></p><p>The tables below demonstrate how the BlockPlacementPolicy has been changed to support non-datanode clients.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p>Former block placement algorithm</p></td></tr><tr><td class="confluenceTd"><p><strong>Replica</strong></p></td><td class="confluenceTd"><p><strong>Rule</strong></p></td></tr><tr><td class="confluenceTd"><p>1</p></td><td class="confluenceTd"><p>Client Local</p></td></tr><tr><td class="confluenceTd"><p>2</p></td><td class="confluenceTd"><p>Random node whose rack is different from replica 1</p></td></tr><tr><td class="confluenceTd"><p>3</p></td><td class="confluenceTd"><p>Random node who share the same rack with replica 2</p></td></tr><tr><td class="confluenceTd"><p>&gt;=4</p></td><td class="confluenceTd"><p>Random node</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p>Changed block placement algorithm</p></td></tr><tr><td class="confluenceTd"><p><strong>Replica</strong></p></td><td class="confluenceTd"><p><strong>Rule</strong></p></td></tr><tr><td class="confluenceTd"><p>1</p></td><td class="confluenceTd"><p>Client Local if client is datanode, or random node who shares the same rack with client if client is not a datanode</p></td></tr><tr><td class="confluenceTd"><p>2</p></td><td class="confluenceTd"><p>Random node whose rack is different from replica 1</p></td></tr><tr><td class="confluenceTd"><p>3</p></td><td class="confluenceTd"><p>Random node who shares the same rack with replica 2</p></td></tr><tr><td class="confluenceTd"><p>&gt;=4</p></td><td class="confluenceTd"><p>Random node</p></td></tr></tbody></table></div><h3 id="PivotalHDStack-OtherComponents-Usage">Usage</h3><p>The client rack aware feature is disabled by default. To enable, add the following to the <code>hdfs-site.xml</code> file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;properties&gt;
+ &lt;property&gt;
+   &lt;name&gt;dfs.rackawareness.with.client&lt;/name&gt;
+   &lt;value&gt;true&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;/properties&gt;
+ &lt;properties&gt;
+ &lt;property&gt;
+   &lt;name&gt;dfs.rackawareness.with.client.blacklist.size&lt;/name&gt;
+   &lt;description&gt;Black list size of client cache, 5000 by default.&lt;/description&gt;
+   &lt;value&gt;5000&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;/properties&gt;
+ &lt;properties&gt;
+ &lt;property&gt;
+   &lt;name&gt;dfs.rackawareness.with.client.cache.size&lt;/name&gt;
+  &lt;description&gt;White list size of client cache, best set it equals 
+   the size of cluster. 2000 by default.&lt;/description&gt;
+   &lt;value&gt;2000&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;/properties&gt;</pre>
+</div></div><p><br/> Note that you need to restart DFS after changing the configuration.</p><p><span class="confluence-anchor-link" id="PivotalHDStack-OtherComponents-Vaidya"></span></p><h2 id="PivotalHDStack-OtherComponents-Vaidya">Vaidya</h2><h3 id="PivotalHDStack-OtherComponents-Overview">Overview</h3><p>Vaidya is a diagnostic tool installed with PHD for Map/Reduce jobs. After a job is executed successfully, it uses a job history log and job configuration information to identify any performance or scalability problems with the job. Upon execution, it provides a job analysis report indicating specific problems with the job along with the remedy to correct them. The report element includes, "rule title", "rule description",  "rule importance", "rule severity", "reference details" and "remedy/prescription" to rectify the problem. The "rule severity", is a product of rule impact and the rule importance.</p><p><strong>Note: </strong>The Vaidya tool does <em>not</em> analyze failed jobs either for performance or scalability problems nor for the reasons of failure.</p><p>The Vaidya tool includes diagnostic rules (also referred to as "tests") where each rule analyzes a specific problem with the M/R job. Diagnostic rule is written as a Java class and captures the logic of how to detect a specific problem condition with the M/R job. Each diagnostic rule takes job history log and job configuration information provided to it using a standard structured interface. The standard interface allows administrators and developers to independently add more diagnostic rules in the Vaidya tool.</p><p>Note that Vaidya is installed together with PHD and is by default enabled. No additional installation and configuration needed.</p><p>Note that Vaidya is not available if you are deploying a MR1-based cluster.</p><h3 id="PivotalHDStack-OtherComponents-InstallingVaidyaFiles">Installing Vaidya Files</h3><p>By default, Vaidya files are installed at:</p><ul><li>The Vaidya JAR library is installed into <code>/usr/lib/gphd/hadoop-mapreduce/</code></li><li>The Vaidya default test configuration file is installed into <code>/etc/gphd/hadoop/conf/</code></li></ul><h3 id="PivotalHDStack-OtherComponents-EnablingandDisablingVaidya">Enabling and Disabling Vaidya</h3><p>By default, Vaidya is enabled after installation, there is normally no need to enable it manually.</p><h4 id="PivotalHDStack-OtherComponents-EnablingVaidya">Enabling Vaidya</h4><p>In cases where Vaidya is not enabled and you want to enable it explicitly:</p><p>On the job tracker node, go to the PHD configuration folder (by default, <code>/etc/gphd/hadoop/conf</code>), and add the following lines into the file <code>mapred-site.xml</code>.</p><p><strong>mapred-site.xml</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;mapreduce.vaidya.enabled&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+ &lt;name&gt;mapreduce.vaidya.jarfiles&lt;/name&gt;
+ &lt;value&gt;/usr/lib/gphd/hadoop-mapreduce/hadoop-vaidya-default.jar&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+ &lt;name&gt;mapreduce.vaidya.testconf.file&lt;/name&gt;
+ &lt;value&gt;/etc/gphd/hadoop/conf/postex_diagnosis_tests.xml&lt;/value&gt;
+ &lt;/property&gt;</pre>
+</div></div><h4 id="PivotalHDStack-OtherComponents-DisablingVaidya">Disabling Vaidya</h4><p>To disable Vaidya:</p><p>Set the property <code>mapreduce.vaidya.enabled</code> value to be <code>false</code>, or remove these lines from <code>mapred-site.xml</code>.</p><ul><li>The value of property mapreduce.vaidya.enabled should be changed to point to the correct jar file you installed. By default, this is<code> /usr/lib/gphd/hadoop/contrib/vaidya/hadoop-vaidya-&lt;HADOOP_PHD_VERSION&gt;.jar</code> or <code>/usr/lib/gphd/hadoop-mapreduce/hadoop-vaidya-&lt;HADOOP_PHD_VERSION&gt;.jar</code>.</li><li>Once you edit the xml file, restart the job history server service to ensure the change takes effect.</li></ul><h3 id="PivotalHDStack-OtherComponents-UsingVaidyatoAnalyzeJobs">Using Vaidya to Analyze Jobs</h3><p>To use Vaidya with PHD 1.1.x and to ensure your job history server service is running:</p><ol><li>Successfully run a map-reduce job for Vaidya to analyze. Refer to <em>Pivotal HD Enterprise 1.1 Installation and Administrator Guide</em> for instructions about how to run map-reduce job with PHD.</li><li>Ensure your job history server service is running.</li><li>Open the following URL in a web browser: <code> <code>http://&lt;historyserver_host&gt;:&lt;historyserver_port&gt;/jobhistory<br/> </code> </code><p>Where:</p><ul><li><code>&lt;historyserver_host&gt;</code> refers to the host name or IP address of the machine where you run job history server service.</li><li><code>&lt;historyserver_port&gt;</code> refers to the HTTP port job history server web where the UI listens. By default, this value is 19888. Your browser should show you the job history server UI page.</li></ul><code> <br/> </code></li><li>You will see a list of jobs that have run, including the most recent job. Click the job id of any job in this list, and you should see the detailed information of the job.</li><li><p>On the left side of the navigation area, there should be a link called <strong>Vaidya report</strong> under the navigation item <strong>Job</strong>. Click the <strong>Vaidya report</strong> link and Vaidya will analyze the job for <strong>you and show a report.</strong></p></li></ol><h3 id="PivotalHDStack-OtherComponents-VaidyaConfigurationRules">Vaidya Configuration Rules</h3><p>After you installed Vaidya with PHD, rules configuration is installed as a <code>postex_diagnosis_tests.xml</code> XML file, here: <code>/etc/gphd/hadoop/conf</code></p><p>You can find all rules to be run on a selected job in that XML file, where each rule is defined as an XML <code>PostExPerformanceDiagnosisTests/DiagnosticTest</code> element, for example:</p><p>A rule in <code>postex_diagnosis_tests.xml</code></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;DiagnosticTest&gt;
+ &lt;Title&gt;&lt;![CDATA[Balanced Reduce Partitioning]]&gt;&lt;/Title&gt;
+ &lt;ClassName&gt;
+ &lt;![CDATA[org.apache.hadoop.vaidya.postexdiagnosis.tests.BalancedReducePartitioning]]&gt;&lt;/ClassName&gt;
+ &lt;Description&gt;&lt;![CDATA[This rule tests as to how well the input to reduce tasks is balanced]]&gt;&lt;/Description&gt;
+ &lt;Importance&gt;&lt;![CDATA[High]]&gt;&lt;/Importance&gt;
+ &lt;SuccessThreshold&gt;&lt;![CDATA[0.40]]&gt;&lt;/SuccessThreshold&gt;
+ &lt;Prescription&gt;&lt;![CDATA[advice]]&gt;&lt;/Prescription&gt;
+ &lt;InputElement&gt;
+ &lt;PercentReduceRecords&gt;&lt;![CDATA[85]]&gt;&lt;/PercentReduceRecords&gt;
+ &lt;/InputElement&gt;
+ &lt;/DiagnosticTest&gt;</pre>
+</div></div><p><br/> The <code>Title</code> and <code>Description</code> elements provide a brief summary about what this rule is doing.</p><p>By editing <code>postex_diagnosis_tests.xml</code>, you can configure the rules.</p><p><strong>Notes</strong>:</p><ul><li>Remember to backup original configuration file before editing the configuration file, invalid xml config file may cause Vaidya behavior incorrectly.</li><li>Before you start editing rules, you should have background knowledge about XML syntax and how XML represents data (for example, what the CDATA element represents).</li></ul><h4 id="PivotalHDStack-OtherComponents-DisablingaRule">Disabling a Rule</h4><p>Comment out or remove the whole DiagnosticTest element.</p><h4 id="PivotalHDStack-OtherComponents-ChangingtheImportanceofaRule">Changing the Importance of a Rule</h4><p>Importance indicates how relatively important a rule is, relative to other rules in the same set. You can change the importance value by editing Importance element in the XML file. A level served as a factor which is multiplied to impact value returned by each rule.</p><p>There are three values valid for this attribute: Low, Medium and High; their corresponding values are: 0.33, 0.66 and 0.99.</p><p>In the displayed Vaidya report, there is a value named Severity for each rule. A severity level is the result of multiplying the impact value (returned by rule) and the importance factor (defined in XML file).</p><p>For example, a rule returns impact of 0.5, its importance is marked as Medium, then its severity is 0.5 * 0.66 = 0.33.</p><h4 id="PivotalHDStack-OtherComponents-ChangingSuccessThreshold">Changing Success Threshold</h4><p>Each rule calculates a value between 0 and 1 (inclusively) to indicate how healthy a job is according to the given rule, this value is called impact. The smaller the impact is (that is, closer to 0), the healthier the job is.</p><p>To give a more straight forward result, you can set a threshold for each rule, therefore a rule whose impact value is larger than the threshold will be marked as "failed", otherwise, it is marked as "passed".</p><p>Note that threshold is compared with impact value, rather than severity (which means make a rule less important will not make a failed rule succeed).</p><p>You can change the threshold value by editing the SuccessThreshold element in the XML file.</p><h4 id="PivotalHDStack-OtherComponents-ChangingInputParameters">Changing Input Parameters</h4><p>Some rules may need additional input parameters to complete their logic. You can specify additional parameters by editing/adding elements under the InputElement element of each rule.</p><h4 id="PivotalHDStack-OtherComponents-Other">Other</h4><p>For a full explanation and instruction about the meaning of each XML element and how to change them, refer the Apache's Official <a class="external-link" href="https://hadoop.apache.org/docs/stable1/vaidya.html" rel="nofollow"> Vaidya Guide </a> for more information.</p><h4 id="PivotalHDStack-OtherComponents-AddingaNewRule">Adding a New Rule</h4><p>A Vaidya rule consists of the following two parts:</p><ul><li>A java class that consists of the logic of the rule</li><li>A paragraph of XML in the configuration file</li></ul><h4 id="PivotalHDStack-OtherComponents-CreatingaJavaBinaryforaNewRule">Creating a Java Binary for a New Rule</h4><p><strong>Important</strong>: This section assumes a working knowledge of how to write, compile, and package Java code.</p><ol><li>From where you installed PHD, download the correct <code>hadoop-vaidya-&lt;HADOOP_PHD_VERSION&gt;.jar</code> file (which you specified in<code> mapred-site.xml</code>) to your development machine, if you plan on writing Java code on another machine than the one where you installed PHD (This is a typical case).</li><li><p>Create a java file with an IDE or editor, which defines a class that extends the <code>org.apache.hadoop.vaidya.DiagnosticTest</code> class:<br/> <strong>myrule.java</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">package com.greenplum.vaidya.rules;
+ import org.apache.hadoop.vaidya.DiagnosticTest;
+ import org.apache.hadoop.vaidya.statistics.job.JobStatistics;
+ public class MyRule extends DiagnosticTest {
+ @Override
+ public String getReferenceDetails() {
+ return "";
+ }
+ @Override
+ public String getPrescription() {
+ return "";
+ }
+ @Override
+ public double evaluate(JobStatistics jobStatistics) {
+ return 0.5;
+ }
+ }</pre>
+</div></div></li><li><p>Edit the three methods <code>getReferenceDetails</code>, <code>getPrescription</code> and evaluate to construct the logic.evaluate method should return a <strong>double</strong> value between 0.0 and 1.0 and represents the impact as the analysis result.</p><ul><li><code>getPrescription</code> method should return some text providing user suggestions/remedies about how to optimize your Map/Reduce configuration accordingly.</li><li><code>getReferenceDetails</code> method should return some text indicating the meaningful counters and their values which can help you to diagnose your Map/Reduce configuration accordingly.</li></ul></li><li><p>Compile the java class and package compiled class to a jar file, for example, <code>myrule.jar</code>. Note that you need to put the Vaidya jar file you just downloaded into your class path to make your code compile.</p></li></ol><h4 id="PivotalHDStack-OtherComponents-CreatingXMLConfigurationForaNewRule">Creating XML Configuration For a New Rule</h4><p>Add a <code>DiagnosticTest</code> element into the<code> postex_diagnosis_tests.xml</code> file (the file you set in <code>mapred-site.xml</code> file), according to the sample given in the configuration part. Ensure the value of <code>ClassName</code> element is set to be the full class name of the java rule class you just created.</p><h4 id="PivotalHDStack-OtherComponents-Deployingfiles">Deploying files</h4><ol><li>Upload the packaged jar file (<code>myrule.jar</code> for example) to the node where you installed PHD job tracker, and store it in a folder where hadoop service has the permission to read and load it. We recommend you place it under <code>/usr/lib/gphd/hadoop-mapreduce/lib/</code></li><li><p>Edit<code> mapred-site.xml</code>, append the jar file you just uploaded to the<code> mapred.vaidya.jar</code>.file or <code>mapreduce.vaidya.jar</code>files property value, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">mapred-site.xml
+ &lt;property&gt;
+ &lt;name&gt;mapreduce.vaidya.jarfiles&lt;/name&gt;
+ &lt;value&gt;/usr/lib/gphd/hadoop-mapreduce/hadoop-vaidya-2.0.2-alpha-gphd-2.0.1.0.jar:/usr/lib/gphd/hadoop-mapreduce/lib/myrule.jar&lt;/value&gt;
+ &lt;/property&gt;</pre>
+</div></div></li></ol><p><strong>Important</strong>:</p><ul><li>Do not remove the default Vaidya jar file from this property, Vaidya needs this property to load basic Vaidya classes to make it run.</li><li>Multiple jar files are separated by different separator characters on different platforms. On the Linux/Unix platform, the ":" character should be used. You can look at <code>theFile.pathSeparator</code> attribute of your java platform to ensure it.</li><li>To make your settings take affect, restart job history server service.</li></ul><p><span class="confluence-anchor-link" id="PivotalHDStack-OtherComponents-DataLoader"></span></p><h2 id="PivotalHDStack-OtherComponents-DataLoader">DataLoader</h2><p>See the <em>Pivotal DataLoader Installation and User Guide</em> for detailed information</p>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

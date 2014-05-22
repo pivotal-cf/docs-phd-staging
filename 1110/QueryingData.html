@@ -1,0 +1,651 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>Querying Data | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>Querying Data</h1><div class="wiki-content group" id="main-content">
+<p align="LEFT">This chapter describes the use of the SQL language in Pivotal HAWQ Database. SQL commands are typically entered using the standard PostgreSQL interactive terminal psql, but other programs that have similar functionality can be used as well.</p><ul><li>Defining Queries</li><li>Using Functions and Operators</li></ul><h2 id="QueryingData-DefiningQueries">Defining Queries</h2><p align="LEFT">A query is a SQL command that views, changes or analyzes the data in a database. This section describes how to construct SQL queries in HAWQ Database.</p><ul><li>SQL Lexicon</li><li>SQL Value Expressions</li></ul><h3 id="QueryingData-SQLLexicon">SQL Lexicon</h3><p align="LEFT">SQL (structured query language) is the language used to access the database. The SQL language has a specific lexicon (words, special characters, etc.) used to construct queries or commands that the database engine can understand.</p><p align="LEFT">SQL input consists of a sequence of commands. A command is composed of a sequence of tokens, terminated by a semicolon (;). Which tokens are valid depends on the syntax of the particular command. The syntax rules for each command are described in  the chapter, SQL Command Reference.</p><p>HAWQ Database is based on PostgreSQL and adheres to the same SQL structure and syntax (with some minor exceptions). In most cases, the syntax is identical to PostgreSQL, however some commands may have additional or restricted syntax in HAWQ Database. For a complete explanation of the SQL rules and concepts as implemented in PostgreSQL, see SQL Syntax in the PostgreSQL documentation.</p><h3 id="QueryingData-SQLValueExpressions">SQL Value Expressions</h3><p align="LEFT">Value expressions are used in a variety of contexts, such as in the target list of the SELECT command, as new column values in INSERT or UPDATE, or in search conditions in a number of commands. The result of a value expression is sometimes called a <em>scalar</em>, to distinguish it from the result of a table expression (which is a table). Value expressions are therefore also called scalar expressions (or even simply expressions). The expression syntax allows the calculation of values from primitive parts using arithmetic, logical, set, and other operations.</p><p align="LEFT">Pivotal HAWQ supports the following value expressions:</p><ul><li>A function call</li><li>An aggregate expression</li><li>A window expression</li><li>A scalar subquery</li></ul><p align="LEFT">Another value expression in parentheses, useful to group subexpressions and override precedence.</p><p>In addition to this list, there are a number of constructs that can be classified as an expression but do not follow any general syntax rules. These generally have the semantics of a function or operator and are explained in <a href="#QueryingData-UsingFunctionsandOperators">Using Functions and Operators</a>.</p><h4 id="QueryingData-FunctionCalls">Function Calls</h4><p>The syntax for a function call is the name of a function (possibly qualified with a schema name), followed by its argument list enclosed in parentheses:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">function
+([expression  [, expression  ... ]] )</pre>
+</div></div><p align="LEFT">For example, the following function call computes the square root of 2:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">sqrt(2)</pre>
+</div></div><p align="LEFT">The list of built-in functions is listed in <a href="#QueryingData-Built-inFunctionsandOperators">Built-in Functions and Operators</a>. Other functions may be added by the user.</p><h4 id="QueryingData-AggregateExpressions">Aggregate Expressions</h4><p align="LEFT">An aggregate expression represents the application of an aggregate function across the rows selected by a query. An aggregate function reduces multiple inputs to a single output value, such as the sum or average of the inputs. The syntax of an aggregate expression is one of the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">aggregate_name (expression [ , ... ] ) [FILTER (WHERE condition)]
+aggregate_name (ALL expression [ , ... ] ) [FILTER (WHERE condition)]
+aggregate_name (DISTINCT expression [ , ... ] ) [FILTER (WHERE condition)]
+aggregate_name ( * ) [FILTER (WHERE condition)]</pre>
+</div></div><p align="LEFT">Where <em>aggregate_name </em><span style="font-size: medium;"> </span>is a previously defined aggregate (possibly qualified with a schema name), and <em>expression </em><span style="font-size: medium;"> </span>is any value expression that does not itself contain an aggregate expression.</p><p align="LEFT">The first form of aggregate expression invokes the aggregate across all input rows for which the given expression(s) yield non-null values. The second form is the same as the first, since ALL is the default. The third form invokes the aggregate for all distinct non-null values of the expressions found in the input rows. The last form invokes the aggregate once for each input row regardless of null or non-null values; since no particular input value is specified, it is generally only useful for the count(*) aggregate function.</p><p align="LEFT">For example, count(*) yields the total number of input rows; count(f1) yields the number of input rows in which f1 is non-null; count(distinct f1) yields the number of distinct non-null values of f1.</p><p>The FILTER clause allows you to specify a condition to limit the input rows to the aggregate function. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">SELECT count(*) FILTER (WHERE gender='F') FROM employee;</pre>
+</div></div><p>The WHERE <em>condition </em><span style="font-size: small;"> </span>of the FILTER clause cannot contain a set returning function, subquery, a window function, or an outer reference. If using a user-defined aggregate function, the state transition function must be declared as STRICT (see CREATE AGGREGATE).</p><p>The predefined aggregate functions are described in Aggregate Functions. Other aggregate functions may be added by the user.</p><p>An aggregate expression may only appear in the result list or HAVING clause of a SELECT command. It is forbidden in other clauses, such as WHERE, because those clauses are logically evaluated before the results of aggregates are formed.</p><p>When an aggregate expression appears in a subquery (see "Scalar Subqueries" on page 119 and "Subquery Expressions" on page 126), the aggregate is normally evaluated over the rows of the subquery. But an exception occurs if the aggregate’s arguments contain only outer-level variables: the aggregate then belongs to the nearest such outer level, and is evaluated over the rows of that query. The aggregate expression as a whole is then an outer reference for the subquery it appears in, and acts as a constant over any one evaluation of that subquery. The restriction about appearing only in the result list or HAVING clause applies with respect to the query level that the aggregate belongs to.</p><p>Pivotal HAWQ Database currently does not support DISTINCT with more than one input expression.</p><h4 id="QueryingData-WindowExpressions">Window Expressions</h4><p>Window expressions allow application developers to more easily compose complex online analytical processing (OLAP) queries using standard SQL commands. For example, moving averages or sums can be calculated over various intervals; aggregations and ranks can be reset as selected column values change; and complex ratios can be expressed in simple terms.</p><p>A window expression represents the application of a <em>window function </em><span style="font-size: medium;"> </span>applied to a <em>window frame</em><span style="font-size: medium;"> </span>, which is defined in a special OVER() clause. A window partition is a set of rows that are grouped together for the purpose of applying an window function. Unlike aggregate functions, which return a result value for each group of rows, window functions return a result value for every row, but that value is calculated with respect to the rows in a particular window partition. If no partition is specified, the window function is computed over the complete intermediate result set.</p><p align="LEFT">The syntax of a window expression is:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">window_function ( [expression [, ...]] ) OVER ( window_specification )</pre>
+</div></div><p>Where <em>window_function </em><span style="font-size: medium;"> </span>is one of the functions listed in "Window Functions" on page 126, <em>expression </em><span style="font-size: medium;"> </span>is any value expression that does not itself contain a window expression, and <em>window_specification </em><span style="font-size: medium;"> </span>is:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">[window_name]
+[PARTITION BY expression [, ...]]
+[[ORDER BY expression [ASC | DESC | USING operator] [, ...] 
+[{RANGE | ROWS} 
+	{ UNBOUNDED PRECEDING　
+　	| expression PRECEDING 
+	| CURRENT ROW 
+	| BETWEEN window_frame_bound AND window_frame_bound }]] 
+and where window_frame_bound can be one of: 
+UNBOUNDED PRECEDING 
+expression PRECEDING 
+CURRENT ROW 
+expression FOLLOWING 
+UNBOUNDED FOLLOWING</pre>
+</div></div><p><span style="font-size: medium;">A window expression may only appear in the select list of a </span><span style="font-family: Courier New , Courier New;font-size: small;"><span style="font-family: Courier New , Courier New;font-size: small;">SELECT </span></span><span style="font-size: medium;">command. For example:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;"> SELECT count(*) OVER(PARTITION BY customer_id), * FROM sales;</pre>
+</div></div><p align="LEFT">The OVER clause is what differentiates window functions from other aggregate or reporting functions. The OVER clause defines the <em>window_specification </em><span style="font-size: small;"> </span>to which the window function is applied. A window specification has the following characteristics:</p><ul><li>The PARTITION BY clause, which defines the window partitions to which the window function is applied. If omitted, the entire result set is treated as one partition.</li><li>The ORDER BY clause defines the expression(s) for sorting rows within a window partition. Note that the ORDER BY of a window specification is separate and distinct from the ORDER BY clause of a regular query expression (see The ORDER BY Clause, under SELECT). The ORDER BY clause is required for the window functions that calculate rankings, as it identifies the measure(s) for the ranking values. For OLAP aggregations, the ORDER BY clause is required in order to use window frames (the ROWS | RANGE clause). <strong>Note: </strong><span style="font-size: medium;"> </span>Columns of data types that lack a coherent ordering, such as time, are not good candidates for use in the ORDER BY clause of a window specification. Time, with or without time zone, lacks a coherent ordering because addition and subtraction do not have the expected effects. For example, the following is not generally true: x::time &lt; x::time + '2 hour'::interval</li><li><span style="font-size: small;"> </span>The ROWS/RANGE clause is used to define a window frame for aggregate (non-ranking) window functions. A window frame defines a set of rows within a window partition. When a window frame is defined, the window function is computed with respect to the contents of this moving frame rather than the fixed contents of the entire window partition. Window frames can be row-based (ROWS) or value-based (RANGE).</li></ul><h4 id="QueryingData-ScalarSubqueries">Scalar Subqueries</h4><p>A scalar subquery is an ordinary SELECT query in parentheses that returns exactly one row with one column. The SELECT query is executed and the single returned value is used in the surrounding value expression. It is an error to use a query that returns more than one row or more than one column as a scalar subquery. A scalar subquery is correlated if it contains references to the outer query block.<span style="font-size: medium;"> </span></p><h2 id="QueryingData-UsingFunctionsandOperators">Using Functions and Operators</h2><ul><li>Functions in HAWQ</li><li>User-Defined Functions</li><li>Built-in Functions and Operators</li></ul><h3 id="QueryingData-FunctionsinHAWQ">Functions in HAWQ</h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Function Type</th><th class="confluenceTh">Pivotal Support</th><th class="confluenceTh">Description</th><th class="confluenceTh">Comments</th></tr><tr><td class="confluenceTd">IMMUTABLE</td><td class="confluenceTd">Yes</td><td class="confluenceTd"><p align="LEFT">Relies only on information directly in its argument list. Given the same argument values, always returns the same result.</p></td><td class="confluenceTd"> </td></tr><tr><td class="confluenceTd">STABLE</td><td class="confluenceTd">Yes, in most cases</td><td class="confluenceTd"><p align="LEFT">Within a single table scan, returns the same result for same argument values, but results change across SQL statements.</p></td><td class="confluenceTd"><p align="LEFT">Results depend on database lookups or parameter values. current_timestamp family of functions is STABLE; values do not change within an execution.</p></td></tr><tr><td class="confluenceTd">VOLATILE</td><td class="confluenceTd">Restricted</td><td class="confluenceTd"><p align="LEFT">Function values can change within a single table scan. For example: random(), currval(), timeofday().</p></td><td class="confluenceTd"><p align="LEFT">Any function with side effects is volatile, even if its result is predictable. For example: setval()</p></td></tr></tbody></table></div><p align="LEFT">Data is divided up across segments — each segment is a distinct PostgreSQL database. To prevent inconsistent or unexpected results, do not execute functions classified as VOLATILE at the segment level if they contain SQL commands or modify the database in any way. For example, functions such as setval() are not allowed to execute on distributed data because they can cause inconsistent data between segment instances. To ensure data consistency, you can safely use VOLATILE and STABLE functions in statements that are evaluated on and run from the master. For example, the following statements run on the master (statements without a FROM clause):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">SELECT setval('myseq', 201);
+SELECT foo();</pre>
+</div></div><p align="LEFT">If a statement has a FROM clause containing a distributed table and the function in the FROM clause returns a set of rows, the statement can run on the segments:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">SELECT * from foo();</pre>
+</div></div><h3 id="QueryingData-User-DefinedFunctions">User-Defined Functions</h3><p align="LEFT">HAWQ supports user-defined functions. See Extending SQL in the PostgreSQL documentation for more information.</p><p align="LEFT">Use the CREATE FUNCTION command to register user-defined functions that are used as described in “Using Functions in HAWQ”. By default, user-defined functions are declared as VOLATILE, so if your user-defined function is IMMUTABLE or STABLE, you must specify the correct volatility level when you register your function.</p><p align="LEFT">When you create user-defined functions, avoid using fatal errors or destructive calls. HAWQ may respond to such errors with a sudden shutdown or restart.</p><p align="LEFT">In HAWQ, the shared library files for user-created functions must reside in the same library path location on every host in the HAWQ array (masters, segments, and mirrors).</p><p align="LEFT">Additionally, HAWQ supports the following properties for user defined functions.  These properties can be appended to CREATE FUNCTION statement.</p><ul><li>If a UDF does not contain any SQl at all, use: <strong>NO SQL</strong> (this is the default)</li><li>If a UDF contains SQL which does not access any data (e.g. SELECT 1+2;), use: <strong>CONTAINS SQL</strong></li><li>If a UDF only <span>executes select queries on data, or calls other UDFs that query data (I think this is what you are asking about), use: <strong>READS SQL DATA</strong></span></li><li><span>If a UDF modifies the data (contains DML or DDL, or calls other UDFs that contain DDL or DML), use: <strong>MODIFIES SQL DATA</strong></span></li></ul><p><span>In order to maintain consistency, specifying MODIFIES SQL DATA and READS SQL DATA force the UDF to execute on the master. </span></p><p><strong>Important:</strong> HAWQ does not support the following:</p><ul><li>SECURITY DEFINER when creating functions</li><li>Set returning functions</li><li>TABLE functions</li><li>Nested functions error out during execution</li><li>User-Defined base type</li><li>SORTOP</li><li>Window functions</li><li>ALTER set encoding, set schema, rename</li></ul><h3 id="QueryingData-Built-inFunctionsandOperators">Built-in Functions and Operators</h3><p align="LEFT">The following table lists the categories of built-in functions and operators supported by PostgreSQL. All functions and operators are supported in HAWQ as in PostgreSQL with the exception of STABLE and VOLATILE functions, which are subject to the restrictions noted in <a href="#QueryingData-User-DefinedFunctions">User-Defined Functions</a>. See the Functions and Operators section of the PostgreSQL documentation for more information about these built-in functions and operators.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Operator/Function</th><th class="confluenceTh">Volatile</th><th class="confluenceTh">Stable</th></tr><tr><td class="confluenceTd">Logical operators</td><td class="confluenceTd"> </td><td class="confluenceTd"> </td></tr><tr><td class="confluenceTd">Comparison operators</td><td class="confluenceTd"> </td><td class="confluenceTd"> </td></tr><tr><td class="confluenceTd">Mathematical Functions and Operators</td><td class="confluenceTd">random<br/>setseed</td><td class="confluenceTd"> </td></tr><tr><td class="confluenceTd">String Functions and Operators</td><td class="confluenceTd"> All built-in conversion functions</td><td class="confluenceTd"><p>convert<br/>pg_client_encoding</p><p> </p></td></tr><tr><td class="confluenceTd">Binary String Functions and Operators</td><td class="confluenceTd"> </td><td class="confluenceTd"> </td></tr><tr><td class="confluenceTd">Bit String Functions and Operators</td><td class="confluenceTd"> </td><td class="confluenceTd"> </td></tr><tr><td class="confluenceTd">Pattern Matching</td><td class="confluenceTd"> </td><td class="confluenceTd"> </td></tr><tr><td class="confluenceTd">Data Type Formatting Functions</td><td class="confluenceTd"> </td><td class="confluenceTd">to_char<br/>to_timestamp</td></tr><tr><td class="confluenceTd" colspan="1">Date/Time Functions and Operators</td><td class="confluenceTd" colspan="1"> timeofday</td><td class="confluenceTd" colspan="1">age<br/>current_date<br/>current_time<br/>current_timestamp<br/>ocaltime<br/>localtimestamp<br/>now </td></tr><tr><td class="confluenceTd" colspan="1"> Geometric Functions ad Operators</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1"> Network Address Functions and Operators</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1"> Sequence Manipulation Functions</td><td class="confluenceTd" colspan="1">currval<br/>lastval<br/>nextval<br/>setval </td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1"> Conditional Expressions</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1"> Array Functions and Operators</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1">All array functions </td></tr><tr><td class="confluenceTd" colspan="1">Aggregate Functions </td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1"> Subquery Expressions</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1"> Row and Array Comparisons</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1">Set Returning Functions </td><td class="confluenceTd" colspan="1">generate_series </td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1">System Information Functions </td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><p>All session information functions<br/>All access privilege inquiry functions<br/>All schema visibility inquiry functions<br/>All comment information functions </p></td></tr><tr><td class="confluenceTd" colspan="1">System Administration Functions</td><td class="confluenceTd" colspan="1"><p align="LEFT">set_config<br/>pg_cancel_backend<br/>pg_reload_conf<br/>pg_rotate_logfile<br/>pg_start_backup<br/>pg_stop_backup<br/>pg_size_pretty<br/>pg_ls_dir<br/>pg_read_file<br/>pg_stat_file </p></td><td class="confluenceTd" colspan="1"><p align="LEFT">current_setting<br/>All database object size functions</p><span style="font-size: xx-small;"> </span> </td></tr><tr><td class="confluenceTd" colspan="1"> XML Functions</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><p align="LEFT">xmlagg(xml)<br/>xmlexists(text, xml)<br/>xml_is_well_formed(text)<br/>xml_is_well_formed_document(text)<br/>xml_is_well_formed_content(text)<br/>xpath(text, xml)<br/>xpath(text, xml, text[])<br/>xpath_exists(text, xml)<br/>xpath_exists(text, xml, text[])<br/>xml(text)<br/>text(xml)<br/>xmlcomment(xml)<br/>xmlconcat2(xml, xml) </p></td></tr></tbody></table></div><h4 id="QueryingData-AdvancedAnalyticFunctions">Advanced Analytic Functions </h4><p>HAWQ has the following built-in advanced analytic functions that are not available in PostgreSQL. All of these analytic functions are <em>immutable </em><span style="font-size: medium;"> </span>functions</p><p><strong>Table: Advanced Analytic Functions</strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Function</th><th class="confluenceTh">Return Type</th><th class="confluenceTh">Full Syntax</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd"><p align="LEFT">matrix_add<br/>(array[],<br/>array[])</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">smallint[]<br/>int[], <br/>bigint[], <br/>float[]</p></td><td class="confluenceTd"><p align="LEFT">matrix_add(<br/>array[[1,1],[2,2]], <br/>array[[3,4],[5,6]])</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">Adds two two-dimensional matrices. The matrices must be conformable.</p><p align="LEFT"> </p></td></tr><tr><td class="confluenceTd"><p align="LEFT">matrix_multiply(<br/>array[],<br/> array[])</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">smallint[]<br/> int[], <br/>bigint[], <br/>float[]</p></td><td class="confluenceTd"><p align="LEFT">matrix_multiply(<br/>array[[2,0,0],[0,2,0],[0,0,2]], <br/>array[[3,0,3],[0,3,0],[0,0,3]])</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">Multiplies two three- dimensional arrays. The matrices must be conformable.</p><p align="LEFT"> </p></td></tr><tr><td class="confluenceTd"><p align="LEFT">matrix_multiply<br/>(array[], <em>expr</em><span style="font-size: xx-small;"> </span>)</p></td><td class="confluenceTd"><p align="LEFT">int[], <br/>float[]</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">matrix_multiply(<br/>array[[1,1,1], [2,2,2], [3,3,3]], 2)</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">Multiplies a two-dimensional array and a scalar numeric value.</p><p align="LEFT"> </p></td></tr><tr><td class="confluenceTd"><p align="LEFT">matrix_transpose(<br/>array[])</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">Same as input array type.</p></td><td class="confluenceTd"><p align="LEFT">matrix_transpose(<br/>array [[1,1,1],[2,2,2]])</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">Transposes a two-dimensional array.</p><p align="LEFT"> </p></td></tr><tr><td class="confluenceTd"><p align="LEFT">pinv(array[]) </p></td><td class="confluenceTd"><p align="LEFT">smallint[]<br/>int[], <br/>bigint[], <br/>float[]</p></td><td class="confluenceTd"><p align="LEFT">pinv(<br/>array[[2.5,0,0],[0,1,0],[0,0,.5]])</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">Calculates the Moore-Penrose pseudoinverse of a matrix.</p><p align="LEFT"> </p></td></tr><tr><td class="confluenceTd"><p align="LEFT">unnest (array[])</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">set of anyelement</p></td><td class="confluenceTd"><p align="LEFT">unnest(<br/>array['one', 'row', 'per', 'item'])</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">Transforms a one dimensional array into rows. Returns a set of anyelement, <br/>a polymorphic pseudotype in PostgreSQL.</p></td></tr></tbody></table></div><p><strong>Table: Advanced Aggregate Functions</strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Function</th><th class="confluenceTh">Return Type</th><th class="confluenceTh">Full Syntax</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd"><p align="LEFT">sum(<br/>array[])</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">smallint[]<br/>int[], <br/>bigint[], <br/>float[]</p></td><td class="confluenceTd">sum(array[[1,2],[3,4]])<br/>Example:<br/>CREATE TABLE mymatrix (myvalue int[]);<br/>INSERT INTO mymatrix VALUES (<br/>array[[1,2],[3,4]]);<br/>INSERT INTO mymatrix VALUES (<br/>array[[0,1],[1,0]]);<br/>SELECT sum(myvalue) FROM mymatrix;<br/>sum<br/>---------------<br/>{{1,3},{4,4}} </td><td class="confluenceTd"><p align="LEFT">Performs matrix summation. Can take as input a <br/>two-dimensional array that is treated as a matrix.</p><p align="LEFT"> </p></td></tr><tr><td class="confluenceTd"><p align="LEFT">pivot_sum(<br/>label[], <br/>label, <em>expr</em><span style="font-size: xx-small;"> </span>)</p></td><td class="confluenceTd"><p align="LEFT">int[], <br/>bigint[], <br/>float[]</p></td><td class="confluenceTd"><p align="LEFT">pivot_sum(array['A1','A2'], attr, value)</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">A pivot aggregation using sum to resolve duplicate entries.</p><p align="LEFT"> </p></td></tr><tr><td class="confluenceTd"><p align="LEFT">mregr_coef(<br/><em>expr</em><span style="font-size: xx-small;"> </span>, array[])</p></td><td class="confluenceTd"><p align="LEFT">float[]</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">mregr_coef(y, array[1, x1, x2])</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">The four mregr_* aggregates perform linear regressions using <br/>the ordinary-least-squares method. mregr_coef calculates the<br/> regression coefficients. The size of the return array for mregr_coef<br/> is the same as the size of the input array of independent variables, <br/>since the return array contains the coefficient for each independent <br/>variable.</p></td></tr><tr><td class="confluenceTd"><p align="LEFT">mregr_r2(<br/><em>expr</em><span style="font-size: xx-small;"> </span>, array[])</p></td><td class="confluenceTd">float </td><td class="confluenceTd"><p align="LEFT">mregr_r2(y, array[1, x1, x2])</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">The four mregr_* aggregates perform linear regressions using <br/>the ordinary-least-squares method. mregr_r2 calculates the <br/>r-squared error value for the regression.</p></td></tr><tr><td class="confluenceTd"><p align="LEFT">mregr_pvalues(<br/><em>expr</em><span style="font-size: xx-small;"> </span>, array[])</p></td><td class="confluenceTd">float[] </td><td class="confluenceTd"><p align="LEFT">mregr_pvalues(y, array[1, x1, x2])</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">The four mregr_* aggregates perform linear regressions using <br/>the ordinary-least-squares method. mregr_pvalues calculates the <br/>p-values for the regression.</p></td></tr><tr><td class="confluenceTd"><p align="LEFT">mregr_tstats(<br/><em>expr</em><span style="font-size: xx-small;"> </span>, array[])</p></td><td class="confluenceTd"><p align="LEFT">float[]</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">mregr_tstats(y, array[1, x1, x2])</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">The four mregr_* aggregates perform linear regressions using<br/> the ordinary-least-squares method. mregr_tstats calculates the <br/>t-statistics for the regression.</p></td></tr><tr><td class="confluenceTd"><p align="LEFT">nb_classify(text[], <br/>bigint, <br/>bigint[], <br/>bigint[])</p></td><td class="confluenceTd">text </td><td class="confluenceTd"><p align="LEFT">nb_classify(classes, attr_count, <br/>class_count, <br/>class_total)</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">Classify rows using a Naive Bayes Classifier. This aggregate <br/>uses a baseline of training data to predict the classification of new <br/>rows and returns the class with the largest likelihood of appearing in <br/>the new rows.</p></td></tr><tr><td class="confluenceTd"><p align="LEFT">nb_probabilities(text[], <br/>bigint, <br/>bigint[], <br/>bigint[]) </p></td><td class="confluenceTd">text </td><td class="confluenceTd"><p align="LEFT">nb_probabilities(classes, attr_count, <br/>class_count, class_total)</p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">Determine probability for each class using a Naive Bayes Classifier. <br/>This aggregate uses a baseline of training data to predict the<br/> classification of new rows and returns the probabilities that each<br/> class will appear in new rows.</p></td></tr></tbody></table></div><p><span style="font-size: medium;"> </span> </p><p> </p><p> </p><p> </p>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

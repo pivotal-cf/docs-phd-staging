@@ -1,0 +1,615 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>DataLoader Command Line Interface | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>DataLoader Command Line Interface</h1><div class="wiki-content group" id="main-content">
+<p>The DataLoader command line interface provides direct access to control of the DataLoader functions. </p><h2 id="DataLoaderCommandLineInterface-DirectoryStructure">Directory Structure</h2><p>The files for the DataLoader Command Line Reference are installed in the same folder as DataLoader service. By default the base directory is /usr/local/gphd/dataloader-2.0.1.</p><p>This package has no dependency on other DataLoader components. <br/>The structure of this directory is as follows:</p><p>${dataloader_HOME}/<br/> bin/<br/> conf/<br/> lib/cli<br/> lib/cli/lib</p><p>The bin folder contains the dataloader-cli.sh script.<br/>The conf folder contains the configuration files for this component. <br/>The lib/cli folder contains the dataloader-cli**.jar and the folder lib/cli/lib contains the other required libraries.</p><h2 id="DataLoaderCommandLineInterface-DataLoaderClientUtility">DataLoader Client Utility</h2><p>The DataLoader client utility, dataloader-client.sh, supports multiple commands and associated options.</p><h3 id="DataLoaderCommandLineInterface-CommandFormat:">Command Format:</h3><p>dataloader-cli.sh [COMMAND] [OPTIONS]</p><p>The DataLoader utility supports the following commands:</p><p><strong>submit</strong>: used in submiting DataLoader jobs<br/><strong>suspend</strong>: used to suspend/resume, cancel, or query a job<br/><strong>config</strong>: configures DataLoader instances<br/><strong>pstream</strong>: pushes data from STDIN to Dataloader pushstream job<br/><strong>pcat</strong>: pushes data from the specified file to Dataloader pushstream job<br/><strong>ptail</strong>: pushes data from the specified file to Dataloader pushstream job<br/><strong>scan</strong>: pushes data from specified folder to Dataloader pushstream job<br/><strong>tail</strong>: the command to push data from STDIN to Dataloader pushstream job, has been deprecated.</p><h3 id="DataLoaderCommandLineInterface-dataloader-cli.sh">dataloader-cli.sh</h3><p>This is the DataLoader client utility and commands are given in the following format:</p><p>dataloader-cli.sh [COMMAND] [OPTIONS]</p><p>You must create a specification file before using the submit command to submit the DataLoader job specification.<br/>The DataLoader command requires the following options:</p><pre>$ dataloader-cli.sh submit -i &lt;transfer specification&gt; [-s &lt;strategy&gt;, -m &lt;mapper number&gt;, -b &lt;bandwidth&gt;, -k true|false, -c &lt;chunking size&gt;, -t true|false, -o true|false, -z]</pre><p>Refer to the Submit options and descriptions below for a full description of the options.</p><p>Sample DataLoader command:</p><pre>dataloader-cli.sh submit -i myfileset.xml -k true -o true -c 512M -m 24 -b 2M -s intelligent</pre><h2 id="DataLoaderCommandLineInterface-DataLoaderCommands">DataLoader Commands</h2><h3 id="DataLoaderCommandLineInterface-submitCommand">submit Command</h3><p>You can expect the following when you issue this command:</p><ul><li>To receive a job id.</li><li>Receive an error in the console window if the job fails</li></ul><p>The following table provides a quick summary of the available CLI options for the <strong>submit</strong> command. </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Options</th><th class="confluenceTh">Option Description</th></tr><tr><td class="confluenceTd">-b, --bandwidth &lt;arg&gt;</td><td class="confluenceTd">Maximum bandwidth each worker can use.</td></tr><tr><td class="confluenceTd">-B, --is-bandwidth-throttle &lt;arg&gt;</td><td class="confluenceTd">Whether bandwidth throttling should be enabled: true or false.</td></tr><tr><td class="confluenceTd">-c, --chunksize &lt;arg&gt;</td><td class="confluenceTd">Chunk size to split files into, if chunking is enabled.</td></tr><tr><td class="confluenceTd">-D, --stream-data-durability &lt;arg&gt;</td><td class="confluenceTd">Whether checkpointing should be enabled for streaming data durability, default value is false.</td></tr><tr><td class="confluenceTd">-i, --input</td><td class="confluenceTd">Path to the copy job spec file.</td></tr><tr><td class="confluenceTd">-k, --chunking &lt;arg&gt;</td><td class="confluenceTd">Whether data chunking in enabled: true or false.</td></tr><tr><td class="confluenceTd">-m, --mappernum &lt;arg&gt;</td><td class="confluenceTd">Number of mappers used to do the transfer. Deprecated, use --workernum instead.</td></tr><tr><td class="confluenceTd">-M, --max-disk-mapper &lt;arg&gt;</td><td class="confluenceTd">Maximum mappers that can be started for one disk. Deprecated. Use workers-per-disk instead</td></tr><tr><td class="confluenceTd">-N, --name &lt;arg&gt;</td><td class="confluenceTd">Job name</td></tr><tr><td class="confluenceTd">-o, --overwrite &lt;arg&gt;</td><td class="confluenceTd">When specified, the target file will be overwritten if it already exists at the destination. Otherwise, file copy will be skipped.</td></tr><tr><td class="confluenceTd">-p, --policyfile &lt;arg&gt; </td><td class="confluenceTd">Path to the configuration file that specifies the transfer policy.</td></tr><tr><td class="confluenceTd">-s,--strategy &lt;arg&gt;</td><td class="confluenceTd">Copy strategy to be used: intelligent, localfs, locality, uniform, etc.</td></tr><tr><td class="confluenceTd">-s,--sourcepath &lt;arg&gt;</td><td class="confluenceTd">Directory path at source</td></tr><tr><td class="confluenceTd">-s,--sourceuri &lt;arg&gt;</td><td class="confluenceTd">URI of the source data store.</td></tr><tr><td class="confluenceTd">-t,--chunkingthreshold &lt;arg&gt;</td><td class="confluenceTd">Minimum file size to chunk, if chunking is enabled.</td></tr><tr><td class="confluenceTd">-t, --targetpath &lt;arg&gt;</td><td class="confluenceTd">Target copy directory path at destination.</td></tr><tr><td class="confluenceTd">-t, --targeturi &lt;arg&gt;</td><td class="confluenceTd">URI of the target data store</td></tr><tr><td class="confluenceTd">-w,--workernum &lt;arg&gt;</td><td class="confluenceTd">Number or workers to perform the copy</td></tr><tr><td class="confluenceTd">-w, --workers-per-disk &lt;arg&gt; </td><td class="confluenceTd">Maximum workers that can be started for one disk</td></tr><tr><td class="confluenceTd" colspan="1">-z,--compress </td><td class="confluenceTd" colspan="1">When specified, compress data using Snappy codec. </td></tr></tbody></table></div><h3 id="DataLoaderCommandLineInterface-JobOperationOptions"><span style="color: rgb(0,0,0);font-size: 20.0px;line-height: 1.5;">Job Operation Options</span></h3><p>Job operation means to suspend/resume/cancel/query a job.</p><h4 id="DataLoaderCommandLineInterface-Suspend">Suspend</h4><p>To suspend a DataLoader data transfer job, enter:</p><pre>dataloader-cli.sh suspend -n &lt;jobid&gt;</pre><p>You can expect the following when you issue this command:</p><p><br/>To receive an error if the specified job does not exist or is not running.</p><ul><li>Suspends the target job</li><li>The options for this operation are as follows:</li></ul><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Job Option Name</th><th class="confluenceTh">Value Type</th><th class="confluenceTh">Default</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd">n (-jobid)</td><td class="confluenceTd">String</td><td class="confluenceTd">n/a</td><td class="confluenceTd">This value is required. Contains ID of the job to suspend.</td></tr></tbody></table></div><h4 id="DataLoaderCommandLineInterface-Resume"><span style="color: rgb(61,61,61);line-height: 1.6666666;">Resume</span></h4><p>To resume a suspended or failed DataLoader data transfer job, enter</p><pre>dataloader-cli.sh resume -n &lt;jobid&gt;</pre><p>You can expect the following when you issue this command:</p><ul><li>To resume the target job.</li><li>To receive an error if the specified job does not exist or is in an unexpected state.</li></ul><p>The options for this operation are as follows</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Job Option Name</th><th class="confluenceTh">Value Type</th><th class="confluenceTh">Default</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd">n (-jobid)</td><td class="confluenceTd">String</td><td class="confluenceTd">n/a</td><td class="confluenceTd">This value is required. Contains ID of the job to resume.</td></tr></tbody></table></div><h4 id="DataLoaderCommandLineInterface-Stop">Stop</h4><p>To stop a DataLoader data transfer job, enter:</p><pre>dataloader-cli.sh stop -n &lt;jobid&gt;</pre><p>You can expect the following when you issue this command:</p><ul><li>To stop the target job. A stopped job cannot be resumed.</li><li>To receive an error message if the specified job does not exist or if the job has already stopped.</li></ul><p>The options for this operation are as follows:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Job Option Name</th><th class="confluenceTh">Value Type</th><th class="confluenceTh">Default</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd">n (-jobid)</td><td class="confluenceTd">String</td><td class="confluenceTd">n/a</td><td class="confluenceTd">This value is required. Contains ID of the job to stop.</td></tr></tbody></table></div><h4 id="DataLoaderCommandLineInterface-Query"><span style="color: rgb(61,61,61);line-height: 1.6666666;"><br/>Query</span></h4><p>You can query the progress of a specified data transfer job.</p><pre>dataloader-cli.sh query -n &lt;jobid&gt;</pre><p>You can expect the following when you issue this command:</p><ul><li>To receive status for the specified job.</li><li>If Map Reduce is running, to receive the progress of the transfer.</li><li>To receive an error if the specified job does not exist.</li></ul><p>The options for this operation are as follows</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Job Option Name</th><th class="confluenceTh">Value Type</th><th class="confluenceTh">Default</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd">-n (--jobid)</td><td class="confluenceTd">String</td><td class="confluenceTd">n/a</td><td class="confluenceTd">This value is required. Contains ID of the job to query.</td></tr><tr><td class="confluenceTd" colspan="1">-status</td><td class="confluenceTd" colspan="1">enum(RUNNING, STARTED, SUSPENDED, COMPLETED, FAILED</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1">Job status</td></tr></tbody></table></div><h4 id="DataLoaderCommandLineInterface-List">List</h4><p>To list all the running and completed jobs, enter:</p><pre>dataloader-cli.sh list --status &lt;options&gt;</pre><p>The options for this operation are as follows</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Job Option Name</th><th class="confluenceTh">Value Type</th><th class="confluenceTh">Default</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd"> -sttus</td><td class="confluenceTd"><span style="line-height: 1.4285715;">One of the following:</span><br/><p>STARTED<br/>COMPLETED<br/>CANCELED<br/>SUSPENDED<br/>RUNNING</p></td><td class="confluenceTd"> n/a</td><td class="confluenceTd"> Job status</td></tr></tbody></table></div><h4 id="DataLoaderCommandLineInterface-Config">Config</h4><p>To see a full list of registered datastores, use the command:</p><pre>dataloader-cli.sh config --command list</pre><p>To register a new datastore:</p><pre>dataloader-cli.sh config --command register -i &lt;property_field&gt;</pre><p>To remove an existing datastore:</p><pre>dataloader-cli.sh config --command delete -n &lt;datastore _ID&gt;</pre><p>The options for this operation are as follows</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Option Name</th><th class="confluenceTh">Value Type</th><th class="confluenceTh">Default</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd">-command</td><td class="confluenceTd"><p>One of the following:</p><ul><li>list</li><li>register</li><li>delete</li></ul></td><td class="confluenceTd">n/a</td><td class="confluenceTd"><p>Configures the data store.</p><p> </p></td></tr><tr><td class="confluenceTd" colspan="1">-i (/)</td><td class="confluenceTd" colspan="1">String</td><td class="confluenceTd" colspan="1">n/a</td><td class="confluenceTd" colspan="1">This is required for the register option. The name of the property file.</td></tr><tr><td class="confluenceTd" colspan="1">-n <span>(/)</span></td><td class="confluenceTd" colspan="1">String</td><td class="confluenceTd" colspan="1">n/a</td><td class="confluenceTd" colspan="1">Required for the delete command.</td></tr></tbody></table></div><h4 id="DataLoaderCommandLineInterface-pstream:">pstream:</h4><p>To send data from STDIN to a running pushstream job, enter:</p><pre>dataloader-cli.sh pstream -n &lt;jobid&gt;</pre><p>The options for this operation are as follows</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Job Option Name</th><th class="confluenceTh">Value Type</th><th class="confluenceTh">Default</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd">-n (–jobid)</td><td class="confluenceTd">String</td><td class="confluenceTd">n/a</td><td class="confluenceTd">The id of the push steam job to which data is pushed.</td></tr><tr><td class="confluenceTd" colspan="1">-q --queue-size &lt;arg&gt;</td><td class="confluenceTd" colspan="1">Integer</td><td class="confluenceTd" colspan="1">32768</td><td class="confluenceTd" colspan="1">The maximum number of unacknowledged messages that are allowed to be held on the client side.</td></tr><tr><td class="confluenceTd" colspan="1">-format</td><td class="confluenceTd" colspan="1">enum (TEXT, AVRO)</td><td class="confluenceTd" colspan="1">TEXT</td><td class="confluenceTd" colspan="1">The format of the input file/stream.</td></tr><tr><td class="confluenceTd" colspan="1">--delimiter</td><td class="confluenceTd" colspan="1">enum(NEW_LINE TAB EMPTY_SPACE COMMA SEMICOLON COLON DOT)</td><td class="confluenceTd" colspan="1">NEW_LINE</td><td class="confluenceTd" colspan="1">The delimiter used to split the input file. Only used when the "format" option is "TEXT".</td></tr></tbody></table></div><h4 id="DataLoaderCommandLineInterface-scan">scan</h4><p>To send data from a folder to a running pushstream job enter:</p><pre>dataloader-cli.sh scan -n &lt;jobid&gt; --scanfolder &lt;folder_to_scan&gt;</pre><p>The options for this operation are as follows:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Job Option Name</th><th class="confluenceTh">Value Type</th><th class="confluenceTh">Default</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd">-n (--jobid)</td><td class="confluenceTd">String</td><td class="confluenceTd">n/a</td><td class="confluenceTd">The id of the push steam job to which data is pushed.</td></tr><tr><td class="confluenceTd" colspan="1">--scanfolder</td><td class="confluenceTd" colspan="1">String</td><td class="confluenceTd" colspan="1">n/a</td><td class="confluenceTd" colspan="1">The folder to be scanned for data to push to the DataLoader job</td></tr><tr><td class="confluenceTd" colspan="1">-q --queue-size &lt;arg&gt;</td><td class="confluenceTd" colspan="1">Integer</td><td class="confluenceTd" colspan="1">32768</td><td class="confluenceTd" colspan="1">The maximum number of unacknowledged messages that are allowed to be held on the client side.</td></tr><tr><td class="confluenceTd" colspan="1">--idle</td><td class="confluenceTd" colspan="1">Long</td><td class="confluenceTd" colspan="1">n/a</td><td class="confluenceTd" colspan="1">If the file has not been changed for this period of time, the file is considered as finished. Only valid in ptail/scan(if tailing is enabled).</td></tr><tr><td class="confluenceTd" colspan="1">--tailing</td><td class="confluenceTd" colspan="1">Boolean</td><td class="confluenceTd" colspan="1">false</td><td class="confluenceTd" colspan="1">Only valid in scan command. If specified, the files in the scan folder will be monitored for changes.</td></tr><tr><td class="confluenceTd" colspan="1">--thread-pool-size</td><td class="confluenceTd" colspan="1">Integer</td><td class="confluenceTd" colspan="1">5</td><td class="confluenceTd" colspan="1">The maximum number of concurrent threads that can be used for processing files. Only valid in scan command.</td></tr><tr><td class="confluenceTd" colspan="1">--format</td><td class="confluenceTd" colspan="1">enum (TEXT, AVRO)</td><td class="confluenceTd" colspan="1">TEXT</td><td class="confluenceTd" colspan="1">The format of the input file/stream.</td></tr><tr><td class="confluenceTd" colspan="1">--delimiter</td><td class="confluenceTd" colspan="1">enum (NEW_LINE TAB EMPTY_SPACE COMMA SEMICOLON COLON DOT)</td><td class="confluenceTd" colspan="1">NEW_LINE</td><td class="confluenceTd" colspan="1">The delimiter used to split the input file. Only used when the "format" option is "TEXT".</td></tr></tbody></table></div><h4 id="DataLoaderCommandLineInterface-ptail">ptail</h4><p>To send data from a folder to a running pushstream job enter:</p><pre>dataloader-cli.sh ptail -n &lt;jobid&gt; --source &lt;inputfile&gt;</pre><p>The options for this operation are as follows:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Job Option Name</th><th class="confluenceTh">Value Type</th><th class="confluenceTh">Default</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd">-n (--jobid)</td><td class="confluenceTd">String</td><td class="confluenceTd">n/a</td><td class="confluenceTd">The id of the push steam job to which data is pushed.</td></tr><tr><td class="confluenceTd" colspan="1">--format</td><td class="confluenceTd" colspan="1">enum (TEXT, AVRO)</td><td class="confluenceTd" colspan="1">TEXT</td><td class="confluenceTd" colspan="1">The format of the input file/stream.</td></tr><tr><td class="confluenceTd" colspan="1">--delimiter</td><td class="confluenceTd" colspan="1"><span>enum (NEW_LINE TAB EMPTY_SPACE COMMA SEMICOLON COLON DOT)</span></td><td class="confluenceTd" colspan="1">NEW_LINE</td><td class="confluenceTd" colspan="1">The delimiter used to split the input file. Only used when the "format" option is "TEXT".</td></tr><tr><td class="confluenceTd" colspan="1">--source</td><td class="confluenceTd" colspan="1">String</td><td class="confluenceTd" colspan="1">n/a</td><td class="confluenceTd" colspan="1">The file to be  processed. Only valid for pcat/ptail.</td></tr><tr><td class="confluenceTd" colspan="1">--idle</td><td class="confluenceTd" colspan="1">long</td><td class="confluenceTd" colspan="1">n/a</td><td class="confluenceTd" colspan="1">If the file has not been changed for this period of time, the file is considered as finished. Only valid in ptail/scan(if tailing is enabled).</td></tr></tbody></table></div><h3 id="DataLoaderCommandLineInterface-Toregister/unregisterdatastores">To register/unregister datastores</h3><p>The following command options are used for managing registration of the datastores.</p><p>The options for this operation are as follows:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Job Option Name</th><th class="confluenceTh">Value Type</th><th class="confluenceTh">Default</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd">-command</td><td class="confluenceTd"><p>enum (register,delete,list) </p></td><td class="confluenceTd">n/a</td><td class="confluenceTd"><p>The command to list, register a datastore, or delete a datastore.</p></td></tr><tr><td class="confluenceTd" colspan="1">-i (--input) </td><td class="confluenceTd" colspan="1">String</td><td class="confluenceTd" colspan="1">n/a</td><td class="confluenceTd" colspan="1">The file that contains the datastore properties. Only used when command is "register"</td></tr><tr><td class="confluenceTd" colspan="1">-n</td><td class="confluenceTd" colspan="1">String</td><td class="confluenceTd" colspan="1">n/a</td><td class="confluenceTd" colspan="1">Required for the delete command. The ID of the datastore to be deleted. ID of the datastore can be found via the command list. Only used when command is "delete". </td></tr></tbody></table></div><p> </p><p> </p>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

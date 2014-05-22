@@ -1,0 +1,642 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>Installing PCC | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>Installing PCC</h1><div class="wiki-content group" id="main-content">
+<p>This section describes how to install Pivotal Command Center and then use PCC to deploy and configure a Pivotal HD cluster.</p><ul><li><a href="InstallingPCC.html#InstallingPivotalCommandCenter-QuickStart">Quick Start</a></li><li><a href="InstallingPCC.html#InstallingPivotalCommandCenter-SupportedPlatformsandBrowsers">Supported Platforms and Browsers</a></li><li><a href="InstallingPCC.html#InstallingPivotalCommandCenter-Requirements">Requirements</a></li><li><a href="InstallingPCC.html#InstallingPivotalCommandCenter-InstallationInstructions">Installation Instructions</a></li><li><a href="InstallingPCC.html#InstallingPivotalCommandCenter-UninstallingPivotalCommandCenter">Uninstalling Pivotal Command Center</a></li><li><a href="InstallingPCC.html#InstallingPivotalCommandCenter-UpgradingPivotalCommandCenter">Upgrading Pivotal Command Center</a></li></ul><p><span class="confluence-anchor-link" id="InstallingPivotalCommandCenter-QuickStart"></span></p><h2 id="InstallingPivotalCommandCenter-QuickStart">Quick Start</h2><p>Below is an <em>Quick Start</em> Guide intended for users who are familiar with the product and various prerequisites; more detailed instructions are provided later in this section.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p><strong>Task</strong></p></td><td class="confluenceTd"><p><strong>Sub-Task</strong></p></td></tr><tr><td class="confluenceTd"><p><strong>Requirements</strong></p><p>See <a href="InstallingPCC.html#InstallingPivotalCommandCenter-Requirements">Requirements</a> for more details.</p></td><td class="confluenceTd"><p><strong>Check JDK version</strong></p><p><code>(as root)</code></p><p style="margin-left: 30.0px;"><code># java -version</code></p><p>Ensure you're running Oracle Java JDK Version 1.7.</p><p>If not, download the appropriate version from Oracle.</p></td></tr><tr><td class="confluenceTd"><p> </p></td><td class="confluenceTd"><p><strong>Check Yum accessibility</strong></p><p>(as <code>root</code>)</p><p>Verify that all hosts have yum access to an EPEL yum repository.</p><p style="margin-left: 30.0px;"><code># sudo yum list &lt;LIST OF PACKAGES&gt;</code></p></td></tr><tr><td class="confluenceTd"><p><strong>Install Pivotal Command Center</strong></p><p>See <a href="InstallingPCC.html#InstallingPivotalCommandCenter-InstallationInstructions">Installation Instructions</a> for more details.</p></td><td class="confluenceTd"><p>(as <code>root</code>)</p><ol><li>Copy tar file to your specified directory on the admin node, for example:<br/> <code># scp ./PCC-2.1.x. version.build.os .x86_64.tar.gz host:/root/phd/ </code></li><li>Login as root and untar to that directory:<br/> <code># cd /root/phd</code> <br/> <code># tar --no-same-owner -zxvf PCC-2.1.x. version.build.os .x86_64.tar.gz</code></li><li>Run the installation script from the directory where it is installed:<br/> <code># ./install</code></li><li>As the rest of the installation is done as the gpadmin user, change to that user:<br/> <code># su - gpadmin</code></li><li>Enable Secure Connections</li></ol></td></tr><tr><td class="confluenceTd"><p><strong>Import the PHD Services packages to the Admin Node</strong> <br class="atl-forced-newline"/> See <a href="InstallingPCC.html#InstallingPivotalCommandCenter-InstallingPHDServices">Installing PHD Services</a> for more details.</p></td><td class="confluenceTd"><p>(as gpadmin)</p><ol><li>Copy the Pivotal HD services (PHD, ADS (HAWQ), and PHDTools (optional for USS), tarballs from the initial download location to the gpadmin home directory.</li><li>Change the owner of the packages to gpadmin and untar the tarballs.</li></ol><p>For example: If the file is a tar.gz or tgz, use:</p><p style="margin-left: 30.0px;"><code>tar zxf packagename.tgz</code></p><p>If the file is a tar, use:</p><p style="margin-left: 30.0px;"><code>tar xf packagename.tar</code></p></td></tr><tr><td class="confluenceTd"><p><strong>Enable the PHD services</strong></p><p>See <a href="InstallingPCC.html#InstallingPivotalCommandCenter-EnablingPHDServices">Enabling PHD Services</a> for more details.</p></td><td class="confluenceTd"><p>(as gpadmin)</p><p>For each service (PHD, ADS, PHDTools) you are enabling, run the following:</p><p style="margin-left: 30.0px;"><code># icm_client import -s &lt; PATH TO EXTRACTED PHD SERVICE TAR BALL &gt;</code></p></td></tr><tr><td class="confluenceTd"><p><strong>Launch Pivotal Command Center UI</strong></p><p>See <a href="InstallingPCC.html#InstallingPivotalCommandCenter-LaunchingPivotalCommandCenter">Launching PCC</a> for more details.</p></td><td class="confluenceTd"><p>Launch a browser and enter the host on which you installed PCC:</p><p style="margin-left: 30.0px;"><code> https://<em>CommandCenterHost</em>:5443 </code></p><p>The Command Center login page is launched in your browser. The default username/password is <code>gpadmin</code>/<code>Gpadmin1</code> (case sensitive).</p></td></tr><tr><td class="confluenceTd"><p><strong>Configure and deploy a cluster</strong></p><p>See <a href="UsingPCC.html#UsingPivotalCommandCenter-DeployingCluster">Configuring and Deploying a Cluster</a> for more details.</p></td><td class="confluenceTd"><p>After logging into PCC, click <strong>Add Cluster</strong> from the Cluster Status page.</p><p>Navigate through the Add Cluster Wizard to configure and deploy a cluster.</p></td></tr><tr><td class="confluenceTd"><p><strong>Post-Installation for HAWQ</strong></p><p>See <a href="UsingPCC.html#UsingPivotalCommandCenter-PostInstallHawq">Post Installation for HAWQ</a> for more details</p><p> </p></td><td class="confluenceTd"><p>(as gpadmin)</p><p>Exchange keys between HAWQ master and segment hosts:</p><p>Create a hostfile (<code>HAWQ_Segment_Hosts.txt</code>) that contains the hostnames of all your HAWQ segments, then:</p><p style="margin-left: 30.0px;"><code># ssh &lt; HAWQ_MASTER &gt;</code></p><p style="margin-left: 30.0px;"><code># source /usr/local/hawq/greenplum_path.sh</code></p><p style="margin-left: 30.0px;"><code># /usr/local/hawq/bin/gpssh-exkeys -f ./HAWQ_Segment_Hosts.txt</code></p></td></tr><tr><td class="confluenceTd"><p><strong>Start the cluster</strong></p><p>See <a href="UsingPCC.html#UsingPivotalCommandCenter-StartCluster">Starting the Cluster</a> for more details.</p></td><td class="confluenceTd"><p>Return to the PCC UI and start the cluster from the Cluster Status page.</p></td></tr><tr><td class="confluenceTd"><p><strong>Initialize HAWQ</strong> <br class="atl-forced-newline"/> See <a href="UsingPCC.html#UsingPivotalCommandCenter-InitializeHawq">Initializing HAWQ</a> for more details.</p></td><td class="confluenceTd"><p style="margin-left: 30.0px;">(as gpadmin) <br class="atl-forced-newline"/> ssh to the HAWQ master, the run the following:</p><p style="margin-left: 60.0px;"><code># source /usr/local/hawq/greenplum_path.sh</code></p><p style="margin-left: 60.0px;"><code># /etc/init.d/hawq init</code></p></td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="InstallingPivotalCommandCenter-PlatformsBrowsers"></span></p><h2 id="InstallingPivotalCommandCenter-SupportedPlatformsandBrowsers">Supported Platforms and Browsers</h2><h3 id="InstallingPivotalCommandCenter-Platforms">Platforms</h3><ul><li>RHEL 6.1 64-bit, 6.2 64-bit</li><li>CentOS 6.1 64-bit, 6.2 64-bit</li></ul><h3 id="InstallingPivotalCommandCenter-Browsers">Browsers</h3><ul><li>Firefox 16, 19</li><li>IE 8, IE 9, both with Google Chrome Frame</li><li>Chrome 25.0.1364.172</li></ul><p><span class="confluence-anchor-link" id="InstallingPivotalCommandCenter-Requirements"></span></p><h2 id="InstallingPivotalCommandCenter-Requirements">Requirements</h2><h3 id="InstallingPivotalCommandCenter-Prerequisites">Prerequisites</h3><ul><li>Installation of Pivotal Command Center assumes the user has a working knowledge of the following:<ul><li><strong>Yum</strong>: Enables you to install or update software from the command line. See <a class="external-link" href="http://yum.baseurl.org/" rel="nofollow">http://yum.baseurl.org/</a>.</li><li><strong>RPM</strong> (Redhat Package Manager). </li><li><strong>NTP</strong>. See <a class="external-link" href="http://www.ntp.org" rel="nofollow">http://www.ntp.org</a></li><li><strong>SSH</strong> (Secure Shell Protocol). See <a class="external-link" href="http://www.linuxproblem.org/art_9.html" rel="nofollow">http://www.linuxproblem.org/art_9.html</a></li></ul></li><li><strong>DNS lookup</strong>. Verify that the admin host is be able to reach every cluster node using its hostname and IP address. Verify that every cluster node is able to reach every other cluster node using its hostname and IP address:</li></ul><p style="margin-left: 60.0px;"><code>ping -c 2 <em>myhost</em>.<em>mycompany</em>.com</code> <br/> The return code should be 0</p><p style="margin-left: 60.0px;"><code>ping -c 2 192.168.1.2</code> <br/> The return code should be 0</p><ul><li><strong>JAVA JDK</strong>. Ensure that you are running Oracle JAVA JDK version 1.7:</li></ul><p style="margin-left: 60.0px;">As root:</p><p style="margin-left: 60.0px;"><code># java -version</code></p><p style="margin-left: 60.0px;">If you are not running the correct JDK, you can download a supported version from the Oracle site here:</p><p style="margin-left: 60.0px;"> <a class="external-link" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" rel="nofollow">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a> </p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Notes</p>
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>Oracle does not seem to be shipping self extracting JDK packages as of release 7. The current release of Pivotal Command Center expects a self extracting (<code>.bin</code>) package. So restrict the Java version to one that has a <code>.bin</code> package</p>
+</div>
+</div>
+<p style="margin-left: 60.0px;">Once you have installed Pivotal Command Center, you can use the following command to install a downloaded JDK:</p><p style="margin-left: 60.0px;">As gpadmin, run:</p><p style="margin-left: 60.0px;"><code># icm_client import -f &lt;PATH TO JDK&gt;</code></p><ul><li><strong>YUM</strong>. Verify that all hosts have yum access to an EPEL yum repository. See <a href="InstallingPCC.html#InstallingPivotalCommandCenter-PackageAccessibility">Package Accessibility</a> for more details.</li><li><strong>Internet Connectivity</strong>. You will need an active internet connection to install PCC. This is required to pull the software dependencies for the UI.</li></ul><p><span class="confluence-anchor-link" id="InstallingPivotalCommandCenter-Downloads"></span></p><h3 id="InstallingPivotalCommandCenter-ProductDownloads">Product Downloads</h3><p>The following packages are required:</p><p><code>PCC-2.1.x.*.version_build_OS.x86_64.tar.gz</code></p><p><strong> <span class="confluence-anchor-link" id="InstallingPivotalCommandCenter-Accessibility"></span> </strong></p><h3 id="InstallingPivotalCommandCenter-PackageAccessibility">Package Accessibility</h3><p>Pivotal Command Center and Pivotal HD Enterprise expect some prerequisite packages to be pre-installed on each host, depending on the software that gets deployed on a particular host. In order to have a smoother installation it is recommended that each host would have yum access to an EPEL yum repository. If you have access to the Internet, then you can configure your hosts to have access to the external EPEL repositories. However, if your hosts do not have Internet access (or you are deploying onto a large cluster), then having a local yum EPEL repo is highly recommended. This will also give you some control on the package versions you want deployed on your cluster. See for instructions on how to setup a local yum repository or point your hosts to an EPEL repository.</p><p>For Pivotal Command Center 2.1.x, here is a list of prerequisites that need to either already be installed on the Command Center admin host or on an accessible yum repository:</p><ul><li><code>httpd</code></li><li><code>mod_ssl</code></li><li><code>postgresql</code></li><li><code>postgresql-devel</code></li><li><code>postgresql-server</code></li><li><code>compat-readline5</code></li><li><code>createrepo</code></li><li><code>sigar</code></li><li><code>sudo</code></li></ul><p>Run the following command on the admin node to make sure that you are able to install the prerequisite packages during installation.</p><p style="margin-left: 30.0px;"><code>$ sudo yum list &lt;<em>LIST OF PACKAGES</em>&gt;</code></p><p>For example:</p><p style="margin-left: 30.0px;"><code>$ sudo yum list httpd mod_ssl postgresql postgresql-devel postgresql-server compat-readline5 createrepo sigar sudo</code></p><p>If any of them are not available or not already installed, then you may have not added the repository correctly to your admin host.</p><p>For the cluster hosts (where you plan to install the cluster), the prerequisite packages depend on the software you will eventually install there, but you may want to verify that the following two packages are installed or accessible by yum on all hosts:</p><ul><li><code>nc</code></li><li><code>postgresql-devel</code></li></ul><p><span class="confluence-anchor-link" id="InstallingPivotalCommandCenter-Installation"></span></p><h2 id="InstallingPivotalCommandCenter-InstallationInstructions">Installation Instructions</h2><p>Once you have met the prerequisites, you are ready to begin the installation. Perform the following installation steps as a root user.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>Avoid using hostnames that contain capital letters because Puppet has an issue generating certificates for domains with capital letters. Also avoid using underscores as they are invalid characters in hostnames.</p>
+</div>
+</div>
+<p>If you are upgrading from an earlier version of Pivotal Command Center, see<a href="InstallingPCC.html#InstallingPivotalCommandCenter-UpgradingPCC">Upgrading PCC</a>.</p><p><span class="confluence-anchor-link" id="InstallingPivotalCommandCenter-InstallPCC"></span></p><h3 id="InstallingPivotalCommandCenter-InstallingPivotalCommandCenter">Installing Pivotal Command Center<ol><li>Copy the Command Center tar file to your host. For example:<br/> <code># scp ./PCC-2.1.x.version.build.os.x86_64.tar.gz host:/root/phd/</code></li><li>Log into the Command Center admin host as root user. to the directory where the Command Center tar files are located and untar. For example:<br/><p><code># cd /root/phd</code> <br/> <code># tar --no-same-owner -zxvf PCC-2.1.x.version.build.os.x86_64.tar.gz</code></p></li><li>Still as root user, run the installation script. This installs the required packages and configures both Pivotal Command Center and starts services.<br/><p> </p> <div class="aui-message hint shadowed information-macro">
+<p class="title">Important</p>
+<span class="aui-icon icon-hint"></span>
+<div class="message-content">
+                            You must run the installation script from the directory where it is installed, for example: For example: <code>PCC-2.1.x.version</code>
+</div>
+</div>
+<p>For example:</p><p><code># ls</code></p><p><code>PCC-2.1.x.version</code></p><p><code>PCC-2.1.x.version.build.os.x86_64.tar.gz</code></p><p><code># cd PCC-version</code></p><p><code># ./install</code></p><p>You will see installation progress information on the screen. Once the installation successfully completes, you will receive an installation success message on your screen.</p><p>Once you have configured and deployed a cluster, you can view your cluster status here: <code>https://&lt;<em>CommandCenterHost</em>&gt;:5443/status<br/> <br/> </code></p><span class="confluence-anchor-link" id="InstallingPivotalCommandCenter-EnableSecure"></span></li><li>Enable Secure Connections:<br/><span style="color: rgb(34,34,34);">Pivotal Command Center uses HTTPS to secure data transmission between the client browser and the server. By default, the installation script generates a self-signed certificate. Alternatively you can provide your own Certificate and Key by following these steps:</span><br/><ol><li><span style="color: rgb(34,34,34);">Edit <code>/etc/httpd/conf.d/pcc-</code></span><span style="color: rgb(34,34,34);"><span style="color: rgb(34,34,34);"><code>vhost.conf</code> file and change following two directives to point to location of ssl certificate and key:<br/></span></span><p><code>SSLCertificateFile</code>: <code>/usr/local/greenplum-cc/ssl/sfo-w1.ic.cert</code></p><span style="color: rgb(34,34,34);"><span style="color: rgb(34,34,34);"> </span></span><p><code>SSLCertificateKeyFile</code>: <code>/usr/local/greenplum-cc/ssl/sfo-w1.ic.key<br/><br/></code></p></li><li><span>Make sure that file permissions are set to 400 and owner to <code>gpadmin</code>.</span></li><li>Restart PCC with the following command:<br/> <code>service commander restart</code></li></ol></li><li>Verify that your PCC instance is running by executing the following command:<br/> <code>$ service commander status</code></li><li>From now on you can switch to the gpadmin user. You should no longer need to be root for anything else.<br/> <code>su - gpadmin</code></li></ol><p><br/> <strong>Next Steps</strong>: <a href="InstallingPCC.html#InstallingPivotalCommandCenter-InstallingPHDServices">Installing PHD Services</a> then <a href="InstallingPCC.html#InstallingPivotalCommandCenter-EnablingPHDServices">Enabling PHD Services</a>.</p><h4 id="InstallingPivotalCommandCenter-Starting,Stopping,andRestartingCommandCenterServices">Starting, Stopping, and Restarting Command Center Services</h4><p>To stop or restart Command Center services, run the following commands on the Pivotal Command Center admin host:</p><p style="margin-left: 30.0px;"><code>$ service commander stop</code> <br/> <code> $ service commander start</code> <br/> <code> $ service commander restart</code></p><p><span class="confluence-anchor-link" id="InstallingPivotalCommandCenter-InstallPHDServices"></span></p><h3 id="InstallingPivotalCommandCenter-InstallingPHDServices">Installing PHD Services</h3><ol><li>Copy the Pivotal HD, ADS, and PHDTools tarballs from the initial download location to the gpadmin home directory.</li><li>Change the owner of the packages to and untar the tarballs. For example:</li></ol><p style="margin-left: 30.0px;">For PHD, if the file is a <code>tar.gz</code> or <code>tgz</code>, use:</p><p style="margin-left: 30.0px;"><code>tar zxf PHD-1.1.x-x.tgz</code></p><p style="margin-left: 30.0px;">If the file is a <code>tar</code>, use:</p><p style="margin-left: 30.0px;"><code>tar xf PHD-1.1.x-x.tar</code></p><p> </p><p style="margin-left: 30.0px;">For Pivotal ADS, if the file is a <code>tar.gz</code> or <code>tgz</code>, use</p><p style="margin-left: 30.0px;"><code>tar zxf PADS-1.1.x-x.tgz</code></p><p style="margin-left: 30.0px;">If the file is a <code>tar</code>, use:</p><p style="margin-left: 30.0px;"><code>tar xf PADS-1.1.x-x.tar</code></p><p><code> </code></p><p style="margin-left: 30.0px;">For PHDTools, if the file is a <code>tar.gz</code> or <code>tgz</code>, use</p><p style="margin-left: 30.0px;"><code>tar zxf PHDTools-1.1.x-x.tgz</code></p><p style="margin-left: 30.0px;">If the file is a <code>tar</code>, use:</p><p style="margin-left: 30.0px;"><code>tar xf PHDTools-1.1.x-x.tar</code></p><p> <span class="confluence-anchor-link" id="InstallingPivotalCommandCenter-EnablePHDServices"></span> </p><h3 id="InstallingPivotalCommandCenter-EnablingPHDServices">Enabling PHD Services</h3><ol><li>As gpadmin, extract the following tarball for Pivotal HD:<br/><p><code># icm_client import -s &lt;PATH TO EXTRACTED PHD TAR BALL&gt;</code></p><p>For example:</p><p><code># icm_client import -s PHD-1.1.x-x/</code></p></li><li>Optional for HAWQ/PXF: As gpadmin, extract the following tar ball for HAWQ and PXF:<code> <br/># icm_client import -s &lt;PATH TO EXTRACTED ADS TAR BALL&gt;</code><p>For example:</p><p><code># icm_client import -s PADS-1.1.x-x/</code></p><p>For more information, see the log file located at: <code>/var/log/gphd/gphdmgr/gphdmgr-import.log</code></p></li><li>Optional for USS: As gpadmin, extract the following tar ball for USS:<code> <br/># icm_client import -s &lt;PATH TO EXTRACTED PHDTools TAR BALL&gt;</code><p>For example:</p><p><code># icm_client import -s PHDTools-1.1.x-x/</code></p><p>For more information, see the log file located at:<code> /var/log/gphd/gphdmgr/gphdmgr-import.log</code></p></li></ol><p>You are now ready to configure and deploy a cluster from the Pivotal Command Center UI.</p><p><span class="confluence-anchor-link" id="InstallingPivotalCommandCenter-LaunchPCC"></span> </p><h3 id="InstallingPivotalCommandCenter-LaunchingPivotalCommandCenter">Launching Pivotal Command Center</h3><p>Launch a browser and navigate to the host on which you installed Command Center. For example:</p><p style="margin-left: 30.0px;"><code> https://<em>CommandCenterHost</em>:5443 </code></p><ol><li>The Command Center login page is launched in your browser. The default username/password is <code>gpadmin</code>/<code>Gpadmin</code>1 (case sensitive).</li></ol><h4 id="InstallingPivotalCommandCenter-NextSteps">Next Steps</h4><p>See <a href="UsingPCC.html">Using Pivotal Command Center</a> for details about using the application, including how to change the default password and how to deploy and configure a HD cluster via the Command Center UI.</p><p>See the <em>Pivotal HD Enterprise Installation and Administrator Guide</em> for instructions for using the command-line interface (CLI) of Pivotal Command Center to deploy and configure a HD cluster.</p><p><span class="confluence-anchor-link" id="InstallingPivotalCommandCenter-UninstallingPCC"></span></p><h2 id="InstallingPivotalCommandCenter-UninstallingPivotalCommandCenter">Uninstalling Pivotal Command Center</h2><p> </p><p>Follow the steps below to uninstall Pivotal Command Center and the Pivotal HD cluster:</p><ol><li>Stop services on all your clusters (See the <em>Pivotal HD Enterprise Installation and Administrator Guide</em> for detailed steps).</li><li>Uninstall all your clusters (See the <em>Pivotal HD Enterprise Installation and Administrator Guide</em> for detailed steps).</li><li>From the directory where you untarred the Pivotal Command Center, run the uninstall script:<br/><p><code># cd /root/phd/PCC-2.1.x.version/</code></p><p><code># ./uninstall</code></p></li></ol><p><span class="confluence-anchor-link" id="InstallingPivotalCommandCenter-UpgradingPCC"></span></p><h2 id="InstallingPivotalCommandCenter-UpgradingPivotalCommandCenter">Upgrading Pivotal Command Center</h2><p>The following instructions are for upgrading Pivotal Command Center from version 2.0.1 to 2.1.</p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Upgrade Notes</p>
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<ul><li>If you are upgrading to a new version of Pivotal Command Center, make sure you are also upgrading to compatible versions of Pivotal HD and Pivotal ADS (optional).</li><li>See the latest version of the Pivotal Command Center Release notes for Pivotal Interoperability Matrix.</li><li>We recommend that you always back up any critical data before performing any upgrades.</li><li>As of PCC 2.1.1, there is a new default password, <code>Gpadmin1</code>, and new password rules are being enforced (minimum 8 characters, case-sensitive, 1 uppercase letter, one number).  However if you are upgrading to this version of PCC, your original password (by default <code>gpadmin</code>) is maintained.</li></ul>
+</div>
+</div>
+<p>Follow the steps below to upgrade your Pivotal CC to a newer version:</p><ol><li>[Optional] As <code>gpadmin</code>, stop the cluster:<br/> <code># icm_client -l CLUSTERNAME stop</code></li><li>As <code>root</code>, stop the Command Center services:<br/> <code># service commander stop</code></li><li>Download the new PCC tarball and untar.</li><li>Run the installer from the new PCC location:<br/> <code># ./install</code></li><li>Enable Secure Connections.<br/>Pivotal Command Center uses HTTPS to secure data transmission between the client browser and the server. By default, the installation script generates a self-signed certificate. Alternatively you can provide your own Certificate and Key; to do this, follow the instructions provided in the installation instructions, here: <a href="InstallingPCC.html#InstallingPivotalCommandCenter-EnableSecure">Enable Secure Connections</a>.</li><li>Check <code>nmon</code> status:<br/><p><code># service nmon status</code></p><p>If the status anything other than <code>running</code>, stop and restart nmon as follows:</p><p><code># service nmon stop</code></p><p><code># service nmon start</code></p></li></ol>
+</h3></div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

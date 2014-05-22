@@ -1,0 +1,1286 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>Installing PHD Using the CLI | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>Installing PHD Using the CLI</h1><div class="wiki-content group" id="main-content">
+<p style="margin-left: 0.0px;">This section describes how to install and configure Pivotal HD using Pivotal Command Center's command line interface (CLI).</p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-CommandLineInstallationFeatures" style="margin-left: 0.0px;">Command Line Installation Features</h2><p>Using Pivotal Command Center's CLI to install Pivotal HD provides the following functionality:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Feature</p></th><th class="confluenceTh"><p>Support</p></th></tr><tr><td class="confluenceTd"><p>Checking prerequisites</p></td><td class="confluenceTd"><ul><li>Checks that specified hosts meet the prerequisites to install the supported components.</li></ul></td></tr><tr><td class="confluenceTd"><p>Supported cluster services</p></td><td class="confluenceTd"><ul><li>Installs and configures Hadoop, YARN, ZooKeeper, HBase, Mahout, HAWQ, PXF, Hive, Pig, and USS with default settings.</li><li>Reconfigures the supported cluster services.</li><li>Multi-cluster support.</li><li>Monitors clusters with Pivotal Command Center (PCC).</li></ul></td></tr><tr><td class="confluenceTd"><p>Starting and stopping</p></td><td class="confluenceTd"><ul><li>Starts and stops the cluster or individual services.</li><li>Ensures that all dependent services start and stop in the correct order.</li></ul></td></tr><tr><td class="confluenceTd"><p>Logging</p></td><td class="confluenceTd"><ul><li>Provides installation data logs.</li></ul></td></tr><tr><td class="confluenceTd"><p>Uninstallation</p></td><td class="confluenceTd"><ul><li>Can uninstall individual services and Pivotal HD Enterprise.</li></ul></td></tr></tbody></table></div><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-PlanningyourPivotalHDClusterDeployment">Planning your Pivotal HD Cluster Deployment</h2><p>To deploy a Hadoop cluster, Pivotal recommends that you consider the following:</p><ul><li>Select the appropriate hardware configuration for cluster &amp; management nodes.</li><li>Map Hadoop services roles to cluster nodes.</li><li>Configure the roles to effectively leverage underlying hardware platform.</li></ul><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-DeploymentOptions"></span></p><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-DeploymentOptions">Deployment Options</h3><p>Pivotal HD 1.1 supports YARN (MR2) by default.  If you don't want to deploy a YARN-based cluster, we provide Hadoop MR1 as optional manually-installable software.</p> <div class="aui-message warning shadowed information-macro">
+<p class="title">MR1-based Clusters</p>
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<ul><li>You can only use the components provided in the MR1 package; you cannot combine a stack component from an MR1 package with one from an MR2 package.</li><li>You cannot install MR1 components using Pivotal Command Center's CLI installation utility.You must install MR1 components manually (both rpm and bin installations are supported), see the Pivotal HD Enterprise Stack and Tool Reference Guide for details.</li></ul>
+</div>
+</div>
+<p> </p><p>The following table illustrates the deployment options and limitations:</p><p> </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="2">Component</th><th class="confluenceTh">CLI install</th><th class="confluenceTh">Manual install (rpm)</th><th class="confluenceTh">Manual install (bin)</th></tr><tr><td class="confluenceTd" colspan="2"><p>Command Center (installs the CLI)</p></td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="2">Hadoop MR2: HDFS, YARN<p> </p></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="2">Pig</td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="2">Hive</td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="2"><p>HBase</p></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="2"><p>Mahout</p></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="2"><p>Zookeeper</p></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="2"><p>Flume</p></td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="2">Hcatalog</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="2">Sqoop</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="2">HVE</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="2">Oozie</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" rowspan="2"><p>Advanced Database</p><p>Services:</p></td><td class="confluenceTd" colspan="1">HAWQ</td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="1">PXF</td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" rowspan="2">PHD Tools</td><td class="confluenceTd" colspan="1">USS</td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="1">DataLoader</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image image-center" data-image-src="attachments/63901478/64192820.png" src="attachments/63901478/64192820.png" width="16"/></td></tr></tbody></table></div><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-InstallationInstructions:">Installation Instructions:</h3><p>You can find installation instructions for the above components in these documents:</p><ul><li>Pivotal Command Center: <em>Pivotal HD Enterprise Installation and Administrator Guide</em> (this document)</li><li>Hadoop MR2 (via CLI): <em>Pivotal HD Enterprise Installation and Administrator Guide</em> (this document)</li><li>Hadoop MR2 and MR1 manual installs: <em>Pivotal HD Enterprise 1.1 Stack and Tool Reference Guide</em>.</li><li>USS: <em>Pivotal HD Enterprise 1.1 Stack and Tool Reference Guide</em>.</li><li>Pivotal DataLoader: <em>Pivotal HD 2.0 Installation and Administrator Guide</em>.</li></ul><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-BestPracticesforSelectingHardware">Best Practices for Selecting Hardware</h3><p>Typically you should select your cluster node hardware based on the resource requirements of your analytics workload and overall need for data storage. It is hard to anticipate the workload that may run on the cluster and so designing for a specific type of workload may lead to under utilization of hardware resources. Pivotal recommends that you select the hardware for a balanced workload across different types of system resources but also have the ability to provision more specific resources such as CPU, I/O bandwidth &amp; Memory, as workload evolves over the time and demands for it. <br/> Hardware and capacity requirements for cluster nodes may vary depending upon what service roles running on them. Typically failure of cluster slave nodes is tolerated by PHD services but disruption to master node can cause service availability issues. So it is important to provide more reliable hardware for master nodes (such as NameNode, YARN Resource manager, HAWQ master) for higher cluster availability. </p><p>Overall when choosing the hardware for cluster nodes, select equipment that lowers power consumption. </p><p><strong>Note</strong>: Following are not minimum requirements, they are Pivotal best practices recommendations.</p><h4 id="InstallingPivotalHDEnterpriseUsingtheCLI-ClusterSlaves">Cluster Slaves</h4><p>Cluster slaves nodes run Hadoop service slaves such as the Datanode, NodeManager, RegionServer, and SegmentServer.</p><ul><li>2 CPUs (4 to 8 cores)--- You can also have single CPU with more (6 to 8) cores and ability to add additional CPU, if needed in future. An algorithm to measure this is as follows: total map+reduce tasks per node are ~= 1.5 times number of cores per node. Note: You might consider decreasing the number of map/reduce task per node when using PHD with HAWQ and assigning more cores to HAWQ segment servers based on mix work load of HAWQ vs. MapReduce.</li><li>24 to 64GB RAM per node — Typically 1 GB for each Hadoop daemons such as DataNode, NodeManager, Zookeeper etc. 2 to 3GB for OS and other services; and 1.5 or 2GB for each map/reduce task. <strong>Note</strong>: memory per map/reduce tasks on slave nodes depends on application requirement.</li><li>4 to 10, 2TB or 3TB disks, 7.2K RPM, SATA drives (JBOD) -- More disks per node provides more I/O bandwidth. Although more disk capacity per node may put more memory requirement on the HDFS Namenode. The reason for this is the total HDFS storage capacity grows with more number of cluster nodes while average HDFS file size stays small.</li><li>2 x 2TB or 3TB disks, RAID 1 configured for System OS. It can also store Hadoop daemon logs.</li><li>1GbE or 10GbE network connectivity within RACK</li></ul><h4 id="InstallingPivotalHDEnterpriseUsingtheCLI-ClusterMasters">Cluster Masters</h4><p>Cluster master nodes run Hadoop service masters such as the NameNode, ResourceManager, and HAWQ Master</p><p>You must select more more reliable hardware for cluster master nodes.</p><ul><li>Memory (RAM) requirement would be higher depending on the size of the cluster, number of HDFS storage and files. Typical memory ranges would be 24GB to 64 GB.</li><li>Local disk storage requirement is 1 to 2TB, SAS disks, with RAID5/6</li></ul><p><strong>Note</strong>: Master nodes requires less storage than cluster slave nodes.</p><h4 id="InstallingPivotalHDEnterpriseUsingtheCLI-PivotalHDAdminnode">Pivotal HD Admin node</h4><p>Ensure that the Admin node is separate from cluster nodes especially if cluster size has more than 15 - 20 nodes. The minimum hardware requirements are as follows:</p><ul><li>1 Quad code CPU,</li><li>4 to 8GB RAM,</li><li>2x2TB SATA disks,</li><li>1GbE network connectivity</li></ul><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-BestPracticesforDeployingHadoopServices">Best Practices for Deploying Hadoop Services</h3><p>When creating your test environment, you can deploy all the Hadoop services and roles on a single node. A test cluster usually comprises 3 to 5 nodes. However, when deploying a production cluster with more nodes, here are some guidelines for better performance, availability, and use:</p><ul><li>Hadoop services Master roles: For example, HDFS NameNode, YARN ResourceManager and History Server, HBase Master, HAWQ Master, USS Namenode. These should reside on separate nodes. These services and roles require dedicated resources since they communicate directly with Hadoop client applications. Running Hadoop slave application tasks (map/reduce tasks) on the same node interferes with master resource requirements.</li><li>Hadoop services slave roles: For example, HDFS DataNode, YARN NodeManager, HBase RegionServer, HAWQ SegmentServer. These should reside on the cluster slave nodes. This helps provide optimal data access as well as better hardware use.</li><li>HBase requires Zookeeper: Zookeeper should have an odd number of zookeeper servers. This application does not need dedicated nodes and can reside on the master server with ~ 1GB RAM and dedicated disk with ~ 1 TB of space.</li><li>Hadoop Clients: For example, Hive, Pig etc. These should be installed on the separate gateway nodes depending on multi-user application requirements.</li></ul><p>At this point you should have a bunch of systems with defined roles (admin node, namenode, HAWQ master, etc) all ready for install/deploy of the PHD software distribution.</p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-CommandLineInstallationOverview"></span></p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-CommandLineInstallationOverview">Command Line Installation Overview</h2><p>The table below provides a brief overview of the installation steps. Each step is covered in more detail in the following sections of this document.<span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-BacktoInstallationOverview"></span></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><div class="tablesorter-header-inner"><p>Task</p></div></th><th class="confluenceTh"><div class="tablesorter-header-inner"><p>Subtasks</p></div></th></tr><tr><td class="confluenceTd"><p><strong>Prerequisites</strong> <br class="atl-forced-newline"/>See <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-PivotalHDPrerequisites">Pivotal HD Prerequisites</a> <br class="atl-forced-newline"/>for more details</p></td><td class="confluenceTd"><p><strong>Check JDK version</strong> <br class="atl-forced-newline"/>(as root) <br class="atl-forced-newline"/> <code>  # java -version </code> <br class="atl-forced-newline"/>Ensure you're running Oracle Java JDK Version 1.7. <br class="atl-forced-newline"/>If not, download the appropriate version from Oracle.</p><p>Note: JDK 1.6 is optional but has not been fully tested.</p></td></tr><tr><td class="confluenceTd"><p> </p></td><td class="confluenceTd"><p><strong>Check Yum accessibility</strong> <br class="atl-forced-newline"/>(as root) <br class="atl-forced-newline"/>Verify that all hosts have yum access to an EPEL yum repository.   <br class="atl-forced-newline"/> <code>   # sudo yum list &lt;<strong> <em>LIST OF PACKAGES</em> </strong>&gt; </code> <br class="atl-forced-newline"/>See <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-PivotalHDPrerequisites">Pivotal HD Prerequisites</a> for the list of packages.</p></td></tr><tr><td class="confluenceTd"><p> </p></td><td class="confluenceTd"><p><strong>Verify iptables is turned off</strong> <br class="atl-forced-newline"/>(as root) <br class="atl-forced-newline"/>      <code># chkconfig iptables off </code> <br class="atl-forced-newline"/> <code>   # service iptables stop </code> <br class="atl-forced-newline"/> <code>   # service iptables status </code> <br class="atl-forced-newline"/> <code>   iptables: Firewall is not running.</code></p><p><strong>Note</strong>: All machines in the cluster must also allow ICMP between boxes, and the admin server must respond to ping. This is used during the <code>icm_client scan hosts</code>' command to test that the nodes can reach the admin server.</p></td></tr><tr><td class="confluenceTd"><p> </p></td><td class="confluenceTd"><p><strong>Disable SELinux</strong> <br class="atl-forced-newline"/>(as root) <br class="atl-forced-newline"/> <code>  # echo 0 &gt;/selinux/enforce</code></p></td></tr><tr><td class="confluenceTd"><p><strong>Prepare the Admin Node</strong> <br class="atl-forced-newline"/>See <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-PreparingtheAdminNode">Preparing the Admin Node</a> <br class="atl-forced-newline"/>for more details</p></td><td class="confluenceTd"><p><strong>Install Pivotal Command Center</strong> <br class="atl-forced-newline"/>(as root) <br class="atl-forced-newline"/>1. Copy tar file to your specified directory on the admin node, for example: <br class="atl-forced-newline"/> <code>  # scp ./PCC-2.0.x.<strong> <em>version.build.os</em> </strong>.x86_64.tar.gz host:/root/phd/ </code> <br class="atl-forced-newline"/>2. Login as root and untar to that directory: <br class="atl-forced-newline"/> <code>  # cd /root/phd </code> <br class="atl-forced-newline"/> <code>  # tar --no-same-owner -zxvf PCC-2.0.x.<strong> <em>version.build.os</em> </strong>.x86_64.tar.gz </code> <br class="atl-forced-newline"/>3. Run the installation script from the directory where it is installed: <br class="atl-forced-newline"/> <code>  # ./install </code> <br class="atl-forced-newline"/>4. As the rest of the installation is done as the <code>gpadmin</code> user, change to <code>gpadmin</code> user: <br class="atl-forced-newline"/> <code># su - gpadmin</code></p><p>5. Enable Secure Connections</p></td></tr><tr><td class="confluenceTd"><p> </p></td><td class="confluenceTd"><p><strong>Import the Pivotal HD, HAWQ and PHDTools packages to</strong> <br class="atl-forced-newline"/> <strong>the Admin node</strong> <br class="atl-forced-newline"/>(as gpadmin) <br class="atl-forced-newline"/>1. Copy the Pivotal HD, ADS (HAWQ), and PHDTools (optional for USS) <br class="atl-forced-newline"/>tarballs from the initial download location to the gpadmin home directory <br class="atl-forced-newline"/>2. Change the owner of the packages to gpadmin and untar the tarballs</p><p><strong>Note</strong>: If you want to use GemFire XD Beta, you also need to import and enable the PRTS package. Complete instructions are in the <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-ConfiguringGemFireXDBeta">Configuring GemFire XD Beta</a> section.</p></td></tr><tr><td class="confluenceTd"><p> </p></td><td class="confluenceTd"><p><strong>Enable Pivotal HD Service</strong> <br class="atl-forced-newline"/>(as gpadmin) <br class="atl-forced-newline"/> <code>  # icm_client import -s &lt;<strong> <em>PATH TO EXTRACTED PHD TAR BALL</em> </strong>&gt;</code></p></td></tr><tr><td class="confluenceTd"><p> </p></td><td class="confluenceTd"><p><strong>Enable HAWQ and PXF services</strong> <br class="atl-forced-newline"/>(as gpadmin) <br class="atl-forced-newline"/> <code>  # icm_client import -s &lt;<strong> <em>PATH TO EXTRACTED ADS TAR BALL</em> </strong>&gt; </code></p></td></tr><tr><td class="confluenceTd"><p> </p></td><td class="confluenceTd"><p><strong>Enable USS services</strong> <br class="atl-forced-newline"/>Optional <br class="atl-forced-newline"/>(as gpadmin) <br class="atl-forced-newline"/> <code>  # icm_client import -s &lt;<strong> <em>PATH TO EXTRACTED PHDTOOLS TAR BALL</em> </strong>&gt; </code></p></td></tr><tr><td class="confluenceTd"><p><strong>Edit the Cluster</strong> <br class="atl-forced-newline"/> <strong>Configuration File</strong> <br class="atl-forced-newline"/>See <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-ClusterConfigurationFiles">Cluster Configuration Files</a> <br class="atl-forced-newline"/>for more details</p></td><td class="confluenceTd"><p><strong>Fetch the default Cluster Configuration template</strong> <br class="atl-forced-newline"/>(as gpadmin) <br class="atl-forced-newline"/>  <code>#  icm_client fetch-template -o ~/ClusterConfigDir </code> <br class="atl-forced-newline"/>Note: <code>ClusterConfigDir</code> will be automatically created.</p></td></tr><tr><td class="confluenceTd"><p> </p></td><td class="confluenceTd"><p><strong>Edit the default Cluster Configuration template </strong>(<code>clusterConfig.xml</code>) <br class="atl-forced-newline"/>(as gpadmin) <br class="atl-forced-newline"/>At a minimum, you must replace all instances of <code>host.yourdomain.com</code> with valid hostnames for your deployment.</p><p><strong>Notes</strong>:</p><p>If you want to use GemFire XD, you need to add that service to the <code>clusterConfig.xml</code> file.  Complete instructions are available in the <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-ConfiguringGemFireXDBeta">Configuring GemFire XD Beta</a> section.</p><p>If you want to enable HA, you need to make some HA-specific changes to some configuration files. Complete instructions are available in the <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-HighAvailability(HA)">High Availability</a> section.</p></td></tr><tr><td class="confluenceTd"><p> </p></td><td class="confluenceTd"><p><strong>Configure other Pivotal HD and ADS Components</strong> <br class="atl-forced-newline"/>(as gpadmin) <br class="atl-forced-newline"/>Optional: Configure HAWQ and other stack components in their <br class="atl-forced-newline"/>corresponding configuration files (for example: <code>hawq/gpinitsystem_config</code> file), <br class="atl-forced-newline"/>as needed</p></td></tr><tr><td class="confluenceTd"><p> </p></td><td class="confluenceTd"><p><strong>Configure USS</strong> <br class="atl-forced-newline"/>(as gpadmin) <br class="atl-forced-newline"/>Optional: Configure USS, (configuration files located in <code>/uss)</code>, by defining <br class="atl-forced-newline"/>the <strong>uss-catalog</strong> role in the <code>clusterConfig.xml</code> file for every cluster.</p></td></tr><tr><td class="confluenceTd"><p><strong>Deploy the Cluster</strong> <br class="atl-forced-newline"/>See <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-DeployingtheCluster">Deploying the Cluster</a> <br class="atl-forced-newline"/>for more details</p></td><td class="confluenceTd"><p><strong>Deploy/Install a cluster</strong> <br class="atl-forced-newline"/>(as gpadmin) <br class="atl-forced-newline"/>   <code># icm_client deploy -c ~/ClusterConfigDir</code></p><p>NOTE: This command creates the gpadmin user on the cluster nodes. Do NOT create this user manually. If gpadmin already exists on the cluster nodes, delete that user before running this command.</p></td></tr><tr><td class="confluenceTd"><p> </p></td><td class="confluenceTd"><p><strong>Post installation for HAWQ</strong> <br class="atl-forced-newline"/>(as gpadmin) <br class="atl-forced-newline"/>Exchange keys between HAWQ master and segment hosts: <br class="atl-forced-newline"/>Create a hostfile (<code>HAWQ_Segment_Hosts.txt</code>) that contains the <br class="atl-forced-newline"/>hostnames of all your HAWQ segments. <br class="atl-forced-newline"/> <br class="atl-forced-newline"/> <code>   # ssh &lt; <strong> <em>HAWQ_MASTER</em> </strong> </code> <br class="atl-forced-newline"/> <code>  #  source /usr/local/hawq/greenplum_path.sh </code> <br class="atl-forced-newline"/> <code>  #  /usr/local/hawq/bin/gpssh-exkeys -f ./HAWQ_Segment_Hosts.txt</code></p></td></tr><tr><td class="confluenceTd"><p><strong>Verify the Cluster</strong> <br class="atl-forced-newline"/>See <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-VerifyingaCluster">Verifying a Cluster</a> <br class="atl-forced-newline"/>for more details</p></td><td class="confluenceTd"><p><strong>Start the Cluster</strong> <br class="atl-forced-newline"/>(as gpadmin)  <br class="atl-forced-newline"/> <code>  #  icm_client start -l &lt;<strong> <em>CLUSTERNAME</em> </strong>&gt;</code></p></td></tr><tr><td class="confluenceTd"><p> </p></td><td class="confluenceTd"><p><strong>Verify HDFS</strong> <br class="atl-forced-newline"/>(as gpadmin)</p><p><code>  # ssh &lt;<strong> <em>NAMENODE</em> </strong>&gt;  </code> <br class="atl-forced-newline"/> <code>  # hdfs dfs -ls /</code></p></td></tr><tr><td class="confluenceTd"><p> </p></td><td class="confluenceTd"><p><strong>Initialize HAWQ</strong> <br class="atl-forced-newline"/>(as gpadmin) <br class="atl-forced-newline"/>ssh to the HAWQ master, the run the following: <br class="atl-forced-newline"/> <code>  # source /usr/local/hawq/greenplum_path.sh </code> <code> <br/>  # /etc/init.d/hawq init</code></p></td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-PivotalHDPrerequisites"></span></p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-PivotalHDPrerequisites2"></span></p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-PivotalHDEnterprisePrerequisites">Pivotal HD Enterprise Prerequisites</h2><p>1. Have working knowledge of the following:</p><ul><li><strong>Yum</strong>: Enables you to install or update software from the command line. See <a class="external-link" href="http://yum.baseurl.org/" rel="nofollow">http://yum.baseurl.org/</a>.</li><li><strong>RPM</strong> (Redhat Package Manager). See information on RPM at Managing RPM-Based Systems with Kickstart and Yum. See <a class="external-link" href="http://shop.oreilly.com/product/9780596513825.do?sortby=publicationDate" rel="nofollow">http://shop.oreilly.com/product/9780596513825.do?sortby=publicationDate</a></li><li><strong>NTP</strong>. See information on NTP at: <a class="external-link" href="http://www.ntp.org" rel="nofollow">http://www.ntp.org</a></li><li><strong>SSH</strong> (Secure Shell Protocol). See information on SSH at <a class="external-link" href="http://www.linuxproblem.org/art_9.html" rel="nofollow">http://www.linuxproblem.org/art_9.html</a></li></ul><p>2. <strong>DNS lookup</strong>. Verify that the admin host is be able to reach every cluster node using its hostname and IP address. Verify that every cluster node is able to reach every other cluster node using its hostname and IP address:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># ping -c myhost.mycompany.com // The return code should be 0
+# ping -c 3 192.168.1.2 // The return code should be 0
+</pre>
+</div></div><p>3. <strong>iptables</strong>. Verify that iptables is turned off:</p><p>  As root:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># chkconfig iptables off
+# service iptables stop
+</pre>
+</div></div><p style="margin-left: 30.0px;"><strong>Note</strong>: All machines in the cluster must also allow ICMP between boxes, and the admin server must respond to ping. This is used during the <code>icm_client scan hosts</code>' command to test that the nodes can reach the admin server.</p><p>4. <strong>SELinux</strong>. Verify that SELinux is disabled:</p><p>  As root:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># sestatus
+</pre>
+</div></div><p>   If SELinux is disabled, one of the following is returned:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">SELinuxstatus: disabled
+</pre>
+</div></div><p>  or</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">SELinux status: permissive
+</pre>
+</div></div><p>  If SELinux status is <em>enabled</em>, you can temporarily disable it or make it permissive (this meets requirements for installation) by running the following command:</p><p>  As root:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># echo 0 &gt;/selinux/enforce
+</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>This only temporarily disables SELinux; once the host is rebooted, SELinux will be re-enabled. We therefore recommend permanently disabling SELinux, described below, while running Pivotal HD/HAWQ (however this requires a reboot).</p>
+</div>
+</div>
+<p>You can permanently disable SE Linux by editing the <code>/etc/selinux/config</code> file as follows:</p><p>Change the value for the SELINUX parameter to:<br/> <code>SELINUX=disabled</code> <br/> Reboot the system.</p><p>5. <strong>JAVA JDK</strong>. Ensure that you are running Oracle JAVA JDK version 1.7.</p><p>Note: Oracle JDK 1.6 is optional but not fully tested. Customers may use JDK 1.6 but will not receive official support.</p><p>As root:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># java -version
+</pre>
+</div></div><p>If you are not running the correct JDK, you can download a supported version from the Oracle site at <a class="external-link" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" rel="nofollow">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a></p><p>6. <strong>YUM</strong>. Verify that all hosts have yum access to an EPEL yum repository.  See Package Accessibility, below.</p><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-PackageAccessibility">Package Accessibility</h3><p>Pivotal Command Center and Pivotal HD Enterprise expect some prerequisite packages to be pre-installed on each host, depending on the software that gets deployed on a particular host.  In order to have a smoother installation it is recommended that each host would have yum access to an EPEL yum repository. If you have access to the Internet, then you can configure your hosts to have access to the external EPEL repositories. However, if your hosts do not have Internet access (or you are deploying onto a large cluster), then having a local yum EPEL repo is highly recommended. This will also give you some control on the package versions you want deployed on your cluster. See <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-CreatingaYUMEPELRepository">Creating a YUM EPEL Repository</a> for instructions on how to setup a local yum repository or point your hosts to an EPEL repository.</p><p>The following packages need to be either already installed on the admin host or be on an accessible yum repository:</p><ul><li>httpd</li><li>mod_ssl</li><li>postgresql</li><li>postgresql-devel</li><li>postgresql-server</li><li>compat-readline5</li><li>createrepo</li><li>sigar</li><li>sudo</li></ul><p>Run the following command on the admin node to make sure that you are able to install the prerequisite packages during installation:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo yum list &lt;LIST OF PACKAGES&gt;
+</pre>
+</div></div><p>If any of them are not available or not already installed, then you may have not added the repository correctly to your admin host.</p><p>For the cluster hosts (where you plan to install the cluster), the prerequisite packages depend on the software you will eventually install there, but you may want to verify that the following two packages are installed or accessible by yum on all hosts:</p><ul><li>nc</li><li>postgresql-devel</li></ul><p> </p><p><a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-CommandLineInstallationOverview">Back to Installation Overview</a></p><p><br class="atl-forced-newline"/> <span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-PreparingtheAdminNode"></span></p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-PreparingtheAdminNode2"></span></p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-PreparingtheAdminNode">Preparing the Admin Node</h2><p>1. Make sure the following tarballs are available on the Admin node:</p><ul><li>*Pivotal Command Center (PCC)</li><li>*Pivotal HD tarball (Apached Hadoop related services)</li><li>*Pivotal ADS tarball (HAWQ, PXF services)</li><li>Oracle JDK 1.7 Package - (you can download this from the Oracle site at <a class="external-link" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" rel="nofollow">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>)</li></ul><p style="margin-left: 30.0px;">Note: Oracle JDK 1.6 is optional but not fully tested. Customers may use JDK 1.6 but will not receive official support.</p><p>       *You can download these packages from the EMC Download Center at <a class="external-link" href="http://emc.subscribenet.com" rel="nofollow">https://emc.subscribenet.com</a>.</p><p>2. Make sure that all the tarballs are extracted and readable by the <code>gpadmin</code> user.</p><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-InstallPivotalCommandCenter">Install Pivotal Command Center</h3><ol><li><p>Copy the PCC tar file to your specified directory on the admin node, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">     # scp ./PCC-2.0.x.version.build.os.x86_64.tar.gz host:/root/phd/ 
+</pre>
+</div></div></li><li><p>Login as root and untar to that directory:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">     # cd /root/phd      
+     # tar --no-same-owner -zxvf PCC-2.0.x.version.build.os.x86_64.tar.gz
+</pre>
+</div></div></li><li><p>Run the installation script from the directory where it is installed:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">      # cd PCC-2.0.x.version	
+      # ./install
+</pre>
+</div></div><p>This installs the required packages and configures Pivotal Command Center and starts PCC services.</p></li><li>Enable Secure Connections:</li></ol><p style="margin-left: 30.0px;">Pivotal Command Center uses HTTPS to secure data transmission between the client browser and the server. By default, the PCC installation script generates a self-signed certificate. <br/> <br/>Alternatively you can provide your own Certificate and Key by following these steps:</p><p style="margin-left: 30.0px;">a. Set the ownership of the certificate file and key file to gpadmin.</p><p style="margin-left: 30.0px;">b. Change the permission to owner read-only (mode 400)</p><p style="margin-left: 30.0px;">c. Edit the PCC configuration file <code>/usr/local/greenplum-cc/config/commander</code> as follows:</p><p style="margin-left: 60.0px;">Change the path referenced in the variable <code>PCC_SSL_KEY_FILE</code> to point to your own key file.</p><p style="margin-left: 60.0px;">Change the path referenced in the variable <code>PCC_SSL_CERT_FILE</code> to point to your own certificate file.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>See <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-InstallingSSLcertificates">SSL Certificates</a> for details</p>
+</div>
+</div>
+<p style="margin-left: 30.0px;">d. Restart PCC with the following command:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">service commander restart</pre>
+</div></div><p>5. Verify that your PCC instance is running by executing the following command:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ service commander status</pre>
+</div></div><p>The PCC installation also includes a CLI (Command Line Interface tool, <code>icm_client</code>). You can now deploy and manage the cluster using the CLI.</p><p>From now on you can switch to the gpadmin user. You should no longer need to be root for anything else.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">su - gpadmin
+</pre>
+</div></div><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-InstallPivotalHD,PHDTools,andHAWQ">Install Pivotal HD, PHDTools, and HAWQ</h3><p>Once you have Pivotal Command Center installed (the Command Center installation includes a CLI tool, <em>icm_client</em>, you now use to deploy and configure PHD services), you can use the <em>import</em> utility to sync the RPMs from the specified source location into the Pivotal Command Center (PCC) local yum repository of the Admin Node. This allows the cluster nodes to access the RPMs during deployment.</p><p><strong>Note</strong>: If you want to use GemFire XD Beta, you also need to import and enable the PRTS package. Complete instructions are in the <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-ConfiguringGemFireXDBeta">Configuring GemFire XD Beta</a> section.</p><p> </p><p><strong>Note:</strong> Run <em>import</em> each time you wish to sync/import a new version of the package.</p><p>1. Copy the Pivotal HD, ADS, and PHDTools tarball from the initial download location to the gpadmin home directory</p><p>2. Change the owner of the packages to gpadmin and untar both the tarballs. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">If the file is a tar.gz or tgz, use
+tar zxf PHD-1.0.x-x.tgz
+
+If the file is a tar, use
+tar xf PHD-1.0.x-x.tar
+
+Similarly for the Pivotal ADS tar.gz or tgz file, use
+tar zxf PADS-1.0.x-x.tgz
+
+If the file is a tar, use
+tar xf PADS-1.0.x-x.tar
+
+Similarly for the PHDTools tar.gz or tgz file, use
+tar zxf PHDTools-1.0.x-x.tgz
+
+If the file is a tar, use
+tar xf PHDTools-1.0.x-x.tar
+</pre>
+</div></div><h4 id="InstallingPivotalHDEnterpriseUsingtheCLI-EnablingPivotalHDService">Enabling Pivotal HD Service</h4><p>1. As gpadmin, extract the following tarball for Pivotal HD:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># icm_client import -s &lt;PATH TO EXTRACTED PHD TAR BALL&gt;
+</pre>
+</div></div><p>Example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># icm_client import -s PHD-1.0.x-x/
+</pre>
+</div></div><p><strong> </strong></p><h4 id="InstallingPivotalHDEnterpriseUsingtheCLI-EnablingHAWQandPXFServices">Enabling HAWQ and PXF Services</h4><p>Note: This is required only if you wish to deploy HAWQ.</p><p>1. As gpadmin, extract the following tar ball for HAWQ and PXF:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># icm_client import -s &lt;PATH TO EXTRACTED ADS TAR BALL&gt;
+</pre>
+</div></div><p>Example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># icm_client import -s PADS-1.0.x-x/
+</pre>
+</div></div><p>For more information, see the log file located at: <code>/var/log/gphd/gphdmgr/gphdmgr-import.log</code></p><h4 id="InstallingPivotalHDEnterpriseUsingtheCLI-EnablingUSSService">Enabling USS Service</h4><p>Note: This is required only if you wish to deploy and enable USS.</p><p>1. As gpadmin, extract the following tar ball for USS:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># icm_client import -s &lt;PATH TO EXTRACTED PHDTools TAR BALL&gt;
+</pre>
+</div></div><p>Example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># icm_client import -s PHDTools-1.0.x-x/
+</pre>
+</div></div><p><strong>Syntax:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client import --help
+Usage: icm_client [options]
+
+Options:
+  -h, --help            Show this help message and exit
+  -p PATH, --path=PATH  (deprecated: use -s instead) directory location of
+                        PHD/PADS/PHDTools/PRTS stack
+  -v VERSION, --version=VERSION
+                        The version of PHD stack - 1.0 or 2.0 (default)
+  -s STACK, --stack=STACK
+                        Directory location of the PHD/PADS/PHDTools/PRTS stack
+  -r RPM, --rpm=RPM     Location of the rpm to be included in the PHDMgr local
+                        yum repository
+  -f FILE, --file=FILE  Location of the file like JDK-version.bin which will
+                        be used by PHDMgr during cluster deployment
+</pre>
+</div></div><p><strong>Note:</strong> The version value [<code>-v</code>] is an optional field and defaults to "2.0". If at all you specify it, do not use the actual package version, use "2.0". The 2.0 corresponds to the Apache YARN (2.x) version</p><p> </p><p><a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-CommandLineInstallationOverview">Back to Installation Overview</a></p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-ClusterConfigurationFiles2"></span></p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-ClusterConfigurationFiles"></span></p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-ClusterConfigurationFiles">Cluster Configuration Files</h2><p>We provide a default Cluster configuration file <em>(</em> <code>clusterConfig.xml</code> <em>)</em> that you need to edit for your own cluster, all the cluster nodes are configured based on this configuration file.</p><p>At a minimum you must replace all instances of <code>host.yourdomain.com</code> with valid hostnames for your deployment.</p><p>Advanced users can further customize their cluster configuration by editing the stack component configuration files such as <code>hdfs &gt; core-site.xml</code> <em>. </em></p><p>Specifically, for HAWQ you may have to edit the HAWQ configuration file, see <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-ConfiguringHAWQ">Configuring HAWQ</a>; and iff you want to enable HA, you need to make some HA-specific changes to several configuration files. Complete instructions are available in the <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-HighAvailability(HA)">High Availability</a> section.</p><h4 id="InstallingPivotalHDEnterpriseUsingtheCLI-FetchingDefaultClusterConfigurationTemplates">Fetching Default Cluster Configuration Templates</h4><p>The <code>fetch-template</code> command saves a default cluster configuration template into the specified directory, such as a directory on disk. You can manually modify the template and use it as input to subsequent commands.</p><p>1. As gpadmin, run the <code>fetch-template</code> command.</p><p>Example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># icm_client fetch-template -o ~/ClusterConfigDir
+</pre>
+</div></div><p>The above example uses the <code>fetch-template</code> command to place a template in a directory called <code>ClusterConfigDir </code>(automatically created). This directory contains files which describe the topology of the cluster and the configurations for the various services installed on the cluster.</p><p><strong>Syntax:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client fetch-template --help
+Usage: /usr/bin/icm_client fetch-template options
+
+Options:
+-h, --help          Show this help message and exit
+-o OUTDIR, --outdir=OUTDIR
+                    Directory path to store the cluster configuration template files
+</pre>
+</div></div><h4 id="InstallingPivotalHDEnterpriseUsingtheCLI-EditingClusterConfiguration">Editing Cluster Configuration</h4><ol><li>Locate and update the <code>clusterConfig.xml</code> file based on your cluster requirements.  At a minimum, you must update the default names of the nodes in this file to match the names of the nodes in your own cluster.<br/> <strong>Notes</strong>: <br/>If you want to use GemFire XD, you need to add that service to the <code>clusterConfig.xml</code> file.  Complete instructions are available in the <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-ConfiguringGemFireXDBeta">Configuring GemFire XD Beta</a> section.<br/>If you want to enable HA, you need to make some HA-specific changes to the <code>clusterConfig.xml</code> file and edit some other configuration files. Complete instructions are available in the <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-HighAvailability(HA)">High Availability </a>section.</li><li><p>Once you've made your changes, we recommend you check that your xml is well-formed using the <code>xmlwf </code>command, as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">xmlwf ~/ClusterConfigDir/clusterConfig.xml
+</pre>
+</div></div></li></ol><h5 id="InstallingPivotalHDEnterpriseUsingtheCLI-AbouttheClusterConfigurationFile">About the Cluster Configuration File</h5><p>This section provides more information about what is contained in the Cluster Configuration file and what you can edit based on your cluster.</p><p>The <code>clusterConfig.xml</code> contains a default Cluster Configuration template.</p><p>The following is an example of the configuration files directory structure:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">├── clusterConfig.xml
+├── hdfs
+    ├── core-site.xml
+    ├── hadoop-env.sh
+    ├── hadoop-metrics2.properties
+    ├── hadoop-metrics2.properties
+    ├── hadoop-policy.xml
+    ├── hdfs-site.xml
+    ├── log4j.properties
+├── yarn
+    ├── container-executor.cfg
+    ├── mapred-env.sh
+    ├── mapred-queues.xml
+    ├── mapred-site.xml
+    ├── postex_diagnosis_tests.xml
+    ├── yarn-env.sh
+    └── yarn-site.xml
+└── zookeeper
+    └── log4j.properties
+    └── zoo.cfg
+├── hbase
+    ├── hadoop-metrics.properties
+    ├── hbase-env.sh
+    ├── hbase-policy.xml
+    ├── hbase-site.xml
+    ├── log4j.properties
+├── hawq
+    └── gpinitsystem_config
+├── pig
+    ├── log4j.properties
+    ├── pig.properties
+├── hive
+    ├── hive-env.sh
+    ├── hive-exec-log4j.properties
+    ├── hive-log4j.properties
+    ├── hive-site.xml
+├── uss
+    ├── uss.properties
+    ├── uss-client-site.xml
+    ├── uss-env.sh  
+    ├── uss-nn-site.xml
+ </pre>
+</div></div><p><strong>Note:</strong> There may not be a folder that corresponds to every service, for example Pig and Mahout do not have their own directories, they can be configured directly using the client tag in the <code>clusterConfig.xml</code> file.</p><p>The <code>clusterConfig.xml</code> file contains the following sections:</p><h5 id="InstallingPivotalHDEnterpriseUsingtheCLI-HeadSection">Head Section</h5><p>This is the metadata section and must contain the following mandatory information:</p><ul><li><code>clusterName</code>: Configure the name of the cluster</li><li><code>gphdStackVer</code>: Pivotal HD Version. This defaults to 2.0</li><li><code>services</code>: Configure the services to be deploy. By default every service that Pivotal HD Enterprise supports is listed here. ZooKeeper, HDFS, and YARN are mandatory services. HBase and HAWQ are optional.</li><li><code>client</code>: The host that can be used as a gateway or launcher node for running the Hadoop, Hive, Pig, Mahout jobs.</li></ul><h5 id="InstallingPivotalHDEnterpriseUsingtheCLI-TopologySection">Topology Section</h5><p><strong>&lt;hostRoleMapping&gt;</strong></p><p>This is the section where you specify the roles to be installed on the hosts. For example, you can specify where your hadoop namenode, data node etc. should be installed. Please note that all mandatory roles should have at least one host allocated. You can identify the mandatory role by looking at the comment above that role in the <code>clusterConfig.xml</code> file.</p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Important</p>
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p><strong>If you are planning to configure Hive with HAWQ/PXF, please ensure that the "hive-server" is co-located with the Hadoop "namenode". This requirement is due to a known bug and will be fixed in future releases</strong></p><p><strong> <strong>We recommend you use FQDN instead of short hostnames in the clusterConfig.xml file</strong> </strong></p>
+</div>
+</div>
+<h5 id="InstallingPivotalHDEnterpriseUsingtheCLI-GlobalServiceProperties">Global Service Properties</h5><p><strong>&lt;servicesConfigGlobals&gt;</strong></p><p>This section defines mandatory global parameters such as Mount Points, Directories, Ports, <code>JAVA_HOME</code>. These configured mount points such as <code>datanode.disk.mount.points</code>, <code>namenode.disk.mount.points</code>, and <code>secondary.namenode.disk.mount.points</code> are used to derive paths for other properties in the datanode, namenode and secondarynamenode respectively. These properties can be found in the service configuration files.</p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Important</p>
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<ul><li><code>hawq.segment.directory </code>and <code>hawq.master.directory </code>need to be configured only if HAWQ is used.</li><li>The values in this section are pre-filled with defaults. Check these values, they may not need to be changed.</li><li>The mount points mentioned in this section are automatically created by Pivotal HD during cluster deployment.</li><li>We recommend you have multiple disk mount points for datanodes, but it is not a requirement.</li></ul>
+</div>
+</div>
+<h5 id="InstallingPivotalHDEnterpriseUsingtheCLI-OtherConfigurationFiles">Other Configuration Files</h5> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>Please ensure that the directories specified for <code>dfs.datanode.name.dir</code> and <code>dfs.datanode.data.dir</code> in the <code>hdfs/hdfs-site.xml</code> are empty.</p>
+</div>
+</div>
+<p> </p><p><strong>Configuring Your Hadoop Service</strong></p><p>Each service has a corresponding directory that containing standard configuration files. You can override properties to suit your cluster requirements, or consult with Pivotal HD support to decide on a configuration to suite your specific cluster needs.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>You must not override properties derived from the global service properties, especially those dervied from role information.</p>
+</div>
+</div>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">Example In hdfs/core-site.xml: fs.defaultFS which is set to
+
+hdfs://$&lt;NAMENODE&gt;:$&lt;dfs.port&gt;
+</pre>
+</div></div><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-ConfiguringHAWQ"></span></p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-ConfiguringHAWQ2"></span></p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-ConfiguringHAWQ">Configuring HAWQ</h2><p>HAWQ system configuration is defined in <code>hawq/gpinitsystem_config</code>.</p><p>You can override the HAWQ database default database port setting, 5432, using the <code>MASTER_PORT </code>parameter. You can also change the HAWQ DFS path using the <code>DFS_URL</code> parameter.</p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Important</p>
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>If you are planning to configure Hive with HAWQ/PXF, please ensure that the "hive-server" is co-located with the Hadoop "namenode". This requirement is due to a known bug and will be fixed in future releases.</p>
+</div>
+</div>
+<p> </p><p><strong>!</strong> <strong> </strong>If you are planning to deploy a HAWQ cluster on VMs with memory lower than the optimized/recommended requirements:</p><p style="margin-left: 30.0px;">Remove the entry <code>vm.overcommit_memory = 2</code> from <code>/usr/lib/gphd/gphdmgr/hawq_sys_config/sysctl.conf</code> prior to running the <code>prepare hawq</code> utility.</p><p style="margin-left: 30.0px;">In the <code>clusterConfig.xml</code>, update <code>&lt;hawq.segment.directory&gt;</code> to include only one segment directory entry (instead of the default 4 segments).</p><p><a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-CommandLineInstallationOverview">Back to Installation Overview</a></p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-ConfiguringUSS">Configuring USS</h2><p>The USS configuration files are located in the <code>uss/</code> directory.</p><p>The yarn configuration file needs to be updated, as follows:</p><p>In <code>/etc/gphd/hadoop/conf/yarn-site.xml </code>update the <code> <em>yarn.application.classpath</em> </code> property to include the following classpath entries:</p><pre>$USS_HOME<br/>$USS_CONF</pre><p>Pivotal HD allows users to deploy USS in a couple of different scenarios.</p><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-DeployUSSonasinglecluster">Deploy USS on a single cluster</h3><p>This use case is supported by deploying the <code> <strong>uss-catalog</strong> </code> for the current cluster</p><p>This is done by including the <strong>uss-catalog</strong> rule in the clusterConfig.xml file for every cluster.</p><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-DeployUSSacrossasetofclustersdeployedbyPivotalHD">Deploy USS across a set of clusters deployed by Pivotal HD</h3><p>This use case is supported by not deploying the <code> <strong>uss-catalog</strong> </code> for the current cluster, but using <code> <strong>uss-catalog</strong> </code> from a cluster deployed previously via the CLI.</p><p>To do this perform the following:</p><p>1. Deploy a dedicated cluster containing the <code> <strong>uss-catalog</strong> </code> role, for example, Cluster-1.</p><p>2. Deploy subsequent clusters without the <code> <strong>uss-catalog</strong> </code> role, for example, Cluster-2 and Cluster-3. While deploying Cluster-2 and Cluster-3</p><p>   a. Remove the <code> <strong>uss-catalog</strong> </code> from <code>clusterConfig.xml</code>.</p><p>   b. Update <code>uss.db.url</code> <code>uss/uss.properties </code>with the hostname and port of the <code> <strong>uss-catalog</strong> </code> in Cluster-1 cluster configuration.</p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-VerifyingtheClusterNodesforPivotalHDManager2"></span></p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-VerifyingtheClusterNodesforPivotalHD">Verifying the Cluster Nodes for Pivotal HD</h2><p>1. As gpadmin, run the <code>scanhosts</code> command to verify certain prerequisites are met.</p><p>Example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># icm_client scanhosts -f ./HostFile.txt
+</pre>
+</div></div><p>The <code>scanhosts</code> command verifies that prerequisites for the cluster node and provides a detailed report of any missing prerequisites. Running this command ensures that clusters are deployed smoothly.</p><p><strong>Syntax:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client scanhosts --help
+Usage: /usr/bin/icm_client scanhosts [options]
+
+Options:
+  -h, --help            Show this help message and exit
+  -v, --verbose         Increase output verbosity
+  -f HOSTFILE, --hostfile=HOSTFILE
+                        File containing new-line separated list of hosts to be
+                        scanned
+  -j JAVAHOME, --java_home=JAVAHOME
+                        java_home path configured</pre>
+</div></div><p>You can troubleshoot using the following files:<br/> <strong>On the Admin Node:</strong></p><ul><li><code>/var/log/gphd/gphdmgr/ScanCluster.log</code></li></ul><p><strong>On the Cluster Nodes:</strong></p><ul><li><code> <code>/var/log/gphd/gphdmgr</code>/ScanHost.XXX.log</code></li></ul><p><strong>Note</strong>: We recommend running the scanhosts before every deployment or reconfiguration of the cluster.</p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-DeployingtheCluster"></span></p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-DeployingtheCluster2"></span></p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-DeployingtheCluster">Deploying the Cluster</h2><p>Pivotal HD deploys clusters using input from the cluster configuration directory. This cluster configuration directory contains files that describes the topology and configuration for the cluster and the installation procedure.</p><p>Deploy the cluster as gpadmin.</p><p>The deploy command internally does three steps:</p><ol><li>Prepares the cluster nodes with the pre-requisites (runs <code>preparehosts</code> command)</li><li>Verifies the prerequisites  (runs <code>scanhosts</code> command)</li><li>Deploys the cluster</li></ol><p><strong>Note: Ensure that the JDK file downloaded from Oracle has execute permission.</strong></p><p>   The <code>preparehosts</code> command run internally as part of deploy performs the following on the hosts listed in the<code> clusterConfig.xml</code> file:</p><ul><li>Creates the <code>gpadmin </code>user.</li><li>As <code>gpadmin</code>, sets up password-less SSH access from the Admin node.</li><li>Installs the provided Oracle Java JDK.</li><li>Disables SELinux across the cluster.</li><li>Synchronizes the system clocks.</li><li>Installs Puppet version 2.7.20 (the one shipped with the PCC tarball, not the one from puppetlabs repo)</li><li>Installs sshpass.</li></ul><p>If Oracle JDK is not already installed on the cluster nodes, you can install it via the deploy command. Here are the steps to deploy JDK.</p><ol><li>Accept the license agreement and download Oracle JDK from the Oracle website</li><li>Import the JDK file into the PHDMgr files repo. PHDMgr looks for the files in its repository during deployment:<br/> <strong> <br/>Note</strong>: Oracle JDK 1.7 is recommended. Oracle JDK 1.6 is optional but not fully tested. Customers may use JDK 1.6 but will not receive official support.<br/> <br/>If you have downloaded JDK 1.7, it will be a <code>.rpm</code> file. Use the following command to import the <code>.rpm</code> file:<br/> <code>icm_client import -r &lt;JDK rpm&gt;</code> <br/><p><br/>If you have downloaded JDK 1.6, it will be a <code>.bin</code> file. Use the following command to import the <code>.bin</code> fil<code>e<br/>icm_client import -f &lt;JDK bin&gt;</code></p></li><li>Once the file is imported, you can just use the name of the file in the <code>-j</code> option of <code>preparehosts</code> during deployment.</li></ol><p><strong>!</strong> Pivotal recommends that you run only one deploy command at a time, because running simultaneous deployments might result in failure.</p><p>Example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># icm_client deploy -c clusterConfigDir/ -i -d -j jdk-6u43-linux-x64-rpm.bin
+</pre>
+</div></div><p><strong>!</strong> Use the<code> -t</code> option only if you have NTP setup on the nodes.</p><p>You can check the following log files to troubleshoot any failures:</p><p><strong>On Admin</strong></p><ul><li><code>/var/log/gphd/gphdmgr/GPHDClusterInstaller_XXX.log</code></li><li><code>/var/log/gphd/gphdmgr/gphdmgr-webservices.log</code></li><li><code>/var/log/messages</code></li><li><code>/var/log/gphd/gphdmgr/installer.log</code></li></ul><p><strong>On Cluster Nodes</strong></p><ul><li><code>/tmp/GPHDNodeInstaller_XXX.log</code></li></ul><p><strong>Syntax:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client deploy --help
+Usage: /usr/bin/icm_client deploy [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -c CONFDIR, --confdir=CONFDIR
+                        Directory path where cluster configuration is stored
+  -s, --noscanhosts     Donot verify cluster nodes as part of deploying the
+                        cluster
+  -p, --nopreparehosts  Donot prepare hosts as part of deploying the cluster
+  -j JDKPATH, --java=JDKPATH
+                        Location of Sun Java JDK RPM installer binary (Ex:
+                        jdk-6u41-linux-x64-rpm.bin). Ignored if -p is
+                        specified
+  -t, --ntp             Synchronize system clocks using NTP (requires external
+                        network access). Ignored if -p is specified
+  -d, --selinuxoff      Disable SELinux. Ignored if -p is specified
+  -i, --iptablesoff     Disable iptables. Ignored if -p is specified
+  -y SYSCONFIGDIR, --sysconf=SYSCONFIGDIR
+                        [Only if HAWQ is part of the deploy] Directory
+                        location of the custom conf files (sysctl.conf and
+                        limits.conf) which will be appended to
+                        /etc/sysctl.conf and /etc/limits.conf on slave nodes.
+                        Default: /usr/lib/gphd/gphdmgr/hawq_sys_config/.
+                        Ignored if -p is specified</pre>
+</div></div><p>The deploy command has the option to skip running <code>preparehosts</code> or <code>scanhosts</code> as part of the deployment. If you have manually run <code>preparehosts</code> and <code>scanhosts</code> commands to confirm that all pre-requisites are met then you can skip running them during deployment using the <code>-s</code> and <code>-p</code> options.</p><p>You can also specify options to the preparehosts using <code>-j</code>, <code>-t</code>, <code>-d</code>, or<code> -i</code> options.</p><p> </p><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-PostInstallationforHAWQ">Post Installation for HAWQ</h3><p>You need to exchange SSH keys between HAWQ Master and Segment Nodes to complete HAWQ installation.</p><p>1. Create a hostfile (<code>HAWQ_Segment_Hosts.txt</code>) that contains the hostnames of all your HAWQ segments.</p><p>2. As gpadmin, execute the following commands <strong>from the HAWQ Master</strong>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># ssh &lt;HAWQ_MASTER&gt;
+# source /usr/local/hawq/greenplum_path.sh
+# /usr/local/hawq/bin/gpssh-exkeys -f ./HAWQ_Segment_Hosts.txt
+</pre>
+</div></div><p><strong>Your Pivotal HD installation is now complete. </strong></p><p><strong>You can now start a cluster and start HAWQ.  Both these steps are described in "Verifying a Cluster Installation", next.</strong></p><p><a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-CommandLineInstallationOverview">Back to Installation Overview</a></p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-VerifyingaCluster"></span></p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-VerifyingaCluster2"></span></p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-VerifyingaClusterInstallation">Verifying a Cluster Installation</h2><p>We recommend that you verify your cluster installation.</p><p>To verify your cluster installation:</p><p>1. As gpadmin, start your cluster.</p><p>  Example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># icm_client start -l &lt;CLUSTERNAME&gt;
+</pre>
+</div></div><p>See <a href="AdministeringPHDUsingtheCLI.html#AdministeringPivotalHDEnterpriseUsingtheCLI-ManagingACluster"> Managing a Cluster </a> for more detailed instructions and other start up options.</p><p>2.Verify HDFS is running (you will not be able to initialize HAWQ if HDFS is not running)</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># hdfs dfs -ls/
+</pre>
+</div></div><p>  Sample Output:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">  Found 4 items 
+  drwxr-xr-x   - mapred hadoop          0 2013-06-15 15:49 /mapred 
+  drwxrwxrwx   - hdfs   hadoop          0 2013-06-15 15:49 /tmp 
+  drwxrwxrwx   - hdfs   hadoop          0 2013-06-15 15:50 /user 
+  drwxr-xr-x   - hdfs   hadoop          0 2013-06-15 15:50 /yarn
+</pre>
+</div></div><p>3. Initialize HAWQ from the HAWQ master.</p><p>  Note that HAWQ is implicitly started as part of the initialization.</p><p>  ssh to the HAWQ Master before you initialize HAWQ</p><p>  Example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># source /usr/local/hawq/greenplum_path.sh
+# /usr/local/hawq/bin/gpssh-exkeys -f ./HAWQ_Hosts.txt
+# /etc/init.d/hawq init
+</pre>
+</div></div><p>See <a href="AdministeringPHDUsingtheCLI.html#AdministeringPivotalHDEnterpriseUsingtheCLI-ManagingHAWQ">Managing HAWQ</a> sections for more detailed instructions.</p><p> </p><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-VerifyingServiceStatus">Verifying Service Status</h3><p>You can use the <code>service status</code> command to check the running status of a particular service role from its appropriate host(s).</p><p>Refer to <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-RunningSamplePrograms">Running Sample Programs</a> where you can see the sample commands for each Pivotal HD service role.</p><p>The following example shows an aggregate status view of hadoop, zookeeper and hbase service roles from all the cluster nodes:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]\# massh ./HostFile.txt verbose 'sudo service --status-all | egrep "hadoop | zookeeper | hbase"
+</pre>
+</div></div><p>Below is an example to check the status of all datanodes in the cluster:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># Create a newline separated file named 'datanodes.txt' containing all the datanode belonging to the service role \\
+[gpadmin]\# massh datanodes.txt verbose 'sudo service hadoop-hdfs-datanode status'
+</pre>
+</div></div><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-PreparingtheClusterNodes"></span></p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-PreparingtheClusterNodes2"></span></p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-PreparingtheClusterNodes(Deprecated)">Preparing the Cluster Nodes (Deprecated)</h2><p>This is an optional command that can be used to prepare the hosts before a cluster deployment. This command is internally run as part of deploy so it not necessary that you run this before a cluster deployment. This command has been retained for backward compatibility.</p><p>1. Create a hostfile (<code>HostFile.txt</code>) that contains the hostnames of all your cluster nodes except the Admin node; separated by newlines. You will have to input this file in many Pivotal HD commands.</p><p>For example, the hostfile should look like the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin] cat HostFile.txt
+host1.pivotal.com
+host2.pivotal.com
+host3.pivotal.com
+</pre>
+</div></div><p>  <strong>Note</strong>: The following script shows how to create a hostfile as input for a large number of hosts:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin] for i in `seq \-w 1 3`; do sudo sh \-c "echo \"host$i.pivotal.com\" &gt;&gt; HostFile.txt"; done
+</pre>
+</div></div><p><strong>Important: The hostfile should contain all nodes within your cluster EXCEPT the Admin node.</strong></p><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-PreparingtheClusterNodesforPivotalHD">Preparing the Cluster Nodes for Pivotal HD</h3><p>1. As gpadmin, run the <code>preparehosts </code>command to perform some administrative tasks to prepare the cluster for Pivotal HD.</p><p>Note: One of the tasks this command performs is to create the gpadmin user on the cluster nodes. Do NOT create this user manually. If gpadmin user already exists on the cluster nodes, delete that user by running:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">pkill -KILL -u gpadmin
+userdel -r gpadmin </pre>
+</div></div><p>Run <code>preparehosts</code>:  </p><p>Example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># icm_client  preparehosts --hostfile=./HostFile.txt --java=&lt;PATH TO THE DOWNLOADED SUN JAVA JDK&gt; --ntp --selinuxoff --iptablesoff
+</pre>
+</div></div><p> </p><p><strong> <br/> </strong></p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p><strong>Ensure that the JDK file downloaded from Oracle has execute permission.</strong></p>
+</div>
+</div>
+<p><strong> <br/> </strong></p><p> </p><p>The <code>preparehosts </code>command performs the following on the hosts listed in the hostfile:</p><ul><li>Creates the <code>gpadmin </code>user.</li><li>As gpadmin, sets up password-less SSH access from the Admin node.</li><li>Installs the provided Oracle Java JDK Version 1.6.</li><li>Disables SELinux across the cluster.</li><li>Synchronizes the system clocks.</li><li>Installs Puppet version 2.7.20 (the one shipped with the PCC tarball, not the one from puppetlabs repo)</li><li>Installs sshpass.</li></ul><p> </p><p><strong> <br/> </strong></p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p><strong>Do not use the Admin node as part of your cluster. The preparehosts command will automatically remove the admin host if included. It will not prepare the admin node as it might corrupt the admin nodes' certification process that is part of the puppet orchestration during deploy.</strong></p>
+</div>
+</div>
+<p><strong> <br/> </strong></p><p> </p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-preparehosts"></span></p><p><strong>Syntax:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client preparehosts --help
+Usage: icm_client [options]
+
+Options:
+  -h, --help            Show this help message and exit
+  -f HOSTFILE, --hostfile=HOSTFILE
+                        File containing a list of all cluster hosts (newline
+                        separated)
+  -j JAVA, --java=JAVA  Location of Sun Java JDK RPM installer binary (Ex:
+                        jdk-6u41-linux-x64-rpm.bin)
+  -t, --ntp             synchronize system clocks using NTP (requires external
+                        network access)
+  -d, --selinuxoff      disable SELinux
+  -i, --iptablesoff     disable iptables
+</pre>
+</div></div><p> </p><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-PreparingtheClusterNodesforHAWQ">Preparing the Cluster Nodes for HAWQ</h3><p>This command has to be run only if you plan to install HAWQ. The <code>prepare-hawq-hosts</code> command sets kernel parameters that optimize HAWQ performance. In particular, this utility modifies the <code>/etc/sysctl.conf and /etc/security/limits.conf</code> <em> <code> </code> </em>file. The recommended configurations are available in the <code>/usr/lib/gphd/gphdmgr/hawq_sys_config/</code> file on the Admin node.</p><p>1. Create a hostfile (<code>HAWQ_Hosts.txt</code>) that contains the hostnames of all your HAWQ nodes (HAWQ master, standby master, and segment nodes); separated by newlines.</p><p>2. As gpadmin, run the <code>prepare-hawq-hosts</code> command to optimize HAWQ performance.</p><p>   Example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># icm_client prepare-hawq-hosts -f ./HAWQ_Hosts.txt -g /usr/lib/gphd/gphdmgr/hawq_sys_config/
+</pre>
+</div></div><p>    </p><p><strong>Notes</strong>:</p><ul><li>The hostfile must contain all the HAWQ nodes (HAWQ master, standby master and segment nodes).</li><li>The command <code>prepare-hawq-hosts</code> edits the <code>limits.conf</code> and <code>sysctl.conf </code>files. Pivotal recommends you review these configurations before you run the command.</li><li>If you are planning to deploy a HAWQ cluster on a VM with memory lower than the optimized/recommended requirements:</li></ul><p style="margin-left: 60.0px;">Remove the entry <code>vm.overcommit_memory = 2 </code>from <code>/usr/lib/gphd/gphdmgr/hawq_sys_config/sysctl.conf</code> prior to running the prepare hawq utility.</p><p style="margin-left: 60.0px;">In the <code>clusterConfig.xml</code>, update <code>&lt;hawq.segment.directory&gt;</code> to include only one segment directory entry (instead of the default 4 segments).</p><p> </p><p><strong>Syntax:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client prepare-hawq-hosts  -h
+Usage: icm_client [options]
+
+Options:
+  -h, --help            Show this help message and exit
+  -f HOSTFILE, --hostfile=HOSTFILE
+                        File containing a list of all cluster hosts where HAWQ
+                        will be installed (newline separated)
+  -g GPCC, --gpcc=GPCC  Directory location of the custom conf files
+                        (sysctl.conf and limits.conf) which will be appended
+                        to /etc/sysctl.conf and /etc/limits.conf on slave
+                        nodes
+</pre>
+</div></div><p><a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-CommandLineInstallationOverview">Back to Installation Overview</a></p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-PivotalHDDirectoryLayout">Pivotal HD Directory Layout</h2><p>The * indicates a designated folder for each Pivotal HD component.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Directory Location</p></th><th class="confluenceTh"><p>Description</p></th></tr><tr><td class="confluenceTd"><p><code>/usr/lib/gphd/*</code></p></td><td class="confluenceTd"><p>The default <code>$GPHD_HOME</code> folder. This is the default parent folder for Pivotal HD components.</p></td></tr><tr><td class="confluenceTd"><p><code>/etc/gphd/*</code></p></td><td class="confluenceTd"><p>The default<code> $GPHD_CONF </code>folder. This is the folder for Pivotal HD component configuration files.</p></td></tr><tr><td class="confluenceTd"><p><code>/etc/default/</code></p></td><td class="confluenceTd"><p>The directory used by service scripts to set up the component environment variables.</p></td></tr><tr><td class="confluenceTd"><p><code>/etc/init.d</code></p></td><td class="confluenceTd"><p>The location where a components' Linux Service scripts are stored.</p></td></tr><tr><td class="confluenceTd"><p><code>/var/log/gphd/*</code></p></td><td class="confluenceTd"><p>The default location of the <code>$GPHD_LOG</code> directory. The directory for Pivotal HD component logs.</p></td></tr><tr><td class="confluenceTd"><p><code>/var/run/gphd/*</code></p></td><td class="confluenceTd"><p>The location of the any daemon process information for the components.</p></td></tr><tr><td class="confluenceTd"><p><code>/usr/bin</code></p></td><td class="confluenceTd"><p>The folder for the component's command scripts; only sym-links or wrapper scripts are created here.</p></td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-SamplePrograms"></span></p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-RunningSamplePrograms">Running Sample Programs</h2><p>Make sure you are logged in as user <code>gpadmin</code> on the appropriate host before testing the service.</p><h4 id="InstallingPivotalHDEnterpriseUsingtheCLI-TestingHadoop">Testing Hadoop</h4><p>You can run Hadoop commands can be executed from any configured hadoop nodes.<br/> You can run Map reduce jobs from the datanodes, resource manager, or historyserver.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">#clear input directory, if any |
+
+hadoop fs -rmr /tmp/test_input
+
+#create input directory
+hadoop fs -mkdir /tmp/test_input
+
+#ensure output directory does not exist
+hadoop fs -rmr /tmp/test_output
+
+#copy some file having text data to run word count on
+hadoop fs -copyFromLocal /usr/lib/gphd/hadoop/CHANGES.txt /tmp/test_input
+
+#run word count
+hadoop jar /usr/lib/gphd/hadoop-mapreduce/hadoop-mapreduce-examples-&lt;version&gt;.jar wordcount /tmp/test_input /tmp/test_output
+
+#dump output on console
+hadoop fs -cat /tmp/test_output/part*
+</pre>
+</div></div><p><strong>!</strong>When you run a map reduce job as a custom user, not as <code>gpadmin</code>, <code>hdfs</code>, <code>mapred</code>, or <code>hbase</code>, note the following:</p><ul><li>Make sure the appropriate user staging directory exists.</li></ul><ul><li>Set permissions on<code> yarn.nodemanager.remote-app-log-dir</code> to 777. For example if it is set to the default value <code>/yarn/apps,</code> do the following</li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo -u hdfs hadoop fs -chmod 777 /yarn/apps
+</pre>
+</div></div><ul><li>Ignore the Exception trace, this is a known Apache Hadoop issue.</li></ul><h4 id="InstallingPivotalHDEnterpriseUsingtheCLI-TestingHBase">Testing HBase</h4><p>You can test HBase from the HBase master node</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpadmin# ./bin/hbase shell
+hbase(main):003:0&gt; create 'test', 'cf'
+0 row(s) in 1.2200 seconds
+hbase(main):003:0&gt; list 'test'
+..
+1 row(s) in 0.0550 seconds
+hbase(main):004:0&gt; put 'test', 'row1', 'cf:a', 'value1'
+0 row(s) in 0.0560 seconds
+hbase(main):005:0&gt; put 'test', 'row2', 'cf:b', 'value2'
+0 row(s) in 0.0370 seconds
+hbase(main):006:0&gt; put 'test', 'row3', 'cf:c', 'value3'
+0 row(s) in 0.0450 seconds
+
+hbase(main):007:0&gt; scan 'test'
+ROW COLUMN+CELL
+row1 column=cf:a, timestamp=1288380727188, value=value1
+row2 column=cf:b, timestamp=1288380738440, value=value2
+row3 column=cf:c, timestamp=1288380747365, value=value3
+3 row(s) in 0.0590 seconds
+
+hbase(main):012:0&gt; disable 'test'
+0 row(s) in 1.0930 seconds
+hbase(main):013:0&gt; drop 'test'
+0 row(s) in 0.0770 seconds
+</pre>
+</div></div><h4 id="InstallingPivotalHDEnterpriseUsingtheCLI-TestingHAWQ">Testing HAWQ</h4><p><strong>!</strong>Use the HAWQ Master node to run HAWQ tests.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpadmin# source /usr/local/hawq/greenplum_path.sh
+
+gpadmin# psql -p 5432
+psql (8.2.15)
+Type "help" for help.
+
+gpadmin=# \d
+No relations found.
+gpadmin=# \l
+List of databases
+Name | Owner | Encoding | Access privileges
+---{}----+------------
+gpadmin | gpadmin | UTF8 |
+postgres | gpadmin | UTF8 |
+template0 | gpadmin | UTF8 |
+template1 | gpadmin | UTF8 |
+(4 rows)
+
+gpadmin=# \c gpadmin
+You are now connected to database "gpadmin" as user "gpadmin".
+gpadmin=# create table test (a int, b text);
+NOTICE: Table doesn't have 'DISTRIBUTED BY' clause –
+Using column named 'a' as the Greenplum Database data
+distribution key for this table.
+HINT: The 'DISTRIBUTED BY' clause determines the distribution
+of data. Make sure column(s) chosen are the optimal data
+distribution key to minimize skew.
+
+CREATE TABLE
+
+gpadmin=# insert into test values (1, '435252345');
+INSERT 0 1
+gpadmin=# select * from test;
+a | b
+-+---------
+1 | 435252345
+(1 row)
+
+gpadmin=#
+</pre>
+</div></div><h4 id="InstallingPivotalHDEnterpriseUsingtheCLI-TestingPig">Testing Pig</h4><p>You can test Pig from the client node</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># Clean up input/output directories
+
+hadoop fs -rmr /tmp/test_pig_input
+hadoop fs -rmr /tmp/test_pig_output
+
+#Create input directory
+
+hadoop fs -mkdir /tmp/test_pig_input
+
+# Copy data from /etc/passwd
+
+hadoop fs -copyFromLocal /etc/passwd /tmp/test_pig_input
+</pre>
+</div></div><p>In the grunt shell, run this simple pig job</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ pig // Enter grunt shell
+A = LOAD '/tmp/test_pig_input' using PigStorage(':');
+B = FILTER A by $2 &gt; 0;
+C = GROUP B ALL;
+D = FOREACH C GENERATE group, COUNT(B);
+STORE D into '/tmp/test_pig_output';
+
+# Displaying output
+
+hadoop fs -cat /tmp/test_pig_output/part*
+
+Cleaning up input and output'
+
+hadoop fs -rmr /tmp/test_pig_*
+</pre>
+</div></div><h4 id="InstallingPivotalHDEnterpriseUsingtheCLI-TestingHive">Testing Hive</h4><p>You can test Hive from the client node</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpadmin# hive
+ 
+# Creating passwords table
+hive&gt; create table passwords (col0 string, col1 string, col2 string, col3 string, col4 string, col5 string, col6 string) ROW FORMAT DELIMITED FIELDS TERMINATED BY ":";
+hive&gt; SHOW TABLES;
+hive&gt; DESCRIBE passwords;
+
+# Loading data
+hive&gt; load data local inpath "/etc/passwd" into table passwords;
+ 
+# Running a Hive query involving grouping and counts
+hive&gt; select col3,count(*) from passwords where col2 &gt; 0 group by col3;
+
+# Cleaning up passwords table
+hive&gt; DROP TABLE passwords;
+hive&gt; quit;</pre>
+</div></div><h4 id="InstallingPivotalHDEnterpriseUsingtheCLI-TestingUSS">Testing USS</h4><p>To test USS, you can add some mount-points to the USS Catalog from the Client node or the USS Namenode using the USS CLI</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># Prepare input &amp; output directory
+hadoop fs -mkdir /tmp/test_uss_input
+hadoop fs -mkdir /tmp/test_uss_output
+
+# Copy data from /etc/passwd
+hadoop fs -copyFromLocal /etc/passwd /tmp/test_uss_input
+ 
+# Register local pivotal hd filesystem
+# Create a sample filesystem configuration say fsconfig.xml with the following contents
+# Use the appropriate value for NAMENODE_HOST
+
+&lt;configuration&gt;
+    &lt;property&gt;
+        &lt;name&gt;uss.fs.name&lt;/name&gt;
+        &lt;value&gt;phdFs&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;uss.fs.baseuri&lt;/name&gt;
+        &lt;value&gt;hdfs://NAMENODE_HOST:9000&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+ 
+$ uss fs -add fsconfig.xml
+
+# Add mount-point for input. You can do this on any of the following hosts
+# (uss-client/uss-namenode/uss-catalog)
+$ uss fs -add input_mount_point phdFs /tmp/test_uss_input
+
+
+# Add mount-point for output. Do this on the
+# uss-client/uss-namenode/uss-catalog host
+$ uss mp -add output_mount_point phdFs /tmp/test_uss_output
+
+# List mount-points. Do this on the
+# uss-client/uss-namenode/uss-catalog host
+$ uss mp -list
+
+  input_mount_point (1) &gt; hdfs://NAMENODE_HOST:8020/tmp/test_uss_input
+  output_mount_point (2) &gt; hdfs://NAMENODE_HOST:8020/tmp/test_uss_output
+</pre>
+</div></div><p>Once you have configured the USS Catalog by adding some mount points, you can run Hadoop/Pig/Hive commands using USS URIs from any configured nodes.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># list contents of a mount-point
+$ hadoop fs -ls uss://USS_NAMENODE_HOST:16040/input_mount_point
+
+  Found 1 items
+  -rw-r--r-- 1 user wheel 1366 2012-08-17 10:08
+  hdfs://NAMENODE_HOST:8020/tmp/test_uss_input/passwd
+
+# run word count
+$ hadoop jar \
+  /usr/lib/gphd/hadoop-mapreduce/hadoop-mapreduce-examples-&lt;version&gt;.jar \
+  wordcount uss://USS_NAMENODE_HOST:16040/input_mount_point \
+  uss://USS_NAMENODE_HOST:16040/output_mount_point/uss_mr_output
+
+# run a pig script
+$ cat uss.pig
+
+  A = load 'uss://USS_NAMENODE_HOST:16040/input_mount_point';
+  B = foreach A generate flatten(TOKENIZE((chararray)$0, ':')) as word;
+  C = filter B by word matches '\\w+';
+  D = group C by word;
+  E = foreach D generate COUNT(C), group;
+  STORE E into 'uss://USS_NAMENODE_HOST:16040/output_mount_point/uss_pig_output';
+
+# Execute pig script, by adding the uss jar as an additional jar to include.
+$ pig -Dpig.additional.jars=/usr/lib/gphd/uss/uss-0.4.0.jar uss.pig
+
+
+# run a hive query
+$ cat uss-hive.sql -- creates an external table with location pointed to by a USS URI.
+
+DROP TABLE test_uss_external;
+
+CREATE EXTERNAL TABLE test_uss_external (testcol1 STRING, testcol2 STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ':'
+LINES TERMINATED BY '\n'
+STORED AS TEXTFILE
+LOCATION 'uss://USS_NAMENODE_HOST:16040/input_mount_point';
+
+SELECT * FROM test_uss_external;
+
+
+
+$ hive -f uss-hive.sql
+</pre>
+</div></div><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-CreatingaYUMEPELRepository"></span></p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-CreatingaYUMEPELRepository2"></span></p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-CreatingaYUMEPELRepository">Creating a YUM EPEL Repository</h2><p>Pivotal Command Center and Pivotal HD Enterprise expect some prerequisite packages to be pre-installed on each host, depending on the software that gets deployed on a particular host. In order to have a smoother installation it is recommended that each host would have yum access to an EPEL yum repository. If you have access to the Internet, then you can configure your hosts to have access to the external EPEL repositories. However, if your hosts do not have Internet access (or you are deploying onto a large cluster) or behind a firewall, then having a local yum EPEL repository is highly recommended. This also gives you some control on the package versions you want deployed on your cluster.</p><p>Following are the steps to create a local yum repository from a RHEL or CentOS DVD:</p><p style="margin-left: 30.0px;">1. Mount the RHEL/CentOS DVD on a machine that will act as the local yum repository</p><p style="margin-left: 30.0px;">2. Install a webserver on that machine (e.g. httpd), making sure that HTTP traffic can reach this machine</p><p style="margin-left: 30.0px;">3. Install the following packages on the machine:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">yum-utils
+createrepo
+</pre>
+</div></div><p style="margin-left: 30.0px;">4. Go to the directory where the DVD is mounted and run the following command:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># createrepo ./
+</pre>
+</div></div><p style="margin-left: 30.0px;">5. Create a repo file on each host with a descriptive filename in the /etc/yum.repos.d/ directory of each host (for example, CentOS-6.1.repo) with the following contents:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[CentOS-6.1]
+name=CentOS 6.1 local repo for OS RPMS
+baseurl=http://172.254.51.221/centos/$releasever/os/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=http://172.254.51.221/centos/$releasever/os/$basearch/RPM-GPG-KEY-CentOS-6
+</pre>
+</div></div><p style="margin-left: 30.0px;">6. Validate that you can access the local yum repos by running the following command:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">Yum list
+</pre>
+</div></div><p style="margin-left: 30.0px;">You can repeat the above steps for other software. If your local repos don't have any particular rpm, download it from a trusted source on the internet, copy it to your local repo directory and rerun the <code>createrepo</code> step.</p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-HA"></span></p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-HighAvailability(HA)">High Availability (HA)</h2><p>High availability is disabled by default. </p><p>To enable HA for a new cluster; follow the instructions below.</p><p>To enable HA for an existing cluster, see <a href="AdministeringPHDUsingtheCLI.html#AdministeringPivotalHDEnterpriseUsingtheCLI-EnablingHighAvailabilityonaCluster">Enabling High Availability on a Cluster</a> for details.</p><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-SettingupaNewClusterwithHA">Setting up a New Cluster with HA</h3><ol><li>Follow the instructions for <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-PreparingtheAdminNode">Preparing the Admin Node</a> and for fetching and editing the <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-ClusterConfigurationFiles">Cluster Configuration Files</a> earlier in this document.<br/> <br/>To enable HA, you then need to make HA-specific edits to the following configuration files:<br/><ul><li><code>clusterConfig.xml</code></li><li><code>hdfs/hdfs-site.xml</code></li><li><code>hdfs/core-site.xml</code></li><li><code>hbase/hbase-site.xml<br/> <br/> </code></li></ul></li><li>Edit <code>clusterConfig.xml</code> as follows:<br/><p>Comment out <code>secondarynamenode</code> role in <code>hdfs</code> service</p><p>Uncomment <code>standbynamenode</code> and <code>journalnode</code> roles in <code>hdfs</code> service</p><p>Uncomment <code>nameservices</code>, <code>namenode1id</code>, <code>namenode2id</code>, <code>journalpath</code>, and <code>journalport</code> entries in <code>serviceConfigGlobals</code></p></li><li><p>Edit <code>hdfs/hdfs-site.xml</code> as follows:<br/>Uncomment the following properties:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt; 
+  &lt;name&gt;dfs.nameservices&lt;/name&gt; 
+  &lt;value&gt;${nameservices}&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.ha.namenodes.${nameservices}&lt;/name&gt; 
+  &lt;value&gt;${namenode1id},${namenode2id}&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.namenode.rpc-address.${nameservices}.${namenode1id}&lt;/name&gt; 
+  &lt;value&gt;${namenode}:8020&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.namenode.rpc-address.${nameservices}.${namenode2id}&lt;/name&gt; 
+  &lt;value&gt;${standbynamenode}:8020&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.namenode.http-address.${nameservices}.${namenode1id}&lt;/name&gt; 
+  &lt;value&gt;${namenode}:50070&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.namenode.http-address.${nameservices}.${namenode2id}&lt;/name&gt; 
+  &lt;value&gt;${standbynamenode}:50070&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.namenode.shared.edits.dir&lt;/name&gt; 
+  &lt;value&gt;qjournal://${journalnode}/${nameservices}&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.client.failover.proxy.provider.${nameservices}&lt;/name&gt; 
+  &lt;value&gt;org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.ha.fencing.methods&lt;/name&gt; 
+  &lt;value&gt;sshfence&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt;
+  &lt;name&gt;dfs.ha.fencing.ssh.private-key-files&lt;/name&gt;
+  &lt;value&gt;/home/exampleuser/.ssh/id_rsa&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.ha.fencing.methods&lt;/name&gt;
+  &lt;value&gt;shell(/bin/true)&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.journalnode.edits.dir&lt;/name&gt; 
+  &lt;value&gt;${journalpath}&lt;/value&gt; 
+&lt;/property&gt; 
+ 
+&lt;property&gt;
+   &lt;name&gt;dfs.ha.automatic-failover.enabled&lt;/name&gt;
+   &lt;value&gt;true&lt;/value&gt;
+ &lt;/property&gt;</pre>
+</div></div></li><li><p>Edit <code>hdfs/core-site.xml</code> as follows:</p><p>Uncomment the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;value&gt;hdfs://${nameservices}&lt;/value&gt; </pre>
+</div></div><p>Comment out the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;value&gt;hdfs://${namenode}:${dfs.port}&lt;/value&gt;</pre>
+</div></div><p>Add following property at the end of the file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+   &lt;name&gt;ha.zookeeper.quorum&lt;/name&gt;
+   &lt;value&gt;${zookeeper-server}:${zookeeper.client.port}&lt;/value&gt;
+ &lt;/property&gt;</pre>
+</div></div></li><li><p>Edit <code>hbase/hbase-site.xml</code> as follows:<br/>Uncomment the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;value&gt;hdfs://${nameservices}/apps/hbase/data&lt;/value&gt; </pre>
+</div></div><p>Comment out the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;value&gt;hdfs://${namenode}:${dfs.port}/apps/hbase/data&lt;/value&gt;</pre>
+</div></div></li><li><p>Continue configuring your cluster as described earlier in this document; then deploy (see <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-DeployingtheCluster">Deploying the Cluster</a>).</p></li></ol><p> </p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-GemFireXDBeta"></span></p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-ConfiguringGemFireXDBeta">Configuring GemFire XD Beta</h2><p>Pivotal HD Enterprise 1.1 provides support for GemFire XD Beta. GemFire XD Beta is optional and is distributed separately from other PHD components.</p><p>GemFire XD Beta is installed via the CLI.  CLI installation instructions and configuration steps are provided below. GemFire XD can be added during initial deployment, like any other service, or can be added during a reconfiguration of a cluster.</p><p>Further operational instructions for GemFire XD are provided in the <em>Pivotal GemFire XD User's Guide.</em></p><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-Overview">Overview<em> <br/> </em></h3><p>GemFire XD is a memory-optimized, distributed data store that is designed for applications that have demanding scalability and availability requirements.</p><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-ServiceRoles/Ports">Service Roles/Ports</h3><p>The following table shows GemFire service roles: </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Role Name</p></th><th class="confluenceTh"><p>Description</p></th><th class="confluenceTh" colspan="1">Port</th></tr><tr><td class="confluenceTd"><p>gfxd-locator</p></td><td class="confluenceTd"><p>The GemFire XD locator process provides discovery services for all members in a GemFire XD distributed system. A locator also provides load balancing and failover for thin client connections. As a best practice, deploy a locator in its own process (LOCATOR=local_only) to support network partitioning detection.</p></td><td class="confluenceTd" colspan="1">1527</td></tr><tr><td class="confluenceTd"><p>gfxd-server</p></td><td class="confluenceTd"><p>A GemFire XD server hosts database schemas and provides network connectivity to other GemFire XD members and clients. You can deploy additional servers as necessary to increase the capacity for in-memory tables and/or provide redundancy for your data.</p></td><td class="confluenceTd" colspan="1">1527</td></tr></tbody></table></div><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-BestPractices">Best Practices</h3><p>HAWQ and GFXD services are both memory intensive and it is best to configure these services to be deployed on different nodes.</p><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-EnablingPRTSServices">Enabling PRTS Services</h3><p>Follow the instructions below to add GemFire XD before you deploy or reconfigure a cluster.</p><p>If you wish to deploy Gemfire XD Beta, perform the following:</p><ol><li>Download the PRTS tarball from the initial download location to the gpadmin home directory.</li><li>Change ownership of the packages to gpadmin and untar.  For example:<br/>If the file is a <code>tar.gz</code> or <code>tgz</code>:<code>tar zxf PRTS-1.0.x-x.tgz</code> <br/>If the file is a <code>tar</code>:<code>tar xf PRTS-1.0.x-x.tar</code></li><li><p>As <code>gpadmin</code>, enable the PRTS service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client import -s &lt;PATH TO EXTRACTED PRTS TAR BALL&gt;</pre>
+</div></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client import -s PRTS-1.0.x-x/</pre>
+</div></div></li><li><p>Edit the Cluster Configuration file as follows: <br/> <br/> <strong>During initial deployment</strong>: Retrieve the <code>clusterConfig.xml</code> file using the <code>icm_client fetch-template</code> command.  See <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-ClusterConfigurationFiles">Cluster Configuration Files</a> for more details.</p><p><strong>Adding to an exiting cluster</strong>: Edit the <code>clusterConfig.xml</code> file (<code>icm_client fetch-configuration</code>) then reconfigure the cluster (<code>icm_client reconfigure</code>). See <a href="AdministeringPHDUsingtheCLI.html#AdministeringPivotalHDEnterpriseUsingtheCLI-Reconfiguring">Reconfiguring a Cluster</a>.</p><ul><li><p>Open <code>clusterConfig.xml</code> and add gfxd to the services listed in the &lt;services&gt;&lt;/services&gt; tag.</p></li><li style="color: rgb(0,0,0);"><p>Define the <code>gfxd-server</code> and <code>gfxd-locator</code> roles in the <code>clusterConfig.xml</code> file for every cluster by adding the following to the &lt;hostrolemapping&gt; <span style="color: rgb(0,0,0);">&lt;/hostrolemapping&gt;</span> tag:<code> <br/>&lt;gfxd&gt; <br/>   &lt;gfxd-locator&gt;host.yourdomain.com&lt;/gfxd-locator&gt;<br/>   &lt;gfxd-server&gt;host.yourdomain.com&lt;/gfxd-server&gt;<br/>&lt;/gfxd&gt;</code></p></li></ul></li></ol><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-TestingGemFireXD">Testing GemFire XD</h3><p>On one of the gfxd nodes, navigate to <code>/usr/lib/gphd/gfxd/examples/mapreduce</code> and follow instructions in the README.txt file.</p><h3 id="InstallingPivotalHDEnterpriseUsingtheCLI-ManagingGemFireXD">Managing GemFire XD</h3><p>Refer to the <em> <a class="external-link" href="http://gemfirexd-05.run.pivotal.io/index.jsp?topic=/com.pivotal.gemfirexd.0.5/getting_started/book_intro.html" rel="nofollow">Pivotal GemFire XD User's Guide</a>.</em></p><p>A<em> Quick Start Guide</em> that includes instructions for starting and stopping gfxd servers and locators is also available<em>, </em>here: <a class="external-link" href="http://gemfirexd-05.run.pivotal.io/index.jsp?topic=/com.pivotal.gemfirexd.0.5/getting_started/15-minutes.html" rel="nofollow">http://gemfirexd-05.run.pivotal.io/index.jsp?topic=/com.pivotal.gemfirexd.0.5/getting_started/15-minutes.html</a></p><p><span class="confluence-anchor-link" id="InstallingPivotalHDEnterpriseUsingtheCLI-InstallingSSLcertificates"></span></p><h2 id="InstallingPivotalHDEnterpriseUsingtheCLI-InstallingSSLcertificates">Installing SSL certificates</h2><p>The following table contains information related to SSL certificates:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Port</th><th class="confluenceTh">Used by</th><th class="confluenceTh">Default Certificate Path</th><th class="confluenceTh">Default Key Path</th><th class="confluenceTh">Configuration file</th><th class="confluenceTh">Post key change step</th><th class="confluenceTh">SSL Version</th><th class="confluenceTh">Compression</th><th class="confluenceTh">Minimal encryption strength</th><th class="confluenceTh">ICM Upgrade</th><th class="confluenceTh" colspan="1">Support CA signed certificates</th></tr><tr><td class="confluenceTd">443</td><td class="confluenceTd">Apache Default SSL</td><td class="confluenceTd">/etc/pki/tls/certs/localhost.crt</td><td class="confluenceTd">/etc/pki/tls/private/localhost.key</td><td class="confluenceTd">/etc/httpd/conf.d/ssl.conf</td><td class="confluenceTd">service httpd restart</td><td class="confluenceTd">SSLv3 TLSv1.0</td><td class="confluenceTd">No</td><td class="confluenceTd">medium encryption (56-bit)</td><td class="confluenceTd">No Impact</td><td class="confluenceTd" colspan="1">Yes</td></tr><tr><td class="confluenceTd">5443</td><td class="confluenceTd">Command Center UI</td><td class="confluenceTd">/usr/local/greenplum-cc/ssl/FQDN.cert</td><td class="confluenceTd">/usr/local/greenplum-cc/ssl/FQDN.key</td><td class="confluenceTd">/etc/httpd/conf.d/pcc-vhost.conf</td><td class="confluenceTd">service httpd restart</td><td class="confluenceTd">SSLv3 TLSv1.0</td><td class="confluenceTd">No</td><td class="confluenceTd">strong encryption (96-bit or more)</td><td class="confluenceTd">Check configuration file and key</td><td class="confluenceTd" colspan="1">Yes</td></tr><tr><td class="confluenceTd" colspan="1">8140</td><td class="confluenceTd" colspan="1">Puppet</td><td class="confluenceTd" colspan="1">/var/lib/puppet/ssl-icm/certs/FQDN.pem</td><td class="confluenceTd" colspan="1">/var/lib/puppet/ssl-icm/private_keys/FQDN.pem</td><td class="confluenceTd" colspan="1">/etc/httpd/conf.d/puppet-httpd.conf</td><td class="confluenceTd" colspan="1">service httpd restart</td><td class="confluenceTd" colspan="1">SSLv3 TLSv1.0</td><td class="confluenceTd" colspan="1">No</td><td class="confluenceTd" colspan="1">strong encryption (96-bit or more)</td><td class="confluenceTd" colspan="1">Check configuration file and key</td><td class="confluenceTd" colspan="1">No</td></tr></tbody></table></div><p> </p><p> </p>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

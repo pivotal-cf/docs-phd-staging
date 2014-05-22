@@ -1,0 +1,962 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>Upgrading PHD Using the CLI | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>Upgrading PHD Using the CLI</h1><div class="wiki-content group" id="main-content">
+<p> </p><p><style type="text/css">/*<![CDATA[*/
+div.rbtoc1390012348127 {padding: 0px;}
+div.rbtoc1390012348127 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1390012348127 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc rbtoc1390012348127">
+<ul class="toc-indentation">
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-Overview">Overview</a></li>
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-QuickGuide">Quick Guide</a></li>
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradeInstructions">Upgrade Instructions</a>
+<ul class="toc-indentation">
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-Prerequisites">Prerequisites</a></li>
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradePivotalCommandCenter">Upgrade Pivotal Command Center</a></li>
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-CLISelf-Upgrade">CLI Self-Upgrade</a></li>
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradingUSSifconfigured">Upgrading USS if configured</a></li>
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradePADS(HAWQ)">Upgrade PADS (HAWQ)</a></li>
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradePivotalHD">Upgrade Pivotal HD</a>
+<ul class="toc-indentation">
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-Prerequisites:">Prerequisites:</a></li>
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-Upgrade:">Upgrade:</a></li>
+</ul>
+</li>
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-ReinstallManually-installedServices">Reinstall Manually-installed Services</a></li>
+</ul>
+</li>
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-PostUpgradeConfiguration">Post Upgrade Configuration</a>
+<ul class="toc-indentation">
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-SynchronizeConfigurationFiles">Synchronize Configuration Files</a></li>
+</ul>
+</li>
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-ReconfigureSyntax">Reconfigure Syntax</a></li>
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-ChangedConfigurationParametersandFiles">Changed Configuration Parameters and Files</a>
+<ul class="toc-indentation">
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-ChangesinPivotalHD1.1.1Release">Changes in Pivotal HD 1.1.1 Release</a>
+<ul class="toc-indentation">
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-ChangedParameters1.1.1">Changed Parameters 1.1.1</a></li>
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-SampleConfigurationFilesforPHD1.1.1">Sample Configuration Files for PHD 1.1.1</a></li>
+</ul>
+</li>
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-ChangesinPivotalHD1.1Release">Changes in Pivotal HD 1.1 Release</a>
+<ul class="toc-indentation">
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-ChangedParameters1.1">Changed Parameters 1.1</a></li>
+<li><a href="#UpgradingPivotalHDEnterpriseUsingtheCLI-SampleConfigurationFilesforPHD1.1">Sample Configuration Files for PHD 1.1</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div></p><p>This section describes how to upgrade Pivotal HD using Pivotal Command Center's command line interface (CLI).</p><h2 id="UpgradingPivotalHDEnterpriseUsingtheCLI-Overview">Overview</h2><p>Pivotal HD Enterprise only supports upgrading cluster services that were originally installed via the CLI. Services that were manually installed using tar or rpms directly on cluster hosts will not be available post-CLI upgrade and must be manually re-installed.</p><p> </p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>If you were a PCC 2.0.0 user, Hive and PXF were not automatically installed. If you manually installed those services on a cluster, they must be manually re-installed following an upgrade (see <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-ReinstallManually-installedServices">Manually re-install services</a>).</p><p>If you were a PCC 2.0.0 user and USS was configured as one of the services in the cluster, see <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradingUSSifconfigured">Upgrading if USS installed</a>.</p>
+</div>
+</div>
+<div class="aui-message hint shadowed information-macro">
+<span class="aui-icon icon-hint"></span>
+<div class="message-content">
+<p>Complete Upgrade Syntax is provided <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradeSyntax">here</a>.</p>
+</div>
+</div>
+<p><strong> <br/> </strong></p><h2 id="UpgradingPivotalHDEnterpriseUsingtheCLI-QuickGuide">Quick Guide</h2><p>The table below briefly describes the steps you need to take to upgrade a cluster; more details are provided in the following sections.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Step</th><th class="confluenceTh">Details</th></tr><tr><td class="confluenceTd"><p><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-Prerequisites">Prerequisites</a></p></td><td class="confluenceTd"><p><strong>PADS file location</strong>: If you are upgrading PADS, make note of the path to the extracted old PADS tar ball.</p><p><strong>Backup Data</strong>: We recommend that you backup any critical data before running any upgrade.</p><p><strong>Backup Service Configuration File(s)</strong>: Backup the configuration files of any services you will be manually re-installing, post CLI-upgrade.</p><p><strong>Fetch original Template</strong>: Fetch original template provided by PCC.</p></td></tr><tr><td class="confluenceTd" colspan="1">Stop Services</td><td class="confluenceTd" colspan="1"><p>Stop HAWQ (if applicable). See<a href="AdministeringPHDUsingtheCLI.html#AdministeringPivotalHDEnterpriseUsingtheCLI-ManagingHAWQ"> Managing HAWQ</a> for details.</p><p>Stop all PHD services.  See <a href="AdministeringPHDUsingtheCLI.html#AdministeringPivotalHDEnterpriseUsingtheCLI-ManagingACluster"> Managing a Cluster</a> for details.</p><p>Stop PCC (as root): <code>service commander stop</code></p></td></tr><tr><td class="confluenceTd" colspan="1"><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradePivotalCommandCenter">Extract and upgrade PCC</a></td><td class="confluenceTd" colspan="1"><p>Untar the new PCC package, then run(as root):</p><p><code>./install</code></p><p>change the user to gpadmin</p></td></tr><tr><td class="confluenceTd" colspan="1">Import and extract new stacks</td><td class="confluenceTd" colspan="1"><p>Import PHD, PADS, and PHDTools</p><p>For each package, run:</p><p><code>icm_client import -p &lt; PATH TO EXTRACTED TAR BALL  &gt;</code></p></td></tr><tr><td class="confluenceTd" colspan="1"><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-CLISelf-Upgrade">CLI Self-Upgrade</a></td><td class="confluenceTd" colspan="1"><code>icm_client self-upgrade</code></td></tr><tr><td class="confluenceTd" colspan="1"><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradingUSSifconfigured">Upgrading USS Clusters</a></td><td class="confluence-link confluenceTd" colspan="1">Optional: If you are upgrading a cluster that has USS configured as one of the services there are some additional pre- and post upgrade steps to take.</td></tr><tr><td class="confluenceTd" colspan="1"><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradePADS">Upgrade PADS</a></td><td class="confluenceTd" colspan="1"><p><code>icm_client upgrade -l &lt;CLUSTERNAME&gt; -s pads -o &lt; PATH TO EXTRACTED OLD ADS TAR BALL &gt; -n &lt; PATH TO EXTRACTED NEW ADS TAR BALL &gt; </code></p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>This must be done first if HAWQ (PADS) is installed.</p>
+</div>
+</div>
+</td></tr><tr><td class="confluenceTd" colspan="1"><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradePHD">Upgrade PHD</a></td><td class="confluenceTd" colspan="1"><code> <code>icm_client upgrade -l &lt;CLUSTERNAME&gt; -s phd</code> </code></td></tr><tr><td class="confluenceTd" colspan="1"><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-ReinstallManually-installedServices">Reinstall Manually Installed Services</a></td><td class="confluenceTd" colspan="1"><p>Services that were manually installed on an existing cluster will not be available post-CLI upgrade and must be manually re-installed.</p></td></tr><tr><td class="confluenceTd" colspan="1"><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-PostUpgradeConfiguration">Post Upgrade Configuration</a></td><td class="confluenceTd" colspan="1"><ol><li>Synchronize configuration files.</li><li>Reconfigure the cluster</li></ol></td></tr></tbody></table></div><p>For more details instructions of the above steps, see below:</p><h2 id="UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradeInstructions">Upgrade Instructions</h2><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-Prerequisites"></span></p><h3 id="UpgradingPivotalHDEnterpriseUsingtheCLI-Prerequisites">Prerequisites</h3><ul><li><strong>PADS file location:</strong> Make note of the path to the extracted old PADS tar ball; you will need this information to upgrade PADS.</li><li><strong>Backup Data:</strong> We recommend you backup any critical data before performing any backups</li><li><strong>Backup Service Configuration Files: </strong> Services that were manually installed on an existing cluster will not be available post-CLI upgrade and must be manually re-installed.  Backup the configuration files for these services.  See the <em>Pivotal HD Enterprise Stack Tool and Reference Guide</em> for the locations of <br/>these configuration files.</li><li><p><strong>Fetch original template: </strong>As user gpadmin, fetch original template using</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client fetch-template -o ~/origTemplate</pre>
+</div></div></li></ul><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradeCC"></span></p><h3 id="UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradePivotalCommandCenter">Upgrade Pivotal Command Center</h3><p>Prerequisites:</p><ul><li>Stop HAWQ</li><li>Stop all PHD services - icm_client stop -l &lt;CLUSTER NAME&gt;</li><li>Stop PCC (as root): <code style="background-color: transparent;font-size: 14.0px;line-height: 1.4285715;">service commander stop</code></li></ul><p>Untar the new PCC tarball, <code>cd</code> to the PCC directory, then run (as root) .<code>/install</code>.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>There is no need to specify that this is an upgrade; the install utility (<code>./install</code>) can detect whether it is a fresh install or an upgrade.</p>
+</div>
+</div>
+<p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-SelfUpgrade"></span></p><h3 id="UpgradingPivotalHDEnterpriseUsingtheCLI-CLISelf-Upgrade">CLI Self-Upgrade</h3><p>Run (as <code>gpadmin</code>) this command for the CLI to self upgrade after importing the stacks and before upgrading the stacks.</p><p><code> icm_client self-upgrade </code></p><p> </p><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradeUSSCluster"></span></p><h3 id="UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradingUSSifconfigured">Upgrading USS if configured</h3><p>If your cluster has USS configured as one of the services there are some additional pre- and post-upgrade steps to take, as follows:</p><div><strong> <br/> </strong></div><div><strong>Pre-Upgrade</strong>:</div><div>Before running an upgrade (PHD, PADS or both), as <code>gpadmin</code> run the following command on admin node:</div><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">psql gphdmgr postgres -p 10432 -c "INSERT INTO role ( service, role, gphd_version, display_name, category, description ) VALUES ( 'uss', 'uss-admin', '2.x', 'uss-admin', 'client', 'uss admin' )"</pre>
+</div></div><p>Then proceed with the upgrade.</p><p><strong>Post-Upgrade:</strong></p><p>After running the upgrade (PHD, PADS or both), as <code>gpadmin</code> run the following command on admin node:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">psql gphdmgr postgres -p 10432 -c "DELETE FROM role where role='uss-admin'"</pre>
+</div></div><p> </p><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradePADS"></span></p></div><h3 id="UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradePADS(HAWQ)">Upgrade PADS (HAWQ)</h3><p>Prerequisites:</p><ul><li>Stop HAWQ</li><li>Upgrade PCC</li><li>Download and import the new PADS package <br/> <code>icm_client import -p &lt; PATH TO EXTRACTED ADS TAR BALL  &gt;</code></li><li>Run the CLI self-upgrade <br/> <code>icm_client self-upgrade</code></li></ul><p>Upgrade:</p><p>Run (as <code>gpadmin</code>) the following command to upgrade PADS (HAWQ):</p><p><code>icm_client upgrade -l &lt;CLUSTERNAME&gt; -s pads -o &lt; PATH TO EXTRACTED OLD ADS TAR BALL &gt; -n &lt; PATH TO EXTRACTED NEW ADS TAR BALL &gt; </code></p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>This section is only applicable if you installed Pivotal ADS via the CLI, if you installed Pivotal ADS manually, refer to the <em>Pivotal ADS  Release Notes</em> for upgrade instructions.</p>
+</div>
+</div>
+<p> </p><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradePHD"></span></p><h3 id="UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradePivotalHD">Upgrade Pivotal HD</h3><h4 id="UpgradingPivotalHDEnterpriseUsingtheCLI-Prerequisites:">Prerequisites:</h4><ul><li>Stop services</li><li>Upgrade PCC</li><li>Download and import the new PHD package <br/> <code>icm_client import -p &lt; PATH TO EXTRACTED PHD TAR BALL  &gt;</code></li><li>Run the CLI self-upgrade <br/> <code>icm_client self-upgrade</code></li><li>If the cluster is configured with HAWQ, make sure you complete upgrading Pivotal ADS (see above), <br/>before proceeding with Pivotal HD upgrade</li></ul><h4 id="UpgradingPivotalHDEnterpriseUsingtheCLI-Upgrade:">Upgrade:</h4><p>Run (as <code>gpadmin</code>) the following command to upgrade PHD:</p><p><code>icm_client upgrade -l &lt;CLUSTERNAME&gt; -s phd <br/> </code></p><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-ReinstallManuallyInstalledServices"></span></p><h3 id="UpgradingPivotalHDEnterpriseUsingtheCLI-ReinstallManually-installedServices">Reinstall Manually-installed Services</h3><ol><li>Services that were manually installed on an existing cluster will not be available post-CLI upgrade and must be manually re-installed.  Backup the configuration files for these services.  See the <em>Pivotal HD Enterprise Stack Tool and Reference Guide</em> for the locations of these configuration files.</li><li>Perform the cluster upgrade (See <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradePHD">Upgrade PHD</a> and / or <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradePADS">Upgrade PADS</a>).</li><li>Manually re-install the service(s) as described in the <em>Pivotal HD Enterprise Stack and Tool Reference Guide</em>.</li><li>Restore the service's configuration files across the cluster</li></ol><p>For information about manually installing services see the <em>Pivotal HD Enterprise Stack and Tool Reference Guide.</em></p><p><strong> <span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-PostUpgradeConfiguration"></span> </strong></p><h2 id="UpgradingPivotalHDEnterpriseUsingtheCLI-PostUpgradeConfiguration">Post Upgrade Configuration</h2><h3 id="UpgradingPivotalHDEnterpriseUsingtheCLI-SynchronizeConfigurationFiles">Synchronize Configuration Files</h3><p>Following an upgrade or reconfiguration, you need to synchronize the configuration files, as follows:<strong> <br/> </strong></p><p>1. Fetch the new templates that come with the upgraded software by running <code>icm_client fetch-template</code>. </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client fetch-template -o ~/newTemplate</pre>
+</div></div><p>2. Retrieve the existing configuration from database using <code>icm_client fetch-configuration</code>. </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client fetch-configuration -o ~/origConfiguration -l &lt;CLUSTERNAME&gt;</pre>
+</div></div><p>3. Identify the changes done by you using the following command:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">diff -ruBw origTemplate/ origConfiguration/</pre>
+</div></div><p class="diff-block-target diff-block-context">Where: <code> <br/>   origTemplate </code>- ICM provided template for earlier version without the user changes <em> <code> <br/>   </code> </em> <code>origConfiguration<em> - </em> </code>User changes on top of <code>origTemplate</code> <br/> <code>   newTemplate</code> <em> -</em> ICM provided template for newer version without the user changes </p><p class="diff-block-target diff-block-context">4. Once you have identified the changes done by you as output of step 3 <code>diff</code> command, apply those changes to the <code>newTemplate</code> you retrieved in step 1.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>If you are re-using the <code>clusterConfig.xml</code> from <code>origConfiguration</code>, please ensure the <code>clusterConfig.xml</code> is updated with any new <code>servicesConfigGlobals</code> by checking the file in<code> newTemplate</code></p>
+</div>
+</div>
+<p> </p><p class="diff-block-target diff-block-context">5. Upgrade or reconfigure service by specifying the cluster configuration directory as <code>~/newTemplate</code> with updated contents.</p><p style="margin-left: 30.0px;"><strong> <br/> </strong></p><p style="margin-left: 30.0px;"><strong>Your cluster update is now complete and you can start the cluster again.</strong></p><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-UpgradeSyntax"></span></p><h2 id="UpgradingPivotalHDEnterpriseUsingtheCLI-ReconfigureSyntax">Reconfigure Syntax</h2><p>Run the reconfigure utility if you wish to upgrade the underlying stacks (Pivotal HD or ADS) in an existing cluster.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client reconfigure --help
+Usage: icm_client reconfigure [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -l CLUSTERNAME, --clustername=CLUSTERNAME
+                        the name of the cluster on which the operation is
+                        performed
+  -c CONFDIR, --confdir=CONFDIR
+                        Directory path where cluster configuration is stored
+  -s, --noscanhosts     Donot verify cluster nodes.
+  -p, --nopreparehosts  Donot preparehosts as part of deploying the cluster.
+  -j JDKPATH, --java=JDKPATH
+                        Location of Sun Java JDK RPM installer binary (Ex:
+                        jdk-6u41-linux-x64-rpm.bin). Ignored if -p is
+                        specified
+  -t, --ntp             Synchronize system clocks using NTP (requires external
+                        network access). Ignored if -p is specified
+  -d, --selinuxoff      Disable SELinux. Ignored if -p is specified
+  -i, --iptablesoff     Disable iptables. Ignored if -p is specified
+  -y SYSCONFIGDIR, --sysconf=SYSCONFIGDIR
+                        [Only if HAWQ is part of the deploy] Directory
+                        location of the custom conf files (sysctl.conf and
+                        limits.conf) which will be appended to
+                        /etc/sysctl.conf and /etc/limits.conf on slave nodes.
+                        Default: /usr/lib/gphd/gphdmgr/hawq_sys_config/.
+                        Ignored if -p is specified
+</pre>
+</div></div><h2 id="UpgradingPivotalHDEnterpriseUsingtheCLI-ChangedConfigurationParametersandFiles">Changed Configuration Parameters and Files</h2><p>The following information is provided solely as reference material; you do not need to make any changes to your configuration files beyond those you have already completed.</p><ul><li><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-ChangesinPivotalHD1.1.1Release"> Changes in Pivotal HD 1.1.1 Release </a><ul><li><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-ChangedParameters1.1.1">Changed Parameters 1.1.1</a></li><li><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-SampleConfigurationFilesforPHD1.1.1">Sample Configuration Files for PHD 1.1.1</a></li></ul></li><li><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-ChangesinPivotalHD1.1Release"> Changes in Pivotal HD 1.1 Release </a><ul><li><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-ChangedParameters1.1">Changed Parameters 1.1</a></li><li><p><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-SampleConfigurationFilesforPHD1.1">Sample Configuration Files for PHD 1.1</a></p></li></ul></li></ul><h3 id="UpgradingPivotalHDEnterpriseUsingtheCLI-ChangesinPivotalHD1.1.1Release">Changes in Pivotal HD 1.1.1 Release</h3><h4 id="UpgradingPivotalHDEnterpriseUsingtheCLI-ChangedParameters1.1.1">Changed Parameters 1.1.1</h4><p class="confluence-link">The following parameters have been changed in PHD 1.1.1:</p><ul><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-hadoop-env.sh">hadoop-env.sh</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-dfs.namenode.heapsize.mb">dfs.namenode.heapsize.mb</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-dfs.datanode.heapsize.mb">dfs.datanode.heapsize.mb</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-yarn.resourcemanager.heapsize.mb">yarn.resourcemanager.heapsize.mb</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-yarn.nodemanager.heapsize.mb">yarn.nodemanager.heapsize.mb</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-dfs.datanode.failed.volumes.tolerated">dfs.datanode.failed.volumes.tolerated</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-dfs.datanode.max.xcievers">dfs.datanode.max.xcievers</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-dfs.stream-buffer-size">dfs.stream-buffer-size</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-dfs.datanode.failed.volumes.tolerated">dfs.datanode.failed.volumes.tolerated</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-yarn-env.sh">yarn-env.sh</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-hbase-env.sh">hbase-env.sh</a> </strong></li></ul><p><strong> <span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-hadoop-env.sh"></span> <br/> </strong></p><p><strong> <code> hadoop-env.sh </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code> <code> <code>hadoop-env.sh</code> </code> </code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><p>several changes to set heapsize and other hadoop options.</p></td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1"><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-SampleConfigurationFilesforPHD1.1.1">Sample configuration</a> provided.</td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">No</td></tr></tbody></table></div><p><strong> <span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-dfs.namenode.heapsize.mb"></span> <br/> </strong></p><p><strong> <code> <code> dfs.namenode.heapsize.mb </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody style="margin-left: 30.0px;"><tr style="margin-left: 30.0px;"><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code>clusterConfig.xml</code></td></tr><tr style="margin-left: 30.0px;"><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><code>2048</code></td></tr><tr style="margin-left: 30.0px;"><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1">Max and Min heapsize setting for namenode process</td></tr><tr style="margin-left: 30.0px;"><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">Yes</td></tr></tbody></table></div><p><strong> <span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-dfs.datanode.heapsize.mb"></span> <br/> </strong></p><p><strong> <code> <code> dfs.datanode.heapsize.mb </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody style="margin-left: 30.0px;"><tr style="margin-left: 30.0px;"><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code>clusterConfig.xml</code></td></tr><tr style="margin-left: 30.0px;"><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><code>2048</code></td></tr><tr style="margin-left: 30.0px;"><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1">Max and Min heapsize setting for datanode process</td></tr><tr style="margin-left: 30.0px;"><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">No</td></tr></tbody></table></div><p><strong> <span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-yarn.resourcemanager.heapsize.mb"></span> <br/> </strong></p><p><strong> <code> <code> <code> yarn.resourcemanager.heapsize.mb </code> </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code> <code> <code> <code>clusterConfig.xml</code> </code> </code> </code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><p><code>2048</code></p></td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1">Max and Min heapsize setting for resourcemanager process</td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">Yes</td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-yarn.nodemanager.heapsize.mb"></span></p><p><strong> <code> <code> <code> <code> yarn.nodemanager.heapsize.mb </code> </code> </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code> <code> <code> <code> <code> <code> <code> <code>clusterConfig.xml</code> </code> </code> </code> </code> </code> </code> </code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><p><code> <code>2048</code> </code></p></td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1">Min heapsize setting for nodemanager process</td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">Yes</td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-dfs.datanode.failed.volumes.tolerated"></span></p><p><strong> <code> <code> <code> <code> <code> dfs.datanode.failed.volumes.tolerated </code> </code> </code> </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code> <code> <code> <code> <code> <code> <code> <code> <code>clusterConfig.xml</code> </code> </code> </code> </code> </code> </code> </code> </code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1">0</td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1">The number of volumes that are allowed to fail before a datanode stops offering service. By default any volume failure will cause a datanode to shutdown</td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">Yes</td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-dfs.datanode.max.xcievers"></span></p><p><strong> <code> <code> <code> <code> <code> <code> <code> dfs.datanode.max.xcievers </code> </code> </code> </code> </code> </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code>hdfs-site.xml</code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1">Removed</td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1">This property has been removed.</td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">No</td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-dfs.stream-buffer-size"></span></p><p><strong> <code> <code> <code> <code> <code> <code> dfs.stream-buffer-size </code> </code> </code> </code> </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code> <code> <code>hdfs-site.xml</code> </code> </code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><p>131072</p></td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1">The size of buffer to stream files. The size of this buffer should probably be a multiple of hardware page size (4096 on Intel x86), and it determines how much data is buffered during read and write operations.</td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">Yes</td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-dfs.datanode.failed.volumes.tolerated2"></span></p><p><strong> <code> <code> <code> <code> <code> <code> <code> dfs.datanode.failed.volumes.tolerated </code> </code> </code> </code> </code> </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code> <code> <code> <code>hive-site.xml</code> </code> </code> </code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><p><code> {dfs.datanode.failed.volumes.tolerated} </code></p></td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1">The number of volumes that are allowed to fail before a datanode stops offering service. By default any volume failure will cause a datanode to shutdown.</td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">Yes</td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-yarn-env.sh"></span></p><p><strong> <code> <code> <code> <code> <code> <code> <code> <code> <code> yarn-env.sh </code> </code> </code> </code> </code> </code> </code> </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code> yarn-env.sh </code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><p>Several changes to set heapsize and other options. <code> <br/> </code></p></td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1"><p><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-SampleConfigurationFilesforPHD1.1.1">Sample Configuration</a> file provided</p></td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1"> </td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-hbase-env.sh"></span></p><p><strong> <code> hbase-env.sh</code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code> hadoop-env.sh</code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"> </td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1">Added: <code>export HBASE_HEAPSIZE=${hbase.</code> <code> heapsize.mb} </code></td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1"> </td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-1.1.1SampleConfigs"></span></p><h4 id="UpgradingPivotalHDEnterpriseUsingtheCLI-SampleConfigurationFilesforPHD1.1.1">Sample Configuration Files for PHD 1.1.1</h4><p>Here is a sample <code> <code> <code> <code> <code> <code>hadoop-env.sh</code> </code> </code>:</code> </code> </code></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># The java implementation to use.  Required.
+export JAVA_HOME=${cluster_java_home}
+
+# The maximum amount of heap to use, in MB. Default is 1000.
+export HADOOP_HEAPSIZE=1024
+export HADOOP_NAMENODE_HEAPSIZE=${dfs.namenode.heapsize.mb}
+export HADOOP_DATANODE_HEAPSIZE=${dfs.datanode.heapsize.mb}
+
+# Extra Java runtime options. Empty by default.
+export HADOOP_OPTS="-Djava.net.preferIPv4Stack=true ${HADOOP_OPTS}"
+
+# Extra ssh options.  Empty by default.
+export HADOOP_SSH_OPTS="-o ConnectTimeout=5 -o SendEnv=HADOOP_CONF_DIR"
+
+# Set Hadoop-specific environment variables here.
+
+# Command specific options appended to HADOOP_OPTS when specified
+export HADOOP_NAMENODE_OPTS="-Dcom.sun.management.jmxremote -Xms${dfs.namenode.heapsize.mb}m -Xmx${dfs.namenode.heapsize.mb}m -Dhadoop.security.logger=INFO,DRFAS -Dhdfs.audit.logger=INFO,DRFAAUDIT -XX:ParallelGCThreads=8 -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -Xloggc:${HADOOP_LOG_DIR}/hadoop-hdfs-namenode-`date +'%Y%m%d%H%M'`.gclog -XX:ErrorFile=${HADOOP_LOG_DIR}/hs_err_pid%p.log $HADOOP_NAMENODE_OPTS"
+
+export HADOOP_SECONDARYNAMENODE_OPTS="-Dcom.sun.management.jmxremote -Xms${dfs.namenode.heapsize.mb}m -Xmx${dfs.namenode.heapsize.mb}m -Dhadoop.security.logger=INFO,DRFAS -Dhdfs.audit.logger=INFO,DRFAAUDIT -XX:ParallelGCThreads=8 -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -verbose:gc -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -Xloggc:${HADOOP_LOG_DIR}/hadoop-hdfs-secondary-namenode-`date +'%Y%m%d%H%M'`.gclog -XX:ErrorFile=${HADOOP_LOG_DIR}/hs_err_pid%p.log $HADOOP_SECONDARYNAMENODE_OPTS"
+
+export HADOOP_DATANODE_OPTS="-Dcom.sun.management.jmxremote -Xms${dfs.datanode.heapsize.mb}m -Xmx${dfs.datanode.heapsize.mb}m -Dhadoop.security.logger=ERROR,DRFAS $HADOOP_DATANODE_OPTS"
+
+export HADOOP_BALANCER_OPTS="-Dcom.sun.management.jmxremote -server -Xmx${HADOOP_HEAPSIZE}m $HADOOP_BALANCER_OPTS"
+
+export HADOOP_JOBTRACKER_OPTS="-Dcom.sun.management.jmxremote $HADOOP_JOBTRACKER_OPTS"
+
+# export HADOOP_TASKTRACKER_OPTS=
+# The following applies to multiple commands (fs, dfs, fsck, distcp etc)
+# export HADOOP_CLIENT_OPTS
+
+# The following applies to multiple commands (fs, dfs, fsck, distcp etc)
+export HADOOP_CLIENT_OPTS="-Xmx${HADOOP_HEAPSIZE}m $HADOOP_CLIENT_OPTS"
+
+# GPHD variables
+export GPHD_HOME=/usr/lib/gphd
+export GPHD_CONF=/etc/gphd
+
+# PXF conf directory
+HADOOP_CLASSPATH=$HADOOP_CLASSPATH:\
+$GPHD_CONF/pxf/conf:\
+
+# Required for PXF with HDFS
+HADOOP_CLASSPATH=$HADOOP_CLASSPATH:\
+$GPHD_HOME/pxf/pxf.jar:\
+$GPHD_HOME/publicstage:\
+$GPHD_HOME/pxf/avro-1.5.4.jar:\
+$GPHD_HOME/pxf/avro-mapred-1.5.4.jar:\
+$GPHD_HOME/gfxd/lib/sqlfire.jar:\
+
+# Required only for PXF with HBase
+HADOOP_CLASSPATH=$HADOOP_CLASSPATH:\
+$GPHD_HOME/zookeeper/zookeeper.jar:\
+$GPHD_HOME/hbase/hbase.jar:\
+$GPHD_CONF/hbase/conf:\
+
+# Required only for PXF with HDFS &amp; Hive
+export HIVELIB_HOME=$GPHD_HOME/hive/lib
+export HIVE_CONF=$GPHD_CONF/hive/conf
+HADOOP_CLASSPATH=$HADOOP_CLASSPATH:\
+$HIVELIB_HOME/hive-service-0.11.0-gphd-2.1.1.0.jar:\
+$HIVELIB_HOME/libthrift-0.9.0.jar:\
+$HIVELIB_HOME/hive-metastore-0.11.0-gphd-2.1.1.0.jar:\
+$HIVELIB_HOME/libfb303-0.9.0.jar:\
+$HIVELIB_HOME/hive-common-0.11.0-gphd-2.1.1.0.jar:\
+$HIVELIB_HOME/hive-exec-0.11.0-gphd-2.1.1.0.jar:\
+$HIVELIB_HOME/postgresql-jdbc.jar:\
+$HIVE_CONF:\
+
+# Required only for USS
+export USS_HOME=$GPHD_HOME/uss
+export USS_CONF=$GPHD_CONF/uss/conf
+HADOOP_CLASSPATH=$HADOOP_CLASSPATH:\
+$USS_HOME/*:\
+$USS_CONF:
+
+HADOOP_CLASSPATH=$HADOOP_CLASSPATH:\
+$GPHD_HOME/sm-plugins/*:
+
+export HADOOP_CLASSPATH</pre>
+</div></div><p> </p><p>Here is a sample <code>yarn-env.sh</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># User for YARN daemons
+export HADOOP_YARN_USER=${HADOOP_YARN_USER:-yarn}
+
+# resolve links - $0 may be a softlink
+export YARN_CONF_DIR="${YARN_CONF_DIR:-$HADOOP_YARN_HOME/conf}"
+
+# some Java parameters
+export JAVA_HOME=${cluster_java_home}
+if [ "$JAVA_HOME" != "" ]; then
+  #echo "run java in $JAVA_HOME"
+  JAVA_HOME=$JAVA_HOME
+fi
+  
+if [ "$JAVA_HOME" = "" ]; then
+  echo "Error: JAVA_HOME is not set."
+  exit 1
+fi
+
+JAVA=$JAVA_HOME/bin/java
+JAVA_HEAP_MAX=-Xmx1000m 
+
+# check envvars which might override default args
+if [ "$YARN_HEAPSIZE" != "" ]; then
+  #echo "run with heapsize $YARN_HEAPSIZE"
+  JAVA_HEAP_MAX="-Xmx""$YARN_HEAPSIZE""m"
+  #echo $JAVA_HEAP_MAX
+fi
+
+# so that filenames w/ spaces are handled correctly in loops below
+IFS=
+
+# default log directory &amp; file
+if [ "$YARN_LOG_DIR" = "" ]; then
+  YARN_LOG_DIR="$HADOOP_YARN_HOME/logs"
+fi
+if [ "$YARN_LOGFILE" = "" ]; then
+  YARN_LOGFILE='yarn.log'
+fi
+
+# default policy file for service-level authorization
+if [ "$YARN_POLICYFILE" = "" ]; then
+  YARN_POLICYFILE="hadoop-policy.xml"
+fi
+
+# restore ordinary behaviour
+unset IFS
+YARN_OPTS="$YARN_OPTS -Dhadoop.log.dir=$YARN_LOG_DIR"
+YARN_OPTS="$YARN_OPTS -Dyarn.log.dir=$YARN_LOG_DIR"
+YARN_OPTS="$YARN_OPTS -Dhadoop.log.file=$YARN_LOGFILE"
+YARN_OPTS="$YARN_OPTS -Dyarn.log.file=$YARN_LOGFILE"
+YARN_OPTS="$YARN_OPTS -Dyarn.home.dir=$YARN_COMMON_HOME"
+YARN_OPTS="$YARN_OPTS -Dyarn.id.str=$YARN_IDENT_STRING"
+YARN_OPTS="$YARN_OPTS -Dhadoop.root.logger=${YARN_ROOT_LOGGER:-INFO,console}"
+YARN_OPTS="$YARN_OPTS -Dyarn.root.logger=${YARN_ROOT_LOGGER:-INFO,console}"
+if [ "x$JAVA_LIBRARY_PATH" != "x" ]; then
+  YARN_OPTS="$YARN_OPTS -Djava.library.path=$JAVA_LIBRARY_PATH"
+fi  
+YARN_OPTS="$YARN_OPTS -Dyarn.policy.file=$YARN_POLICYFILE"
+
+# Yarn daemon heap sizes
+export YARN_RESOURCEMANAGER_HEAPSIZE=${yarn.resourcemanager.heapsize.mb}
+export YARN_NODEMANAGER_HEAPSIZE=${yarn.nodemanager.heapsize.mb}
+
+# common jvm settings for resource manager and node managers
+YARN_OPTS="$YARN_OPTS -server -Djava.net.preferIPv4Stack=true -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -XX:ErrorFile=${YARN_LOG_DIR}/hs_err_pid%p.log"
+
+# yarn resource manager related jvm settings
+YARN_RESOURCEMANAGER_OPTS="$YARN_RESOURCEMANAGER_OPTS -Xloggc:${YARN_LOG_DIR}/hadoop-yarn-resourcemanager-`date +'%Y%m%d%H%M'`.gclog"
+
+# yarn node manager related jvm settings
+YARN_NODEMANAGER_OPTS="$YARN_NODEMANAGER_OPTS -Xloggc:${YARN_LOG_DIR}/hadoop-yarn-nodemanager-`date +'%Y%m%d%H%M'`.gclog"</pre>
+</div></div><h3 id="UpgradingPivotalHDEnterpriseUsingtheCLI-ChangesinPivotalHD1.1Release">Changes in Pivotal HD 1.1 Release</h3><p>The following files were add/removed in PHD 1.1:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><div class="tablesorter-header-inner">File</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Description</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Req'd</div></th></tr><tr><td class="confluenceTd"><p><code>uss-env.sh</code></p></td><td class="confluenceTd">This is a new config file added <br/>to the USS folder in <code>clusterConfig</code> <br/>template</td><td class="confluenceTd">Yes</td></tr><tr><td class="confluenceTd"><code>pxf-profiles.xml</code></td><td class="confluenceTd">This is a new config file added to<br/> the <code>gpxf</code> folder in <code>clusterConfig</code> <br/>template</td><td class="confluenceTd">Yes</td></tr><tr><td class="confluenceTd" colspan="1"><code> capacity-<br/>scheduler.xml </code></td><td class="confluenceTd" colspan="1">This is a new config file added <br/>to the yarn folder in <code>clusterConfig</code> <br/>template.</td><td class="confluenceTd" colspan="1">Yes</td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-1.1Parameters"></span></p><h4 id="UpgradingPivotalHDEnterpriseUsingtheCLI-ChangedParameters1.1">Changed Parameters 1.1</h4><p>The following parameters were changed in PHD 1.1</p><ul><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-cluster_java_home">cluster_java_home</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-uss-admin">uss-admin</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-JAVA_HOME">JAVA_HOME</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-HBASE_CLASSPATH">HBASE_CLASSPATH</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-fs.uss.enabled">fs.uss.enabled</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-mapred.outdir.resolverClass">mapred.outdir.resolverClass</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-HADOOP_CLASSPATH">HADOOP_CLASSPATH</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-hive.hwi.war.file">hive.hwi.war.file</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-yarn.application.classpath">yarn.application.classpath</a> </strong></li><li><strong> <a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-gpxf">gpxf</a> </strong></li></ul><p> </p><p><strong class="confluence-link"> <span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-cluster_java_home"></span> <br/> </strong></p><p><strong> <code> <code>cluster_java_home</code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody style="margin-left: 30.0px;"><tr style="margin-left: 30.0px;"><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code>clusterConfig.xml</code></td></tr><tr style="margin-left: 30.0px;"><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><code>/usr/java/default</code></td></tr><tr style="margin-left: 30.0px;"><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1"><p><code>JAVA_HOME</code> defaults to this.</p><p>Update if you have java installed <br/>elsewhere</p></td></tr><tr style="margin-left: 30.0px;"><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">Yes</td></tr></tbody></table></div><p><strong> <span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-uss-admin"></span> <br/> </strong></p><p><strong> <code> <code> uss-admin </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody style="margin-left: 30.0px;"><tr style="margin-left: 30.0px;"><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code>clusterConfig.xml</code></td></tr><tr style="margin-left: 30.0px;"><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><code>Removed</code></td></tr><tr style="margin-left: 30.0px;"><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1">This property has been removed.</td></tr><tr style="margin-left: 30.0px;"><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">No</td></tr></tbody></table></div><p><strong> <span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-JAVA_HOME"></span> <br/> </strong></p><p><strong> <code> <code> <code>JAVA_HOME</code> </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code> hbase-env.sh, <br/>hadoop-env.sh,<br/>mapred-env.sh, <br/>yarn-env.sh</code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><p><code>${cluster_java_home}</code></p></td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1"><code>JAVA_HOME</code> variable is now <br/>parameterized</td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">Yes</td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-HBASE_CLASSPATH"></span></p><p><strong> <code> <code> <code> <code>HBASE_CLASSPATH</code> </code> </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code> hbase-env.sh</code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><p><code> <code>${HBASE_CLASSPATH}:\</code> <br/> <code>$GPHD_ROOT/pxf/pxf.jar</code> </code></p></td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1"><code>gpxf</code>  folder and jar renamed to <code>pxf</code>.</td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">Yes</td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-fs.uss.enabled"></span></p><p><strong> <code> <code> <code> <code> <code>fs.uss.enabled</code> </code> </code> </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code>core-site.xml</code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><p> </p>Removed</td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1">This property has been removed.</td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">No</td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-mapred.outdir.resolverClass"></span></p><p><strong> <code> <code> <code> <code> <code> <code> <code>mapred.outdir.resolverClass</code> </code> </code> </code> </code> </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code>core-site.xml</code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1">Removed</td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1">This property has been removed.</td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">No</td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-HADOOP_CLASSPATH"></span></p><p><strong> <code> <code> <code> <code> <code> <code>HADOOP_CLASSPATH</code> </code> </code> </code> </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code> <code> <code>hadoop-env.sh</code> </code> </code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><p>Several changes to hadoop classpath</p></td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1"><a href="UpgradingPHDUsingtheCLI.html#UpgradingPivotalHDEnterpriseUsingtheCLI-SampleConfigurationFilesforPHD1.1">Sample configuration</a> provided.</td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">No</td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-hive.hwi.war.file"></span></p><p><strong> <code> <code> <code> <code> <code> <code> <code>hive.hwi.war.file</code> </code> </code> </code> </code> </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code> <code> <code> <code>hive-site.xml</code> </code> </code> </code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><p><code>/usr/lib/gphd/hive/lib/hive-hwi.war</code></p></td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1"> </td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">Yes</td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-yarn.application.classpath"></span></p><p><strong> <code> <code> <code> <code> <code> <code> <code> <code>yarn.application.classpath</code> </code> </code> </code> </code> </code> </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code> <code> <code> <code> <code>yarn-site.xml</code> </code> </code> </code> </code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><p><code>$HADOOP_CONF_DIR,</code> <br/> <code>$HADOOP_COMMON_HOME/*,</code> <br/> <code>$HADOOP_COMMON_HOME/lib/*,</code> <br/> <code>$HADOOP_HDFS_HOME/*,</code> <br/> <code>$HADOOP_HDFS_HOME/lib/*,</code> <br/> <code>$HADOOP_MAPRED_HOME/*,</code> <br/> <code>$HADOOP_MAPRED_HOME/lib/*,</code> <br/> <code>$HADOOP_YARN_HOME/*,</code> <br/> <code>$HADOOP_YARN_HOME/lib/*,</code> <br/> <code>$USS_HOME/*,$USS_CONF</code></p></td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1"><p>USS-related configs added to this property.</p></td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1">Yes</td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-gpxf"></span></p><p><strong> <code> <code> <code> <code> <code> <code> <code> <code> <code>gpxf</code> </code> </code> </code> </code> </code> </code> </code> </code> </strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">File Name</th><td class="confluenceTd" colspan="1"><code> <code> <code> <code> <code> <code>hadoop-env.sh</code> </code> </code> </code> </code> </code></td></tr><tr><th class="confluenceTh" colspan="1">Value</th><td class="confluenceTd" colspan="1"><p><code> <code>pxf</code> </code></p></td></tr><tr><th class="confluenceTh" colspan="1">Comments</th><td class="confluenceTd" colspan="1"><p>Change all occurrence of <code>gpxf</code> to <code>pxf</code></p><p>Example</p><pre># Required for PXF with HDFS
+HADOOP_CLASSPATH=$HADOOP_CLASSPATH:\
+$GPHD_HOME/pxf/pxf.jar:\
+$GPHD_HOME/publicstage:\
+$GPHD_HOME/pxf/avro-1.5.4.jar:\
+$GPHD_HOME/pxf/avro-mapred-1.5.4.jar:\
+</pre></td></tr><tr><th class="confluenceTh" colspan="1">Required</th><td class="confluenceTd" colspan="1"> </td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="UpgradingPivotalHDEnterpriseUsingtheCLI-SampleConfig11"></span></p><h4 id="UpgradingPivotalHDEnterpriseUsingtheCLI-SampleConfigurationFilesforPHD1.1">Sample Configuration Files for PHD 1.1</h4><p>Here is a sample <code> <code> <code> <code> <code> <code>hadoop-env.sh</code> </code> </code>:</code> </code> </code></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># Set Hadoop-specific environment variables here.
+# The java implementation to use.  Required.
+export JAVA_HOME=${cluster_java_home}
+# Command specific options appended to HADOOP_OPTS when specified
+export HADOOP_NAMENODE_OPTS="-Dcom.sun.management.jmxremote $HADOOP_NAMENODE_OPTS"
+export HADOOP_SECONDARYNAMENODE_OPTS="-Dcom.sun.management.jmxremote $HADOOP_SECONDARYNAMENODE_OPTS"
+export HADOOP_DATANODE_OPTS="-Dcom.sun.management.jmxremote $HADOOP_DATANODE_OPTS"
+export HADOOP_BALANCER_OPTS="-Dcom.sun.management.jmxremote $HADOOP_BALANCER_OPTS"
+export HADOOP_JOBTRACKER_OPTS="-Dcom.sun.management.jmxremote $HADOOP_JOBTRACKER_OPTS"
+# export HADOOP_TASKTRACKER_OPTS=
+# The following applies to multiple commands (fs, dfs, fsck, distcp etc)
+# export HADOOP_CLIENT_OPTS
+# Extra ssh options.  Empty by default.
+# export HADOOP_SSH_OPTS="-o ConnectTimeout=1 -o SendEnv=HADOOP_CONF_DIR"
+# Where log files are stored.  $HADOOP_HOME/logs by default.
+export HADOOP_LOG_DIR=$HADOOP_HOME/logs
+# GPHD variables
+export GPHD_HOME=/usr/lib/gphd
+export GPHD_CONF=/etc/gphd
+ 
+# PXF conf directory
+HADOOP_CLASSPATH=$HADOOP_CLASSPATH:\
+$GPHD_CONF/pxf/conf:
+ 
+# Required for PXF with HDFS
+HADOOP_CLASSPATH=$HADOOP_CLASSPATH:\
+$GPHD_HOME/pxf/pxf.jar:\
+$GPHD_HOME/publicstage:\
+$GPHD_HOME/pxf/avro-1.5.4.jar:\
+$GPHD_HOME/pxf/avro-mapred-1.5.4.jar:\
+$GPHD_HOME/gfxd/lib/sqlfire.jar:
+ 
+# Required only for PXF with HBase
+HADOOP_CLASSPATH=$HADOOP_CLASSPATH:\
+$GPHD_HOME/zookeeper/zookeeper.jar:\
+$GPHD_HOME/hbase/hbase.jar:\
+$GPHD_CONF/hbase/conf:
+ 
+# Required only for PXF with HDFS &amp; Hive
+export HIVELIB_HOME=$GPHD_HOME/hive/lib
+export HIVE_CONF=$GPHD_CONF/hive/conf
+HADOOP_CLASSPATH=$HADOOP_CLASSPATH:\
+$HIVELIB_HOME/hive-service-0.11.0-gphd-2.1.0.0.jar:\
+$HIVELIB_HOME/libthrift-0.9.0.jar:\
+$HIVELIB_HOME/hive-metastore-0.11.0-gphd-2.1.0.0.jar:\
+$HIVELIB_HOME/libfb303-0.9.0.jar:\
+$HIVELIB_HOME/hive-common-0.11.0-gphd-2.1.0.0.jar:\
+$HIVELIB_HOME/hive-exec-0.11.0-gphd-2.1.0.0.jar:\
+$HIVELIB_HOME/postgresql-jdbc.jar:\
+$HIVE_CONF:
+ 
+# Required only for USS
+export USS_HOME=$GPHD_HOME/uss
+export USS_CONF=$GPHD_CONF/uss/conf
+HADOOP_CLASSPATH=$HADOOP_CLASSPATH:\
+$USS_HOME/*:\
+$USS_CONF:
+ 
+HADOOP_CLASSPATH=$HADOOP_CLASSPATH:\
+$GPHD_HOME/sm-plugins/*:
+ 
+export HADOOP_CLASSPATH</pre>
+</div></div><p> </p><p> </p><p> </p>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

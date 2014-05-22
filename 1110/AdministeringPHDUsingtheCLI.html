@@ -1,0 +1,964 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>Administering PHD Using the CLI | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>Administering PHD Using the CLI</h1><div class="wiki-content group" id="main-content">
+<p> </p><p><style type="text/css">/*<![CDATA[*/
+div.rbtoc1390012348924 {padding: 0px;}
+div.rbtoc1390012348924 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1390012348924 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc rbtoc1390012348924">
+<ul class="toc-indentation">
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-ManagingaCluster">Managing a Cluster</a>
+<ul class="toc-indentation">
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-StartingaCluster">Starting a Cluster</a></li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-StoppingaCluster">Stopping a Cluster</a></li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-RestartingaCluster">Restarting a Cluster</a></li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-ReconfiguringaCluster">Reconfiguring a Cluster</a></li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-Add/RemoveServices">Add / Remove Services</a>
+<ul class="toc-indentation">
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-ToaddHbaseorHAWQ">To add Hbase or HAWQ</a></li>
+</ul>
+</li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-RetrievingConfigurationaboutaDeployedCluster">Retrieving Configuration about a Deployed Cluster</a></li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-ListingClusters">Listing Clusters</a></li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-ExpandingaCluster">Expanding a Cluster</a></li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-ShrinkingaCluster">Shrinking a Cluster</a></li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-EnablingHighAvailabilityonaCluster">Enabling High Availability on a Cluster</a>
+<ul class="toc-indentation">
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-HAAdminCommandReference">HAAdmin Command Reference</a></li>
+</ul>
+</li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-DecommissioningNodes">Decommissioning Nodes</a></li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-UninstallingaCluster">Uninstalling a Cluster</a></li>
+</ul>
+</li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-ManagingHAWQ">Managing HAWQ</a>
+<ul class="toc-indentation">
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-InitializingHAWQ">Initializing HAWQ</a></li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-StartingHAWQ">Starting HAWQ</a></li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-StoppingHAWQ">Stopping HAWQ</a></li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-ModifyingHAWQUserConfiguration">Modifying HAWQ User Configuration</a></li>
+</ul>
+</li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-ManagingRolesandHosts">Managing Roles and Hosts</a>
+<ul class="toc-indentation">
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-ManagingLocally">Managing Locally</a></li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-ManagingRemotely">Managing Remotely</a></li>
+</ul>
+</li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-PivotalHDServicesReference">Pivotal HD Services Reference</a>
+<ul class="toc-indentation">
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-OverridingDirectoryPermissions">Overriding Directory Permissions</a>
+<ul class="toc-indentation">
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-OntheLocalFilesystem">On the Local Filesystem</a></li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-OnHDFS">On HDFS</a></li>
+</ul>
+</li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-PivotalHDUsersandGroups">Pivotal HD Users and Groups</a></li>
+<li><a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-PivotalHDPorts">Pivotal HD Ports</a></li>
+</ul>
+</li>
+</ul>
+</div></p><p>The section describes the administrative actions that can be performed via Pivotal Command Center's command line interface (CLI).</p><p><span class="confluence-anchor-link" id="AdministeringPivotalHDEnterpriseUsingtheCLI-ManagingACluster"></span></p><h2 id="AdministeringPivotalHDEnterpriseUsingtheCLI-ManagingaCluster">Managing a Cluster</h2><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-StartingaCluster">Starting a Cluster</h3><p>You can use the start command to start all the configured services of the cluster, to start individual services configured for the cluster and to start individual roles on a specific set of hosts.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client start --help
+Usage: /usr/bin/icm_client start [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -v, --verbose         increase output verbosity
+  -l CLUSTERNAME, --clustername=CLUSTERNAME
+                        the name of the cluster on which the operation is
+                        performed
+  -s SERVICES, --service=SERVICES
+                        service to be started
+  -f, --force           forcibly start cluster (even if install is incomplete)
+  -r ROLES, --role=ROLES
+                        The name of the role which needs to be started
+  -o HOSTFILE, --hostfile=HOSTFILE
+                        The absolute path for the file containing host names
+                        for the role which needs to be started
+</pre>
+</div></div><p>The following table describes the list of values for the HDFS, MapRed, ZooKeeper, HBase, and HAWQ services.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Option</p></th><th class="confluenceTh"><p>Description</p></th></tr><tr><td class="confluenceTd"><p><code>start</code></p></td><td class="confluenceTd"><p>Starts all configured cluster services in the right topological order based on service dependencies.</p></td></tr><tr><td class="confluenceTd"><p><code>-s</code></p></td><td class="confluenceTd"><p>Starts the specified service and all services it depends on in the right topological order. The supported services are hdfs, yarn, zookeeper, hbase, hive, hawq, pig, mahout and uss.</p></td></tr><tr><td class="confluenceTd"><p><code>-r</code></p></td><td class="confluenceTd"><p>Starts only the specified role on a specific set of hosts. Hosts can be specified using the -o option.</p></td></tr><tr><td class="confluenceTd"><p><code>-f</code></p></td><td class="confluenceTd"><p>Forces the cluster to start even if the installation is incomplete.</p></td></tr></tbody></table></div><p>The first time the Cluster is started, Pivotal HD implicitly initializes the cluster. For subsequent invocations of the <em>start</em> command, the cluster is not initialized.</p><p> </p><p>Cluster initialization includes the following:</p><ul><li>Namenode Format</li><li>Create directories on the local filesystem of cluster nodes and on the hdfs with the correct permission overrides. See the <a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-OverridingDirectoryPermissions">Overriding Directory Permissions</a> section.</li><li>Create HDFS directories for additional services, such as HBase, if these are included in the configured services.</li></ul> <div class="aui-message warning shadowed information-macro">
+<p class="title">Notes</p>
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p>Refer to the "Verifying the Cluster Nodes for Pivotal HD" section to make sure the cluster services are up and running.</p><p>Make sure you back up all the data prior to installing or starting a new cluster on nodes that have pre-existing data on the configured mount points.</p>
+</div>
+</div>
+<p>Example:<br/> Cluster level start</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client start -l CLUSTERNAME
+</pre>
+</div></div><p>Service level start</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client start -l CLUSTERNAME -s hdfs
+</pre>
+</div></div><p>Role level start</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client start -l CLUSTERNAME -r datanode -o hostfile
+</pre>
+</div></div><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-StoppingaCluster">Stopping a Cluster</h3><p>You can use the <em>stop</em> option to stop an entire cluster, to stop a single service and to stop a single role on a specific set of hosts on which it is configured.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client stop -h
+Usage: icm_client stop [options]
+
+Options:
+  -h, --help            Show this help message and exit
+  -v, --verbose         Increase output verbosity
+  -l CLUSTERNAME, --clustername=CLUSTERNAME
+                        The name of the cluster on which the operation is
+                        performed
+  -s SERVICES, --service=SERVICES
+                        Service to be stopped
+  -r ROLES, --role=ROLES
+                        The name of the role which needs to be stopped
+  -o HOSTFILE, --hostfile=HOSTFILE
+                        The absolute path for the file containing host names
+                        for the role that needs to be stopped
+</pre>
+</div></div><p>The following table describes the list of values for the HDFS, MapRed, ZooKeeper, HBase, and HAWQ services.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Option</p></th><th class="confluenceTh"><p>Description</p></th></tr><tr><td class="confluenceTd"><p><code>stop</code></p></td><td class="confluenceTd"><p>Stops all configured cluster services in the right topological order based on service dependencies.</p></td></tr><tr><td class="confluenceTd"><p><code>-s</code></p></td><td class="confluenceTd"><p>Stops the specified service and all the dependent services in the right topological order. The supported services are hdfs, yarn, zookeeper, hbase, hive, hawq, pig, mahout, and uss.</p></td></tr><tr><td class="confluenceTd"><p><code>-r</code></p></td><td class="confluenceTd"><p>Stops the specified role on a specific set of hosts. Hosts can be specified using the -o option.</p></td></tr></tbody></table></div><p>Example:<br/> Cluster level stop</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client stop -l CLUSTERNAME
+</pre>
+</div></div><p>Service level stop</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client stop -l CLUSTERNAME -s hdfs
+</pre>
+</div></div><p>Role level stop</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client stop -l CLUSTERNAME -r datanode -o hostfile
+</pre>
+</div></div><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-RestartingaCluster">Restarting a Cluster</h3><p>You can use the <code>-restart</code> option to stop, then restart a cluster.</p><p>See stopping and starting a cluster, above, for more details about the stop/start operations.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]#  icm_client restart -h
+Usage: /usr/bin/icm_client restart [options]
+
+
+Options:
+  -h, --help            Show this help message and exit
+  -v, --verbose         Increase output verbosity
+  -l CLUSTERNAME, --clustername=CLUSTERNAME
+                        The name of the cluster on which the operation is
+                        performed
+  -s SERVICES, --service=SERVICES
+                        The service to be restarted
+  -f, --force           Forcibly start cluster (even if install is incomplete)
+  -r ROLES, --role=ROLES
+                        The name of the role which needs to be started
+  -o HOSTFILE, --hostfile=HOSTFILE
+                        The absolute path for the file containing host names
+                        for the role which needs to be started
+</pre>
+</div></div><p><span class="confluence-anchor-link" id="AdministeringPivotalHDEnterpriseUsingtheCLI-Reconfiguring"></span></p><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-ReconfiguringaCluster">Reconfiguring a Cluster</h3><p>Run the <code>reconfigure </code>command to update specific configuration for an existing cluster. Some cluster specific configuration cannot be updated:</p><p><strong>!</strong>Topology of a cluster (host to role mapping) are not allowed. For example: changing the NameNode to a different node or adding new set of datanodes to a cluster</p><p><strong>!</strong>Properties derived based on hostnames: For example, <code>fs.defaultFS</code>, <code>dfs.namenode</code>. and the <code>http-address</code>.</p><p><strong>!</strong>Properties with directory paths as values.</p><p>The following table lists properties that cannot be changed.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Property Name</p></th><th class="confluenceTh"><p>Configuration File</p></th></tr><tr><td class="confluenceTd"><p><code>datanode.disk.mount.points</code></p></td><td class="confluenceTd"><p><code>clusterConfig.xml</code></p></td></tr><tr><td class="confluenceTd"><p><code>namenode.disk.mount.points</code></p></td><td class="confluenceTd"><p><code>clusterConfig.xml</code></p></td></tr><tr><td class="confluenceTd"><p><code>secondary.namenode.disk.mount.points</code></p></td><td class="confluenceTd"><p><code>clusterConfig.xml</code></p></td></tr><tr><td class="confluenceTd"><p><code>hawq.master.directory</code></p></td><td class="confluenceTd"><p><code>clusterConfig.xml</code></p></td></tr><tr><td class="confluenceTd"><p><code>hawq.segment.directory</code></p></td><td class="confluenceTd"><p><code>clusterConfig.xml</code></p></td></tr></tbody></table></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client reconfigure -h
+Usage: /usr/bin/icm_client reconfigure [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -l CLUSTERNAME, --clustername=CLUSTERNAME
+                        the name of the cluster on which the operation is
+                        performed
+  -c CONFDIR, --confdir=CONFDIR
+                        Directory path where cluster configuration is stored
+  -s, --noscanhosts     Donot verify cluster nodes.
+  -p, --nopreparehosts  Donot preparehosts as part of deploying the cluster.
+  -j JDKPATH, --java=JDKPATH
+                        Location of Sun Java JDK RPM installer binary (Ex:
+                        jdk-6u41-linux-x64-rpm.bin). Ignored if -p is
+                        specified
+  -t, --ntp             Synchronize system clocks using NTP (requires external
+                        network access). Ignored if -p is specified
+  -d, --selinuxoff      Disable SELinux. Ignored if -p is specified
+  -i, --iptablesoff     Disable iptables. Ignored if -p is specified
+  -y SYSCONFIGDIR, --sysconf=SYSCONFIGDIR
+                        [Only if HAWQ is part of the deploy] Directory
+                        location of the custom conf files (sysctl.conf and
+                        limits.conf) which will be appended to
+                        /etc/sysctl.conf and /etc/limits.conf on slave nodes.
+                        Default: /usr/lib/gphd/gphdmgr/hawq_sys_config/.
+                        Ignored if -p is specified
+</pre>
+</div></div><p><strong>To reconfigure an existing cluster:</strong></p><ol><li>Stop the cluster:<br/> <code> icm_client stop -l CLUSTERNAME</code></li><li>Fetch the configurations for the cluster in a local directory:<br/> <code>icm_client fetch-configuration -l CLUSTERNAME -o LOCALDIR</code></li><li>Edit the configuration files in the cluster configuration directory (<code>LOCALDIR</code>).</li><li>Reconfigure the cluster:<br/> <code>icm_client reconfigure -l CLUSTERNAME -c LOCALDIR</code></li></ol><p> </p><p>Following an upgrade or reconfiguration, you need to synchronize the configuration files, as follows:<strong> <br/> </strong></p><ol><li>Fetch the new templates that come with the upgraded software by running <code>icm_client fetch-template</code>.</li><li>Retrieve the existing configuration from database using <code>icm_client fetch-configuration</code>.</li><li>Synchronize the new configurations (<code>hdfs/hadoop-env</code>) from the template directory to the existing cluster configuration directory.</li><li>Upgrade or reconfigure service by specifying the cluster configuration directory with updated contents.</li></ol><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-Add/RemoveServices">Add / Remove Services</h3><p>Services can be added  / removed using <code>icm_client reconfigure</code> command.</p><ul><li>Edit the <code>clusterConfig.xml</code> file to add / remove services from the service list in 'services' tag</li><li>Edit <code>hostRoleMapping</code> section to add/remove hosts for the specific services configured</li><li>Edit the <code>servicesConfigGlobals</code> if required for the specific service added</li><li>Follow the steps for <a href="#AdministeringPivotalHDEnterpriseUsingtheCLI-ReconfiguringaCluster">Reconfiguring a Cluster</a>.</li><li>Like in a new deploy you can use the -p or -s option to disable scanhosts or preparehosts on the newly added hosts</li><li>If you want to prepare the new hosts with java or if you want to disable iptables or SELinux, follow the instructions for installing Java mentioned in the Deploying a cluster section of this document</li></ul> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning"></span>
+<div class="message-content">
+<p><span style="color: rgb(0,0,0);">Removing a specific service using the <code>icm_client reconfigure</code> command does not remove rpms from the nodes. The rpms are removed when the Cluster is uninstalled</span></p>
+</div>
+</div>
+<h4 id="AdministeringPivotalHDEnterpriseUsingtheCLI-ToaddHbaseorHAWQ">To add Hbase or HAWQ</h4><p>Since the slave nodes like Hbase region servers or HAWQ segments have to be co-located with datanodes, if you plan to add new nodes to your cluster, you will first have to expand the existing cluster using <code>add-slaves</code> command and then use reconfigure to add Hbase or HAWQ service. If you plan to just reuse the nodes in the existing cluster then you can directly use reconfigure to add the new service.</p><p>The steps to add new hosts to the cluster:</p><ol><li>Prepare the new hosts using the <code>icm_client preparehosts</code> command.</li><li>Add the new hosts that will serve as slave roles (like Hbase region server or HAWQ segment servers) to the cluster using add-slaves. Any new node that will be added as a master role need not be added in this step</li><li>Add the new service like Hbase or HAWQ using the reconfigure step mentioned above. </li><li>Note: To install Hive, you need not run the add-slaves as all the hive roles are considered master roles. You can directly use the reconfigure to add Hive service.</li></ol><p><strong>!</strong>Please note there is a limitation that you cannot add one service and remove another at the same time. They will have to be two separate steps but you can add multiple services OR remove multiple services at the same time.</p><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-RetrievingConfigurationaboutaDeployedCluster">Retrieving Configuration about a Deployed Cluster</h3><p>Run the <code>fetch-configuration</code> command to fetch the configurations for an existing cluster and store them in a local file system directory.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client fetch-configuration -h
+Usage: icm_client fetch-configuration [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -o OUTDIR, --outdir=OUTDIR
+                        Directory path to store the cluster configuration
+                        template files
+  -l CLUSTERNAME, --clustername=CLUSTERNAME
+                        Name of the deployed cluster whose configurations need
+                        to be fetched
+</pre>
+</div></div><p><strong>Sample Usage</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client fetch-configuration -l CLUSTERNAME -o LOCALDIR</pre>
+</div></div><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-ListingClusters">Listing Clusters</h3><p>Run the <code>list </code>command to see a list of all the installed clusters</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client list --help
+Usage: icm_client list [options]
+
+Options:
+  -h, --help     show this help message and exit
+  -v, --verbose  increase output verbosity
+</pre>
+</div></div><p><strong>Sample Usage</strong>:</p><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client list</pre>
+</div></div><p> </p><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-ExpandingaCluster">Expanding a Cluster</h3><p><strong>!</strong>Make sure you run preparehosts against the new slave hosts prior to adding them to the cluster. (See the <code>preparehosts</code> command example in the "Preparing the Cluster for Pivotal HD" section.)</p><p>Run the <code>add-slaves </code>command to add additional slave hosts to an existing cluster. All the slave roles for the existing cluster services will be installed on the new cluster hosts.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client add-slaves --help
+Usage: /usr/bin/icm_client add-slaves [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -l CLUSTERNAME, --clustername=CLUSTERNAME
+                        the name of the cluster on which the operation is
+                        performed
+  -f HOSTFILE, --hostfile=HOSTFILE
+                        file containing new-line separated list of hosts
+  -s, --noscanhosts     Donot verify cluster nodes.
+  -j JAVAHOME, --java_home=JAVAHOME
+                        JAVA_HOME path to verify on cluster nodes
+  -p, --nopreparehosts  Donot preparehosts as part of deploying the cluster.
+  -k JDKPATH, --java=JDKPATH
+                        Location of Sun Java JDK RPM installer binary (Ex:
+                        jdk-6u41-linux-x64-rpm.bin). Ignored if -p is
+                        specified
+  -t, --ntp             Synchronize system clocks using NTP (requires external
+                        network access) for the newly added nodes. Ignored if
+                        -p is specified
+  -d, --selinuxoff      Disable SELinux for the newly added nodes. Ignored if
+                        -p is specified
+  -i, --iptablesoff     Disable iptables for the newly added nodes. Ignored if
+                        -p is specified
+  -y SYSCONFIGDIR, --sysconf=SYSCONFIGDIR
+                        [Only if HAWQ is part of the deploy] Directory
+                        location of the custom conf files (sysctl.conf and
+                        limits.conf) which will be appended to
+                        /etc/sysctl.conf and /etc/limits.conf of the newly
+                        addded slave nodes. Default:
+                        /usr/lib/gphd/gphdmgr/hawq_sys_config/. Ignored if -p
+                        is specified</pre>
+</div></div><p><strong>Sample Usage:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client add-slaves -l CLUSTERNAME -f slave_hostfile</pre>
+</div></div><p> </p><p>Make sure you start datanode and yarn nodemanager of the newly added slave hosts.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client start -l CLUSTERNAME -r datanode -o hostfile
+icm_client start -l CLUSTERNAME -r yarn-nodemanager -o hostfile
+</pre>
+</div></div><p><strong>!</strong>If HBase is configured, start hbase-regionservers as well.</p><p><strong>!</strong>Don't expect data blocks to be distributed to the newly added slave nodes immediately.</p><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-ShrinkingaCluster">Shrinking a Cluster</h3><p><strong>!</strong>Make sure you Decommission the slave hosts (refer to the next section) prior to removing them to avoid potential data loss.</p><p>Run the <code>remove-slaves</code> command lets the user to remove slave hosts from an existing cluster. All the slave roles for the existing cluster services will be removed from the given hosts.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client remove-slaves --help
+Usage: /usr/bin/icm_client remove-slaves [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -l CLUSTERNAME, --clustername=CLUSTERNAME
+                        the name of the cluster on which the operation is
+                        performed
+  -f HOSTFILE, --hostfile=HOSTFILE
+                        file containing new-line separated list of hosts
+  -s, --noscanhosts     Donot verify cluster nodes.
+  -j JAVAHOME, --java_home=JAVAHOME
+                        JAVA_HOME path to verify on cluster nodes
+  -p, --nopreparehosts  Donot preparehosts as part of deploying the cluster.
+  -k JDKPATH, --java=JDKPATH
+                        Location of Sun Java JDK RPM installer binary (Ex:
+                        jdk-6u41-linux-x64-rpm.bin). Ignored if -p is
+                        specified
+  -t, --ntp             Synchronize system clocks using NTP (requires external
+                        network access) for the newly added nodes. Ignored if
+                        -p is specified
+  -d, --selinuxoff      Disable SELinux for the newly added nodes. Ignored if
+                        -p is specified
+  -i, --iptablesoff     Disable iptables for the newly added nodes. Ignored if
+                        -p is specified
+  -y SYSCONFIGDIR, --sysconf=SYSCONFIGDIR
+                        [Only if HAWQ is part of the deploy] Directory
+                        location of the custom conf files (sysctl.conf and
+                        limits.conf) which will be appended to
+                        /etc/sysctl.conf and /etc/limits.conf of the newly
+                        addded slave nodes. Default:
+                        /usr/lib/gphd/gphdmgr/hawq_sys_config/. Ignored if -p
+                        is specified
+</pre>
+</div></div><p><br class="atl-forced-newline"/> <strong>Sample Usage</strong>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client remove-slaves -l CLUSTERNAME -f hostfile
+</pre>
+</div></div><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-EnablingHighAvailabilityonaCluster">Enabling High Availability on a Cluster</h3><p>High availability is disabled by default. </p><p>To enable HA for a new cluster; follow the instructions provided in the <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-HA">High Availability</a> section of <a href="InstallingPHDUsingtheCLI.html">Installing Pivotal HD Enterprise Using the CLI</a>.</p><p>To enable HA for an existing cluster, see below.</p><ol><li>Download and import the latest version of Pivotal Command Center (PCC) (see <a href="InstallingPHDUsingtheCLI.html">Installing Pivotal HD Enterprise Using the CLI</a> for details)<br/> <strong>Note</strong>: PCC 2.1 is the first version to support HA.</li><li>Reconfigure your cluster.<ol><li>Stop the cluster:<br/> <code> icm_client stop -l CLUSTERNAME<br/> <br/> </code></li><li>Fetch the configurations for the cluster in a local directory:<br/> <code>icm_client fetch-configuration -l CLUSTERNAME -o LOCALDIR<br/> <br/> </code></li><li>Fetch the new template configuration:<br/> <code class="java plain">icm_client fetch-template -o ~/ClusterConfigDir</code></li><li>Merge the HA-related configuration changes into your existing cluster configuration.<br/>See the <a href="InstallingPHDUsingtheCLI.html#InstallingPivotalHDEnterpriseUsingtheCLI-HA">High Availability</a> section of <a href="InstallingPHDUsingtheCLI.html">Installing Pivotal HD Enterprise Using the CLI</a> for details of the HA-specific information you need to add to the configuration files.</li><li>Reconfigure the cluster:<br/> <code>icm_client reconfigure -l CLUSTERNAME -c LOCALDIR<br/> <br/> </code></li></ol></li><li>Update the HIVE Metastore:<br/>Hive metastore contains references to <code>hdfs</code> path with <code> namenode:port </code> in the url. This needs to be updated to use the nameservices so HIVE scripts can work when ever NameNode failure happens<br/> <strong>Note</strong>: Make sure metastore is not running and is backed up to a persistent store before running the update commands.<br/><ol><li>Login to host configured as <code>hive-metastore</code>.</li><li><p>Display the current NameNode and hdfspath for hive warehouse directory:<br/> <code>/usr/lib/gphd/hive/bin/metatool -listFSRoot<br/> <br/> </code></p></li><li><p>Run the following command:<br/> <code>/usr/lib/gphd/hive/bin/metatool -updateLocation hdfs://&lt;nameservices&gt; hdfs://&lt;current_namenode&gt;:&lt;dfs_port&gt;</code> <br/> <br/>Where <code>nameservices</code> is the logical name used for the nameservices in a HA enabled cluster and <code>current_namenode</code> is the hostname of the NameNode on the cluster before reconfiguring to enable HA.</p></li></ol></li></ol><p>You can now start the entire cluster with all configured services running.</p><h4 id="AdministeringPivotalHDEnterpriseUsingtheCLI-HAAdminCommandReference">HAAdmin Command Reference</h4><ul><li><code>hdfs haadmin</code> <em> </em>prints help for all subcommands and options. <code>serviceid </code>is the logical name configured for each NameNode, as <code>namenode1id</code> and <code>namenode2id</code>, in <code>clusterConfig.xml</code></li><li>Check state of a given NameNode:<em> <br/> </em></li></ul><p style="margin-left: 60.0px;"><code>hdfs haadmin -getServiceState &lt;serviceid&gt; Ex : hdfs haadmin -getServiceState nn1</code></p><ul><li>Transition a given NameNode to standby:<em> <br/> </em></li></ul><p style="margin-left: 60.0px;"><code>hdfs haadmin -transitionToStandby &lt;serviceid&gt;</code> <em> <br/> </em></p><p style="margin-left: 60.0px;">For example:</p><p style="margin-left: 60.0px;"><code>hdfs haadmin -transitionToStandby  nn1</code></p><ul><li>Transition a given NameNode to active:</li></ul><p style="margin-left: 60.0px;">hdfs haadmin -transitionToActive &lt;serviceid&gt;</p><p style="margin-left: 60.0px;">For example:</p><p style="margin-left: 60.0px;"><code>hdfs haadmin -transitionToActive  nn1</code></p><ul><li>Failover between two NameNode: </li></ul><p style="margin-left: 60.0px;"><code>hdfs haadmin --failover &lt;serviceid&gt; &lt;serviceid&gt; </code></p><p style="margin-left: 60.0px;">For example:</p><p style="margin-left: 60.0px;"><code>hdfs haadmin --failover nn1 nn2</code> <br/> <em> <em> <em> <em> <em> <br/> </em> </em> </em> </em> </em></p><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-DecommissioningNodes">Decommissioning Nodes</h3><p>Decommissioning is required to prevent potential loss of data blocks when you shutdown/remove slave hosts form a cluster. This is not an instant process since it requires replication of potentially a large number of blocks to other cluster nodes.</p><p>The following are the manual steps to decommission slave hosts (datanodes,nodemanagers) from a cluster.</p><ul><li>On the NameNode host machine<ul><li>Edit the <code> /etc/gphd/hadoop/conf/dfs.exclude </code> file and add the datanode hostnames to be removed (separated by newline character). Make sure you use FQDN for each hostname.</li><li><p>Execute the dfs refresh command</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin] sudo -u hdfs hdfs dfsadmin –refreshNodes
+</pre>
+</div></div></li></ul></li><li>On the Yarn Resource Manager host machine<ul><li>Edit <code>/etc/gphd/hadoop/conf/yarn.exclude </code> file and add the node manager hostnames to be removed (separated by newline character). Make sure you use FQDN for each hostname.</li><li><p>Execute the yarn refresh command</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin] sudo -u hdfs yarn rmadmin -refreshNodes
+</pre>
+</div></div></li></ul></li><li>Check Decommission status<ul><li>Monitor decommission progress with name-node Web UI <code> http://NAMENODE_FQDN:50070 </code> and navigate to Decommissioning Nodes page</li><li>Check whether the admin state has changed to Decommission In Progress for the DataNodes being decommissioned. When all the DataNodes report their state as Decommissioned then all the blocks have been replicated.</li></ul></li><li>Shut down the decommissioned nodes<ul><li>Stop datanode and yarn node manager on the targeted slaves to be removed</li></ul></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin] icm_client stop -l CLUSTERNAME -r datanode -o hostfile
+[gpadmin] icm_client stop -l CLUSTERNAME -r yarn-nodemanager -o hostfile
+</pre>
+</div></div><p><strong>!</strong>For HBase regionservers you can proceed with shutting down the region servers on the slave hosts to be removed. It is preferable to use <code>graceful_stop</code> script that hbase provides if load balancer is disabled.</p><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-UninstallingaCluster">Uninstalling a Cluster</h3><p>You must run the stop command to stop running clusters before running the <code>uninstall </code>command. You must also ensure that HAWQ has been stopped before uninstall.</p><p><strong>!</strong>Running the <code>uninstall </code>will not delete <code>dfs.data.dir</code>, <code>dfs.name.dir</code>, <code>dfs.mapred.dir</code> and <code>dfs.checkpoint.dir</code> directories. This is intentional behavior and preserves user data.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client uninstall -h
+Usage: icm_client uninstall [options]
+
+Options:
+  -h, --help            Show this help message and exit
+  -v, --verbose         Increase output verbosity
+  -l CLUSTERNAME, --clustername=CLUSTERNAME
+                        The name of the cluster to be uninstalled
+</pre>
+</div></div><p><strong>Sample Usage</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client uninstall -l CLUSTERNAME</pre>
+</div></div><p><strong>Note</strong>: If you had HAWQ installed as part of the cluster, you will have to manually reset the <code>limits.conf</code> and <code>sysctl.conf</code> files on the HAWQ nodes before you can reuse those nodes again.</p><p> </p><p> </p><p><span class="confluence-anchor-link" id="AdministeringPivotalHDEnterpriseUsingtheCLI-ManagingHAWQ"></span></p><h2 id="AdministeringPivotalHDEnterpriseUsingtheCLI-ManagingHAWQ">Managing HAWQ</h2><p>Starting and stopping HAWQ can only be initiated directly on the HAWQ Master. More information about HAWQ can be found in the <em>Pivotal HAWQ 1.0 Installation Guide</em> and the <em>Pivotal ADS 1.0 Administrator Guide</em>.</p><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-InitializingHAWQ">Initializing HAWQ</h3><p>You must initialize HAWQ only once after the cluster has started and specifically after the HDFS is up and running.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# source /usr/local/hawq/greenplum_path.sh[gpadmin]# /etc/init.d/hawq init
+</pre>
+</div></div><p>Running the<code> init</code> command, completes the following:</p><ul><li>Initializes the HAWQ master and the segment hosts.</li><li>Starts the HAWQ master, segments, and the underlying postgres database.</li></ul><p><strong>!</strong>This operation takes a few minutes to complete.</p><p>If you need to initialize the HAWQ standby master refer to the <em>HAWQ Installation Guide</em> for instructions</p><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-StartingHAWQ">Starting HAWQ</h3><p>Run the <code>start</code> command to start up the HAWQ master and all the segments hosts including the Postgres database. This is implicitly done as part of the HAWQ Initialization.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# /etc/init.d/hawq start
+</pre>
+</div></div><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-StoppingHAWQ">Stopping HAWQ</h3><p>Run the <code>stop</code> command to stop the hawq master, segments hosts, and the postgres database on the HAWQ master.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# /etc/init.d/hawq stop
+</pre>
+</div></div><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-ModifyingHAWQUserConfiguration">Modifying HAWQ User Configuration</h3><p>If you are using PCC, you must modify your HAWQ user configuration file.</p><p>This is because the Admin host is not part of the HAWQ cluster. Modifying the <em>pg_hba.conf</em> file on the HAWQ Master host, gives the Admin host the ability to remote query to HAWQ .</p><ol><li>Logon to the HAWQ Master as user <code>gpadmin</code>.</li><li>In the <code>$MASTER_DATA_DIRECTORY/pg_hba.conf </code>(the location of the HAWQ Master Directory is defined in the <code>&lt;hawq.master.directory&gt;</code> section of the <code>clusterConfig.xml</code> file used for deployment of the Cluster.<br/> Find the entry:<br/> <code>host all gpadmin &lt;master_host_ip&gt;/32 trust</code> <br/> Change the subnet entry depending on your network configuration:<br/> <code>host all gpadmin &lt;master_host_ip&gt;/24 trust</code></li><li><p>Restart HAWQ</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/etc/init.d/hawq restart
+</pre>
+</div></div></li></ol><p>Run the following command to test HAWQ from the Admin host:</p><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u gpadmin psql -h &lt;HAWQ MASTER NODE&gt; -p &lt;HAWQ PORT&gt; -U gpadmin postgres -c "select * from pg_stat_activity;"
+</pre>
+</div></div><h2 id="AdministeringPivotalHDEnterpriseUsingtheCLI-ManagingRolesandHosts">Managing Roles and Hosts</h2><p> </p><p style="margin-left: 30.0px;">Pivotal HD supports starting or stopping entire clusters or individual roles on a selected hosts. If you wish to start and stop the roles manually you can follow these steps:</p><p style="margin-left: 30.0px;">You have the following options when managing cluster and individual roles:</p><ul><li style="list-style-type: none;background-image: none;"><ul><li>Managing locally</li><li>Managing from the Admin Node</li></ul></li></ul><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-ManagingLocally" style="margin-left: 30.0px;">Managing Locally</h3><p style="margin-left: 30.0px;">You can manage the service role on the target host locally. For example, to restart datanode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">node100:gpadmin# ssh gpadmin@node100
+gpadmin# sudo service hadoop-hdfs-namenode restart
+</pre>
+</div></div><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-ManagingRemotely" style="margin-left: 30.0px;">Managing Remotely</h3><p style="margin-left: 30.0px;">You can manage the service role remotely across one of the target hosts. For example, to restart datanode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">node100.gpadmin# massh node100 verbose 'sudo service hadoop-hdfs-datanode restart'
+</pre>
+</div></div><p style="margin-left: 30.0px;">To restart all the datanodes remotely:</p><p style="margin-left: 30.0px;">Create a newline separated file named 'hostfile' containing all the datanodes to <em>start</em>, <em>stop</em>, <em>restart</em>, or <em>check</em> status.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpadmin# massh hostfile verbose 'sudo service hadoop-hdfs-datanode restart'
+</pre>
+</div></div><p style="margin-left: 30.0px;"><span class="confluence-anchor-link" id="AdministeringPivotalHDEnterpriseUsingtheCLI-pivotalhdservicescripts"></span></p><p style="margin-left: 30.0px;"><strong>Pivotal HD Services Scripts</strong></p><p style="margin-left: 30.0px;">The following table shows the service commands to <em>start</em>, <em>stop</em>, <em>restart</em>, or <em>check</em> status for each service role,.</p><div class="table-wrap"><table class="confluenceTable"><tbody style="margin-left: 30.0px;"><tr style="margin-left: 30.0px;"><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Role Name</p></th><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Service Command</p></th></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Namenode</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo service hadoop-hdfs-namenode {starts|stop|status|restart}</pre>
+</div></div></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Secondary NameNode</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo service hadoop-hdfs-secondarynamenode {starts|stop|status|restart}</pre>
+</div></div></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Datanode</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo service hadoop-hdfs-datanode {starts|stop|status|restart}</pre>
+</div></div></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Resource Manager</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo service hadoop-yarn-resourcemanager {starts|stop|status|restart}</pre>
+</div></div></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Node Manager</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo service hadoop-yarn-nodemanager {starts|stop|status|restart}</pre>
+</div></div></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">History Server</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo service hadoop-mapreduce-historyserver {starts|stop|status|restart}</pre>
+</div></div></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Zookeeper Server</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo service zookeeper-server {starts|stop|status|restart}</pre>
+</div></div></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">HBase Master</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo service hbase-master {starts|stop|status|restart}</pre>
+</div></div></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">HBase Region Server</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo service hbase-regionserver {starts|stop|status|restart}</pre>
+</div></div></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">HAWQ Master</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo /etc/init.d/hawq {starts|stop|status|restart}</pre>
+</div></div></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">USS Namenode</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo /etc/init.d/uss-namenode {start|stop|status|restart}</pre>
+</div></div></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" colspan="1" style="margin-left: 30.0px;">Quorum Journal node</td><td class="confluenceTd" colspan="1"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo /etc/init.d/hadoop-hdfs-journalnode {start|stop|status|restart}</pre>
+</div></div></td></tr></tbody></table></div><h2 id="AdministeringPivotalHDEnterpriseUsingtheCLI-PivotalHDServicesReference" style="margin-left: 30.0px;">Pivotal HD Services Reference</h2><p style="margin-left: 30.0px;"><span class="confluence-anchor-link" id="AdministeringPivotalHDEnterpriseUsingtheCLI-OverridingDirectoryPermissions"></span></p><p style="margin-left: 30.0px;"><span class="confluence-anchor-link" id="AdministeringPivotalHDEnterpriseUsingtheCLI-OverridingDirectoryPermissions2"></span></p><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-OverridingDirectoryPermissions" style="margin-left: 30.0px;">Overriding Directory Permissions</h3><p style="margin-left: 30.0px;">The following table shows the list of directories that Pivotal HD overrides with specific ownership and permissions.<br/> Directories not mentioned in the below list follow standard Apache ownership and permission convention.</p><h4 id="AdministeringPivotalHDEnterpriseUsingtheCLI-OntheLocalFilesystem" style="margin-left: 30.0px;">On the Local Filesystem</h4><div class="table-wrap"><table class="confluenceTable"><tbody style="margin-left: 30.0px;"><tr style="margin-left: 30.0px;"><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Service</p></th><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Directory</p></th><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Location</p></th><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Owner</p></th><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Permissions</p></th></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><strong>HDFS</strong></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>hadoop.tmp.dir</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">All hadoop nodes</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>hdfs:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">777</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>dfs.namenode.name.dir</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Namenode</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>hdfs:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">700</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>dfs.datanode.data.dir</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Datanodes</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>hdfs:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">770</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>dfs.namenode.checkpointdir</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Secondary Namenode</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>hdfs:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">700</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1" style="margin-left: 30.0px;"><em>dfs.journalnode.edits.dir<br/> </em></td><td class="confluenceTd" colspan="1">Journal Node</td><td class="confluenceTd" colspan="1">hdfs:hadoop</td><td class="confluenceTd" colspan="1">755</td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><strong>YARN</strong></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>mapreduce.cluster.local.dir</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">All yarn nodes</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>mapred:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">755</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>mapreduce.cluster.temp.dir</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">All yarn nodes</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>mapred:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">755</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>yarn.nodemanager.local-dirs</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Node Managers</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>yarn:yarn</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">755</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>yarn.nodemanager.log-dirs</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Node Managers</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>yarn:yarn</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">755</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><strong>ZooKeeper</strong></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>dataDir (/var/lib/zookeeper)</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Zookeeper Servers</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>zookeeper:zookeeper</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">775</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>dataDir/myid</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Zookeeper Servers</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>gpadmin</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">644</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><strong>HAWQ</strong></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>MASTER_DIRECTORY</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">HAWQ Master &amp; Standby</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>gpadmin:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">755</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>DATA_DIRECTORY</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">HAWQ Segments</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>gpadmin:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">755</p></td></tr></tbody></table></div><h4 id="AdministeringPivotalHDEnterpriseUsingtheCLI-OnHDFS" style="margin-left: 30.0px;">On HDFS</h4><div class="table-wrap"><table class="confluenceTable"><tbody style="margin-left: 30.0px;"><tr style="margin-left: 30.0px;"><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Service</p></th><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Directory</p></th><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Owner</p></th><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Permissions</p></th></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><strong>HDFS</strong></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>hadoop.tmp.dir</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>hdfs:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">777</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>/tmp</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>hdfs:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">777</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>mapreduce.jobtracker.system.dir</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>mapred:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">700</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>yarn.app.mapreduce.am.staging-dir (/user)</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>mapred:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">777</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>mapreduce.jobhistory.intermediate-done-dir (/user/history/done)</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>mapred:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">777</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>mapreduce.jobhistory.done-dir (/user/history/done)</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>mapred:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">777</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p> </p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>yarn.nodemanager.remote-app-log-dir</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>mapred:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">755</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><strong>HBase</strong></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>hbase directory (/apps/hbase/data)</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>hdfs:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">775</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><strong>HAWQ</strong></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>hawq directory (/hawq_data)</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;"><em>hdfs:hadoop</em></p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">755</p></td></tr></tbody></table></div><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-PivotalHDUsersandGroups" style="margin-left: 30.0px;">Pivotal HD Users and Groups</h3><div class="table-wrap"><table class="confluenceTable"><tbody style="margin-left: 30.0px;"><tr style="margin-left: 30.0px;"><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Service</p></th><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Users</p></th><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Group</p></th><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Login</p></th></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">PHD</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">gpadmin</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">gpadmin</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Yes</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">HDFS</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">hdfs</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">hadoop</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Yes</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">MapReduce</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">mapred</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">hadoop</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Yes</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Hbase</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">hbase</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">hadoop</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">No</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Hive</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">hive</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">hadoop</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">No</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Zookeeper</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">zookeeper</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">zookeeper</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">No</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Yarn</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">yarn</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">yarn</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">No</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">PHD, HAWQ</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">postgres</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">postgres</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Yes</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Puppet</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">puppet</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">puppet</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">No</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">DataLoader</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">dladmin</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">dladmin</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Yes</p></td></tr></tbody></table></div><p style="margin-left: 30.0px;">Note: USS does not use any Linux users. USS creates and uses a <code>usscatalog </code>database role for managing the USS catalog postgres database.</p><h3 id="AdministeringPivotalHDEnterpriseUsingtheCLI-PivotalHDPorts" style="margin-left: 30.0px;">Pivotal HD Ports</h3><p style="margin-left: 30.0px;">If you are running a firewall, ensure that the following ports are open</p><div class="table-wrap"><table class="confluenceTable"><tbody style="margin-left: 30.0px;"><tr style="margin-left: 30.0px;"><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Service</p></th><th class="confluenceTh" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Port</p></th></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">ssh</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">22</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">NameNode</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">8020 (Apache 9000)</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">NameNode Web UI</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">50070, 50470 (https)</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Secondary NameNode</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">50090</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">DataNode Communication</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">50010</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">DataNode IPC</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">50020</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">DataNode HTTP Address</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">50075</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">ResourceManager Web UI</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">8042,8088</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">ResourceManager</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">8030,8031,8032,8033</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">MapReduce Shuffle Port</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">7070</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Job History Server</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">10020</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Job History Web UI</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">19888</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">JobTracker</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">(Apache 9001)</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">JobTracker Web UI</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">(Apache 50030)</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">TaskTracker</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">(Apache 50060)</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Puppet</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">443,8140,61613</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">Jetty</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">8080</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">HBase Master</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">60000</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">HBase Master UI</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">60010</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">HBase RegionServer</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">60020</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">HBase RegionServer Web UI</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">60030</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">ZooKeeper Client</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">2181</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">ZooKeeper Leader</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">3888</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">ZooKeeper Peers</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">2888</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">HAWQ Master</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">8432</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">HAWQ Port Base</p></td><td class="confluenceTd" style="margin-left: 30.0px;"><p style="margin-left: 30.0px;">40000</p></td></tr><tr style="margin-left: 30.0px;"><td class="confluenceTd" colspan="1">Quorum Journal node port</td><td class="confluenceTd" colspan="1">8485</td></tr></tbody></table></div>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

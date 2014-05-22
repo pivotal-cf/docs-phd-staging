@@ -1,0 +1,615 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>Overview of Apache Stack and Pivotal Components | Pivotal HD/PCC/ADS Documentation</title>
+  <!-- Local CSS stylesheets -->
+  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+  <!-- Confluence HTML stylesheet -->
+  <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  <!-- Left-navigation code -->
+  <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+  <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+  </script>
+  
+  <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+  <!-- End left-navigation code -->
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+			  <ul class="accordion"  id="accordion-1">
+				  <!-- REPLACE <li/> NODES-->
+
+                        <li>
+                <a href="index.html">Home</a>
+                        </li>
+
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 1.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise1.1.1ReleaseNotes.html">PHD Enterprise 1.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDServiceBrokerforPivotalCFv1.0.0.0.html">PHD Service Broker for Pivotal CF v1.0.0.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-RPMPackage.html">PHD 1.1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHD1.1.1Stack-BinaryPackage.html">PHD 1.1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-RPMPackage.html">PHD MR1 1.1 Stack - RPM Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDMR11.1Stack-BinaryPackage.html">PHD MR1 1.1 Stack - Binary Package</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDStack-OtherComponents.html">PHD Stack - Other Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HVEHadoopVirtualizationExtensions.html">HVE (Hadoop Virtualization Extensions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationandUsage.html">DataLoader Installation and Usage</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofDataLoader.html">Overview of DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingandConfiguringDataLoader.html">Installing and Configuring DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingDataLoader.html">Using DataLoader</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="LoadingFilesandPushStreamsintoHAWQUsingPXF.html">Loading Files and Push Streams into HAWQ Using PXF</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCommandLineInterface.html">DataLoader Command Line Interface</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderCopyStrategyandTransferPolicy.html">DataLoader Copy Strategy and Transfer Policy</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="JobTransferSpecification.html">Job (Transfer) Specification</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataStores.html">Data Stores</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringFlumeforDataLoaderPushStreaming.html">Configuring Flume for DataLoader Push Streaming</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="DataLoaderInstallationfromBinaries.html">DataLoader Installation from Binaries</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.1.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.1.1ReleaseNotes.html">PCC 2.1.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalAdvancedDatabaseServices.html">Pivotal Advanced Database Services 1.1.4</a>
+
+                            <ul>
+                    <li>
+                <a href="PADS1.1.4ReleaseNotes.html">PADS 1.1.4 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallation.html">HAWQ Installation</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="QueryingData.html">Querying Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ServerConfigurationParameters.html">Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="MADlibReferences.html">MADlib References</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+              </ul>        
+              
+            </div><!--end of sub-nav-->
+            <div class="body-container content">
+
+              <!-- Python script replaces main content -->
+			  <div id ="main"><h1>Overview of Apache Stack and Pivotal Components</h1><div class="wiki-content group" id="main-content">
+<p align="LEFT">Pivotal HD Enterprise is an enterprise-capable, commercially supported distribution of Apache Hadoop 2.0 packages targeted to traditional Hadoop deployments.</p><p align="LEFT">Pivotal HD Enterprise supports two deployment options:</p><ul><li>Deployment through Pivotal Command Center</li><li>Manual installation of RPMs or binaries</li></ul><h3 id="OverviewofApacheStackandPivotalComponents-PivotalCommandCenter">Pivotal Command Center</h3><p>Pivotal Command Center (PCC) is a Web-based interface that supports performing the following actions for Pivotal HD Enterprise:</p><ul><li>Monitoring and management of a Pivotal HD (PHD) environment.</li><li>Deployment and configuration of PHD clusters.</li></ul><p>PCC also provides a CLI (Command-Line Interface) which can be used to deploy and configure PHD clusters. Through the PCC GUI or CLI, you can deploy and configure <em> <strong>most</strong> </em>of the Apache Hadoop components and all of the Pivotal components (HAWQ, PXF and USS); however, note that some Hadoop components (Flume, Sqoop, Oozie) can <em> <strong>only </strong> </em>be installed manually.</p><p>For more information about using the GUI, see <em>Pivotal Command Center User Guide</em>. For more information about using the CLI, see <em>Pivotal HD Enterprise Installation and Administrator Guide</em>.</p><h3 id="OverviewofApacheStackandPivotalComponents-ManualInstallation">Manual Installation</h3><p>All the Hadoop and Pivotal components <strong> <em>can</em> </strong>be installed manually without using the PCC GUI or CLI. For manual installs, Pivotal HD Enterprise provides the following supported methods:</p><ul><li>RPM file</li><li>Binary file </li></ul><p>This document provides detailed manual instructions for installing all the Apache components, as well as some of the additional Pivotal components, such as USS, using either the RPM or binary files.</p><p>The following sections provide more details about each component, including the various supported deployment options for each component.</p><p><span class="scroll-pi" style="display:none;" type="pagebreak"></span></p><h2 id="OverviewofApacheStackandPivotalComponents-CoreApacheStackComponents">Core Apache Stack Components</h2><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="4">Component</th><th class="confluenceTh" colspan="1">Description</th><th class="confluenceTh"><p>CLI/GUI</p><p>Install</p></th><th class="confluenceTh">Manual Install (RPM)</th><th class="confluenceTh">Manual Install (Binary)</th></tr><tr><td class="confluenceTd" colspan="4">Hadoop MR2</td><td class="confluenceTd" colspan="1"><p>HDFS: A Hadoop distributed file system (HDFS).</p><p>YARN: Next-generation Hadoop data-processing framework.</p></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="4">Hadoop MR1</td><td class="confluenceTd" colspan="1"><p>HDFS: A Hadoop distributed file system (HDFS).</p><p>MapReduce: A system for parallel processing of large data sets.</p></td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="4">Pig</td><td class="confluenceTd" colspan="1">Procedural language that abstracts lower level MapReduce.</td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="4">Hive</td><td class="confluenceTd" colspan="1">Data warehouse infrastructure built on top of Hadoop.</td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="4"><p>HBase</p></td><td class="confluenceTd" colspan="1">Database for random real time read/write access.</td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="4"><p>Mahout</p></td><td class="confluenceTd" colspan="1">Scalable machine learning and data mining library.</td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="4"><p>Zookeeper</p></td><td class="confluenceTd" colspan="1">Hadoop centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services.</td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="4"><p>Flume</p></td><td class="confluenceTd" colspan="1">A tool used for collecting and aggregating data from multiple sources to a centralized data store.</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="4">Sqoop</td><td class="confluenceTd" colspan="1">A tool for transferring bulk data between Apache Hadoop and structured datastores.</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="4">Oozie</td><td class="confluenceTd" colspan="1">A workflow scheduler system to manage Apache Hadoop jobs. Oozie Workflow jobs are Directed Acyclical Graphs (DAGs) of actions. Oozie Coordinator jobs are recurrent Oozie Workflow jobs triggered by time (frequency) and data availability.</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td></tr></tbody></table></div><p><span class="scroll-pi" style="display:none;" type="pagebreak"></span></p><h2 id="OverviewofApacheStackandPivotalComponents-PivotalComponents">Pivotal Components</h2><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="4">Component</th><th class="confluenceTh" colspan="1">Description</th><th class="confluenceTh">CLI/GUI Install</th><th class="confluenceTh">Manual Install (RPM)</th><th class="confluenceTh">Manual Install (Binary)</th></tr><tr><td class="confluenceTd" colspan="4"><p>Command Center (installs the CLI)</p></td><td class="confluenceTd" colspan="1"> A command line and web-based tool for installing, managing and monitoring your Pivotal HD cluster.</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="4">Pivotal DataLoader</td><td class="confluenceTd" colspan="1">High-speed data ingest tool for your Pivotal HD cluster.</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="4">USS</td><td class="confluenceTd" colspan="1">Unified Storage System, a framework that provides HDFS protocol layer on top of external file systems.</td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="4">Spring Data</td><td class="confluenceTd" colspan="1">Spring for Apache Hadoop provides support for writing Apache Hadoop applications that benefit from the features of Spring, Spring Batch, and Spring Integration.</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="4">Pivotal ADS - HAWQ</td><td class="confluenceTd" colspan="1">HAWQ is a parallel SQL query engine that combines the merits of the Greenplum Database Massively Parallel Processing (MPP) relational database engine and the Hadoop parallel processing framework.</td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td></tr><tr><td class="confluenceTd" colspan="4">Pivotal ADS - PXF</td><td class="confluenceTd" colspan="1">Extensibility layer to provide support for external data formats such as HBase and Hive.</td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td><td class="confluenceTd" colspan="1"><img class="confluence-embedded-image confluence-external-resource image-center" src="attachments/63901478/64192820.png" width="16"/></td></tr></tbody></table></div><h2 id="OverviewofApacheStackandPivotalComponents-LocationofInstallationInstructions">Location of Installation Instructions</h2><p>You can find installation instructions for the above components in these documents:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Component</th><th class="confluenceTh" colspan="1">GUI Install</th><th class="confluenceTh">CLI Install</th><th class="confluenceTh">Manual Install</th></tr><tr><td class="confluenceTd">Pivotal Command Center</td><td class="confluenceTd" colspan="1">NOT SUPPORTED</td><td class="confluenceTd"><em>Pivotal HD Enterprise Installation and Administrator Guide</em></td><td class="confluenceTd">NOT SUPPORTED</td></tr><tr><td class="confluenceTd" colspan="1">Hadoop MR2 (Yarn) stack</td><td class="confluenceTd" colspan="1"><em>Pivotal Command Center User Guide</em></td><td class="confluenceTd" colspan="1"><em>Pivotal HD Enterprise Installation and Administrator Guide</em></td><td class="confluenceTd" colspan="1">This guide</td></tr><tr><td class="confluenceTd" colspan="1">Hadoop MR1 stack</td><td class="confluenceTd" colspan="1">NOT SUPPORTED</td><td class="confluenceTd" colspan="1">NOT SUPPORTED</td><td class="confluenceTd" colspan="1">This guide</td></tr><tr><td class="confluenceTd" colspan="1">USS</td><td class="confluenceTd" colspan="1"><em>Pivotal Command Center User Guide</em></td><td class="confluenceTd" colspan="1"><em>Pivotal HD Enterprise Installation and Administrator Guide</em></td><td class="confluenceTd" colspan="1">This guide</td></tr><tr><td class="confluenceTd" colspan="1">Pivotal DataLoader</td><td class="confluenceTd" colspan="1">NOT SUPPORTED</td><td class="confluenceTd" colspan="1">NOT SUPPORTED</td><td class="confluenceTd" colspan="1"><em>Pivotal HD 2.0 Installation and Administrator Guide</em></td></tr><tr><td class="confluenceTd" colspan="1">Spring Data</td><td class="confluenceTd" colspan="1">NOT SUPPORTED</td><td class="confluenceTd" colspan="1">NOT SUPPORTED</td><td class="confluenceTd" colspan="1">Use TAR to install <code>spring-data-hadoop-1.0.2.RELEASE</code>; locate <code>spring-data-hadoop-reference.pdf</code> to complete the install.</td></tr><tr><td class="confluenceTd" colspan="1">Pivotal ADS (HAWQ and PXF)</td><td class="confluenceTd" colspan="1"><em>Pivotal Command Center User Guide</em></td><td class="confluenceTd" colspan="1"><em>Pivotal HD Enterprise Installation and Administrator Guide</em></td><td class="confluenceTd" colspan="1"><em>Pivotal Extension Framework Installation and User Guide</em></td></tr></tbody></table></div><h2 id="OverviewofApacheStackandPivotalComponents-HadoopVersions">Hadoop Versions</h2><p>PHD 1.x is based upon Hadoop 2.0.5-alpha, if you don't want to install a YARN-based/Hadoop 2.0.5-alpha-based cluster, we have included the MR1 files from our PHD 1.1 release.  The MR1 stack must be installed manually and cannot be mixed with elements from a YARN-based cluster.</p><h2 id="OverviewofApacheStackandPivotalComponents-HowtoUsethisDocument">How to Use this Document</h2><p><strong>Manual Installation Instructions</strong>:</p><ul><li>Manually installing a YARN-based cluster using the RPM distribution? See <a href="PHD1.1.1Stack-RPMPackage.html">Pivotal HD 1.1.1 Stack - RPM Package</a>.</li><li>Manually installing a YARN-based cluster using the Binary distribution? See <a href="PHD1.1.1Stack-BinaryPackage.html">Pivotal HD 1.1.1 Stack - Binary Package</a>.</li><li>Manually installing an MR1-based cluster using the RPM distribution (PHD 1.1 release)? See <a href="PHDMR11.1Stack-RPMPackage.html">Pivotal HD MR1 1.1 Stack - RPM Package</a></li><li>Manually installing an MR1-based cluster using the Binary distribution (PHD 1.1 release)? See <a href="PHDMR11.1Stack-BinaryPackage.html">Pivotal HD MR1 1.1 Stack - Binary Package</a></li><li>Manually installing USS? See <a href="USSUnifiedStorageSystem.html">USS (Unified Storage System)</a></li></ul><p><strong>Upgrade Instructions:</strong></p><ul><li>Manually upgrading a YARN-based cluster using the RPM distribution? See <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-RPM.html">Manually Upgrading PHD from 1.1 to 1.1.1 - RPM</a></li><li>Manually upgrading a YARN-based cluster using the Binary distribution? See <a href="ManuallyUpgradingPHDfrom1.1to1.1.1-Binary.html">Manually Upgrading PHD from 1.1 to 1.1.1 - Binary</a></li></ul><p><strong>Security:</strong></p><ul><li>Securing your cluster via Kerberos? See <a href="Security.html">Security</a></li></ul><p> </p>
+</div></div>
+
+
+            </div><!-- end of body-container content-->
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>
