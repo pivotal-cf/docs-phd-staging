@@ -1,0 +1,883 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>Upgrading PHD Using the CLI | Pivotal Docs</title>
+    <!-- Local CSS stylesheets -->
+    <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+    <!-- Confluence HTML stylesheet -->
+    <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+    <!-- Left-navigation code -->
+    <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+    <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+        </script>
+    <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+    <!-- End left-navigation code -->
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+    if (window.location.host === 'docs.gopivotal.com') {
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39702075-1']);
+        _gaq.push(['_setDomainName', 'gopivotal.com']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    }
+  </script>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+
+	<script type="text/javascript">
+	  WebFontConfig = {
+	    google: { families: [ 'Source+Sans+Pro:300italic,400italic,600italic,300,400,600:latin' ] }
+	  };
+	  (function() {
+	    var wf = document.createElement('script');
+	    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+	      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+	    wf.type = 'text/javascript';
+	    wf.async = 'true';
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(wf, s);
+	  })(); </script>
+
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="http://docs.gopivotal.com/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+				<ul class="accordion"  id="accordion-1">
+					<!-- REPLACE <li/> NODES-->
+                        <li>
+                <a href="index.html">Home</a></br>
+                                
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 2.0.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise2.0.1ReleaseNotes.html">PHD Enterprise 2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallationOverview.html">Installation Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationChecklist.html">PHD Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradeChecklist.html">Upgrade Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyInstallingPivotalHD2.0Stack.html">Manually Installing Pivotal HD 2.0 Stack</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPivotalHDStackfrom1.1.1to2.0.html">Manually Upgrading Pivotal HD Stack from 1.1.1 to 2.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalHadoopEnhancements.html">Pivotal Hadoop Enhancements</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.2.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.2.1ReleaseNotes.html">PCC 2.2.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCInstallationChecklist.html">PCC Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalHAWQ.html">Pivotal HAWQ 1.2.0</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQ1.2.0.1ReleaseNotes.html">HAWQ 1.2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallationandUpgrade.html">HAWQ Installation and Upgrade</a>
+
+                            <ul>
+                    <li>
+                <a href="PreparingtoInstallHAWQ.html">Preparing to Install HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingHAWQ.html">Installing HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingtheHAWQComponents.html">Installing the HAWQ Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingHAWQandComponents.html">Upgrading HAWQ and Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingHAWQtoQueryData.html">Using HAWQ to Query Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQFilespacesandHighAvailabilityEnabledHDFS.html">HAWQ Filespaces and High Availability Enabled HDFS</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SystemCatalogReference.html">System Catalog Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </div><!--end of sub-nav-->
+            
+            <h3 class="title-container">Upgrading PHD Using the CLI</h3>
+            <div class="content">
+              <!-- Python script replaces main content -->
+			  <div id ="main"><div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Upgrading PHD Using the CLI</div><div class="wiki-content group" id="main-content">
+<p>This section describes how to upgrade Pivotal HD using Pivotal Command Center's command line interface (CLI).</p><p>See the <a href="UpgradeChecklist.html">Upgrade Checklist</a> for a quick summary of the prerequisites and installation steps.</p><p><style type="text/css">/*<![CDATA[*/
+div.rbtoc1400035783473 {padding: 0px;}
+div.rbtoc1400035783473 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1400035783473 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1400035783473">
+<ul class="toc-indentation">
+<li><a href="#UpgradingPHDUsingtheCLI-Prerequisites">Prerequisites</a></li>
+<li><a href="#UpgradingPHDUsingtheCLI-UpgradeInstructions">Upgrade Instructions</a></li>
+<li><a href="#UpgradingPHDUsingtheCLI-MovingHAWQFilespacetoHA-enabledHDFS">Moving HAWQ Filespace to HA-enabled HDFS</a></li>
+<li><a href="#UpgradingPHDUsingtheCLI-UpgradeReferenceInformation">Upgrade Reference Information</a></li>
+</ul>
+</div></p><p><span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-Prerequisites"></span></p><h2 id="UpgradingPHDUsingtheCLI-Prerequisites">Prerequisites</h2><ul><li><strong>PADS file location:</strong> Make note of the path to the extracted pre-upgrade PADS tar ball. If you don't remember, you can just download it again and untar it.</li><li><strong>Backup Data:</strong> We recommend you backup any critical data before performing any upgrades.</li><li><strong>Backup Service Configuration Files: </strong> Services that were manually installed on an existing cluster are not upgraded by a CLI upgrade. After the PHD upgrade, you need to manually reconfigure these services to work with the upgraded PHD.  Backup the configuration files for these services.  See the <em>Pivotal HD Enterprise Stack Tool and Reference Guide</em> for the locations of these configuration files.</li><li><strong>Oracle JDK 1.7</strong>. Ensure that you are running Oracle JAVA JDK version 1.7.0_xx (minimum 1.7.0.15) as the default JDK on the Admin node.</li></ul> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>This is a new requirement; prior to PHD 2.0, JDK 1.6 was also supported.</p>
+</div>
+</div>
+<p>As <code>gpadmin</code>, run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ java -version
+java version "1.7.0_15"
+Java(TM) SE Runtime Environment (build 1.7.0_15-b03)
+Java HotSpot(TM) 64-Bit Server VM (build 23.7-b01, mixed mode)</pre>
+</div></div><ul><li><p><strong>Compact HBase Tables</strong> <br/>Compact all tables on the existing HBase 0.94 cluster<code>:<br/> </code>For example: to compact table<code> t1</code>, login to the HBase shell, then run:<br/> <code> major_compact 't1'</code></p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>HBase 0.96 only supports HFileV2 format and major table compaction rewrites HFileV1 to HfileV2.  Skipping this step may lead to data loss.</p>
+</div>
+</div>
+</li><li><p><strong>Remove GemFireXD</strong></p></li></ul><p style="margin-left: 30.0px;">The PHD 2.0 upgrade does not support an upgrade of the GemFireXD beta service. </p><p style="margin-left: 30.0px;">You will have to remove the GemFireXD beta service prior to PHD upgrade; followed by a fresh install of GemFireXD.  Data migration from GemFireXD beta is not supported.</p><p style="margin-left: 30.0px;">To remove GemFireXD, run the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">vim icmconf/clusterConfig.xml # Remove gfxd from &lt;services&gt;
+icm_client reconfigure -c icmconf -l test</pre>
+</div></div><p style="margin-left: 30.0px;"> Note that you will see the following error if you attempt to upgrade a cluster with GemFireXD installed.</p><div class="code panel pdl" style="border-width: 1px;">
+<div class="codeHeader panelHeader pdl hide-border-bottom" style="border-bottom-width: 1px;">
+<b class=" code-title">Gemfire Upgrade Error Example</b>
+<span class="collapse-source expand-control"><span class="expand-control-icon icon"> </span><span class="expand-control-text">Expand source</span></span>
+</div>
+<div class="codeContent panelContent pdl hide-toolbar">
+<pre class="theme: Confluence; brush: bash; collapse: true; gutter: false" style="font-size:12px;">-bash-4.1$ icm_client upgrade -l test -s phd
+Please ensure you've backed up manually installed service configurations (not installed by icm_client) if any. Do you wish to proceed with the PHD upgrade ? . (Press 'y' to continue, any other key to quit): y
+Please enter the root password for the cluster nodes:
+PCC creates a gpadmin user on the newly added cluster nodes (if any). Please enter a non-empty password to be used for the gpadmin user:
+Starting upgrade
+
+Return Code : 6000
+Message : Upgrade Cluster Error
+Details :
+Cluster Hosts :
+        Operation Code : UPGRADE_FAILURE
+        Operation Error : GEMFIRE XD must not be present if upgrading
+        Log File : /var/log/gphd/gphdmgr/gphdmgr-webservices.log
+
+[====================================================================================================] 100%
+Results:
+centos64-5... [Success]
+centos64-4... [Success]
+centos64-3... [Success]
+centos64-2... [Success]
+Details at /var/log/gphd/gphdmgr/gphdmgr-webservices.log
+[ERROR] Cluster upgrade failed
+-</pre>
+</div>
+</div><p>Once you've completed your PHD Upgrade, reinstall GemFireXD as a fresh install.  See <a href="InstallingPHDUsingtheCLI.html#InstallingPHDUsingtheCLI-GemFireXD">Configuring GemFireXD</a> for details.</p><h2 id="UpgradingPHDUsingtheCLI-UpgradeInstructions">Upgrade Instructions</h2><p>Follow the instructions below to upgrade your PHD system.</p><ol><li><strong> <span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-VerifyState"></span>Verify the current state of the cluster<br/> </strong><ol class="_mce_tagged_br"><li>Using the Pivotal Command Center user interface, check to see if any services are down. If any service is down or is running with errors, address those issues before upgrading.</li><li>On one of the HDFS nodes, as <code>gpadmin</code>, run:<br/> <code>sudo - u hdfs hdfs dfsadmin -report</code> <br/>An example of the output is below.<br/>Make sure that there are no <code>Under replicated blocks</code>, <code>Blocks with corrupt replicas</code>, or <code>Missing blocks</code>. Make sure there are no dead or decommissioned nodes.<code> <br/> </code>If you have decommissioned data nodes, removed then from the cluster using the <code>icm_client remove-slaves</code> command (see <a href="AdministeringPHDUsingtheCLI.html#AdministeringPHDUsingtheCLI-ShrinkCluster">Shrinking a Cluster</a>). You can always add them back after you have completed the upgrade procedure (see <a href="AdministeringPHDUsingtheCLI.html#AdministeringPHDUsingtheCLI-ExpandCluster">Expanding a Cluster</a>).<code> <br/> </code>If you have dead data nodes,either remove then or bring them back up.<code> <br/> </code></li><li>Run <code>fsck</code> and ensure that the filesystem is healthy, for example there are no corrupt files. An example of the output is below.<br/><p><strong>dfsadmin report example</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo -u hdfs hdfs dfsadmin -report
+Configured Capacity: 93657587712 (87.23 GB)
+Present Capacity: 81391808512 (75.80 GB)
+DFS Remaining: 81391706112 (75.80 GB)
+DFS Used: 102400 (100 KB)
+DFS Used%: 0.00%
+Under replicated blocks: 0
+Blocks with corrupt replicas: 0
+Missing blocks: 0
+-------------------------------------------------
+Datanodes available: 1 (1 total, 0 dead)
+Live datanodes:
+Name: 192.168.2.203:50010 (rhel64-3.localdomain)
+Hostname: rhel64-3.localdomain
+Decommission Status : Normal
+Configured Capacity: 93657587712 (87.23 GB)
+DFS Used: 102400 (100 KB)
+Non DFS Used: 12265779200 (11.42 GB)
+DFS Remaining: 81391706112 (75.80 GB)
+DFS Used%: 0.00%
+DFS Remaining%: 86.90%
+Last contact: Fri Apr 25 18:39:22 UTC 2014</pre>
+</div></div><p><strong>fsck example</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo -u hdfs hdfs fsck /
+Connecting to namenode via http://rhel64-3:50070
+FSCK started by hdfs (auth:SIMPLE) from /192.168.2.202 for path / at Fri Apr 25 20:56:52 UTC 2014
+...Status: HEALTHY
+Total size: 366 B
+Total dirs: 20
+Total files: 3
+Total symlinks: 0
+Total blocks (validated): 3 (avg. block size 122 B)
+Minimally replicated blocks: 3 (100.0 %)
+Over-replicated blocks: 0 (0.0 %)
+Under-replicated blocks: 0 (0.0 %)
+Mis-replicated blocks: 0 (0.0 %)
+Default replication factor: 1
+Average block replication: 1.0
+Corrupt blocks: 0
+Missing replicas: 0 (0.0 %)
+Number of data-nodes: 1
+Number of racks: 1
+FSCK ended at Fri Apr 25 20:56:52 UTC 2014 in 211 milliseconds
+
+The filesystem under path '/' is HEALTHY</pre>
+</div></div> <div class="aui-message problem shadowed information-macro">
+<span class="aui-icon icon-problem">Icon</span>
+<div class="message-content">
+<p>If you cannot get a cluster into a healthy state contact Pivotal Support before continuing with your upgrade.</p>
+</div>
+</div>
+</li></ol></li><li><strong> <span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-BackupHive"></span>Backup the Hive metastore</strong> <br/>Hive does not provide rollback options so we recommend that you take a snapshot of the metastore DB before starting the upgrade.<br/><ol class="_mce_tagged_br"><li>As <code>gpadmin</code>, login to the machine running the hive metastore database</li><li><p>Use the following command to backup the metastore database.  It will backup the metastore database to file <code> <code>hive_metastore_1.backup</code> </code></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">pg_dump -U hive -p 10432 metastore &gt; hive_metastore_1.backup</pre>
+</div></div></li></ol></li><li><strong>Revert to Non-HA (if applicable)</strong>: <br/> You cannot upgrade a cluster with High Availability enabled. Revert your cluster to non-HA before proceeding with an upgrade. <br/>See <a href="AdministeringPHDUsingtheCLI.html#AdministeringPHDUsingtheCLI-DisableHA">Disabling HA</a> for details.<strong> </strong> <br/><p>To complete this step, run the following SQL command:</p><p><code>psql -U postgres -p 10432 gphdmgr -c "UPDATE cluster_properties SET property_value='false' WHERE &lt;cluster_id&gt;=2 AND property_name='cluster.nn.isHAEnabled';"</code></p><p>Where: &lt;<code>cluster_id&gt;</code> is the id of your cluster.</p>Note that this SQL command is only necessary for upgrades from 1.1.1 to PHD 2.0.1.<br/> </li><li><strong>Revert to Non-Secure (if applicable):</strong> <br/>You cannot upgrade a cluster with security enabled. Revert your cluster to non-secure before proceeding with an upgrade. <br/>See <a href="AdministeringPHDUsingtheCLI.html#AdministeringPHDUsingtheCLI-DisableKerberos">Disabling Security</a> for details.<strong> <br/> <br/> </strong></li><li><strong>Remove HAWQ Standby Master:<br/> </strong>If you have a HAWQ Standby Master, you need to remove it before you start the upgrade.  As <code>gpadmin</code>, do the following:<br/><ol><li>Source the <code>greenplum_path.s</code>h file:<br/> <code>$ source /usr/local/hawq/greenplum.path.sh</code></li><li><p>Remove the HAWQ Standby Master by running:</p><code>$ gpinitstandby -r</code> <br/>For more details, refer to the <em>HAWQ Installation and Upgrade Guide</em>.</li></ol></li><li><span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-StopServices"></span> <strong>Stop Services:</strong><ol><li>As <code>gpadmin</code>, stop HAWQ on the HAWQ master:<br/> <code>$ /etc/init.d/hawq stop </code></li><li>As <code>gpadmin</code>, stop all PHD services:<br/> <code>$ icm_client stop -l &lt;CLUSTER NAME&gt;</code></li><li>As <code>root</code>, stop PCC:<br/> <code>$ service commander stop<br/>  </code></li></ol></li><li><strong> <span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-ExtractPCC"></span>Import and upgrade PCC:</strong> <br/><ol><li>Download the new PCC file from <a class="external-link" href="https://network.gopivotal.com/" rel="nofollow"> Pivotal Network </a>.</li><li>Copy the new PCC tar file to your installation directory on the admin node, for example: <br/> <code>$ scp ./PCC-2.2.x.<strong> <em>version.build.os</em> </strong>.x86_64.tar.gz host:/root/phd/ </code></li><li>Login as <code>root</code> and untar to that directory:<br/> <code>$ cd /root/phd </code> <br class="atl-forced-newline"/> <code>$ tar --no-same-owner -zxvf PCC-2.2.x.<strong> <em>version.build.os</em> </strong>.x86_64.tar.gz</code></li><li>As <code>root</code>, run the PCC installation script from the directory where it is installed: <br class="atl-forced-newline"/> <code>$ ./install</code></li></ol> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>There is no need to specify that this is an upgrade; the install utility (<code>./install</code>) detects whether it is a fresh install or an upgrade.</p>
+</div>
+</div>
+<div class="aui-message hint shadowed information-macro">
+<span class="aui-icon icon-hint">Icon</span>
+<div class="message-content">
+<p>The rest of the upgrade procedure is performed by the <code>gpadmin</code> user.  Switch to that user now.</p>
+</div>
+</div>
+</li><li><strong> <span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-SelfUpgrade"></span>CLI Self-Upgrade:</strong> <br/> As <code>gpadmin</code>, run the following command to upgrade the CLI:<br/> <code>$ icm_client self-upgrade</code> <br/>Note that this command may return very quickly. This does not indicate any problems and you can continue with the upgrade.</li><li><p><strong> <span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-ImportPADS"></span>Import new HAWQ package:</strong></p><ol><li><p>Download and extract the new PADS (HAWQ) package from <a class="external-link" href="https://network.gopivotal.com/" rel="nofollow"> Pivotal Network </a>.</p></li><li><p>Run:</p><p><code>   $ icm_client import -s &lt; PATH TO EXTRACTED PADS TAR BALL  &gt;<br/> </code></p></li></ol></li><li><p><strong> <span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-UpgradeHAWQ"></span>Upgrade HAWQ:<br/> </strong> <strong> <strong> <br/> </strong> </strong></p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>This section is only applicable if you installed Pivotal ADS (HAWQ) using PHD's CLI; if you installed Pivotal ADS manually, refer to the <em>HAWQ Installation and Upgrade Guide</em> for manual upgrade instructions.</p>
+</div>
+</div>
+<p> </p><ol><li><p>To upgrade PADS (HAWQ), as <code>gpadmin</code>, run:<br/> <code> $ icm_client upgrade -l &lt;CLUSTERNAME&gt; -s pads -o &lt; PATH TO EXTRACTED OLD ADS TAR BALL &gt; -n &lt; PATH TO EXTRACTED NEW ADS TAR BALL &gt;<br/> </code></p></li><li><p>On the HAWQ master node, as  <code>gpadmin</code>, run the following commands to migrate data: </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">su - gpadmin
+source /usr/lib/gphd/hawq/greenplum_path.sh
+gpmigrator &lt;old_HAWQHOME_path&gt; &lt;new_HAWQHOME_path&gt; # Look into ls -laF /usr/local and find the old and new homes.
+
+# For example:
+gpmigrator /usr/local/hawq-1.1.3.0/ /usr/local/hawq-1.2.0.0/ -d /data1/master/gpseg-1</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>If you encounter errors migrating HAWQ data, refer to the <em>HAWQ Administrator Guide</em> for help.</p>
+</div>
+</div>
+</li><li><p>Optional: You can delete the old HAWQ rpm file by running:<br/> <code>$ yum erase &lt;HAWQ_OLD_RPM_NAME&gt; <br/> </code></p></li></ol></li><li><strong> <span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-ImportPHD"></span>Import new PHD package:</strong><ol><li>Download and extract the new PHD package from <a class="external-link" href="https://network.gopivotal.com/" rel="nofollow"> Pivotal Network </a>.</li><li>Run:<br/> <code>$ icm_client import -s &lt; PATH TO EXTRACTED PHD TAR BALL  &gt; <br/> </code></li></ol></li><li><strong> <strong> <span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-UpgradePHD"></span>Upgrade PHD:<br/> </strong> </strong>If your cluster is configured with HAWQ, make sure you complete upgrading Pivotal ADS (see previous step), before proceeding with Pivotal HD upgrade.<br/>Only clusters running the following versions can be upgraded to use the PHD 2.0.x stack:<br/><p>PHD 1.1.1 and PHD 1.1<br/>PCC 2.1.1 and PCC 2.1</p><p>PHD 2.0.1 requires Oracle JDK 1.7. </p><p>If you are already running JDK 1.7, to upgrade PHD, as <code>gpadmin</code>, run:</p><p><code> $ icm_client upgrade -l &lt;CLUSTERNAME&gt; -s phd</code></p><p>If you need to upgrade to JDK 1.7, include the JDK rpm in the upgrade command (for example: <code>jdk-7u15-linux-x64.rpm</code>) so that the <code>upgrade </code>command can deploy it to the cluster nodes:</p><p><code> <code>$ icm_client upgrade -l &lt;CLUSTERNAME&gt; -s phd</code> -j ~/jdk-7u15-linux-x64.rpm </code></p><br/>This upgrades the PHD stack on all cluster nodes.<br/><p>Note that all upgrade steps, including post-upgrade configuration steps described below, should be completed before you re-enable HA or security on a cluster.</p></li><li><strong> <strong> <strong> <strong> <strong> <strong> <strong> <strong> <span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-PostUpgrade"></span>Upgrade Configuration Files:<br/> </strong> </strong> </strong> </strong> </strong> </strong> </strong> </strong>After upgrading the PHD stack, you need to upgrade your cluster configuration files:<strong> <strong> <strong> <strong> <strong> <strong> <strong> <strong> <strong> <strong> <strong> <strong> <strong> <strong> <strong> <br/> </strong> </strong> </strong> </strong> </strong> </strong> </strong> </strong> </strong> </strong> </strong> </strong> </strong> </strong> </strong><ol><li><p>Fetch the new templates that come with the upgraded stack by running <code>icm_client fetch-template</code>, for example: </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client fetch-template -o ~/newTemplate</pre>
+</div></div><p><code>newTemplate</code> <em> </em> is the new template for the upgraded stack without any user customizations.</p></li><li><p>Retrieve the existing configuration from the database by running<code> </code> <code>icm_client fetch-configuration</code>, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client fetch-configuration -o ~/origConfiguration -l &lt;CLUSTERNAME&gt;</pre>
+</div></div><p><code>origConfiguration</code> is based on user-customized template from a previous installation.</p><p> </p></li><li><p> Identify the changes between the configurations by running the <code>diff</code> command, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">diff -ruBw newTemplate/ origConfiguration/</pre>
+</div></div><p>Then apply those changes to the <code>newTemplate</code> you retrieved.<code>  </code></p><p> </p> <div class="aui-message hint shadowed information-macro">
+<p class="title">TIP</p>
+<span class="aui-icon icon-hint">Icon</span>
+<div class="message-content">
+<div>To simplify the process (step c, above) of merging the existing PHD configuration with the <code>newTemplate</code>, follow these steps,</div><div>1. Overwrite<code> clusterConfig.xml</code> in <code>newTemplate</code> from the one from<code> origConfiguration</code> directory:</div><div><code>  $&gt; cp ~origConfiguration/clusterConfig.xml  ~newTemplate/ClusterConfig.xml</code></div><div>2. Change the value of <code>&lt;gphdStackVer&gt;</code> to PHD-2.0.1.0 in the <code>~newTemplate/clusterConfig.xml</code></div><div>3. If you have explicitly modified any properties from PHD services configuration files, for example, <code>hdfs/hdfs-site.xml</code>, <code>yarn/yarn-site.xml</code> etc., then make the corresponding changes to these configuration files under  <code>~newTemplate/</code> directory.</div>
+</div>
+</div>
+<p><code> <br/> </code></p></li><li><p>Upgrade service by specifying the cluster configuration directory as <code>~/newTemplate</code> with your updated contents:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">icm_client reconfigure -c ~/newTemplate -l &lt;CLUSTERNAME&gt;</pre>
+</div></div></li></ol></li><li><p><strong> <strong> <strong> <strong> <strong> <strong> <strong> <strong> <strong> <span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-UpgradeHDFS"></span>Upgrade HDFS:<br/> </strong> </strong> </strong> </strong> </strong> </strong> </strong> </strong> </strong></p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>If you are performing the upgrade on an EMC Data Computing Appliance (DCA) you need to make sure that the <code>gpadmin</code> user has read access to each of the subdirectories of the Nameode name directories. The location of the Namenode name directories is specified in the value of <code>dfs.namenode.name.dir</code> property in <code>/etc/gphd/hadoop/conf/hdfs-</code> <code>site.xml</code> on the Namenode.</p><p>For example, if <code>/data/nn/dfs/name</code> is the Namenode directory, then the <code>gpadmin</code> user must have read access to <code>data</code>, <code>nn</code> , <code>dfs</code> and <code>name</code> directories.</p>
+</div>
+</div>
+<p><br/>As <code>gpadmin</code>, on the Admin node, do the following:<strong> <strong> <strong> <strong> <strong> <strong> <strong> <strong> <strong> <br/> </strong> </strong> </strong> </strong> </strong> </strong> </strong> </strong> </strong></p><ol><li><p>Backup Namenode metadata by running:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/usr/bin/python /usr/lib/gphd/gphdmgr/lib/client/HdfsUpgrader.py -l &lt;CLUSTER NAME&gt; -o backupNNMetadata -s 2.0.5_alpha_gphd_2_1_1_0 -t 2.2.0_gphd_3_0_0_0
+ 
+# Source prefix would be 2.0.5_alpha_gphd_2_1_0_0 instead of 2.0.5_alpha_gphd_2_1_1_0 if you are upgrading from (PHD-1.1.0.0)</pre>
+</div></div></li><li><p>Run NameNode upgrade by running:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/usr/bin/python /usr/lib/gphd/gphdmgr/lib/client/HdfsUpgrader.py -l &lt;CLUSTER NAME&gt; -o nnupgrade -s 2.0.5_alpha_gphd_2_1_1_0 -t 2.2.0_gphd_3_0_0_0
+# Source prefix would be 2.0.5_alpha_gphd_2_1_0_0 instead of 2.0.5_alpha_gphd_2_1_1_0 if you are upgrading from (PHD-1.1.0.0)</pre>
+</div></div></li><li><p>Run Data Node upgrade by running:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/usr/bin/python /usr/lib/gphd/gphdmgr/lib/client/HdfsUpgrader.py -l &lt;CLUSTER NAME&gt; -o dnupgrade -s 2.0.5_alpha_gphd_2_1_1_0 -t 2.2.0_gphd_3_0_0_0
+# Source prefix would be 2.0.5_alpha_gphd_2_1_0_0 instead of 2.0.5_alpha_gphd_2_1_1_0 if you are upgrading from (PHD-1.1.0.0)</pre>
+</div></div></li></ol></li><li><span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-StopRestart"></span> <strong> <strong>Restart the cluster:<br/> </strong> </strong><p><code>As </code> <code>:<br/>$ icm_client restart -l &lt;CLUSTER_NAME&gt;</code></p><strong> <br/> <br/> </strong></li><li><span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-PostUpgradeHAWQ"></span> <strong> <strong>Post-Upgrade HAWQ:<br/> </strong> </strong><ol><li>On the HAWQ master, as <code>gpadmin</code>:<br/>Check HAWQ status: <br/> <code>$ /etc/init.d/hawq status</code> <br/>If it is not running, start it by running:<code> <code> <br/>$ /etc/init.d/hawq start</code> <br/> </code></li><li><p>If you were utilizing a standby HAWQ master, you should have removed it before the upgrade. It should now be reinitialized: <br/>On the HAWQ master, as <code>gpadmin</code>, run:</p><p><code>$ gpinitstandby -s &lt;standby_hostname&gt;<br/> </code> <br/> For more details about these commands, refer to the <em>HAWQ Installation and Upgrade Guide</em>.</p></li></ol><strong> <br/> </strong></li><li><strong> <span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-FinalizeHDFS"></span>Finalize the HDFS upgrade:<br/> </strong>Before you continue you should run a few tests to make sure your data upgrade was successful, and then you can run <code>finalizeUpgrade</code>.<p>Once you have confirmed your cluster is working as expected, run the following command to finalize upgrade process:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/usr/bin/python /usr/lib/gphd/gphdmgr/lib/client/HdfsUpgrader.py -l &lt;CLUSTER NAME&gt; -o finalizeUpgrade -s 2.0.5_alpha_gphd_2_1_1_0 -t 2.2.0_gphd_3_0_0_0</pre>
+</div></div> <div class="aui-message problem shadowed information-macro">
+<span class="aui-icon icon-problem">Icon</span>
+<div class="message-content">
+<p>HBase master will not start unless the HBase upgrade is finalized. Please ensure HDFS upgrade is finalized before finalizing HBase upgrade.</p>
+</div>
+</div>
+</li><li><strong> <span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-FinalizeHBase"></span>Finalize HBase Upgrade:</strong> <br/> <br/><ol><li><p>Check for any HFileV1 data (only HFileV2 is supported after upgrade to HBase 0.96):<br/>On the hbase-master run:<br/> <code>$ sudo -u hbase hbase upgrade -check</code> <br/>If the return is:<br/> <code>Count of HFileV1:0</code> <br/>Continue with the upgrade.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>As part of the prerequisites you should have already compacted all the tabels on the existing HBase cluster; this will have overwritten any HFileV1 data to HFileV2 format.</p>
+</div>
+</div>
+</li><li>Make sure Zookeeper and HDFS are running but HBase is stopped, then run: </li></ol><p style="margin-left: 30.0px;"><code>      $ sudo -u hbase hbase upgrade -execute<br/> <br/> </code></p></li><li><p><strong> <strong> <strong> <strong> <span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-Manual"></span>Reconfigure Manually Installed Services:<br/> </strong> </strong> </strong> </strong>Services that were manually installed on an existing cluster are not upgraded by a CLI upgrade. After the PHD upgrade, you need to manually reconfigure these services to work with the upgraded PHD.  Refer to the <em>Pivotal HD Enterprise Stack and Tool Reference Guide</em> for details.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>Backing up the configuration files for these services is a prerequisite for this upgrade procedure.  See the <em>Pivotal HD Enterprise Stack Tool and Reference Guide</em>  for the locations of these configuration files.</p>
+</div>
+</div>
+</li><li><strong>Re-enable HA:<br/> </strong>See <a href="AdministeringPHDUsingtheCLI.html#AdministeringPHDUsingtheCLI-EnableHA">Enabling High Availability on a Cluster</a> for details.<strong> <br/> <br/> </strong></li><li><strong>Re-Secure:</strong> <br/>We provide instructions for manually enabling Kerberos authentication in the <em>PHD 2.0 Stack and Tools Reference Guide</em>.  We also can provide scripts to automate this process. To obtain these scripts and instructions how to use them, contact either your PHD Account Manager, or open up a service request with support at <a class="external-link" href="https://support.emc.com/" rel="nofollow">https://support.emc.com/</a> and ask for the PHD Secure Install Tools.<br/> </li><li><strong>For HA Clusters: Move HAWQ filespace to HA enabled HDFS:<br/></strong>For HAWQ, you need to move the HAWQ filespace to HA-enabled HDFS, as described below.</li></ol><p>Your cluster should now be upgraded. At this point you should check to see if all your services are running and your data is intact. <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a> includes a section <em>Running Sample Programs</em> that provides instructions for testing the various services.</p><p><span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-MoveHAWQFilespace"></span></p><h2 id="UpgradingPHDUsingtheCLI-MovingHAWQFilespacetoHA-enabledHDFS">Moving HAWQ Filespace to HA-enabled HDFS</h2><p>As HAWQ was initialized, post-upgrade, on a non-HA HDFS, you now need to move the HAWQ filespace to HA-enabled HDFS, as follows:</p><p style="margin-left: 30.0px;"><h3 id="UpgradingPHDUsingtheCLI-CollectingInformationabouttheTargetFilespace">Collecting Information about the Target Filespace</h3><p>A default filespace named dfs_system exists in the pg_filespace catalog and the parameter, pg_filespace_entry, contains detailed information for each filespace. </p><ol><li><p>Use the following SQL query to gather information about the filespace located on HDFS:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">SELECT
+    fsname, fsedbid, fselocation
+FROM
+    pg_filespace as sp, pg_filespace_entry as entry, pg_filesystem as fs
+WHERE
+    sp.fsfsys = fs.oid and fs.fsysname = 'hdfs' and sp.oid = entry.fsefsoid
+ORDER BY
+    entry.fsedbid;</pre>
+</div></div><p>The sample output is as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">fsname   | fsedbid |             fselocation
+------------+---------+--------------------------------------
+ dfs_system |       1 | /data/hawq-kerberos/dfs/gpseg-1
+ dfs_system |       2 | hdfs://mdw:9000/hawq-security/gpseg0
+ dfs_system |       3 | hdfs://mdw:9000/hawq-security/gpseg1
+ dfs_system |       4 | hdfs://mdw:9000/hawq-security/gpseg2
+ dfs_system |       5 | hdfs://mdw:9000/hawq-security/gpseg3
+ dfs_system |       6 | hdfs://mdw:9000/hawq-security/gpseg4
+ dfs_system |       7 | hdfs://mdw:9000/hawq-security/gpseg5
+(7 rows)</pre>
+</div></div><p>The output can contain the following:</p><p>- Master instance path information.<br/>- Standby master instance path information, if the standby master is configured (not in this example).<br/>- HDFS paths that share the same prefix for segment instances.</p></li><li><p>To enable HA HDFS, you need the segment location comprising the filespace name and the common prefix of segment HDFS paths. The segment location is formatted like a URL. The sample output displays the segment location, hdfs://mdw:9000/hawq-security.  mdw:9000 is the Namenode host and RPC port, you must replace it with your HA HDFS cluster service ID to get the new segment location. For example hdfs://phdcluster/hawq-security.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">Filespace Name: dfs_system
+New segment location: hdfs://phdcluster/hawq-security</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<p class="title">Note</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>To move the filespace location to a segment location that is different from the old segment location, you must move the data to new path on HDFS.</p><p>For example, you can do this by moving the filespace from hdfs://phdcluster/hawq-security to hdfs://phdcluster/hawq/another/path.</p>
+</div>
+</div>
+</li></ol><h3 id="UpgradingPHDUsingtheCLI-StoppingHAWQClusterandBackupCatalog">Stopping HAWQ Cluster and Backup Catalog</h3><p>To enable HA HDFS,  you are changing the HAWQ catalog and persistent tables. You cannot preform transactions while persistent tables are being updated. Therefore, before you stop the HAWQ Cluster, Pivotal recommends that you backup the catalog. This is to ensure that you do not lose data due to a hardware failure or during an operation (such as killing HAWQ process). </p><ol><li>Disconnect all workload connections.</li><li>Issue a checkpoint.</li><li>Shutdown the HAWQ cluster.</li><li><p>Copy the master data directory:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$MASTER_DATA_DIRECTORY /catalog/backup/location</pre>
+</div></div></li></ol><h3 id="UpgradingPHDUsingtheCLI-MovingtheFilespaceLocation">Moving the Filespace Location </h3><p>HAWQ provides the command line tool, gpfilespace, to move the location of the filespace.</p><p>Run the following command line to move a file space location:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpfilespace --movefilespace default --location=hdfs://phdcluster/hawq-security</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<p class="title">Notes</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<ol><li>If the target filespace is not default filespace, replace default in command line with the actual filespace name</li><li>Replace <code>hdfs://phdcluster/hawq-security</code> with new segment location</li></ol>
+</div>
+</div>
+<div class="aui-message hint shadowed information-macro">
+<p class="title">Important</p>
+<span class="aui-icon icon-hint">Icon</span>
+<div class="message-content">
+<p>Errors while moving the location of the filespace:</p><p>Non-fatal error can occur if you provide invalid input or if you have not stopped HAWQ before attempting a filespace location change. Check that you have followed the instructions from the beginning, or correct the input error before you re-run gpfilespace.  </p><p>Fatal errors can occur due to hardware failure or if you fail to kill a HAWQ process before attempting a filespace location change. When a fatal error occurs, you will see teh message, "PLEASE RESTORE MASTER DATA DIRECTORY" in the output. If this occurs, shut down the database and restore the $MASTER_DATA_DIRECTORY.</p>
+</div>
+</div>
+<p> </p><h3 id="UpgradingPHDUsingtheCLI-Configure${GPHOME}/etc/hdfs-client.xml">Configure ${GPHOME}/etc/hdfs-client.xml </h3><p>Configure the hdfs-client.xml file. See the HAWQ Installation and Upgrade Guide for information.</p><h3 id="UpgradingPHDUsingtheCLI-ReinitializetheStandbyMaster">Reinitialize the Standby Master</h3><p>The standby master catalog is rendered invalid during the move, and needs to be reinitialized. If you did not have  configured standby master  you can skip this task.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpstart -a                              #start HAWQ cluster
+gpinitstandby -r                        #remove standby master
+gpinitstandby -s &lt;standby host name&gt;  #initialize a standby master</pre>
+</div></div></p><h2 id="UpgradingPHDUsingtheCLI-UpgradeReferenceInformation">Upgrade Reference Information</h2><p><span class="confluence-anchor-link" id="UpgradingPHDUsingtheCLI-UpgradeSyntax"></span></p><h3 id="UpgradingPHDUsingtheCLI-UpgradeSyntax">Upgrade Syntax</h3><p>For reference, the complete syntax for the <code>upgrade</code> command is as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client upgrade --help
+Usage: /usr/bin/icm_client upgrade [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -l CLUSTERNAME, --clustername=CLUSTERNAME
+                        the name of the cluster on which the operation is
+                        performed
+  -x, --noscanhosts     Do not verify cluster nodes.
+  -s STACK, --stackname=STACK
+                        stack to upgrade (phd or pads)
+  -v VERSION, --version=VERSION
+                        PHD Stack version, default is PHD-2.0.0.0 Stack
+  -o OLDDIR, --old=OLDDIR
+                        (Required for only for pads/hawq upgrade) Old PADS
+                        Directory
+  -n NEWDIR, --new=NEWDIR
+                        (Required for only for pads/hawq upgrade) New PADS
+                        Directory
+  -p, --nopreparehosts  Do not prepare hosts as part of deploying the cluster
+  -j JDKPATH, --java=JDKPATH
+                        Location of Sun Java JDK RPM (Ex: jdk-
+                        7u15-linux-x64.rpm). Ignored if -p is specified
+  -t, --ntp             Synchronize system clocks using NTP. Optionally takes
+                        NTP server as argument. Defaults to pool.ntp.org
+                        (requires external network access). Ignored if -p is
+                        specified
+  -d, --selinuxoff      Disable SELinux. Ignored if -p is specified
+  -i, --iptablesoff     Disable iptables. Ignored if -p is specified
+  -y SYSCONFIGDIR, --sysconf=SYSCONFIGDIR
+                        [Only if HAWQ is part of the deploy] Directory
+                        location of the custom conf files (sysctl.conf and
+                        limits.conf) which will be appended to
+                        /etc/sysctl.conf and /etc/limits.conf on slave nodes.
+                        Default: /usr/lib/gphd/gphdmgr/hawq_sys_config/.
+                        Ignored if -p is specified
+</pre>
+</div></div><h3 id="UpgradingPHDUsingtheCLI-ChangedConfigurationParametersandFiles">Changed Configuration Parameters and Files</h3><p>The following information is provided solely as reference material; you do not need to make any changes to your configuration files beyond those you have already completed.</p><p>The following configuration parameters were changed in PHD 2.0 as described below:</p><h4 id="UpgradingPHDUsingtheCLI-core-site.xml">core-site.xml</h4><h5 id="UpgradingPHDUsingtheCLI-RemovedParameters">Removed Parameters</h5><p>The following parameters have been removed from core-site.xml:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Default</div></th><th class="confluenceTh" colspan="1" style="text-align: left;"><div class="tablesorter-header-inner">Notes</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">kfs.stream-buffer-size</td><td class="confluenceTd" style="text-align: left;">4096</td><td class="confluenceTd" colspan="1" style="text-align: left;">KFS is no longer supported, see<a class="external-link" href="https://issues.apache.org/jira/browse/HADOOP-8886" rel="nofollow" style="text-decoration: none;"> HADOOP-8886</a></td></tr><tr><td class="confluenceTd" style="text-align: left;">mapred.outdir.resolverClass</td><td class="confluenceTd" style="text-align: left;">org.apache.hadoop.mapreduce.DefaultPathResolver</td><td class="confluenceTd" colspan="1" style="text-align: left;"> </td></tr><tr><td class="confluenceTd" style="text-align: left;">kfs.client-write-packet-size</td><td class="confluenceTd" style="text-align: left;">65536</td><td class="confluenceTd" colspan="1" style="text-align: left;">KFS is no longer supported, see <a class="external-link" href="https://issues.apache.org/jira/browse/HADOOP-8886" rel="nofollow" style="text-decoration: none;">HADOOP-8886</a></td></tr><tr><td class="confluenceTd" style="text-align: left;">kfs.blocksize</td><td class="confluenceTd" style="text-align: left;">67108864</td><td class="confluenceTd" colspan="1" style="text-align: left;">KFS is no longer supported, see <a class="external-link" href="https://issues.apache.org/jira/browse/HADOOP-8886" rel="nofollow" style="text-decoration: none;">HADOOP-8886</a></td></tr><tr><td class="confluenceTd" style="text-align: left;">kfs.bytes-per-checksum</td><td class="confluenceTd" style="text-align: left;">512</td><td class="confluenceTd" colspan="1" style="text-align: left;">KFS is no longer supported, see <a class="external-link" href="https://issues.apache.org/jira/browse/HADOOP-8886" rel="nofollow" style="text-decoration: none;">HADOOP-8886</a></td></tr><tr><td class="confluenceTd" style="text-align: left;">kfs.replication</td><td class="confluenceTd" style="text-align: left;">3</td><td class="confluenceTd" colspan="1" style="text-align: left;">KFS is no longer supported, see <a class="external-link" href="https://issues.apache.org/jira/browse/HADOOP-8886" rel="nofollow" style="text-decoration: none;">HADOOP-8886</a></td></tr></tbody></table></div><h5 id="UpgradingPHDUsingtheCLI-NewParameters">New Parameters</h5><p>The following parameters have been added to <code>core-site.xml</code>:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Default</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">fs.client.resolve.remote.symlinks</td><td class="confluenceTd" style="text-align: left;">true</td></tr><tr><td class="confluenceTd" style="text-align: left;">nfs3.server.port</td><td class="confluenceTd" style="text-align: left;">2049</td></tr><tr><td class="confluenceTd" style="text-align: left;">nfs3.mountd.port</td><td class="confluenceTd" style="text-align: left;">4242</td></tr><tr><td class="confluenceTd" style="text-align: left;">hadoop.security.group.mapping.ldap.directory.search.timeout</td><td class="confluenceTd" style="text-align: left;">10000</td></tr><tr><td class="confluenceTd" style="text-align: left;">ipc.client.fallback-to-simple-auth-allowed</td><td class="confluenceTd" style="text-align: left;">false</td></tr></tbody></table></div><p> </p><h4 id="UpgradingPHDUsingtheCLI-yarn-site.xml">yarn-site.xml</h4><h5 id="UpgradingPHDUsingtheCLI-ChangedDefaults">Changed Defaults</h5><p>The following parameters in yarn-site.xml have new default values:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Old Value</div></th><th class="confluenceTh" colspan="1" style="text-align: left;"><div class="tablesorter-header-inner">New Value</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.nodemanager.aux-services</td><td class="confluenceTd" style="text-align: left;">mapreduce.shuffle</td><td class="confluenceTd" colspan="1" style="text-align: left;">mapreduce_shuffle</td></tr></tbody></table></div><h5 id="UpgradingPHDUsingtheCLI-NewNames">New Names</h5><p>The following parameters in yarn-site.xml have new names:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Old Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">New Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Default Value</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.resourcemanager.fs.rm-state-store.uri</td><td class="confluenceTd" style="text-align: left;">yarn.resourcemanager.fs.state-store.uri</td><td class="confluenceTd" style="text-align: left;">${hadoop.tmp.dir}/yarn/system/rmstore</td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.nodemanager.resource.cpu-cores</td><td class="confluenceTd" style="text-align: left;">yarn.nodemanager.resource.cpu-vcores</td><td class="confluenceTd" style="text-align: left;">8, See <a class="external-link" href="https://issues.apache.org/jira/browse/YARN-782" rel="nofollow" style="text-decoration: none;">YARN-782</a></td></tr><tr><td class="confluenceTd" colspan="1" style="text-align: left;">yarn.nodemanager.aux-services.<br/>mapreduce.shuffle.class</td><td class="confluenceTd" colspan="1" style="text-align: left;">yarn.nodemanager.aux-services.<br/>mapreduce_shuffle.class</td><td class="confluenceTd" colspan="1" style="text-align: left;">org.apache.hadoop.mapred.ShuffleHandler</td></tr><tr><td class="confluenceTd" colspan="1" style="text-align: left;">yarn.nodemanager.heartbeat.interval-ms</td><td class="confluenceTd" colspan="1" style="text-align: left;">yarn.resourcemanager.nodemanagers.<br/>heartbeat-interval-ms</td><td class="confluenceTd" colspan="1" style="text-align: left;">1000</td></tr><tr><td class="confluenceTd" colspan="1" style="text-align: left;">yarn.resourcemanager.am.max-retries</td><td class="confluenceTd" colspan="1" style="text-align: left;">yarn.resourcemanager.am.max-attempts</td><td class="confluenceTd" colspan="1" style="text-align: left;">1-&gt;2</td></tr></tbody></table></div><p> </p><h5 id="UpgradingPHDUsingtheCLI-RemovedParameters.1">Removed Parameters</h5><p>The following parameters have been removed from yarn-site.xml:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Default Value</div></th><th class="confluenceTh" colspan="1" style="text-align: left;"><div class="tablesorter-header-inner">Note</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">net.topology.with.nodegroup</td><td class="confluenceTd" style="text-align: left;">false</td><td class="confluenceTd" colspan="1" style="text-align: left;"><p>Introduced by hve patch.</p><p>Will be added when the patch is added again to hadoop 2.2.0</p></td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.dynamic.resource.memory.minimum.mb</td><td class="confluenceTd" style="text-align: left;">0</td><td class="confluenceTd" colspan="1" style="text-align: left;"><p>Introduced by hve patch.</p><p>Will be added when the patch is added again to hadoop 2.2.0</p></td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.dynamic.resource.vcores.maximum</td><td class="confluenceTd" style="text-align: left;">-1</td><td class="confluenceTd" colspan="1" style="text-align: left;"><p>Introduced by hve patch.</p><p>Will be added when the patch is added again to hadoop 2.2.0</p></td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.dynamic.resource.enable</td><td class="confluenceTd" style="text-align: left;">true</td><td class="confluenceTd" colspan="1" style="text-align: left;"><p>Introduced by hve patch.</p><p>Will be added when the patch is added again to hadoop 2.2.0</p></td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.dynamic.resource.memory.maximum.mb</td><td class="confluenceTd" style="text-align: left;">-1</td><td class="confluenceTd" colspan="1" style="text-align: left;"><p>Introduced by hve patch.</p><p>Will be added when the patch is added again to hadoop 2.2.0</p></td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.dynamic.resource.vcores.minimum</td><td class="confluenceTd" style="text-align: left;">0</td><td class="confluenceTd" colspan="1" style="text-align: left;"><p>Introduced by hve patch.</p><p>Will be added when the patch is added again to hadoop 2.2.0</p></td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.nodemanager.vcores-pcores-ratio</td><td class="confluenceTd" style="text-align: left;">2</td><td class="confluenceTd" colspan="1" style="text-align: left;">See <a class="external-link" href="https://issues.apache.org/jira/browse/YARN-782" rel="nofollow" style="text-decoration: none;">YARN-782</a></td></tr></tbody></table></div><h5 id="UpgradingPHDUsingtheCLI-NewParameters.1">New Parameters</h5><p>The following parameters have been added to yarn-site.xml:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Default Value</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.resourcemanager.connect.retry-interval.ms</td><td class="confluenceTd" style="text-align: left;">30000</td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.resourcemanager.connect.max-wait.ms</td><td class="confluenceTd" style="text-align: left;">900000</td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.client.nodemanager-client-async.thread-pool-max-size</td><td class="confluenceTd" style="text-align: left;">500</td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.resourcemanager.hostname</td><td class="confluenceTd" style="text-align: left;">0.0.0.0</td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.resourcemanager.scheduler.monitor.enable</td><td class="confluenceTd" style="text-align: left;">false</td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.http.policy</td><td class="confluenceTd" style="text-align: left;">HTTP_ONLY</td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.nodemanager.hostname</td><td class="confluenceTd" style="text-align: left;">0.0.0.0</td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.client.max-nodemanagers-proxies</td><td class="confluenceTd" style="text-align: left;">500</td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.resourcemanager.webapp.https.address</td><td class="confluenceTd" style="text-align: left;">0.0.0.0:8090</td></tr><tr><td class="confluenceTd" colspan="1" style="text-align: left;">yarn.nodemanager.resourcemanager.connect.wait.secs</td><td class="confluenceTd" colspan="1" style="text-align: left;">900</td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.client.app-submission.poll-interval</td><td class="confluenceTd" style="text-align: left;">1000</td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.resourcemanager.scheduler.monitor.policies</td><td class="confluenceTd" style="text-align: left;">org.apache.hadoop.yarn.server.resourcemanager.<br/>monitor.capacity.ProportionalCapacityPreemptionPolicy</td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.nodemanager.local-cache.max-files-per-directory</td><td class="confluenceTd" style="text-align: left;">8192</td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.nodemanager.resourcemanager.connect.retry_interval.secs</td><td class="confluenceTd" style="text-align: left;">30</td></tr></tbody></table></div><h4 id="UpgradingPHDUsingtheCLI-hdfs-site.xml">hdfs-site.xml</h4><h5 id="UpgradingPHDUsingtheCLI-ChangedDefaults.1">Changed Defaults</h5><p>The following parameters in hdfs-site.xml have new default values:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Old Default Value</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">New Default Value</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">dfs.namenode.checkpoint.txns</td><td class="confluenceTd" style="text-align: left;">40000</td><td class="confluenceTd" style="text-align: left;">1000000</td></tr><tr><td class="confluenceTd" style="text-align: left;">dfs.blocksize</td><td class="confluenceTd" style="text-align: left;">67108864</td><td class="confluenceTd" style="text-align: left;">134217728</td></tr></tbody></table></div><h5 id="UpgradingPHDUsingtheCLI-NewParameters.2">New Parameters</h5><p>The following parameters have been added to hdfs-site.xml</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Default Value</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">dfs.namenode.retrycache.heap.percent</td><td class="confluenceTd" style="text-align: left;">0.03f</td></tr><tr><td class="confluenceTd" style="text-align: left;">dfs.client.write.exclude.nodes.cache.expiry.interval.millis</td><td class="confluenceTd" style="text-align: left;">600000</td></tr><tr><td class="confluenceTd" style="text-align: left;">dfs.namenode.retrycache.expirytime.millis</td><td class="confluenceTd" style="text-align: left;">600000</td></tr><tr><td class="confluenceTd" style="text-align: left;">dfs.image.transfer.timeout</td><td class="confluenceTd" style="text-align: left;">600000</td></tr><tr><td class="confluenceTd" style="text-align: left;">dfs.namenode.enable.retrycache</td><td class="confluenceTd" style="text-align: left;">true</td></tr><tr><td class="confluenceTd" style="text-align: left;">dfs.datanode.available-space-volume-choosing-<br/>policy.balanced-space-preference-fraction</td><td class="confluenceTd" style="text-align: left;">0.75f</td></tr><tr><td class="confluenceTd" style="text-align: left;">dfs.namenode.edits.noeditlogchannelflush</td><td class="confluenceTd" style="text-align: left;">false</td></tr><tr><td class="confluenceTd" style="text-align: left;">dfs.namenode.fs-limits.max-blocks-per-file</td><td class="confluenceTd" style="text-align: left;">1048576</td></tr><tr><td class="confluenceTd" style="text-align: left;">dfs.namenode.fs-limits.min-block-size</td><td class="confluenceTd" style="text-align: left;">1048576</td></tr><tr><td class="confluenceTd" style="text-align: left;">dfs.datanode.available-space-volume-choosing-<br/>policy.balanced-space-threshold</td><td class="confluenceTd" style="text-align: left;">10737418240</td></tr></tbody></table></div><h4 id="UpgradingPHDUsingtheCLI-mapred-site.xml">mapred-site.xml</h4><h5 id="UpgradingPHDUsingtheCLI-ChangedDefaults.2">Changed Defaults</h5><p>The following parameters in mapred-default.xml have new default values:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Old Default Value</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">New Default Value</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">mapreduce.shuffle.port</td><td class="confluenceTd" style="text-align: left;">8080</td><td class="confluenceTd" style="text-align: left;">13562</td></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.app.mapreduce.client-am.ipc.max-retries</td><td class="confluenceTd" style="text-align: left;">1</td><td class="confluenceTd" style="text-align: left;">3</td></tr><tr><td class="confluenceTd" colspan="1" style="text-align: left;">mapreduce.application.classpath</td><td class="confluenceTd" colspan="1" style="text-align: left;">$HADOOP_MAPRED_HOME/share/<br/>hadoop/mapreduce/*,$HADOOP_MAPRED_HOME<br/>/share/hadoop/mapreduce/lib/*</td><td class="confluenceTd" colspan="1" style="text-align: left;">No default value</td></tr></tbody></table></div><h5 id="UpgradingPHDUsingtheCLI-NewParameters.3">New Parameters</h5><p>The following parameters have been added to mapred-site.xml:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Default Value</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">mapreduce.jobhistory.loadedjobs.cache.size</td><td class="confluenceTd" style="text-align: left;">5</td></tr><tr><td class="confluenceTd" style="text-align: left;">mapreduce.am.max-attempts</td><td class="confluenceTd" style="text-align: left;">2</td></tr><tr><td class="confluenceTd" style="text-align: left;">mapreduce.jobhistory.done-dir</td><td class="confluenceTd" style="text-align: left;">${yarn.app.mapreduce.am.staging-dir}/history/done</td></tr><tr><td class="confluenceTd" style="text-align: left;">mapreduce.jobhistory.cleaner.enable</td><td class="confluenceTd" style="text-align: left;">true</td></tr><tr><td class="confluenceTd" style="text-align: left;">mapreduce.jobhistory.datestring.cache.size</td><td class="confluenceTd" style="text-align: left;">200000</td></tr><tr><td class="confluenceTd" style="text-align: left;">mapreduce.jobhistory.max-age-ms</td><td class="confluenceTd" style="text-align: left;">604800000</td></tr><tr><td class="confluenceTd" style="text-align: left;">mapreduce.job.token.tracking.ids.enabled</td><td class="confluenceTd" style="text-align: left;">false</td></tr><tr><td class="confluenceTd" style="text-align: left;">mapreduce.jobhistory.joblist.cache.size</td><td class="confluenceTd" style="text-align: left;">20000</td></tr><tr><td class="confluenceTd" style="text-align: left;">mapreduce.jobhistory.move.thread-count</td><td class="confluenceTd" style="text-align: left;">3</td></tr><tr><td class="confluenceTd" style="text-align: left;">mapreduce.jobhistory.cleaner.interval-ms</td><td class="confluenceTd" style="text-align: left;">86400000</td></tr><tr><td class="confluenceTd" style="text-align: left;">mapreduce.jobhistory.client.thread-count</td><td class="confluenceTd" style="text-align: left;">10</td></tr><tr><td class="confluenceTd" style="text-align: left;">mapreduce.jobhistory.move.interval-ms</td><td class="confluenceTd" style="text-align: left;">180000</td></tr><tr><td class="confluenceTd" style="text-align: left;">mapreduce.jobhistory.minicluster.fixed.ports</td><td class="confluenceTd" style="text-align: left;">false</td></tr><tr><td class="confluenceTd" style="text-align: left;">mapreduce.jobhistory.http.policy</td><td class="confluenceTd" style="text-align: left;">HTTP_ONLY</td></tr><tr><td class="confluenceTd" style="text-align: left;">mapreduce.jobhistory.intermediate-done-dir</td><td class="confluenceTd" style="text-align: left;">${yarn.app.mapreduce.am.staging-dir}/<br/>history/done_intermediate</td></tr></tbody></table></div><h4 id="UpgradingPHDUsingtheCLI-httpfs-site.xml">httpfs-site.xml</h4><h5 id="UpgradingPHDUsingtheCLI-NewParameters.4">New Parameters</h5><p>The following parameters have been added to httpfs-site.xml:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Default Value</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">httpfs.user.provider.user.pattern</td><td class="confluenceTd" style="text-align: left;">^[A-Za-z_][A-Za-z0-9._-]*[$]?$</td></tr></tbody></table></div><h4 id="UpgradingPHDUsingtheCLI-capacity-scheduler.xml">capacity-scheduler.xml</h4><h5 id="UpgradingPHDUsingtheCLI-ChangedDefaults.3">Changed Defaults</h5><p>The following parameters in capacity-scheduler.xml have new default values:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Old Default Value</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">New Default Value</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">yarn.scheduler.capacity.resource-calculator</td><td class="confluenceTd" style="text-align: left;">org.apache.hadoop.yarn.server.<br/>resourcemanager.resource.<br/>DefaultResourceCalculator</td><td class="confluenceTd" style="text-align: left;">org.apache.hadoop.yarn.util.resource.<br/>DefaultResourceCalculator</td></tr></tbody></table></div><h4 id="UpgradingPHDUsingtheCLI-hbase-site.xml">hbase-site.xml</h4><h5 id="UpgradingPHDUsingtheCLI-ChangedDefaults.4">Changed Defaults</h5><p>The following parameters in hbase-site.xml have new default values:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Old Default Value</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">New Default Value</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.client.pause</td><td class="confluenceTd" style="text-align: left;">1000</td><td class="confluenceTd" style="text-align: left;">100</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.client.retries.number</td><td class="confluenceTd" style="text-align: left;">10</td><td class="confluenceTd" style="text-align: left;">35</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.client.scanner.caching</td><td class="confluenceTd" style="text-align: left;">1</td><td class="confluenceTd" style="text-align: left;">100</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.hregion.majorcompaction</td><td class="confluenceTd" style="text-align: left;">86400000</td><td class="confluenceTd" style="text-align: left;">604800000</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.hstore.blockingStoreFiles</td><td class="confluenceTd" style="text-align: left;">7</td><td class="confluenceTd" style="text-align: left;">10</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.regionserver.checksum.verify</td><td class="confluenceTd" style="text-align: left;">false</td><td class="confluenceTd" style="text-align: left;">true</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.regionserver.global.memstore.lowerLimit</td><td class="confluenceTd" style="text-align: left;">0.35</td><td class="confluenceTd" style="text-align: left;">0.38</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.regionserver.handler.count</td><td class="confluenceTd" style="text-align: left;">10</td><td class="confluenceTd" style="text-align: left;">30</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.regionserver.hlog.reader.impl</td><td class="confluenceTd" style="text-align: left;">org.apache.hadoop.hbase.regionserver.<br/>wal.SequenceFileLogReader</td><td class="confluenceTd" style="text-align: left;">org.apache.hadoop.hbase.regionserver.<br/>wal.ProtobufLogReader</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.regionserver.hlog.writer.impl</td><td class="confluenceTd" style="text-align: left;">org.apache.hadoop.hbase.regionserver.<br/>wal.SequenceFileLogWriter</td><td class="confluenceTd" style="text-align: left;">org.apache.hadoop.hbase.regionserver.<br/>wal.ProtobufLogWriter</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.rootdir</td><td class="confluenceTd" style="text-align: left;">file:///tmp/hbase-${user.name}/hbase</td><td class="confluenceTd" style="text-align: left;">${hbase.tmp.dir}/hbase</td></tr><tr><td class="confluenceTd" style="text-align: left;">hfile.block.cache.size</td><td class="confluenceTd" style="text-align: left;">0.25</td><td class="confluenceTd" style="text-align: left;">0.4</td></tr><tr><td class="confluenceTd" style="text-align: left;">zookeeper.session.timeout</td><td class="confluenceTd" style="text-align: left;">180000</td><td class="confluenceTd" style="text-align: left;">90000</td></tr></tbody></table></div><h5 id="UpgradingPHDUsingtheCLI-NewNames.1">New Names</h5><p>The following parameters in hbase-site.xml have new names:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Old Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">New Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Default Value</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.rpc.engine</td><td class="confluenceTd" style="text-align: left;">hbase.rpc.server.engine</td><td class="confluenceTd" style="text-align: left;">org.apache.hadoop.hbase.ipc.WritableRpcEngine -&gt; org.apache.hadoop.hbase.ipc.ProtobufRpcServerEngine</td></tr><tr><td class="confluenceTd" colspan="1" style="text-align: left;">io.storefile.bloom.cacheonwrite</td><td class="confluenceTd" colspan="1" style="text-align: left;">hfile.block.bloom.cacheonwrite</td><td class="confluenceTd" colspan="1" style="text-align: left;">false (See <a class="external-link" href="https://issues.apache.org/jira/browse/HBASE-5957" rel="nofollow" style="text-decoration: none;">HBASE-5957</a>)</td></tr></tbody></table></div><h5 id="UpgradingPHDUsingtheCLI-RemovedParameters.2">Removed Parameters</h5><p>The following parameters have been removed from hbase-site.xml:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Default Value</div></th><th class="confluenceTh" colspan="1" style="text-align: left;"><div class="tablesorter-header-inner">Description</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.table.archive.directory</td><td class="confluenceTd" style="text-align: left;">.archive</td><td class="confluenceTd" colspan="1" style="text-align: left;">Removed due to <a class="external-link" href="https://issues.apache.org/jira/browse/HBASE-8195" rel="nofollow" style="text-decoration: none;">HBASE-8195</a></td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.regionserver.<br/>separate.hlog.for.meta</td><td class="confluenceTd" style="text-align: left;">false</td><td class="confluenceTd" colspan="1" style="text-align: left;"> </td></tr><tr><td class="confluenceTd" style="text-align: left;">dfs.support.append</td><td class="confluenceTd" style="text-align: left;">true</td><td class="confluenceTd" colspan="1" style="text-align: left;">HDFS now support append by default.</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.mapreduce.<br/>hfileoutputformat.blocksize</td><td class="confluenceTd" style="text-align: left;">65536</td><td class="confluenceTd" colspan="1" style="text-align: left;"> </td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.regionserver.nbreservationblocks</td><td class="confluenceTd" style="text-align: left;">4</td><td class="confluenceTd" colspan="1" style="text-align: left;"> </td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.regionserver.lease.period</td><td class="confluenceTd" style="text-align: left;">60000</td><td class="confluenceTd" colspan="1" style="text-align: left;"> </td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.hash.type</td><td class="confluenceTd" style="text-align: left;">murmur</td><td class="confluenceTd" colspan="1" style="text-align: left;"> </td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.regionserver.class</td><td class="confluenceTd" style="text-align: left;">org.apache.hadoop.hbase.<br/>ipc.HRegionInterface</td><td class="confluenceTd" colspan="1" style="text-align: left;"> </td></tr></tbody></table></div><h5 id="UpgradingPHDUsingtheCLI-NewParameters.5">New Parameters</h5><p>The following parameters have been added to hbase-site.xml:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Default Value</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.client.scanner.timeout.period</td><td class="confluenceTd" style="text-align: left;">60000</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.storescanner.parallel.seek.enable</td><td class="confluenceTd" style="text-align: left;">false</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.thrift.htablepool.size.max</td><td class="confluenceTd" style="text-align: left;">1000</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.hstore.bytes.per.checksum</td><td class="confluenceTd" style="text-align: left;">16384</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.config.read.zookeeper.config</td><td class="confluenceTd" style="text-align: left;">false</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.master.loadbalancer.class</td><td class="confluenceTd" style="text-align: left;">org.apache.hadoop.hbase.master.<br/>balancer.StochasticLoadBalancer</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.rpc.shortoperation.timeout</td><td class="confluenceTd" style="text-align: left;">10000</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.snapshot.enabled</td><td class="confluenceTd" style="text-align: left;">true</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.hstore.checksum.algorithm</td><td class="confluenceTd" style="text-align: left;">CRC32</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.status.publisher.class</td><td class="confluenceTd" style="text-align: left;">org.apache.hadoop.hbase.master.<br/>ClusterStatusPublisher$MulticastPublisher</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.status.listener.class</td><td class="confluenceTd" style="text-align: left;">org.apache.hadoop.hbase.client.<br/>ClusterStatusListener$MulticastListener</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.security.authentication</td><td class="confluenceTd" style="text-align: left;">simple</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.master.catalog.timeout</td><td class="confluenceTd" style="text-align: left;">600000</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.hstore.compaction.kv.max</td><td class="confluenceTd" style="text-align: left;">10</td></tr><tr><td class="confluenceTd" style="text-align: left;">fail.fast.expired.active.master</td><td class="confluenceTd" style="text-align: left;">false</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.metrics.exposeOperationTimes</td><td class="confluenceTd" style="text-align: left;">true</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.client.localityCheck.threadPoolSize</td><td class="confluenceTd" style="text-align: left;">2</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.status.published</td><td class="confluenceTd" style="text-align: left;">false</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.status.multicast.address.ip</td><td class="confluenceTd" style="text-align: left;">226.1.1.3</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.dynamic.jars.dir</td><td class="confluenceTd" style="text-align: left;">${hbase.rootdir}/lib</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.hregion.majorcompaction.jitter</td><td class="confluenceTd" style="text-align: left;">0.50</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.status.multicast.address.port</td><td class="confluenceTd" style="text-align: left;">6100</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.lease.recovery.dfs.timeout</td><td class="confluenceTd" style="text-align: left;">64000</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.server.compactchecker.interval.multiplier</td><td class="confluenceTd" style="text-align: left;">1000</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.rpc.timeout</td><td class="confluenceTd" style="text-align: left;">60000</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.lease.recovery.timeout</td><td class="confluenceTd" style="text-align: left;">900000</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.storescanner.parallel.seek.threads</td><td class="confluenceTd" style="text-align: left;">10</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.regionserver.catalog.timeout</td><td class="confluenceTd" style="text-align: left;">600000</td></tr><tr><td class="confluenceTd" colspan="1" style="text-align: left;">hbase.ipc.client.tcpnodelay</td><td class="confluenceTd" colspan="1" style="text-align: left;">true</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.rest.filter.classes</td><td class="confluenceTd" style="text-align: left;">org.apache.hadoop.hbase.rest.filter.GzipFilter</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.ipc.client.fallback-to-simple-auth-allowed</td><td class="confluenceTd" style="text-align: left;">false</td></tr><tr><td class="confluenceTd" style="text-align: left;">hbase.table.lock.enable</td><td class="confluenceTd" style="text-align: left;">true</td></tr></tbody></table></div><h4 id="UpgradingPHDUsingtheCLI-hive-site.xml">hive-site.xml</h4><p>The following parameters have been added to hive-site.xml:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Name</div></th><th class="confluenceTh" style="text-align: left;"><div class="tablesorter-header-inner">Default Value</div></th></tr><tr><td class="confluenceTd" style="text-align: left;">hive.default.rcfile.serde</td><td class="confluenceTd" style="text-align: left;">org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe</td></tr></tbody></table></div>
+</div></div>
+            </div><!-- end of content-->
+            
+            
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

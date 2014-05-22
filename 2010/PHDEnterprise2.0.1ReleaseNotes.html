@@ -1,0 +1,650 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>PHD Enterprise 2.0.1 Release Notes | Pivotal Docs</title>
+    <!-- Local CSS stylesheets -->
+    <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+    <!-- Confluence HTML stylesheet -->
+    <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+    <!-- Left-navigation code -->
+    <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+    <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+        </script>
+    <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+    <!-- End left-navigation code -->
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+    if (window.location.host === 'docs.gopivotal.com') {
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39702075-1']);
+        _gaq.push(['_setDomainName', 'gopivotal.com']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    }
+  </script>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+
+	<script type="text/javascript">
+	  WebFontConfig = {
+	    google: { families: [ 'Source+Sans+Pro:300italic,400italic,600italic,300,400,600:latin' ] }
+	  };
+	  (function() {
+	    var wf = document.createElement('script');
+	    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+	      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+	    wf.type = 'text/javascript';
+	    wf.async = 'true';
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(wf, s);
+	  })(); </script>
+
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="http://docs.gopivotal.com/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+				<ul class="accordion"  id="accordion-1">
+					<!-- REPLACE <li/> NODES-->
+                        <li>
+                <a href="index.html">Home</a></br>
+                                
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 2.0.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise2.0.1ReleaseNotes.html">PHD Enterprise 2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallationOverview.html">Installation Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationChecklist.html">PHD Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradeChecklist.html">Upgrade Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyInstallingPivotalHD2.0Stack.html">Manually Installing Pivotal HD 2.0 Stack</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPivotalHDStackfrom1.1.1to2.0.html">Manually Upgrading Pivotal HD Stack from 1.1.1 to 2.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalHadoopEnhancements.html">Pivotal Hadoop Enhancements</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.2.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.2.1ReleaseNotes.html">PCC 2.2.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCInstallationChecklist.html">PCC Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalHAWQ.html">Pivotal HAWQ 1.2.0</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQ1.2.0.1ReleaseNotes.html">HAWQ 1.2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallationandUpgrade.html">HAWQ Installation and Upgrade</a>
+
+                            <ul>
+                    <li>
+                <a href="PreparingtoInstallHAWQ.html">Preparing to Install HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingHAWQ.html">Installing HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingtheHAWQComponents.html">Installing the HAWQ Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingHAWQandComponents.html">Upgrading HAWQ and Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingHAWQtoQueryData.html">Using HAWQ to Query Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQFilespacesandHighAvailabilityEnabledHDFS.html">HAWQ Filespaces and High Availability Enabled HDFS</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SystemCatalogReference.html">System Catalog Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </div><!--end of sub-nav-->
+            
+            <h3 class="title-container">PHD Enterprise 2.0.1 Release Notes</h3>
+            <div class="content">
+              <!-- Python script replaces main content -->
+			  <div id ="main"><div style="visibility:hidden; height:2px;">Pivotal Product Documentation : PHD Enterprise 2.0.1 Release Notes</div><div class="wiki-content group" id="main-content">
+<p><style type="text/css">/*<![CDATA[*/
+div.rbtoc1400035777570 {padding: 0px;}
+div.rbtoc1400035777570 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1400035777570 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1400035777570">
+<ul class="toc-indentation">
+<li><a href="#PHDEnterprise2.0.1ReleaseNotes-PHDComponents">PHD Components</a></li>
+<li><a href="#PHDEnterprise2.0.1ReleaseNotes-Requirements">Requirements</a></li>
+<li><a href="#PHDEnterprise2.0.1ReleaseNotes-What’sNew">What’s New</a></li>
+<li><a href="#PHDEnterprise2.0.1ReleaseNotes-InstallationNotes">Installation Notes</a></li>
+<li><a href="#PHDEnterprise2.0.1ReleaseNotes-UpgradeNotes">Upgrade Notes</a></li>
+<li><a href="#PHDEnterprise2.0.1ReleaseNotes-AdditionstoApache">Additions to Apache</a>
+<ul class="toc-indentation">
+<li><a href="#PHDEnterprise2.0.1ReleaseNotes-ApachePatches">Apache Patches</a></li>
+<li><a href="#PHDEnterprise2.0.1ReleaseNotes-PivotalApacheModification">Pivotal Apache Modification</a></li>
+</ul>
+</li>
+<li><a href="#PHDEnterprise2.0.1ReleaseNotes-ResolvedIssues">Resolved Issues</a></li>
+<li><a href="#PHDEnterprise2.0.1ReleaseNotes-KnownIssues">Known Issues</a></li>
+<li><a href="#PHDEnterprise2.0.1ReleaseNotes-VersioningandCompatibility">Versioning and Compatibility</a>
+<ul class="toc-indentation">
+<li><a href="#PHDEnterprise2.0.1ReleaseNotes-PivotalandOtherComponents.1">Pivotal and Other Components</a></li>
+<li><a href="#PHDEnterprise2.0.1ReleaseNotes-Apache">Apache</a></li>
+</ul>
+</li>
+<li><a href="#PHDEnterprise2.0.1ReleaseNotes-PivotalHDEnterpriseDocumentation">Pivotal HD Enterprise Documentation</a></li>
+</ul>
+</div></p><p align="LEFT"><br/> <span class="confluence-anchor-link" id="PHDEnterprise2.0.1ReleaseNotes-Component"></span></p><h2 id="PHDEnterprise2.0.1ReleaseNotes-PHDComponents">PHD Components</h2><p align="LEFT">Pivotal HD Enterprise 2.0.1 includes the following open source Apache stack and other components:</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>For specific version numbers for all components, see <a href="#PHDEnterprise2.0.1ReleaseNotes-VersioningandCompatibility">Versioning and Compatibility</a> later in this document.</p>
+</div>
+</div>
+<h4 class="wiki-content" id="PHDEnterprise2.0.1ReleaseNotes-CoreApacheStack">Core Apache Stack</h4><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Component</p></th><th class="confluenceTh"><p>Description</p></th></tr><tr><td class="confluenceTd"><p>Hadoop</p></td><td class="confluenceTd"><p>HDFS: A Hadoop distributed file system (HDFS).</p><p>YARN: Next-generation Hadoop data-processing framework.</p></td></tr><tr><td class="confluenceTd"><p>Pig</p></td><td class="confluenceTd"><p>Procedural language that abstracts lower level MapReduce.</p></td></tr><tr><td class="confluenceTd" colspan="1"><p>Hive</p></td><td class="confluenceTd" colspan="1"><p>Data warehouse infrastructure built on top of Hadoop.</p></td></tr><tr><td class="confluenceTd" colspan="1"><p>HCatalog</p></td><td class="confluenceTd" colspan="1"><p>HCatalog is a table and storage management layer for Hadoop that enables users with different data processing tools – Pig, MapReduce, and Hive – to more easily read and write data on the grid.</p></td></tr><tr><td class="confluenceTd" colspan="1"><p>HBase</p></td><td class="confluenceTd" colspan="1"><p>Database for random real time read/write access.</p></td></tr><tr><td class="confluenceTd" colspan="1"><p>Mahout</p></td><td class="confluenceTd" colspan="1"><p>Scalable machine learning and data mining library.</p></td></tr><tr><td class="confluenceTd" colspan="1"><p>Zookeeper</p></td><td class="confluenceTd" colspan="1"><p>Hadoop centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services.</p></td></tr><tr><td class="confluenceTd" colspan="1"><p>Flume</p></td><td class="confluenceTd" colspan="1"><p>A tool used for collecting and aggregating data from multiple sources to a centralized data store.</p></td></tr><tr><td class="confluenceTd" colspan="1"><p>Sqoop</p></td><td class="confluenceTd" colspan="1"><p>A tool for transferring bulk data between Apache Hadoop and structured datastores.</p></td></tr><tr><td class="confluenceTd" colspan="1"><p>Oozie</p></td><td class="confluenceTd" colspan="1"><p>A workflow scheduler system to manage Apache Hadoop jobs. Oozie Workflow jobs are Directed Acyclical Graphs (DAGs) of actions. Oozie Coordinator jobs are recurrent Oozie Workflow jobs triggered by time (frequency) and data availability.</p></td></tr></tbody></table></div><h4 id="PHDEnterprise2.0.1ReleaseNotes-PivotalandOtherComponents">Pivotal and Other Components</h4><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Component</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd">Pivotal Command Center</td><td class="confluenceTd"><p>A command line and web-based tool for installing, managing and monitoring your Pivotal HD cluster.</p></td></tr><tr><td class="confluenceTd" colspan="1">Pivotal HAWQ</td><td class="confluenceTd" colspan="1">HAWQ is a parallel SQL query engine that combines the merits of the Greenplum Database Massively Parallel Processing (MPP) relational database engine and the Hadoop parallel processing framework.</td></tr><tr><td class="confluenceTd" colspan="1">Pivotal HAWQ - PXF</td><td class="confluenceTd" colspan="1">Extensibility layer to provide support for external data formats such as HBase and Hive.</td></tr><tr><td class="confluenceTd" colspan="1">Pivotal Real Time Services (PRTS)</td><td class="confluenceTd" colspan="1"><p>Pivotal HD 2.0 includes support for GemFireXD (GFXD) 1.0, an offering of PRTS.</p></td></tr><tr><td class="confluenceTd" colspan="1">* Hamster</td><td class="confluenceTd" colspan="1"><p>Developed by Pivotal, Hamster (beta) is a framework which enable users running MPI programs on Apache Hadoop YARN platform.</p><p>(OpenMPI is a A High Performance Message Passing Library)</p></td></tr><tr><td class="confluenceTd" colspan="1">* GraphLab</td><td class="confluenceTd" colspan="1"><p>GraphLab is a powerful new system for designing and implementing parallel algorithms in machine learning. It is a graph-based, high performance, distributed computation framework written in C++ that makes use of MPI and has its own programming model.</p><p>Note that this service is in Beta, so only community support is provided. Interested customers should contact their account managers if they plan to use GraphLab in production.</p></td></tr></tbody></table></div><p>* New in PHD 2.0</p><p><span class="confluence-anchor-link" id="PHDEnterprise2.0.1ReleaseNotes-Requirements"></span></p><h2 id="PHDEnterprise2.0.1ReleaseNotes-Requirements">Requirements</h2><ul><li>Java: The Oracle JDK 1.7 is required to be installed prior to a cluster installation. Instructions for checking for, and downloading the Oracle JDK are included in the installation process described in the Pivotal HD Enterprise 2.0 Installation and User Guide.</li></ul> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>PHD 2.x. has been tested with JDK 1.7 (u15)</p>
+</div>
+</div>
+<p> </p><p><span class="confluence-anchor-link" id="PHDEnterprise2.0.1ReleaseNotes-WhatsNew"></span></p><h2 id="PHDEnterprise2.0.1ReleaseNotes-What’sNew">What’s New</h2><p>In addition to bug fixes and performance and functionality improvements, this release includes the following new and improved features:</p><ul><li>Apache<br style="color: rgb(255,0,0);"/><ul><li>Hadoop has been upgraded to 2.2.0</li><li>HBase has been upgraded to 0.96.0</li><li>Hive/HCatalog has been upgraded to 0.12.0</li><li>Oozie has been upgraded to 4.0.0</li><li>Flume has been upgraded to 1.4.0</li><li>HDFS NFS Gateway Support has been added</li></ul></li></ul><ul><li>Pivotal HAWQ has been upgraded to 1.2.0.1.</li><li>Pivotal's Hamster 1.0 (beta) has been added to this distribution.</li><li>GraphLab 2.2 (beta) has been added to this distribution.</li><li>Binary distribution files: Pivotal is no longer including binary archives of the product with this release.  If you happen to depend upon the binary archives as we delivered with previous releases, contact your sales/field representative for assistance.</li><li>MapReduce 1 (MR1): With improved MapReduce compatibility in Hadoop 2.2's YARN, Pivotal is no longer including the Hadoop 1.x MapReduce files with the rest of a Hadoop 2.x based stack.</li><li>DataLoader: Pivotal is no longer shipping the DataLoader tool.  For data ingestion, consider SpringXD, Flume, Sqoop or standard HDFS functionality such as HDFS put scripts.</li><li>USS: USS Beta is no longer being shipped with PHD.  In a future release it will be subsumed by PXF to support HAWQ queries on remote clusters/file systems</li><li>Spring Data: Spring Data is no longer being shipped with PHD.</li><li>Security Scripts: We provide instructions for manually enabling Kerberos authentication in the <em>PHD 2.0 Stack and Tools Reference Guide</em>.  We also can provide scripts to automate this process. To obtain these scripts and instructions how to use them, contact either your PHD Account Manager, or open up a service request with support at <a class="external-link" href="https://support.emc.com/" rel="nofollow">https://support.emc.com/</a> and ask for the PHD Secure Install Tools.</li><li>GemFireXD:  GemFireXD has been upgraded to 1.0.</li></ul><p><span class="confluence-anchor-link" id="PHDEnterprise2.0.1ReleaseNotes-InstallNotes"></span></p><h2 id="PHDEnterprise2.0.1ReleaseNotes-InstallationNotes">Installation Notes</h2><p>For a brief summary of the contents of this release and Getting Started instructions, refer to the <code>readme.txt</code> file.</p><p>Pivotal Command Center (PCC) provides a command line tool (CLI) and a Web-based user interface for installing and upgrading, monitoring, and management of Pivotal HD, as such, it must be installed first. To install Pivotal Command Center and the other Pivotal HD components via the CLI, follow the instructions in the <em>Pivotal HD Enterprise 2.0 Installation and User Guide</em>.</p><p>Pivotal HD Enterprise 2.0.1 is made up of the following tar files:</p><ul><li>Pivotal HD Enterprise: <code> PHD-2.0.1.0-148.tar.gz </code></li><li>Pivotal Command Center: <code> PCC-2.2.1-150.tar.gz <br/> </code></li><li>Pivotal HAWQ, PXF (Pivotal ADS): <code> PADS-1.2.0.1-8119.tar.gz </code></li><li>Pivotal GemFireXD (PRTS): <code> PRTS-1.0.0-14.tar.gz</code>. </li></ul><p>These files are available from <a class="external-link" href="http://network.gopivotal.com" rel="nofollow">Pivotal Network </a>or by contacting your account manager.</p><p>Binaries for previous releases are available from <a class="external-link" href="https://emc.subscribenet.com" rel="nofollow">EMC's Download Center</a>.</p><p>Pivotal Command Center’s CLI does not currently support the installation of the following Pivotal HD components, which have to be installed manually.</p><ul><li>Flume, Sqoop, Oozie, Hcatlog, Hamster and GraphLab: See the latest <em>Pivotal HD 2.0 Stack and Tool Reference Guide</em> for manual installation information.</li></ul><p> </p><p><span class="confluence-anchor-link" id="PHDEnterprise2.0.1ReleaseNotes-UpgradeNotes"></span></p><h2 id="PHDEnterprise2.0.1ReleaseNotes-UpgradeNotes">Upgrade Notes</h2><ul><li>If you are upgrading to a new version of Pivotal HD, make sure you are also upgrading to compatible versions of Pivotal Command Center and Pivotal ADS (optional). See <a href="#PHDEnterprise2.0.1ReleaseNotes-VersioningandCompatibility">Versioning and Compatibility</a> for more information)</li><li>We recommend that you always back up your data before performing any upgrades.</li><li>We recommend you upgrade Pivotal HD via the PCC command line interface (CLI) (ICM client). Instructions for upgrading components using the CLI, see the <em>PHD Installation and Administrator Guide</em>.</li><li>You cannot upgrade High Availability enabled clusters or secure clusters. Before upgrading, revert clusters to non-secure and non-HA enabled. See the <em>PHD Installation and Administrator Guide</em> for details.</li><li>Instructions for manually upgrading Pivotal HAWQ are provided in the <em>Pivotal HAWQ Installation and Upgrade Guide</em>.</li></ul><p><span class="confluence-anchor-link" id="PHDEnterprise2.0.1ReleaseNotes-Patches"></span></p><h2 id="PHDEnterprise2.0.1ReleaseNotes-AdditionstoApache">Additions to Apache</h2><h3 id="PHDEnterprise2.0.1ReleaseNotes-ApachePatches">Apache Patches</h3><p>The following patches were applied to PHD 2.0.1:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Apache Issue</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd" colspan="1"><a class="external-link" href="https://issues.apache.org/jira/browse/HDFS-5728" rel="nofollow">HDFS-5728</a></td><td class="confluenceTd" colspan="1"><p>[Diskfull] Block recovery will fail if the metafile does not have crc for all chunks of the block</p></td></tr><tr><td class="confluenceTd"><a class="external-link" href="https://issues.apache.org/jira/browse/HDFS-5438" rel="nofollow">HDFS-5438</a></td><td class="confluenceTd">Flaws in block report processing can cause data loss</td></tr><tr><td class="confluenceTd"><a class="external-link" href="https://issues.apache.org/jira/browse/HDFS-3848" rel="nofollow">HDFS-3848</a></td><td class="confluenceTd">A Bug in recoverLeaseInternal method of FSNameSystem class</td></tr><tr><td class="confluenceTd"><a class="external-link" href="https://issues.apache.org/jira/browse/HDFS-5526" rel="nofollow">HDFS-5526</a></td><td class="confluenceTd">Datanode cannot roll back to previous layout version</td></tr><tr><td class="confluenceTd"><a class="external-link" href="https://issues.apache.org/jira/browse/BIGTOP-802" rel="nofollow">BIGTOP-802</a></td><td class="confluenceTd">Add rollback option to DataNode service script</td></tr><tr><td class="confluenceTd"><a class="external-link" href="https://issues.apache.org/jira/browse/HIVE-4388" rel="nofollow">HIVE-4388</a></td><td class="confluenceTd">Upgrade HBase to 0.96</td></tr><tr><td class="confluenceTd"><a class="external-link" href="https://issues.apache.org/jira/browse/PIG-3512" rel="nofollow">PIG-3512</a></td><td class="confluenceTd">Reducer estimator is broken by PIG-3497</td></tr><tr><td class="confluenceTd"><a class="external-link" href="https://issues.apache.org/jira/browse/FLUME-1618" rel="nofollow">Flume-1618</a></td><td class="confluenceTd">Make Flume NG build and tests work with Hadoop 2.0 &amp; HBase 0.96</td></tr><tr><td class="confluenceTd"><a class="external-link" href="https://issues.apache.org/jira/browse/FLUME-2172" rel="nofollow">Flume-2172</a></td><td class="confluenceTd">Update protocol buffer from 2.4.1 to 2.5.0</td></tr></tbody></table></div><h3 id="PHDEnterprise2.0.1ReleaseNotes-PivotalApacheModification">Pivotal Apache Modification</h3><p>The following changes were applied to PHD's Apache stack:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Apache Component</th><th class="confluenceTh">Pivotal Issue</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd">HADOOP</td><td class="confluenceTd">HD-6508</td><td class="confluenceTd">Added HVE topology support for Hadoop 2.2.0</td></tr><tr><td class="confluenceTd">HADOOP</td><td class="confluenceTd">HD-8088</td><td class="confluenceTd">Added HVE elasticity support for Hadoop 2.2.0</td></tr><tr><td class="confluenceTd">HADOOP</td><td class="confluenceTd">HD-6938</td><td class="confluenceTd">Added Rack Awareness Support for Hadoop 2.2.0</td></tr><tr><td class="confluenceTd">HADOOP</td><td class="confluenceTd">HD-7669</td><td class="confluenceTd">Added PXF functionality support for Hadoop 2.2.0</td></tr><tr><td class="confluenceTd">HADOOP</td><td class="confluenceTd">HD-6936</td><td class="confluenceTd">Added HAWQ support for Hadoop 2.2.0</td></tr><tr><td class="confluenceTd">HADOOP</td><td class="confluenceTd">HD-7780</td><td class="confluenceTd">Added Vaidya support for Hadoop 2.2.0</td></tr><tr><td class="confluenceTd" colspan="1">HADOOP</td><td class="confluenceTd" colspan="1">HD-6937</td><td class="confluenceTd" colspan="1">Added Jetty 7 support for Hadoop 2.2.0</td></tr><tr><td class="confluenceTd" colspan="1">HBASE</td><td class="confluenceTd" colspan="1">HD-7642</td><td class="confluenceTd" colspan="1">Added Jetty 7 support for HBase 0.96.0</td></tr><tr><td class="confluenceTd" colspan="1">HADOOP</td><td class="confluenceTd" colspan="1">HD-7833</td><td class="confluenceTd" colspan="1">nfs3.server.port  in core-site.xml doesn't take effect</td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="PHDEnterprise2.0.1ReleaseNotes-ResolvedIssues"></span></p><h2 id="PHDEnterprise2.0.1ReleaseNotes-ResolvedIssues">Resolved Issues</h2><p>This section lists issues that have been resolved in Pivotal HD 2.0.1.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>For resolved issues relating to Pivotal Command Center’s UI functionality, see the corresponding PCC Release Notes.</p>
+</div>
+</div>
+<div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><div class="tablesorter-header-inner">Issue</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Description</div></th></tr><tr><td class="confluenceTd" colspan="1">HD-9527</td><td class="confluenceTd" colspan="1"><p>Nodemanager failed to launch more than 4 tasks in parallel in secure mode.</p></td></tr><tr><td class="confluenceTd" colspan="1">HD-9238</td><td class="confluenceTd" colspan="1"><p>Especially under high volume usage, Yarn can throw text file busy exceptions.</p></td></tr><tr><td class="confluenceTd" colspan="1">HD-7105</td><td class="confluenceTd" colspan="1">Error messages and product documentation gave the incorrect location of the ScanCluster.xxx.log files.</td></tr><tr><td class="confluenceTd" colspan="1">HD-8005</td><td class="confluenceTd" colspan="1">Polling logs could fill up the log files causing it difficult to debug the actual problems reported in error logs. Polling and gphdmgr-webservices.log logs are now separated.</td></tr><tr><td class="confluenceTd" colspan="1">HD-8353</td><td class="confluenceTd" colspan="1">PCC installation failed if postgresql-server was running and pre-initialized.</td></tr><tr><td class="confluenceTd" colspan="1">HD-6062</td><td class="confluenceTd" colspan="1"><p title="Inline edit disabled.">Installation can fail due to rpm permission issues.</p></td></tr><tr><td class="confluenceTd" colspan="1">HD-6063</td><td class="confluenceTd" colspan="1">Null values in the cluster configuration could cause a memory leak. Null values are now dealt with properly; If they are a mandatory field, validation should fail; if optional, ignored.</td></tr><tr><td class="confluenceTd" colspan="1">HD-7867</td><td class="confluenceTd" colspan="1">PHD installation failed due to a puppet synchronization error.</td></tr><tr><td class="confluenceTd" colspan="1">HD-8944</td><td class="confluenceTd" colspan="1">Some job details were not being collected properly due to the inconsistency of history server and polling service. <br/> A new API now collects the specified job details from Hadoop and updates the database.</td></tr><tr><td class="confluenceTd" colspan="1">HD-9059</td><td class="confluenceTd" colspan="1">Misleading error message was thrown after <code>icm_client import</code> failure due to missing rpms.</td></tr><tr><td class="confluenceTd" colspan="1"><p>HD-9095</p></td><td class="confluenceTd" colspan="1">Unable to secure a HA cluster because HDFS was started in the wrong order, before Zookeeper. Zookeeper is now automatically started first.</td></tr><tr><td class="confluenceTd" colspan="1">HD-9184</td><td class="confluenceTd" colspan="1">Cluster service could not be started after PHD stack upgrade.</td></tr><tr><td class="confluenceTd" colspan="1">HD-9355</td><td class="confluenceTd" colspan="1"><p>Typo in <code> hadoop-env.sh </code>file caused following error to be thrown: <code>ERROR Could not find value for key log4j.appender.DRFAAUDIT</code></p></td></tr><tr><td class="confluenceTd" colspan="1">HD-2339</td><td class="confluenceTd" colspan="1"><p>Security warning when short-circuit read is not allowed. MapReduce jobs continue correctly by reading through HDFS.</p></td></tr><tr><td class="confluenceTd">HD-7856</td><td class="confluenceTd"><p>When using QJM, running BootstrapStandby while the existing NN was active could result in an exception.</p></td></tr><tr><td class="confluenceTd" colspan="1">HD-7010</td><td class="confluenceTd" colspan="1"><p>If Hive support for HAWQ is required then the Hive server needs to be collocated with namenode. This restriction is due to a known bug which will be fixed in the future releases.</p></td></tr><tr><td class="confluenceTd" colspan="1">N/A</td><td class="confluenceTd" colspan="1"><p>Single node installations are now supported but are only recommended for demonstration/POC purposes.</p></td></tr><tr><td class="confluenceTd" colspan="1">HD-8730</td><td class="confluenceTd" colspan="1"><p>Start/Reconfigure or upgrade actions failed after upgrading from PCC 2.1.0 to a later version.</p></td></tr><tr><td class="confluenceTd" colspan="1">HD-9062</td><td class="confluenceTd" colspan="1"><p>MapReduce jobs failed after upgrading from PHD 1.1.0 to 1.1.1 due to NodeManager failing to cleanup local directories.</p></td></tr><tr><td class="confluenceTd" colspan="1">HD-8712</td><td class="confluenceTd" colspan="1"><p>Zookeeper automatic failover fails as both NameNodes being in Standby mode.</p></td></tr></tbody></table></div><p> </p><p><span class="confluence-anchor-link" id="PHDEnterprise2.0.1ReleaseNotes-KnownIssues"></span></p><h2 id="PHDEnterprise2.0.1ReleaseNotes-KnownIssues">Known Issues</h2><p>This section lists the known issues in Pivotal HD Enterprise. A workaround is provided where applicable.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>For known issues relating to Pivotal Command Center’s UI functionality, see the corresponding <em>PCC Release Notes</em></p>
+</div>
+</div>
+<div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">Component</th><th class="confluenceTh">Issue</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd" colspan="1">HDFS</td><td class="confluenceTd" colspan="1">HD-9912</td><td class="confluenceTd" colspan="1">Users may encounter a  rare, but known issue with Apache: JIRA  <a class="external-link" href="https://issues.apache.org/jira/browse/HDFS-5557" rel="nofollow">HDFS-5557</a> - <em>Write pipeline recovery for the last packet in the block may cause rejection of valid replicas.</em><div>Customers are advised to be aware of this rare HDFS anomaly and should feel free to contact Pivotal Support if they see symptoms similar to the ones mentioned in HDFS-5557. This bug only impacts the Hadoop 2.2 release, and will be resolved once Pivotal HD moves to a Hadoop release later than 2.2.</div></td></tr><tr><td class="confluenceTd" colspan="1">HDFS Upgrade</td><td class="confluenceTd" colspan="1">HD-7339</td><td class="confluenceTd" colspan="1"><p>If Hbase master is installed all alone without any other Hadoop roles, the upgrade from an older version of stack to newer version fails.</p><p><strong>Workaround</strong>: Stop Hbase, manually run <code>yum install hadoop-hdfs-&lt;new version&gt;</code> on the Hbase master node and restart Hbase.</p></td></tr><tr><td class="confluenceTd" colspan="1">Install/Upgrade</td><td class="confluenceTd" colspan="1">CC-3494</td><td class="confluenceTd" colspan="1"><p>Install/Upgrades: If the RHEL ssl certificate for subscription-manager plugin has expired, yum will fail.</p><p><strong>Workaround</strong>: If <code>yum -list</code> reports an error on any of the cluster nodes then check the yum configurations files, /etc/yum.repos.d/ and make sure all remote repositories are DNS resolvable.</p></td></tr><tr><td class="confluenceTd" colspan="1">Hive</td><td class="confluenceTd" colspan="1">HD-9676</td><td class="confluenceTd" colspan="1"><p title="Inline edit disabled.">If Hive is part of your PHD deployment; <code>java-1.5.0-gcj-1.5.0.0-29.1.el6.x86_64</code> will be installed on your hive server node overriding the<code> /usr/bin/java</code> to point to java-1.5.0-gcj instead of the Java7 you have provided as part of your base PHD deployment. This can cause issues with services that don't explicitly set the Java path (GemfireXD for example).</p><p title="Inline edit disabled."><strong>Workaround:</strong></p><p title="Inline edit disabled.">Following PHD deployment, set <code> /usr/bin/java</code> as follows:</p><p title="Inline edit disabled.">Either:<br/> <code> ln -f -s /usr/java/default/bin/java /usr/bin/java </code></p><p title="Inline edit disabled.">or</p><p title="Inline edit disabled."><code> ln -f -s /usr/java/latest/bin/java /usr/bin/java </code></p></td></tr><tr><td class="confluenceTd" colspan="1"> HD-8960</td><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><p>In environments using LDAP authentication, Namenode can fail when running queries due to JVM crash.</p><p>Workaround:</p><p>Add the following parameter to core-site.xml:</p><pre>&lt;property&gt;
+  &lt;name&gt;hadoop.security.group.mapping&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.security.ShellBasedUnixGroupsMapping&lt;/value&gt;
+&lt;/property&gt;</pre></td></tr><tr><td class="confluenceTd" colspan="1">Sqoop</td><td class="confluenceTd" colspan="1">HD-9429</td><td class="confluenceTd" colspan="1"><p title="Inline edit disabled.">SQOOP: Import to HBase does not work on a secure cluster.</p></td></tr><tr><td class="confluenceTd" colspan="1">HBase</td><td class="confluenceTd" colspan="1">HD-9399</td><td class="confluenceTd" colspan="1"><p title="Inline edit disabled.">Writing to an HBase table throws an IllegalArgumentException, causing job submission to fail.</p></td></tr><tr><td class="confluenceTd" colspan="1">HBase</td><td class="confluenceTd" colspan="1">HD-9090</td><td class="confluenceTd" colspan="1"><p title="Inline edit disabled.">Zookeeper exception appears in HBase shell running on a security phd cluster by non-root user.</p></td></tr><tr><td class="confluenceTd" colspan="1">HDFS</td><td class="confluenceTd" colspan="1">HD-9153</td><td class="confluenceTd" colspan="1">Namenode WebUI browse file system fails with secure HDFS. </td></tr><tr><td class="confluenceTd" colspan="1">HDFS NFS</td><td class="confluenceTd" colspan="1">HD-808</td><td class="confluenceTd" colspan="1">Attempts to copy a large file to a HDFS NFS mounted directory can cause the system to hang.</td></tr><tr><td class="confluenceTd" colspan="1">General</td><td class="confluenceTd" colspan="1">HD-8493</td><td class="confluenceTd" colspan="1">Prepare host command fails if the root password contains certain special characters, for example: $</td></tr><tr><td class="confluenceTd" colspan="1">General</td><td class="confluenceTd" colspan="1">HD-7296</td><td class="confluenceTd" colspan="1"><p>Some<code> icm_client</code> commands are not supported on FIPS mode-enabled clusters.</p><p>The following ICM commands work on FIPS mode:</p><p>i<code>cm_client list</code>, <code>start</code>, <code>stop</code>, <code>preparehosts</code>, <code>scanhosts</code>, <code>import</code>,<code> fetch-template</code>, <code>fetch-configuration</code></p><p>The following ICM commands DO NOT work on FIPS mode:</p><p><code>deploy</code>, <code>uninstall</code>, <code>reconfigure</code>, <code>add-slaves</code>, <code>remove-slaves</code></p><p><strong>Workaround</strong>: Disable FIPS, run the required commands, then renable FIPS.</p></td></tr><tr><td class="confluenceTd" colspan="1">General</td><td class="confluenceTd" colspan="1">HD-8926</td><td class="confluenceTd" colspan="1"><p>Single-node installations fail due to a Postgres configuration issue that blocks the ip connection needed to create hive metastore to create schema.</p><p><strong>Workaround</strong>:</p><p>After installing PCC, but before cluster deployment, do the following:</p><ol><li>If they do not already exist, add the following lines to <code>/var/lib/pgsql/data/postgresql.conf</code>:<br/><p style="margin-left: 30.0px;"><code> <code>listen_addresses = '*'</code> <br/>standard_conforming_strings = off</code></p><p style="margin-left: 30.0px;">Notes:</p><p style="margin-left: 30.0px;">If these two lines did not exist they would automatically be added after the deployment operation.<br/>Another, <code>listen_address = 'localhost'</code> also exists but is commented out.</p></li><li>Check that the following lines exist as shown below in <code>/var/lib/pgsql/data/pg_hba.conf</code> <br/><p><code># "local" is for Unix domain socket connections only</code> <br/> <code>local all all trust</code></p><p><code># IPv4 local connections:</code> <br/> <code>host all all 0.0.0.0 0.0.0.0 trust</code></p><p><code># IPv6 local connections:</code> <br/> <code>host all all ::1/128 trust<br/> </code></p></li><li>For your changes to take effect, restart postgres:<br/> <code>sudo /etc/init.d/postgresql restart</code></li></ol></td></tr><tr><td class="confluenceTd" colspan="1">General</td><td class="confluenceTd" colspan="1">CC-3501</td><td class="confluenceTd" colspan="1">Pivotal Command Center hostnames can only contain lower case letters.</td></tr><tr><td class="confluenceTd" colspan="1">General</td><td class="confluenceTd" colspan="1">HD-2209</td><td class="confluenceTd" colspan="1"><p>After uninstalling a cluster, some of the following RPMs may be left behind:</p><ul><li><code>bigtop-jsvc.x86_64</code></li><li><code>bigtop-utils.noarch</code></li><li><code>zookeeper.noarch</code></li><li><code>zookeeper-server.noarch</code></li></ul></td></tr><tr><td class="confluenceTd" colspan="1">General</td><td class="confluenceTd" colspan="1">HD-9126</td><td class="confluenceTd" colspan="1"><p>PHD CLI currently does not support downgrading the Hadoop version on the entire cluster.</p></td></tr><tr><td class="confluenceTd" colspan="1">General</td><td class="confluenceTd" colspan="1">HD-9105</td><td class="confluenceTd" colspan="1"><p>Sqoop cannot be installed via the PHD CLI.</p><p>See the <em>Pivotal HD Enterprise Stack and Tool Reference Guide</em> for details on installing Sqoop manually.</p></td></tr><tr><td class="confluenceTd" colspan="1">General</td><td class="confluenceTd" colspan="1">HD-9106</td><td class="confluenceTd" colspan="1"><p>Flume cannot be installed via the PHD CLI.</p><p>See the <em>Pivotal HD Enterprise Stack and Tool Reference Guide</em> for details on installing Flume manually.</p></td></tr><tr><td class="confluenceTd" colspan="1">General</td><td class="confluenceTd" colspan="1">HD-6149</td><td class="confluenceTd" colspan="1"><p>Reconfiguration changes are not implemented following an upgrade or reconfiguration:</p><p><strong>Workaround</strong>: Following an upgrade or reconfiguration, perform the following:</p><ol><li>Fetch the new templates that come with the upgraded software by running<code> icm_client fetch-template</code>.</li><li>Retrieve the existing configuration from database using <code>icm_client fetch-configuration</code>.</li><li>Sync the new configurations (<code>hdfs/hadoop-env</code>) from the template directory to the existing cluster configuration directory.</li><li>Upgrade or reconfigure service by specifying the cluster configuration directory with updated contents.</li></ol></td></tr><tr><td class="confluenceTd" colspan="1">General</td><td class="confluenceTd" colspan="1">HD-2909</td><td class="confluenceTd" colspan="1"><p>nmon does not monitor when there are multiple clusters.</p><p><strong>Workaround</strong>: After the second cluster install perform the following from the Admin node:</p><p>Copy<code> /etc/nmon/conf/nmon-site.xml</code> to all the cluster hosts (same location)</p><p><code>massh hostfile verbose 'sudo service nmon restart'</code></p><p>(hostfile must contain all the existing cluster hosts)</p></td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="PHDEnterprise2.0.1ReleaseNotes-Versioning"></span></p><h2 id="PHDEnterprise2.0.1ReleaseNotes-VersioningandCompatibility">Versioning and Compatibility</h2><h3 id="PHDEnterprise2.0.1ReleaseNotes-PivotalandOtherComponents.1">Pivotal and Other Components</h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Product</th><th class="confluenceTh">Version</th><th class="confluenceTh">OS/Browser</th></tr><tr><td class="confluenceTd"><p>Pivotal HD<br/>See the table below for Apache Stack component versioning information.</p></td><td class="confluenceTd">2.0.1</td><td class="confluenceTd"><p>RedHat 64-bit: 6.2, 6.4<br/>CentOS 64-bit: 6.2, 6.4</p></td></tr><tr><td class="confluenceTd">Pivotal Command Center</td><td class="confluenceTd">2.2.1</td><td class="confluenceTd"><p>RedHat 64-bit: 6.2, 6.4<br/>CentOS 64-bit: 6.2, 6.4<br/>Firefox 21, 22<br/>Chrome Version 28.0.1500.95<br/>IE 9, 10</p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ *</td><td class="confluenceTd" colspan="1">1.2.0.1</td><td class="confluenceTd" colspan="1"><p>RedHat 64-bit: 6.2, 6.4<br/>CentOS 64-bit: 6.2, 6.4</p></td></tr><tr><td class="confluenceTd" colspan="1">PXF *</td><td class="confluenceTd" colspan="1">2.2</td><td class="confluenceTd" colspan="1"><p>RedHat 64-bit: 6.2, 6.4<br/>CentOS 64-bit: 6.2, 6.4</p></td></tr><tr><td class="confluenceTd" colspan="1">Hamster</td><td class="confluenceTd" colspan="1">1.0</td><td class="confluenceTd" colspan="1">N/A</td></tr><tr><td class="confluenceTd" colspan="1">GraphLab</td><td class="confluenceTd" colspan="1">2.2</td><td class="confluenceTd" colspan="1">N/A</td></tr></tbody></table></div><p>* Distributed with Pivotal ADS 1.2</p><h3 id="PHDEnterprise2.0.1ReleaseNotes-Apache">Apache</h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Component        </th><th class="confluenceTh">Version              </th></tr><tr><td class="confluenceTd">Hadoop HDFS</td><td class="confluenceTd">2.2.0</td></tr><tr><td class="confluenceTd">Hadoop YARN</td><td class="confluenceTd">2.2.0</td></tr><tr><td class="confluenceTd" colspan="1">Pig</td><td class="confluenceTd" colspan="1">0.12.0</td></tr><tr><td class="confluenceTd" colspan="1">Hive</td><td class="confluenceTd" colspan="1">0.12.0</td></tr><tr><td class="confluenceTd" colspan="1">HBase</td><td class="confluenceTd" colspan="1">0.96.0</td></tr><tr><td class="confluenceTd" colspan="1">Mahout</td><td class="confluenceTd" colspan="1">0.7</td></tr><tr><td class="confluenceTd" colspan="1">Zookeeper</td><td class="confluenceTd" colspan="1">3.4.5</td></tr><tr><td class="confluenceTd" colspan="1">Flume</td><td class="confluenceTd" colspan="1">1.4.0</td></tr><tr><td class="confluenceTd" colspan="1">Sqoop</td><td class="confluenceTd" colspan="1">1.4.2</td></tr><tr><td class="confluenceTd" colspan="1">HCatalog</td><td class="confluenceTd" colspan="1">0.12.0</td></tr><tr><td class="confluenceTd" colspan="1">Oozie</td><td class="confluenceTd" colspan="1">4.0.0</td></tr></tbody></table></div><p> </p><p><span class="confluence-anchor-link" id="PHDEnterprise2.0.1ReleaseNotes-Documentation"></span></p><h2 id="PHDEnterprise2.0.1ReleaseNotes-PivotalHDEnterpriseDocumentation">Pivotal HD Enterprise Documentation</h2><div>The following Pivotal HD Enterprise and related documentation is available in HTML and PDF format on our website at <a class="external-link" href="http://docs.gopivotal.com/pivotalhd/" rel="nofollow">docs.gopivotal.com/pivotalhd/</a>.</div><div>Documentation for previous releases is available from EMC’s <a class="external-link" href="https://support.emc.com/" rel="nofollow">Support Zone</a>.</div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Title</th><th class="confluenceTh">Revision</th></tr><tr><td class="confluenceTd" colspan="1">Pivotal HD Enterprise 2.0 Installation and Administrator Guide</td><td class="confluenceTd" colspan="1">A02</td></tr><tr><td class="confluenceTd" colspan="1">Pivotal HD Enterprise 2.0.1 Release Notes (this document)</td><td class="confluenceTd" colspan="1">A01</td></tr><tr><td class="confluenceTd" colspan="1">Pivotal Command Center 2.2 User Guide</td><td class="confluenceTd" colspan="1">A02</td></tr><tr><td class="confluenceTd" colspan="1"><p>Pivotal HD 2.0 Stack and Tool Reference Guide</p></td><td class="confluenceTd" colspan="1">A02</td></tr><tr><td class="confluenceTd" colspan="1"><p>Pivotal HAWQ 1.2 Administrator Guide</p></td><td class="confluenceTd" colspan="1">A02</td></tr><tr><td class="confluenceTd" colspan="1">Pivotal HAWQ 1.2 Installation Guide</td><td class="confluenceTd" colspan="1">A02</td></tr><tr><td class="confluenceTd" colspan="1">Pivotal Extension Framework 2.2 Installation and User Guide</td><td class="confluenceTd" colspan="1">A02</td></tr></tbody></table></div>
+</div></div>
+            </div><!-- end of content-->
+            
+            
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

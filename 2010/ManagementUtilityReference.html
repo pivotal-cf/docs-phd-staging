@@ -1,0 +1,1223 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>Management Utility Reference | Pivotal Docs</title>
+    <!-- Local CSS stylesheets -->
+    <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+    <!-- Confluence HTML stylesheet -->
+    <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+    <!-- Left-navigation code -->
+    <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+    <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+        </script>
+    <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+    <!-- End left-navigation code -->
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+    if (window.location.host === 'docs.gopivotal.com') {
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39702075-1']);
+        _gaq.push(['_setDomainName', 'gopivotal.com']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    }
+  </script>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+
+	<script type="text/javascript">
+	  WebFontConfig = {
+	    google: { families: [ 'Source+Sans+Pro:300italic,400italic,600italic,300,400,600:latin' ] }
+	  };
+	  (function() {
+	    var wf = document.createElement('script');
+	    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+	      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+	    wf.type = 'text/javascript';
+	    wf.async = 'true';
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(wf, s);
+	  })(); </script>
+
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="http://docs.gopivotal.com/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+				<ul class="accordion"  id="accordion-1">
+					<!-- REPLACE <li/> NODES-->
+                        <li>
+                <a href="index.html">Home</a></br>
+                                
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 2.0.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise2.0.1ReleaseNotes.html">PHD Enterprise 2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallationOverview.html">Installation Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationChecklist.html">PHD Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradeChecklist.html">Upgrade Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyInstallingPivotalHD2.0Stack.html">Manually Installing Pivotal HD 2.0 Stack</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPivotalHDStackfrom1.1.1to2.0.html">Manually Upgrading Pivotal HD Stack from 1.1.1 to 2.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalHadoopEnhancements.html">Pivotal Hadoop Enhancements</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.2.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.2.1ReleaseNotes.html">PCC 2.2.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCInstallationChecklist.html">PCC Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalHAWQ.html">Pivotal HAWQ 1.2.0</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQ1.2.0.1ReleaseNotes.html">HAWQ 1.2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallationandUpgrade.html">HAWQ Installation and Upgrade</a>
+
+                            <ul>
+                    <li>
+                <a href="PreparingtoInstallHAWQ.html">Preparing to Install HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingHAWQ.html">Installing HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingtheHAWQComponents.html">Installing the HAWQ Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingHAWQandComponents.html">Upgrading HAWQ and Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingHAWQtoQueryData.html">Using HAWQ to Query Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQFilespacesandHighAvailabilityEnabledHDFS.html">HAWQ Filespaces and High Availability Enabled HDFS</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SystemCatalogReference.html">System Catalog Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </div><!--end of sub-nav-->
+            
+            <h3 class="title-container">Management Utility Reference</h3>
+            <div class="content">
+              <!-- Python script replaces main content -->
+			  <div id ="main"><div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Management Utility Reference</div><div class="wiki-content group" id="main-content">
+<p>This appendix provides references for the command-line management utilities provided with HAWQ. HAWQ utilizes the standard PostgreSQL client and server programs, and also has additional management utilities to facilitate the administration of a distributed HAWQ DBMS.</p><p>The HAWQ management utilities are located in $GPHOME/bin.</p><p><style type="text/css">/*<![CDATA[*/
+div.rbtoc1400035794684 {padding: 0px;}
+div.rbtoc1400035794684 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1400035794684 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1400035794684">
+<ul class="toc-indentation">
+<li><a href="#ManagementUtilityReference-BackendServerPrograms">Backend Server Programs</a></li>
+<li><a href="#ManagementUtilityReference-gpactivatestandby">gpactivatestandby</a></li>
+<li><a href="#ManagementUtilityReference-gpcheckperf">gpcheckperf</a></li>
+<li><a href="#ManagementUtilityReference-gpconfig">gpconfig</a></li>
+<li><a href="#ManagementUtilityReference-gpexpand">gpexpand</a></li>
+<li><a href="#ManagementUtilityReference-gpextract">gpextract</a></li>
+<li><a href="#ManagementUtilityReference-gpfdist">gpfdist</a></li>
+<li><a href="#ManagementUtilityReference-gpfilespace">gpfilespace</a></li>
+<li><a href="#ManagementUtilityReference-gpinitstandby">gpinitstandby</a></li>
+<li><a href="#ManagementUtilityReference-gpinitsystem">gpinitsystem</a></li>
+<li><a href="#ManagementUtilityReference-gpload">gpload</a></li>
+<li><a href="#ManagementUtilityReference-gplogfilter">gplogfilter</a></li>
+<li><a href="#ManagementUtilityReference-gprecoverseg">gprecoverseg</a></li>
+<li><a href="#ManagementUtilityReference-gpscp">gpscp</a></li>
+<li><a href="#ManagementUtilityReference-gpssh">gpssh</a></li>
+<li><a href="#ManagementUtilityReference-gpssh-exkeys">gpssh-exkeys</a></li>
+<li><a href="#ManagementUtilityReference-gpstart">gpstart</a></li>
+<li><a href="#ManagementUtilityReference-gpstate">gpstate</a></li>
+<li><a href="#ManagementUtilityReference-gpstop">gpstop</a></li>
+</ul>
+</div></p><h2 id="ManagementUtilityReference-BackendServerPrograms">Backend Server Programs</h2><p>The following server programs are also located in $GPHOME/bin of your HAWQ installation. These are the standard PostgreSQL server programs, which have been modified to handle the parallelism and distribution of a HAWQ system. Keep in mind that HAWQ is essentially several PostgreSQL database instances working together as a single DBMS, so HAWQ relies on PostgreSQL for its underlying functionality. Users and administrators do not access these programs directly, but do so through the HAWQ management tools and utilities.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Program Name</th><th class="confluenceTh">Description</th><th class="confluenceTh">Alternative</th></tr><tr><td class="confluenceTd">initdb</td><td class="confluenceTd"><p align="LEFT">This program is called by gpinitsystem when initializing a HAWQ array. It is used internally to create the individual segment instances and the master instance.</p></td><td class="confluenceTd">gpinitsystem</td></tr><tr><td class="confluenceTd">ipclean</td><td class="confluenceTd"><p align="LEFT">Cleans up shared memory and semaphores from aborted PostgreSQL backends.</p></td><td class="confluenceTd">N/A</td></tr><tr><td class="confluenceTd">gypsyncmaster</td><td class="confluenceTd"><p align="LEFT">This is the HAWQ program that starts the gpsyncagent process on the standby master host. Administrators do not call this program directly, but do so through the management scripts that initialize and/or activate a standby master for a HAWQ system. This process is responsible for keeping the standby master up to date with the primary master via a transactionlog replication process. </p></td><td class="confluenceTd">gpinitstandby<br/>gpactivatestandby</td></tr><tr><td class="confluenceTd"> pg_controldata</td><td class="confluenceTd"><p align="LEFT">Displays control information of a PostgreSQL database cluster.</p></td><td class="confluenceTd"> gpstate</td></tr><tr><td class="confluenceTd"> pg_ctl</td><td class="confluenceTd"><p align="LEFT">This program is called by gpstart and gpstop when starting or stopping a HAWQ array. It is used internally to stop and start the individual segment instances and the master instance in parallel and with the correct options.</p></td><td class="confluenceTd">gpstart<br/>gpstop </td></tr><tr><td class="confluenceTd">pg_resetxlog</td><td class="confluenceTd"> Resets the PostgreSQL transaction log.</td><td class="confluenceTd">N/A </td></tr><tr><td class="confluenceTd">postgres </td><td class="confluenceTd"><p align="LEFT">The postgres executable is the actual PostgreSQL server process that processes queries.</p></td><td class="confluenceTd">The main postgres process (postmaster) creates other postgres subprocesses and postgres sessions, as needed to handle client connections.</td></tr><tr><td class="confluenceTd">postmaster</td><td class="confluenceTd"><p align="LEFT">postmaster starts the postgres database server listener process that accepts client connections. In HAWQ, a postgres database listener process runs on the HAWQ Master Instance and on each Segment Instance.</p></td><td class="confluenceTd"><p align="LEFT">In HAWQ, you use gpstart and gpstop to start all postmasters (postgres processes) in the system at once, in the correct order and with the correct options.</p></td></tr></tbody></table></div><h2 id="ManagementUtilityReference-gpactivatestandby">gpactivatestandby</h2><p>Activates a standby master host and makes it the active master for the HAWQ system.</p><h3 id="ManagementUtilityReference-Synopsis">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpactivatestandby -d standby_master_datadir
+[-c new_standby_master] [-f] [-a] [-q] [-l logfile_directory]
+gpactivatestandby -? | -h | --help
+gpactivatestandby -v</pre>
+</div></div><h3 id="ManagementUtilityReference-Description">Description</h3><p>The gpactivatestandby utility activates a backup master host and brings it into operation as the active master instance for a HAWQ system. The activated standby master effectively becomes the HAWQ master, accepting client connections on the master port. The port number must be set to the same number on the master host and the backup master host. You must run this utility from the master host you want to activate and not from the host you need to disable. Running this utility assumes you have a backup master host configured for the system (see gpinitstandby).</p><p>The utility performs the following steps:</p><ul><li>Stops the synchronization process (gpsyncagent) on the backup master.</li><li>Updates the system catalog tables of the backup master using the logs.</li><li>Activates the backup master to be the new active master for the system.</li><li>(optional) Makes the host specified with the -c option the new standby master host.</li><li><p>Restarts the HAWQ system with the new master host.</p></li></ul><p align="LEFT">A backup HAWQ master host serves as a ‘warm standby’ in the event of the primary HAWQ master host becoming inoperable. The backup master is kept up to date by a transaction log replication process (gpsyncagent), which runs on the backup master host and keeps the data between the primary and backup master hosts synchronized.</p><p align="LEFT">If the primary master fails, the log replication process is shutdown, and the backup master can be activated in its place by using the gpactivatestandby utility. Upon activation of the backup master, the replicated logs are used to reconstruct the state of the HAWQ master host at the time of the last successfully committed transaction. To specify a new standby master host after making your current standby master active, use the -c option.</p><p align="LEFT">In order to use gpactivatestandby to activate a new primary master host, the master host that was previously serving as the primary master cannot be running. The utility checks for a postmaster.pid file in the data directory of the disabled master host, and if it finds it there, it will assume the old master host is still active. In some cases, you may need to remove the postmaster.pid file from the disabled master host data directory before running gpactivatestandby (for example, if the disabled master host process was terminated unexpectedly).</p><p align="LEFT">After activating a standby master, run ANALYZE to update the database query statistics. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">psql dbname -c 'ANALYZE;'</pre>
+</div></div><h3 id="ManagementUtilityReference-Options">Options</h3><pre>-a (do not prompt)</pre><p style="margin-left: 30.0px;"><span style="font-size: medium;"><span style="font-size: medium;"> </span></span>Do not prompt the user for confirmation.</p><pre>-c new_standby_master_hostname</pre><p style="margin-left: 30.0px;">Optional. After you activate your standby master, you may want to specify another host to be the new standby, otherwise your HAWQ system will no longer have a standby master configured. Use this option to specify the hostname of the new standby master host. You can also use gpinitstandby at a later time to configure a new standby master host.</p><pre>-d standby_master_datadir</pre><p style="margin-left: 30.0px;">Required. The absolute path of the data directory for the master host you are activating.</p><pre>-f (force activation)</pre><p style="margin-left: 30.0px;">Use this option to force activation of the backup master host when the synchronization process ( gpsyncagent) is not running. Only use this option if you are sure that the backup and primary master hosts are consistent, and you know the gpsyncagent process is not running on the backup master host. This option may be useful if you have just initialized a new backup master using gpinitstandby, and want to activate it immediately.</p><pre>-llogfile_directory</pre><p style="margin-left: 30.0px;">The directory to write the log file. Defaults to ~/gpAdminLogs.</p><pre>-q (no screen output)</pre><p style="margin-left: 30.0px;">Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.</p><pre>-v (show utility version)</pre><p style="margin-left: 30.0px;">Displays the version, status, last updated date, and check sum of this utility.</p><pre>-? | -h | --help (help)</pre><p style="margin-left: 30.0px;">Displays the online help.</p><h3 id="ManagementUtilityReference-Examples">Examples</h3><p>Activate the backup master host and make it the active master instance for a HAWQ system (run from backup master host you are activating):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpactivatestandby -d /gpdata</pre>
+</div></div><p>Activate the backup master host and at the same time configure another host to be your new standby master:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpactivatestandby -d /gpdata -c new_standby_hostname</pre>
+</div></div><h2 id="ManagementUtilityReference-gpcheckperf">gpcheckperf</h2><p>Verifies the baseline hardware performance of the specified hosts.</p><h3 id="ManagementUtilityReference-Synopsis.1">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpcheckperf -d 
+test_directory [-d test_directory ...]
+{
+-f hostfile_gpcheckperf | - h hostname [-h hostname ...]}
+[
+-r ds] [-B block_size] [-S file_size] [-D] [-v|-V]
+ gpcheckperf -d 
+temp_directory
+ {
+-f hostfile_gpchecknet | - h hostname [-h hostname ...]}
+[ 
+-r n|N|M [--duration time] [--netperf] ] [-D] [-v|-V]
+ gpcheckperf -?
+gpcheckperf --version</pre>
+</div></div><h3 id="ManagementUtilityReference-Description.1">Description</h3><p align="LEFT">The gpcheckperf utility starts a session on the specified hosts and runs the following performance tests:</p><ul><li>Disk I/O Test (dd test)<span style="font-size: medium;"> </span>— To test the sequential throughput performance of a logical disk or file system, the utility uses the <strong>dd </strong><span style="font-size: small;"> </span>command, which is a standard UNIX utility. It times how long it takes to write and read a large file to and from disk and calculates your disk I/O performance in megabytes (MB) per second. By default, the file size that is used for the test is calculated at two times the total random access memory (RAM) on the host. This ensures that the test is truly testing disk I/O and not using the memory cache.</li><li>Memory Bandwidth Test (stream)<span style="font-size: medium;"> </span>— To test memory bandwidth, the utility uses the STREAM benchmark program to measure sustainable memory bandwidth (in MB/s). This tests that your system is not limited in performance by the memory bandwidth of the system in relation to the computational performance of the CPU. In applications where the data set is large (as in HAWQ), low memory bandwidth is a major performance issue. If memory bandwidth is significantly lower than the theoretical bandwidth of the CPU, then it can cause the CPU to spend significant amounts of time waiting for data to arrive from system memory.</li><li>Network Performance Test (gpnetbench*)<span style="font-size: small;"> </span>— To test network performance including theHAWQ interconnect, the utility runs a network benchmark program that transfers a 5 second stream of data from the current host to each remote host included in the test. The data is transferred in parallel to each remote host and the minimum, maximum, average and median network transfer rates are reported in megabytes (MB) per second. If the summary transfer rate is slower than expected (less than 100 MB/s), you can run the network test serially using the -r n option to obtain per-host results. To run a full-matrix bandwidth test, you can specify -r M which will cause every host to send and receive data from every other host specified. This test is best used to validate if the switch fabric can tolerate a full-matrix workload.</li></ul><p>To specify the hosts to test, use the -f option to specify a file containing a list of host names, or use the -h option to name single host names on the command-line. If running the network performance test, all entries in the host file must be for network interfaces within the same subnet. If your segment hosts have multiple network interfaces configured on different subnets, run the network test once for each subnet.</p><p align="LEFT">You must also specify at least one test directory (with -d). The user who runs gpcheckperf must have write access to the specified test directories on all remote hosts. For the disk I/O test, the test directories should correspond to your segment data directories (primary and/or mirrors). For the memory bandwidth and network tests, a temporary directory is required for the test program files.</p><p align="LEFT">Before using gpcheckperf, you must have a trusted host setup between the hosts involved in the performance test. Use the utility gpssh-exkeys to update the known host files and exchange public keys between hosts. Note that gpcheckperf calls to gpssh and gpscp, so these HAWQ utilities must also be in your $PATH.</p><h3 id="ManagementUtilityReference-Options.1">Options</h3><pre>-B block_size</pre><p style="margin-left: 30.0px;">Specifies the block size (in KB or MB) to use for disk I/O test. The default is 32KB, the same as the HAWQ page size. The maximum block size is 1 MB.</p><pre>-d test_directory</pre><p align="LEFT" style="margin-left: 30.0px;">For the disk I/O test, specifies the file system directory locations to test. You must have write access to the test directory on all hosts involved in the performance test. You can use the -d option multiple times to specify multiple test directories (for example, to test disk I/O of your primary and mirror data directories).</p><pre>-d temp_directory</pre><p style="margin-left: 30.0px;">For the network and stream tests, specifies a single directory where the test program files will be copied for the duration of the test. You must have write access to this directory on all hosts involved in the test.</p><pre>-D (display per-host results)</pre><p style="margin-left: 30.0px;">Reports performance results for each host for the disk I/O tests. The default is to report results for just the hosts with the minimum and maximum performance, as well as the total and average performance of all hosts.</p><pre>--duration time</pre><p style="margin-left: 30.0px;">Specifies the duration of the network test in seconds (s), minutes (m), hours (h), or days (d). The default is 15 seconds.</p><pre>-f hostfile_gpcheckperf</pre><p style="margin-left: 30.0px;">For the disk I/O and stream tests, specifies the name of a file that contains one host name per host that will participate in the performance test. The host name is required, and you can optionally specify an alternate user name and/or SSH port number per host. The syntax of the host file is one host per line as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[username @]hostname [:ssh_port ]</pre>
+</div></div><pre>-f hostfile_gpchecknet </pre><p align="LEFT" style="margin-left: 30.0px;">For the network performance test, all entries in the host file must be for host addresses within the same subnet. If your segment hosts have multiple network interfaces configured on different subnets, run the network test once for each subnet. For example (for a host file containing segment host address names for interconnect subnet 1):</p><ul><li style="list-style-type: none;background-image: none;"><ul><li>sdw1-1</li><li>sdw2-1</li><li>sdw3-1</li></ul></li></ul><pre>-h hostname </pre><p align="LEFT" style="margin-left: 30.0px;">Specifies a single host name (or host address) that will participate in the performance test. You can use the -h option multiple times to specify multiple host names.</p><pre>--netperf</pre><p align="LEFT" style="margin-left: 30.0px;">Specifies that the netperf binary should be used to perform the network test instead of performing the HAWQ network test. To use this option, you must download netperf from <a class="external-link" href="http://www.netperf.org" rel="nofollow">www.netperf.org</a> and install it into $GPHOME/bin/lib on all HAWQ hosts (master and segments).<span style="font-size: medium;"> </span></p><pre>-r ds{n|N|M}</pre><p style="margin-left: 30.0px;">Specifies which performance tests to run. The default is dsn:</p><ul><ul><li>Disk I/O test (d)</li><li>Stream test (s)</li><li>Network performance test in sequential (n), parallel (N), or full-matrix (M) mode. The optional --duration option specifies how long (in seconds) to run the network test. To use the parallel (N) mode, you must run the test on an even number of hosts. If you would rather use netperf (www.netperf.org) instead of the HAWQ network test, you can download it and install it into $GPHOME/bin/lib on all HAWQ hosts (master and segments). You would then specify the optional --netperf option to use the netperf binary instead of the default gpnetbench* utilities.</li></ul></ul><pre>-S file_size</pre><p style="margin-left: 30.0px;">Specifies the total file size to be used for the disk I/O test for all directories specified with -d. <em>file_size </em><span style="font-size: medium;"> </span>should equal two times total RAM on the host. If not specified, the default is calculated at two times the total RAM on the host where gpcheckperf is executed. This ensures that the test is truly testing disk I/O and not using the memory cache. You can specify sizing in KB, MB, or GB.</p><pre>-v (verbose) | -V (very verbose)</pre><p style="margin-left: 30.0px;">Verbose mode shows progress and status messages of the performance tests as they are run. Very verbose mode shows all output messages generated by this utility.</p><pre>--version</pre><p style="margin-left: 30.0px;">Displays the version of this utility.<span style="font-size: medium;"> </span></p><pre>-? (help)</pre><p style="margin-left: 30.0px;">Displays the online help.</p><h3 id="ManagementUtilityReference-Examples.1">Examples</h3><p>Run the disk I/O and memory bandwidth tests on all the hosts in the file <em>host_file </em>using the test directory of <em>/data1 </em>and <em>/data2</em><span style="font-size: medium;"> </span>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ gpcheckperf -f hostfile_gpcheckperf -d /data1 -d /data2 -r ds</pre>
+</div></div><p> Run only the disk I/O test on the hosts named <em>sdw1 </em><span style="font-size: medium;"> </span>and <em>sdw2 </em><span style="font-size: medium;"> </span>using the test director of <em>/data1</em><span style="font-size: medium;"> </span>. Show individual host results and run in verbose mode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ gpcheckperf -h sdw1 -h sdw2 -d /data1 -r d -D -v</pre>
+</div></div><p>Run the parallel network test using the test directory of <em>/tmp, </em><span style="font-size: medium;"> </span>where hostfile_gpcheck_ic* specifies all network interface host address names within the same interconnect subnet:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ gpcheckperf -f hostfile_gpchecknet_ic1 -r N -d /tmp
+$ gpcheckperf -f hostfile_gpchecknet_ic2 -r N -d /tmp</pre>
+</div></div><p>Run the same test as above, but use netperf instead of the HAWQ network test (note that netperf must be installed in $GPHOME/bin/lib on all HAWQ hosts):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ gpcheckperf -f hostfile_gpchecknet_ic1 -r N --netperf -d /tmp  
+$ gpcheckperf -f hostfile_gpchecknet_ic2 -r N --netperf -d  /tmp</pre>
+</div></div><h2 id="ManagementUtilityReference-gpconfig">gpconfig</h2><p>Sets server configuration parameters on all segments within a HAWQ system.</p><h3 id="ManagementUtilityReference-Synopsis.2">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpconfig -c param_name -v value [-m master_value | --masteronly]
+		| -r param_name [--masteronly]
+		| -l
+	[--skipvalidation] [--verbose] [--debug]
+gpconfig -s param_name [--verbose] [--debug] 
+gpconfig --help</pre>
+</div></div><h3 id="ManagementUtilityReference-Description.2">Description</h3><p>The gpconfig utility allows you to set, unset, or view configuration parameters from the postgresql.conf files of all instances (master, segments, and mirrors) in your HAWQ system. When setting a parameter, you can also specify a different value for the master, if necessary. For example, parameters such as max_connections require a different setting on the master than what is used for the segments. If you want to set or unset a global or master-only parameter, use the --masteronly option.</p><p>gpconfig cannot change the configuration parameters if there are failed segments in the system. gpconfig can only be used to manage certain parameters. For example, you cannot use it to set parameters such as port, which is required to be distinct for every segment instance.</p><p>Use the -l (list) option to see a complete list of configuration parameters supported by gpconfig. When gpconfig sets a configuration parameter in a segment postgresql.conf file, the new parameter setting always displays at the bottom of the file. When you use gpconfig to remove a configuration parameter setting, gpconfig comments out the parameter in all segment postgresql.conf files, thereby restoring the system default setting. For example, if you use gpconfig to remove (comment out) a parameter and later add it back (set a new value), there will be two instances of the parameter; one that is commented out, and one that is enabled and inserted at the bottom of the postgresql.conf file.</p><p>After setting a parameter, you must restart your HAWQ system or reload the postgresql.conf files for the change to take effect. Whether you require a restart or a reload depends on the parameter. See the Server Configuration Parameters reference for more information about the server configuration parameters.</p><p>To show the currently set values for a parameter across the system, use the -s option.</p><p>gpconfig uses the following environment variables to connect to the HAWQ master instance and obtain system configuration information:</p><p><span style="font-size: medium;"><span style="font-size: medium;"> </span></span></p><ul><li>PGHOST</li><li>PGPORT</li><li>PGUSER</li><li>PGPASSWORD</li><li>PGDATABASE</li></ul><h3 id="ManagementUtilityReference-Options.2">Options</h3><pre>-c | --change param_name</pre><p style="margin-left: 30.0px;">Changes a configuration parameter setting by adding the new setting to the bottom of the postgresql.conf files.</p><pre>-v | --value value</pre><p style="margin-left: 30.0px;">The value to use for the configuration parameter you specified with the -c option. By default, this value is applied to all segments, their mirrors, the master, and the standby master.</p><pre>-m | -<em>-</em><span style="font-size: medium;"> </span>mastervalue master_value </pre><p align="LEFT" style="margin-left: 30.0px;">The master value to use for the configuration parameter you specified with the -c option. If specified, this value only applies to the master and standby master. This option can only be used with -v.</p><pre>--masteronly</pre><p style="margin-left: 30.0px;">When specified, gpconfig will only edit the master postgresql.conf file.</p><pre>-r | --remove param_name</pre><p style="margin-left: 30.0px;">Removes a configuration parameter setting by commenting out the entry in the postgresql.conf files.</p><pre>-l | --list</pre><p align="LEFT" style="margin-left: 30.0px;">Lists all configuration parameters supported by the gpconfig utility.</p><pre> -s | --sho param_name</pre><p align="LEFT" style="margin-left: 30.0px;">Shows the value for a specified configuration parameter used on all instances (master and segments) of the HAWQ system. If there is a discrepancy in a parameter value between instances, the gpconfig utility displays an error message. The gpconfig utility reads parameter values directly from the database, and not the postgresql.conf file. If you are using gpconfig to set configuration parameters across all segments, then running gpconfig -s to verify the changes, you might still see the previous (old) values. You must reload the configuration files (gpstop -u) or restart the system (gpstop -r) for changes to take effect.</p><pre>--skipvalidation</pre><p style="margin-left: 30.0px;">Overrides the system validation checks of gpconfig and allows you to operate on any server configuration parameter, including hidden parameters and restricted parameters that cannot be changed by gpconfig. When used with the -l option (list), it shows the list of restricted parameters. This option should only be used to <span style="font-size: small;">s</span>et parameters when directed by HAWQ Customer Support.</p><pre>--verbose</pre><p style="margin-left: 30.0px;">Displays additional log information during gpconfig command execution.</p><pre>--debug</pre><p style="margin-left: 30.0px;">Sets logging output to debug level.</p><pre>-? | -h | --help</pre><p style="margin-left: 30.0px;">Displays the online help</p><h3 id="ManagementUtilityReference-Examples.2">Examples</h3><p>Set the max_connections setting to 100 on all segments and 10 on the master:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpconfig -c max_connections -v 100 -m 10</pre>
+</div></div><p>Comment out all instances of the default_statistics_target configuration parameter, and restore the system default:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpconfig -r default_statistics_target</pre>
+</div></div><p align="LEFT">List all configuration parameters supported by gpconfig:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpconfig -l</pre>
+</div></div><p align="LEFT">Show the values of a particular configuration parameter across the system:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpconfig -s max_connections</pre>
+</div></div><h3 id="ManagementUtilityReference-SeeAlso">See Also</h3><p>gpstop</p><h2 id="ManagementUtilityReference-gpexpand">gpexpand</h2><p>Expands an existing HAWQ Database across new hosts in the array.</p><p>Synopsis</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpexpand 
+	[-f hosts_file] 
+	| -i input_file [-B batch_size] [-V] 
+	| {-d hh:mm:ss | -e 'YYYY-MM-DD hh:mm:ss'} [-analyze] 
+		[-n parallel_processes] 
+	| --rollback 
+	| --clean
+[-D database_name][--verbose] [--silent]
+gpexpand -? | -h | --help 
+gpexpand --version</pre>
+</div></div><h3 id="ManagementUtilityReference-Prerequisites">Prerequisites</h3><ul><li>You are logged in as the HAWQ superuser (gpadmin).</li><li>The new segment hosts have been installed and configured as per the existing segment hosts. This involves:<ul><li>Configuring the hardware and OS</li><li>Installing the HAWQ software</li><li>Creating the gpadmin user account</li><li>Exchanging SSH keys.</li></ul></li><li>Enough disk space on your segment hosts to temporarily hold a copy of your largest table.</li></ul><h3 id="ManagementUtilityReference-Description.3">Description</h3><p>The gpexpand utility performs system expansion in two phases: segment initialization and then table redistribution.</p><p>In the initialization phase, gpexpand runs with an input file that specifies data directories, <em>dbid </em><span style="font-size: medium;"> </span>values, and other characteristics of the new segments. You can create the input file manually, or by following the prompts in an interactive interview.</p><p>If you choose to create the input file using the interactive interview, you can optionally specify a file containing a list of expansion hosts. If your platform or command shell limits the length of the list of hostnames that you can type when prompted in the interview, specifying the hosts with -f may be mandatory.</p><p>In addition to initializing the segments, the initialization phase performs these actions:</p><ul><li>Creates an expansion schema to store the status of the expansion operation, including detailed status for tables.</li><li>Changes the distribution policy for all tables to DISTRIBUTED RANDOMLY. The original distribution policies are later restored in the redistribution phase.</li></ul><p>To begin the redistribution phase, you must run gpexpand with either the -d (duration) or -e (end time) options. Until the specified end time or duration is reached, the utility will redistribute tables in the expansion schema. Each table is reorganized using ALTER TABLE commands to rebalance the tables across new segments, and to set tables to their original distribution policy. If gpexpand completes the reorganization of all tables before the specified duration, it displays a success message and ends.</p><h3 id="ManagementUtilityReference-Options.3">Options</h3><pre>-a | --analyze</pre><p style="margin-left: 30.0px;">Run ANALYZE to update the table statistics after expansion. The default is to not run ANALYZE.</p><p>-B <em>batch_size</em></p><p style="margin-left: 30.0px;">Batch size of remote commands to send to a given host before making a one-second pause. Default is 16. Valid values are 1-128.</p><p style="margin-left: 30.0px;">The gpexpand utility issues a number of setup commands that may exceed the host’s maximum threshold for authenticated connections as defined by MaxStartups in the SSH daemon configuration. The one-second pause allows authentications to be completed before gpexpand issues any more commands.</p><p style="margin-left: 30.0px;">The default value does not normally need to be changed. However, it may be necessary to reduce the maximum number of commands, if gpexpand fails with connection errors such as 'ssh_exchange_identification: Connection closed by remote host.'</p><pre>-c | --clean</pre><p style="margin-left: 30.0px;">Remove the expansion schema.</p><pre>-d | --duration hh:mm:ss</pre><p style="margin-left: 30.0px;">Duration of the expansion session from beginning to end.</p><pre>-D database_name</pre><p style="margin-left: 30.0px;">Specifies the database in which to create the expansion schema and tables. If this option is not given, the setting for the environment variable PGDATABASE is used. The database templates <em>template1 </em><span style="font-size: medium;"> </span>and <em>template0 </em><span style="font-size: medium;"> </span>cannot be used.</p><pre>-e | --end ‘YYYY-MM-DD hh:mm:ss<span> </span>’</pre><p style="margin-left: 30.0px;">Ending date and time for the expansion session.</p><pre>-f | --hosts-file <em>filename</em></pre><p style="margin-left: 30.0px;">Specifies the name of a file that contains a list of new hosts for system expansion. Each line of the file must contain a single host name.</p><p style="margin-left: 30.0px;">This file can contain hostnames with or without network interfaces specified. The gpexpand utility handles either case, adding interface numbers to the end of the hostname if the original nodes are configured with multiple network interfaces.</p><pre>-i | --input input_file</pre><p style="margin-left: 30.0px;">Specifies the name of the expansion configuration file, which contains one line for each segment to be added, in the format of: hostname:address:port:fselocation:dbid:content:preferred_role:replication_port</p><p style="margin-left: 30.0px;">If your system has filespaces, gpexpand will expect a filespace configuration file (<em>input_file_name</em><span style="font-size: small;"> </span>.fs) to exist in the same directory as your expansion configuration file. The filespace configuration file is in the format of:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">filespaceOrder=filespace1_name :filespace2_name : ...
+dbid:/path/for/filespace1 :/path/for/filespace2 : ...
+dbid:/path/for/filespace1 :/path/for/filespace2 : ...
+...</pre>
+</div></div><p> </p><pre>-n parallel_processes</pre><p style="margin-left: 30.0px;">The number of tables to redistribute simultaneously. Valid values are 1 - 16. Each table redistribution process requires two database connections: one to alter the table, and another to update the table’s status in the expansion schema. Before increasing -n, check the current value of the server configuration parameter max_connections and make sure the maximum connection limit is not exceeded.</p><pre>-r | --rollback</pre><p style="margin-left: 30.0px;">Roll back a failed expansion setup operation. If the rollback command fails, attempt again using the M-D option to specify the database that contains the expansion schema for the operation that you want to roll back.</p><pre>-s | --silent</pre><p style="margin-left: 30.0px;">Runs in silent mode. Does not prompt for confirmation to proceed on warnings.</p><pre>-v | --verbose</pre><p style="margin-left: 30.0px;"><span style="font-size: medium;"><span style="font-size: medium;"><span style="font-size: small;"><span style="font-size: medium;"> </span></span></span></span>Verbose debugging output. With this option, the utility will output all DDL and DML used to expand the database.</p><pre>--version</pre><p style="margin-left: 30.0px;"><span style="font-size: medium;"><span style="font-size: medium;"><span style="font-size: small;"><span style="font-size: medium;"> </span></span></span></span>Display the utility’s version number and exit.</p><pre>-V | --novacuum</pre><p style="margin-left: 30.0px;">Do not vacuum catalog tables before creating schema copy.</p><pre>-? | -h | --help</pre><p style="margin-left: 30.0px;">Displays the online help.</p><h3 id="ManagementUtilityReference-Examples.3">Examples</h3><p>Run gpexpand with an input file to initialize new segments and create the expansion schema in the default database:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ gpexpand -i input_file</pre>
+</div></div><p>Run gpexpand for sixty hours maximum duration to redistribute tables to new segments:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ gpexpand -d 60:00:00</pre>
+</div></div><h3 id="ManagementUtilityReference-SeeAlso.1">See Also</h3><p>gpssh-exkeys<span style="font-size: medium;"><span style="font-size: medium;"> </span> </span></p><h2 id="ManagementUtilityReference-gpextract">gpextract</h2><p align="LEFT">Extracts the metadata of a specified table into a YAML file.</p><h3 id="ManagementUtilityReference-Synopsis.3">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpextract [-h hostname] [-p port] [-U username] [-d database][-o output_file] [-W] &lt;tablename&gt;
+gpextract -?
+gpextract --version</pre>
+</div></div><h3 id="ManagementUtilityReference-Description.4">Description</h3><p>gpextract is a utility that extracts a table's metadata into a YAML formatted file. HAWQ's InputFormat uses this YAML-formatted file to read a HAWQ file stored on HDFS directly into the MapReduce program.</p><p><strong>Note</strong>: gpextract is bound by the following rules:</p><p style="margin-left: 30.0px;">You must start up HAWQ to use gpextract.</p><p style="margin-left: 30.0px;">gpextract only supports AO and Parquet tables.</p><p style="margin-left: 30.0px;">gpextract supports partitioned tables, but does not support sub-partitions.</p><h3 id="ManagementUtilityReference-Arguments">Arguments</h3><pre>&lt;tablename&gt;</pre><p style="margin-left: 30.0px;">Name of the table that you need to extract metadata. You can use 'namespace_name.table_name'.</p><h3 id="ManagementUtilityReference-Options.4">Options</h3><pre>-o output_file</pre><p style="margin-left: 30.0px;">Is the name of a file that gpextract uses to write the metadata. If you do not specify a name, gpextract writes to stdout.</p><pre>-v (verbose mode)</pre><p style="margin-left: 30.0px;">Optional. Displays the verbose output of the extraction process.</p><pre>-? (help)</pre><p style="margin-left: 30.0px;">Displays the online help.</p><pre>--version</pre><p style="margin-left: 30.0px;">Displays the version of this utility</p><h3 id="ManagementUtilityReference-ConnectionOptions">Connection Options</h3><pre>-d database</pre><p style="margin-left: 30.0px;">The database to connect to. If not specified, reads from the environment variable $PGDATABASEor defaults to 'template1'.</p><pre>-h hostname</pre><p style="margin-left: 30.0px;">Specifies the host name of the machine on which the HAWQ master database serveris running. If not specified, reads from the environment variable $PGHOST or defaults to localhost.</p><pre>-p port</pre><p style="margin-left: 30.0px;">Specifies the TCP port on which the HAWQ master database server is listening for connections. If not specified, reads from the environment variable $PGPORT or defaults to 5432.</p><pre>-U username</pre><p style="margin-left: 30.0px;">The database role name to connect as. If not specified, reads from the environment variable $PGUSER or defaults to the current system user name.</p><pre>-W (force password prompt)</pre><p style="margin-left: 30.0px;">Force a password prompt. If not specified, reads the password from the environment variable $PGPASSWORD or from a password file specified by $PGPASSFILE or in ~/.pgpass.</p><h3 id="ManagementUtilityReference-MetadataFileFormat">Metadata File Format</h3><p>The gpextract exports the table metadata into a file using YAML 1.1 document format. The file contains various key information about the table, such as table schema, data file locations and sizes, partition constraints and so on.</p><p>The basic structure of the metadata file is as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">Version: string (1.0.0)
+DBVersion: string 
+FileFormat: string (AO/Parquet) 
+TableName: string (schemaname.tablename)
+DFS_URL: string (hdfs://127.0.0.1:9000)
+Encoding: UTF8
+AO_Schema: 
+	- name: string
+ 	  type: string
+ 
+AO_FileLocations:
+	  Blocksize: int
+ 	  Checksum: boolean
+	  CompressionType: string
+	  CompressionLevel: int
+	  PartitionBy: string ('PARTITION BY ...')
+	  Files:
+	  - path: string (/gpseg0/16385/35469/35470.1)
+	  size: long
+ 
+	  Partitions:
+	  - Blocksize: int
+	    Checksum: Boolean
+	    CompressionType: string
+	    CompressionLevel: int
+	    Name: string
+	    Constraint: string (PARTITION Jan08 START (date '2008-01-01') INCLUSIVE)
+	    Files:
+	    - path: string
+	      size: long
+
+ 
+Parquet_FileLocations:
+  RowGroupSize: long
+  PageSize: long
+  CompressionType: string
+  CompressionLevel: int
+  Checksum: boolean
+  EnableDictionary: boolean
+  PartitionBy: string
+  Files:
+  - path: string
+    size: long
+  Partitions:
+  - Name: string
+    RowGroupSize: long
+    PageSize: long
+    CompressionType: string
+    CompressionLevel: int
+    Checksum: boolean
+    EnableDictionary: boolean
+    Constraint: string
+    Files:
+    - path: string
+      size: long</pre>
+</div></div><h3 id="ManagementUtilityReference-Example:ExtractinganAOtable">Example: Extracting an AO table</h3><p>Run gpextract to extract 'rank' table's metadata into a file 'rank_table.yaml'.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ gpextract -o rank_table.yaml rank</pre>
+</div></div><p><strong>Output content in rank_table.yaml</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">AO_FileLocations:
+	Blocksize: 32768
+	Checksum: false
+	CompressionLevel: 0
+	CompressionType: null
+	Files:
+	- path: /gpseg0/16385/35469/35692.1
+	  size: 0
+	- path: /gpseg1/16385/35469/35692.1
+	  size: 0
+	PartitionBy: PARTITION BY list (gender)
+	Partitions:
+	- Blocksize: 32768
+	  Checksum: false
+	  CompressionLevel: 0
+	  CompressionType: null
+	  Constraint: PARTITION girls VALUES('F') WITH (appendonly=true)
+	Files:
+	- path: /gpseg0/16385/35469/35697.1
+	  size: 0
+	- path: /gpseg1/16385/35469/35697.1
+	  size: 0
+	  Name: girls
+	- Blocksize: 32768
+	  Checksum: false
+	  CompressionLevel: 0
+	  CompressionType: null
+	  Constraint: PARTITION boys VALUES('M') WITH (appendonly=true)
+	  Files:
+	  - path: /gpseg0/16385/35469/35703.1
+	    size: 0
+	  - path: /gpseg1/16385/35469/35703.1
+	    size: 0
+	  Name: boys
+	- Blocksize: 32768
+	  Checksum: false
+	  CompressionLevel: 0
+	  CompressionType: null
+	  Constraint: DEFAULT PARTITION other WITH appendonly=true)
+	  Files:
+	  - path: /gpseg0/16385/35469/35709.1
+	    size: 90071728
+	  - path: /gpseg1/16385/35469/35709.1
+	    size: 90071512
+	  Name: other
+	AO_Schema:
+	- name: id
+	  type: int4
+	- name: rank
+	  type: int4
+	- name: year
+	  type: int4
+	- name: gender
+	  type: bpchar
+	- name: count
+ 	  type: int4
+	DFS_URL: hdfs://127.0.0.1:9000
+	Encoding: UTF8
+	FileFormat: AO
+	TableName: public.rank
+	Version: 1.0.0</pre>
+</div></div><h3 id="ManagementUtilityReference-Example:ExtractingaParquettable">Example: Extracting a Parquet table</h3><p>Run gpextract to extract 'orders' table's metadata into a file 'orders.yaml'.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ gpextract –o orders.yaml orders</pre>
+</div></div><p><strong>Output content in orders.yaml</strong></p><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">DFS_URL: hdfs://127.0.0.1:9000
+Encoding: UTF8
+FileFormat: Parquet
+TableName: public.orders
+Version: 1.0.0
+Parquet_FileLocations:
+  Checksum: false
+  CompressionLevel: 0
+  CompressionType: none
+  EnableDictionary: false
+  Files:
+  - path: /hawq-data/gpseg0/16385/16626/16657.1
+    size: 0
+  - path: /hawq-data/gpseg1/16385/16626/16657.1
+    size: 0
+  PageSize: 1048576
+  PartitionBy: PARTITION BY range (o_orderdate)
+  Partitions:
+  - Checksum: false
+    CompressionLevel: 0
+    CompressionType: none
+    Constraint: PARTITION p1_1 START ('1992-01-01'::date) END ('1994-12-31'::date)
+      EVERY ('3 years'::interval) WITH (appendonly=true, orientation=parquet, pagesize=1048576,
+      rowgroupsize=8388608, compresstype=none, compresslevel=0)
+    EnableDictionary: false
+    Files:
+    - path: /hawq-data/gpseg0/16385/16626/16662.1
+      size: 8140599
+    - path: /hawq-data/gpseg1/16385/16626/16662.1
+      size: 8099760
+    Name: orders_1_prt_p1_1
+    PageSize: 1048576
+    RowGroupSize: 8388608
+  - Checksum: false
+    CompressionLevel: 0
+    CompressionType: none
+    Constraint: PARTITION p1_11 START ('1995-01-01'::date) END ('1997-12-31'::date)
+      EVERY ('e years'::interval) WITH (appendonly=true, orientation=parquet, pagesize=1048576,
+      rowgroupsize=8388608, compresstype=none, compresslevel=0)
+    EnableDictionary: false
+    Files:
+    - path: /hawq-data/gpseg0/16385/16626/16668.1
+      size: 8088559
+    - path: /hawq-data/gpseg1/16385/16626/16668.1
+      size: 8075056
+    Name: orders_1_prt_p1_11
+    PageSize: 1048576
+    RowGroupSize: 8388608
+  - Checksum: false
+    CompressionLevel: 0
+    CompressionType: none
+    Constraint: PARTITION p1_21 START ('1998-01-01'::date) END ('2000-12-31'::date)
+      EVERY ('3 years'::interval) WITH (appendonly=true, orientation=parquet, pagesize=1048576,
+      rowgroupsize=8388608, compresstype=none, compresslevel=0)
+    EnableDictionary: false
+    Files:
+    - path: /hawq-data/gpseg0/16385/16626/16674.1
+      size: 8065770
+    - path: /hawq-data/gpseg1/16385/16626/16674.1
+      size: 8126669
+    Name: orders_1_prt_p1_21
+    PageSize: 1048576
+    RowGroupSize: 8388608
+  RowGroupSize: 8388608</pre>
+</div></div><p> </p><p> </p><h3 id="ManagementUtilityReference-SeeAlso.2">See Also</h3><p>gpload</p><h2 id="ManagementUtilityReference-gpfdist">gpfdist</h2><p>Serves data files to or writes data files out from HAWQ segments.</p><h3 id="ManagementUtilityReference-Synopsis.4">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpfdist [-d  directory ] [-p  http_port ] [-l  log_file ] [-t  timeout ]
+[-S ] [-v  | -V ] [-m  max_length ] [--ssl  certificate_path]
+gpfdist -? 
+gpfdist --version</pre>
+</div></div><h3 id="ManagementUtilityReference-Description.5">Description</h3><p>gpfdist is HAWQ’s parallel file distribution program. It is used by readable external tables and gpload to serve external table files to all HAWQ segments in parallel. It is used by writable external tables to accept output streams from HAWQ segments in parallel and write them out to a file.</p><p align="LEFT">In order for gpfdist to be used by an external table, the LOCATION clause of the external table definition must specify the correct file location using the gpfdist://protocol (see CREATE EXTERNAL TABLE).</p><p align="LEFT">Note: If the --ssl option is specified to enable SSL security, create the external table with the gpfdists:// protocol.</p><p align="LEFT">The benefit of using gpfdist is that you are guaranteed maximum parallelism while reading from or writing to external tables, thereby offering the best performance as well as easier administration of external tables.</p><ul><li>For readable external tables, gpfdist parses and serves data files evenly to all the segment instances in the HAWQ system when users SELECT from the external table.</li><li>For writable external tables, gpfdist accepts parallel output streams from the segments when users INSERT into the external table, and writes to an output file.</li><li>For readable external tables, if load files are compressed using gzip or bzip2 (have a .gz or .bz2 file extension), gpfdist will uncompress the files automatically before loading, provided that gunzip or bunzip2 is in your path.</li></ul><p align="LEFT">Note: Currently, readable external tables do not support compression on Windows platforms, and writable external tables do not support compression on any platforms. Most likely, you will want to run gpfdist on your ETL machines rather than on the hosts where HAWQ is installed. To install gpfdist on another host, simply copy the utility over to that host and add gpfdist to your $PATH. You can also run gpfdist as a Windows Service. See “Running gpfdist as a Windows Service” for more details.</p><h3 id="ManagementUtilityReference-Options.5">Options</h3><pre>-d directory</pre><p align="LEFT" style="margin-left: 30.0px;">The directory from which gpfdist will serve files for readable external tables or create output files for writable external tables. If not specified, defaults to the current directory.</p><pre>-l log_file</pre><p style="margin-left: 30.0px;">The fully qualified path and log file name where standard output messages are to be logged.</p><pre>-p http_port</pre><p style="margin-left: 30.0px;">The HTTP port on which gpfdist will serve files. Defaults to 8080.</p><pre>-t timeout</pre><p style="margin-left: 30.0px;">Sets the time allowed for HAWQ to establish a connection to a gpfdist process. Default is 5 seconds. Allowed values are 2 to 30 seconds. May need to be increased on systems with large amounts of network traffic.</p><pre>-S (use O_SYNC)</pre><p style="margin-left: 30.0px;">Opens the file for synchronous I/O with the O_SYNC flag. Any writes to the resulting file descriptor block gpfdist until the data is physically written to the underlying hardware.</p><pre>-v (verbose)</pre><p style="margin-left: 30.0px;">Verbose mode shows progress and status messages.</p><pre>-V (very verbose)</pre><p style="margin-left: 30.0px;">Verbose mode shows all output messages generated by this utility.</p><pre>-m max_length</pre><p style="margin-left: 30.0px;">Sets the maximum allowed data row length in bytes. Default is 32768. Should be used when user data includes very wide rows (or when the "line too long" error message occurs). Should not be used except in these cases, as it increases resource allocation. Valid range is 32K to 256MB. (The upper limit is 1MB on Windows systems.)</p><pre>--ssl certificate_path</pre><p style="margin-left: 30.0px;">Adds SSL encryption to data transferred with gpfdist. After executing gpfdist with the -ssl &lt;certificate_path&gt; option, the only way to load data from this file server is with the <em>gpfdists </em><span style="font-size: medium;"> </span>protocol. The location specified in certificate_path must contain the following files:</p><ul><li style="list-style-type: none;background-image: none;"><ul><li>The server certificate file, server.crt</li><li>The server private key file, server.key</li><li>The trusted certificate authorities, root.crt</li><li>The root directory (/) cannot be specified as certificate_path.</li></ul></li></ul><pre>-? (help)</pre><p style="margin-left: 30.0px;">Displays the online help.</p><pre>--version</pre><p style="margin-left: 30.0px;">Displays the version of this utility.</p><p align="LEFT">Running gpfdist as a Windows Service HAWQ Loaders allow gpfdist to run as a Windows Service.</p><p align="LEFT">Follow the instructions below to download, register and activate gpfdist as a service:</p><ol><li>Update your HAWQ Loader package to the latest version. This package is available from the EMC Download Center.</li><li>Register gpfdist as a Windows service:<ol><li>Open a Windows command window.</li><li><p>Run the following command:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sc create gpfdist binpath= "path_to _gpfdist.exe -p 8081 -d External\load\files\path -l Log\file\path"</pre>
+</div></div><p>You can create multiple instances of gpfdist by running the same command again, with a unique name and port number for each instance, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sc create gpfdist N  binpath= "path_to _gpfdist.exe -p 8082 -d External\load\files\path -l Log\file\path"</pre>
+</div></div></li></ol></li><li><p>Activate the gpfdist service:</p></li><ol><li>Open the Windows Control Panel and select <strong>Administrative Tools&gt;Services</strong><span style="font-size: medium;"> </span>.</li><li>Highlight, then right-click on the gpfdist service in the list of services.</li><li>Select <strong>Properties </strong><span style="font-size: medium;"> </span>from the right-click menu; the Service Properties window opens.<br/>Note that you can also stop this service from the Service Properties window.</li><li>Optional: Change the <strong>Startup Type </strong><span style="font-size: medium;"> </span>to <strong>Automatic </strong><span style="font-size: medium;"> </span>(after a system restart, this service will be running), then under <strong>Service </strong><span style="font-size: medium;"> </span>status, click <strong>Start</strong><span style="font-size: medium;"> </span>.</li><li>Click <strong>OK</strong><span style="font-size: medium;"> </span>.</li></ol><li>Repeat the above steps for each instance of gpfdist that you created.</li></ol><h3 id="ManagementUtilityReference-Examples.4">Examples</h3><p>Serve files from a specified directory using port 8081 (and start gpfdist in the background):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpfdist -d /var/load_files -p 8081 &amp;</pre>
+</div></div><p align="LEFT">Start gpfdist in the background and redirect output and errors to a log file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpfdist -d /var/load_files -p 8081 -l /home/gpadmin/log &amp;</pre>
+</div></div><p>To stop gpfdist when it is running in the background:</p><p style="margin-left: 30.0px;">First find its process id:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">ps ax | grep gpfdist</pre>
+</div></div><p style="margin-left: 30.0px;">OR on Solaris</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">ps -ef | grep gpfdist</pre>
+</div></div><p style="margin-left: 30.0px;">Then kill the process, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> kill 3456</pre>
+</div></div><h3 id="ManagementUtilityReference-SeeAlso.3">See Also</h3><p align="LEFT">CREATE EXTERNAL TABLE, gpload</p><h2 id="ManagementUtilityReference-gpfilespace">gpfilespace</h2><p>Creates a filespace using a configuration file that defines per-segment file system locations. Filespaces describe the physical file system resources to be used by a tablespace.</p><h3 id="ManagementUtilityReference-Synopsis.5">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpfilespace 
+[connection_option ...] [-l logfile_directory] [-o
+ [
+output_file_name]]
+ gpfilespace 
+[connection_option ...] [-l logfile_directory] -c
+ fs_config_file
+gpfilespace -v 
+| -?</pre>
+</div></div><h3 id="ManagementUtilityReference-Description.6">Description</h3><p>A tablespace requires a file system location to store its database files. In HAWQ, the master and each segment needs its own distinct storage location. This collection of file system locations for all components in a HAWQ system is referred to as a <em>filespace</em><span style="font-size: medium;"> </span>.Once a filespace is defined, it can be used by one or more tablespaces.</p><p>When used with the -o option, the gpfilespace utility looks up your system configuration information in the HAWQ catalog tables and prompts you for the appropriate file system locations needed to create the filespace. It then outputs a configuration file that can be used to create a filespace. If a file name is not specified, a gpfilespace_config_<em># </em><span style="font-size: small;"> </span>file will be created in the current directory by default.</p><p>Once you have a configuration file, you can run gpfilespace with the -c option to create the filespace in HAWQ.</p><h3 id="ManagementUtilityReference-Options.6">Options</h3><pre>-c | --config fs_config_file  </pre><p align="LEFT" style="margin-left: 30.0px;">A configuration file containing:</p><ul><li>An initial line denoting the new filespace name. For example</li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">filespace: myfs</pre>
+</div></div><ul><li>One line each for the master, the primary segments, and the mirror segments. A line describes a file system location that a particular segment database instance should use as its data directory location to store database files associated with a tablespace. Each line is in the format of: hostname:<em>dbid</em><span style="font-size: small;"> </span>:/<em>filesystem_dir</em><span style="font-size: small;"> </span>/<em>seg_datadir_name</em></li></ul><pre>-l | --logdir logfile_directory</pre><p style="margin-left: 30.0px;">The directory to write the log file. Defaults to ~/gpAdminLogs.</p><pre>-o | --output output_file_name</pre><p style="margin-left: 30.0px;">The directory location and file name to output the generated filespace configuration file. You will be prompted to enter a name for the filespace, a master file system location, the primary segment file system locations, and the mirror segment file system locations. For example, if your configuration has 2 primary and 2 mirror segments per host, you will be prompted for a total of 5 locations (including the master). The file system locations must exist on all hosts in your system prior to running the gpfilespace utility. The utility will designate segment-specific data directories within the location(s) you specify, so it is possible to use the same location for multiple segments. However, primaries and mirrors cannot use the same location. After the utility creates the configuration file, you can manually edit the file to make any required changes to the filespace layout before creating the filespace in HAWQ.</p><pre>-v | --version (show utility version)</pre><p style="margin-left: 30.0px;">Displays the version of this utility.</p><pre>-? | --help (help)</pre><p style="margin-left: 30.0px;">Displays the utility usage and syntax.</p><h3 id="ManagementUtilityReference-ConnectionOptions.1"><span style="font-size: medium;"><span style="font-size: medium;"> </span></span>Connection Options</h3><pre>-h host  | --host host</pre><p style="margin-left: 30.0px;">The host name of the machine where the HAWQ master database server is running. If not specified, reads from the environment variable PGHOST or defaults to localhost.</p><pre>-p port  | --port port</pre><p style="margin-left: 30.0px;">The TCP port on which the HAWQ master database server is listening for connections. If not specified, reads from the environment variable PGPORT or defaults to 5432.</p><pre>-U username <span style="font-size: medium;"> </span>| --username <em>superuser_name</em></pre><p align="LEFT" style="margin-left: 30.0px;">The database superuser role name to connect as. If not specified, reads from the environment variable PGUSER or defaults to the current system user name. Only database superusers are allowed to create filespaces.</p><pre>-W | --password</pre><p style="margin-left: 30.0px;">Force a password prompt.</p><p><strong>Note</strong>:gpfilespace, showfilespace, showtempfilespace, movetransfilespace, showtransfilespace, movetempfilespace are not supported.</p><h3 id="ManagementUtilityReference-Examples.5">Examples</h3><p>Create a filespace configuration file. You will be prompted to enter a name for the filespace, choose a file system name, file replica number, and a DFS URL for store data. </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ gpfilespace -o .
+Enter a name for this filespace
+&gt; example_hdfs
+Available filesystem name:
+filesystem: hdfs
+Choose filesystem name for this filespace
+
+&gt; hdfs
+ 
+Enter replica num for filespace. If 0, default replica num is used (default=3):
+&gt;3
+Checking your configuration:
+Your system has 1 hosts with 2 segments per host.
+Configuring hosts: [sdw1]
+Please specify the DFS location for the segments (for
+example: localhost:9000/fs)
+location&gt; 127.0.0.1:9000/hdfs</pre>
+</div></div><p>Example filespace configuration file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">filespace:example_hdfs
+fsysname:hdfs
+fsreplica:3
+sdw1:1:/data1/master/hdfs_b/gpseg-1
+sdw1:2:[127.0.0.1:9000/hdfs/gpseg0]
+sdw1:3:[127.0.0.1:9000/hdfs/gpseg1]</pre>
+</div></div><p>Execute the configuration file to create the filespace in HAWQ:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ gpfilespace -c gpfilespace_config_1</pre>
+</div></div><h2 id="ManagementUtilityReference-gpinitstandby">gpinitstandby</h2><p>Adds and/or initializes a standby master host for a HAWQ system.</p><h3 id="ManagementUtilityReference-Synopsis.6">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpinitstandby 
+{ -s standby_hostname | -r | -n }
+[-M smart | -M fast] [-a] [-q] [-D] [-L]
+[-l logfile_directory]
+gpinitstandby -? | -v</pre>
+</div></div><h3 id="ManagementUtilityReference-Description.7">Description</h3><p>The gpinitstandby utility adds a backup master host to your HAWQ system. If your system has an existing backup master host configured, use the -r option to remove it before adding the new standby master host. Before running this utility, make sure that the HAWQ software is installed on the backup master host and that you have exchanged SSH keys between hosts. Also make sure that the master port is set to the same port number on the master host and the backup master host.</p><p>See the <em>HAWQ Installation Guide </em><span style="font-size: medium;"> </span>for instructions. This utility should be run on the currently active <em>primary </em><span style="font-size: medium;"> </span>master host.</p><p align="LEFT">The utility will perform the following steps:</p><ul><li>Shut down your HAWQ system.</li><li>Update the HAWQ system catalog to remove the existing backup master host information (if the -r option is supplied).</li><li>Update the HAWQ system catalog to add the new backup master host information (use the -n option to skip this step).</li><li>Edit the pg_hba.conf files of the segment instances to allow access from the newly added standby master.</li><li>Set up the backup master instance on the alternate master host.</li><li>Start the synchronization process.</li><li>Restart your HAWQ system.</li></ul><p>A backup master host serves as a ‘warm standby’ in the event of the primary master host becoming inoperable. The backup master is kept up-to-date by a transaction log replication process (gpsyncagent), which runs on the backup master host and keeps the data between the primary and backup master hosts synchronized. If the primary master fails, the log replication process is shut down, and the backup master can be activated in its place by using the utility. Upon activation of the backup master, the replicated logs are used to reconstruct the state of the master host at the time of the last successfully committed transaction.</p><p>The activated standby master effectively becomes the HAWQ master, accepting client connections on the master port and performing normal master operations such as SQL command processing and workload management.</p><h3 id="ManagementUtilityReference-Options.7">Options</h3><pre>-a (do not prompt)</pre><p style="margin-left: 30.0px;">Do not prompt the user for confirmation.</p><pre>-D (debug)</pre><p style="margin-left: 30.0px;">Sets logging level to debug.</p><p align="LEFT">-l <em>logfile_directory</em></p><p style="margin-left: 30.0px;"><span style="font-size: medium;"><em><span style="font-size: medium;"> </span></em></span>The directory to write the log file. Defaults to ~/gpAdminLogs.</p><pre>-L (leave database stopped)</pre><p style="margin-left: 30.0px;"><span style="font-size: medium;"><span style="font-size: medium;"> </span></span>Leave HAWQ in a stopped state after removing the warm standby master.</p><pre>-M fast (fast shutdown - rollback)</pre><p style="margin-left: 30.0px;">Use fast shut down when stopping HAWQ at the beginning of the standby initialization process. Any transactions in progress are interrupted and rolled back.</p><pre>-M smart (smart shutdown - warn)</pre><p align="LEFT" style="margin-left: 30.0px;">Use smart shut down when stopping HAWQ at the beginning of the standby initialization process. If there are active connections, this command fails with a warning. This is the default shutdown mode.</p><pre>-n (resynchronize)</pre><p style="margin-left: 30.0px;">Use this option if you already have a standby master configured, and just want to resynchronize the data between the primary and backup master host. The HAWQ system catalog tables will not be updated.</p><pre>-q (no screen output)</pre><p style="margin-left: 30.0px;">Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.</p><pre>-r (remove standby master)</pre><p style="margin-left: 30.0px;">Removes the currently configured standby master host from your HAWQ system.</p><pre>-s standby_hostname</pre><p style="margin-left: 30.0px;">The host name of the standby master host.</p><pre>-v (show utility version)</pre><p style="margin-left: 30.0px;">Displays the version, status, last updated date, and check sum of this utility.</p><pre>-? (help)</pre><p style="margin-left: 30.0px;">Displays the online help.</p><h3 id="ManagementUtilityReference-Examples.6">Examples</h3><p align="LEFT">Add a backup master host to your HAWQ system and start the synchronization process:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpinitstandby -s host09</pre>
+</div></div><p>Remove the existing backup master from your HAWQ system configuration:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpinitstandby -r</pre>
+</div></div><p>Start an existing backup master host and synchronize the data with the primary master host - do not add a new HAWQ backup master host to the system catalog:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpinitstandby -n</pre>
+</div></div><p><strong>Note</strong>: Do not specify the -n and -s options in the same command.</p><h2 id="ManagementUtilityReference-gpinitsystem">gpinitsystem</h2><p>Initializes a HAWQ system using configuration parameters specified in the gpinitsystem_config file.</p><h3 id="ManagementUtilityReference-Synopsis.7">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpinitsystem -c gpinitsystem_config
+	     [-h hostfile_gpinitsystem]
+	     [-B parallel_processes]
+	     [-p postgresql_conf_param_file]
+	     [-s standby_master_host]
+	     [--max_connections=number] [--shared_buffers=size]
+	     [--locale=locale] [--lc-collate=locale]
+	     [--lc-ctype=locale] [--lc-messages=locale]
+	     [--lc-monetary=locale] [--lc-numeric=locale]
+	     [--lc-time=locale] [--su_password=password]
+       	     [-a] [-q] [-l logfile_directory] [-D]
+gpinitsystem -?
+gpinitsystem -v</pre>
+</div></div><h3 id="ManagementUtilityReference-Description.8">Description</h3><p>The gpinitsystem utility will create a HAWQ instance using the values defined in a configuration file. See “Initialization Configuration File Format” for more information about this configuration file. Before running this utility, make sure that you have installed the HAWQ software on all the hosts in the array.</p><p align="LEFT">In a HAWQ DBMS, each database instance (the master and all segments) must be initialized across all of the hosts in the system in such a way that they can all work together as a unified DBMS. The gpinitsystem utility takes care of initializing the <span style="background-color: transparent;line-height: 1.4285715;">HAWQ master and each segment instance, and configuring the system as a whole.</span></p><p>Before running gpinitsystem, you must set the $GPHOME environment variable to point to the location of your HAWQ installation on the master host and exchange SSH keys between all host addresses in the array using gpssh-exkeys.</p><p>This utility performs the following tasks:</p><ul><li>Verifies that the parameters in the configuration file are correct.</li><li>Ensures that a connection can be established to each host address. If a host address cannot be reached, the utility will exit.</li><li>Verifies the locale settings.</li><li>Displays the configuration that will be used and prompts the user for confirmation.</li><li>Initializes the master instance.</li><li>Initializes the standby master instance (if specified).</li><li><p align="LEFT">Initializes the primary segment instances.</p></li><li><p align="LEFT">Configures the HAWQ system and checks for errors.</p></li><li><p align="LEFT">Starts the HAWQ system.</p></li></ul><h3 id="ManagementUtilityReference-Options.8">Options</h3><pre>-a (do not prompt)</pre><p style="margin-left: 30.0px;">Do not prompt the user for confirmation.<span style="font-size: medium;"><span style="font-size: medium;"> </span></span></p><pre>-B parallel_processes</pre><p style="margin-left: 30.0px;">The number of segments to create in parallel. If not specified, the utility will start up to 4 parallel processes at a time.</p><pre>-c <em>gpinitsystem_config</em></pre><p style="margin-left: 30.0px;">Required. The full path and filename of the configuration file, which contains all of the defined parameters to configure and initialize a new HAWQ system. See “Initialization Configuration File Format" for a description of this file.</p><pre>-D (debug)</pre><p style="margin-left: 30.0px;">Sets log output level to debug.</p><pre>-h <em>hostfile_gpinitsystem</em></pre><p style="margin-left: 30.0px;">Optional. The full path and filename of a file that contains the host addresses of your segment hosts. If not specified on the command line, you can specify the host file using the MACHINE_LIST_FILE parameter in the gpinitsystem_config file.</p><pre>--locale=locale <span> </span>| -n locale</pre><p style="margin-left: 30.0px;">Sets the default locale used by HAWQ. If not specified, the LC_ALL, LC_COLLATE, or LANG environment variable of the master host determines the locale. If these are not set, the default locale is C (POSIX). A locale identifier consists of a language identifier and a region identifier, and optionally a character set encoding. For example, sv_SE is Swedish as spoken in Sweden, en_US is U.S. English, and fr_CA is French Canadian. If more than one character set can be useful for a locale, then the specifications look like this: en_US.UTF-8 (locale specification and character set encoding). On most systems, the command locale will show the locale environment settings and locale -a will show a list of all available locales.</p><pre>--lc-collate=locale</pre><p style="margin-left: 30.0px;">Similar to --locale, but sets the locale used for collation (sorting data). The sort order cannot be changed after HAWQ is initialized, so it is important to choose a collation locale that is compatible with the character set encodings that you plan to use for your data. There is a special collation name of C or POSIX (byte-order sorting as opposed to dictionary-order sorting). The C collation can be used with any character encoding.</p><pre>--lc-ctype= locale</pre><p style="margin-left: 30.0px;">Similar to --locale, but sets the locale used for character classification (what character sequences are valid and how they are interpreted). This cannot be changed after HAWQ is initialized, so it is important to choose a character classification locale that is compatible with the data you plan to store in HAWQ.</p><pre>--lc-messages=locale </pre><p align="LEFT" style="margin-left: 30.0px;">Similar to --locale, but sets the locale used for messages output by HAWQ. The current version of HAWQ does not support multiple locales for output messages (all messages are in English), so changing this setting will not have any effect.</p><pre>--lc-monetary=locale</pre><p style="margin-left: 30.0px;">Similar to --locale, but sets the locale used for formatting currency amounts.</p><pre>--lc-numeric=locale</pre><p style="margin-left: 30.0px;">Similar to --locale, but sets the locale used for formatting numbers.</p><pre>--lc-time=locale</pre><p style="margin-left: 30.0px;">Similar to --locale, but sets the locale used for formatting dates and times.</p><pre>-l logfile_directory</pre><p style="margin-left: 30.0px;">The directory to write the log file. Defaults to ~/gpAdminLogs.</p><pre>--max_connections=number <span style="font-size: medium;"> </span>| -m <em>number</em></pre><p style="margin-left: 30.0px;">Sets the maximum number of client connections allowed to the master. The default is 250.</p><pre>-p postgresql_conf_param_file</pre><p style="margin-left: 30.0px;">Optional. The name of a file that contains postgresql.conf parameter settings that you want to set for HAWQ. These settings will be used when the individual master and segment instances are initialized. You can also set parameters after initialization using the gpconfig utility.</p><pre>-q (no screen output)</pre><p style="margin-left: 30.0px;">Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.</p><pre>--shared_buffers= <em>size </em><span style="font-size: medium;"> </span>| -b size</pre><p style="margin-left: 30.0px;">Sets the amount of memory a HAWQ server instance uses for shared memory buffers. You can specify sizing in kilobytes (kB), megabytes (MB) or gigabytes (GB). The default is 125MB.</p><pre>-s standby_master_host</pre><p style="margin-left: 30.0px;">Optional. If you wish to configure a backup master host, specify the host name using this option. The HAWQ software must already be installed and configured on this host.</p><h2 id="ManagementUtilityReference-gpload">gpload</h2><p>Runs a load job as defined in a YAML formatted control file.</p><h3 id="ManagementUtilityReference-Synopsis.8">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpload -f control_file [-l log_file] [-h hostname] [-p port] [-U username] [-d database] [-W] [--gpfdist_timeout seconds] [[-v | -V] [-q]][-D]
+gpload -?
+gpload --version</pre>
+</div></div><h3 id="ManagementUtilityReference-Prerequisites.1">Prerequisites</h3><p>The client machine where gpload is executed must have the following:</p><ul><li>Python 2.6.2 or later, pygresql (the Python interface to PostgreSQL), and pyyaml. Note that Python and the required Python libraries are included with the HAWQ server installation, so if you have HAWQ installed on the machine where gpload is running, you do not need a separate Python installation.<br/><strong>Note</strong>: HAWQ Loaders for Windows supports only Python 2.5 (available from <a class="external-link" href="http://www.python.org" rel="nofollow">www.python.org</a>).</li><li>The gpfdist parallel file distribution program installed and in your $PATH. This program is located in $GPHOME/bin of your HAWQ server installation.</li><li>Network access to and from all hosts in your HAWQ array (master and segments).</li><li>Network access to and from the hosts where the data to be loaded resides (ETL servers).</li></ul><h3 id="ManagementUtilityReference-Description.9">Description</h3><p>gpload is a data loading utility that acts as an interface to HAWQ’s external table parallel loading feature. Using a load specification defined in a YAML formatted control file, gpload executes a load by invoking the HAWQ parallel file server (gpfdist), creating an external table definition based on the source data defined, and executing an INSERT, UPDATE or MERGE operation to load the source data into the target table in the database.</p><h3 id="ManagementUtilityReference-Options.9">Options</h3><pre>-f control_file </pre><p align="LEFT" style="margin-left: 30.0px;">Required. A YAML file that contains the load specification details. See “Control File Format.”</p><pre>--gpfdist_timeout seconds</pre><p style="margin-left: 30.0px;">Sets the timeout for the gpfdist parallel file distribution program to send a response. Enter a value from 0 to 30 seconds (entering “0” to disables timeouts). Note that you might need to increase this value when operating on high-traffic networks.</p><pre>-l <em>log_file</em></pre><p style="margin-left: 30.0px;">Specifies where to write the log file. Defaults to ~/gpAdminLogs/gpload_<em>YYYYMMDD</em><span style="font-size: small;"> </span>. See also, “Log File Format.”</p><pre>-v (verbose mode)</pre><p style="margin-left: 30.0px;">Show verbose output of the load steps as they are executed.</p><pre>-V (very verbose mode)</pre><p align="LEFT" style="margin-left: 30.0px;">Shows very verbose output.</p><pre>-q (no screen output)</pre><p style="margin-left: 30.0px;">Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.</p><pre>-D (debug mode)</pre><p style="margin-left: 30.0px;">Check for error conditions, but do not execute the load.</p><pre>-? (show help)</pre><p style="margin-left: 30.0px;">Show help, then exit.</p><pre>--version</pre><p style="margin-left: 30.0px;">Show the version of this utility, then exit.</p><h3 id="ManagementUtilityReference-ConnectionOptions.2">Connection Options</h3><pre>-d database</pre><p style="margin-left: 30.0px;">The database to load into. If not specified, reads from the load control file, the environment variable $PGDATABASE or defaults to the current system user name.</p><pre>-h hostname</pre><p style="margin-left: 30.0px;">Specifies the host name of the machine on which the HAWQ master database server is running. If not specified, reads from the load control file, the environment variable $PGHOST or defaults to localhost.</p><pre>-p port</pre><p style="margin-left: 30.0px;">Specifies the TCP port on which the HAWQ master database server is listening for connections. If not specified, reads from the load control file, the environment variable $PGPORT or defaults to 5432.</p><pre>-U username</pre><p style="margin-left: 30.0px;">The database role name to connect as. If not specified, reads from the load control file, the environment variable $PGUSER or defaults to the current system user name.</p><pre>-W (force password prompt)</pre><p style="margin-left: 30.0px;">Force a password prompt. If not specified, reads the password from the environment variable $PGPASSWORD or from a password file specified by $PGPASSFILE or in ~/.pgpass. If these are not set, then gpload will prompt for a password even if -W is not supplied.</p><h3 id="ManagementUtilityReference-ControlFileFormat">Control File Format</h3><p align="LEFT">The gpload control file uses the YAML 1.1 document format and then implements its own schema for defining the various steps of a HAWQ load operation. The control file must be a valid YAML document.</p><p align="LEFT">The gpload program processes the control file document in order and uses indentation (spaces) to determine the document hierarchy and the relationships of the sections to one another. The use of white space is significant. White space should not be used simply for formatting purposes, and tabs should not be used at all.</p><p>The basic structure of a load control file is:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">---
+VERSION: 1.0.0.1 
+DATABASE: db_name
+USER: db_username
+HOST: master_hostname
+PORT: master_port
+GPLOAD: 
+	INPUT:
+	 - SOURCE:
+		LOCAL_HOSTNAME:
+		 - hostname_or_ip
+		PORT: http_port
+	      | PORT_RANGE: [start_port_range, end_port_range]
+		FILE:
+		  - /path/to/input_file
+		SSL: true | false
+		CERTIFICATES_PATH: /path/to/certificates
+	 - COLUMNS:
+		 - field_name: data_type
+	 - TRANSFORM: 'transformation'
+	 - TRANSFORM_CONFIG: 'configuration-file-path'
+	 - MAX_LINE_LENGTH: integer
+	 - FORMAT: text | csv
+	 - DELIMITER: 'delimiter_character'
+	 - ESCAPE: 'escape_character' | 'OFF'
+	 - NULL_AS: 'null_string'
+	 - FORCE_NOT_NULL: true | false
+	 - QUOTE: 'csv_quote_character'
+	 - HEADER: true | false
+	 - ENCODING: database_encoding
+ 	OUTPUT:
+	 - TABLE: schema.table_name
+	 - MODE: insert | update | merge
+	 - MATCH_COLUMNS:
+		- target_column_name
+	 - UPDATE_COLUMNS:
+		- target_column_name
+	 - UPDATE_CONDITION: 'boolean_condition'
+	 - MAPPING:
+		target_column_name: source_column_name |'expression'
+	PRELOAD:
+	 - TRUNCATE: true | false
+	 - REUSE_TABLES: true | false
+	SQL:
+	 - BEFORE: "sql_command"
+	 - AFTER: "sql_command"</pre>
+</div></div><pre>VERSION</pre><p style="margin-left: 30.0px;">Optional. The version of the gpload control file schema. The current version is 1.0.0.1.</p><pre>DATABASE</pre><p style="margin-left: 30.0px;">Optional. Specifies which database in HAWQ to connect to. If not specified, defaults to $PGDATABASE if set or the current system user name. You can also specify the database on the command line using the -d option.</p><pre>USER</pre><p style="margin-left: 30.0px;">Optional. Specifies which database role to use to connect. If not specified, defaults to the current user or $PGUSER if set. You can also specify the database role on the command line using the -U option.</p><p style="margin-left: 30.0px;">If the user running gpload is not a HAWQ superuser, then the server configuration parameter gp_external_grant_privileges must be set to on in order for the load to be processed.</p><pre>HOST</pre><p style="margin-left: 30.0px;">Optional. Specifies HAWQ master host name. If not specified, defaults to localhost or $PGHOST if set. You can also specify the master host name on the command line using the -h option.</p><pre>PORT </pre><p align="LEFT" style="margin-left: 30.0px;">Optional. Specifies HAWQ master port. If not specified, defaults to 5432 or $PGPORT if set. You can also specify the master port on the command line using the -p option.</p><pre>GPLOAD</pre><p style="margin-left: 30.0px;">Required. Begins the load specification section. A GPLOAD specification must have an INPUT and an OUTPUT section defined.</p><pre style="margin-left: 30.0px;">INPUT</pre><p style="margin-left: 30.0px;">Required. Defines the location and the format of the input data to be loaded. gpload will start one or more instances of the gpfdist file distribution program on the current host and create the required external table definition(s) in HAWQ that point to the source data. Note that the host from which you run gpload must be accessible over the network by all HAWQ hosts (master and segments).</p><pre style="margin-left: 60.0px;">SOURCE</pre><p align="LEFT" style="margin-left: 60.0px;">Required. The SOURCE block of an INPUT specification defines the location of a source file. An INPUT section can have more than one SOURCE block defined. Each SOURCE block defined corresponds to one instance of the gpfdist file distribution program that will be started on the local machine. Each SOURCE block defined must have a FILE specification.</p><pre style="margin-left: 60.0px;">LOCAL_HOSTNAME</pre><p style="margin-left: 60.0px;">Optional. Specifies the host name or IP address of the local machine on which gpload is running. If this machine is configured with multiple network interface cards (NICs), you can specify the host name or IP of each individual NIC to allow network traffic to use all NICs simultaneously. The default is to use the local machine’s primary host name or IP only</p><pre>       PORT</pre><p style="margin-left: 60.0px;">Optional. Specifies the specific port number that the gpfdist file distribution program should use. You can also supply a PORT_RANGE to select an available port from the specified range. If both PORT and PORT_RANGE are defined, then PORT takes precedence. If neither PORT or PORT_RANGE are defined, the default is to select an available port between 8000 and 9000.</p><p align="LEFT" style="margin-left: 60.0px;">If multiple host names are declared in LOCAL_HOSTNAME, this port number is used for all hosts. This configuration is desired if you want to use all NICs to load the same file or set of files in a given directory location.</p><pre style="margin-left: 60.0px;">PORT_RANGE</pre><p style="margin-left: 60.0px;">Optional. Can be used instead of PORT to supply a range of port numbers from which gpload can choose an available port for this instance of the gpfdist file distribution program.</p><pre>       FILE</pre><p style="margin-left: 60.0px;">Required. Specifies the location of a file, named pipe, or directory location on the local file system that contains data to be loaded. You can declare more than one file so long as the data is of the same format in all files specified.</p><p style="margin-left: 60.0px;">If the files are compressed using gzip or bzip2 (have a .gz or .bz2 file extension), the files will be uncompressed automatically (provided that gunzip or bunzip2 is in your path).</p><p style="margin-left: 60.0px;">When specifying which source files to load, you can use the wildcard character (*) or other C-style pattern matching to denote multiple files. The files specified are assumed to be relative to the current directory from which gpload is executed (or you can declare an absolute path).</p><pre style="margin-left: 60.0px;">SSL</pre><p style="margin-left: 60.0px;">Optional. Specifies usage of SSL encryption.</p><p style="margin-left: 60.0px;">CERTIFICATES_PATH</p><p style="margin-left: 60.0px;">Required when SSL is true; cannot be specified when SSL is false or unspecified. The location specified in CERTIFICATES_PATH must contain the following files:</p><ul><li style="list-style-type: none;background-image: none;"><ul><li><p>The server certificate file, server.crt</p></li><li><p>The server private key file, server.key</p></li><li><p>The trusted certificate authorities, root.crt</p></li></ul></li></ul><p style="margin-left: 60.0px;">The root directory (/) cannot be specified as CERTIFICATES_PATH.</p><pre>       COLUMNS</pre><p style="margin-left: 60.0px;">Optional. Specifies the schema of the source data file(s) in the format of field_name: <em>data_type</em><span style="font-size: small;"> </span>. The DELIMITER character in the source file is what separates two data value fields (columns). A row is determined by a line feed character (0x0a).</p><p align="LEFT" style="margin-left: 60.0px;">If the input COLUMNS are not specified, then the schema of the output TABLE is implied, meaning that the source data must have the same column order, number of columns, and data format as the target table. The default source-to-target mapping is based on a match of column names as defined in this section and the column names in the target TABLE. This default mapping can be overridden using the MAPPING section.</p><pre style="margin-left: 60.0px;">TRANSFORM</pre><p style="margin-left: 60.0px;">Optional. Specifies the name of the input XML transformation passed to gpload</p><pre>       TRANSFORM_CONFIG</pre><p style="margin-left: 60.0px;">Optional. Specifies the location of the XML transformation configuration file that is specified in the TRANSFORM parameter, above.</p><pre style="margin-left: 60.0px;">MAX_LINE_LENGTH</pre><p style="margin-left: 60.0px;">Optional. An integer that specifies the maximum length of a line in the XML transformation data passed to gpload.</p><pre>       FORMAT</pre><p style="margin-left: 60.0px;">Optional. Specifies the format of the source data file(s) - either plain text (TEXT) or comma separated values (CSV) format. Defaults to TEXT if not specified.</p><pre>       DELIMITER</pre><p style="margin-left: 60.0px;">Optional. Specifies a single ASCII character that separates columns within each row (line) of data. The default is a tab character in TEXT mode, a comma in CSV mode. You can also specify a non-printable ASCII character via an escape sequence using the decimal representation of the ASCII character. For example, \014 represents the shift out character.</p><pre style="margin-left: 60.0px;">ESCAPE</pre><p style="margin-left: 60.0px;">Specifies the single character that is used for C escape sequences (such as \n,\t,\100, and so on) and for escaping data characters that might otherwise be taken as row or column delimiters. Make sure to choose an escape character that is not used anywhere in your actual column data. The default escape character is a \ (backslash) for text-formatted files and a " (double quote) for csv-formatted files; however, it is possible to specify another character to represent an escape. It is also possible to disable escaping in text-formatted files by specifying the value 'OFF' as the escape value. This is very useful for data such as text-formatted web log data that has many embedded backslashes that are not intended to be escapes.</p><pre>       NULL_AS</pre><p style="margin-left: 60.0px;">Optional. Specifies the string that represents a null value. The default is \N (backslash-N) in TEXT mode, and an empty value with no quotations in CSV mode. You might prefer an empty string even in TEXT mode, for cases where you do not want to distinguish nulls from empty strings. Any source data item that matches this string will be considered a null value.</p><pre style="margin-left: 60.0px;">FORCE_NOT_NULL</pre><p style="margin-left: 60.0px;">Optional. In CSV mode, processes each specified column as though it were quoted and hence not a NULL value. For the default null string in CSV mode (nothing between two delimiters), this causes missing values to be evaluated as zero-length strings.</p><pre style="margin-left: 60.0px;">QUOTE</pre><p style="margin-left: 60.0px;">Required when FORMAT is CSV. Specifies the quotation character for CSV mode. The default is double-quote (").</p><pre style="margin-left: 60.0px;">HEADER</pre><p style="margin-left: 60.0px;">Optional. Specifies that the first line in the data file(s) is a header row (contains the names of the columns) and should not be included as data to be loaded. If using multiple data source files, all files must have a header row. The default is to assume that the input files do not have a header row.</p><pre style="margin-left: 60.0px;">ENCODING</pre><p style="margin-left: 60.0px;">Optional. Character set encoding of the source data. Specify a string constant (such as 'SQL_ASCII'), an integer encoding number, or 'DEFAULT' to use the default client encoding.</p><pre style="margin-left: 60.0px;">ERROR_LIMIT</pre><p style="margin-left: 60.0px;">Optional. Enables single row error isolation mode for this load operation. When enabled, input rows that have format errors will be discarded, provided that the error limit count is not reached on any HAWQ segment instance during input processing. If the error limit is not reached, all good rows will be loaded and any error rows will either be discarded or logged to the table specified in ERROR_TABLE. The default is to abort the load operation on the first error encountered. Note that single row error isolation only applies to data rows with format errors; for example, extra or missing attributes, attributes of a wrong data type, or invalid client encoding sequences. Constraint errors, such as primary key violations, will still cause the load operation to abort if encountered.</p><pre style="margin-left: 60.0px;">ERROR_TABLE</pre><p style="margin-left: 60.0px;">Optional when ERROR_LIMIT is declared. Specifies an error table where rows with formatting errors will be logged when running in single row error isolation mode. You can then examine this error table to see error rows that were not loaded (if any). If the <em>error_table </em><span style="font-size: small;"> </span>specified already exists, it will be used. If it does not exist, it will be automatically generated.</p><pre>       OUTPUT</pre><p style="margin-left: 60.0px;">Required. Defines the target table and final data column values that are to be loaded into the database.</p><pre>       TABLE</pre><p align="LEFT" style="margin-left: 60.0px;">Required. The name of the target table to load into.</p><pre style="margin-left: 60.0px;">MODE</pre><p style="margin-left: 60.0px;">Optional. Defaults to INSERT if not specified. There are three available load modes:</p><p style="margin-left: 60.0px;"><strong>INSERT</strong> - Loads data into the target table using the following method: INSERT INTO target_table  SELECT * FROM input_data ;</p><p style="margin-left: 60.0px;"><strong>UPDATE</strong> - Updates the UPDATE_COLUMNS of the target table where the rows have MATCH_COLUMNS attribute values equal to those of the input data, and the optional UPDATE_CONDITION is true.</p><p style="margin-left: 60.0px;"><strong>MERGE</strong> - Inserts new rows and updates the UPDATE_COLUMNS of existing rows where MATCH_COLUMNS attribute values are equal to those of the input data, and the optional UPDATE_CONDITION is true. New rows are identified when the MATCH_COLUMNS value in the source data does not have a corresponding value in the existing data of the target table. In those cases, the <strong>entire row </strong>from the source file is inserted, not only the MATCH and UPDATE columns. If there are multiple new MATCH_COLUMNS values that are the same, only one new row for that value will be inserted. Use UPDATE_CONDITION to filter out the rows to discard.</p><pre style="margin-left: 60.0px;">MATCH_COLUMNS</pre><p style="margin-left: 60.0px;">Required if MODE is UPDATE or MERGE. Specifies the column(s) to use as the join condition for the update. The attribute value in the specified target column(s) must be equal to that of the corresponding source data column(s) in order for the row to be updated in the target table.</p><pre style="margin-left: 60.0px;">UPDATE_COLUMNS</pre><p align="LEFT" style="margin-left: 60.0px;">Required if MODE is UPDATE or MERGE. Specifies the column(s) to update for the rows that meet the MATCH_COLUMNS criteria and the optional UPDATE_CONDITION.</p><pre style="margin-left: 60.0px;">UPDATE_CONDITION</pre><p align="LEFT" style="margin-left: 60.0px;">Optional. Specifies a Boolean condition (similar to what you would declare in a WHERE clause) that must be met in order for a row in the target table to be updated (or inserted in the case of a MERGE).</p><pre style="margin-left: 60.0px;">MAPPING</pre><p align="LEFT" style="margin-left: 60.0px;">Optional. If a mapping is specified, it overrides the default source-to-target column mapping. The default source-to-target mapping is based on a match of column names as defined in the source COLUMNS section and the column names of the target TABLE. A mapping is specified as either:</p><p align="LEFT" style="margin-left: 90.0px;">target_column_name: source_column_name</p><p align="LEFT" style="margin-left: 60.0px;">or</p><p align="LEFT" style="margin-left: 90.0px;">target_column_name: '<em>expression</em><span style="font-size: small;"> </span>'</p><p align="LEFT" style="margin-left: 60.0px;">Where <em>expression </em><span style="font-size: small;"> </span>is any expression that you would specify in the SELECT list of a query, such as a constant value, a column reference, an operator invocation, a function call, and so on.</p><pre>       PRELOAD</pre><p align="LEFT" style="margin-left: 60.0px;">Optional. Specifies operations to run prior to the load operation. Currently, the only preload operation is TRUNCATE.</p><pre style="margin-left: 60.0px;">TRUNCATE</pre><p align="LEFT" style="margin-left: 60.0px;">Optional. If set to true, gpload will remove all rows in the target table prior to loading it.</p><pre style="margin-left: 60.0px;">REUSE_TABLES</pre><p align="LEFT" style="margin-left: 60.0px;">Optional. If set to true, gpload will not drop the external table objects and staging table objects it creates. These objects will be reused for future load operations that use the same load specifications. This improves performance of trickle loads (ongoing small loads to the same target table).</p><pre style="margin-left: 30.0px;">    SQL</pre><p align="LEFT" style="margin-left: 60.0px;">Optional. Defines SQL commands to run before and/or after the load operation. You can specify multiple BEFORE and/or AFTER commands. List commands in the order of desired execution.</p><pre style="margin-left: 60.0px;">BEFORE</pre><p align="LEFT" style="margin-left: 60.0px;">Optional. An SQL command to run before the load operation starts. Enclose commands in quotes.</p><pre style="margin-left: 60.0px;">AFTER</pre><p align="LEFT" style="margin-left: 60.0px;">Optional. An SQL command to run after the load operation completes. Enclose commands in quotes.</p><h3 id="ManagementUtilityReference-Notes">Notes</h3><p>If your database object names were created using a double-quoted identifier (delimited identifier), you must specify the delimited name within single quotes in the gpload control file. For example, if you create a table as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE TABLE "MyTable" ("MyColumn" text);</pre>
+</div></div><p>Your YAML-formatted gpload control file would refer to the above table and column names as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">- COLUMNS:
+	- '"MyColumn"': text
+OUTPUT:
+	- TABLE: public.'"MyTable"'</pre>
+</div></div><h3 id="ManagementUtilityReference-LogFileFormat">Log File Format</h3><p>Log files output by gpload have the following format:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">timestamp|level|message</pre>
+</div></div><p>Where <em>timestamp </em><span style="font-size: small;"> </span>takes the form: YYYY-MM-DD HH:MM:SS, <em>level </em><span style="font-size: small;"> </span>is one of DEBUG, LOG, INFO, ERROR, and <em>message </em><span style="font-size: small;"> </span>is a normal text message.</p><p>Some INFO messages that may be of interest in the log files are (where <em># </em><span style="font-size: small;"> </span>corresponds to the actual number of seconds, units of data, or failed rows):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">INFO|running time: #.## seconds
+INFO|transferred #.# kB of #.# kB.
+INFO|gpload succeeded
+INFO|gpload succeeded with warnings
+INFO|gpload failed
+INFO|1 bad row
+INFO|# bad rows</pre>
+</div></div><h3 id="ManagementUtilityReference-Examples.7">Examples</h3><p>Run a load job as defined in <em>my_load.yml</em><span style="font-size: medium;"> </span>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpload -f my_load.yml</pre>
+</div></div><p>Example load control file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">---
+VERSION: 1.0.0.1
+DATABASE: ops
+USER: gpadmin
+HOST: mdw-1
+PORT: 5432
+GPLOAD:
+	INPUT:
+	  - SOURCE:
+		LOCAL_HOSTNAME:
+			- etl1-1
+			- etl1-2
+			- etl1-3
+			- etl1-4
+		PORT: 8081
+		FILE:
+		  - /var/load/data/*
+	  - COLUMNS:
+	  - name: text
+	  - amount: float4
+	  - category: text
+	  - desc: text
+	  - date: date
+	  - FORMAT: text
+	  - DELIMITER: '|'
+	OUTPUT:
+	  - TABLE: payables.expenses
+	  - MODE: INSERT
+	 SQL:
+	  - BEFORE: "INSERT INTO audit VALUES('start',current_timestamp)"
+	  - AFTER: "INSERT INTO audit VALUES('end',current_timestamp)"</pre>
+</div></div><h3 id="ManagementUtilityReference-SeeAlso.4">See Also</h3><p>gpfdist, CREATE EXTERNAL TABLE</p><h2 id="ManagementUtilityReference-gplogfilter">gplogfilter</h2><p>Searches through HAWQ log files for specified entries.</p><h3 id="ManagementUtilityReference-Synopsis.9">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gplogfilter 
+[timestamp_options] [pattern_options][output_options] [input_options] [input_file]
+gplogfilter --help
+gplogfilter --version</pre>
+</div></div><h3 id="ManagementUtilityReference-Description.10">Description</h3><p>The gplogfilter utility can be used to search through a HAWQ log file for entries matching the specified criteria. If an input file is not supplied, then gplogfilter will use the $MASTER_DATA_DIRECTORY environment variable to locate the HAWQ master log file in the standard logging location. To read from standard input, use a dash (-) as the input file name. Input files may be compressed using gzip. In an input file, a log entry is identified by its timestamp in YYYY-MM-DD [hh:mm[:ss]] format. You can also use gplogfilter to search through all segment log files at once by running it through the gpssh utility. For example, to display the last three lines of each segment log file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpssh -f seg_host_file
+=&gt; source /usr/local/greenplum-db/greenplum_path.sh
+=&gt; gplogfilter -n 3 /gpdata/*/pg_log/gpdb*.log</pre>
+</div></div><p>By default, the output of gplogfilter is sent to standard output. Use the -o option to send the output to a file or a directory. If you supply an output file name ending in .gz, the output file will be compressed by default using maximum compression. If the output destination is a directory, the output file is given the same name as the input file.</p><h3 id="ManagementUtilityReference-Options.10">Options</h3><h4 id="ManagementUtilityReference-TimestampOptions">Timestamp Options</h4><pre>-b datetime <span> </span>| --begin=datetime</pre><p style="margin-left: 30.0px;">Specifies a starting date and time to begin searching for log entries in the format of YYYY-MM-DD [hh:mm[:ss]]</p><pre>-e <em>datetime </em><span style="font-size: medium;"> </span>| --end=datetime</pre><p style="margin-left: 30.0px;">Specifies an ending date and time to stop searching for log entries in the format of YYYY-MM-DD [hh:mm[:ss]]</p><pre>-d <em>time </em><span style="font-size: medium;"> </span>| --duration=time</pre><p style="margin-left: 30.0px;">Specifies a time duration to search for log entries in the format of [hh][:mm[:ss]]. If used without either the -b or -e option, will use the current time as a basis.</p><h4 id="ManagementUtilityReference-PatternMatchingOptions">Pattern Matching Options</h4><pre>-c i[gnore]|r[espect] | --case=i[gnore]|r[espect]</pre><p style="margin-left: 30.0px;">Matching of alphabetic characters is case sensitive by default unless proceeded by the --case=ignore option.</p><pre>-C '&lt;string&gt;' | --columns='&lt;string&gt;'</pre><p style="margin-left: 30.0px;">Selects specific columns from the log file. Specify the desired columns as a comma-delimited string of column numbers beginning with 1, where the second column from left is 2, the third is 3, and so on.</p><pre>-f 'string<span style="font-size: medium;"> </span>' | --find='<em>string</em><span style="font-size: medium;"> </span>'</pre><p style="margin-left: 30.0px;">Finds the log entries containing the specified string.</p><pre>-F 'string<span> </span>' | --nofind='string<span> </span>'</pre><p style="margin-left: 30.0px;">Rejects the log entries containing the specified string.</p><p align="LEFT">-m <em>regex </em><span style="font-size: medium;"> </span>| --match=<em>regex</em></p><p style="margin-left: 30.0px;">Finds log entries that match the specified Python regular expression. See <span class="nolink">http://docs.python.org/library/re.html</span> for Python regular expression syntax.</p><p>-M <em>regex </em><span style="font-size: medium;"> </span>| --nomatch=<em>regex</em></p><p style="margin-left: 30.0px;">Rejects log entries that match the specified Python regular expression. See <span class="nolink">http://docs.python.org/library/re.html</span> for Python regular expression syntax.</p><p align="LEFT">-t | --trouble</p><p style="margin-left: 30.0px;">Finds only the log entries that have ERROR:, FATAL:, or PANIC: in the first line.</p><h4 id="ManagementUtilityReference-OutputOptions">Output Options</h4><p align="LEFT">-n <em>integer </em><span style="font-size: medium;"> </span>| --tail=<em>integer</em></p><p style="margin-left: 30.0px;">Limits the output to the last <em>integer </em><span style="font-size: small;"> </span>of qualifying log entries found.</p><p>-s <em>offset </em><span style="font-size: medium;"> </span>[<em>limit</em><span style="font-size: medium;"> </span>] | --slice=<em>offset </em><span style="font-size: medium;"> </span>[<em>limit</em><span style="font-size: medium;"> </span>]</p><p style="margin-left: 30.0px;">From the list of qualifying log entries, returns the <em>limit </em><span style="font-size: small;"> </span>number of entries starting at the <em>offset </em><span style="font-size: small;"> </span>entry number, where an <em>offset </em><span style="font-size: small;"> </span>of zero (0) denotes the first entry in the result set and an <em>offset </em><span style="font-size: small;"> </span>of any number greater than zero counts back from the end of the result set.</p><p align="LEFT">-o <em>output_file </em><span style="font-size: medium;"> </span>| --out=<em>output_file</em></p><p style="margin-left: 30.0px;">Writes the output to the specified file or directory location instead of STDOUT.</p><pre>-z 0-9 | --zip=0-9</pre><p style="margin-left: 30.0px;">Compresses the output file to the specified compression level using gzip, where 0 is no compression and 9 is maximum compression. If you supply an output file name ending in .gz, the output file will be compressed by default using maximum compression.</p><pre>-a | --append</pre><p align="LEFT" style="margin-left: 30.0px;">If the output file already exists, appends to the file instead of overwriting it.</p><h4 id="ManagementUtilityReference-InputOptions">Input Options</h4><pre>input_file. </pre><p align="LEFT" style="margin-left: 30.0px;">The name of the input log file(s) to search through. If an input file is not supplied, gplogfilter will use the $MASTER_DATA_DIRECTORY environment variable to locate the HAWQ master log file. To read from standard input, use a dash (-) as the input file name.</p><pre>-u | --unzip</pre><p align="LEFT" style="margin-left: 30.0px;">Uncompress the input file using gunzip. If the input file name ends in .gz, it will be uncompressed by default.</p><pre>--help</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the online help.</p><pre>--version</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the version of this utility.</p><h3 id="ManagementUtilityReference-Examples.8">Examples</h3><p align="LEFT">Display the last three error messages in the master log file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gplogfilter -t -n 3</pre>
+</div></div><p>Display all log messages in the master log file timestamped in the last 10 minutes:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gplogfilter -d :10</pre>
+</div></div><p>Display log messages in the master log file containing the string |con6 cmd11|:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gplogfilter -f '|con6 cmd11|'</pre>
+</div></div><p>Using gpssh, run gplogfilter on the segment hosts and search for log messages in the segment log files containing the string con6 and save output to a file.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpssh -f seg_hosts_file -e 'source
+/usr/local/greenplum-db/greenplum_path.sh ; gplogfilter -f
+con6 /gpdata/*/pg_log/gpdb.log' &gt; seglog.out</pre>
+</div></div><h3 id="ManagementUtilityReference-SeeAlso.5">See Also</h3><p>gpssh, gpscp</p><h2 id="ManagementUtilityReference-gprecoverseg">gprecoverseg</h2><p>Recovers a segment instance that has been marked as down.</p><h3 id="ManagementUtilityReference-Synopsis.10">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gprecoverseg [-p new_recover_host[,...] [-d master_data_directory] [-B parallel_processes] [-F] [-a] [-q] [-l logfile_directory]
+gprecoverseg -?
+gprecoverseg --version</pre>
+</div></div><h3 id="ManagementUtilityReference-Description.11">Description</h3><p>The gprecoverseg utility reactivates failed segment instances.Once gprecoverseg completes this process, the system will be recovered.</p><p>A segment instance can fail for several reasons, such as a host failure, network failure, or disk failure. When a segment instance fails, its status is marked as down in the HAWQ Database system catalog, and the master will random pickup a segment to process query for a session. In order to bring the failed segment instance back into operation again, you must first correct the problem that made it fail in the first place, and then recover the segment instance in the HAWQ Database using gprecoverseg.</p><p>Segment recovery using gprecoverseg requires that you have at least one alive segment to recover from. For systems that do not have alive segment do a system restart to bring the segments back online (gpstop -r).</p><p>By default, a failed segment is recovered in place, meaning that the system brings the segment back online on the same host and data directory location on which it was originally configured. </p><p>If the data directory was removed or damaged, gprecoverseg can recover the data directory (using -F). This requires that you have at least one alive segment to recover from.</p><p align="LEFT">In some cases, this may not be possible (for example, if a host was physically damaged and cannot be recovered). In this situation, gprecoverseg allows you to recover failed segments to a completely new host (using -p). In this scenario, to prevent HAWQ having an unbalanced workload, all the the segments on the failed host should be moved to the new host. You must manually kill the other alive segments left on the failed host before you try to run gprecoverseg.</p><p>The new recovery segment host must be pre-installed with the HAWQ software and configured exactly the same as the existing segment hosts. A spare data directory location must exist on all currently configured segment hosts and have enough disk space to accommodate the failed segments.</p><p>If you do not have mirroring enabled, or if you have both a primary and its mirror down, you must take manual steps to recover the failed segment instances and then restart the system, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstop -r</pre>
+</div></div><h3 id="ManagementUtilityReference-Options.11">Options</h3><pre>-a (do not prompt)</pre><p style="margin-left: 30.0px;">Do not prompt the user for confirmation.If gprecovery -a cannot recover successfully, HAWQ will raise an exception and tell user to use the -F or -p option.</p><pre>-B parallel_processes</pre><p style="margin-left: 30.0px;">The number of segments to recover in parallel. If not specified, the utility will start up to four parallel processes, depending on how many segment instances it needs to recover.</p><pre>-d master_data_directory</pre><p style="margin-left: 30.0px;">Optional. The master host data directory. If not specified, the value set for $MASTER_DATA_DIRECTORY will be used.</p><pre>-F (full recovery)</pre><p style="margin-left: 30.0px;">Optional. Perform a full copy of the active segment instance in order to recover the failed segment. The default is to only restart the failed segment in-place.</p><h3 id="ManagementUtilityReference-Comments">Comments</h3><p>Lines beginning with # are treated as comments and ignored.</p><h4 id="ManagementUtilityReference-FilespaceOrder">Filespace Order</h4><p>The first comment line that is not a comment specifies filespace ordering. This line starts with filespaceOrder= and is followed by list of filespace names delimited by a colon. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">filespaceOrder=raid1:raid2</pre>
+</div></div><p>The default pg_system filespace should not appear in this list. The list should be left empty on a system with no filespaces other than the default pg_system filespace. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">filespaceOrder=</pre>
+</div></div><h4 id="ManagementUtilityReference-Example">Example</h4><p>Recovery of a single mirror to a new host on a system with an extra filespace:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">filespaceOrder=fs1
+sdw1-1:50001:/data1/mirror/gpseg16SPACE
+sdw4-1:50001:51001:/data1/recover1/gpseg16:/data1/fs1/gps
+eg16</pre>
+</div></div><h4 id="ManagementUtilityReference-ObtainingaSampleFile">Obtaining a Sample File</h4><pre>-l <em>logfile_directory</em></pre><p style="margin-left: 30.0px;">The directory to write the log file. Defaults to ~/gpAdminLogs.</p><pre>-p new_recover_host<span style="font-size: medium;"> </span>[,...]</pre><p style="margin-left: 30.0px;">Specifies a spare host outside of the currently configured HAWQ database array on which to recover invalid segments. In the case of multiple failed segment hosts, you can specify a comma-separated list. The spare host must have the HAWQ database installed and configured, and have the same hardware and OS configuration as the current segment hosts (same OS version, locales, gpadmin user account, data directory locations created, ssh keys exchanged, number of network interfaces, network interface naming convention, and so on).</p><p style="margin-left: 30.0px;">Before using this option:</p><ul><li>Make sure that all the segments on the failed hosts are marked down.</li><li>If you see any segments that are alive on the failed hosts, kill the segments or shutdown the failed hosts.</li><li>Specify a new host for each failed host. </li></ul><pre>-q (no screen output)</pre><p style="margin-left: 30.0px;">Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.</p><pre>-v (verbose)</pre><p align="LEFT" style="margin-left: 30.0px;">Sets logging output to verbose.</p><pre>--version (version)</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the version of this utility.</p><pre>-? (help)</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the online help.</p><h3 id="ManagementUtilityReference-Examples.9">Examples</h3><p align="LEFT">Recover any failed segment instances in place:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">$ gprecoverseg</pre>
+</div></div><p>Recreate any failed segment instances in place</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">$ gprecoverseg -f</pre>
+</div></div><p>Replace any failed host to a set of new hosts:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">$ gprecoverseg -p new1, new2</pre>
+</div></div><h3 id="ManagementUtilityReference-SeeAlso.6">See Also</h3><p align="LEFT">gpstart, gpstop</p><h2 id="ManagementUtilityReference-gpscp">gpscp</h2><p align="LEFT">Copies files between multiple hosts at once.</p><h3 id="ManagementUtilityReference-Synopsis.11">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpscp { -f hostfile_gpssh | - h hostname [-h hostname ...] }
+[-J character] [-v] [[user@]hostname:]file_to_copy [...]
+[[user@]hostname:]copy_to_path
+gpscp -?
+gpscp --version</pre>
+</div></div><h3 id="ManagementUtilityReference-Description.12">Description</h3><p align="LEFT">The gpscp utility allows you to copy one or more files from the specified hosts to other specified hosts in one command, using SCP (secure copy). For example, you can copy a file from the HAWQ master host to all of the segment hosts at the same time.</p><p align="LEFT">To specify the hosts involved in the SCP session, use the -f option to specify a file containing a list of host names, or use the -h option to name single host names on the command-line. At least one host name (-h) or a host file (-f) is required. The -J option allows you to specify a single character to substitute for the <em>hostname </em><span style="font-size: medium;"> </span>in the copy from and to destination strings. If -J is not specified, the default substitution character is an equal sign (=). For example, the following command will copy <em>.bashrc </em>from the local host to /home/gpadmin on all hosts named in <em>hostfile_gpssh</em><span style="font-size: medium;"> </span>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpscp -f hostfile_gpssh .bashrc =:/home/gpadmin</pre>
+</div></div><p align="LEFT">If a user name is not specified in the host list or with <em>user</em><span style="font-size: small;"> </span>@ in the file path, gpscp will copy files as the currently logged in user. To determine the currently logged in user, do a whoami command. By default, gpscp goes to $HOME of the session user on the remote hosts after login. To ensure the file is copied to the correct location on the remote hosts, it is recommended that you use absolute paths.</p><p align="LEFT">Before using gpscp, you must have a trusted host setup between the hosts involved in the SCP session. You can use the utility gpssh-exkeys to update the known host files and exchange public keys between hosts if you have not done so already.</p><h3 id="ManagementUtilityReference-Options.12">Options</h3><pre>-f hostfile_gpssh</pre><p align="LEFT" style="margin-left: 30.0px;">Specifies the name of a file that contains a list of hosts that will participate in this SCP session. The syntax of the host file is one host per line as follows: &lt;hostname&gt;</p><pre>-h hostname</pre><p align="LEFT" style="margin-left: 30.0px;">Specifies a single host name that will participate in this SCP session. You can use the -h option multiple times to specify multiple host names.</p><pre>-J character</pre><p align="LEFT" style="margin-left: 30.0px;">The -J option allows you to specify a single character to substitute for the <em>hostname </em>in the copy from and to destination strings. If -J is not specified, the default substitution character is an equal sign (=).</p><pre>-v (verbose mode)</pre><p align="LEFT" style="margin-left: 30.0px;">Optional. Reports additional messages in addition to the SCP command output.</p><pre>file_to_copy</pre><p align="LEFT" style="margin-left: 30.0px;">Required. The file name (or absolute path) of a file that you want to copy to other hosts (or file locations). This can be either a file on the local host or on another named host.</p><pre>copy_to_path</pre><p align="LEFT" style="margin-left: 30.0px;">Required. The path where you want the file(s) to be copied on the named hosts. If an absolute path is not used, the file will be copied relative to $HOME of the session user. You can also use the equal sign ‘=’ (or another character that you specify with the -J option) in place of a <em>hostname</em><span style="font-size: medium;"> </span>. This will then substitute in each host name as specified in the supplied host file (-f) or with the -h option.</p><pre>-? (help)</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the online help.</p><pre>--version</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the version of this utility.</p><h3 id="ManagementUtilityReference-Examples.10">Examples</h3><p align="LEFT">Copy the file named <em>installer.tar </em><span style="font-size: medium;"> </span>to / on all the hosts in the file <em>hostfile_gpssh</em><span style="font-size: medium;"> </span>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> gpscp -f hostfile_gpssh installer.tar =:/</pre>
+</div></div><p align="LEFT">Copy the file named <em>myfuncs.so </em><span style="font-size: medium;"> </span>to the specified location on the hosts named <em>sdw1 </em>and sdw:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpscp -h sdw1 -h sdw2 myfuncs.so \
+=:/usr/local/hawq-db/lib</pre>
+</div></div><h2 id="ManagementUtilityReference-gpssh">gpssh</h2><p>Provides ssh access to multiple hosts at once.</p><h3 id="ManagementUtilityReference-Synopsis.12">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpssh { -f hostfile_gpssh | - h hostname [-h hostname ...] } [-u
+userid] [-v] [-e] [bash_command]
+gpssh -?
+gpssh --version</pre>
+</div></div><h3 id="ManagementUtilityReference-Description.13">Description</h3><p>The gpssh utility allows you to run bash shell commands on multiple hosts at once using SSH (secure shell). You can execute a single command by specifying it on the command-line, or omit the command to enter into an interactive command-line session.</p><p align="LEFT">To specify the hosts involved in the SSH session, use the -f option to specify a file containing a list of host names, or use the -h option to name single host names on the command-line. At least one host name (-h) or a host file (-f) is required. Note that the current host is <em>not </em><span style="font-size: medium;"> </span>included in the session by default — to include the local host, you must explicitly declare it in the list of hosts involved in the session.</p><p align="LEFT">Before using gpssh, you must have a trusted host setup between the hosts involved in the SSH session. You can use the utility gpssh-exkeys to update the known host files and exchange public keys between hosts, if you have not done so already.</p><p align="LEFT">If you do not specify a command on the command-line, gpssh will go into interactive mode. At the gpssh command prompt (=&gt;), you can enter a command as you would in a regular bash terminal command-line, and the command will be executed on all hosts involved in the session. To end an interactive session, press CTRL+D on the keyboard or type exit or quit.</p><p>If a user name is not specified in the host file, gpssh will execute commands as the currently logged in user. To determine the currently logged in user, do a whoami command. By default, gpssh goes to $HOME of the session user on the remote hosts after login. To ensure commands are executed correctly on all remote hosts, you should always enter absolute paths.</p><h3 id="ManagementUtilityReference-Options.13">Options</h3><pre>bash_command</pre><p style="margin-left: 30.0px;">A bash shell command to execute on all hosts involved in this session (optionally enclosed in quotes). If not specified, gpssh will start an interactive session.</p><pre>-e (echo)</pre><p style="margin-left: 30.0px;">Optional. Echoes the commands passed to each host and their resulting output while running in non-interactive mode.</p><pre>-f hostfile_gpssh</pre><p style="margin-left: 30.0px;">Specifies the name of a file that contains a list of hosts that will participate in this SSH session. The host name is required, and you can optionally specify an alternate user name and/or SSH port number per host. The syntax of the host file is one host per line as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">[username @]hostname [:ssh_port ]</pre>
+</div></div><pre>-h <em>hostname</em></pre><p align="LEFT" style="margin-left: 30.0px;">Specifies a single host name that will participate in this SSH session. You can use the -h option multiple times to specify multiple host names.</p><pre>-u &lt;userid&gt;</pre><p><span style="font-size: medium;"><em><span style="font-size: medium;"> </span></em></span>Specifies the userid for this SSH session.</p><pre>-v (verbose mode)</pre><p style="margin-left: 30.0px;">Optional. Reports additional messages in addition to the command output when running in non-interactive mode.</p><pre>--version</pre><p style="margin-left: 30.0px;">Displays the version of this utility.</p><pre>-? (help)</pre><p style="margin-left: 30.0px;">Displays the online help.</p><h3 id="ManagementUtilityReference-Examples.11">Examples</h3><p align="LEFT">Start an interactive group SSH session with all hosts listed in the file <em>hostfile_gpssh</em><span style="font-size: medium;"> </span>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ gpssh -f hostfile_gpssh </pre>
+</div></div><p>At the gpssh interactive command prompt, run a shell command on all the hosts involved in this session.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">=&gt; ls -a /data/primary/*</pre>
+</div></div><p>Exit an interactive session:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">=&gt; exit</pre>
+</div></div><p>Start a non-interactive group SSH session with the hosts named <em>dw1 </em><span style="font-size: medium;"> </span>and <em>dw2 </em><span style="font-size: medium;"> </span>and pass a file containing several commands named <em>command_file </em><span style="font-size: medium;"> </span>to gpssh:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ gpssh -h sdw1 -h sdw2 -v -e &lt; command_file</pre>
+</div></div><p><span style="font-size: medium;"> </span>Execute single commands in non-interactive mode on hosts <em>sdw2 </em><span style="font-size: medium;"> </span>and <em>localhost</em><span style="font-size: medium;"> </span>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ gpssh -h sdw2 -h localhost -v -e 'ls -a /data/primary/*'
+$ gpssh -h sdw2 -h localhost -v -e 'echo $GPHOME'
+$ gpssh -h sdw2 -h localhost -v -e 'ls -1 | wc -l'</pre>
+</div></div><h2 id="ManagementUtilityReference-gpssh-exkeys">gpssh-exkeys</h2><p>Exchanges SSH public keys between hosts.</p><h3 id="ManagementUtilityReference-Synopsis.13">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpssh-exkeys -f &lt;hostfile_exkeys&gt; [-p &lt;password&gt;] | -h &lt;hostname&gt; [-h &lt;hostname&gt; ...] [-p &lt;password&gt;]
+gpssh-exkeys -e hostfile_exkeys -x hostfile_gpexpand
+gpssh-exkeys -?
+gpssh-exkeys --version</pre>
+</div></div><h3 id="ManagementUtilityReference-Description.14">Description</h3><p align="LEFT">The gpssh-exkeys utility exchanges SSH keys between the specified host names (or host addresses). This allows SSH connections between HAWQ hosts and network interfaces without a password prompt. The utility is used to initially prepare a HAWQ system for password-free SSH access, and also to add additional ssh keys when expanding a HAWQ system.</p><p align="LEFT">To specify the hosts involved in an initial SSH key exchange, use the -f option to specify a file containing a list of host names (recommended), or use the -h option to name single host names on the command-line. At least one host name (-h) or a host file is required. Note that the local host is included in the key exchange by default.</p><p align="LEFT">To specify new expansion hosts to be added to an existing HAWQ system, use the -e and -x options. The -e option specifies a file containing a list of existing hosts in the system that already have SSH keys. The -x option specifies a file containing a list of new hosts that need to participate in the SSH key exchange.</p><p align="LEFT">Keys are exchanged as the currently logged in user. Pivotal recommends performing the key exchange process twice: once as root and once as the gpadmin user (the user designated to own your HAWQ installation). The HAWQ management utilities require that the same non-root user be created on all hosts in the HAWQ system, and the utilities must be able to connect as that user to all hosts without a password prompt.</p><p align="LEFT">The gpssh-exkeys utility performs key exchange using the following steps:</p><ul><li>Creates an RSA identification key pair for the current user if one does not already exist. The public key of this pair is added to the authorized_keys file of the current user.</li><li>Updates the known_hosts file of the current user with the host key of each host specified using the -h, -f, -e, and -x options.</li><li>Connects to each host using ssh and obtains the authorized_keys, known_hosts  and id_rsa.pub files to set up password-free access.</li><li>Adds keys from the id_rsa.pub files obtained from each host to the authorized_keys file of the current user.</li><li>Updates the authorized_keys, known_hosts, and id_rsa.pub files on all hosts with new host information (if any).</li></ul><h3 id="ManagementUtilityReference-Options.14">Options</h3><pre>-e hostfile_exkeys</pre><p style="margin-left: 30.0px;">When doing a system expansion, this is the name and location of a file containing all configured host names and host addresses (interface names) for each host in you current HAWQ system (master, standby master and segments), one name per line without blank lines or extra spaces. Hosts specified in this file cannot be specified in the host file used with -x.</p><pre>-f hostfile_exkeys</pre><p style="margin-left: 30.0px;">Specifies the name and location of a file containing all configured host names and host addresses (interface names) for each host in your HAWQ system (master,  standby master, and segments), one name per line without blank lines or extra spaces.</p><p align="LEFT">-h <em>hostname</em></p><p style="margin-left: 30.0px;">Specifies a single host name (or host address) that will participate in the SSH key exchange. You can use the -h option multiple times to specify multiple host names and host addresses.</p><pre>-p &lt;password&gt;</pre><p style="margin-left: 30.0px;">Specifies the password used to login to the hosts. The hosts should share the same password.</p><pre>--version</pre><p style="margin-left: 30.0px;">Displays the version of this utility.</p><pre>-x hostfile_gpexpand</pre><p style="margin-left: 30.0px;">When doing a system expansion, this is the name and location of a file containing all configured host names and host addresses (interface names) for each <em>new segment </em>host you are adding to your HAWQ system, one name per line without blank lines or extra spaces. Hosts specified in this file cannot be specified in the host file used with -e</p><pre>-? (help)</pre><p style="margin-left: 30.0px;">Displays the online help.</p><h3 id="ManagementUtilityReference-Examples.12">Examples</h3><p align="LEFT">Exchange SSH keys between all host names and addresses listed in the file hostfile_exkeys:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ gpssh-exkeys -f hostfile_exkeys</pre>
+</div></div><p>Exchange SSH keys between the hosts <em>sdw1</em><span style="font-size: medium;"> </span>, <em>sdw2</em><span style="font-size: medium;"> </span>, and <em>sdw3</em><span style="font-size: medium;"> </span>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ gpssh-exkeys -h sdw1 -h sdw2 -h sdw3</pre>
+</div></div><p>Exchange SSH keys between existing hosts <em>sdw1</em><span style="font-size: medium;"> </span>, <em>sdw2 </em><span style="font-size: medium;"> </span>and <em>sdw3, </em><span style="font-size: medium;"> </span>and new hosts sdw4 and <em>sdw5 </em><span style="font-size: medium;"> </span>as part of a system expansion operation:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ cat hostfile_exkeys
+	mdw
+	mdw-1
+	mdw-2
+	smdw
+	smdw-1
+	smdw-2
+	sdw1
+	sdw1-1
+	sdw1-2
+	sdw2
+	sdw2-1
+	sdw2-2
+	sdw3
+	sdw3-1
+	sdw3-2
+$ cat hostfile_gpexpand
+	sdw4
+	sdw4-1
+	sdw4-2
+	sdw5
+	sdw5-1
+	sdw5-2
+$ gpssh-exkeys -e hostfile_exkeys -x hostfile_gpexpand</pre>
+</div></div><h3 id="ManagementUtilityReference-SeeAlso.7">See Also</h3><p>gpssh, gpscp</p><h2 id="ManagementUtilityReference-gpstart">gpstart</h2><p>Starts a HAWQ system.</p><h3 id="ManagementUtilityReference-Synopsis.14">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstart [-d master_data_directory] [-B parallel_processes] [-R] [-m] [-y] [-a] [-t timeout_seconds] [-l logfile_directory] [-v | -q]
+gpstart -? | -h | --help
+gpstart --version</pre>
+</div></div><h3 id="ManagementUtilityReference-Description.15">Description</h3><p>The gpstart utility is used to start the HAWQ server processes. When you start a <span style="background-color: transparent;line-height: 1.4285715;">HAWQ system, you are actually starting several postgres database server listener processes at once (the master and all of the segment instances). The gpstart utility handles the startup of the individual instances. Each instance is started in parallel.</span></p><p>The first time an administrator runs gpstart, the utility creates a hosts cache file named.gphostcache in the user’s home directory. Subsequently, the utility uses this list of hosts to start the system more efficiently. If new hosts are added to the system, you must manually remove this file from the gpadmin user’s home directory. The utility will create a new hosts cache file at the next startup.</p><p>Before you can start a HAWQ system, you must have initialized the system using gpinitsystem first.</p><h3 id="ManagementUtilityReference-Options.15">Options</h3><pre>-a (do not prompt)</pre><p style="margin-left: 30.0px;"><span style="font-size: medium;"><span style="font-size: medium;"><span style="font-size: medium;"> </span></span></span>Do not prompt the user for confirmation.</p><pre>-B parallel_processes</pre><p style="margin-left: 30.0px;">The number of segments to start in parallel. If not specified, the utility will start up to 60 parallel processes, depending on how many segment instances are needed.</p><pre>-d master_data_directory</pre><p style="margin-left: 30.0px;">Optional. The master host data directory. If not specified, the value set for $MASTER_DATA_DIRECTORY will be used.</p><pre>-l logfile_directory</pre><p style="margin-left: 30.0px;">The directory to write the log file. Defaults to ~/gpAdminLogs.</p><pre>-m (master only)</pre><p style="margin-left: 30.0px;">Optional. Starts the master instance only, which may be useful for maintenance tasks. This mode only allows connections to the master in utility mode. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">PGOPTIONS='-c gp_session_role=utility' psql</pre>
+</div></div><pre>-q (no screen output)</pre><p style="margin-left: 30.0px;">Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.</p><pre>-R (restricted mode)</pre><p style="margin-left: 30.0px;">Starts HAWQ in restricted mode (only database superusers are allowed to connect).</p><pre>-t timeout_seconds</pre><p align="LEFT" style="margin-left: 30.0px;">Specifies a timeout (in seconds) to wait for a segment instance to start up. If a segment instance was shut down abnormally (due to power failure or killing its postgres database listener process, for example), it may take longer to start up, due to the database recovery and validation process. If not specified, the default timeout is 60 seconds.</p><pre>-v (verbose output)</pre><p style="margin-left: 30.0px;">Displays detailed status, progress and error messages output by the utility.</p><pre>-y (do not start standby master)</pre><p style="margin-left: 30.0px;">Optional. Do not start the standby master host. The default is to start the standby master host and synchronization process.</p><pre>-? | -h | --help (help)</pre><p style="margin-left: 30.0px;">Displays the online help.</p><pre>--version (show utility version)</pre><p style="margin-left: 30.0px;">Displays the version of this utility.</p><h3 id="ManagementUtilityReference-Examples.13">Examples</h3><p align="LEFT">Start a HAWQ system:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstart</pre>
+</div></div><p align="LEFT">Start a HAWQ system in restricted mode (only allow superuser connections):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstart -R</pre>
+</div></div><p align="LEFT">Start the HAWQ master instance only and connect in utility mode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstart -m
+PGOPTIONS='c gp_session_role=utility' psql</pre>
+</div></div><p align="LEFT">Display the online help for the gpstart utility:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstart -?</pre>
+</div></div><h3 id="ManagementUtilityReference-SeeAlso.8">See Also</h3><p>gpstop</p><h2 id="ManagementUtilityReference-gpstate">gpstate</h2><p>Shows the status of a running HAWQ system.</p><h3 id="ManagementUtilityReference-Synopsis.15">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstate 
+[-d master_data_directory] [-B parallel_processes]
+[-s | -b | -Q] [-p] [-i] [-f] [-v | -q] [-l log_directory]
+gpstate -? | -h | --help</pre>
+</div></div><h3 id="ManagementUtilityReference-Description.16">Description</h3><p>The gpstate utility displays information about a running HAWQ instance. There is additional information you may want to know about a HAWQ system, since it is comprised of multiple PostgreSQL database instances (segments) spanning multiple machines. The gpstate utility provides additional status information for a HAWQ system, such as:</p><ul><li>Which segments are down.</li><li>Master and segment configuration information (hosts, data directories, etc.).</li><li>The ports used by the system.</li></ul><h3 id="ManagementUtilityReference-Options.16">Options</h3><pre>-b (brief status)</pre><p style="margin-left: 30.0px;">Optional. Display a brief summary of the state of the HAWQ system. This is the default option.</p><pre>-B parallel_processes</pre><p style="margin-left: 30.0px;">The number of segments to check in parallel. If not specified, the utility will start up to 60 parallel processes depending on how many segment instances it needs to check.</p><pre>-d master_data_directory</pre><p align="LEFT" style="margin-left: 30.0px;">Optional. The master data directory. If not specified, the value set for $MASTER_DATA_DIRECTORY will be used.</p><pre>-f (show standby master details)</pre><p style="margin-left: 30.0px;">Display details of the standby master host if configured.</p><pre>-i (show HAWQ version)</pre><p style="margin-left: 30.0px;">Display the HAWQ software version information for each instance.</p><pre>-l logfile_directory</pre><p style="margin-left: 30.0px;">The directory to write the log file. Defaults to ~/gpAdminLogs.</p><pre>-p (show ports)</pre><p style="margin-left: 30.0px;">List the port numbers used throughout the HAWQ system.</p><pre>-q (no screen output)</pre><p align="LEFT" style="margin-left: 30.0px;">Optional. Run in quiet mode. Except for warning messages, command output is not displayed on the screen. However, this information is still written to the log file.</p><pre>-Q (quick status)</pre><p style="margin-left: 30.0px;">Optional. Checks segment status in the system catalog on the master host. Does not poll the segments for status.</p><pre>-s (detailed status)</pre><p align="LEFT" style="margin-left: 30.0px;">Optional. Displays detailed status information for the HAWQ system.</p><pre>-v (verbose output)</pre><p style="margin-left: 30.0px;">Optional. Displays error messages and outputs detailed status and progress information.</p><pre>-? | -h | --help (help)</pre><p style="margin-left: 30.0px;">Displays the online help.</p><h3 id="ManagementUtilityReference-OutputFieldDefinitions">Output Field Definitions</h3><p align="LEFT">The following output fields are reported by gpstate -s for the master:</p><h4 id="ManagementUtilityReference-Table-gpstateoutputdataforthemaster">Table - gpstate output data for the master</h4><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Output Data</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd">Master host</td><td class="confluenceTd">Host name of the master</td></tr><tr><td class="confluenceTd">Master postgres process ID</td><td class="confluenceTd">PID of the mater database istener</td></tr><tr><td class="confluenceTd">Master data dictionary</td><td class="confluenceTd">File system location of the master database</td></tr><tr><td class="confluenceTd">Master port</td><td class="confluenceTd">Port of the master postgres database listener process</td></tr><tr><td class="confluenceTd">Master current role</td><td class="confluenceTd">dispatch=regular operating mode utility=maintenance mode</td></tr><tr><td class="confluenceTd"> HAWQ array configuration type</td><td class="confluenceTd"><p>Standard=one NIC per host</p><p>Multi-home=multiple NICs per host </p></td></tr><tr><td class="confluenceTd">HAWQ initsystem version </td><td class="confluenceTd">HAWQ version when system was first initialized  </td></tr><tr><td class="confluenceTd">HAWQ current version </td><td class="confluenceTd">Current version of HAWQ </td></tr><tr><td class="confluenceTd">postgres version </td><td class="confluenceTd">The version of Postgres that HAWQ is based on </td></tr><tr><td class="confluenceTd">HAWQ mirroring status </td><td class="confluenceTd">Physical mirroring, SAN or none </td></tr><tr><td class="confluenceTd">Master standby </td><td class="confluenceTd">Host name of the standby master, active or passive </td></tr></tbody></table></div><p>The following output fields are reported by gpstate -s for each segment:</p><h4 id="ManagementUtilityReference-Table-gpstateoutputdataforsegments">Table - gpstate output data for segments</h4><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Output Data</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd"><p>Hostname</p></td><td class="confluenceTd"><p>System-configured host name</p></td></tr><tr><td class="confluenceTd"><p>Address</p></td><td class="confluenceTd"><p>network address host name (NIC name)</p></td></tr><tr><td class="confluenceTd"><p>Datadir</p></td><td class="confluenceTd"><p>File system location of segment data directory</p></td></tr><tr><td class="confluenceTd"><p>Port</p></td><td class="confluenceTd"><p align="LEFT">Port number of segment postgres database listener process</p></td></tr><tr><td class="confluenceTd">Current Role</td><td class="confluenceTd"><p>Current role of a segment: <em>Primary</em></p></td></tr><tr><td class="confluenceTd"><p>Preferred Role</p></td><td class="confluenceTd"><p>Role at system initialization time: <em>Primary</em><em><span style="font-size: xx-small;"> </span></em></p></td></tr><tr><td class="confluenceTd"><p>File postmaster.pid</p></td><td class="confluenceTd">Status of postmaster.pid lock file: <em>Found </em><span style="font-size: xx-small;"> </span>or Missing<span style="font-size: xx-small;"> </span></td></tr><tr><td class="confluenceTd"><p>PID from postmaster.pid file</p></td><td class="confluenceTd"><p>PID found in the postmaster.pid file </p></td></tr><tr><td class="confluenceTd"><p>Lock files in /tmp </p></td><td class="confluenceTd"><p align="LEFT">A segment port lock file for its postgres process is created in /tmp (file is removed when a segment shuts down) </p></td></tr><tr><td class="confluenceTd"> Active PID</td><td class="confluenceTd">Active process ID of a segment</td></tr><tr><td class="confluenceTd">Master reports status as</td><td class="confluenceTd">Segment status as reported in the system catalog: <em>Up </em>or <em>Down</em></td></tr><tr><td class="confluenceTd" colspan="1"> Database status</td><td class="confluenceTd" colspan="1">Status of HAWQ to incoming requests: <em>Up</em><span style="font-size: xx-small;"> </span>, <em>Down</em><span style="font-size: xx-small;"> </span>, or Suspended. A <em>Suspended </em><span style="font-size: xx-small;"> </span>state means database activity is temporarily paused while a segment transitions from one state to another.</td></tr></tbody></table></div><h3 id="ManagementUtilityReference-Examples.14">Examples</h3><p align="LEFT">Show detailed status information of a HAWQ system:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstate -s</pre>
+</div></div><p align="LEFT">Do a quick check for down segments in the master host system catalog:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstate -Q</pre>
+</div></div><p align="LEFT">Show information about the standby master configuration:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstate -f</pre>
+</div></div><p align="LEFT">Display the HAWQ software version information:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstate -I</pre>
+</div></div><h3 id="ManagementUtilityReference-SeeAlso.9">See Also</h3><p align="LEFT">gpstart, gplogfilter</p><h2 id="ManagementUtilityReference-gpstop">gpstop</h2><p align="LEFT">Stops or restarts a HAWQ system.</p><h3 id="ManagementUtilityReference-Synopsis.16">Synopsis</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstop [-d master_data_directory] [-B parallel_processes]
+[-M smart | fast | immediate] [-t timeout_seconds] [-r] [-y] [-a][-l logfile_directory] [-v | -q]
+gpstop -m [-d master_data_directory] [-y] [-l logfile_directory][-v | -q]
+gpstop -u [-d master_data_directory] [-l logfile_directory] [-v | -q]
+gpstop --version
+gpstop -? | -h | --help</pre>
+</div></div><h3 id="ManagementUtilityReference-Description.17">Description</h3><p align="LEFT">The gpstop utility is used to stop the database servers that comprise a HAWQ system.</p><p align="LEFT">When you stop a HAWQ system, you are actually stopping several postgres database server processes at once (the master and all of the segment instances). The gpstop utility handles the shutdown of the individual instances. Each instance is shutdown in parallel.</p><p align="LEFT">By default, you are not allowed to shut down HAWQ if there are any client connections to the database. Use the -M fast option to roll back all in progress transactions and terminate any connections before shutting down. If there are any transactions in progress, the default behavior is to wait for them to commit before shutting down.</p><p align="LEFT">With the -u option, the utility uploads changes made to the master pg_hba.conf file or to <em>runtime </em><span style="font-size: medium;"> </span>configuration parameters in the master postgresql.conf file without interruption of service. Note that any active sessions will not pick up the changes until they reconnect to the database.</p><h3 id="ManagementUtilityReference-Options.17">Options</h3><pre>-a (do not prompt)</pre><p align="LEFT" style="margin-left: 30.0px;">Do not prompt the user for confirmation.</p><pre>-B parallel_processes</pre><p align="LEFT" style="margin-left: 30.0px;">The number of segments to stop in parallel. If not specified, the utility will start up to 60 parallel processes depending on how many segment instances it needs to stop.</p><pre>-d master_data_directory</pre><p align="LEFT" style="margin-left: 30.0px;">Optional. The master host data directory. If not specified, the value set for $MASTER_DATA_DIRECTORY will be used.</p><pre>-l logfile_directory</pre><p align="LEFT" style="margin-left: 30.0px;">The directory to write the log file. Defaults to ~/gpAdminLogs.</p><pre>-m (master only)</pre><p align="LEFT" style="margin-left: 30.0px;">Optional. Shuts down a HAWQ master instance that was started in maintenance mode.</p><pre>-M fast (fast shutdown - rollback)</pre><p align="LEFT" style="margin-left: 30.0px;">Fast shut down. Any transactions in progress are interrupted and rolled back.</p><pre>-M immediate (immediate shutdown - abort)</pre><p align="LEFT" style="margin-left: 30.0px;">Immediate shut down. Any transactions in progress are aborted. This shutdown mode is not recommended. This mode kills all postgres processes without allowing the database server to complete transaction processing or clean up any temporary or in-process work files.</p><pre>-M smart (smart shutdown - warn)</pre><p align="LEFT" style="margin-left: 30.0px;">Smart shut down. If there are active connections, this command fails with a warning. This is the default shutdown mode.</p><pre>-q (no screen output)</pre><p align="LEFT" style="margin-left: 30.0px;">Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.</p><pre>-r (restart)</pre><p align="LEFT" style="margin-left: 30.0px;">Restart after shutdown is complete.</p><pre>-t timeout_seconds</pre><p align="LEFT" style="margin-left: 30.0px;">Specifies a timeout threshold (in seconds) to wait for a segment instance to shutdown. If a segment instance does not shutdown in the specified number of seconds, gpstop displays a message indicating that one or more segments are still in the process of shutting down and that you cannot restart HAWQ until the segment instance(s) are stopped. This option is useful in situations where gpstop is executed and there are very large transactions that need to rollback. These large transactions can take over a minute to rollback and surpass the default timeout period of 600 seconds.</p><pre>-u (reload pg_hba.conf and postgresql.conf files only)</pre><p align="LEFT" style="margin-left: 30.0px;">This option reloads the pg_hba.conf files of the master and segments and the runtime parameters of the postgresql.conf files but does not shutdown the HAWQ array. Use this option to make new configuration settings active after editing postgresql.conf or pg_hba.conf. Note that this only applies to configuration parameters that are designated as <em>runtime </em><span style="font-size: medium;"> </span>parameters. In HAWQ if there are some failed segments, this option can not be executed.</p><pre>-v (verbose output)</pre><p align="LEFT" style="margin-left: 30.0px;">Displays detailed status, progress and error messages output by the utility.</p><pre>--version (show utility version)</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the version of this utility.</p><pre>-y (do not stop standby master)</pre><p align="LEFT" style="margin-left: 30.0px;">Do not stop the standby master process. The default is to stop the standby master.</p><pre>-? | -h | --help (help)</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the online help. </p><h3 id="ManagementUtilityReference-Examples.15">Examples</h3><p align="LEFT">Stop a HAWQ system in smart mode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstop</pre>
+</div></div><p>Stop a HAWQ system in fast mode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstop -M fast</pre>
+</div></div><p>Stop all segment instances and then restart HAWQ system:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstop - r</pre>
+</div></div><p>Stop a master instance that was started in maintenance mode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstop -m</pre>
+</div></div><p align="LEFT"><span style="font-family: TimesNewRomanPSMT;font-size: medium;"><span style="font-family: TimesNewRomanPSMT;font-size: medium;">Reload the postgresql.conf and pg_hba.conf files after making configuration changes but do not shut down the HAWQ array:</span></span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstop -U</pre>
+</div></div><h3 id="ManagementUtilityReference-Seealso">See also</h3><p>gpstart</p>
+</div></div>
+            </div><!-- end of content-->
+            
+            
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

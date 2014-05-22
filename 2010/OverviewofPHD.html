@@ -1,0 +1,628 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>Overview of PHD | Pivotal Docs</title>
+    <!-- Local CSS stylesheets -->
+    <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+    <!-- Confluence HTML stylesheet -->
+    <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+    <!-- Left-navigation code -->
+    <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+    <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+        </script>
+    <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+    <!-- End left-navigation code -->
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+    if (window.location.host === 'docs.gopivotal.com') {
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39702075-1']);
+        _gaq.push(['_setDomainName', 'gopivotal.com']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    }
+  </script>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+
+	<script type="text/javascript">
+	  WebFontConfig = {
+	    google: { families: [ 'Source+Sans+Pro:300italic,400italic,600italic,300,400,600:latin' ] }
+	  };
+	  (function() {
+	    var wf = document.createElement('script');
+	    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+	      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+	    wf.type = 'text/javascript';
+	    wf.async = 'true';
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(wf, s);
+	  })(); </script>
+
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="http://docs.gopivotal.com/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+				<ul class="accordion"  id="accordion-1">
+					<!-- REPLACE <li/> NODES-->
+                        <li>
+                <a href="index.html">Home</a></br>
+                                
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 2.0.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise2.0.1ReleaseNotes.html">PHD Enterprise 2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallationOverview.html">Installation Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationChecklist.html">PHD Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradeChecklist.html">Upgrade Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyInstallingPivotalHD2.0Stack.html">Manually Installing Pivotal HD 2.0 Stack</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPivotalHDStackfrom1.1.1to2.0.html">Manually Upgrading Pivotal HD Stack from 1.1.1 to 2.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalHadoopEnhancements.html">Pivotal Hadoop Enhancements</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.2.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.2.1ReleaseNotes.html">PCC 2.2.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCInstallationChecklist.html">PCC Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalHAWQ.html">Pivotal HAWQ 1.2.0</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQ1.2.0.1ReleaseNotes.html">HAWQ 1.2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallationandUpgrade.html">HAWQ Installation and Upgrade</a>
+
+                            <ul>
+                    <li>
+                <a href="PreparingtoInstallHAWQ.html">Preparing to Install HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingHAWQ.html">Installing HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingtheHAWQComponents.html">Installing the HAWQ Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingHAWQandComponents.html">Upgrading HAWQ and Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingHAWQtoQueryData.html">Using HAWQ to Query Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQFilespacesandHighAvailabilityEnabledHDFS.html">HAWQ Filespaces and High Availability Enabled HDFS</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SystemCatalogReference.html">System Catalog Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </div><!--end of sub-nav-->
+            
+            <h3 class="title-container">Overview of PHD</h3>
+            <div class="content">
+              <!-- Python script replaces main content -->
+			  <div id ="main"><div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Overview of PHD</div><div class="wiki-content group" id="main-content">
+<p>Pivotal HD Enterprise is an enterprise-capable, commercially supported distribution of Apache Hadoop packages targeted to traditional Hadoop deployments.</p><p><style type="text/css">/*<![CDATA[*/
+div.rbtoc1400035778821 {padding: 0px;}
+div.rbtoc1400035778821 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1400035778821 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1400035778821">
+<ul class="toc-indentation">
+<li><a href="#OverviewofPHD-PHDArchitecture">PHD Architecture</a></li>
+<li><a href="#OverviewofPHD-AboutSupportedPivotalHDServices">About Supported Pivotal HD Services</a>
+<ul class="toc-indentation">
+<li><a href="#OverviewofPHD-HDFS">HDFS</a></li>
+<li><a href="#OverviewofPHD-YARN">YARN </a></li>
+<li><a href="#OverviewofPHD-ZooKeeper">ZooKeeper  </a></li>
+<li><a href="#OverviewofPHD-HBase">HBase  </a></li>
+<li><a href="#OverviewofPHD-Hive">Hive  </a></li>
+<li><a href="#OverviewofPHD-HAWQ">HAWQ  </a></li>
+<li><a href="#OverviewofPHD-PXF">PXF</a></li>
+<li><a href="#OverviewofPHD-Pig">Pig  </a></li>
+<li><a href="#OverviewofPHD-Mahout">Mahout</a></li>
+<li><a href="#OverviewofPHD-Flume">Flume </a></li>
+<li><a href="#OverviewofPHD-Sqoop">Sqoop</a></li>
+<li><a href="#OverviewofPHD-Oozie">Oozie</a></li>
+<li><a href="#OverviewofPHD-Hamster">Hamster</a></li>
+<li><a href="#OverviewofPHD-GraphLab">GraphLab</a></li>
+</ul>
+</li>
+</ul>
+</div></p><h2 id="OverviewofPHD-PHDArchitecture">PHD Architecture</h2><p>Pivotal HD Enterprise is a commercially-supported distribution of the Apache Hadoop stack. The figure below displays how each Apache and Pivotal component fits into the overall architecture of Pivotal HD Enterprise:</p><p> </p><p><img class="confluence-embedded-image image-center" data-image-src="attachments/63901475/69468445.png" src="attachments/63901475/69468445.png" width="700"/></p><p>Pivotal HD Enterprise includes the following Apache and Pivotal components:</p><ul><li><strong>Core Apache Stack</strong>:<ul><li>Hadoop<br/><ul><li>HDFS</li><li>YARN</li></ul></li><li>Zookeeper</li><li>HBase</li><li>Hive</li><li>Pig</li><li>Mahout</li><li>Flume</li><li>Sqoop</li><li>Oozie</li></ul></li></ul><p>Pivotal HD Enterprise enriches the Apache stack distribution by providing the following:</p><ul><li><strong>Advanced Database Services</strong><ul><li><strong>HAWQ</strong> - HAWQ adds SQL's expressive power to Hadoop. By adding rich, proven parallel SQL processing facilities, HAWQ renders queries faster than any other Hadoop-based query interface.</li><li><strong>PXF</strong> - Extensibility layer to provide support for external data formats such as HBase and Hive.</li></ul></li><li><strong>Pivotal Command Center</strong> - Pivotal Command Center (PCC) Is a Web-based interface for configuration and deployment of clusters, and for monitoring &amp; management of a Pivotal HD environment. With the help of PCC, system administrators can determine if the PHD cluster is running efficiently, quickly diagnose functional or performance issues, and performs cluster management tasks when required.<br/><p>Pivotal Command Center (PCC) includes a CLI (command line interface) and a GUI.  You can deploy and configure most of the Hadoop services as well as HAWQ, and PXF, using either the CLI or the GUI (See <a href="InstallingPHDUsingtheCLI.html#InstallingPHDUsingtheCLI-DeploymentOptions">Deployment Options</a>). You can start and stop the clusters using either the CLI or the GUI.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>This documentation covers operations performed via the CLI. For Pivotal Command Center GUI operations; including configuring and deploying clusters, see the <em>Pivotal Command Center 2.x User Guide.</em></p>
+</div>
+</div>
+<p>PCC stores the metadata for Hadoop cluster nodes and services, the cluster configuration and the system metrics in a PostgreSQL database.</p></li><li><strong>PRTS - Pivotal Real Time Services </strong>- Pivotal HD 2.x includes support for GemFire XD (GFXD), an offering of PRTS.  For further information about GemFire XD installation and configuration; refer to the section <a href="InstallingPHDUsingtheCLI.html#InstallingPHDUsingtheCLI-GemFireXDBeta">Configuring GemFire XD</a> .</li><li><strong>Hamster</strong> - Developed by Pivotal, Hamster is a framework which enable users running MPI programs on Apache Hadoop YARN platform.  (OpenMPI is a A High Performance Message Passing Library.)</li><li><strong>GraphLab</strong> - GraphLab is a powerful new system for designing and implementing parallel algorithms in machine learning, it is a graph-based, high performance, distributed computation framework written in C++ that makes use of MPI and has its own programming model.</li></ul><h2 id="OverviewofPHD-AboutSupportedPivotalHDServices">About Supported Pivotal HD Services</h2><p>The following services can be deployed and configured via Pivotal Command Center CLI, or manually.</p><ul><li>HDFS</li><li>YARN</li><li>ZooKeeper</li><li>Hbase</li><li>Hive</li><li>HAWQ</li><li>PXF</li><li>Pig</li><li>Mahout</li></ul><p>The following services can only be deployed and configured manually (see the <em>Pivotal HD Enterprise 2.0 Stack and Tool Reference Guide</em> for details)</p><ul><li>Flume</li><li>Sqoop</li><li>Oozie</li><li>Hamster</li><li>GraphLab</li></ul><p><span class="confluence-anchor-link" id="OverviewofPHD-HDFS"></span></p><h3 id="OverviewofPHD-HDFS"><strong> HDFS </strong></h3><p>HDFS is a fault tolerant distributed file system which is designed to run on commodity hardware.</p><p>The following table shows HDFS service roles: </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Role Name</p></th><th class="confluenceTh"><p>Description</p></th></tr><tr><td class="confluenceTd"><p>NameNode</p></td><td class="confluenceTd"><p>The NameNode serves as both directory namespace manager and "inode table" for the Hadoop File System (HDFS). Each HDFS deployment must have a running NameNode.</p></td></tr><tr><td class="confluenceTd"><p>Secondary NameNode</p></td><td class="confluenceTd"><p>The Secondary NameNode periodically downloads the current NameNode image and edits log files. It joins them into a new image and uploads the new image back to the primary NameNode.</p></td></tr><tr><td class="confluenceTd"><p>DataNodes</p></td><td class="confluenceTd"><p>A DataNode stores data in the HDFS. A functional filesystem has more than one DataNode, with data replicated across all nodes.</p></td></tr><tr><td class="confluenceTd"><p>Hadoop Client</p></td><td class="confluenceTd"><p>A client machine has Hadoop installed with all the cluster settings, but is not a Master or Slave. Instead, the role of the client is to load data into the cluster, submit Map Reduce jobs that describe how to process the data, and then retrieve or view the results of the finished job.</p></td></tr><tr><td class="confluenceTd" colspan="1">*Journalnodes</td><td class="confluenceTd" colspan="1">A group of daemons to maintain the namenode edits information. These are used by both active and standby namenodes in a HA enabled cluster to keep their state synchronized.</td></tr><tr><td class="confluenceTd" colspan="1">*Standby Namenode</td><td class="confluenceTd" colspan="1">Namenode running on a different host in standby mode in a HA enabled cluster. This will take over as the active namenode if the current active namenode fails.</td></tr></tbody></table></div><p>*Only applicable for HA enabled clusters.</p><p><span class="confluence-anchor-link" id="OverviewofPHD-YARN"></span></p><h3 id="OverviewofPHD-YARN"><strong> YARN  </strong></h3><p>YARN is a framework that facilitates writing distributed processing frameworks and applications and supports MapReduce version 2.</p><p>The following table shows YARN service roles: </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Role Name</p></th><th class="confluenceTh"><p>Description</p></th></tr><tr><td class="confluenceTd"><p>Resource Manager</p></td><td class="confluenceTd"><p>The ResourceManager is the master that manages all the cluster resources running on the YARN system.</p></td></tr><tr><td class="confluenceTd"><p>Node Manager</p></td><td class="confluenceTd"><p>The NodeManager manages resources on a particular node.</p></td></tr><tr><td class="confluenceTd"><p>History Server</p></td><td class="confluenceTd"><p>The History Server stores a history of the mapreduce jobs run on the cluster.</p></td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="OverviewofPHD-Zookeeper"></span></p><h3 id="OverviewofPHD-ZooKeeper"><strong>ZooKeeper</strong>  </h3><p>Zookeeper is a centralized service that enable distributed synchronization and manages configuration across a cluster.</p><p>The following table shows ZooKeeper service roles: </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Role Name</p></th><th class="confluenceTh"><p>Description</p></th></tr><tr><td class="confluenceTd"><p>Zookeeper Server</p></td><td class="confluenceTd"><p>ZooKeeper Quorum Servers</p></td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="OverviewofPHD-HBase"></span></p><h3 id="OverviewofPHD-HBase"><strong>HBase</strong>  </h3><p>HBase is a distributed, column-oriented database that uses HDFS for storing data.</p><p>The following table shows HBase service roles: </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Role Name</p></th><th class="confluenceTh"><p>Description</p></th></tr><tr><td class="confluenceTd"><p>HBase Master</p></td><td class="confluenceTd"><p>The Master server is responsible for monitoring all RegionServer instances in the cluster, and is the interface for all metadata changes.</p></td></tr><tr><td class="confluenceTd"><p>HBase RegionServer</p></td><td class="confluenceTd"><p>It is responsible for serving and managing regions which typically coexist with datanodes.</p></td></tr><tr><td class="confluenceTd" colspan="1">HBase Client</td><td class="confluenceTd" colspan="1">It is responsible for accessing HBase service.</td></tr></tbody></table></div><p><strong>Notes</strong></p><ul><li>HBase requires that you have installed HDFS, YARN, and Zookeeper.</li><li>Pivotal HD installs ZooKeeper if you have not installed it.</li><li>HBase does not manage the Zookeeper service.</li></ul><p><span class="confluence-anchor-link" id="OverviewofPHD-Hive"></span></p><h3 id="OverviewofPHD-Hive"><strong>Hive</strong>  </h3><p>Hive is a <a class="external-link" href="http://en.wikipedia.org/wiki/Data_warehouse" rel="nofollow">data warehouse</a> infrastructure that provides an interface similar to SQL on top of Hadoop. </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Role Name</p></th><th class="confluenceTh"><p>Description</p></th></tr><tr><td class="confluenceTd"><p>Hive Metastore</p></td><td class="confluenceTd"><p>The metastore stores the metadata for all Hive tables and partitions. Postgres database is used as the datastore</p></td></tr><tr><td class="confluenceTd"><p>Hive Server</p></td><td class="confluenceTd"><p>Also known as thrift server, is used by clients written in Java, C++ etc to access Hive</p></td></tr><tr><td class="confluenceTd"><p>Hive Client</p></td><td class="confluenceTd"><p>This is a launcher or gateway node which is used to launch hive jobs</p></td></tr></tbody></table></div><p><strong>Note</strong>: Hive requires HDFS and YARN.</p><p><span class="confluence-anchor-link" id="OverviewofPHD-HAWQ"></span></p><h3 id="OverviewofPHD-HAWQ"><strong>HAWQ</strong>  </h3><p>HAWQ is a parallel SQL query engine that marries Pivotal Analytic Database (Greenplum) and Hadoop 2.0 and is optimized for analytics, with full transaction support. The following table shows HAWQ service roles: </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Role Name</p></th><th class="confluenceTh"><p>Description</p></th></tr><tr><td class="confluenceTd"><p>HAWQ Master</p></td><td class="confluenceTd"><p>Stores the top-level metadata, as well as building the query plan</p></td></tr><tr><td class="confluenceTd"><p>HAWQ StandbyMaster</p></td><td class="confluenceTd"><p>This is a standby for the HAWQ Master</p></td></tr><tr><td class="confluenceTd"><p>HAWQ Segments</p></td><td class="confluenceTd"><p>Manages a shard of each table which typically coexist with datanodes</p></td></tr></tbody></table></div><p><strong>Note:</strong> HAWQ requires HDFS.</p><p><span class="confluence-anchor-link" id="OverviewofPHD-GPXF"></span></p><h3 id="OverviewofPHD-PXF"><strong>PXF</strong></h3><p>PXF is an extended framework that combines the Pivotal Analytic Database engine (HAWQ) with enterprise class Apache Hadoop, HBase and Hive.The PXF service runs as a java agent on existing Hadoop, HBase and Hive nodes and enables HAWQ to consume data created by the external services.  </p><p><strong>Note</strong> <strong>:</strong> PXF requires HDFS and HAWQ.</p><p>If you do not install PXF via the CLI, and choose to install it later, refer to the <em>HAWQ 1.2 Administrator Guide</em> for details.</p><p><span class="confluence-anchor-link" id="OverviewofPHD-Pig"></span></p><h3 id="OverviewofPHD-Pig"><strong>Pig</strong>  </h3><p>Pig is a data flow language used in the analysis of large data sets using mapreduce. </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Role Name</p></th><th class="confluenceTh"><p>Description</p></th></tr><tr><td class="confluenceTd"><p>Pig Client</p></td><td class="confluenceTd"><p>This is a launcher or gateway node which is used to launch Pig jobs</p></td></tr></tbody></table></div><p><strong>Note</strong> <strong>:</strong> Pig requires HDFS and YARN/MapReduce..</p><p><span class="confluence-anchor-link" id="OverviewofPHD-Mahout"></span></p><h3 id="OverviewofPHD-Mahout"><strong>Mahout</strong></h3><p>Mahout provides a collection of distributed <a class="external-link" href="http://en.wikipedia.org/wiki/Machine_learning" rel="nofollow">machine learning</a> algorithms on <a class="external-link" href="http://en.wikipedia.org/wiki/Hadoop" rel="nofollow">Hadoop</a> </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Role Name</p></th><th class="confluenceTh"><p>Description</p></th></tr><tr><td class="confluenceTd"><p>Mahout Client</p></td><td class="confluenceTd"><p>This is a launcher or gateway node which is used to launch Mahout jobs</p></td></tr></tbody></table></div><p><strong>Note</strong> <strong>:</strong> Mahout requires HDFS and YARN/MapReduce.</p><p><span class="confluence-anchor-link" id="OverviewofPHD-Flume"></span></p><h3 id="OverviewofPHD-Flume"><strong>Flume </strong></h3><p>Flume is a distributed, reliable, and available service for efficiently collecting, aggregating, and moving large amounts of log data. It has a simple and flexible architecture based on streaming data flows. It is robust and fault tolerant with tunable reliability mechanisms and many failover and recovery mechanisms. It uses a simple extensible data model that allows for online analytic application.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Role Name</p></th><th class="confluenceTh"><p>Description</p></th></tr><tr><td class="confluenceTd" colspan="1">Flume Agent</td><td class="confluenceTd" colspan="1">Provide Flume service for generating, processing, and delivering data</td></tr><tr><td class="confluenceTd"><p>Flume Client</p></td><td class="confluenceTd"><p>This is a launcher or gateway node which is used to launch Flume jobs</p></td></tr></tbody></table></div><p><strong> <strong>Note</strong> <strong>:</strong> </strong>Flume requires HDFS and YARN/MapReduce..</p><p><span class="confluence-anchor-link" id="OverviewofPHD-Sqoop"></span></p><h3 id="OverviewofPHD-Sqoop"><strong>Sqoop</strong></h3><p>Sqoop is a tool designed for efficiently transferring bulk data between <a class="external-link" href="http://hadoop.apache.org/" rel="nofollow">Apache Hadoop </a>and structured datastores such as relational databases.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Role Name</p></th><th class="confluenceTh"><p>Description</p></th></tr><tr><td class="confluenceTd" colspan="1">Sqoop Metastore</td><td class="confluenceTd" colspan="1">Provide shared metadata repository for Sqoop</td></tr><tr><td class="confluenceTd" colspan="1"><p>Sqoop Client</p></td><td class="confluenceTd" colspan="1"><p>This is a launcher or gateway node which is used to launch sqoop jobs</p></td></tr></tbody></table></div><p><strong> <strong> <strong>Note</strong> <strong>:</strong> </strong> </strong>Sqoop requires HDFS, YARN/MapReduce and HBase.</p><p><span class="confluence-anchor-link" id="OverviewofPHD-Oozie"></span></p><h3 id="OverviewofPHD-Oozie"><strong>Oozie</strong></h3><p>Oozie is a workflow scheduler system to manage Apache Hadoop jobs. </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><p>Role Name</p></th><th class="confluenceTh"><p>Description</p></th></tr><tr><td class="confluenceTd" colspan="1">Oozie Metastore</td><td class="confluenceTd" colspan="1">provide Oozie service</td></tr><tr><td class="confluenceTd" colspan="1"><p>Oozie Client</p></td><td class="confluenceTd" colspan="1"><p>This is a launcher or gateway node which is used to launch Oozie jobs</p></td></tr></tbody></table></div><p><strong> <strong> <strong>Note</strong> <strong>:</strong> </strong> </strong>Oozie requires HDFS, YARN/MapReduce , Pig(optional) and Hive(optional).</p><p><strong> <span class="confluence-anchor-link" id="OverviewofPHD-Hamster"></span> <br/> </strong></p><h3 id="OverviewofPHD-Hamster"><strong>Hamster</strong></h3><p>Hamster is a framework that enables users running MPI programs on Apache Hadoop YARN platform.</p><p><strong> <span class="confluence-anchor-link" id="OverviewofPHD-GraphLab"></span> <br/> </strong></p><h3 id="OverviewofPHD-GraphLab"><strong>GraphLab</strong></h3><p>GraphLab is a powerful new system for designing and implementing parallel algorithms in machine learning,  it is a graph-based, high performance, distributed computation framework written in C++ that makes use of MPI and has its own programming model.</p><p> </p><p> </p><p> </p>
+</div></div>
+            </div><!-- end of content-->
+            
+            
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

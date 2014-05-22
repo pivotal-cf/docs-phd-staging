@@ -1,0 +1,703 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>Using PCC | Pivotal Docs</title>
+    <!-- Local CSS stylesheets -->
+    <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+    <!-- Confluence HTML stylesheet -->
+    <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+    <!-- Left-navigation code -->
+    <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+    <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+        </script>
+    <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+    <!-- End left-navigation code -->
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+    if (window.location.host === 'docs.gopivotal.com') {
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39702075-1']);
+        _gaq.push(['_setDomainName', 'gopivotal.com']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    }
+  </script>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+
+	<script type="text/javascript">
+	  WebFontConfig = {
+	    google: { families: [ 'Source+Sans+Pro:300italic,400italic,600italic,300,400,600:latin' ] }
+	  };
+	  (function() {
+	    var wf = document.createElement('script');
+	    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+	      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+	    wf.type = 'text/javascript';
+	    wf.async = 'true';
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(wf, s);
+	  })(); </script>
+
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="http://docs.gopivotal.com/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+				<ul class="accordion"  id="accordion-1">
+					<!-- REPLACE <li/> NODES-->
+                        <li>
+                <a href="index.html">Home</a></br>
+                                
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 2.0.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise2.0.1ReleaseNotes.html">PHD Enterprise 2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallationOverview.html">Installation Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationChecklist.html">PHD Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradeChecklist.html">Upgrade Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyInstallingPivotalHD2.0Stack.html">Manually Installing Pivotal HD 2.0 Stack</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPivotalHDStackfrom1.1.1to2.0.html">Manually Upgrading Pivotal HD Stack from 1.1.1 to 2.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalHadoopEnhancements.html">Pivotal Hadoop Enhancements</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.2.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.2.1ReleaseNotes.html">PCC 2.2.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCInstallationChecklist.html">PCC Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalHAWQ.html">Pivotal HAWQ 1.2.0</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQ1.2.0.1ReleaseNotes.html">HAWQ 1.2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallationandUpgrade.html">HAWQ Installation and Upgrade</a>
+
+                            <ul>
+                    <li>
+                <a href="PreparingtoInstallHAWQ.html">Preparing to Install HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingHAWQ.html">Installing HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingtheHAWQComponents.html">Installing the HAWQ Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingHAWQandComponents.html">Upgrading HAWQ and Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingHAWQtoQueryData.html">Using HAWQ to Query Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQFilespacesandHighAvailabilityEnabledHDFS.html">HAWQ Filespaces and High Availability Enabled HDFS</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SystemCatalogReference.html">System Catalog Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </div><!--end of sub-nav-->
+            
+            <h3 class="title-container">Using PCC</h3>
+            <div class="content">
+              <!-- Python script replaces main content -->
+			  <div id ="main"><div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Using PCC</div><div class="wiki-content group" id="main-content">
+<p class="Head1">This section provides an overview of the Pivotal Command Center 2.2 user interface and details about using the application to configure and deploy a Pivotal HD Cluster.</p><p class="Head1"><style type="text/css">/*<![CDATA[*/
+div.rbtoc1400035788207 {padding: 0px;}
+div.rbtoc1400035788207 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1400035788207 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1400035788207">
+<ul class="toc-indentation">
+<li><a href="#UsingPCC-Overview">Overview</a></li>
+<li><a href="#UsingPCC-LoggingIn">Logging In</a></li>
+<li><a href="#UsingPCC-Settings">Settings</a></li>
+<li><a href="#UsingPCC-UserManagement">User Management</a></li>
+<li><a href="#UsingPCC-ClusterStatusPage">Cluster Status Page</a></li>
+<li><a href="#UsingPCC-ConfiguringandDeployingaCluster">Configuring and Deploying a Cluster</a></li>
+<li><a href="#UsingPCC-StartingStoppingandUninstallingtheCluster">Starting Stopping and Uninstalling the Cluster</a></li>
+<li><a href="#UsingPCC-Dashboard">Dashboard</a></li>
+<li><a href="#UsingPCC-ClusterAnalysis">Cluster Analysis</a></li>
+<li><a href="#UsingPCC-MapReduceJobMonitor">MapReduce Job Monitor</a></li>
+<li><a href="#UsingPCC-YARNAppMonitor">YARN App Monitor</a></li>
+<li><a href="#UsingPCC-HAWQQueryMonitor">HAWQ Query Monitor</a></li>
+<li><a href="#UsingPCC-Topology">Topology</a></li>
+<li><a href="#UsingPCC-Logs">Logs</a></li>
+</ul>
+</div></p><p class="Head1"><span class="confluence-anchor-link" id="UsingPCC-Overview"></span></p><h2 class="Head1" id="UsingPCC-Overview">Overview</h2><p class="Body">Pivotal Command Center UI is a browser-based application for configuring, deploying, administering, and monitoring Pivotal HD clusters. At a high level, the screens consist of:</p><ul><li><a href="#UsingPCC-ClusterStatusPage">Cluster Status Page</a>—Provides status information about any clusters you have configured and deployed. Also provides access to the Add Cluster Wizard that allows you to configure and deploy clusters from the UI. See <a href="#UsingPCC-ConfiguringandDeployingaCluster">Configuring and Deploying a Cluster</a> for more details.</li><li><a href="#UsingPCC-Dashboard">Dashboard</a>—Provides an overview of your Pivotal HD cluster. This screen shows at one glance the most important states and metrics that an administrator needs to know about the Pivotal HD cluster.</li><li><a href="#UsingPCC-ClusterAnalysis">Cluster Analysis</a>—Provides detailed information about various metrics of your Pivotal HD cluster. This provides cluster-wide metrics all the way down to host-level metrics.</li><li><a href="#UsingPCC-MapReduceJobMonitor">MapReduce Job Monitor</a>—Provides details about all, or a filtered set of MapReduce jobs.</li><li><a href="#UsingPCC-YARNAppMonitor">YARN App Monitor</a>—Provides details about all, or a filtered set of YARN applications.</li><li><a href="#UsingPCC-HAWQQueryMonitor">HAWQ Queries</a>—When HAWQ (a revolutionary MPP database on Hadoop solution) is deployed on the cluster, Command Center can show the progress of all actively running queries on HAWQ.</li><li><a href="#UsingPCC-Topology">Topology</a>—This screen shows you what roles have been installed on each host. You can also add and remove slaves to/from the cluster from this screen.</li><li><a href="#UsingPCC-Logs">Logs</a>—This screen displays system logs based on filter criteria you select such as log levels, host name, time period, and so on.</li></ul><h3 class="Head3" id="UsingPCC-Statusindicators">Status indicators</h3><p class="Head3">Throughout the user interface the following indicators are used to indicate the status of nodes:</p><ul><li>Green: Succeeded</li><li>Blue: Running</li><li>Grey: Stopped/Pending</li><li>Red: Killed/Failed</li></ul><h2 class="Head1" id="UsingPCC-LoggingIn">Logging In</h2><p class="NoteMore">Launch a browser and navigate to the host on which you installed Command Center. For example:</p><p class="NoteMore" style="margin-left: 30.0px;"><code>https://<em>CommandCenterHost</em>:5443</code></p><p class="Body">The Command Center login page is launched in your browser. The default username/password is <code>gpadmin</code>/<code>Gpadmin1</code> (case-sensitive).</p><p class="Code-Indented">To change the default port (5443), update the port settings in the following file:</p><p class="Head2" style="margin-left: 30.0px;"><code>/usr/local/greenplum-cc/config/app.yml</code></p><h3 class="Head2" id="UsingPCC-LoginScreen">Login Screen</h3><p class="Body">The first time you launch the Command Center UI, a login screen appears showing the hostname of this instance of Pivotal Command Center.</p><p class="Body"> <img class="confluence-embedded-image" data-image-src="attachments/65541893/66781342.png" src="attachments/65541893/66781342.png"/></p><p class="Body">The default admin username/password is <code>gpadmin</code>/<code>Gpadmin1</code> (case-sensitive). You can change this password via the <a href="#UsingPCC-Settings"> <strong>Settings</strong> </a> menu.</p><p class="Body">Passwords are case-sensitive and must be at least 8 letters long and contain 1 upper-case letter and 1 number.</p><p class="Head1">Once you have entered a valid username/password, click the <strong>Login</strong> button to launch the Command Center UI.</p><div><p class="Head2"><span class="confluence-anchor-link" id="UsingPCC-Settings"></span></p><h2 class="Head1" id="UsingPCC-Settings">Settings</h2><p class="Body">Once you have logged in, you can click the gear icon in the upper right corner of the screen from any PCC page to display the <strong>Settings</strong> menu.</p><p class="Body"><img class="confluence-embedded-image" data-image-src="attachments/65541893/68747407.png" src="attachments/65541893/68747407.png"/></p><p class="Body">From the settings menu you can select one of:</p><ul><li><strong>About</strong>. Select this to display version information about this instance of PCC</li><li><strong>Cluster Status</strong>. Select this option to go back to the <strong> <a href="#UsingPCC-ClusterStatusPage">Cluster Status</a> </strong> page to view the list of available clusters.</li><li><strong>Users</strong>. Select this option to add/edit user information. There are two types of users, administrative and non-administrative (read-only); you will only see this <strong>Users</strong> option if you are an administrative user. See <a href="#UsingPCC-Users"> <strong>Users</strong> </a> below.</li><li><strong>Change Password</strong>. Click this to change your password. See <strong> <a href="#UsingPCC-Passwords">Passwords</a> </strong> below.</li><li><strong>Edit Profile</strong>. Click this to change your profile. See <a href="#UsingPCC-Users"> <strong>Users</strong> </a> below</li><li><strong>Logout</strong>. Select this option to logout from this instance of PCC.</li></ul><h2 id="UsingPCC-UserManagement">User Management</h2><p>There are two types of users, administrative (super user) and non-administrative (read-only).</p><p>If you are an administrative user, you can add users, edit your own or other users' profiles, change your own or other users' passwords, and delete users.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>Non-administrative users are read-only users; their actions are limited to read-only actions.</p>
+</div>
+</div>
+<div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>For many user management actions, you will be asked to <strong>Re-authenticate to Continue</strong>. In all cases, this means you need to enter the password of the current user performing the action to continue.</p>
+</div>
+</div>
+<h3 id="UsingPCC-Users">Users</h3><p>You will only see the <strong>Users</strong> option in the <strong>Settings</strong> menu if you are an administrative user.</p><p>Select <strong>Users</strong> from the <strong>Settings</strong> menu to see a screen listing all current users:</p><p><img class="confluence-embedded-image" data-image-src="attachments/65541893/66781287.png" src="attachments/65541893/66781287.png" width="500"/></p><p><strong> <span class="confluence-anchor-link" id="UsingPCC-AddUser"></span> <br/> </strong></p><p><strong>Adding a User</strong></p><ol><li>Click <strong>Add User</strong> to create a new user.<br/><p>A New User form appears.  Enter the following information about the new user:</p><ul><li><strong>First Name</strong>.</li><li><strong>Last Name</strong>.</li><li><strong>User Name</strong>. This must be a unique name.</li><li><strong>Email</strong>. Must be a valid email address.</li><li><strong>Administrator</strong>. Check this box if the new user is to have administrative privileges.</li><li><strong>Password</strong>.  Enter a password for the new user. This must meet the minimum password requirements. Passwords are case-sensitive and must be at least 8 letters long and contain 1 upper-case letter and 1 number.</li><li><strong>Confirm Password</strong>. Confirm the new user's password.</li></ul></li><li>Click <strong>OK</strong>.<br/>A dialog box appears asking you to <strong>Re-authenticate to Continue</strong>. </li><li>Enter the password of the current user (the administrative user who is creating the new user).</li><li>Click <strong>OK</strong>.</li></ol><p>You are returned to the Users screen where you should now see your new user(s) in the list.</p><p><strong>Deleting a User</strong></p><p>Only administrative users can delete users and the default gpadmin user can never be deleted. To delete a user:</p><ol><li>Select <strong>Users</strong> from the <strong>Settings</strong> menu</li><li>Click the <strong>Delete User </strong> link adjacent to the user you want to delete.<br/>A dialog box appears asking you to Re-authenticate to Continue.</li><li>Enter the password of the current user (the administrative user who is deleting the user).</li><li>Click <strong>OK</strong>.</li></ol><p>You are returned to the Users screen where the user you just deleted should no longer appear in the list.</p><h3 id="UsingPCC-Profiles"><strong>Profiles</strong></h3><p>Your profile includes: First Name, Last Name, User Name, Email Address, and User Type (administrative or not); it does not include your password.</p><p>All users can edit their own profiles by:</p><ul><li>Selecting <strong>Edit Profile</strong> from the <strong>Settings</strong> menu.</li></ul><p>Administrative users can edit their own passwords and also the profiles of other users by:</p><ul><li>Selecting <strong>Users</strong> from the <strong>Settings</strong>, then clicking the <strong>Edit Profile</strong> link adjacent to the user whose profile they wish to edit.</li></ul><p>After making edits to any profile, a dialog box appears asking you to <strong>Re-authenticate to Continue</strong>. Enter the password of the current user making the edits to continue, then click <strong>OK</strong>.</p>  <br/><h3 id="UsingPCC-Passwords">Passwords</h3><p>Passwords are case-sensitive and must be at least 8 letters long and contain 1 upper-case letter and 1 number.</p><p>All users can change their own passwords by:</p><ul><li>Selecting <strong>Change Password</strong> from the <strong>Settings</strong> menu.</li></ul><p>Administrative users can change their own passwords and also the passwords of other users by:</p><ul><li>Selecting <strong>Users</strong> from the <strong>Settings</strong> menu, then clicking the <strong>Change Password</strong> link adjacent to the user whose password you wish to change.</li></ul><p>After changing any password, a dialog box appears asking you to <strong>Re-authenticate to Continue</strong>. Enter the password of the current user making the edits to continue, then click <strong>OK</strong>.</p><p> </p><p class="Head1"><span class="confluence-anchor-link" id="UsingPCC-ClusterStatusPage"></span></p><h2 class="Head1" id="UsingPCC-ClusterStatusPage">Cluster Status Page</h2><p>Once you have launched Command Center, the initial screen you see is the Cluster Status screen. This displays a list of available clusters to monitor, the status of each cluster (<strong>started</strong>, <strong>stopped</strong>), and a list of services running on that cluster (Hive, Mahout, and so on).</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>The<strong> Add Cluster</strong> and <strong>Actions</strong> buttons are only visible to administrative users.</p>
+</div>
+</div>
+<p> </p><p class="Body"><img class="confluence-embedded-image" data-image-src="attachments/65541893/66781351.png" src="attachments/65541893/66781351.png" width="500"/></p><p class="Body">From this page you can:</p><ul><li><p>Administrative users only: Click <strong>Add Cluster</strong> to launch the Add Cluster Wizard.</p></li><li><p>Click the cluster name in the table to view the Dashboard for that cluster.</p></li><li><p>From any point within Command Center UI, you can always select a different cluster by using the <strong>Select Cluster</strong> drop-down menu in the upper right corner of the screen.</p></li><li><p>Administrative users only: You can either <strong>Start</strong>, <strong>Stop</strong>, or <strong>Uninstall</strong> a cluster. Depending on the state of the cluster, some of these buttons will be enabled while others are disabled. </p></li></ul></div><p> </p><div><p class="Head1"><span class="confluence-anchor-link" id="UsingPCC-DeployingCluster"></span></p><h2 class="Head1" id="UsingPCC-ConfiguringandDeployingaCluster">Configuring and Deploying a Cluster</h2><p> </p></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>Before you can configure and deploy a cluster, make sure you have already installed and enabled the PHD Services (see Install PHD Services and Enable the PHD Services).</p>
+</div>
+</div>
+<p class="Body">After you have logged in to Pivotal Command Center, the Cluster Status page appears. From here, if you are an administrative user, you are able to launch the <strong>Add Cluster Wizard</strong> that enables you to configure and deploy a Pivotal HD Cluster.</p><p class="Body">As you move through the wizard, the right hand pane displays where you are in the deployment process:</p><h3 class="Body" id="UsingPCC-AddingaCluster"><img class="confluence-embedded-image image-center" data-image-src="attachments/65541893/66781343.png" src="attachments/65541893/66781343.png">Adding a Cluster</img></h3><ol><li>Click <strong>Add Cluster</strong>. The Add Cluster Wizard opens:<br/> <img class="confluence-embedded-image image-center" data-image-src="attachments/65541893/66781344.png" src="attachments/65541893/66781344.png" width="400"> <br/> <br/>The Wizard allows you to create a new configuration from scratch or upload and edit any existing configuration. The Summary panel along the right shows you the progress of your configuration and deployment.</img></li><li><strong>Create Cluster Definition</strong>. Either:<ol><li>If you are configuring a new cluster, select <strong>Create a new Cluster Definition</strong> then click <strong>Next</strong>.</li><li>If you want to edit an existing cluster; select <strong>Upload Cluster Configuration</strong>,click <strong>Upload</strong>, then navigate to the <code>clusterConfig.xml</code> file that you wish to edit; then click <strong>Next</strong>. In this case, the following fields in the Wizard will be populated with the cluster definition properties of that <code>clusterConfig.xml</code> file you just uploaded. Follow the instructions below to edit those values.<br/> <span class="confluence-anchor-link" id="UsingPCC-VersionsAndHosts"></span></li></ol></li><li><p><strong>Versions, Services and Hosts</strong>:<br/> <img class="confluence-embedded-image image-center" data-image-src="attachments/65541893/69468506.png" src="attachments/65541893/69468506.png"/></p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Notes</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<ul><li class="Bullet1-More">Hosts can be entered individually, newline-separated; or can be expressed in a range, for example <code>host[1-5].yourdomain.com</code>.  They can also be expressed in multiple ranges, for example<code> host [1-3].subdomain[1-2].yourdomain.com</code>.  Any hosts expressed in ranges are expanded during host verification.Hosts that do not exist within a specified range will be ignored, so you can specify a wide range and only those hosts that are available within that range will be added.<code> <br/> </code></li><li class="Bullet1-More">If you are editing an existing configuration, some if not all of these fields will be pre-populated. Edit where appropriate.</li><li class="Bullet1-More">You need to scroll down to view all the fields on this screen. The <strong>Next</strong> button will not be active until you have entered all the required fields.</li></ul>
+</div>
+</div>
+<p class="Bullet1-More">Enter the following information:</p><br/><ul><li><strong>Name</strong>: Required. Enter a name for this cluster. Special characters are not supported.</li><li><strong>Hosts</strong>: Required. Enter a new line-separated list of FQDN host names. You can also click <strong>Upload</strong> to use a text file containing a new line-separated list of host names.</li><li><strong>Root Password</strong>: Required. Enter the root password.</li><li><strong>GP Admin Password</strong>: Required. Enter the <code>gpadmin</code> user password. PCC creates this user on all nodes.</li><li><strong>JDK Path</strong>: Enter the JDK filename (not the absolute path). For example: <code> jdk-7u51-linux-x64.rpm </code>.</li></ul><p class="Bullet2-More"><strong>          Note</strong>: JDK 1.7.0_15 (min) is a prerequisite. <br/>          If not already installed, you should download it then install using <code>icm_client import -r (see <a href="InstallingPCC.html">Installing PCC</a> for more details)<br/> </code></p><ul><li><strong>Setup NTP</strong>: Check this box if you want to set up NTP (Network Time Protocol).</li><li><strong>Disable SELinux</strong>: Check this box if you want to disable SELinux. Recommended.</li><li><strong>Disable IPTables</strong>: Check this box if you want to disable IPTables. Recommended.</li><li><strong>Run ScanHosts</strong>: Leave this box checked if you want to run scanhosts. The scanhosts command verifies the prerequisites for the cluster node have been met and provides a detailed report of any missing prerequisites. Running this command ensures that clusters are deployed smoothly and is strongly recommended.<br/> <br/>Click <strong>Next</strong>.</li></ul></li><li><p><strong>Host Verification</strong>:<br/>The Host Verification page opens. This step may take a few minutes, it verifies connections to the hosts you just set up. Once the <strong>Eligibilty</strong> field changes from <strong>Pending</strong>, to <strong>Eligible</strong> for all hosts, you can click <strong>Next</strong>. You will see any error and informational messages displayed in the comments fields.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>If you specified hosts using ranges, they will be expanded at this point.</p>
+</div>
+</div>
+</li><li><p><strong>Topology</strong>:</p><p class="Bullet1-More" style="margin-left: 30.0px;">This is the section where you specify the roles to be installed on the hosts. For example, you can specify where your hadoop namenode, data node and so on, should be installed. Note that all mandatory roles should have at least one host allocated.</p><p class="Bullet1-More" style="margin-left: 30.0px;">Each service has its own section on this page; you can use the top menu options as shortcuts to those sections on the page, or simply scroll down to each section.</p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Notes</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<ul><li class="Bullet1-More">You need to click <strong>Enter</strong> or <strong>Tab</strong> before each field is accepted. Once you enter the text and click <strong>Enter</strong> or <strong>Tab</strong>, the text will change appearance and appear enclosed in a box, as shown in the figure below. The entry on the left has been accepted, the entry on the right has not.</li></ul><p class="Bullet1-More"><img class="confluence-embedded-image" data-image-src="attachments/65541893/65733101.png" src="attachments/65541893/65733101.png"/></p><ul><li class="Bullet1-More">Hosts can be specified in ranges, see the notes for<a href="#UsingPCC-VersionsAndHosts"> <strong>Versions, Services and Hosts</strong> </a>, for more information.</li><li class="Bullet1-More">At any point during this stage you can click <strong>Save Configuration </strong>at the top right of the page. This saves the configuration file and downloads it. Once saved, a link to the configuration file appears at the bottom of the page. Click that link to open and view the <code>clusterConfig.xml</code> file. You cannot edit this xml file directly.</li></ul>
+</div>
+</div>
+<p class="Bullet1-More">These are the roles that need to have installation nodes defined:</p><ul><li><strong>CLIENT</strong>: ICM installs Pig, Hive, HBase, and Mahout libraries on this host.</li><li><strong>HDFS</strong>: Name Node, Secondary Name Node, Data Nodes</li><li><strong>YARN</strong>: Resource Manager, History Server, Node Managers</li><li><strong>Zookeeper</strong>: Zookeeper Server</li><li><strong>HBase</strong>: Hbase Master, HBase Region Servers.</li><li><strong>Hive</strong>: Hive Master, Hive Metastore</li><li><strong>HAWQ</strong>: Primary Node, Secondary Node, HAWQ Segment Nodes</li><li><strong>USS</strong>: Name Node and Catalog</li><li><strong>PXF</strong>: No hosts to configure. Installed on the client host.</li><li><strong>Mahout</strong>: No hosts to configure. Installed on the client host.</li><li><strong>Pig</strong>: No hosts to configure. Installed on the client host.</li></ul><p class="Bullet1-More" style="margin-left: 30.0px;">Click <strong>Next</strong> once you have finished role-mapping.</p><p> </p></li><li><strong>Cluster Configuration</strong>:<br/>This page displays a list of all configuration files that define this cluster; the <code>clusterConfig.xml</code> (to edit service configuration global values) as well as the service specific configuration files.<br/> <br/>All these configuration files are already populated with the values you have already entered; or with default values.<br/><p class="Bullet1-More">Click any file name to open that configuration file in an editor and enter/edit values.</p><p class="Bullet1-More">If you make any changes, click <strong>Save</strong> to return to the Cluster Configuration page.</p><p class="Bullet1-More">Once you have completed all your edits, click <strong>Next</strong>.</p></li><li><strong>Validation</strong>:<br/> If the configuration has errors they will be displayed here; otherwise you will see post-deployment instructions. <br/>Click <strong>Deploy<br/> <br/> </strong></li><li><strong>Deployment Status</strong>:<br/> <img class="confluence-embedded-image image-center" data-image-src="attachments/65541893/66781345.png" src="attachments/65541893/66781345.png" width="400"> <br/><p class="Bullet1-More">This screen shows the progression of the deployment. Information displayed includes:</p><ul><li><strong>Hostname</strong></li><li><strong>Status</strong></li><li><strong>Role</strong></li><li><strong>Messsages</strong></li></ul><p class="Bullet1-More">Once the deployment is complete, click <strong>Next</strong>.</p></img></li><li><strong>Summary</strong> <br/>Once your cluster has successfully deployed, you can view a summary of the cluster, as shown here:<br/> <img class="confluence-embedded-image image-center" data-image-src="attachments/65541893/66781346.png" src="attachments/65541893/66781346.png" width="400"/></li><li>Return to the Cluster Status page:<br/>Once you have reviewed this summary, click <strong>Status</strong>, to return to the Cluster Status page. Your new cluster will be listed on this page, with the status of <strong>installed</strong>.<br/><p class="Body">If you are deploying HAWQ you need to initialize and configure HAWQ after you start the cluster. See <a href="#UsingPCC-InitializingandConfiguringHAWQ">Initializing and Configuring HAWQ</a>.</p><div><p class="Head2"> </p></div></li></ol><p> </p><p> </p><p class="Head2"><strong>Next steps</strong>: <a href="#UsingPCC-StartingtheCluster">Starting the Cluster</a> then <a href="#UsingPCC-InitializingandConfiguringHAWQ">Initializing and Configuring HAWQ</a>.</p><p class="Head2"><span class="confluence-anchor-link" id="UsingPCC-StartCluster"></span></p><h3 class="Head2" id="UsingPCC-StartingtheCluster">Starting the Cluster</h3><p class="Head2">To start your cluster; click <strong>Actions</strong>: <strong>Start</strong> on the Cluster Status page.</p><p class="Head2"><span class="confluence-anchor-link" id="UsingPCC-InitializeHawq"></span></p><h3 class="Head2" id="UsingPCC-InitializingandConfiguringHAWQ">Initializing and Configuring HAWQ</h3><p>For HAWQ users:</p><p class="Body"><code class="Body">ssh</code> to the HAWQ master, then as <code>gpadmin</code>, run the following:</p><pre>    # su - gpadmin</pre><p class="Code-Indented" style="margin-left: 30.0px;"><code># source /usr/local/hawq/greenplum_path.sh</code></p><p class="Code-Indented" style="margin-left: 30.0px;"><code># /etc/init.d/hawq init</code></p><p class="Code-Indented">Add the IP address of your instance of Command Center to HAWQ's <code>pg_hba.conf</code> file, for example:</p><p style="margin-left: 30.0px;"><code>vi /data1/master/gpseg-1/pg_hba.conf</code></p><p style="margin-left: 60.0px;"><code>host     all         gpadmin         &lt;Command_center host IP&gt;/24       trust</code></p><p>Then restart HAWQ:<em> <br/> </em></p><p style="margin-left: 30.0px;"><code># /etc/init.d/hawq restart</code></p><p class="Body"> </p><p class="Body"> </p><p class="Body">You have now completed your cluster configuration and deployment.</p><p class="Head1">See the following sections of this document for details about using the PCC UI to administer and monitor your cluster.</p><h2 class="Head1" id="UsingPCC-StartingStoppingandUninstallingtheCluster">Starting Stopping and Uninstalling the Cluster</h2><p>These functions are only available to administrative users, also, depending on the state of the cluster, some of these buttons will be enabled while others are disabled.</p><h3 id="UsingPCC-Starting">Starting</h3><p>To start a cluster:</p><p>From the Cluster Status page locate the cluster you want to start, then click the <strong>Actions</strong>: <strong>Start</strong> button.</p><h3 id="UsingPCC-Stopping">Stopping</h3><p>To stop a running cluster:</p><p>From the Cluster Status page locate the cluster you want to stop, then click the <strong>Actions</strong>: <strong>Stop</strong> button.</p><h3 id="UsingPCC-Uninstalling">Uninstalling</h3><p>Only stopped clusters can be uninstalled.</p><p>To uninstall a cluster:</p><ol><li>From the Cluster Status page locate the cluster you want to uninstall, then click the <strong>Actions</strong>: <strong>Uninstall</strong> button.</li><li>An Uninstall confirmation dialog appears.  Click <strong>Yes</strong> to confirm you want to uninstall this cluster; <strong>No</strong> to cancel the operation and return to the Cluster Status page.</li><li>Once you confirm you want to continue with the uninstall operation, a Preserve Cluster State dialog appears. You need to specify whether you want to preserve the data for this cluster. Your options are: <br/> <strong>Cancel</strong>. This cancels the operation and returns you to the Cluster Status page.<br/> <strong>Yes</strong>. This preserves the data for this cluster before uninstalling the cluster and returning you to the Cluster Status page.<br/> <strong>No</strong>. This uninstalls the cluster without preserving the data; then returns you to the Cluster Status page.</li></ol><p class="Head1"><span class="confluence-anchor-link" id="UsingPCC-Dashboard"></span></p><h2 class="Head1" id="UsingPCC-Dashboard">Dashboard</h2><p class="Body">The dashboard gives you a high level view of a cluster at a glance. You are able to view the status of the most important cluster services, such as HDFS and YARN, and allows you to start and stop each service individually. It also shows you how the most important cluster metrics are trending in a visual way.</p><p class="Body">The graphs provide a unified view of the state of your system. They are also useful in detecting outliers and pinpointing specific problems that may be present in your system.</p><p class="Body"><img class="confluence-embedded-image image-center" data-image-src="attachments/65541893/66781347.png" src="attachments/65541893/66781347.png" width="500"/></p><p class="Body">The right side of the Dashboard displays the state of the following services, provided they have been deployed for this cluster:</p><p><strong>HDFS</strong></p><p class="Bullet1-More" style="margin-left: 30.0px;">For HDFS, the dashboard provides the following information/functionality:</p><ul><li style="list-style-type: none;background-image: none;"><ul><li>The status of HDFS. You can use the <strong>Actions</strong> dropdown menu to <strong>Start</strong>/<strong>Stop HDFS</strong> depending on its status.</li><li>When the last NameNode checkpoint occurred.</li><li>The percentage of cluster storage being used by HDFS and how much is free.</li><li>The number of DataNodes that are up and whether they are running normally or with problems.</li><li>The <strong>Actions</strong> dropdown menu allows you to <strong>Rebalance</strong> (redistribute your data across the cluster) your cluster, and to <strong>View Rebalancer Log</strong>.</li></ul></li></ul> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>The only <strong>Action</strong> option available to non-administrative users is to <strong>View Rebalancer Log</strong>.</p>
+</div>
+</div>
+<div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>If High Availability (HA) is enabled for your cluster, you will see the status of two NameNodes here.</p>
+</div>
+</div>
+<p> </p><p><strong>YARN</strong></p><p class="Bullet1-More" style="margin-left: 30.0px;">For YARN, the dashboard provides the following information:</p><ul><li style="list-style-type: none;background-image: none;"><ul><li>The status of YARN. You can use the <strong>Actions</strong> dropdown menu to <strong>Start</strong>/<strong>Stop YARN</strong> depending on its status (not available for non-administrative users).</li><li>Whether or not the YARN History Server is running.</li></ul></li></ul><p style="margin-left: 90.0px;">Note: The History Server stores a history of the mapreduce jobs run on the cluster.</p><ul><li style="list-style-type: none;background-image: none;"><ul><li>The number of NodeManagers that are running.</li></ul></li></ul><p><strong>HBase</strong></p><p class="Bullet1-More" style="margin-left: 30.0px;">For HBase, the dashboard provides the following information:</p><ul><li style="list-style-type: none;background-image: none;"><ul><li>The status of the HBase master. You can use the <strong>Actions</strong> dropdown menu to <strong>Start</strong>/<strong>Stop HBase</strong> depending on its status (not available for non-administrative users).</li></ul></li></ul><p><strong>Zookeeper</strong></p><p class="Bullet1-More" style="margin-left: 30.0px;">For Zookeeper, the dashboard provides the following information:</p><ul><li style="list-style-type: none;background-image: none;"><ul><li>The status of Zookeeper. You can use the <strong>Actions</strong> dropdown menu to <strong>Start</strong>/<strong>Stop Zookeeper</strong> depending on its status (not available for non-administrative users).</li><li>The Status of the Zookeeper server host.</li></ul></li></ul><p><strong>Hive</strong></p><p class="Bullet1-More" style="margin-left: 30.0px;">For Hive, the dashboard provides the following information:</p><ul><li style="list-style-type: none;background-image: none;"><ul><li>The status of Hive. You can use the <strong>Actions</strong> dropdown menu to <strong>Start</strong>/<strong>Stop Hive</strong> depending on its status (not available for non-administrative users).</li></ul></li></ul><p class="Body">The Dashboard also provides metrics about:</p><ul><li>Mapreduce Slot Utilization</li><li>Namenode RPC Times</li><li>Hadoop Datanodes Average CPU</li><li>Hadoop Datanodes Average Bandwidth</li><li>Namenode Operations Per Second</li><li>Hadoop Datanodes Average Disk Bandwidth</li><li>Hadoop Datanodes Average Memory</li><li>Mapreduce Jobs By Status</li></ul><div><p class="Head1"> </p><p class="Head1"><span class="confluence-anchor-link" id="UsingPCC-ClusterAnalysis"></span></p><h2 class="Head1" id="UsingPCC-ClusterAnalysis">Cluster Analysis</h2></div><p class="Body">The Cluster Analysis screen provides detailed metrics on your Pivotal HD cluster.</p><p class="Body">It provides cluster-wide metrics all the way down to host-level metrics. It provides Hadoop-specific metrics, as well as system metrics that you can drill down to if needed.</p><p class="Body">The Cluster Analysis screen displays the same data that is shown in the dashboard but in greater detail.</p><p class="Body"><img class="confluence-embedded-image image-center" data-image-src="attachments/65541893/66781348.png" src="attachments/65541893/66781348.png" width="500"/></p><p class="Body"> </p><p class="Body">By default the Cluster Analysis screen displays the metrics for all services, all categories, and all nodes. You can filter the information displayed by combinations of the following filters:</p><p><strong>By Service</strong>.  Metrics can be filtered by services such as HDFS, YARN, or HAWQ.</p><p><strong>By Category</strong>. Metrics can be filtered by categories such as:</p><ul><li style="list-style-type: none;background-image: none;"><ul><li>namenode</li><li>secondarynamenode</li><li>datanode</li><li>yarn-resourcemanager</li><li>yarn-nodemanager</li><li>mapreduce-historyserver</li><li>hawq-master</li><li>hawq-segment</li></ul></li></ul><p><strong>Alphabetically</strong>. Metrics can be filtered alphabetically.</p><p class="Body">Based on the filters you select, the lower part of the Cluster Analysis screen provides detailed graphs that display data related to:</p><ul><li>CPU</li><li>Disk Bandwidth</li><li>Network Bandwidth</li><li>Memory</li><li>Load</li><li>Swap Usage</li><li>Swap I/O</li><li>Network Operations</li><li>Disk Operations</li></ul><p class="Body">You can view either the <strong>Performance Metrics</strong>, which show the cluster/node utilization over-time, the <strong>Real-time Metrics</strong> which show the current metrics in real-time, or <strong>Storage Metrics</strong>, which show metrics about cluster storage.</p><p class="Body">If you select Cluster Analysis for <strong>All Nodes</strong> (the default), the Trending Metrics graph for the cluster is displayed.</p><p><span class="confluence-anchor-link" id="UsingPCC-MRJobMonitor"></span></p><h2 class="Head1" id="UsingPCC-MapReduceJobMonitor">MapReduce Job Monitor</h2><p class="Body">The Job Monitor screen tracks the MapReduce jobs that are executed in the Pivotal HD cluster when the YARN MapReduce service is running. It provides details about all, or a filtered set of MapReduce jobs.</p><p class="Body"><img class="confluence-embedded-image image-center" data-image-src="attachments/65541893/66781349.png" src="attachments/65541893/66781349.png" width="500"/></p><p class="Body">The MapReduce jobs displayed can be filtered by state and/or time range.</p><p><strong>By state</strong>:</p><ul><li style="list-style-type: none;background-image: none;"><ul><li>all jobs (set by default)</li><li>currently pending jobs</li><li>currently running jobs</li><li>succeeded jobs</li><li>failed jobs</li><li>killed jobs</li><li>error state jobs</li></ul></li></ul><p><strong>By time range</strong>:  By selecting a preset time range in hours, weeks, months, year, or by specifying a custom time range.</p><p class="Body">The MapReduce jobs can also be filtered by searching for values for the following:</p><ul><li>jobID</li><li>name</li><li>user</li><li>queue</li></ul><p class="Body">Enter your search value in the search bar in the following format: searchKey=searchValue, where searchKey is one of <strong>jobID</strong>, <strong>name</strong>, <strong>user</strong>, or <strong>queue</strong>.</p><p class="Head2">These are substring searches. For example: <strong>jobID=1363920466130</strong> will locate a job with <strong>jobID=job_1363920466130_0002</strong></p><h3 class="Head2" id="UsingPCC-JobDetails">Job Details</h3><p class="Body">When you click on any of the jobs in the Job Monitor more details of the job are shown.</p><p class="Body"><img class="confluence-embedded-image image-center" data-image-src="attachments/65541893/65733108.png" src="attachments/65541893/65733108.png" width="500"/></p><p class="Body">This screen displays all the tasks that are have been allocated for the selected job and their progress. You can see the mapper and the reducer tasks separately. In the above screen capture, the bars in the JOB SUMMARY section represent the two Mapper tasks that have run, one took 19 seconds, the other, 20 seconds.</p><p class="Body">Clicking on each task ID will show even more details about that particular task. You can also filter on a particular task ID in the search bar.</p><p class="Body"><img class="confluence-embedded-image image-center" data-image-src="attachments/65541893/65733109.png" src="attachments/65541893/65733109.png" width="500"/></p><p class="Body">To see job related counters click on View more job details next to the job ID:</p><p class="Body"><img class="confluence-embedded-image image-center" data-image-src="attachments/65541893/65733110.png" src="attachments/65541893/65733110.png" width="500"/></p><p class="Body">Click the <strong>Analyze Job</strong> link adjacent to the Status field to open a Vaidya report about the selected job, as shown below:</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>This capability is beta and will be improved in coming releases.</p>
+</div>
+</div>
+<p><img class="confluence-embedded-image image-center" data-image-src="attachments/65541893/65733111.png" src="attachments/65541893/65733111.png" width="500"/></p><h4 class="Head3" id="UsingPCC-AboutVaidya">About Vaidya</h4><p class="Body">Vaidya is a diagnostic tool installed with PHD for Map/Reduce jobs. After a job is executed successfully, it uses a job history log and job configuration information to identify any performance or scalability problems with the job. Upon execution, it provides a job analysis report indicating specific problems with the job along with the remedy to correct them.</p><p class="Body">For more information about Vaidya, see the <em>PHD Enterprise Stack and Tool Reference Guide</em>.</p><div><p class="Head1"><span class="confluence-anchor-link" id="UsingPCC-YarnAppMonitor"></span></p><h2 class="Head1" id="UsingPCC-YARNAppMonitor">YARN App Monitor</h2></div><p class="Body">The YARN App Monitor screen tracks YARN applications that are executed in the Pivotal HD Cluster.</p><p class="Body"><img class="confluence-embedded-image image-center" data-image-src="attachments/65541893/65733112.png" src="attachments/65541893/65733112.png" width="500"/></p><p class="Body">The YARN applications displayed can be filtered by category and/or time range:</p><ul><li>By Category:<ul><li>all apps (set by default)</li><li>currently pending apps</li><li>currently running apps</li><li>succeeded apps</li><li>failed apps</li><li>killed apps</li><li>error state jobs</li></ul></li><li>By Time Range: By selecting a preset time range in hours, weeks, months, year, or by specifying a custom time range.</li></ul><p class="Body">The YARN applications can also be filtered by the following fields by entering it in the search bar in the following format: searchKey=searchValue:</p><ul><li>appID</li><li>name</li><li>user</li></ul><p class="Body">These are substring searches. For example: <strong>appID=1363920466130</strong> will locate the application with <strong>appID=application_1363920466130_0002</strong></p><div><p class="Head1"><span class="confluence-anchor-link" id="UsingPCC-HAWQQueryMonitor"></span></p><h2 class="Head1" id="UsingPCC-HAWQQueryMonitor">HAWQ Query Monitor</h2></div><p class="Body">The HAWQ Query monitor is only displayed when HAWQ is installed on the cluster.</p><p class="Body">This screen displays all active queries running on the HAWQ cluster:</p><p class="Body"><img class="confluence-embedded-image image-center" data-image-src="attachments/65541893/65733113.png" src="attachments/65541893/65733113.png" width="500"/></p><p class="Body">In this release, this screen only displays active queries as can be seen when you run:</p><p class="Body" style="margin-left: 30.0px;"><code>SELECT * FROM pg_stat_activity;</code></p><p class="Body">on the HAWQ cluster.</p><p class="Body">Click on a Query ID to get the syntax of that query:</p><p class="Body"><img class="confluence-embedded-image image-center" data-image-src="attachments/65541893/65733114.png" src="attachments/65541893/65733114.png" width="500"/></p><p class="Body"><span class="confluence-anchor-link" id="UsingPCC-Topology"></span></p><h2 class="Body" id="UsingPCC-Topology">Topology</h2><p>This screen shows you what roles have been installed on each host. You can also add and remove slaves to/from the cluster via this screen.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>A node is considered a slave if it contains the following services: <code>datanode</code>, <code>hbase-regionserver</code>, <code>yarn-nodemanager</code>.</p>
+</div>
+</div>
+<p> </p><p><img class="confluence-embedded-image image-center" data-image-src="attachments/65541893/66781350.png" src="attachments/65541893/66781350.png" width="500"/></p><h3 class="Body" id="UsingPCC-TopologyActions">Topology Actions</h3> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>This functionality is restricted to administrative users.</p>
+</div>
+</div>
+<h4 class="Body" id="UsingPCC-AddingSlavestotheCluster">Adding Slaves to the Cluster</h4><p class="Body">Click on the <strong>Add Slaves to the Cluster</strong> option from the <strong>Topology Actions</strong> menu. An <strong>Add Slaves</strong> dialog appears.</p><p class="Body">This dialog lists all current nodes. Enter the slave nodes you want to add either individually, or as ranges, for example <code>Node[1-9]</code>, provide the Root Password, then click <strong>Add Slaves to Cluster</strong>.</p><p class="Body">You are warned that new slaves added to the cluster are not started automatically.   To start a slave node, return to the Dashboard and navigate to the role defined for that node, then select <strong>Action &gt; Start </strong>&lt;service name&gt;, for example <strong>Action &gt; Start Hive</strong>.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<ul><li class="Body">Newly added slaves are not started automatically.</li><li class="Body">If you type a node name twice, that name will flash yellow until one is deleted.</li><li class="Body">If you type the name of a node that already exists, that name becomes highlighted and you are shown an error message warning you that:<div class="warnings"><p><code>Highlighted hosts are duplicates and will not be added</code>.</p></div></li><li class="Body">If you close the dialog before the operation is finished, it continues in the background. Refresh the Topology page to see if it has successfully completed.</li></ul>
+</div>
+</div>
+<h4 id="UsingPCC-RemovingSlavesfromaCluster">Removing Slaves from a Cluster</h4><p class="Body">Click on the <strong>Remove </strong><strong>Slaves from the Cluster</strong> option from the <strong>Topology Actions</strong> menu. A <strong>Remove </strong><strong>Slaves</strong> dialog appears; this dialog lists all current slave nodes</p><p class="Body">You are warned that prior to removal, services on slave nodes must be stopped. To stop services on a slave node, return to the Dashboard and navigate to the role defined for that node, then select <strong>Action &gt; Stop</strong>&lt;service name&gt;, for example <strong>Action &gt; Stop Hive</strong>.</p><p class="Body">Enter the slave nodes you want to remove either individually, or as ranges, for example <code>Node[1-9]</code>, then click <strong>Remove Slaves from Cluster</strong>.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<ul><li>Prior to removal, services on slave nodes must be stopped.</li><li>You do not need to provide a password to remove slave nodes.</li><li>This text field auto-completes with nodes from the cluster.</li><li>If you try and enter a node that does not exist, the text field does not become active and you are not able to perform the remove operation.</li><li>If you close the dialog before the operation is finished, it continues in the background. Refresh the Topology page to see if it has successfully completed.</li></ul>
+</div>
+</div>
+<p><span class="confluence-anchor-link" id="UsingPCC-Logs"></span></p><h2 id="UsingPCC-Logs">Logs</h2><p>This screen displays all system logs.</p><h3 id="UsingPCC-FilteringLogs">Filtering Logs</h3><p>You can use the dropdown menus to filter what logs are displayed based on:</p><ul><li><strong>Logs Levels</strong>:  You can select to display all logs (the default), or filter by one of the following log levels: debug, errors, fatal, info, trace, warnings</li><li><strong>Hosts</strong>: You can select to display logs for all hosts (the default), or can filter by hostname</li><li><strong>Roles</strong>: You can select to display logs for all roles (the default), or can filter by role name</li><li><strong>Time</strong>: You can select the time period over which you want to view logs; either for the <strong>Past 1 hour</strong>, or for one of the other time periods available (up to <strong>Past 8 weeks</strong>)</li></ul><p><strong>Search by Keyword</strong></p><p>You can also further filter the logs displayed by searching the logs by keyword. </p><p>Enter any single keyword (any single string, including numbers) in the search box, then click <strong>Search</strong>.</p><p>Note that your keyword search is only applied to the set of logs displayed based on any filters you chose from the dropdown menus, described above.</p><h3 id="UsingPCC-ViewingLogs">Viewing Logs</h3><p>The results of your filters, if any, are displayed on the screen. Often there will be too many to display on one page, use the Prev/Next/Page numbers at the top of the screen to navigate through them.</p><p>Each entry displays the time stamp, a log message, a time stamp, the host and the role, for example:</p><p><img class="confluence-embedded-image confluence-content-image-border" data-image-src="attachments/65541893/68747426.png" height="213" src="attachments/65541893/68747426.png" width="895"/></p><p>If the log message is too long to display on the screen it is truncated and a <strong>Show Details</strong> link appears below the message; click to display the entire message.</p><p>Click <strong>Show Logs</strong> to display all contents of that log file based on the time stamp.  You can see more log messages from before and after that time stamp by clicking the <strong>Fetch More Logs Above</strong>/<strong>Fetch More Logs Below</strong> links at the top and bottom of the page, respectively.</p><p> </p><p> </p><p> </p><p> </p><p> </p><p> </p><p class="Body"> </p><p class="Body"> </p><p> </p><p> </p>
+</div></div>
+            </div><!-- end of content-->
+            
+            
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

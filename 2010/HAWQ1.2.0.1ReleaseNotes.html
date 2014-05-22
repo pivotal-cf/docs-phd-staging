@@ -1,0 +1,659 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>HAWQ 1.2.0.1 Release Notes | Pivotal Docs</title>
+    <!-- Local CSS stylesheets -->
+    <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+    <!-- Confluence HTML stylesheet -->
+    <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+    <!-- Left-navigation code -->
+    <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+    <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+        </script>
+    <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+    <!-- End left-navigation code -->
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+    if (window.location.host === 'docs.gopivotal.com') {
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39702075-1']);
+        _gaq.push(['_setDomainName', 'gopivotal.com']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    }
+  </script>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+
+	<script type="text/javascript">
+	  WebFontConfig = {
+	    google: { families: [ 'Source+Sans+Pro:300italic,400italic,600italic,300,400,600:latin' ] }
+	  };
+	  (function() {
+	    var wf = document.createElement('script');
+	    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+	      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+	    wf.type = 'text/javascript';
+	    wf.async = 'true';
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(wf, s);
+	  })(); </script>
+
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="http://docs.gopivotal.com/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+				<ul class="accordion"  id="accordion-1">
+					<!-- REPLACE <li/> NODES-->
+                        <li>
+                <a href="index.html">Home</a></br>
+                                
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 2.0.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise2.0.1ReleaseNotes.html">PHD Enterprise 2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallationOverview.html">Installation Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationChecklist.html">PHD Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradeChecklist.html">Upgrade Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyInstallingPivotalHD2.0Stack.html">Manually Installing Pivotal HD 2.0 Stack</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPivotalHDStackfrom1.1.1to2.0.html">Manually Upgrading Pivotal HD Stack from 1.1.1 to 2.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalHadoopEnhancements.html">Pivotal Hadoop Enhancements</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.2.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.2.1ReleaseNotes.html">PCC 2.2.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCInstallationChecklist.html">PCC Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalHAWQ.html">Pivotal HAWQ 1.2.0</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQ1.2.0.1ReleaseNotes.html">HAWQ 1.2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallationandUpgrade.html">HAWQ Installation and Upgrade</a>
+
+                            <ul>
+                    <li>
+                <a href="PreparingtoInstallHAWQ.html">Preparing to Install HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingHAWQ.html">Installing HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingtheHAWQComponents.html">Installing the HAWQ Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingHAWQandComponents.html">Upgrading HAWQ and Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingHAWQtoQueryData.html">Using HAWQ to Query Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQFilespacesandHighAvailabilityEnabledHDFS.html">HAWQ Filespaces and High Availability Enabled HDFS</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SystemCatalogReference.html">System Catalog Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </div><!--end of sub-nav-->
+            
+            <h3 class="title-container">HAWQ 1.2.0.1 Release Notes</h3>
+            <div class="content">
+              <!-- Python script replaces main content -->
+			  <div id ="main"><div style="visibility:hidden; height:2px;">Pivotal Product Documentation : HAWQ 1.2.0.1 Release Notes</div><div class="wiki-content group" id="main-content">
+<p><style type="text/css">/*<![CDATA[*/
+div.rbtoc1400035790397 {padding: 0px;}
+div.rbtoc1400035790397 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1400035790397 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1400035790397">
+<ul class="toc-indentation">
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-WelcometoHAWQ1.2.0.1">Welcome to HAWQ 1.2.0.1</a></li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-AboutHAWQComponents">About HAWQ Components</a>
+<ul class="toc-indentation">
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-HAWQParallelSQLQueryEngine">HAWQ Parallel SQL Query Engine</a></li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-PXF">PXF</a></li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-MADlib">MADlib</a></li>
+</ul>
+</li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-NewFeatures">New Features</a></li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-SupportedPlatforms">Supported Platforms</a></li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-Installationoptions">Installation options</a></li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-UpgradingHAWQ">Upgrading HAWQ</a></li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-ResolvedIssues">Resolved Issues </a>
+<ul class="toc-indentation">
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-InHAWQ1.2.0.1">In HAWQ 1.2.0.1</a></li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-InHAWQ1.2.0.0">In HAWQ 1.2.0.0</a></li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-InPXF">In PXF</a></li>
+</ul>
+</li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-KnownIssues">Known Issues </a>
+<ul class="toc-indentation">
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-InHAWQ1.2.0.1.1">In HAWQ 1.2.0.1</a></li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-InHAWQ1.1.4.0">In HAWQ 1.1.4.0</a></li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-InHAWQ1.1.3.0">In HAWQ 1.1.3.0</a></li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-InHAWQ1.1.0.3">In HAWQ 1.1.0.3</a></li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-InHAWQ1.1.0.1">In HAWQ 1.1.0.1</a></li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-InPXF2.x.x">In PXF 2.x.x</a></li>
+</ul>
+</li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-PivotalandHAWQInteroperability">Pivotal and HAWQ Interoperability</a></li>
+<li><a href="#HAWQ1.2.0.1ReleaseNotes-HAWQ1.2.0.1andPivotalHDDocumentation">HAWQ 1.2.0.1 and Pivotal HD Documentation</a></li>
+</ul>
+</div></p><p> </p><h2 id="HAWQ1.2.0.1ReleaseNotes-WelcometoHAWQ1.2.0.1">Welcome to HAWQ 1.2.0.1</h2><p align="LEFT">HAWQ extends the functionality of Pivotal Hadoop (HD) Enterprise, adding rich, proven parallel SQL processing facilities. These SQL processing facilities enhance productivity, rendering Hadoop queries faster than any Hadoop-based query interface on the market. HAWQ enables data analysis for a variety of Hadoop-based data formats using the Pivotal Extension Framework (PXF), without duplicating or converting source files.</p><p>HAWQ is a parallel SQL query engine with the scalability and convenience of Hadoop. Using HAWQ functionality, you can interact with petabyte range data sets. HAWQ provides users with a complete, standards compliant SQL interface. HAWQ consistently performs tens to hundreds of times faster than all Hadoop query engines in the market.</p><h2 id="HAWQ1.2.0.1ReleaseNotes-AboutHAWQComponents">About HAWQ Components</h2><p align="LEFT">HAWQ comprises the following components:</p><ul><li>HAWQ Parallel SQL Query Engine</li><li>PXF</li><li>MADlib</li></ul><h3 id="HAWQ1.2.0.1ReleaseNotes-HAWQParallelSQLQueryEngine">HAWQ Parallel SQL Query Engine</h3><p>The HAWQ Parallel SQL Query Engine combines the key technological advantages of the industry-leading Greenplum Database with the scalability and convenience of Hadoop. It reads data from and writes data to HDFS natively. Using HAWQ functionality, you can interact with petabyte range data sets. It provides users with a complete, standards compliant SQL interface. Leveraging Greenplum Database’s parallel database technology, it consistently performs tens to hundreds of times faster than all Hadoop query engines in the market.</p><h3 id="HAWQ1.2.0.1ReleaseNotes-PXF">PXF</h3><p>PXF enables SQL querying on data in the Hadoop components such as HBase, Hive, and any other distributed data file types. These queries execute in a single, zero materialization and fully-parallel workflow. PXF also uses the HAWQ advanced query optimizer and executor to run analytics on these external data sources. PXF connects Hadoop-based components to facilitate data joins, such as between HAWQ tables and HBase table. Additionally, the framework is designed for extensibility, so that user-defined connectors can provide parallel access to other data storage mechanisms and file types.</p><h4 id="HAWQ1.2.0.1ReleaseNotes-PXFInteroperability">PXF Interoperability</h4><p>PXF operates as an integral part of HAWQ, and as a light add-on to Pivotal HD. On the database side, PXF leverages the external table custom protocol system. The PXF component physically lives on the Namenode and each or some Datanodes. It operates mostly as a separate service and does not interfere with Hadoop components internals.</p><h3 id="HAWQ1.2.0.1ReleaseNotes-MADlib">MADlib<strong> </strong></h3><p>MADlib is an open-source library for scalable in-database analytics. It provides data-parallel implementations of mathematical, statistical and machine learning methods for structured and unstructured data. MADlib combines the efforts used in commercial practice, academic research, and open-source development. You can find more information at <u> <a class="external-link" href="http://madlib.net" rel="nofollow">http://madlib.net</a> </u>.</p><h2 id="HAWQ1.2.0.1ReleaseNotes-NewFeatures">New Features</h2> <div class="aui-message warning shadowed information-macro">
+<p class="title">Note</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>For specific information about a previous release, please refer to the associated release notes.</p>
+</div>
+</div>
+<p>HAWQ 1.2 supports the following features:</p><ul><li><strong>PL/Java</strong>: HAWQ 1.2 supports PL/Java</li><li><strong>HAWQ expand</strong>: You can add resources to an existing HAWQ system using gpexpand.</li><li><strong>HDFS Namenode High Availability (HA)</strong>: You can initialize HAWQ on HA HDFS. Initializing on HD HDFS helps you avoid query failure that can occur if you have a single Namenode.</li><li><p align="LEFT"><strong>Error tables</strong>:  The most common use of readable external tables is selecting data from them to load into regular database tables. This is typically done by issuing a CREATE TABLE AS SELECT or INSERT INTO SELECT command, where the SELECT statement queries external table data. By default, if the external table data contains an error, the entire command fails and no data is loaded into the target database table. To isolate data errors in external table data while still loading correctly formatted rows, you can define a readable external table with a SEGMENT REJECT LIMIT clause in the CREATE EXTERNAL TABLE command. HAWQ 1.2. supports single row error isolation where any rows with formatting errors are logged into an error table.</p></li><li><strong>User-Defined Functions</strong>: HAWQ 1.1.3 introduced support for User-Defined Functions (UDF). The UDF feature extends the functionality of the HAWQ database by providing functions that can be evaluated in SQL statements. With each release, Pivotal extends UDF feature support. This section lists the UDF functionality supported in each release, and explicitly calls out features that are not supported.<ul><li><em>UDF features supported in HAWQ 1.2</em><ul><li>User defined composite types</li><li>Set returning functions</li><li>PL/Java</li><li>Windows Derived Aggregate Functions</li></ul></li><li><em style="background-color: transparent;font-size: 14.0px;line-height: 1.4285715;">UDF features not supported in HAWQ 1.2</em><ul><li><span style="font-size: 14.0px;line-height: 1.4285715;">SECURITY DEFINER when creating functions</span></li><li><span style="font-size: 14.0px;line-height: 1.4285715;">Nested functions error out during execution</span></li><li><span style="font-size: 14.0px;line-height: 1.4285715;">User-Defined base type</span></li><li><span style="font-size: 14.0px;line-height: 1.4285715;">SORTOP is not supported for UDAs</span></li><li><span style="font-size: 14.0px;line-height: 1.4285715;">ALTER set encoding, set schema, and rename</span></li><li><span style="font-size: 14.0px;line-height: 1.4285715;">Window functions</span></li><li><span style="font-size: 14.0px;line-height: 1.4285715;">Enhanced table functions</span></li><li><span style="font-size: 14.0px;line-height: 1.4285715;">PL/Java Type Maps</span></li></ul></li></ul></li></ul><p style="margin-left: 60.0px;">See the <em>Pivotal HAWQ Installation Guide</em> for information about requirements and installation.</p><p style="margin-left: 60.0px;">See the <em>Pivotal HAWQ Administrator Guide</em> for detailed information about features and usage.</p><ul><li><strong>MADlib 1.5</strong>: When upgrading to HAWQ 1.2, you must upgrade to MADlib version 1.5 to achieve the functionality of the previous version.</li><li><strong>PXF</strong>: Automated High Availability, Hive 0.12 connectivity.</li></ul><h2 id="HAWQ1.2.0.1ReleaseNotes-SupportedPlatforms">Supported Platforms</h2><p>HAWQ 1.2 supports the Pivotal HD 2.0.1 platform.</p><h2 id="HAWQ1.2.0.1ReleaseNotes-Installationoptions">Installation options</h2><p>There are two ways to install HAWQ.</p><ul><li>Stand alone install – You can install HAWQ without using the PivotalHD tools ICM and PCC. For more information, please see <em>HAWQ 1.2 Installation and Upgrade Guide</em></li><li>Pivotal Command Center Command Line Interface – Please see <em>Pivotal HD Enterprise 2.0 Installation and Administrator Guide.</em></li></ul><h2 id="HAWQ1.2.0.1ReleaseNotes-UpgradingHAWQ">Upgrading HAWQ</h2><p>For more information about upgrading HAWQ and other components, see the <em>HAWQ Installation and Upgrade Guide</em>. </p><h2 id="HAWQ1.2.0.1ReleaseNotes-ResolvedIssues">Resolved Issues </h2><p>The tables below list issues resolved in HAWQ 1.2.0.0 and 1.2.0.1.</p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Note</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>For issues resolved in prior releases, refer to the corresponding release notes available from Support Zone.</p>
+</div>
+</div>
+<h3 id="HAWQ1.2.0.1ReleaseNotes-InHAWQ1.2.0.1">In HAWQ 1.2.0.1</h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Issue</th><th class="confluenceTh">Category</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd" colspan="1"><span>HAWQ-1453</span></td><td class="confluenceTd" colspan="1">Transaction</td><td class="confluenceTd" colspan="1"><p>Executing concurrent INSERT and ALTER TABLE statements, generates the following error:</p><p>ERROR:  read beyond eof in table "tbl_isolation" in file "hdfs://smdw:9000/hawq/gpdb20131226t190718-885441423/releng4/16385/16523/58847.1" (cdbbufferedread.c:199)  (seg4 slice1 sdw2:31100 pid=316232) (cdbdisp.c:1571)</p><p>This issue has been resolved.</p></td></tr></tbody></table></div><h3 id="HAWQ1.2.0.1ReleaseNotes-InHAWQ1.2.0.0">In HAWQ 1.2.0.0</h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Issue</th><th class="confluenceTh">Category</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd" colspan="1">HAWQ-<br/>1834 </td><td class="confluenceTd" colspan="1">Build and Installer </td><td class="confluenceTd" colspan="1"><p>The plr_install.sh script failed with the error - <em>Platform not supported</em>.<br/><br/>This issue has been resolved.</p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1721</td><td class="confluenceTd" colspan="1">Query Optimizer </td><td class="confluenceTd" colspan="1"><p>The optimizer failed to process a query with join aliases.</p><p>This issue has been resolved in the optimizer.</p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1706</td><td class="confluenceTd" colspan="1">Query Optimizer </td><td class="confluenceTd" colspan="1">For certain queries that have inner and outer joins, the optimizer failed while exploring alternative plans leading to a crash. This issue is now fixed in the optimizer. </td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1702</td><td class="confluenceTd" colspan="1">Query Optimizer </td><td class="confluenceTd" colspan="1">For some queries containing built-in functions such as: pg_stat_get_backend_pid, pg_stat_get_backend_activity_start, or pg_stat_get_backend_userid; <span style="color: rgb(0,0,0);">the optimizer might generate incorrect plans. This was caused by function properties being mislabeled in the catalog. This issue is now fixed in the optimizer.</span> </td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1694 </td><td class="confluenceTd" colspan="1">HDFS <br/>Access Layer, Query Execution</td><td class="confluenceTd" colspan="1"><p>In a kerberized cluster with a race condition, the master released the file system credentials before the segments reached the HDFS name node. This caused the entire query to fail.    </p><p>This issue has been resolved.</p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-<br/>1692 </td><td class="confluenceTd" colspan="1">Query Optimizer<br/>PXF </td><td class="confluenceTd" colspan="1"><p>PXF Predicate Push-down did not work if Orca was enabled.</p><p>This issue has been resolved.</p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-<br/>1618 </td><td class="confluenceTd" colspan="1">Infrastructure </td><td class="confluenceTd" colspan="1"><p>YARN failed to load in SingleCluster   </p><p>This issue has been resolved.   </p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-<br/>1610 </td><td class="confluenceTd" colspan="1">Build and Installer </td><td class="confluenceTd" colspan="1"><p>PL/R package changes.</p><p>Check the name of your plr package. If it is plr-1.1.4.0-5152.x86_64.tgz,download the latest version plr-1.1.4.0-5664.x86_64.tgz for HAWQ 1.1.4.0 from Pivotal. The new package contains the file plr.sql with the necessary PL/R helper functions.</p><p>This issue has been resolved.</p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1527 </td><td class="confluenceTd" colspan="1">Build and Installer  </td><td class="confluenceTd" colspan="1">HAWQ and PXF version strings are now 4 digits. </td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1491 </td><td class="confluenceTd" colspan="1">AO tables Column Store </td><td class="confluenceTd" colspan="1"><p>After truncating a table, the HAWQ input format did not work with the truncated table.  </p><p>This issue has been resolved.   </p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1490 </td><td class="confluenceTd" colspan="1">AO tables Column Store  </td><td class="confluenceTd" colspan="1"><p>The function HAWQConvertUtil.bytesToDecimal was not thread safe. This is because decimalCharArray is a public static variable.</p><p>This issue has been resolved.   </p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1489  </td><td class="confluenceTd" colspan="1">AO tables Column Store   </td><td class="confluenceTd" colspan="1"><p>After truncating a table, gpextract did not work. </p><p>This issue has been resolved.   </p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1488  </td><td class="confluenceTd" colspan="1">AO tables Column Store    </td><td class="confluenceTd" colspan="1"><p>If the HAWQAORecord.getBoolean function encountered a column with boolean data type, it returned the incorrect result, false.</p><p>This issue has been resolved.  </p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1455   </td><td class="confluenceTd" colspan="1">Dispatch </td><td class="confluenceTd" colspan="1"><p>Signal re-entrant during session idle. QD crashes. </p><p>This issue has been resolved.  </p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1451 </td><td class="confluenceTd" colspan="1">Query Exexcution </td><td class="confluenceTd" colspan="1"><p>Explain analyze statistics are not correct for work files .</p><p>This issue has been resolved.      </p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1450 </td><td class="confluenceTd" colspan="1">Infrastructure </td><td class="confluenceTd" colspan="1"><p>SingleCluster hdfs tool was not working with Hadoop 2.2</p><p>This issue has been resolved.   </p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1429 </td><td class="confluenceTd" colspan="1">Default</td><td class="confluenceTd" colspan="1"><p>Unable to start HAWQ master because recovery failed. The master failed to start during recovery mode because some files existed locally and were missing on the HDFS layer.</p><p>This issue has been resolved.   </p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1418 </td><td class="confluenceTd" colspan="1">Catalog and Metadata </td><td class="confluenceTd" colspan="1"><p>HAWQ 1.1.4.0 did not support aggregate derived functions. </p><p>This issue has been resolved.   </p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1379 </td><td class="confluenceTd" colspan="1">Management Tools </td><td class="confluenceTd" colspan="1">hawq_toolkit cannot be used directly after upgrading from an old version. This is because toolkit related objects are not created in the old version.<p><strong>Workaround</strong>: for each existing database instance where a user wants to use hawq_toolkit, perform following steps as superuser:</p><ol><li>create a new schema named hawq_toolkit: <span style="color: rgb(34,34,34);">psql -q -c "CREATE SCHEMA hawq_toolkit" $DATABASE_NAME</span></li><li><span style="color: rgb(34,34,34);">create toolkit related objects: <span>psql -q -f $INSTALL_DIR/share/postgresql/gp_toolkit.sql $DATABASE_NAME</span> </span> <span style="color: rgb(34,34,34);"> <span> </span> </span></li></ol><p><span style="color: rgb(34,34,34);"> <span> <span>After performing the above operations on template1, every newly created database using template1 as template database, will have hawq_toolkit automatically, meaning no need to perform the above operation.</span> </span> </span></p></td></tr><tr><td class="confluenceTd" colspan="1"><p>HAWQ-1358  </p><p>1257</p></td><td class="confluenceTd" colspan="1">DDL Object </td><td class="confluenceTd" colspan="1"><p>Received a confusing error when creating a table that distributes by text data type.</p><p>This issue has been resolved.   </p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1260 </td><td class="confluenceTd" colspan="1">Query Execution </td><td class="confluenceTd" colspan="1"><p>A certain class of uncorrelated subqueries are known to fail. The subquery should have a user defined object and a distributed table. For example:</p><p>SELECT * FROM t1 WHERE t1.a &lt; (SELECT foo(t2.b) FROM t2 LIMIT 1);</p><p>In this example, the subquery "SELECT foo(t2.b) FROM t2 LIMIT 1" has no correlation with the outer query.  The subquery also invokes the UDF "foo()" and queries a distributed table "t2".  Another example:</p><p>SELECT array(SELECT foo(t1.a) FROM t1);</p><p>Such type of queries fail with the following error:</p><p>ERROR cache lookedup failed for ...</p><p>This issue has been resolved.   </p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1184  </td><td class="confluenceTd" colspan="1">DDL Object</td><td class="confluenceTd" colspan="1"><p>ALTER TABLE ADD COLUMN with default NULL was not supported for append-only tables.</p><p>This syntax is now supported. </p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-1078</td><td class="confluenceTd" colspan="1">Query Execution</td><td class="confluenceTd" colspan="1"><p>Continuously issued deepslice queries cause error in HDFS with kerberos.</p><p>This issue has been resolved.   </p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-<br/>872</td><td class="confluenceTd" colspan="1">DDL Object</td><td class="confluenceTd" colspan="1"><p>In certain cases, INSERT INTO SELECT from the same table might insert an incorrect number of tuples.  This happens if the table is altered prior to the insert. </p><p>This issue has been resolved.</p></td></tr></tbody></table></div><h3 id="HAWQ1.2.0.1ReleaseNotes-InPXF">In PXF</h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Issue</th><th class="confluenceTh">Category</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd">HAWQ-<br/>1482</td><td class="confluenceTd">PXF</td><td class="confluenceTd"><p>gphdfilters created a filter in the reverse order</p><p>This issue has been resolved.  </p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-<br/>1364</td><td class="confluenceTd" colspan="1">PXF</td><td class="confluenceTd" colspan="1"><p>While copying data to a writable interface HDFS  table, showed remote component error 500.</p><p>This issue has been resolved.   </p></td></tr></tbody></table></div><h2 id="HAWQ1.2.0.1ReleaseNotes-KnownIssues">Known Issues </h2><h3 id="HAWQ1.2.0.1ReleaseNotes-InHAWQ1.2.0.1.1">In HAWQ 1.2.0.1</h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Issue</th><th class="confluenceTh">Category</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd" colspan="1">HAWQ-<br/>2143 </td><td class="confluenceTd" colspan="1">Management Tools</td><td class="confluenceTd" colspan="1"><p>You may encounter this issue after performing the following tasks:</p><ol><li>Upgrading the HAWQ cluster from 1.1.x to 1.2.x. </li><li>Running gpexpand</li></ol><p>During the distribution phase, gpexpand logs the error:</p><p><span class="error">[TIMESTAMP]</span> gpexpand:<span class="error">[MASTER_HOST]</span>:<span class="error">[USER]</span>-<span class="error">[ERROR]</span>:-Table template1.pg_catalog.pg_remote_credentials failed to expand: error 'ERROR: permission denied: "pg_remote_credentials" is a system catalog' in 'ALTER TABLE ONLY "pg_catalog"."pg_remote_credentials" SET WITH(REORGANIZE=TRUE) DISTRIBUTED BY ("rcowner")'</p><p>This happens because gpexpand tries to distribute a catalog table. This is a known issue.</p><p>Note that, excluding any other errors, the upgraded cluster will be fully operational and that the expansion is successful. You can confirm this by connecting to the database and executing the following SQL command:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">select dbname, fq_name, status from gpexpand.logical_status;</pre>
+</div></div><p>All the associated tables, except g_catalog.pg_remote_credentials, will show the status as "COMPLETED".</p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Note</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p><span>This is not an issue in clean install of 1.2.x cluster.</span></p>
+</div>
+</div>
+</td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-<br/>1980</td><td class="confluenceTd" colspan="1">Query Optimizer</td><td class="confluenceTd" colspan="1"><p>With ORCA enabled, queries that contain multiple join predicates with statistical correlations can cause an "Out of Memory" error.</p><p><span style="color: rgb(0,0,0);">The work-around is to set the </span> <code>optimizer_damping_factor_join</code> configuration parameter (GUC) to a low value (e.g. 0.001). For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">set optimizer_damping_factor_join=0.001;</pre>
+</div></div><p><span style="color: rgb(0,0,0);background-color: transparent;line-height: 1.4285715;"> <span>The </span> <code>optimizer_damping_factor_join</code> GUC </span> <span style="color: rgb(0,0,0);">controls the impact of multiple predicates on the accuracy of row estimation. </span> <span style="color: rgb(0,0,0);background-color: transparent;line-height: 1.4285715;">As the GUC value decreases, predicates do not result in heavy under-estimation of rows.</span></p></td></tr><tr><td class="confluenceTd">HAWQ-<br/>1920 </td><td class="confluenceTd">Query Optimizer </td><td class="confluenceTd"><p>In some cases, the system was getting stuck in recovery mode because segments continued to run plans with motion nodes during the recovery process. Such plans are now invalid during recovery, and are no longer being generated.</p></td></tr><tr><td class="confluenceTd">HAWQ-<br/>1918</td><td class="confluenceTd">Catalog and <br/>Metadata </td><td class="confluenceTd">Nested functions in any language are not supported in HAWQ 1.2.</td></tr><tr><td class="confluenceTd" colspan="1">HAWQ- <br/>1900 </td><td class="confluenceTd" colspan="1">Management Tools<br/>Documentation </td><td class="confluenceTd" colspan="1"><p>HAWQ does not support sending email alert notifications.</p><span style="color: rgb(255,0,0);"> </span></td></tr><tr><td class="confluenceTd">HAWQ-<br/>1868 </td><td class="confluenceTd">DML </td><td class="confluenceTd"><p>If a query does not have a FROM clause, and contains the random() function in the SELECT clause along with another function that returns multiple rows, then the results generate the same random number rather than generating different random numbers</p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ- <br/>1859</td><td class="confluenceTd" colspan="1">Build and Installer </td><td class="confluenceTd" colspan="1"><p>Run plr_install.sh to copy the pgcrypto.so on the master and segments. To import these pgcrypto functions for another database, run the following:</p><p>psql -d&lt;TARGET_DATABASE&gt; -f $GPHOME/share/postgresql/contrib/pgcrypto.sql</p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-<br/>1728 </td><td class="confluenceTd" colspan="1">Query <br/>Optimizer  </td><td class="confluenceTd" colspan="1"><p>If ORCA is on, the INSERT command fails, but works fine with ORCA off.</p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-<br/>1543 </td><td class="confluenceTd" colspan="1">Upgrade </td><td class="confluenceTd" colspan="1"><p>In a single node setting, gpmigrator tries to create temporary directories twice using the same name under DATA_DIRECTORY and MASTER_DIRECTORY, set during gpinitsystem. The second time will fail.</p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-<br/>1456  </td><td class="confluenceTd" colspan="1">Transaction </td><td class="confluenceTd" colspan="1">Running DROP SCHEMA and CREATE TABLE on the same table makes the newly created table inaccessible.      <span class="overlay-icon icon icon-edit-sml"> </span> </td></tr></tbody></table></div><h3 id="HAWQ1.2.0.1ReleaseNotes-InHAWQ1.1.4.0"><span>In HAWQ 1.1.4.0</span></h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><div class="tablesorter-header-inner">Issue</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Category</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Description</div></th></tr><tr><td class="confluenceTd" colspan="1"><span>HAWQ-<br/>1369</span></td><td class="confluenceTd" colspan="1"><span>Management Tool</span></td><td class="confluenceTd" colspan="1"><span>When the underlying HDFS is online, hawq_size_of_database includes the data size on both HDFS and local storage of the master; when the HDFS is offline, that view only has the data size on local storage of the master.</span></td></tr><tr><td class="confluenceTd"><p>HAWQ-</p><p>1368</p></td><td class="confluenceTd">Management Tool</td><td class="confluenceTd">The view, hawq_size_of_database, does not check user permission of those databases and only reports sizes of all user databases.</td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-<br/>1270</td><td class="confluenceTd" colspan="1">Management Tool</td><td class="confluenceTd" colspan="1">The user must have access permission to the view, hawq_size_of_schema_disk.</td></tr></tbody></table></div><h3 id="HAWQ1.2.0.1ReleaseNotes-InHAWQ1.1.3.0">In HAWQ 1.1.3.0</h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><div class="tablesorter-header-inner">Issue</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Category</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Description</div></th></tr><tr><td class="confluenceTd"><p>HAWQ-<br/>1167</p></td><td class="confluenceTd">Performance</td><td class="confluenceTd"><p>Enabling Kerberos shows a 10% downgrade in HAWQ performance.</p></td></tr><tr><td class="confluenceTd">HAWQ-<br/>1099</td><td class="confluenceTd">Connectivity</td><td class="confluenceTd"><p>If you enable kerberos authentication, the ODBC function SQL GetInfo returns an incorrect version of HAWQ.</p></td></tr><tr><td class="confluenceTd">HAWQ-<br/>1056</td><td class="confluenceTd">DML</td><td class="confluenceTd"><p>Inserting data into a temp table generates an Append-only Storage Write error.</p></td></tr></tbody></table></div><h3 id="HAWQ1.2.0.1ReleaseNotes-InHAWQ1.1.0.3">In HAWQ 1.1.0.3</h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><div class="tablesorter-header-inner">Issue</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Category</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Description</div></th></tr><tr><td class="confluenceTd"><p>HAWQ-<br/>859</p></td><td class="confluenceTd">Query Optimizer</td><td class="confluenceTd"><p>pg_dumpall test suite runs slowly</p><p>The overhead is due to the command pg_dumpall. pg_dumpall generates multiple queries over the catalog tables. Since ORCA optimizes these queries. Although these are simple queries, ORCA adds the overhead.</p><p><strong>Workaround</strong> <span> </span>: Turn ORCA off.</p></td></tr></tbody></table></div><h3 id="HAWQ1.2.0.1ReleaseNotes-InHAWQ1.1.0.1">In HAWQ 1.1.0.1</h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"><div class="tablesorter-header-inner">Issue</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Category</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Description</div></th></tr><tr><td class="confluenceTd">HAWQ-255</td><td class="confluenceTd">Network</td><td class="confluenceTd"><p>HAWQ does not support the IPv6 protocol.</p></td></tr><tr><td class="confluenceTd">HAWQ-225</td><td class="confluenceTd">Storage</td><td class="confluenceTd"><p>When the number of partitions or columns of a column oriented table is large or write concurrency is high, HAWQ encounters an HDFS concurrency write limitation. Data loading performance may degrade and fail.</p><p><strong>Workaround: </strong> <span> </span>for partitioned tables, load data partitions one by one, instead of loading all the data randomly to all the partitions.</p></td></tr><tr><td class="confluenceTd">HAWQ-224</td><td class="confluenceTd">Backup and Restore</td><td class="confluenceTd"><p><span> </span>Only non-parallel logical backup and restore is supported. Pivotal recommends that you use physical backup and restore.</p></td></tr><tr><td class="confluenceTd">HAWQ-<br/>26</td><td class="confluenceTd">DDL</td><td class="confluenceTd"><p>duplicate key violates unique constraint pg_type_typname_nsp_indexWhen two sessions attempt to create a table with the same name and in the same namespace, one of the sessions will error out with a less user-friendly error message of the form "duplicate key violates unique constraint".</p></td></tr></tbody></table></div><h3 id="HAWQ1.2.0.1ReleaseNotes-InPXF2.x.x">In PXF 2.x.x</h3><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Issue</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd" colspan="1">HAWQ-<br/>2124</td><td class="confluenceTd" colspan="1"><p>PXF breaks in Namenode High-availability (HA) setups. This occurs in the following setup:</p><p style="margin-left: 30.0px;">The first Namenode (by alphabet order) is the standby.</p><p style="margin-left: 30.0px;">The Namenode is up and running (meaning that you can successfully ping it).</p><p style="margin-left: 30.0px;">The Namenode is HDFS security enabled.</p><p><strong> Workarounds</strong>: You can use one of the following:</p><p>Switch Namenode roles in the configuration. You will need to update the main hdfs-site config and the hdfs-client.xml file on HAWQ.</p><p>OR</p><p>Bring down standby <span>Namenode</span>. However, Pivotal does not recommend this,</p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ- <br/>1739  </td><td class="confluenceTd" colspan="1">PXF does not filter UTF8 encoded parameters correctly. </td></tr><tr><td class="confluenceTd" colspan="1">HAWQ- <br/>1720   </td><td class="confluenceTd" colspan="1"><p>Error table has one extra error reported if the last row has an error    </p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-<br/>1649    </td><td class="confluenceTd" colspan="1"><p>Intermittent failures when using pxf_profile.</p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-<br/>1481 </td><td class="confluenceTd" colspan="1">PXF Filter pushdown handles badly constants values with embedded quotes .</td></tr><tr><td class="confluenceTd" colspan="1">HAWQ-<br/>1394</td><td class="confluenceTd" colspan="1"><p>When using PXF to communicate with a kerberized Pivotal Hadoop, PXF assumes that P-HD is using port 8020. If that is not the case, PXF will fail to communicate and transfer data. You will see the following message:</p><p>ERROR:  fail to get filesystem credential for uri hdfs://&lt;namenode&gt;:8020/ (cdbfilesystemcredential.c:194)</p></td></tr></tbody></table></div><h2 id="HAWQ1.2.0.1ReleaseNotes-PivotalandHAWQInteroperability">Pivotal and HAWQ Interoperability</h2><p>Pivotal releases a number of client tool packages on various platforms that can be used to connect to HAWQ. The following table describes the client tool package compatibility with HAWQ. Client tool packages are available at the EMC Download Center.</p><p><strong>Table: Interoperability Matrix</strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh"> Client package</th><th class="confluenceTh">Description </th><th class="confluenceTh">Operating system </th><th class="confluenceTh">Client version</th><th class="confluenceTh">HAWQ version </th></tr><tr><td class="confluenceTd">Connectivity</td><td class="confluenceTd">Standard PostgreSQL Database Drivers (ODBC, JDBC)</td><td class="confluenceTd">Windows 2008 RedHat 6.4 and 6.2, 64 bit</td><td class="confluenceTd">4.2.6SP </td><td class="confluenceTd">1.2.0.1</td></tr><tr><td class="confluenceTd"><p>HAWQ Client</p></td><td class="confluenceTd">Command Line Interface</td><td class="confluenceTd">Windows 2008 RedHat 6.4 and 6.2, 64 bit</td><td class="confluenceTd"> 4.2.6SP </td><td class="confluenceTd">1.2.0.1</td></tr><tr><td class="confluenceTd">Pivotal Command Center </td><td class="confluenceTd"><p>A web-based tool for managing and monitoring your Pivotal HD cluster.</p><p align="LEFT">Note: Pivotal Command Center 2.0.x does not support DCA V1, DCA V2 or Greenplum Database.</p></td><td class="confluenceTd"><p>Windows 2008 RedHat 6.4 and 6.2, 64 bit </p><p>CentOS 6.4 and 6.2, 64 bit</p></td><td class="confluenceTd">2.2 </td><td class="confluenceTd">1.2.0.1</td></tr><tr><td class="confluenceTd">PXF </td><td class="confluenceTd"><p>Extensibility layer to provide support for external data formats such as HBase and Hive.</p> </td><td class="confluenceTd"><p>Windows 2008 RedHat 6.4 and 6.2, 64 bit </p><p>CentOS 6.4 and 6.2, 64 bit</p> </td><td class="confluenceTd">2.2</td><td class="confluenceTd">1.2.0.1</td></tr><tr><td class="confluenceTd" colspan="1">Pivotal HD</td><td class="confluenceTd" colspan="1"> Pivotal Hadoop</td><td class="confluenceTd" colspan="1"><p>RedHat 6.4 and 6.2, 64 bit </p><p>CentOS 6.4 and 6.2, 64 bit</p> </td><td class="confluenceTd" colspan="1">2.0.1</td><td class="confluenceTd" colspan="1">1.2.0.1</td></tr><tr><td class="confluenceTd" colspan="1">pgcrypto</td><td class="confluenceTd" colspan="1"><p>A library of cryptographic functions</p></td><td class="confluenceTd" colspan="1"><p>Windows 2008 RedHat 6.4 and 6.2, 64 bit </p><p>CentOS 6.4 and 6.2, 64 bit</p> </td><td class="confluenceTd" colspan="1"><p>1.2.0.0</p><p>1.1.3.0-4609</p></td><td class="confluenceTd" colspan="1"><p>1.2.0.1</p><p>1.1.3.x and 1.1.4.x</p></td></tr><tr><td class="confluenceTd" colspan="1"> PL/R</td><td class="confluenceTd" colspan="1">Ability to create and invoke user defined functions in R</td><td class="confluenceTd" colspan="1">Windows 2008 RedHat 6.4 and 6.2, 64 bit <p>CentOS 6.4 and 6.2, 64 bit</p></td><td class="confluenceTd" colspan="1"><p>1.2.0.0</p><p>1.1.4.0-5664</p></td><td class="confluenceTd" colspan="1"><p>1.2.0.1</p><p>1.1.4.x</p></td></tr><tr><td class="confluenceTd" colspan="1"> PL/Java</td><td class="confluenceTd" colspan="1">Ability to create and invoke user defined functions in Java</td><td class="confluenceTd" colspan="1">Windows 2008 RedHat 6.4 and 6.2, 64 bit <p>CentOS 6.4 and 6.2, 64 bit</p> </td><td class="confluenceTd" colspan="1"> 1.2.0.0 </td><td class="confluenceTd" colspan="1"> 1.2.0.1 </td></tr></tbody></table></div><h2 id="HAWQ1.2.0.1ReleaseNotes-HAWQ1.2.0.1andPivotalHDDocumentation">HAWQ 1.2.0.1 and Pivotal HD Documentation</h2><p>The following HAWQ and related documentation is available in PDF format on our website at <a class="external-link" href="http://www.gopivotal.com" rel="nofollow">www.gopivotal.com</a>.</p><p>PDF and HTML versions of our documentation are available at<a class="external-link" href="http://docs.gopivotal.com/pivotalhd/" rel="nofollow"> docs.gopivotal.com/pivotalhd/</a></p><p>You can still access previous versions of HAWQ and Pivotal HD product documentation from EMC's <a class="external-link" href="https://support.emc.com/" rel="nofollow">Support Zone</a>.</p><p><strong>Table: HAWQ Documentation</strong></p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Title</th><th class="confluenceTh">Revision</th></tr><tr><td class="confluenceTd"><p>Pivotal HAWQ 1.2 Release Notes (This document)</p></td><td class="confluenceTd">A01</td></tr><tr><td class="confluenceTd"><p>Pivotal HAWQ 1.2 Installation and Upgrade Guide</p></td><td class="confluenceTd">A02</td></tr><tr><td class="confluenceTd"><p>Pivotal HAWQ 1.2 Administrator Guide</p></td><td class="confluenceTd">A02</td></tr><tr><td class="confluenceTd"><p>Pivotal HD Enterprise 2.0 Installation and Administrator Guide</p></td><td class="confluenceTd">A02</td></tr><tr><td class="confluenceTd"><p>Pivotal HD 2.0 Stack and Tool Reference Guide</p></td><td class="confluenceTd">A02</td></tr><tr><td class="confluenceTd"><p>Pivotal Command Center 2.2 User Guide</p></td><td class="confluenceTd">A02</td></tr><tr><td class="confluenceTd"><p>Pivotal Extension Framework 2.2 Installation and User Guide</p></td><td class="confluenceTd">A02</td></tr></tbody></table></div><p> </p><p> </p><p> </p>
+</div></div>
+            </div><!-- end of content-->
+            
+            
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

@@ -1,0 +1,778 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>Kerberos Authentication | Pivotal Docs</title>
+    <!-- Local CSS stylesheets -->
+    <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+    <!-- Confluence HTML stylesheet -->
+    <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+    <!-- Left-navigation code -->
+    <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+    <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+        </script>
+    <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+    <!-- End left-navigation code -->
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+    if (window.location.host === 'docs.gopivotal.com') {
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39702075-1']);
+        _gaq.push(['_setDomainName', 'gopivotal.com']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    }
+  </script>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+
+	<script type="text/javascript">
+	  WebFontConfig = {
+	    google: { families: [ 'Source+Sans+Pro:300italic,400italic,600italic,300,400,600:latin' ] }
+	  };
+	  (function() {
+	    var wf = document.createElement('script');
+	    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+	      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+	    wf.type = 'text/javascript';
+	    wf.async = 'true';
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(wf, s);
+	  })(); </script>
+
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="http://docs.gopivotal.com/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+				<ul class="accordion"  id="accordion-1">
+					<!-- REPLACE <li/> NODES-->
+                        <li>
+                <a href="index.html">Home</a></br>
+                                
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 2.0.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise2.0.1ReleaseNotes.html">PHD Enterprise 2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallationOverview.html">Installation Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationChecklist.html">PHD Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradeChecklist.html">Upgrade Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyInstallingPivotalHD2.0Stack.html">Manually Installing Pivotal HD 2.0 Stack</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPivotalHDStackfrom1.1.1to2.0.html">Manually Upgrading Pivotal HD Stack from 1.1.1 to 2.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalHadoopEnhancements.html">Pivotal Hadoop Enhancements</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.2.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.2.1ReleaseNotes.html">PCC 2.2.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCInstallationChecklist.html">PCC Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalHAWQ.html">Pivotal HAWQ 1.2.0</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQ1.2.0.1ReleaseNotes.html">HAWQ 1.2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallationandUpgrade.html">HAWQ Installation and Upgrade</a>
+
+                            <ul>
+                    <li>
+                <a href="PreparingtoInstallHAWQ.html">Preparing to Install HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingHAWQ.html">Installing HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingtheHAWQComponents.html">Installing the HAWQ Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingHAWQandComponents.html">Upgrading HAWQ and Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingHAWQtoQueryData.html">Using HAWQ to Query Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQFilespacesandHighAvailabilityEnabledHDFS.html">HAWQ Filespaces and High Availability Enabled HDFS</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SystemCatalogReference.html">System Catalog Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </div><!--end of sub-nav-->
+            
+            <h3 class="title-container">Kerberos Authentication</h3>
+            <div class="content">
+              <!-- Python script replaces main content -->
+			  <div id ="main"><div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Kerberos Authentication</div><div class="wiki-content group" id="main-content">
+<p>On the versions of Red Hat Enterprise Linux that are supported by HAWQ, you can use a Kerberos authentication system to control access to HAWQ. HAWQ supports GSSAPI with Kerberos authentication. GSSAPI provides automatic authentication (single sign-on) for systems that support it. If Kerberos authentication is not available when a role attempts to log into HAWQ the login fails.</p><p align="LEFT">You specify which HAWQ users require Kerberos authentication in the HAWQ configuration file pg_hba.conf. Whether you specify Kerberos authentication or another type of authentication for a HAWQ user, authorization to access HAWQ databases and database objects such as schemas and tables is controlled by the settings specified in both the pg_hba.conf file and in the  the privileges given to HAWQ users and roles within the database.</p><p align="LEFT">This chapter describes how to configure a Kerberos authentication system and HAWQ to authenticate a HAWQ administrator.</p><p align="LEFT"><style type="text/css">/*<![CDATA[*/
+div.rbtoc1400035793280 {padding: 0px;}
+div.rbtoc1400035793280 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1400035793280 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1400035793280">
+<ul class="toc-indentation">
+<li><a href="#KerberosAuthentication-EnablingKerberosauthenticationforHAWQ">Enabling Kerberos authentication for HAWQ</a></li>
+<li><a href="#KerberosAuthentication-RequirementsforusingKerberoswithHAWQ">Requirements for using Kerberos with HAWQ</a></li>
+<li><a href="#KerberosAuthentication-InstallingandConfiguringaKerberosKDCServer">Installing and Configuring a Kerberos KDC Server</a>
+<ul class="toc-indentation">
+<li><a href="#KerberosAuthentication-InstallingandConfiguringtheKerberosClient">Installing and Configuring the Kerberos Client</a></li>
+<li><a href="#KerberosAuthentication-CreatingHAWQRolesintheKDCDatabase">Creating HAWQ Roles in the KDC Database</a></li>
+<li><a href="#KerberosAuthentication-CheckingclientoperationontheHAWQmaster">Checking client operation on the HAWQ master</a>
+<ul class="toc-indentation">
+<li><a href="#KerberosAuthentication-SettingupHAWQwithKerberosforPSQL">Setting up HAWQ with Kerberos for PSQL</a></li>
+<li><a href="#KerberosAuthentication-SettingupHAWQwithKerberosforJDBC">Setting up HAWQ with Kerberos for JDBC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#KerberosAuthentication-SampleKerberosConfigurationFile">Sample Kerberos Configuration File</a></li>
+</ul>
+</div></p><p align="LEFT">For more information about Kerberos, see <a class="external-link" href="http://web.mit.edu/kerberos/" rel="nofollow">http://web.mit.edu/kerberos/</a>.</p><h2 id="KerberosAuthentication-EnablingKerberosauthenticationforHAWQ">Enabling Kerberos authentication for HAWQ</h2> <div class="aui-message hint shadowed information-macro">
+<span class="aui-icon icon-hint">Icon</span>
+<div class="message-content">
+<p>HAWQ has two endpoints for Kerberos configuration. One endpoint is configured to allow HAWQ to talk to Kerberized HDFS; in this case HAWQ is acting as a <em>Kerberos client process</em>. The other endpoint is configured to allow HAWQ to operate with a Kerberos Key Distribution Center (KDC) in order to require Kerberos authentication for users of the database; in this case HAWQ is acting as a <em>Kerberos server process</em>. It is possible to configure one endpoint without the other endpoint. These instructions are for configuring HAWQ as a Kerberos server process so that users are required to authenticate via Kerberos to access the database. For instructions on configuring the HAWQ to Kerberized HDFS see the HAWQ installation guide. Note that if HAWQ to Kerberized HDFS has already been configured, or you have an existing KDC to use, you may skip the KDC installation instructions below.</p>
+</div>
+</div>
+<p> </p><p align="LEFT">The following tasks are required to use Kerberos with HAWQ:</p><ol><li>Set up, or identify, a Kerberos Key Distribution Center (KDC) server to use for your authentication. If you have already configured HAWQ to Kerberized HDFS you will already have a cluster KDC that you can utilize. If necessary set up a Kerberos realm and principals on the server. For HAWQ, a principal is a HAWQ role that utilizes Kerberos authentication. In the Kerberos database, a realm groups together the Kerberos principals that are the HAWQ roles.</li><li>Create or add to a Kerberos keytab file for HAWQ a postgres/&lt;hawq_master_fqdn&gt;@REALM principal key.<ol><li>To access HAWQ, you create a service key known only by Kerberos and HAWQ. This is of the form postgres/&lt;hawq_master_fqdn&gt;@REALM, where &lt;hawq_master_fqdn&gt; is the fully qualified domain name of the HAWQ master host and REALM is your Kerberos realm.</li><li>On the HAWQ master, the service key is stored in key tables, which are files known as keytabs. For a PHD installation the HAWQ service keys are usually stored in the keytab file /etc/security/phd/keytab/hawq-&lt;hawq_master_fqdn&gt;.service.keytab. This service key is the equivalent of the service’s password, and must be kept secure. Data which is meant to be read only by the service is encrypted using this key. If you have already configured HAWQ to Kerberized HDFS this keytab will already exist and you will need to add the postgres/&lt;hawq_master_fqdn&gt;@REALM principal to it.</li></ol></li><li>Install the Kerberos client packages and the keytab file on HAWQ master if they are not already installed. The /etc/krb5.conf file for your Kerberos installation needs to be properly configured on the HAWQ master. Again, if you have already configured HAWQ to Kerberized HDFS this will be done.</li><li>Create a Kerberos ticket for gpadmin on HAWQ master node using the keytab file. The ticket contains the Kerberos authentication credentials that grant access to the HAWQ.</li><li>Create Kerberos principals for any other users of the database; unless you add specific rules to allow non-kerberos access to specific users all users will require a Kerberos principal to log in to the database one these steps are completed. Note that be default gpadmin is allowed to log in from the local HAWQ master host without authentication; it is recommended this not be changed as it allows and admin to access the database to debug authentication issues.</li></ol><p style="margin-left: 30.0px;">With Kerberos authentication configured on the HAWQ, you can use to use Kerberos for PSQL and JDBC.</p><ul><li>Setting up HAWQ with Kerberos for PSQL</li><li>Setting up HAWQ with Kerberos for JDBC</li></ul><h2 id="KerberosAuthentication-RequirementsforusingKerberoswithHAWQ">Requirements for using Kerberos with HAWQ</h2><p>The following items are required for using Kerberos with HAWQ:</p><ul><li>Kerberos Key Distribution Center (KDC) server that uses the krb5-server library.</li><li>Kerberos packages for version 5<ul><li>krb5-libs</li><li>krb5-workstation</li></ul></li><li>HAWQ capable of supporting Kerberos</li><li>A configuration that allows the Kerberos server and the HAWQ master to communicate with each other.</li><li>Red Hat Enterprise Linux 6.x requires Java 1.7.0_17 or later.</li><li>Red Hat Enterprise Linux 5.x requires Java 1.6.0_21 or later.</li><li>Red Hat Enterprise Linux 4.x requires Java 1.6.0_21 or later.</li></ul><p> </p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<ul><li>The dates and times on the Kerberos server and clients must be synchronized. Authentication fails if the time difference between the Kerberos server and a client is  too large. The maximum time difference is configurable; 5 minutes is the default.</li><li>The Kerberos server and client must be configured, enabling them to ping each other using their host names.</li><li>The Kerberos authentication itself is secure, but the data sent over the database connection is transmitted in clear text, unless SSL is used. Kerberos is for authentication only.</li><li>These instruction consider the simplest most common configuration; it is possible to set up more complex configuration rules. Please see the appropriate documentation if more complex rules are desired.</li></ul>
+</div>
+</div>
+<h2 id="KerberosAuthentication-InstallingandConfiguringaKerberosKDCServer">Installing and Configuring a Kerberos KDC Server</h2><p align="LEFT">The following steps install and configure a Kerberos Key Distribution Center (KDC) server in the case where one is not already installed:</p><ol><li>Install the Kerberos packages for the Kerberos server:<ul><li>krb5-libs</li><li>krb5-server</li><li>krb5-workstation</li></ul></li><li>Edit the /etc/krb5.conf configuration file. See the section for “krb5.conf Configuration File” for sample configuration file parameters.<br/>When you create a KDC database, the parameters in the /etc/krb5.conf file specify that the realm KRB.GREENPLUM.COM is created. You use this realm when you create the Kerberos principals that are HAWQ roles.<br/>If you have an existing Kerberos server you might need to edit the kdc.conf file. See the Kerberos documentation for information about the kdc.conf file.</li><li><p>To create a Kerberos KDC database, run the kdb5_util. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kdb5_util create -s</pre>
+</div></div><p><br/>The create option creates the database to store keys for the Kerberos realms managed by this KDC server. The -s option creates a stash file. Without the stash file, every time the KDC server starts, it requests a password.</p></li></ol><p>     4. The Kerberos utility kadmin uses Kerberos to authenticate to the server.</p><p style="margin-left: 30.0px;">Before using kadmin, add an administrative user to KDC database with kadmin.local. kadmin.local is local to the server and does not use Kerberos authentication. To add the user gpadmin as an administrative user to the KDC database, run the following command:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local -q "addprinc gpadmin/admin"</pre>
+</div></div><p style="margin-left: 30.0px;"><strong>Note</strong>: Most users do not need administrative access to the Kerberos server. They can use kadmin to manage their own principals (for example, to change their own password). For information about kadmin, see the Kerberos documentation.</p><p align="LEFT">     5.  If needed, edit the /var/kerberos/krb5kdc/kadm5.acl file to grant the appropriate permissions to gpadmin.</p><p align="LEFT">     6.  Start the Kerberos daemons with the following commands:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/sbin/service krb5kdc start
+/sbin/service kadmin start</pre>
+</div></div><p align="LEFT" style="margin-left: 30.0px;">If you want to start Kerberos automatically upon restart, run the following commands:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/sbin/chkconfig krb5kdc on
+/sbin/chkconfig kadmin on</pre>
+</div></div><h3 id="KerberosAuthentication-InstallingandConfiguringtheKerberosClient">Installing and Configuring the Kerberos Client</h3><p align="LEFT">If they are not already installed install the Kerberos client libraries on the HAWQ master and configure the Kerberos client:</p><ol><li>Install the following Kerberos packages on the HAWQ master.</li></ol><ul><li style="list-style-type: none;background-image: none;"><ul><li>krb5-libs</li><li>krb5-workstation</li></ul></li></ul><p align="LEFT">     2.  Ensure that the /etc/krb5.conf file is the same as the one that is on the Kerberos server.</p><h3 id="KerberosAuthentication-CreatingHAWQRolesintheKDCDatabase">Creating HAWQ Roles in the KDC Database</h3><p>After you have set up a Kerberos KDC and have created a realm for HAWQ, you add principals to the realm.</p><ol><li>Create principals in the Kerberos database with kadmin.local. Note that the realm "REALM" is an example, replace with your actual Kerberos realm. Using kadmin.local in interactive mode, the following commands add users:</li></ol><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">addprinc gpadmin@REALM
+addprinc postgres/&lt;hawq_master_fqdn&gt;@REALM</pre>
+</div></div><p style="margin-left: 30.0px;">The first addprinc command creates the HAWQ "gpadmin" user as a principal. See “Setting up HAWQ with Kerberos for PSQL”  for information on modifying the file pg_hba.conf so the HAWQ user gpadmin uses Kerberos authentication when accessing HAWQ from the client hosts.</p><p align="LEFT" style="margin-left: 30.0px;">The second addprinc command creates the postgres process as principal in the Kerberos KDC. This principal is required when using Kerberos authentication with HAWQ. The syntax for the principal is postgres/&lt;hawq_master_fqdn&gt;@REALM where &lt;hawq_master_fqdn&gt;is the fully qualified host name of the HAWQ master.</p> <div class="aui-message warning shadowed information-macro">
+<p class="title">HAWQ postgres principal differences</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>Note that for HAWQ to Kerberized HDFS configuration HAWQ uses the postgres@REALM form for a principal, as it is a Kerberos client when talking to HDFS. For the HAWQ service configuration we are concerned with here it uses the postgres/&lt;service_host_fqdn&gt;@REALM form, as it is acting a Kerberos service. If you are configuring both endpoints understanding the difference is important.</p>
+</div>
+</div>
+<p align="LEFT">     2.  Create a Kerberos keytab file with kadmin.local and add the postgres/&lt;hawq_master_fqdn&gt;@REALM principal, or if a keytab already exists add this principal to the existing HAWQ keytab file. The following example creates a keytab file gpdb-kerberos.keytab with authentication information for the two principals.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">ktadd -norandkey -k hawq-&lt;hawq_master_fqdn&gt;.service.keytab postgres/&lt;hawq_master_fqdn&gt;@REALM</pre>
+</div></div><p style="margin-left: 30.0px;">Place the keytab file in the /etc/security/phd/keytab directory on the HAWQ master and set ownership to gpadmin:gpadmin and permissions to r--------.</p><p style="margin-left: 30.0px;">Create a link to the keytab file for clarity and ease of reference; for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">ln -s /etc/security/phd/keytab/hawq-&lt;hawq_master_fqdn&gt;.service.keytab /etc/security/phd/keytab/hawq.service.keytab</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<ul><li>If necessary create the /etc/security/phd/keytab directory and insure that gpadmin has access.</li><li>If you already have a HAWQ keytab file in this directory you can use kadmin from the HAWQ master to add to the keytab.</li><li>You may choose another location for the keytab file, but there is only one keytab setting in postgresql.conf for both endpoints, so you must be consistent.</li></ul>
+</div>
+</div>
+<p>     3.  Verify the contents of your keytab.  The following is example klist output for a system configured with both endpoints (HAWQ to Kerberized HDFS and HAWQ service configuration to authenticate database users) where the HAWQ master FQDN is set to centos61-2.localdomain and the realm is set to PHD.BIGDATA.COM:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># klist -k -t /etc/security/phd/keytab/hawq-centos61-2.localdomain.service.keytab 
+Keytab name: WRFILE:/etc/security/phd/keytab/hawq-centos61-2.localdomain.service.keytab
+KVNO Timestamp         Principal
+---- ----------------- --------------------------------------------------------
+   1 04/30/14 22:45:21 postgres@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 postgres@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 postgres@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 postgres@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 postgres@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 postgres@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 HTTP/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 HTTP/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 HTTP/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 HTTP/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 HTTP/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 HTTP/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 05/01/14 19:41:39 postgres/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 05/01/14 19:41:39 postgres/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 05/01/14 19:41:39 postgres/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 05/01/14 19:41:39 postgres/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 05/01/14 19:41:39 postgres/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 05/01/14 19:41:39 postgres/centos61-2.localdomain@PHD.BIGDATA.COM</pre>
+</div></div><h3 id="KerberosAuthentication-CheckingclientoperationontheHAWQmaster">Checking client operation on the HAWQ master</h3><p>On the HAWQ master</p><p>    1. Clean up any possible existing tickets:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># kdestroy</pre>
+</div></div><p align="LEFT">      2.  Use the Kerberos utility kinit to request a ticket using the keytab file on the HAWQ master for gpadmin@REALM.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># kinit gpadmin
+[password prompt will be displayed: enter your gpadmin principal password]</pre>
+</div></div><p>     3.  Use the Kerberos utility klist to display the contents of the Kerberos ticket cache on the HAWQ master.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># klist
+Ticket cache: FILE:/tmp/krb5cc_108061
+Default principal: gpadmin@REALM
+Valid starting Expires Service principal
+03/28/13 14:50:26 03/29/13 14:50:26 krbtgt/REALM@REALM
+renew until 03/28/13 14:50:26</pre>
+</div></div><h4 id="KerberosAuthentication-SettingupHAWQwithKerberosforPSQL">Setting up HAWQ with Kerberos for PSQL</h4><p>After you have set up Kerberos on the HAWQ master, you can configure HAWQ to use Kerberos.</p><ol><li>Check that he role "gpadmin" exists in HAWQ (it should), if not create a HAWQ administrator role in the database template1 for the Kerberos principal that is used as the database administrator.</li></ol><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">psql template1 -c 'create role "gpadmin" login superuser;'</pre>
+</div></div><p style="margin-left: 30.0px;"><strong>Note</strong>: The role you create in the database template1 will be available in any new HAWQ database that you create.</p><p style="margin-left: 30.0px;">   Adding this line to the postgresql.conf specifies the folder /home/gpadmin as the location of the keytab file gpdb-kerberos.keytab.</p><p>      2.  If you have not already configured HAWQ to Kerberized HDFS you will need to modify postgresql.conf to specify the location of the keytab file.</p><p style="margin-left: 30.0px;">   For example, adding this line to the postgresql.conf specifies the folder /home/gpadmin as the location of the keytab file gpdb-kerberos.keytab.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">krb_server_keyfile = '/etc/security/phd/keytab/hawq.service.keytab'
+ 
+Note! the single quote format is important.</pre>
+</div></div><p align="LEFT">     3.  Modify the HAWQ file pg_hba.conf to enable Kerberos support.</p><p align="LEFT" style="margin-left: 30.0px;">For example, adding the following line to pg_hba.conf adds GSSAPI and Kerberos support.</p><p align="LEFT" style="margin-left: 30.0px;">The value for krb_realm is the Kerberos realm that is used for authentication to HAWQ.</p><p align="LEFT" style="margin-left: 30.0px;">Add as the last entry in pg_hba.conf:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">host all all 0.0.0.0/0 gss include_realm=0 krb_realm=REALM</pre>
+</div></div><p style="margin-left: 30.0px;"> More complex rules are possible; for information about the pg_hba.conf file, see the Postgres documentation: <a class="external-link" href="http://www.postgresql.org/docs/8.4/static/auth-pg-hba-conf.html" rel="nofollow">http://www.postgresql.org/docs/8.4/static/auth-pg-hba-conf.html</a></p><p align="LEFT">     4. Restart HAWQ:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># sudo -u gpadmin service hawq stop
+…
+# sudo -u gpadmin service hawq start</pre>
+</div></div><p align="LEFT">     5.  As a test, login into the database from a client node (not the HAWQ master host) as the gpadmin role with the Kerberos credentials gpadmin:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[root@centos61-5 ~]# su - gpadmin
+[gpadmin@centos61-5 ~]$ kinit gpadmin
+Password for gpadmin@PHD.BIGDATA.COM: 
+[gpadmin@centos61-5 ~]$ psql -h centos61-2.localdomain
+psql (8.4.7, server 8.2.15)
+WARNING: psql version 8.4, server version 8.2.
+         Some psql features might not work.
+Type "help" for help.
+gpadmin=#</pre>
+</div></div><p> </p><p>You can add regular database users by creating a role for the user in the HAWQ database as superuser and creating a corresponding Kerberos principal.</p><p><strong style="line-height: 1.4285715;">Notes</strong></p><p align="LEFT" style="margin-left: 30.0px;">A username map can be defined in the pg_ident.conf file and specified in the pg_hba.conf file to simplify logging into HAWQ. For example, this psql command logs into the default HAWQ on mdw.proddb as the Kerberos principal adminuser/mdw.proddb:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ psql -U "adminuser/mdw.proddb" -h mdw.proddb</pre>
+</div></div><p align="LEFT" style="margin-left: 30.0px;">If the default user is adminuser, the pg_ident.conf file and the pg_hba.conf file can be configured so that the adminuser can log into the database as the Kerberos principal adminuser/mdw.proddb without specifying the -U option:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ psql -h mdw.proddb</pre>
+</div></div><p align="LEFT" style="margin-left: 30.0px;">The following username map is defined in the HAWQ file</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$MASTER_DATA_DIRECTORY/pg_ident.conf:
+ # MAPNAME SYSTEM-USERNAME GP-USERNAME
+mymap /^(.*)mdw\.proddb$ adminuser</pre>
+</div></div><p align="LEFT" style="margin-left: 30.0px;">The map can be specified in the pg_hba.conf file as part of the line that enables Kerberos support:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">host all all 0.0.0.0/0 krb5 include_realm=0 krb_realm=proddb
+map=mymap</pre>
+</div></div><p align="LEFT" style="margin-left: 30.0px;">For more information on specifying username maps see the Postgres documentation: <a class="external-link" href="http://www.postgresql.org/docs/8.4/static/auth-username-maps.html" rel="nofollow">http://www.postgresql.org/docs/8.4/static/auth-username-maps.html</a></p><p align="LEFT" style="margin-left: 30.0px;">If a Kerberos principal is not a HAWQ user, a message is similar to the following is displayed from the psql command line when the user attempts to log into the database:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">psql: krb5_sendauth: Bad response</pre>
+</div></div><p align="LEFT" style="margin-left: 30.0px;">The principal must be added as a HAWQ user.</p><h4 id="KerberosAuthentication-SettingupHAWQwithKerberosforJDBC">Setting up HAWQ with Kerberos for JDBC</h4><p align="LEFT">You can configure HAWQ to use Kerberos to run user-defined Java functions.</p><ol><li>Ensure that a Kerberos is installed and configured on the HAWQ master. See the section “Installing and Configuring the Kerberos Client”.</li><li>Create the file .java.login.config in the folder /home/gpadmin and add the following text to the file:</li><li><p>Create a Java application that connects to HAWQ using Kerberos authentication.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">pgjdbc {
+ com.sun.security.auth.module.Krb5LoginModule required
+ doNotPrompt=true
+ useTicketCache=true
+ debug=true
+ client=true;
+};</pre>
+</div></div><p> This example database connection URL uses a PostgreSQL JDBC driver and specifies parameters for Kerberos authentication.</p></li></ol><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">jdbc:postgresql://mdw:5432/mytest?kerberosServerName=
+postgres&amp;jaasApplicationName=pgjdbc&amp;user=
+gpadmin/kerberos-gpdb</pre>
+</div></div><p align="LEFT">          The parameter names and values specified depend on how the Java application performs Kerberos authentication.</p><p>     4.  Test the Kerberos login by running a sample Java application from HAWQ.</p><h2 id="KerberosAuthentication-SampleKerberosConfigurationFile">Sample Kerberos Configuration File</h2><p>This sample krb5.conf Kerberos configuration file is used in the example that configures HAWQ to use Kerberos authentication:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[logging]
+ 
+  default = FILE:/var/log/krb5libs.log
+  kdc = FILE:/var/log/krb5kdc.log
+  admin_server = FILE:/var/log/kadmind.log
+[libdefaults]
+  default_realm = KRB.GREENPLUM.COM
+  dns_lookup_realm = false
+  dns_lookup_kdc = false
+  ticket_lifetime = 24h
+  renew_lifetime = 7d
+  forwardable = yes
+  default_tgs_enctypes = aes128-cts des3-hmac-sha1 des-cbc-crc
+des-cbc-md5
+default_tkt_enctypes = aes128-cts des3-hmac-sha1 des-cbc-crc
+des-cbc-md5
+permitted_enctypes = aes128-cts des3-hmac-sha1 des-cbc-crc
+des-cbc-md5
+realms]
+KRB.GREENPLUM.COM = {
+  kdc = kerberos-gpdb:88
+  admin_server = kerberos-gpdb:749
+  default_domain = kerberos-gpdb
+}
+[domain_realm]
+.kerberos-gpdb = KRB.GREENPLUM.COM
+kerberos-gpdb = KRB.GREENPLUM.COM
+[appdefaults]
+pam = {
+   debug = false
+   ticket_lifetime = 36000
+   renew_lifetime = 36000
+   forwardable = true
+   krb4_convert = false
+ }</pre>
+</div></div><p> </p><p> </p><p> </p><p align="LEFT"> </p><p> </p><p> </p>
+</div></div>
+            </div><!-- end of content-->
+            
+            
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

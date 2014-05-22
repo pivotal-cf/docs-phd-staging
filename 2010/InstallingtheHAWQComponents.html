@@ -1,0 +1,708 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>Installing the HAWQ Components | Pivotal Docs</title>
+    <!-- Local CSS stylesheets -->
+    <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+    <!-- Confluence HTML stylesheet -->
+    <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+    <!-- Left-navigation code -->
+    <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+    <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+        </script>
+    <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+    <!-- End left-navigation code -->
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+    if (window.location.host === 'docs.gopivotal.com') {
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39702075-1']);
+        _gaq.push(['_setDomainName', 'gopivotal.com']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    }
+  </script>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+
+	<script type="text/javascript">
+	  WebFontConfig = {
+	    google: { families: [ 'Source+Sans+Pro:300italic,400italic,600italic,300,400,600:latin' ] }
+	  };
+	  (function() {
+	    var wf = document.createElement('script');
+	    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+	      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+	    wf.type = 'text/javascript';
+	    wf.async = 'true';
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(wf, s);
+	  })(); </script>
+
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="http://docs.gopivotal.com/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+				<ul class="accordion"  id="accordion-1">
+					<!-- REPLACE <li/> NODES-->
+                        <li>
+                <a href="index.html">Home</a></br>
+                                
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 2.0.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise2.0.1ReleaseNotes.html">PHD Enterprise 2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallationOverview.html">Installation Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationChecklist.html">PHD Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradeChecklist.html">Upgrade Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyInstallingPivotalHD2.0Stack.html">Manually Installing Pivotal HD 2.0 Stack</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPivotalHDStackfrom1.1.1to2.0.html">Manually Upgrading Pivotal HD Stack from 1.1.1 to 2.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalHadoopEnhancements.html">Pivotal Hadoop Enhancements</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.2.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.2.1ReleaseNotes.html">PCC 2.2.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCInstallationChecklist.html">PCC Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalHAWQ.html">Pivotal HAWQ 1.2.0</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQ1.2.0.1ReleaseNotes.html">HAWQ 1.2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallationandUpgrade.html">HAWQ Installation and Upgrade</a>
+
+                            <ul>
+                    <li>
+                <a href="PreparingtoInstallHAWQ.html">Preparing to Install HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingHAWQ.html">Installing HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingtheHAWQComponents.html">Installing the HAWQ Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingHAWQandComponents.html">Upgrading HAWQ and Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingHAWQtoQueryData.html">Using HAWQ to Query Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQFilespacesandHighAvailabilityEnabledHDFS.html">HAWQ Filespaces and High Availability Enabled HDFS</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SystemCatalogReference.html">System Catalog Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </div><!--end of sub-nav-->
+            
+            <h3 class="title-container">Installing the HAWQ Components</h3>
+            <div class="content">
+              <!-- Python script replaces main content -->
+			  <div id ="main"><div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Installing the HAWQ Components</div><div class="wiki-content group" id="main-content">
+<p>This chapter describes how to install additional HAWQ components.</p><p><style type="text/css">/*<![CDATA[*/
+div.rbtoc1400035791132 {padding: 0px;}
+div.rbtoc1400035791132 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1400035791132 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1400035791132">
+<ul class="toc-indentation">
+<li><a href="#InstallingtheHAWQComponents-InstallingCryptographicFunctionsforPostgreSQL">Installing Cryptographic Functions for PostgreSQL</a>
+<ul class="toc-indentation">
+<li><a href="#InstallingtheHAWQComponents-AutomatedInstallationofpgcrypto">Automated Installation of  pgcrypto</a></li>
+<li><a href="#InstallingtheHAWQComponents-InstallingPL/R">Installing PL/R</a></li>
+<li><a href="#InstallingtheHAWQComponents-InstallingPL/Java">Installing PL/Java</a></li>
+</ul>
+</li>
+<li><a href="#InstallingtheHAWQComponents-InstallingMADlibonHAWQ">Installing MADlib on HAWQ</a>
+<ul class="toc-indentation">
+<li><a href="#InstallingtheHAWQComponents-Pre-requisitesforInstallingMADlibonHAWQ">Pre-requisites for Installing MADlib on HAWQ</a></li>
+<li><a href="#InstallingtheHAWQComponents-InstallingMADlibonHAWQ.1">Installing MADlib on HAWQ</a></li>
+</ul>
+</li>
+</ul>
+</div></p><h2 id="InstallingtheHAWQComponents-InstallingCryptographicFunctionsforPostgreSQL">Installing Cryptographic Functions for PostgreSQL</h2><p>The pgcrypto package contains the cryptographic functions for PostgreSQL. It must be installed separately from the main installation. </p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Note:</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+                            Your HAWQ installation must be running, or the pgcrypto package will fail to install.
+                    </div>
+</div>
+<p>All the cryptographic functions run inside database server. That means that all the data and passwords move between pgcrypto and the client application in clear-text. This means you must:</p><ul><li>Connect locally or use SSL connections.</li><li>Trust both system and database administrator.</li></ul><p>The pgcrypto package can be installed either through automated or manual installation.</p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Note</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>Download the new binaries for the pgcrypto package and follow the appropriate instructions in this topic.</p>
+</div>
+</div>
+<h3 id="InstallingtheHAWQComponents-AutomatedInstallationofpgcrypto">Automated Installation of  pgcrypto</h3><p>These installation instructions assume you have obtained a precompiled build of pgcrypto from Pivotal.</p><p>1. Extract files from the pgcrypto package. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">mkdir pgcrypto
+mv pgcrypto.tgz pgcrypto
+tar -xzvf pgcryto/pgcrypto.tgz</pre>
+</div></div><p> </p><p>2. Run pgcrypto_install.sh script with the hostfile as argument. The hosts file must contain hostname of each segment, one per line.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">cd pgcrypto
+./pgcrypto_install.sh -f ~/hostfile</pre>
+</div></div><p><span>3. Install the pgcrypto function:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">psql -d &lt;dbname&gt; -f $GPHOME/share/postgresql/contrib/pgcrypto.sql </pre>
+</div></div><h4 id="InstallingtheHAWQComponents-Uninstallingpgcrypto">Uninstalling pgcrypto</h4><p>To uninstall the pgcrypto objects, use uninstall_pgcrypto.sql.</p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Note:</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+                            This script does not remove dependent user created objects.
+                    </div>
+</div>
+<h3 id="InstallingtheHAWQComponents-InstallingPL/R">Installing PL/R</h3><p>The following instructions assume that you have downloaded a precompiled build of PL/R from Pivotal.</p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Note:</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>Check the name of your plr package. If it is plr-1.1.4.0-5152.x86_64.tgz,download the latest version plr-1.1.4.0-5664.x86_64.tgz for HAWQ 1.1.4.0 from Pivotal. The new package contains the file plr.sql with the necessary PL/R helper functions.</p>
+</div>
+</div>
+<p>1. Create a directory named plr and extract the archive in it.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">mkdir plr
+mv plr*.tgz plr
+tar -xzf plr*.tgz -C plr</pre>
+</div></div><p> 2. Run the plr_install.sh script with the hostfile as argument. The hosts file must contain hostname of each segment, one per line..</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">cd plr;
+./plr_install.sh -f ~/hostfile</pre>
+</div></div><p>3. After the installation finishes successfully, restart the HAWQ instance.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">source $GPHOME/greenplum_path.sh
+gpstop -ar</pre>
+</div></div><p>4. Create the plr language. Connect to a database using PSQL and run the following SQL command. </p><div class="line number1 index0 alt2"><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">psql -d template1 -c "CREATE LANGUAGE plr"</pre>
+</div></div><p style="margin-left: 30.0px;"> You are now ready to create new PLR functions. A library of convenient PLR functions may be found in $GPHOME/share/postgresql/contrib/plr.sql. These functions may be installed by executing plr.sql, as follows:</p></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">psql -d &lt;dbname&gt; -f $GPHOME/share/postgresql/contrib/plr.sql</pre>
+</div></div><h3 id="InstallingtheHAWQComponents-InstallingPL/Java">Installing PL/Java</h3> <div class="aui-message warning shadowed information-macro">
+<p class="title">Notes</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>Before you install PL/Java</p><ul><li>You have downloaded a precompiled build of PL/Java from Pivotal.</li><li>Ensure that the $JAVA_HOME variable is set to the same path on the master and all the segments.</li><li>If you are upgrading to the latest version of Java or installing it as part of the expansion process, follow the instructions in the chapter, <em>Expanding the HAWQ System</em> in the <em>HAWQ Administrator Guide</em>.</li><li>PL/Java is compatible with JDK 1.6 and 1.7.</li></ul>
+</div>
+</div>
+<ol><li><p>Extract files from the PL/Java package:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">mkdir pljava 
+mv pljava*.tgz pljava 
+cd pljava 
+tar -xzf pljava.tgz</pre>
+</div></div></li><li><p>Run the installer.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">./pljava_install.sh -f ~/hosts.txt </pre>
+</div></div><p>Where the ~/hosts.txt  file contains the names of currently active segment hosts in the HAWQ deployment. You must format the file to list one hostname per line.</p></li><li><p>Restart HAWQ.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">source $GPHOME/greenplum_path.sh gpstop -ar</pre>
+</div></div></li><li><p>Add the pljava class of configuration variables:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpconfig -c custom_variable_classes -v \'pljava\' </pre>
+</div></div><p>To add previously defined custom_variable_classes, prefix them with "pljava" in a comma separated list.</p></li><li><p>Create the language for pljava.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">psql -d &lt;dbname&gt; -c "CREATE LANGUAGE pljava"</pre>
+</div></div></li></ol><h4 id="InstallingtheHAWQComponents-InstallingCustomJARS">Installing Custom JARS </h4><ol><li>Copy the jar file on the master host in $GPHOME/lib/postgresql/java</li><li><p>Copy the jar file on all segments in the same location using gpscp from master.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">cd $GPHOME/lib/postgresql/java gpscp -f ~/hosts.txt myfunc.jar =:$GPHOME/lib/postgresql/java/</pre>
+</div></div></li><li>Set the pljava_classpath to include the newly copied jar file.  <ol><li><p>From the psql session, execute set to affect the current psql session.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">pljava_classpath='myfunc.jar';</pre>
+</div></div></li><li><p>To affect all sessions: </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpconfig -c pljava_classpath -v \'myfunc.jar\'</pre>
+</div></div></li></ol></li></ol><h2 id="InstallingtheHAWQComponents-InstallingMADlibonHAWQ">Installing MADlib on HAWQ</h2><p>The MADlib library adds statistical and machine learning functionality to HAWQ. This topic describes how to install MADlib for HAWQ. </p><p>The HAWQ installation script installs the MADlib files, but does not register MADlib functions with HAWQ databases. Therefore you must use the <code>madpack</code> utility program to install, reinstall, or upgrade the MADlib database objects.</p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Upgrading HAWQ from 1.1 to 1.2</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>If you have upgraded your system from HAWQ 1.1.x to HAWQ 1.2, you must install MADlib 1.5 or higher and then run the <code>madpack</code> utility program.</p>
+</div>
+</div>
+<h3 id="InstallingtheHAWQComponents-Pre-requisitesforInstallingMADlibonHAWQ">Pre-requisites for Installing MADlib on HAWQ</h3><p>Check that you have completed the following tasks before running the installation script: </p><ul><li>Make sure you have <code>rpm</code>, <code>gpssh</code> and <code>gpscp</code> in your <code>PATH</code>. </li><li>Make sure that you have HAWQ binaries installed properly on all master and segment nodes in your cluster (also new segment nodes when adding new nodes).</li><li><span style="line-height: 1.4285715;">Add </span> <code style="line-height: 1.4285715;">hawq_install.sh</code> <span style="line-height: 1.4285715;"> to your </span> <code style="line-height: 1.4285715;">PATH</code> <span style="line-height: 1.4285715;">.</span></li><li>Make sure the <code>HOSTFILE</code> lists all the new segment nodes.</li></ul><h3 id="InstallingtheHAWQComponents-InstallingMADlibonHAWQ.1">Installing MADlib on HAWQ</h3><ol><li><p>Once HAWQ installation is complete, run the following command to install MADlib:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hawq_install.sh -r &lt;RPM_FILEPATH&gt; -f &lt;HOSTFILE&gt; [-s] [-d &lt;GPHOME&gt;] [--prefix &lt;MADLIB_INSTALL_PATH&gt;]</pre>
+</div></div></li><li><p>Run the following command to register MADlib in your database:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$GPHOME/madlib/bin/madpack -p hawq -c $USER@$HOST/$DATABASE install</pre>
+</div></div></li><li><p>To test your installation, run the following command:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$GPHOME/madlib/bin/madpack -p hawq -c $USER@$HOST/$DATABASE install-check</pre>
+</div></div></li></ol><h4 id="InstallingtheHAWQComponents-MADlibInstallRequiredSettings">MADlib Install Required Settings</h4><ul><li><code>-r | --rpm-path &lt;RPM_FILEPATH&gt; </code> The p<span style="color: rgb(0,0,0);">ath to the MADlib RPM file.</span></li><li><code>-f | --host-file &lt;HOSTFILE&gt;</code> The f<span style="color: rgb(0,0,0);">ile containing the host names of all new segments.</span></li></ul><h4 id="InstallingtheHAWQComponents-MADlibInstallOptionalSettings"><span style="color: rgb(0,0,0);"> <span style="color: rgb(0,102,0);">MADlib Install Optional Settings</span> </span></h4><ul><li><code>-s | --skip-localhost</code>  Set this option to prevent MADlib installation on the <span>localhost.</span> <code> <span style="color: rgb(0,0,0);">  </span> </code></li><li><code> <span style="color: rgb(0,0,0);">-d | --set-gphome &lt;GPHOME&gt;</span> </code> Indicates the <span style="color: rgb(0,0,0);">HAWQ installation path. If you do not specify one, the installer uses the value stored in </span> <span style="color: rgb(0,0,0);">the environment variable <code>GPHOME</code>.</span></li><li><code>--prefix &lt;MADLIB_INSTALL_PATH&gt; </code> Indicates <span style="color: rgb(0,0,0);">MADlib installation path. If not set, will use the default value </span> <span style="color: rgb(0,0,0);">in MADlib RPM.</span></li><li><code>-h | -? | --help</code> <span style="color: rgb(0,0,0);">Displays help.</span></li></ul><h4 id="InstallingtheHAWQComponents-MADlibInstallExample">MADlib Install Example</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hawq_install.sh -r /home/gpadmin/madlib/madlib-1.5-Linux.rpm -f /usr/local/greenplum-db/hostfile</pre>
+</div></div>
+</div></div>
+            </div><!-- end of content-->
+            
+            
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

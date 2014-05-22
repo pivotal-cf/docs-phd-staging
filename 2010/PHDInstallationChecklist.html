@@ -1,0 +1,605 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>PHD Installation Checklist | Pivotal Docs</title>
+    <!-- Local CSS stylesheets -->
+    <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+    <!-- Confluence HTML stylesheet -->
+    <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+    <!-- Left-navigation code -->
+    <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+    <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+        </script>
+    <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+    <!-- End left-navigation code -->
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+    if (window.location.host === 'docs.gopivotal.com') {
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39702075-1']);
+        _gaq.push(['_setDomainName', 'gopivotal.com']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    }
+  </script>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+
+	<script type="text/javascript">
+	  WebFontConfig = {
+	    google: { families: [ 'Source+Sans+Pro:300italic,400italic,600italic,300,400,600:latin' ] }
+	  };
+	  (function() {
+	    var wf = document.createElement('script');
+	    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+	      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+	    wf.type = 'text/javascript';
+	    wf.async = 'true';
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(wf, s);
+	  })(); </script>
+
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="http://docs.gopivotal.com/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+				<ul class="accordion"  id="accordion-1">
+					<!-- REPLACE <li/> NODES-->
+                        <li>
+                <a href="index.html">Home</a></br>
+                                
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 2.0.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise2.0.1ReleaseNotes.html">PHD Enterprise 2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallationOverview.html">Installation Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationChecklist.html">PHD Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradeChecklist.html">Upgrade Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyInstallingPivotalHD2.0Stack.html">Manually Installing Pivotal HD 2.0 Stack</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPivotalHDStackfrom1.1.1to2.0.html">Manually Upgrading Pivotal HD Stack from 1.1.1 to 2.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalHadoopEnhancements.html">Pivotal Hadoop Enhancements</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.2.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.2.1ReleaseNotes.html">PCC 2.2.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCInstallationChecklist.html">PCC Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalHAWQ.html">Pivotal HAWQ 1.2.0</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQ1.2.0.1ReleaseNotes.html">HAWQ 1.2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallationandUpgrade.html">HAWQ Installation and Upgrade</a>
+
+                            <ul>
+                    <li>
+                <a href="PreparingtoInstallHAWQ.html">Preparing to Install HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingHAWQ.html">Installing HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingtheHAWQComponents.html">Installing the HAWQ Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingHAWQandComponents.html">Upgrading HAWQ and Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingHAWQtoQueryData.html">Using HAWQ to Query Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQFilespacesandHighAvailabilityEnabledHDFS.html">HAWQ Filespaces and High Availability Enabled HDFS</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SystemCatalogReference.html">System Catalog Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </div><!--end of sub-nav-->
+            
+            <h3 class="title-container">PHD Installation Checklist</h3>
+            <div class="content">
+              <!-- Python script replaces main content -->
+			  <div id ="main"><div style="visibility:hidden; height:2px;">Pivotal Product Documentation : PHD Installation Checklist</div><div class="wiki-content group" id="main-content">
+<p>This section is intended to assist you in planning and performing your PHD installation.  It includes an installation prerequisite checklist and a brief summary of the installation steps. This section is intended for more advanced users; first time users should following the more detailed instructions we provide in <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>.</p><p><style type="text/css">/*<![CDATA[*/
+div.rbtoc1400035779674 {padding: 0px;}
+div.rbtoc1400035779674 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1400035779674 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1400035779674">
+<ul class="toc-indentation">
+<li><a href="#PHDInstallationChecklist-Prerequisites">Prerequisites</a></li>
+<li><a href="#PHDInstallationChecklist-InstallationSteps">Installation Steps</a></li>
+</ul>
+</div></p><h2 id="PHDInstallationChecklist-Prerequisites">Prerequisites</h2><p>In addition to specific environment prerequisites, we recommend you have a working knowledge of the following:</p><ul><li><strong>Yum</strong>: Yum enables you to install or update software from the command line. See <a class="external-link" href="http://yum.baseurl.org/" rel="nofollow">http://yum.baseurl.org/</a>.</li><li><strong>RPM</strong> (Redhat Package Manager). See information on RPM at <em>Managing RPM-Based Systems with Kickstart and Yum</em>. See <a class="external-link" href="http://shop.oreilly.com/product/9780596513825.do?sortby=publicationDate" rel="nofollow">http://shop.oreilly.com/product/9780596513825.do?sortby=publicationDate</a></li><li><strong>NTP</strong>. See information on NTP at: <a class="external-link" href="http://www.ntp.org" rel="nofollow">http://www.ntp.org</a></li><li><strong>SSH</strong> (Secure Shell Protocol). See information on SSH at <a class="external-link" href="http://www.linuxproblem.org/art_9.html" rel="nofollow">http://www.linuxproblem.org/art_9.html</a></li></ul><p> </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">Step</th><th class="confluenceTh">Task</th><th class="confluenceTh">Description</th><th class="confluenceTh">Completed</th></tr><tr><td class="confluenceTd" colspan="1">1</td><td class="confluenceTd" colspan="1"><strong>DNS Lookup</strong></td><td class="confluenceTd" colspan="1"><p>Verify that hosts can reach each other using hostnames and IP addresses.</p><p><code class="java plain">$ ping -c myhost.mycompany.com </code> <code class="java comments">// The return code should be 0</code></p><div class="container" title="Hint: double-click to select code"><div class="line number2 index1 alt1"><code class="java plain">$ ping -c </code> <code class="java value">3</code> <code class="java value">192.168</code> <code class="java plain">.</code> <code class="java value">1.2</code> <code class="java comments">// The return code should be 0</code></div></div></td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1">2</td><td class="confluenceTd" colspan="1"><strong>Check JDK<br/> </strong></td><td class="confluenceTd" colspan="1"><p>Ensure you're running Oracle Java JDK Version 1.7 on the Admin node.</p><p>Java version 1.7 is required; 1.7u15 is recommended.</p><p>As <code>root</code>, run:</p><p><code> $ /usr/java/default/bin/java -version</code></p><p>If not, download and install the appropriate version from Oracle.</p></td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1">3</td><td class="confluenceTd" colspan="1"><strong>Package Accessibility</strong></td><td class="confluenceTd" colspan="1">Verify that all hosts have yum access to an EPEL yum repository.<br class="atl-forced-newline"/> <code>   $ yum list &lt;<strong> <em>LIST_OF_PACKAGES</em> </strong>&gt; </code> <br class="atl-forced-newline"/>See <a href="InstallingPHDUsingtheCLI.html#InstallingPHDUsingtheCLI-Accessibility">Package Accessibility</a> for more details and a list of packages.<p>Note that this is not required if the required rpms are accessible locally.</p></td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1">4</td><td class="confluenceTd" colspan="1"><strong>Verify iptables is turned off</strong></td><td class="confluenceTd" colspan="1"><p>(as <code>root</code>) <br class="atl-forced-newline"/>      <code>$ chkconfig iptables off </code> <br class="atl-forced-newline"/> <code>   $ service iptables stop </code> <br class="atl-forced-newline"/> <code>   $ service iptables status </code> <br class="atl-forced-newline"/> <code>   iptables: Firewall is not running.</code></p></td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1">5</td><td class="confluenceTd" colspan="1"><strong>Disable SELinux</strong></td><td class="confluenceTd" colspan="1"><p>(as <code>root</code>) <br class="atl-forced-newline"/> <code>  $ echo 0 &gt; /selinux/enforce</code></p></td><td class="confluenceTd" colspan="1"> </td></tr></tbody></table></div><h2 id="PHDInstallationChecklist-InstallationSteps">Installation Steps</h2><p>The table below briefly describes the steps you need to take to install PHD; more detailed instructions are provided in <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh" colspan="1">Step</th><th class="confluenceTh"><div class="tablesorter-header-inner">Task</div></th><th class="confluenceTh"><div class="tablesorter-header-inner">Details</div></th><th class="confluenceTh" colspan="1">Completed</th></tr><tr><td class="confluenceTd" colspan="1">1</td><td class="confluenceTd" colspan="1"><strong>Install Pivotal Command Center</strong></td><td class="confluenceTd" colspan="1"><code> <code>(as <code>root</code>)<code> <br/> </code> </code> </code><ol><li>Create a directory (<code>phd</code>) for your PCC installation:<br/> <code># mkdir phd</code>  </li><li>Copy tar file to your specified directory on the admin node, for example:<br/> <code># scp ./PCC-2.2.x.version.build.os.x86_64.tar.gz host:/root/phd/ </code></li><li>Login as <code>root</code> and untar to that directory:<br/> <code># cd /root/phd</code> <br/> <code># tar --no-same-owner -zxvf PCC-2.2.x.version.build.os.x86_64.tar.gz</code></li><li>Run the installation script from the directory where it was extracted:<br/> <code># ./install</code></li><li>As the rest of the installation is done as the <code>gpadmin</code> user, change to that user:<br/> <code># su - gpadmin</code></li></ol><p>6. If necessary, enable Secure Connections (see <a href="InstallingPHDUsingtheCLI.html#InstallingPHDUsingtheCLI-EnableSecure">Enable Secure Connections</a> for details)</p></td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1">2</td><td class="confluenceTd" colspan="1"><p><strong>Import JDK</strong></p><p>See <a href="InstallingPHDUsingtheCLI.html#InstallingPHDUsingtheCLI-ImportJDK">Import JDK</a></p></td><td class="confluenceTd" colspan="1"><p>Deploy the downloaded JDK to the cluster nodes</p><p><code>   $ icm_client import -r &lt;PATH TO JDK&gt;</code></p></td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1">3</td><td class="confluenceTd" colspan="1"><p><strong>Copy the PHD services packages to</strong> <br class="atl-forced-newline"/> <strong>the Admin node. </strong></p><p>See <a href="InstallingPHDUsingtheCLI.html#InstallingPHDUsingtheCLI-CopyPHDServices"> Copy the PHD Service Packages </a>for more details.<strong> <br/> </strong></p></td><td class="confluenceTd" colspan="1"><p>(as <code>gpadmin</code>) </p><ol><li>Copy the Pivotal HD services (PHD, ADS (HAWQ)) tarballs from the initial download location to the <code>gpadmin</code> home directory (<code>home/user/gpadmin</code>).</li><li>Change the owner of the packages to <code>gpadmin</code> then untar the tarballs.</li></ol><p>For example: If the file is a <code>tar.gz</code> or <code>tgz</code>, use:</p><p style="margin-left: 30.0px;"><code>tar -zxf packagename.tgz</code></p><p>If the file is a <code>tar</code>, use:</p><p style="margin-left: 30.0px;"><code>tar -xf packagename.tar</code></p><p><strong>Note</strong>: If you want to use GemFire XD, you also need to import and enable the PRTS package. Complete instructions are in the <a href="InstallingPHDUsingtheCLI.html#InstallingPHDUsingtheCLI-GemFireXD">Configuring GemFire XD</a> section.</p></td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1">4</td><td class="confluenceTd" colspan="1"><p><strong>Import the PHD services</strong></p><p>See<a href="InstallingPHDUsingtheCLI.html#InstallingPHDUsingtheCLI-ImportPHD"> Import PHD</a> and <a href="InstallingPHDUsingtheCLI.html#InstallingPHDUsingtheCLI-ImportHAWQ">Import HAWQ</a> for more details<strong> <br/> </strong></p></td><td class="confluenceTd" colspan="1"><p>(as <code>gpadmin</code>) </p><p style="margin-left: 30.0px;">For each service (PHD, ADS) you are importing, run the following:</p><p style="margin-left: 30.0px;"><code># icm_client import -s &lt;PATH TO EXTRACTED PHD SERVICE TAR BALL&gt;</code></p></td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1">5</td><td class="confluenceTd" colspan="1"><p><strong>Fetch the default Cluster Configuration template</strong></p></td><td class="confluenceTd" colspan="1">(as <code>gpadmin</code>) <br class="atl-forced-newline"/>   <code>$ icm_client fetch-template -o ~/ClusterConfigDir </code> <br class="atl-forced-newline"/> <strong>Note</strong>: <code>ClusterConfigDir</code> is created automatically.</td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1">6</td><td class="confluenceTd" colspan="1"><p><strong>Edit the default Cluster Configuration template </strong>(<code>clusterConfig.xml</code>)</p><p> </p><p>See <a href="InstallingPHDUsingtheCLI.html#InstallingPHDUsingtheCLI-ClusterConfigurationFiles2">Cluster Configuration Files</a> <br class="atl-forced-newline"/>for more details</p></td><td class="confluenceTd" colspan="1"><p>(as <code>gpadmin</code>) <br class="atl-forced-newline"/>At a minimum, you must replace all instances of your selected services with valid hostnames for your deployment.</p><p><strong>Notes</strong>:</p><p>If you want to use GemFire XD, you need to add that service to the <code>clusterConfig.xml</code> file.  Complete instructions are available in the <a href="InstallingPHDUsingtheCLI.html#InstallingPHDUsingtheCLI-GemFireXD">Configuring GemFire XD</a> section.</p><p>If you want to enable HA, you need to make some HA-specific changes to some configuration files.  Complete instructions are available in the <a href="InstallingPHDUsingtheCLI.html#InstallingPHDUsingtheCLI-HA">High Availability</a> section.</p></td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1">7</td><td class="confluenceTd" colspan="1"><strong>Configure other Pivotal HD and ADS Components</strong></td><td class="confluenceTd" colspan="1">(as <code>gpadmin</code>) <br class="atl-forced-newline"/>Optional: Configure HAWQ and other stack components in their corresponding configuration files (for example:<code> hawq/gpinitsystem_config</code> file), as needed</td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1">8</td><td class="confluenceTd" colspan="1"><p><strong>Deploy/Install a cluster</strong></p><p>See <a href="InstallingPHDUsingtheCLI.html#InstallingPHDUsingtheCLI-DeployingtheCluster2">Deploying the Cluster</a> <br class="atl-forced-newline"/>for more details</p></td><td class="confluenceTd" colspan="1">(as <code>gpadmin</code>) <br class="atl-forced-newline"/>   <code>$ icm_client deploy -c ~/ClusterConfigDir</code><p><strong>Note</strong>: This command creates the <code>gpadmin</code> user on the cluster nodes. <br/>Do NOT create this user manually. If <code>gpadmin</code> already exists on the cluster nodes, delete that user before running this command.</p></td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1">9</td><td class="confluenceTd" colspan="1"><strong>Start the Cluster</strong></td><td class="confluenceTd" colspan="1"><p>(as <code>gpadmin</code>)  <br class="atl-forced-newline"/> <code>  $  icm_client start -l &lt;<strong> <em>CLUSTER_NAME</em> </strong>&gt;</code></p></td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1">11</td><td class="confluenceTd" colspan="1"><strong>Initialize and Configure HAWQ</strong></td><td class="confluenceTd" colspan="1"><p>(as <code>gpadmin</code>) </p><p>First verify HDFS is running:</p><p><code>  $ ssh &lt;<strong> <em>NAME_NODE</em> </strong>&gt;  </code> <br class="atl-forced-newline"/> <code>  $ hdfs dfs -ls /</code></p><p>Then, <code>ssh</code> to the HAWQ master, the run the following: <br class="atl-forced-newline"/> <code>  $ source /usr/local/hawq/greenplum_path.sh </code> <code> <br/>  $ /etc/init.d/hawq init</code></p><p>If you have a HAWQ standby master configured, initialize that:</p><pre>  $ gpinitstandby -s &lt;STANDBY HAWQ MASTER FQDN&gt; </pre></td><td class="confluenceTd" colspan="1"> </td></tr></tbody></table></div><p> </p><p> </p><p> </p><p> </p>
+</div></div>
+            </div><!-- end of content-->
+            
+            
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

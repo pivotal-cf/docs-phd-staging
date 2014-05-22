@@ -1,0 +1,631 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>PCC 2.2.1 Release Notes | Pivotal Docs</title>
+    <!-- Local CSS stylesheets -->
+    <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+    <!-- Confluence HTML stylesheet -->
+    <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+    <!-- Left-navigation code -->
+    <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+    <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+        </script>
+    <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+    <!-- End left-navigation code -->
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+    if (window.location.host === 'docs.gopivotal.com') {
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39702075-1']);
+        _gaq.push(['_setDomainName', 'gopivotal.com']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    }
+  </script>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+
+	<script type="text/javascript">
+	  WebFontConfig = {
+	    google: { families: [ 'Source+Sans+Pro:300italic,400italic,600italic,300,400,600:latin' ] }
+	  };
+	  (function() {
+	    var wf = document.createElement('script');
+	    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+	      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+	    wf.type = 'text/javascript';
+	    wf.async = 'true';
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(wf, s);
+	  })(); </script>
+
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="http://docs.gopivotal.com/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+				<ul class="accordion"  id="accordion-1">
+					<!-- REPLACE <li/> NODES-->
+                        <li>
+                <a href="index.html">Home</a></br>
+                                
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 2.0.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise2.0.1ReleaseNotes.html">PHD Enterprise 2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallationOverview.html">Installation Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationChecklist.html">PHD Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradeChecklist.html">Upgrade Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyInstallingPivotalHD2.0Stack.html">Manually Installing Pivotal HD 2.0 Stack</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPivotalHDStackfrom1.1.1to2.0.html">Manually Upgrading Pivotal HD Stack from 1.1.1 to 2.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalHadoopEnhancements.html">Pivotal Hadoop Enhancements</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.2.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.2.1ReleaseNotes.html">PCC 2.2.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCInstallationChecklist.html">PCC Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalHAWQ.html">Pivotal HAWQ 1.2.0</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQ1.2.0.1ReleaseNotes.html">HAWQ 1.2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallationandUpgrade.html">HAWQ Installation and Upgrade</a>
+
+                            <ul>
+                    <li>
+                <a href="PreparingtoInstallHAWQ.html">Preparing to Install HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingHAWQ.html">Installing HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingtheHAWQComponents.html">Installing the HAWQ Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingHAWQandComponents.html">Upgrading HAWQ and Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingHAWQtoQueryData.html">Using HAWQ to Query Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQFilespacesandHighAvailabilityEnabledHDFS.html">HAWQ Filespaces and High Availability Enabled HDFS</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SystemCatalogReference.html">System Catalog Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </div><!--end of sub-nav-->
+            
+            <h3 class="title-container">PCC 2.2.1 Release Notes</h3>
+            <div class="content">
+              <!-- Python script replaces main content -->
+			  <div id ="main"><div style="visibility:hidden; height:2px;">Pivotal Product Documentation : PCC 2.2.1 Release Notes</div><div class="wiki-content group" id="main-content">
+<div class="wiki-content"><div class="wiki-content"><p><style type="text/css">/*<![CDATA[*/
+div.rbtoc1400035786630 {padding: 0px;}
+div.rbtoc1400035786630 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1400035786630 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1400035786630">
+<ul class="toc-indentation">
+<li><a href="#PCC2.2.1ReleaseNotes-What’sNew">What’s New</a>
+<ul class="toc-indentation">
+<li><a href="#PCC2.2.1ReleaseNotes-UserManagement">User Management</a></li>
+<li><a href="#PCC2.2.1ReleaseNotes-Logging">Logging</a></li>
+</ul>
+</li>
+<li><a href="#PCC2.2.1ReleaseNotes-ResolvedIssues">Resolved Issues</a></li>
+<li><a href="#PCC2.2.1ReleaseNotes-KnownIssues">Known Issues</a></li>
+<li><a href="#PCC2.2.1ReleaseNotes-VersioningandCompatibility">Versioning and Compatibility</a></li>
+<li><a href="#PCC2.2.1ReleaseNotes-Documentation">Documentation</a></li>
+</ul>
+</div></p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>Pivotal Command Center 2.2.1 has been tested with Pivotal HD Enterprise 2.0.1</p>
+</div>
+</div>
+<p> </p></div></div><p><span class="confluence-anchor-link" id="PCC2.2.1ReleaseNotes-WhatsNew"></span></p><h2 id="PCC2.2.1ReleaseNotes-What’sNew">What’s New</h2><p>As well as general performance enhancements and bug fixes, this release includes the following new features and functionality:<strong> <br/> </strong></p><h3 id="PCC2.2.1ReleaseNotes-UserManagement"><strong>User Management<br/> </strong></h3><p>User management has been improved by the introduction of a new non-administrative user type.</p><p>Administrative users can create new users; during this process they specify whether the new user has administrative privileges or not.  If not, the new user will only have read-only privileges and their actions and menu options will be limited.</p><p>Further details are provided in the <em>Pivotal Command Center 2.2 User Guide</em> .</p><h3 id="PCC2.2.1ReleaseNotes-Logging"><strong>Logging</strong></h3><p>You can now view system logs via the Command Center UI.  </p><ul><li><strong>Filters</strong>:  You can filter the logs displayed by log level, host, or roles.</li><li><strong>Search</strong>: You can filter the logs displayed by performing a keyword search.</li><li><strong>Time Range</strong>: You can further filter your results by specifying a time range.</li><li><strong>Details</strong>: You can see summaries of log messages, or click to see more details.</li></ul><p>Further details are provided in the <em>Pivotal Command Center 2.2 User Guide</em> <strong><br/></strong></p><p><span class="confluence-anchor-link" id="PCC2.2.1ReleaseNotes-ResolvedIssues"></span></p><h2 id="PCC2.2.1ReleaseNotes-ResolvedIssues">Resolved Issues</h2><p>This section lists issues that have been resolved in Pivotal Command Center 2.2.0/2.2.1</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>For resolved issues relating to the installation and any non-UI functionality of Command Center, see the Pivotal HD Release Notes.</p>
+</div>
+</div>
+<div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Issue</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd" colspan="1">HD-9504</td><td class="confluenceTd" colspan="1"><p>For larger clusters; PCC was unable to display HBase status.</p></td></tr><tr><td class="confluenceTd" colspan="1">CC-3274</td><td class="confluenceTd" colspan="1"><p>The installation will fail if the shell is using a non-UTF8 locale.</p></td></tr><tr><td class="confluenceTd" colspan="1">CC-3311</td><td class="confluenceTd" colspan="1"><p>The status of a running Command Center (<code>commander status</code>) was incorrectly shown as <code>stopped</code>.</p></td></tr><tr><td class="confluenceTd" colspan="1">CC-3540</td><td class="confluenceTd" colspan="1"><p><span style="color: rgb(0,0,0);">Due to permissions issues, during PCC installation, puppetmaster failed to start with the following error: "Could not prepare for execution: Invalid group: 0" </span></p></td></tr><tr><td class="confluenceTd">CC-3337</td><td class="confluenceTd"><p class="editable-field inactive" title="Click to edit">Installation of PCC failed when "/usr/local/bin" was not specified in $PATH<span class="overlay-icon icon icon-edit-sml" style="color: rgb(0,102,0);">.</span></p><p class="editable-field inactive" title="Click to edit"><span class="overlay-icon icon icon-edit-sml" style="color: rgb(0,102,0);"><span style="color: rgb(0,0,0);">PCC installation appeared successful despite a hidden error reported during installation. Thin service was not started and commander database was not created post installation.</span></span></p></td></tr><tr><td class="confluenceTd">CC-3325</td><td class="confluenceTd"><p>Not all PCC (commander) services could not be stopped after attempt to <code>commander start</code> failed. Now the<span style="color: rgb(0,0,0);background-color: transparent;line-height: 1.4285715;"><code> service commander stop</code> will attempt to stop all services regardless of whether any of them are already running and will throw appropriate error messages after running the <code>service commander status</code> command<br/></span></p></td></tr><tr><td class="confluenceTd" colspan="1">CC-3254</td><td class="confluenceTd" colspan="1"><p>PCC Cluster Status page: After being clicked, the label on the <strong>Start</strong> button turned into <strong>Uninstall</strong>.</p></td></tr><tr><td class="confluenceTd" colspan="1">CC-2987</td><td class="confluenceTd" colspan="1"><p><span style="color: rgb(0,0,0);">Web application vulnerabilities as a result of cross-site request forgery have been addressed.<span style="color: rgb(34,34,34);"> </span></span></p></td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="PCC2.2.1ReleaseNotes-KnownIssues"></span></p><h2 id="PCC2.2.1ReleaseNotes-KnownIssues">Known Issues</h2><p>This section lists the known issues in Pivotal Command Center 2.2.1. A work-around is provided where applicable.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>For known issues relating to the installation and any non-UI functionality of Command Center, see the Pivotal HD Release Notes</p>
+</div>
+</div>
+<div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Issue</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd" colspan="1">HD-9912</td><td class="confluenceTd" colspan="1"><span style="color: rgb(34,34,34);">Known issue with Apache JIRA </span><span style="color: rgb(34,34,34);"><a class="external-link" href="https://issues.apache.org/jira/browse/HDFS-5557" rel="nofollow">HDFS-5557</a>: <em>Write pipeline recovery for the last packet in the block may cause rejection of valid replicas. </em></span><span style="color: rgb(34,34,34);">Customers are advised to be aware of this rare HDFS anomaly and should feel free to contact Pivotal support if they see symptoms similar to the ones mentioned in HDFS-5557. This bug only impacts Apache Hadoop 2.2 release, and will be resolved once Pivotal HD moves to more recent Hadoop release (&gt; Hadoop 2.2).</span></td></tr><tr><td class="confluenceTd" colspan="1"><p>HD-9474, HD-9410</p></td><td class="confluenceTd" colspan="1"><p>PCC has the following known limitations when monitoring a secure cluster (where kerberos authentication is enabled):</p><p>HD-9474: Unable to display Hive Metastore status</p><p>HD-9410: Unable to perform HDFS rebalancing</p></td></tr><tr><td class="confluenceTd" colspan="1">CC-3420</td><td class="confluenceTd" colspan="1"><p><span style="color: rgb(0,0,0);">If the user does not define a secondary namenode during installation, an empty xml tag is added to the configuration file.</span></p></td></tr><tr><td class="confluenceTd" colspan="1">CC-3553</td><td class="confluenceTd" colspan="1"><div>As the <code>gpadmin</code> user; you can remove admin privileges for yourself.</div><div><strong><br/></strong></div><div><strong>Workaround:</strong> On the admin node, use the <code>commander-user</code> command line utility with the <code>admin</code> option (make sure<code> /usr/local/bin</code> is in the path, the full path of the utility is<code> /usr/local/bin/commander-user</code>):</div><div style="margin-left: 30.0px;"><code>./commander-user admin</code></div><div>You will receive the following two prompts:</div><ol><li>'Please provide a username' (Valid input: any user in PCC)</li><li>'Allow the user to have administrative privileges' (Valid input: [y]es|[n]o)</li></ol></td></tr><tr><td class="confluenceTd" colspan="1">CC-3494</td><td class="confluenceTd" colspan="1"><p>Install/Upgrades: If the <span>RHEL ssl certificate for subscription-manager plugin has expired, yum will fail.</span></p><p><strong>Workaround</strong>: If <code>yum -list</code> reports an error on any of the cluster nodes then check the yum configurations files, /etc/yum.repos.d/ and make sure all remote repositories are DNS resolvable.</p></td></tr><tr><td class="confluenceTd" colspan="1">CC-3339</td><td class="confluenceTd" colspan="1"><p>The ability to start/stop HAWQ via the PCC UI is non-functional.</p><p><strong>Workaround</strong>: Use the PCC CLI to start / stop HAWQ. See the <em>Pivotal HD Enterprise Installation and Administrator Guide</em> for specific commands.</p></td></tr><tr><td class="confluenceTd" colspan="1">HD-8493</td><td class="confluenceTd" colspan="1"><span style="color: rgb(34,34,34);">Unable to configure cluster if the root password contains certain special characters, for example: $<br/></span></td></tr><tr><td class="confluenceTd" colspan="1">CC-3305</td><td class="confluenceTd" colspan="1"><p title="Inline edit disabled.">If a running job is killed, the PCC UI MapReduce Slot Utilization Graph shows incorrect information.</p></td></tr><tr><td class="confluenceTd">CC-3083</td><td class="confluenceTd"><p>Command Center does not show any data for graphs related to DataNode due to hostname mismatch.</p><p><strong>Workaround</strong>: Change<code> /etc/sysconfig/network</code> on all cluster nodes to use Fully Qualified Domain Names (FQDN).</p></td></tr><tr><td class="confluenceTd" colspan="1">HD-6715</td><td class="confluenceTd" colspan="1"><p>After you upgrading PCC, you are unable to start/stop clusters with invalid hostnames. This is because there is now a check for invalid characters in cluster names.</p><p><strong>Workaround</strong>: Reconfigure the cluster with a different, valid name, then restart the cluster.</p></td></tr><tr><td class="confluenceTd" colspan="1"><span style="color: rgb(34,34,34);">CC-3563</span></td><td class="confluenceTd" colspan="1"><span style="color: rgb(34,34,34);">Pivotal Command Center 2.2.n only supports Pivotal HD 2.0.n. It does not support Greenplum HD.</span></td></tr><tr><td class="confluenceTd" colspan="1">CC-3564</td><td class="confluenceTd" colspan="1">Pivotal Command Center and Pivotal HD must have the same OS.</td></tr><tr><td class="confluenceTd" colspan="1">CC-3501</td><td class="confluenceTd" colspan="1">Pivotal Command Center hostnames can only contain lower case letters.</td></tr><tr><td class="confluenceTd" colspan="1">CC-1972</td><td class="confluenceTd" colspan="1"><p>HBASE did not start after user stop/start HDFS and YARN.</p><p>This is expected behavior, in this case, HBASE requires a manual restart.</p></td></tr><tr><td class="confluenceTd" colspan="1">CC-3565</td><td class="confluenceTd" colspan="1"><p><code>bundle: command not found</code> error message appears after attempting to run the install script.</p><p><strong>Workaround</strong>: Check if <code>/usr/local/bin/bundle</code> exists, if it doesn’t, build it by running the following command:</p><p><code>gem install bundler</code></p></td></tr></tbody></table></div><p><span class="confluence-anchor-link" id="PCC2.2.1ReleaseNotes-Versioning"></span></p><h2 id="PCC2.2.1ReleaseNotes-VersioningandCompatibility">Versioning and Compatibility</h2><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Product</th><th class="confluenceTh">Version</th><th class="confluenceTh">OS/Browser</th></tr><tr><td class="confluenceTd"><p>Pivotal HD</p></td><td class="confluenceTd">2.0.1</td><td class="confluenceTd"><p>RedHat 64-bit: 6.2, 6.4</p><p>CentOS 64-bit: 6.2, 6.4</p></td></tr><tr><td class="confluenceTd">Pivotal Command Center</td><td class="confluenceTd">2.2.1</td><td class="confluenceTd"><p>RedHat 64-bit: 6.2, 6.4</p><p>CentOS 64-bit: 6.2, 6.4</p><p>Firefox 21, 22</p><p>Chrome Version 28.0.1500.95</p><p>IE 9, 10</p></td></tr><tr><td class="confluenceTd" colspan="1">HAWQ *</td><td class="confluenceTd" colspan="1">1.2.0.1</td><td class="confluenceTd" colspan="1"><p>RedHat 64-bit: 6.2, 6.4</p><p>CentOS 64-bit: 6.2, 6.4</p></td></tr><tr><td class="confluenceTd" colspan="1">PXF *</td><td class="confluenceTd" colspan="1"><p>2.2</p></td><td class="confluenceTd" colspan="1"><p>RedHat 64-bit: 6.2, 6.4</p><p>CentOS 64-bit: 6.2, 6.4</p></td></tr></tbody></table></div><p>* Distributed with Pivotal ADS 1.2</p><p><span class="confluence-anchor-link" id="PCC2.2.1ReleaseNotes-Documentation"></span></p><h2 id="PCC2.2.1ReleaseNotes-Documentation">Documentation</h2><div>The following Pivotal HD Enterprise and related documentation is available in HTML and PDF format on our website at <a class="external-link" href="http://docs.gopivotal.com/pivotalhd/" rel="nofollow">docs.gopivotal.com/pivotalhd/</a>.</div><div>Documentation for previous releases is available from EMC’s <a class="external-link" href="https://support.emc.com/" rel="nofollow">Support Zone</a>.</div><p> </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Title</th><th class="confluenceTh">Revision</th></tr><tr><td class="confluenceTd" colspan="1">Pivotal Command Center 2.2.1 Release Notes (this document)</td><td class="confluenceTd" colspan="1">A01</td></tr><tr><td class="confluenceTd" colspan="1">Pivotal Command Center 2.2 User Guide</td><td class="confluenceTd" colspan="1">A02</td></tr><tr><td class="confluenceTd" colspan="1">Pivotal HD Enterprise 2.0 Installation and Administrator Guide</td><td class="confluenceTd" colspan="1">A02</td></tr><tr><td class="confluenceTd" colspan="1"><p>Pivotal HD 2.0 Stack and Tool Reference Guide</p></td><td class="confluenceTd" colspan="1">A02</td></tr><tr><td class="confluenceTd" colspan="1"><p>Pivotal HAWQ 1.2 Administrator Guide</p></td><td class="confluenceTd" colspan="1">A02</td></tr><tr><td class="confluenceTd" colspan="1">Pivotal HAWQ 1.2 Installation Guide</td><td class="confluenceTd" colspan="1">A02</td></tr><tr><td class="confluenceTd" colspan="1">Pivotal Extension Framework 2.2 Installation and User Guide</td><td class="confluenceTd" colspan="1">A02</td></tr></tbody></table></div>
+</div></div>
+            </div><!-- end of content-->
+            
+            
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>

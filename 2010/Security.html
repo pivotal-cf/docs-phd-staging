@@ -1,0 +1,1869 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- REPLACE X WITH PRODUCT NAME -->
+  <title>Security | Pivotal Docs</title>
+    <!-- Local CSS stylesheets -->
+    <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/breadcrumbs.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/search.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/portal-style.css" media="screen,print" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/printable.css" media="print" rel="stylesheet" type="text/css" /> 
+    <!-- Confluence HTML stylesheet -->
+    <link href="/stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+    <!-- Left-navigation code -->
+    <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+    <link href="/stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+        </script>
+    <link href="/stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+    <!-- End left-navigation code -->
+    <script src="/javascripts/all.js" type="text/javascript"></script>
+    <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+    <script type="text/javascript">
+    if (window.location.host === 'docs.gopivotal.com') {
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39702075-1']);
+        _gaq.push(['_setDomainName', 'gopivotal.com']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    }
+  </script>
+</head>
+
+<body class="pivotalcf pivotalcf_getstarted pivotalcf_getstarted_index">
+  <div class="viewport">
+    <div class="mobile-navigation--wrapper mobile-only">
+      <div class="navigation-drawer--container">
+        <div class="navigation-item-list">
+          <div class="navbar-link active">
+            <a href="http://gopivotal.com">
+              Home
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/paas">
+              PaaS
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/big-data">
+              Big Data
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/agile">
+              Agile
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/support">
+              Help &amp; Support
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/products">
+              Products
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/solutions">
+              Solutions
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+          <div class="navbar-link">
+            <a href="http://gopivotal.com/partners">
+              Partners
+              <i class="icon-chevron-right pull-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav">
+        <div class="nav-icon js-open-nav-drawer">
+          <i class="icon-reorder"></i>
+        </div>
+        <div class="header-center-icon">
+          <a href="http://gopivotal.com">
+            <div class="icon icon-pivotal-logo-mobile"></div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class='wrap'>
+      <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+      <script type="text/javascript">
+          try {
+              Typekit.load();
+          } catch (e) {
+          }
+      </script>
+      <script type="text/javascript">
+          document.domain = "gopivotal.com";
+      </script>
+
+	<script type="text/javascript">
+	  WebFontConfig = {
+	    google: { families: [ 'Source+Sans+Pro:300italic,400italic,600italic,300,400,600:latin' ] }
+	  };
+	  (function() {
+	    var wf = document.createElement('script');
+	    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+	      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+	    wf.type = 'text/javascript';
+	    wf.async = 'true';
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(wf, s);
+	  })(); </script>
+
+      <div id="search-dropdown-box">
+        <div class="search-dropdown--container js-search-dropdown">
+          <div class="container-fluid">
+            <div class="close-menu-large"><img src="http://www.gopivotal.com/sites/all/themes/gopo13/images/icon-close.png" /></div>
+            <div class="search-form--container">
+              <div class="form-search">
+                <div class='gcse-search'></div>
+                <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+                <script src="/javascripts/cse.js" type="text/javascript"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <header class="navbar desktop-only" id="nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <div class="pivotal-logo--container">
+                    <a class="pivotal-logo" href="http://gopivotal.com"><span></span></a>
+                </div>
+
+                <ul class="nav pull-right">
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/paas" id="paas-nav-link">PaaS</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/big-data" id="big-data-nav-link">BIG DATA</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/agile" id="agile-nav-link">AGILE</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a href="http://www.gopivotal.com/oss" id="oss-nav-link">OSS</a>
+                    </li>
+                    <li class="nav-search">
+                        <a class="js-search-input-open" id="click-to-search"><span></span></a>
+                    </li>
+                </ul>
+            </div>
+            <a href="http://www.gopivotal.com/contact">
+                <img id="get-started" src="http://www.gopivotal.com/sites/all/themes/gopo13/images/get-started.png">
+            </a>
+        </div>
+      </header>
+      <div class="main-wrap">
+        <div class="container-fluid">
+
+          <!-- Google CSE Search Box -->
+          <div id='docs-search'>
+              <gcse:search></gcse:search>
+          </div>
+          
+          <div id='all-docs-link'>
+            <a href="http://docs.gopivotal.com/">All Documentation</a>
+          </div>
+          
+          <div class="container">
+            <div id="sub-nav" class="nav-container">              
+              
+              <!-- Collapsible left-navigation-->
+				<ul class="accordion"  id="accordion-1">
+					<!-- REPLACE <li/> NODES-->
+                        <li>
+                <a href="index.html">Home</a></br>
+                                
+                        <li>
+                <a href="PivotalHD.html">Pivotal HD 2.0.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PHDEnterprise2.0.1ReleaseNotes.html">PHD Enterprise 2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofPHD.html">Overview of PHD</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallationOverview.html">Installation Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDInstallationChecklist.html">PHD Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradeChecklist.html">Upgrade Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingPHDUsingtheCLI.html">Upgrading PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDFAQFrequentlyAskedQuestions.html">PHD FAQ (Frequently Asked Questions)</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+
+                            <ul>
+                    <li>
+                <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyInstallingPivotalHD2.0Stack.html">Manually Installing Pivotal HD 2.0 Stack</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManuallyUpgradingPivotalHDStackfrom1.1.1to2.0.html">Manually Upgrading Pivotal HD Stack from 1.1.1 to 2.0</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalHadoopEnhancements.html">Pivotal Hadoop Enhancements</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="Security.html">Security</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalCommandCenter.html">Pivotal Command Center 2.2.1</a>
+
+                            <ul>
+                    <li>
+                <a href="PCC2.2.1ReleaseNotes.html">PCC 2.2.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCUserGuide.html">PCC User Guide</a>
+
+                            <ul>
+                    <li>
+                <a href="PCCOverview.html">PCC Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PCCInstallationChecklist.html">PCC Installation Checklist</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingPCC.html">Installing PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingPCC.html">Using PCC</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CreatingaYUMEPELRepository.html">Creating a YUM EPEL Repository</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="CommandLineReference.html">Command Line Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+            </li>
+                        <li>
+                <a href="PivotalHAWQ.html">Pivotal HAWQ 1.2.0</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQ1.2.0.1ReleaseNotes.html">HAWQ 1.2.0.1 Release Notes</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInstallationandUpgrade.html">HAWQ Installation and Upgrade</a>
+
+                            <ul>
+                    <li>
+                <a href="PreparingtoInstallHAWQ.html">Preparing to Install HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingHAWQ.html">Installing HAWQ</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="InstallingtheHAWQComponents.html">Installing the HAWQ Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UpgradingHAWQandComponents.html">Upgrading HAWQ and Components</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQAdministration.html">HAWQ Administration</a>
+
+                            <ul>
+                    <li>
+                <a href="HAWQOverview.html">HAWQ Overview</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="UsingHAWQtoQueryData.html">Using HAWQ to Query Data</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="KerberosAuthentication.html">Kerberos Authentication</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQFilespacesandHighAvailabilityEnabledHDFS.html">HAWQ Filespaces and High Availability Enabled HDFS</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SQLCommandReference.html">SQL Command Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="ClientUtilityReference.html">Client Utility Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="SystemCatalogReference.html">System Catalog Reference</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+
+                    </li>
+            </ul>
+            </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+
+                            <ul>
+                    <li>
+                <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+
+                    </li>
+            </ul>
+                    <ul>
+                    <li>
+                <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+
+                    </li>
+            </ul>
+            </div><!--end of sub-nav-->
+            
+            <h3 class="title-container">Security</h3>
+            <div class="content">
+              <!-- Python script replaces main content -->
+			  <div id ="main"><div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Security</div><div class="wiki-content group" id="main-content">
+<p>You must install and configure Kerberos to enable security in Pivotal HD 1.1.x. and higher.</p><p>Kerberos is a network authentication protocol that provides strong authentication for client/server applications using secret-key cryptography.</p><p><style type="text/css">/*<![CDATA[*/
+div.rbtoc1400035786210 {padding: 0px;}
+div.rbtoc1400035786210 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1400035786210 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1400035786210">
+<ul class="toc-indentation">
+<li><a href="#Security-ConfiguringKerberosforHDFSandYARN(MapReduce)">Configuring Kerberos for HDFS and YARN (MapReduce)</a>
+<ul class="toc-indentation">
+<li><a href="#Security-KerberosSet-up">Kerberos Set-up</a></li>
+<li><a href="#Security-JavaSupportItemsInstallation">Java Support Items Installation</a></li>
+<li><a href="#Security-ContainerandScriptModifications">Container and Script Modifications</a></li>
+<li><a href="#Security-SiteXMLChanges">Site XML Changes</a></li>
+<li><a href="#Security-CompletetheHDFS/YARNSecureConfiguration">Complete the HDFS/YARN Secure Configuration</a></li>
+<li><a href="#Security-TurningSecureModeOff">Turning Secure Mode Off</a></li>
+<li><a href="#Security-BuildingandInstallingJSVC">Building and Installing JSVC</a></li>
+<li><a href="#Security-InstallingtheMITKerberos5KDC">Installing the MIT Kerberos 5 KDC</a></li>
+</ul>
+</li>
+<li><a href="#Security-ConfiguringKerberosforHDFSHighAvailability">Configuring Kerberos for HDFS High Availability</a></li>
+<li><a href="#Security-ZookeeperSecureConfiguration">Zookeeper Secure Configuration</a>
+<ul class="toc-indentation">
+<li><a href="#Security-ZookeeperServers">Zookeeper Servers</a></li>
+<li><a href="#Security-ZookeeperClients">Zookeeper Clients</a></li>
+</ul>
+</li>
+<li><a href="#Security-HBaseSecureConfiguration">HBase Secure Configuration</a>
+<ul class="toc-indentation">
+<li><a href="#Security-HBaseMasterandRegionservers">HBase Master and Regionservers</a></li>
+<li><a href="#Security-HBaseClients">HBase Clients</a></li>
+<li><a href="#Security-HBasewithSecureZookeeperConfiguration">HBase with Secure Zookeeper Configuration</a></li>
+<li><a href="#Security-AccessControlandPXFExternalTables">Access Control and PXF External Tables</a></li>
+</ul>
+</li>
+<li><a href="#Security-HiveSecureConfiguration">Hive Secure Configuration</a>
+<ul class="toc-indentation">
+<li><a href="#Security-ChangingtoHiveServer2">Changing to Hive Server 2</a></li>
+<li><a href="#Security-Hivewarehousepermissionsissues">Hive warehouse permissions issues</a></li>
+<li><a href="#Security-ConnectingandusingsecureHivewithBeeline">Connecting and using secure Hive with Beeline</a></li>
+</ul>
+</li>
+<li><a href="#Security-ConfigureHCatalog(WebHCat)onsecureHive">Configure HCatalog (WebHCat) on secure Hive</a>
+<ul class="toc-indentation">
+<li><a href="#Security-Prerequisites">Prerequisites</a></li>
+<li><a href="#Security-CreatekeytabfilefortheWebHCatserver">Create keytab file for the WebHCat server</a></li>
+<li><a href="#Security-DistributethekeytabfiletotheWebHCatserver">Distribute the keytab file to the WebHCat server</a></li>
+<li><a href="#Security-ConfigureWebHCatandproxyusers">Configure WebHCat and proxy users</a></li>
+<li><a href="#Security-VerifyWebHCatisworking">Verify WebHCat is working</a></li>
+</ul>
+</li>
+<li><a href="#Security-HAWQonSecureHDFS">HAWQ on Secure HDFS</a>
+<ul class="toc-indentation">
+<li><a href="#Security-Requirements">Requirements</a></li>
+<li><a href="#Security-Preparation">Preparation</a></li>
+<li><a href="#Security-Configuration">Configuration</a></li>
+<li><a href="#Security-Troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li><a href="#Security-Auditing">Auditing</a></li>
+<li><a href="#Security-SecureWebAccess">Secure Web Access</a>
+<ul class="toc-indentation">
+<li><a href="#Security-Overview">Overview</a></li>
+<li><a href="#Security-Prerequisites.1">Prerequisites</a></li>
+<li><a href="#Security-ConfiguringSecureWebHDFS">Configuring Secure WebHDFS </a></li>
+<li><a href="#Security-UsingWebHDFSinSecureMode">Using WebHDFS in Secure Mode</a></li>
+</ul>
+</li>
+<li><a href="#Security-SecureHDFSwebaccessviaHttpFS">Secure HDFS web access via HttpFS</a>
+<ul class="toc-indentation">
+<li><a href="#Security-Prerequisites.2">Prerequisites</a></li>
+<li><a href="#Security-AddprincipalforHttpFS">Add principal for HttpFS</a></li>
+<li><a href="#Security-Createanddistributekeytab">Create and distribute keytab</a></li>
+<li><a href="#Security-Setthekeytabfileownershipandpermissions">Set the keytab file ownership and permissions</a></li>
+<li><a href="#Security-Configuration.1">Configuration</a></li>
+<li><a href="#Security-RestartHttpFS">Restart HttpFS</a></li>
+<li><a href="#Security-Verifyit'sworking">Verify it's working</a></li>
+</ul>
+</li>
+<li><a href="#Security-FlumeSecurityConfiguration">Flume Security Configuration</a>
+<ul class="toc-indentation">
+<li><a href="#Security-Prerequisites.3">Prerequisites</a></li>
+<li><a href="#Security-CreatetheFlumePrincipal">Create the Flume Principal</a></li>
+<li><a href="#Security-CreatetheFlumeKeytabFiles">Create the Flume Keytab Files</a></li>
+<li><a href="#Security-DistributetheFlumeKeytabFilestotheFlumeserverandchangetheownershipandpermission">Distribute the Flume Keytab Files to the Flume server and change the ownership and permission</a></li>
+<li><a href="#Security-AsingleuserforallHDFSsinks">A single user for all HDFS sinks</a></li>
+<li><a href="#Security-DifferentusersacrossmultipleHDFSsinks">Different users across multiple HDFS sinks</a></li>
+</ul>
+</li>
+<li><a href="#Security-OozieSecurityConfiguration">Oozie Security Configuration</a>
+<ul class="toc-indentation">
+<li><a href="#Security-Prerequisites.4">Prerequisites</a></li>
+<li><a href="#Security-CreatetheOoziePrincipal">Create the Oozie Principal</a></li>
+<li><a href="#Security-CreatetheHTTPPrincipalfortheOozieServer">Create the HTTP Principal for the Oozie Server</a></li>
+<li><a href="#Security-CreatetheOozieKeytabFiles">Create the Oozie Keytab Files</a></li>
+<li><a href="#Security-CopytheOozieKeytabFilestotheOozieserverandchangetheownershipandpermission">Copy the Oozie Keytab Files to the Oozie server and change the ownership and permission</a></li>
+<li><a href="#Security-EdittheOozieConfiguration">Edit the Oozie Configuration</a></li>
+<li><a href="#Security-UsingOoziewithaSecureHiveMetastoreServer">Using Oozie with a Secure Hive Metastore Server</a></li>
+<li><a href="#Security-VerifySecureOozie">Verify Secure Oozie</a></li>
+</ul>
+</li>
+<li><a href="#Security-SqoopSecurityConfiguration">Sqoop Security Configuration</a></li>
+<li><a href="#Security-PigSecurityConfiguration">Pig Security Configuration</a></li>
+<li><a href="#Security-MahoutSecurityConfiguration">Mahout Security Configuration</a></li>
+<li><a href="#Security-Troubleshooting.1">Troubleshooting</a>
+</li>
+</ul>
+</div></p> <div class="aui-message warning shadowed information-macro">
+<p class="title">Notes</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<ul><li>For HAWQ to work with secure HDFS, the Pivotal ADS version must be 1.1.3 or greater.</li><li>For more information about HAWQ secure configuration, see the <em>Kerberos Authentication</em> section of the <em>Pivotal ADS Administrator Guide.</em></li><li><p>Note that Kerberos operation in Hadoop is very sensitive to proper networking configuration:</p><ul><li>Host IP's for service nodes must reverse map to the FQDN's used to create the node principal for the service/FQDN.</li><li>hostname -f on a node must give the FQDN used to create the principal for the service/FQDN.</li><li>The cluster needs to have been created with FQDN's, not short names.</li></ul><p>Make sure your networking is properly configured before attempting to secure a cluster.</p></li></ul>
+</div>
+</div>
+<p> </p><p><span class="confluence-anchor-link" id="Security-HDFSYARN"></span></p><h2 id="Security-ConfiguringKerberosforHDFSandYARN(MapReduce)">Configuring Kerberos for HDFS and YARN (MapReduce)</h2><p>At a minimum, Kerberos provides protection against user and service spoofing attacks, and allows for enforcement of user HDFS access permissions. The installation is not difficult, but requires very specific instructions with many steps, and suffers from the same difficulties as any system requiring distributed configuration. Pivotal is working to automate the process to make it simple for users to enable/disable secure PHD clusters. Until then, these instructions are intended to provide a step by step process for getting a cluster up and running in secure mode.</p><p>Note that after the initial HDFS/YARN configuration. other services that need to be set up to run on secure HDFS (for example, HBase), or that you want to also secure (for example, Zookeeper), need to configured.</p><p><strong>Important</strong>: Save your command history; it will help in checking for errors when troubleshooting.</p><h3 id="Security-KerberosSet-up">Kerberos Set-up</h3><h4 id="Security-InstalltheKDC">Install the KDC</h4><p>If you do not have a pre-existing KDC, see <a href="#Security-InstallingtheMITKerberos5KDC">Installing the MIT Kerberos 5 KDC</a>.  </p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>CentOS and RedHat use AES-256 as the default encryption strength. If you want to use AES-256, you will need to install the JCE security policy file (described below) on all cluster hosts. If not, disable this encryption type in the KDC configuration. To disable AES-256 on an MIT kerberos 5 KDC, remove <code>aes256-cts:normal </code>from the <code>supported_enctypes</code> parameter in <code>kdc.conf</code>.</p>
+</div>
+</div>
+<h4 id="Security-IntegratingClusterSecuritywithanOrganizationalKDC">Integrating Cluster Security with an Organizational KDC</h4><p>If your organization runs Active Directory or other Kerberos KDC, it is not recommended this be used for cluster security. Instead, install an MIT Kerberos KDC and realm for the cluster(s) and create all the service principals in this realm as per the instructions below. This KDC will be minimally used for service principals, whilst Active Directory (or your organizations's MIT KDC) will be used for cluster users. Next, configure one-way cross-realm trust from this realm to the Active Directory or corporate KDC realm.</p><p>Important: This configuration is strongly recommended, as a large PHD cluster requires the IT manager to  create large numbers of service principals for your organizations' Active Directory or organizational MIT KDC. For example, a 100 node PHD cluster requires 200+ service principals. In addition, when a large cluster starts up, it may impact the performance of your organizations' IT systems, as all the service principals make requests of the AD or MIT Kerberos KDC at once.</p><h4 id="Security-InstallKerberosWorkstationandLibrariesonClusterHosts">Install Kerberos Workstation and Libraries on Cluster Hosts</h4><p>If you are using MIT krb5 run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># yum install krb5-libs krb5-workstation</pre>
+</div></div><h4 id="Security-DistributetheKerberosClientConfigurationFiletoallClusterHosts">Distribute the Kerberos Client Configuration File to all Cluster Hosts</h4><p>If you are using Kerberos 5 MIT, the file is<code> /etc/krb5.conf</code>. This file must exist on all cluster hosts. For PHD you can use <code>massh</code> to push the files, and then to copy them to the proper place. </p><p><span class="confluence-anchor-link" id="Security-CreatePrincipal"></span></p><h4 id="Security-CreatethePrincipals">Create the Principals</h4><p>These instructions are for MIT Kerberos 5; command syntax for other Kerberos versions may be different.</p><p>Principals (Kerberos users) are of the form:<code> name/role@REALM</code>. For our purposes the name will be a PHD service name (for example, <code>hdfs</code>), and the role will be a DNS resolvable fully-qualified hostname (<code>host_fqdn</code>); one you could use to connect to the host in question.</p><p><strong>Important</strong>:</p><ul><li>Replace <code>REALM</code> with the KDC realm you are using for your PHD cluster, where it appears.</li><li>The host names used MUST be resolvable to an address on all the cluster hosts and MUST be of the form <code>host.domain,</code> as some Hadoop components require at least one "." part in the host names used for principals.</li><li>The names of the principals seem to matter, as some processes may throw exceptions if you change them. Hence, it is safest to use the specified Hadoop principal names.</li><li>Hadoop supports an<code> _HOST</code> tag in the site XML that is interpreted as the <code>host_fqdn,</code> but this must be used properly. See <a href="#Security-Using_HOSTinSiteXML">Using _HOST in Site XML</a>.</li></ul><p>For the HDFS services, you will need to create an <code>hdfs/host_fqdn</code> principal for each host running an HDFS service (name node, secondary name node, data node).</p><p>For YARN services, you will need to create a <code>yarn/host_fqdn</code> principal for each host running a YARN service (resource manager, node manager, proxy server).</p><p>For MapReduce services, you need to create a principal,<code> mapred/host_fqdn</code> for the Job History Server.</p><p>To create the required secure HD principals (running kadmin.local):</p><ul><li>For each cluster host (excepting client-only hosts) run:  </li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">addprinc -randkey HTTP/&lt;host_fqdn&gt;@&lt;REALM&gt;</pre>
+</div></div><ul><li>HDFS (name node, secondary name node, data nodes), for each HDFS service host  run:</li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> addprinc -randkey hdfs/&lt;host_fqdn&gt;@&lt;REALM&gt;</pre>
+</div></div><ul><li>YARN (resource manager, node managers, proxy server), for each YARN service host run:</li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">addprinc -randkey yarn/&lt;host_fqdn&gt;@&lt;REALM&gt;</pre>
+</div></div><ul><li>MAPRED (job history server): for each JHS service host run:</li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">addprinc -randkey  mapred/&lt;host_fqdn&gt;@&lt;REALM&gt;</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<p class="title">Important</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p> If you have 1000 cluster hosts running HDFS and YARN, you will need 2000 HDFS and YARN principals, and need to distribute their keytab files. It is recommended that you use a cluster-local KDC for this purpose and configure cross-realm trust to your organizational Active Directory or other Kerberos KDC.</p>
+</div>
+</div>
+<h4 id="Security-CreatetheKeytabFiles">Create the Keytab Files</h4><p><strong>Important</strong>: You MUST use<code> kadmin.local</code> (or the equivalent in your KDC) for this step on the KDC, as <code>kadmin</code> does not support <code>-norandkey.</code></p><p><strong>Important</strong>: You can put the keytab files anywhere during this step. In this document, we created a directory<code> /etc/security/phd/keytab/</code> and are using this directory on cluster hosts, and so, for consistency, are placing them in a similarly named directory on the KDC. If the node you are on already has files in <code>/etc/security/phd/keytab/,</code> it may be advisable to create a separate, empty, directory for this step.</p><p>Each service's keytab file for a given host will have the service principal for that host and the HTTP principal for that host in the file.</p><p><strong>HDFS key tabs</strong></p><p>For each host having an HDFS process (name node, secondary name node, data nodes), run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/hdfs-hostid.service.keytab  hdfs/&lt;host_fqdn&gt;@&lt;REALM&gt; HTTP/&lt;host_fqdn@&lt;REALM&gt;</pre>
+</div></div><p>where <code>hostid</code> is the short name for the host, for example, <code>vm1</code>, <code>vm2</code>, etc. This is to differentiate the files by host. You can use the hostname if desired.</p><p>For example, for a three node cluster (one node name node, two data nodes):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/hdfs-vm2.service.keytab hdfs/centos62-2.localdomain@BIGDATA.COM HTTP/centos62-2.localdomain@BIGDATA.COM
+kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/hdfs-vm3.service.keytab hdfs/centos62-3.localdomain@BIGDATA.COM HTTP/centos62-3.localdomain@BIGDATA.COM
+kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/hdfs-vm4.service.keytab hdfs/centos62-4.localdomain@BIGDATA.COM HTTP/centos62-4.localdomain@BIGDATA.COM
+</pre>
+</div></div><p> </p><p><strong>YARN keytabs</strong></p><p>For each host having a YARN process (resource manager, node manager or proxy server), run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local:  ktadd -norandkey -k /etc/security/phd/keytab/yarn-hostid.service.keytab yarn/&lt;host_fqdn&gt;@&lt;REALM&gt;   HTTP/&lt;host_fqdn&gt;@&lt;REALM&gt;</pre>
+</div></div><p>For example, for a three node cluster (one node resource manager, two node managers):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/yarn-vm2.service.keytab yarn/centos62-2.localdomain@BIGDATA.COM HTTP/centos62-2.localdomain@BIGDATA.COM
+kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/yarn-vm3.service.keytab yarn/centos62-3.localdomain@BIGDATA.COM HTTP/centos62-3.localdomain@BIGDATA.COM
+kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/yarn-vm4.service.keytab yarn/centos62-4.localdomain@BIGDATA.COM HTTP/centos62-4.localdomain@BIGDATA.COM
+</pre>
+</div></div><p> </p><p><strong>MAPRED keytabs</strong></p><p>For each host having a MapReduce job history server, run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local:  ktadd -norandkey -k /etc/security/phd/keytab/mapred-hostid.service.keytab  mapred/host_fqdn@REALM  HTTP/host_fqdn@REALM</pre>
+</div></div><p>For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/mapred-vm2.service.keytab mapred/centos62-2.localdomain@BIGDATA.COM HTTP/centos62-2.localdomain@BIGDATA.COM
+</pre>
+</div></div><h4 id="Security-DistributetheKeytabFiles">Distribute the Keytab Files</h4><ol><li>On each cluster node, create the directory for the keytab files; here, we are using <code>/etc/security/phd/keytab</code>.</li><li>Move all the keytab files for a given host to the keytab directory on that host. For example: <code>hdfs-vm2.service.keytab</code>, <code>yarn-vm2.service.keytab</code> and <code>mapred-vm2.service.keytab</code> go to host vm2</li><li>On each host:</li></ol><ol><li style="list-style-type: none;background-image: none;"><ol><li>Change the permissions on all key tabs to read-write by owner only: <br/> <code>chmod 400 *.keytab</code></li><li>Change the group on all keytab files to hadoop: <br/> <code>chgrp hadoop *</code></li><li>Change the owner of each keytab to the relevant principal name. <br/>For example, for <code>yarn-vm2.service.keytab</code> run: <code> <br/>chown yarn yarn-vm2.service.keytab</code></li><li>Create links to the files of the form <code> <em>principalname.service.keytab</em> </code>. <br/>For example, for <code>yarn-vm2.service.keytab</code> run:<br/> <code> ln -s yarn-vm2.service.keytab yarn.service.keytab</code></li></ol></li></ol> <div class="aui-message warning shadowed information-macro">
+<p class="title">important</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p> The last step above allows you to maintain clear identification of each keytab file while also allowing you to have common site xml files across cluster hosts.</p>
+</div>
+</div>
+<p>This is an example keytab directory for a cluster control node (namenode, resource manager, JHS):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">lrwxrwxrwx 1 root      root    23 Jun 10 23:50 hdfs.service.keytab -&gt; hdfs-vm2.service.keytab
+-rw------- 1 hdfs      hadoop 954 Jun 10 23:44 hdfs-vm2.service.keytab
+lrwxrwxrwx 1 root      root    25 Jun 10 23:51 mapred.service.keytab -&gt; mapred-vm2.service.keytab
+-rw------- 1 mapred    hadoop 966 Jun 10 23:44 mapred-vm2.service.keytab
+lrwxrwxrwx 1 root      root    23 Jun 10 23:51 yarn.service.keytab -&gt; yarn-vm2.service.keytab
+-rw------- 1 yarn      hadoop 954 Jun 10 23:44 yarn-vm2.service.keytab
+</pre>
+</div></div><p> </p><p>This is an example keytab directory for a cluster node (datanode, node manager, proxy server):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">lrwxrwxrwx 1 root root    23 Jun 11 01:58 hdfs.service.keytab -&gt; hdfs-vm3.service.keytab
+-rw------- 1 hdfs hadoop 954 Jun 10 23:45 hdfs-vm3.service.keytab
+lrwxrwxrwx 1 root root    23 Jun 11 01:58 yarn.service.keytab -&gt; yarn-vm3.service.keytab
+-rw------- 1 yarn hadoop 954 Jun 10 23:45 yarn-vm3.service.keytab
+</pre>
+</div></div><h3 id="Security-JavaSupportItemsInstallation">Java Support Items Installation</h3><h4 id="Security-InstallJCEonallClusterHosts">Install JCE on all Cluster Hosts</h4><p><strong>Important</strong>: This step is only if you are using AES-256.</p><p class="emoticon emoticon-warning" title="(warning)"><strong>Note</strong>: These files will already exist in your environment and look the same, but are the <em>limited strength</em> encryption files; you must replace them with the unlimited strength files to use AES-256</p><ol><li>Download and unzip the JCE file for your JDK version (Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files 7 for JDK 7).</li><li>Place the <code>local_policy.jar</code> and <code>US_export_policy.jar</code> files in the <code>/usr/java/default/jre/lib/security/</code> directory on all cluster hosts.</li></ol><h4 id="Security-CheckJSVConallDatanodes">Check JSVC on all Datanodes</h4><p>JSVC allows a Java process to start as root and then switch to a less privileged user, and is required for the datanode process to start in secure mode. Your distribution comes with a pre-built JSVC; you need to verify it can find a JVM as follows:</p><ol><li>Run:<br/> <code>/usr/libexec/bigtop-utils/jsvc  -help<br/> <br/> </code></li><li>Look under the printed<code> -jvm</code> item in the output and you should see something like: <br/><p><code>use a specific Java Virtual Machine. Available JVMs:</code> <br/> <code>'server'</code> <br/>If you do not see the <code>server</code> line, this jsvc will not work for your platform, so try the following actions:</p><p>a. Install JSVC using yum and run the check again; if it fails try the next step.</p><p>b. Build from source and install manually (see <a href="#Security-BuildingandInstallingJSVC">Building and Installing JSVC</a>).</p></li></ol><p>If you have datanode start-up problems and no other errors are obvious, it might be a JSVC problem and you may need to perform step 2, above, another time. JSVC is very picky about platform and JDK matching, so use the <a href="#Security-BuildingandInstallingJSVC">Building and Installing JSVC</a> instructions for your system OS and JDK.</p><h3 id="Security-ContainerandScriptModifications">Container and Script Modifications</h3><h4 id="Security-ConfiguretheLinuxContainer">Configure the Linux Container</h4><ol><li><p>Edit the <code>/usr/lib/gphd/hadoop-yarn/etc/hadoop/container-executor.cfg</code> as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># NOTE: these next two should be set to the same values they have in yarn-site.xml
+yarn.nodemanager.local-dirs=/data/1/yarn/nm-local-dir
+yarn.nodemanager.log-dirs=/data/1/yarn/userlogs
+# configured value of yarn.nodemanager.linux-container-executor.group
+yarn.nodemanager.linux-container-executor.group=yarn
+# comma separated list of users who can not run applications
+banned.users=hdfs,yarn,mapred,bin
+# Prevent other super-users
+min.user.id=500
+</pre>
+</div></div><p><strong>Note</strong>: The <code>min.user.id</code> varies by Linux distribution; for CentOS it is 500, RedHat is 1000.</p></li><li><p>Check the permissions on <code>/usr/lib/gphd/hadoop-yarn/bin/container-executor</code>. They should look like:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">---Sr-s--- 1 root yarn   364 Jun 11 00:08 container-executor
+</pre>
+</div></div><p>If they do not, then set the owner, group and permissions as:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">chown root:yarn container-executor
+chmod 050 container-executor
+chmod u+s container-executor
+chmod g+s container-executor
+</pre>
+</div></div></li></ol><p> </p><p>Check the permissions on <code>/usr/lib/gphd/hadoop-yarn/etc/hadoop/container-executor.cfg</code>. They should look like:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">-rw-r--r-- 1 root root 363 Jul  4 00:29 /usr/lib/gphd/hadoop-yarn/etc/hadoop/container-executor.cfg
+</pre>
+</div></div><p>If they do not, then set them as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">chown root:root container-executor.cfg
+chmod 644 container-executor.cfg
+</pre>
+</div></div><h4 id="Security-EdittheEnvironmentontheDatanodes">Edit the Environment on the Datanodes</h4><p> </p><p><strong>Important</strong>:</p><ul><li class="emoticon emoticon-warning" title="(warning)">At this point you should STOP the cluster, if it is running.</li><li class="emoticon emoticon-warning" title="(warning)">You only need to perform the steps below on the data nodes.</li></ul><ol><li><p>Uncomment the lines at the bottom of <code>/etc/default/hadoop-hdfs-datanode</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># secure operation stuff
+export HADOOP_SECURE_DN_USER=hdfs
+export HADOOP_SECURE_DN_LOG_DIR=${HADOOP_LOG_DIR}/hdfs
+export HADOOP_PID_DIR=/var/run/gphd/hadoop-hdfs/
+export HADOOP_SECURE_DN_PID_DIR=${HADOOP_PID_DIR}
+</pre>
+</div></div></li><li><p>Set the JSVC variable:<br/>If you are using the included <code>jsvc</code> the<code> JSVC_HOME</code> variable in <code>/etc/default/hadoop</code> , it should already be properly set:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export JSVC_HOME=/usr/libexec/bigtop-utils
+</pre>
+</div></div><p>If, however, you built or hand-installed JSVC, your <code>JSVC_HOME</code> will be<code> /usr/bin</code> , so you must set it appropriately. Modify<code> /etc/default/hadoop</code> and set the proper <code>JSVC_HOME</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export JSVC_HOME=/usr/bin
+</pre>
+</div></div><p><strong>Important</strong>: Make sure<code> JSVC_HOME</code> points to the correct<code> jsvc</code> binary.</p></li></ol> <div class="aui-message problem shadowed information-macro">
+<span class="aui-icon icon-problem">Icon</span>
+<div class="message-content">
+<p>As long as<code> HADOOP_SECURE_DN_USER</code> is, set the datanode will try to start in secure mode.</p>
+</div>
+</div>
+<p><strong> <br/> </strong></p><p><span class="confluence-anchor-link" id="Security-SiteXML"></span></p><h3 id="Security-SiteXMLChanges">Site XML Changes</h3><h4 id="Security-Using_HOSTinSiteXML">Using _HOST in Site XML</h4><p>You can maintain consistent site XML by using the <code>_HOST</code> <em> </em>keyword for the<code> host_fqdn</code> part in the site XML if:</p><ul><li>Your cluster nodes were identified with fully qualified domain names when configuring the cluster.</li><li><code>hostname -f</code> on all nodes yields the proper fully qualified hostname (same as the one used when creating the principals).</li></ul><p>You cannot use constructs like<code> _HOST.domain</code>; these will be interpreted literally.</p><p>You can only use<code> _HOST</code> in the site XML; files such as <code>jaas.conf,</code> needed for Zookeeper and HBase, must use actual FQDN's for hosts.</p><p><span class="confluence-anchor-link" id="Security-EditSite"></span></p><h4 id="Security-EdittheSiteXML">Edit the Site XML</h4><p>Finally, we are ready to edit the site XML to turn on secure mode. Before getting into this, it is good to understand who needs to talk to whom. By "talk" we mean using authenticated kerberos to initiate establishment of a communication channel. Doing this requires that you know your own principal, to identify yourself, and know the principal of the service you want to talk to. To be able to use its principal, a service needs to be able to login to Kerberos without a password, using a keytab file.</p><ul><li>Each service needs to know its own principal name.</li><li>Each running service on a node needs a service/host specific keytab file to start up.</li><li>Each data node needs to talk to the name node.</li><li>Each node manager needs to talk to the resource manager and the job history server.</li><li>Each client/gateway node needs to talk to the name node, resource manager and job history server.</li></ul><p><strong>Important</strong>:</p><ul><li>Redundant keytab files on some hosts do no harm and it makes management easier to have constant files. Remember, though, that the host_fqdn MUST be correct for each entry. Remembering this helps when setting up and troubleshooting the site xml files.</li><li>Before making changes, backup the current site xml files so that you can return to non-secure operation, if needed.</li></ul><p>Most of the changes can be consistent throughout the cluster site XML. Unfortunately, since data node and node manager principals are host-name-dependent (or more correctly the role for the YARN principal is set to the <code>host_fqdn</code>), the <code>yarn-site.xml</code> for data node and node manager principals will differ across the cluster.</p><ol><li><p>Edit <code>/usr/lib/gphd/hadoop/etc/hadoop/core-site.xml</code> as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;hadoop.security.authentication&lt;/name&gt;
+  &lt;value&gt;kerberos&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hadoop.security.authorization&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+
+
+&lt;!-- THE PROPERTY BELOW IS OPTIONAL: IT ENABLES ON WIRE RPC ENCRYPTION --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hadoop.rpc.protection&lt;/name&gt;
+  &lt;value&gt;privacy&lt;/value&gt;
+&lt;/property&gt;</pre>
+</div></div></li><li><p>Edit  <code>/usr/lib/gphd/hadoop/etc/hadoop/hdfs-site.xml</code> as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;!-- WARNING: do not create duplicate entries: check for existing entries and modify if they exist! --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.block.access.token.enable&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;!-- short circuit reads do not work when security is enabled for PHD VERSION LOWER THAN 2.0 so disable ONLY for them --&gt;
+&lt;!-- For PHD greater than or equal to 2.0, set this to true --&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.client.read.shortcircuit&lt;/name&gt;
+  &lt;value&gt;false&lt;/value&gt;
+&lt;/property&gt;
+&lt;!-- name node secure configuration info --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.namenode.keytab.file&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hdfs.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.namenode.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;hdfs/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.namenode.kerberos.http.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.namenode.kerberos.internal.spnego.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- (optional) secondary name node secure configuration info --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.secondary.namenode.keytab.file&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hdfs.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.secondary.namenode.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;hdfs/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.secondary.namenode.kerberos.http.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.secondary.namenode.kerberos.internal.spnego.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- data node secure configuration info --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.data.dir.perm&lt;/name&gt;
+  &lt;value&gt;700&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- these ports must be set &lt; 1024 for secure operation --&gt;
+&lt;!-- conversely they must be set back to &gt; 1024 for non-secure operation --&gt;
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.address&lt;/name&gt;
+  &lt;value&gt;0.0.0.0:1004&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.http.address&lt;/name&gt;
+  &lt;value&gt;0.0.0.0:1006&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- remember the principal for the datanode is the principal this hdfs-site.xml file is on --&gt;
+
+&lt;!-- these (next three) need only be set on data nodes --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;hdfs/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.kerberos.http.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.keytab.file&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hdfs.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+ 
+&lt;!-- OPTIONAL - set these to enable secure WebHDSF --&gt;
+ 
+&lt;!-- on all HDFS cluster nodes (namenode, secondary namenode, datanode's) --&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.webhdfs.enabled&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.web.authentication.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;!-- since we included the HTTP principal all keytabs we can use it here --&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.web.authentication.kerberos.keytab&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hdfs.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;!-- THE PROPERTIES BELOW ARE OPTIONAL AND REQUIRE RPC PRIVACY (core-site): THEY ENABLE ON WIRE HDFS BLOCK ENCRYPTION --&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.encrypt.data.transfer&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.encrypt.data.transfer.algorithm&lt;/name&gt;
+  &lt;value&gt;rc4&lt;/value&gt;
+  &lt;description&gt;may be "rc4" or "3des" - 3des has a significant performance impact&lt;/description&gt;
+&lt;/property&gt;
+ </pre>
+</div></div></li><li><p>Edit <code>/usr/lib/gphd/hadoop/etc/hadoop/yarn-site.xml</code> as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;!-- resource manager secure configuration info --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.resourcemanager.principal&lt;/name&gt;
+  &lt;value&gt;yarn/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.resourcemanager.keytab&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/yarn.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- remember the principal for the node manager is the principal for the host this yarn-site.xml file is on --&gt;
+
+&lt;!-- these (next four) need only be set on node manager nodes --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.principal&lt;/name&gt;
+  &lt;value&gt;yarn/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.keytab&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/yarn.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.container-executor.class&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.linux-container-executor.group&lt;/name&gt;
+  &lt;value&gt;yarn&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- OPTIONAL - set these to enable secure proxy server node --&gt; 
+
+&lt;property&gt;
+  &lt;name&gt;yarn.web-proxy.keytab&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/yarn.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.web-proxy.principal&lt;/name&gt;
+  &lt;value&gt;yarn/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;</pre>
+</div></div></li><li><p>Edit <code>/usr/lib/gphd/hadoop/etc/hadoop/mapred-site.xml</code> as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;!-- job history server secure configuration info --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;mapreduce.jobhistory.keytab&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/mapred.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;mapreduce.jobhistory.principal&lt;/name&gt;
+  &lt;value&gt;mapred/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+</pre>
+</div></div></li></ol><h3 id="Security-CompletetheHDFS/YARNSecureConfiguration">Complete the HDFS/YARN Secure Configuration</h3><ol><li><p>Start the cluster:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ icm_client start</pre>
+</div></div></li><li>Check that all the processes listed below start up. If not, go to the appendix on troubleshooting.<br/><ul><li>Control processes: namenode, resourcemanager, historyserver should all be running.</li><li>Cluster worker processes: datanode and namenode should be running.<br/> <strong>Note</strong>: Until you do HBase security configuration, HBase will not start up on a secure cluster.</li></ul></li><li><p>Create a principal for a standard user (the user must exist as a Linux user on all cluster hosts):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin: addprinc testuser</pre>
+</div></div><p>Set the password when prompted.</p></li><li><p>Login as that user on a client box (or any cluster box, if you do not have specific client purposed systems).</p></li><li><p>Get your Kerberos TGT by running <code>kinit</code> and entering the password:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kinit testuser</pre>
+</div></div></li><li><p>Test simple HDFS file list and directory create:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop fs -ls
+hadoop fs -mkdir testdir</pre>
+</div></div><p>If these do not work, go to the <a href="#Security-Troubleshooting.1">Troubleshooting </a>section.</p></li><li>[Optional] Set the sticky bit on the <code>/tmp</code> directory (prevents non-super-users from moving or deleting other users' files in <code>/tmp</code>):<ol><li>Login as <code>gpadmin</code> on any HDFS service node (namenode, datanode).</li><li><p>Execute the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo -u hdfs kinit -k -t /etc/security/phd/keytab/hdfs.service.keytab hdfs/this-host_fqdn@REALM</pre>
+</div></div></li><li><p>Execute the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo -u hdfs hadoop fs -chmod 1777 /tmp</pre>
+</div></div></li><li><p>Run a simple MapReduce job such as the Pi example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop jar /usr/lib/gphd/hadoop-mapreduce/hadoop-mapreduce-examples-2.0.2-alpha-gphd-2.0.1.0.jar pi 10 100</pre>
+</div></div></li></ol></li></ol><p>If this all works, then you are ready to configure other services. If not, see the <a href="#Security-Troubleshooting.1">Troubleshooting </a>section.</p><h3 id="Security-TurningSecureModeOff">Turning Secure Mode Off</h3><p>To turn off secure mode:</p><ol><li><p>Stop the cluster:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client stop</pre>
+</div></div></li><li>Comment out<code> HADOOP_SECURE_DN_USER</code> in<code> hadoop-env.sh</code> and <code>/etc/init.d/hadoop-hdfs-datanode</code> on all data nodes.</li><li>Either:<ol><li>If you made backups as suggested above:<br/>Restore the original site xml files<br/>or:</li><li>If you do not have backups, then edit the site xml as follows:</li></ol></li></ol><ul><li style="list-style-type: none;background-image: none;"><ul><li style="list-style-type: none;background-image: none;"><ul><li>Set the Linux container executable to <code>org.apache.hadoop.yarn.server.nodemanager.DefaultContainerExecutor</code> on all data nodes.</li><li>Set <code>dfs.block.access.token.enable</code> to <code>false</code> on all data nodes.</li><li>Return the datanode ports modified above so they are &gt; 1024 again.</li><li>Set <code>hadoop.security.authentication</code> to <code>simple</code> and <code>hadoop.security.authorization</code> to <code>false </code>in <code>core-site.xml</code> on all cluster nodes.</li><li>Undo the changes to the Zookeeper site xml and configuration files.</li><li>If applicable, revert the changes to the <code>hdfs-client.xml</code> and <code>gpinisystem_config</code> for HAWQ.</li><li>If applicable, undo the changes to the Hive and HBase site xml, configuration, and environments.</li><li>Start the cluster.</li></ul></li></ul></li></ul><p><span class="confluence-anchor-link" id="Security-BuildJSVC"></span></p><h3 id="Security-BuildingandInstallingJSVC">Building and Installing JSVC</h3><p>In order for the data nodes to start as root to get secure ports,  then switch back to the hdfs user, jsvc must be installed (<a class="external-link" href="http://commons.apache.org/proper/commons-daemon/download_daemon.cgi" rel="nofollow">http://commons.apache.org/proper/commons-daemon/download_daemon.cgi</a>). If the packaged jsvc binary is not working, we recommend building jscv from source for your platform.</p><p>You only need to perform the make on one node, then the binary can be distributed to the others (assuming all systems are the same basic image):</p><ol><li><p>Install gcc and make (you can remove them after this process if desired):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">yum install gcc make</pre>
+</div></div></li><li>Download the Apache commons daemon. For example, <code>commons-daemon-</code>1.0<code>.15-src.zip</code> was tested.<br/>The demon is available here: <a class="external-link" href="http://commons.apache.org/proper/commons-daemon/download_daemon.cgi" rel="nofollow">http://commons.apache.org/proper/commons-daemon/download_daemon.cgi</a></li><li><code>scp</code> it to one of your data node cluster systems.</li><li>Uncompress it.</li><li><p>Change to the install directory:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">cd commons-daemon-1.0.15-src/src/native/unix</pre>
+</div></div></li><li><p>If you are on a 64-bit machine and using a 64 bit JVM, run these exports before configure/make:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export CFLAGS=-m64
+export LDFLAGS=-m64</pre>
+</div></div></li><li><p>Configure and make it:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">./configure --with-java=/usr/java/default
+make</pre>
+</div></div></li><li><p>Manually install it to the following location:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">mv ./jsvc  /usr/bin/jsvc</pre>
+</div></div></li><li><p>Check that the correct jsvc was found by running:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">which jsvc</pre>
+</div></div><p>The correct output is:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/usr/bin/jsvc</pre>
+</div></div></li><li><p>Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">jsvc -help  </pre>
+</div></div><p><br/>Look under the printed <code>-jvm</code> item and you should see something like:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">use a specific Java Virtual Machine. Available JVMs:
+'server'</pre>
+</div></div><p>If the line under <code>Available JVMs</code> (where <code>server</code> is above) is blank, there is a problem, as it cannot find the JVM. Check that the JDK is installed properly in <code>/usr/java/default</code>.</p></li></ol><p><span class="confluence-anchor-link" id="Security-InstallMIT"></span></p><h3 id="Security-InstallingtheMITKerberos5KDC">Installing the MIT Kerberos 5 KDC</h3><p>This section outlines a simple krb5 KDC set-up, mainly for test and development purposes. These instructions were largely derived from <em>Kerberos: The Definitive Guide</em> by James Garman, O'Reilly, pages 53-62.</p><ol><li>Install the Kerberos packages <code>krb5-libs</code>, <code>krb5-workstation</code>, and <code>krb5-server</code> on the KDC host.</li><li>Define your <code>REALM in /etc/krb5.conf</code> .<br/><ul><li>For testing purposes, you can just use the <code>EXAMPLE.COM REALM</code>.</li><li>Set the <code>kdc</code> and <code>admin_server</code> variables to the resolvable hostname of the KDC host.</li><li>Set the <code>default_domain</code> to your <code>REALM</code>.</li></ul><p>In the following example, <code>REALM</code> was changed to <code>BIGDATA.COM</code> and the KDC host is <code>centos62-1.localdomain</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[logging]
+ default = FILE:/var/log/krb5libs.log
+ kdc = FILE:/var/log/krb5kdc.log
+ admin_server = FILE:/var/log/kadmind.log
+
+[libdefaults]
+ default_realm = BIGDATA.COM
+ dns_lookup_realm = false
+ dns_lookup_kdc = false
+ ticket_lifetime = 24h
+ renew_lifetime = 7d
+ forwardable = true
+
+[realms]
+ BIGDATA.COM = {
+  kdc = centos62-1.localdomain:88
+  admin_server = centos62-1.localdomain:749
+  default_domain = BIGDATA.COM
+ }
+
+[domain_realm]
+ .bigdata.com = BIGDATA.COM
+ bigdata.com = BIGDATA.COM
+</pre>
+</div></div></li><li>Set up<code> /var/kerberos/krb5kdc/kdc.conf</code> <br/><ul><li>If you want to use AES-256, uncomment the <code>master_key_type</code> line</li><li>If you do not want to use AES-256, remove it from the <code>supported_enctypes</code> line</li><li>Add a<code> key_stash_file</code> entry: <code>/var/kerberos/krb5kdc/.k5.REALM</code></li><li>Set the maximum ticket lifetime and renew lifetime to your desired values (24 hours and 7 days are typical).</li><li>Add the <code>kadmind_port</code> entry: <code>kadmind_port = 749</code></li></ul><p><strong>Important</strong>: The stash file lets the KDC server start up for root without a password being entered.<br/>The result (using AES-256) for the above <code>REALM</code> is:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[kdcdefaults]
+ kdc_ports = 88
+ kdc_tcp_ports = 88
+
+[realms]
+ BIGDATA.COM = {
+  master_key_type = aes256-cts
+  acl_file = /var/kerberos/krb5kdc/kadm5.acl
+  dict_file = /usr/share/dict/words
+  admin_keytab = /var/kerberos/krb5kdc/kadm5.keytab
+  key_stash_file = /var/kerberos/krb5kdc/.k5.BIGDATA.COM
+  max_life = 24h 0m 0s
+  max_renewable_life = 7d 0h 0m 0s
+  kadmind_port = 749
+  supported_enctypes = aes256-cts:normal aes128-cts:normal des3-hmac-sha1:normal arcfour-hmac:normal des-hmac-sha1:normal des-cbc-md5:normal des-cbc-crc:normal
+ }
+</pre>
+</div></div></li><li>Create the KDC master password:<br/>Run: <code>kdb5_util create -s</code> <br/>DO NOT forget your password, as this is the root KDC password.<br/>This typically runs quickly, but can take 5-10 minutes if the code has trouble getting the random bytes it needs</li><li>Add an administrator account as <code>username/admin@REALM</code> .<br/>Run the <code>kadmin.local</code> application from the command line<code>.<br/>kadmin.local</code>: <code>addprinc username/admin@REALM</code> <br/>Type <code>quit</code> to exit<code> kadmin.local.</code><p><strong>Important</strong>:  The KDC does not need to be running to add a principal.</p></li><li>Start the KDC by running:<br/> <code>/etc/init.d/krb5kdc start</code> <br/>You should get an<code> [OK]</code> indication if it started without error.</li><li><p>Edit <code>/var/kerberos/krb5kdc/kadm5.acl</code> and change the admin permissions username from<code> *</code> to your admin.<br/>You can add other admins with specific permissions if you want (<code>man kadmind</code>)<br/>This is a sample ACL file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">joeit/admin@BIGDATA.COM       *
+</pre>
+</div></div></li><li><p>Use <code>kadmin.local</code> on the KDC to enable the administrator(s) remote access:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: ktadd -k /var/kerberos/krb5kdc/kadm5.keytab kadmin/admin kadmin/changepw</pre>
+</div></div><p><strong> Important</strong>:<code> kadmin.local</code> is a KDC host-only version of kadmin that can do things remote kadmin cannot (such as use the <code>-norandkey</code> option in <code>ktadd</code>).</p></li><li><p>Start <code>kadmind</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/etc/init.d/kadmin start</pre>
+</div></div><p>The KDC should now be done and ready to use, but you need to set up your clients first.</p></li><li>Install <code>krb5-libs</code> and <code>krb5-workstation</code> on all cluster hosts, including any client/gateway hosts.</li><li>Push your KDC <code>/etc/krb5.conf</code> to all workstation hosts.</li><li>Do a simple test, as follows:<br/><ol><li>Login as the admin you created: <code>kinit username/admin.</code></li><li>Run <code>kadmin</code> and make sure you can login.</li></ol>If you get the message <code>kinit: Cannot contact any KDC for realm 'REALM' while getting initial credentials</code>,  then the KDC is not running or the KDC host information in<code> /etc/kdc.conf</code> is incorrect.<br/> <br/>You should now have a KDC that is functional for PHD secure cluster operations.</li></ol><p> </p><h2 id="Security-ConfiguringKerberosforHDFSHighAvailability">Configuring Kerberos for HDFS High Availability</h2> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>Currently we only support Quorum Journal-based storage for high availability.</p>
+</div>
+</div>
+<p>To configure Kerberos for HDFS HA, add the following Quorum Journal-based storage configuration properties to the <samp class="ph codeph" style="background-color: transparent;line-height: 1.42857;">hdfs-site.xml </samp>file on all machines in the cluster: </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;dfs.journalnode.keytab.file&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hdfs.keytab&lt;/value&gt; &lt;!-- path to the HDFS keytab --&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;dfs.journalnode.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;hdfs/_HOST@REALM.COM&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;dfs.journalnode.kerberos.internal.spnego.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM.COM&lt;/value&gt;
+&lt;/property&gt;</pre>
+</div></div><p><span class="confluence-anchor-link" id="Security-ZookeeperConfiguration"></span></p><h2 id="Security-ZookeeperSecureConfiguration">Zookeeper Secure Configuration</h2><p>Zookeeper secure configuration for server is recommended for HBase.</p><p><strong>Important</strong>: STOP cluster services before doing this configuration.</p><h3 id="Security-ZookeeperServers">Zookeeper Servers</h3><h4 id="Security-CreatetheZookeeperPrincipals">Create the Zookeeper Principals</h4><p>Create a principal for each Zookeeper Quorum Server host:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin: addprinc -randkey zookeeper/host_fqdn@REALM</pre>
+</div></div><h4 id="Security-CreatetheZookeeperKeytabFiles">Create the Zookeeper Keytab Files</h4><p>For each Zookeeper server host:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">ktadd -norandkey -k /etc/security/phd/keytab/zookeeper-hostid.service.keytab zookeeper/host_fqdn@REALM</pre>
+</div></div><h4 id="Security-DistributetheZookeeperKeytabFiles">Distribute the Zookeeper Keytab Files</h4><p>For each Zookeeper server host:</p><p>Move the appropriate keytab file for each host to that hosts' <code>/etc/security/phd/keytab</code> directory, then run the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">chgrp hadoop zookeeper-hostid.service.keytab
+
+chown zookeeper zookeeper-hostid.service.keytab
+
+chmod 400 zookeeper-hostid.service.keytab
+
+ln -s zookeeper-hostid.service.keytab zookeeper.service.keytab</pre>
+</div></div><h4 id="Security-EdittheZookeeperConfiguration">Edit the Zookeeper Configuration</h4><ol><li><p>Add the following lines to<code> /etc/gphd/zookeeper/conf/zoo.cfg</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">authProvider.1=org.apache.zookeeper.server.auth.SASLAuthenticationProvider
+jaasLoginRenew=3600000
+</pre>
+</div></div></li><li><p>Create a file in <code>/etc/gphd/zookeeper/conf/jaas.conf</code> and add to it:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">Server {
+  com.sun.security.auth.module.Krb5LoginModule required
+  useKeyTab=true
+  keyTab="/etc/security/phd/keytab/zookeeper-hostid.service.keytab"
+  storeKey=true
+  useTicketCache=false
+  principal="zookeeper/host_fqdn@REALM";
+};
+</pre>
+</div></div></li><li><p>Add the following line to<code> /etc/gphd/zookeeper/conf/java.env</code> (create the file if it does not exist). </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export JVMFLAGS="-Djava.security.auth.login.config=/etc/gphd/zookeeper/conf/jaas.conf"
+</pre>
+</div></div><p>If JVMFLAGS already exists, then modify that and add new values within quotes separated by spaces. For example, modify "export JVMFLAGS="-Xmx2048m" to:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export JVMFLAGS="-Xmx2048m -Djava.security.auth.login.config=/etc/gphd/zookeeper/conf/jaas.conf"</pre>
+</div></div></li></ol><h4 id="Security-VerifytheZookeeperConfiguration">Verify the Zookeeper Configuration</h4><ol><li>Start up the cluster and connect using a client.<br/> <strong>Note</strong>: You do not need to set up clients to use Kerberos but if you want this functionality, see <a href="#Security-ZookeeperClients">Zookeeper Clients</a>.</li><li>Connect as: <code>zookeeper-client -server hostname:port</code> <br/> <strong>Note</strong>: The port is defined in<code> /etc/gphd/zookeeper/conf/zoo.cfg</code> and is typically 2181.</li><li><p>Create a protected znode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">create /testznode testznodedata sasl:zkcli@REALM:cdwra</pre>
+</div></div></li><li><p>Verify the znode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">getAcl /testznode:</pre>
+</div></div><p>You should see something like this:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">'sasl,'zkcli@{{BIGDATA.COM%7D%7D
+: cdrwa
+</pre>
+</div></div></li></ol><p><span class="confluence-anchor-link" id="Security-ZookeeperClients"></span></p><h3 id="Security-ZookeeperClients">Zookeeper Clients</h3><p>Optional.</p><ol><li><p>Add a principal for the client on the client host:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: addprinc -randkey zclient/host_fqdn@REALM</pre>
+</div></div></li><li><p>Add the keytab:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/zclient-hostid.client.keytab zclient/host_fqdn@REALM</pre>
+</div></div></li><li><p>Move the file to the<code> /etc/security/phd/keytab</code> directory on the host and change the owner and group appropriately, so that only users of the client can access the file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">chmod 400 /etc/security/phd/keytab/zclient-hostid.client.keytab</pre>
+</div></div></li><li><p>Create a link:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">ln -s zclient-hostid.client.keytab zclient.client.keytab</pre>
+</div></div></li><li><p>Add the following to the file<code> /etc/gphd/zookeeper/conf/jaas.conf</code> (creating the file if required):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">Client {
+  com.sun.security.auth.module.Krb5LoginModule required
+  useKeyTab=true
+  keyTab="/etc/security/phd/keytab/zclient.client.keytab"
+  storeKey=true
+  useTicketCache=false
+  principal="zclient/host_fqdn@REALM";
+};
+</pre>
+</div></div><p>If you get a failure message indicating a name lookup failure, that indicates you should add a name service setting, add or edit the following line to <code>/etc/gphd/zookeeper/conf/java.env</code> (create the file if it does not exist):</p></li></ol><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export JVMFLAGS="-Djava.security.auth.login.config=/etc/gphd/zookeeper/conf/jaas.conf -Dsun.net.spi.nameservice.provider.1=dns,sun"
+</pre>
+</div></div><p><strong>Important</strong>:</p><p style="margin-left: 30.0px;">You cannot do this on a server node, as the <code>-Dsun.net.spi.nameservice.provider.1=dns, sun</code>, line could cause the server to fail to start.</p><p style="margin-left: 30.0px;">You should now be able to establish a secure session with zookeeper-client. Test this by starting zookeeper-client and insuring no errors occur while connecting.</p><p style="margin-left: 30.0px;">You may have issues with addressing or be forced to use the actual server IP address with the <code>-server </code>option for zookeeper-client to handle incompatibilities between the settings needed to make the Kerberos lookups work (<code>-Dsun.net.spi.nameservice.provider.1=dns,sun</code>) and what makes the Java host resolution work. This problem also may be encountered in trying to set up HBase to communicate with a secure Zookeeper, where it is more difficult to resolve.</p><p><span class="confluence-anchor-link" id="Security-SecureHBase"></span></p><h2 id="Security-HBaseSecureConfiguration">HBase Secure Configuration</h2><p>If you are running secure HBase you should also also run a secure Zookeeper (see <a href="#Security-ZookeeperSecureConfiguration">Zookeeper Configuration</a> above). You can, however, set the HBase master and region servers up to use Kerberos and test that they start without a secure Zookeeper. This section covers the basics of how to get HBase up and running in secure mode; for further information see the HBase documentation (<a class="external-link" href="http://hbase.apache.org/book/security.html" rel="nofollow">http://hbase.apache.org/book/security.html</a>).</p><h3 id="Security-HBaseMasterandRegionservers">HBase Master and Regionservers</h3><h4 id="Security-CreatetheHBasePrincipals">Create the HBase Principals</h4><p>For the HBase master and each region server host run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: addprinc -randkey hbase/host_fqdn@REALM</pre>
+</div></div><p>where<code> host_fqdn</code> refers to the service principal (master, regionserver) host.</p><h4 id="Security-CreatetheHBaseKeytabfiles">Create the HBase Keytab files</h4><p>For the HBase master and each region server host run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/hbase-hostid.service.keytab hbase/host_fqdn@REALM</pre>
+</div></div><h4 id="Security-DistributetheHBaseKeytabFiles">Distribute the HBase Keytab Files</h4><p>For each host:</p><p>Move the appropriate keytab file for each host to that hosts'<code> /etc/security/phd/keytab</code> directory, then run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">chown hbase:hadoop hbase-hostid.service.keytab
+
+chmod 400 hbase-hostid.service.keytab
+
+ln -s hbase-hostid.service.keytab hbase.service.keytab</pre>
+</div></div><h4 id="Security-EdittheHBaseSiteXML">Edit the HBase Site XML</h4><p>For each master and region server host, add the following to<code> /etc/gphd/hbase/conf/hbase-site.xml</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;hbase.security.authentication&lt;/name&gt;
+  &lt;value&gt;kerberos&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hbase.security.authorization&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hbase.coprocessor.region.classes&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.hbase.security.token.TokenProvider&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- HBase secure region server configuration --&gt;
+&lt;property&gt;
+  &lt;name&gt;hbase.regionserver.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;hbase/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hbase.regionserver.keytab.file&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hbase.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- HBase secure master configuration --&gt;
+&lt;property&gt;
+  &lt;name&gt;hbase.master.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;hbase/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hbase.master.keytab.file&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hbase.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+</pre>
+</div></div><h4 id="Security-TestHBaseStart-Up">Test HBase Start-Up</h4><p>You can now test HBase start-up. Start the cluster services and check that the HBase Master and Regionservers start properly. If they do not look at the .log file in the <code>/var/log/gphd/hbase/</code> directory for hints as to why. Make sure HDFS came up properly. As you fix issues you can run<code> /etc/init.d/hbase-master start</code> or <code>/etc/init.d/hbase-regionserver start</code> to check that the issue is resolved.</p><h3 id="Security-HBaseClients">HBase Clients</h3><p>Add to the<code> hbase-site.xml</code> file on every client host:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;hbase.security.authentication&lt;/name&gt;
+  &lt;value&gt;kerberos&lt;/value&gt;
+&lt;/property&gt;
+</pre>
+</div></div><h4 id="Security-EnableEncryptedCommunication">Enable Encrypted Communication</h4><p>(Optional)</p><p>If you are running secure HBase, you can enable encryption from clients to the server. To do so, add to <code>hbase-site.xml</code> on all clients:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;hbase.rpc.protection&lt;/name&gt;
+  &lt;value&gt;privacy&lt;/value&gt;
+&lt;/property&gt;
+</pre>
+</div></div><p>This can also be set on a per-connection basis. Set it in the configuration supplied to HTable:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">Configuration conf = HBaseConfiguration.create();
+conf.set("hbase.rpc.protection", "privacy");
+HTable table = new HTable(conf, tablename);
+</pre>
+</div></div><p>The Apache HBase documentation indicates you should expect a ~10% performance penalty when encryption is enabled.</p><h4 id="Security-RESTGateway">REST Gateway</h4><p>You can set up the REST Gateway to use Kerberos to authenticate itself as a principal to HBase. Note that all client access will use the REST Gateway's credentials set below, and these will have this user's privileges.</p><p>For every REST Gateway, add the following to <code>hbase-site.xml</code> file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;hbase.rest.keytab.file&lt;/name&gt;
+  &lt;value&gt;path-to-rest-users-keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hbase.rest.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;rest-users-principal-name&lt;/value&gt;
+&lt;/property&gt;
+</pre>
+</div></div><p>You must also give the REST principal access privileges. Do this by adding the rest-principal-name to the <em>acl</em> table in HBase. Adding the permissions below are sufficient, according to the HBase documentation:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">grant 'rest-principal-name', 'RWCA'
+</pre>
+</div></div><h4 id="Security-ThriftClientConfiguration">Thrift Client Configuration</h4><p>See the HBase documentation here: <a class="external-link" href="http://hbase.apache.org/book/security.html" rel="nofollow">http://hbase.apache.org/book/security.html</a>) for instructions on configuring Thrift clients.</p><h3 id="Security-HBasewithSecureZookeeperConfiguration">HBase with Secure Zookeeper Configuration</h3><p>For secure HBase, you should also run a secure Zookeeper (see <a href="#Security-ZookeeperSecureConfiguration">Zookeeper Configuration</a> above). If you do so, you will need to execute the steps in this section. These steps must be done on the HBase master and all region servers.</p><ol><li><p>Create a file called <code>/etc/gphd/hbase/conf/jaas.conf</code> and the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">Client {
+  com.sun.security.auth.module.Krb5LoginModule required
+  useKeyTab=true
+  useTicketCache=false
+  keyTab="/etc/security/phd/keytab/hbase.service.keytab"
+  principal="hbase/host_fqdn@REALM";
+};
+</pre>
+</div></div><p><strong>Important</strong>: Make sure to replace <code>host_fqdn@REALM</code> with the <code>host_fqdn</code> of the server and the correct <code>REALM</code>.</p></li><li><p>Add the following near at the bottom of <code>/etc/gphd/hbase/conf/hbase-env.sh</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export HBASE_OPTS="$HBASE_OPTS -Djava.security.auth.login.config=/etc/gphd/hbase/conf/jaas.conf"
+export HBASE_MANAGES_ZK=false
+</pre>
+</div></div></li><li><p>Edit the site XML and add:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt;
+  &lt;value&gt;comma-separated-list-of-zookeeper-hosts&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hbase.cluster.distributed&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+</pre>
+</div></div></li><li><p>Edit <code>/etc/gphd/zookeeper/conf/zoo.cfg</code> and add:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kerberos.removeHostFromPrincipal=true
+kerberos.removeRealmFromPrincipal=true
+</pre>
+</div></div></li></ol><h3 id="Security-AccessControlandPXFExternalTables">Access Control and PXF External Tables</h3><p>The version of HBase distributed with PHD supports access control. Basic mappings of permissions (RWCA) to operations allowed are as follows:</p><p> </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">permission</th><th class="confluenceTh">operations</th></tr><tr><th class="confluenceTh" colspan="1">Read</th><th class="confluenceTh" colspan="1"> </th></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Get</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Exists</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Scan</td></tr><tr><th class="confluenceTh" colspan="1">Write</th><th class="confluenceTh" colspan="1"> </th></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Put</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Delete</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Lock/UnlockRow</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">IncrementColumnValue</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">CheckAndDelete/Put</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Flush</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Compact</td></tr><tr><th class="confluenceTh" colspan="1">Create</th><th class="confluenceTh" colspan="1"> </th></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Admin</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Alter</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Drop</td></tr><tr><th class="confluenceTh" colspan="1">Admin</th><th class="confluenceTh" colspan="1"> </th></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Enable/Disable</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">&gt;Snapshot/Restore/Clone</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Split</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Major Compact</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Grant</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Revoke</td></tr><tr><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><p>Shutdown</p></td></tr></tbody></table></div><div class="itemizedlist"><p> </p><p><strong>Scopes of Permissions:</strong></p><p>Table:</p><div class="itemizedlist"><ul><li>Read: User can read from any column family in a table</li><li>Write: User can write to any column family in a table</li><li>Create: User can alter table attributes; add, alter, or drop column families; and drop the table.</li><li>Admin: User can alter table attributes; add, alter, or drop column families; and enable, disable, or drop the table. User can also trigger region (re)assignments or relocation.</li></ul></div><p> </p><p>Column Family:</p><div class="itemizedlist"><ul><li>Read: User can read from the column family</li><li>Write: User can write to the column family</li></ul></div></div><p> </p><p>For PHD, the Hbase superuser is the "hbase" user/principal. There is an implicit global scope for permissions granted by the superuser.</p><p>Tables have an OWNER attribute that defaults to the table creator but may be changed with an Alter operation.</p><p> </p><p>See the HBase documentation here: <a class="external-link" href="http://hbase.apache.org/book/hbase.accesscontrol.configuration.html" rel="nofollow">http://hbase.apache.org/book/hbase.accesscontrol.configuration.html</a> for further details on configuring and using access controls.</p><p> </p><p>Set the properties shown below to enable access control:</p><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;hbase.security.authorization&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;hbase.coprocessor.master.classes&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.hbase.security.access.AccessController&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;hbase.coprocessor.region.classes&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.hbase.security.access.AccessController, org.apache.hadoop.hbase.security.token.TokenProvider&lt;/value&gt;
+&lt;/property&gt;
+ </pre>
+</div></div><p> </p><p>When access control is enabled you will need to explicitly grant users permissions to the database as shown below (example assumes it is being run on an HBase service host). You may also choose to create a specific hbase principal (hbase@REALM) for HBase administration rather than using the service keytab as shown below; this would allow administration from any client host.</p><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># sudo -u hbase kinit -kt /etc/security/phd/keytab/hbase.service.keytab hbase/&lt;host_fqdn&gt;
+# sudo -u hbase hbase shell
+hbase&gt; grant 'myuser', 'RWCA'
+# kdestroy</pre>
+</div></div><h4 id="Security-PXFAccess">PXF Access</h4><p>If you are using PXF external HBase tables, you will need to grant user 'hdfs"  permissions as above.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># sudo -u hbase kinit -kt /etc/security/phd/keytab/hbase.service.keytab hbase/&lt;host_fqdn&gt;
+# sudo -u hbase hbase shell
+hbase&gt; grant 'hdfs', 'RWCA'
+# kdestroy</pre>
+</div></div><p> </p><p><span class="confluence-anchor-link" id="Security-SecureHive"></span></p><h2 id="Security-HiveSecureConfiguration">Hive Secure Configuration</h2><p>The Hive MetaStore supports Kerberos authentication for Thrift clients. You can configure a standalone Hive MetaStoreServer instance to force clients to authenticate with Kerberos by setting the  <code>hive.metastore.sasl.enabled</code> property in the <code>hive-site.xml</code> configuration file to true, as shown in the example below. </p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>Hive Server version 1 (hiveserver) does not support Kerberos, so you will need to switch to using Hive Server 2 in a secured cluster. See the instructions below.</p>
+</div>
+</div>
+<p> </p><ol><li><p>Add the Kerberos principals and their locations to the <code>hive-site.xml.</code> For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;hive.server2.authentication&lt;/name&gt;
+  &lt;value&gt;KERBEROS&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;hive.server2.authentication.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;hive/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;hive.server2.authentication.kerberos.keytab&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hive.keytab&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;hive.server2.enable.impersonation&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;hive.server2.enable.doAs&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;hive.metastore.sasl.enabled&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+  &lt;description&gt;If true, the metastore thrift interface will be secured with SASL. Clients
+   must authenticate with Kerberos.&lt;/description&gt;
+&lt;/property&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;hive.security.authorization.enabled&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+  &lt;description&gt;enable or disable the hive client authorization&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hive.security.authorization.createtable.owner.grants&lt;/name&gt;
+  &lt;value&gt;ALL&lt;/value&gt;
+  &lt;description&gt;the privileges automatically granted to the owner whenever a table gets created.
+   An example like "select,drop" will grant select and drop privilege to the owner of the table.
+   You may change this value if you desire lower privileges on create.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hive.metastore.kerberos.keytab.file&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hive.keytab&lt;/value&gt;
+  &lt;description&gt;The path to the Kerberos Keytab file containing the metastore thrift 
+   server's service principal.&lt;/description&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hive.metastore.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;hive-metastore/_HOST@REALM&lt;/value&gt;
+  &lt;description&gt;The service principal for the metastore thrift server. The special string _HOST will be replaced automatically with the correct host name.&lt;/description&gt;
+&lt;/property&gt;</pre>
+</div></div></li><li><p>Add the following parameters to <code>core-site.xml</code> (Hadoop configuration) to enable users to run hive queries:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;hadoop.proxyuser.hive.hosts&lt;/name&gt;
+  &lt;value&gt;*&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;hadoop.proxyuser.hive.groups&lt;/name&gt;
+  &lt;value&gt;*&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;!-- you may of course add more restrictive values here --&gt;</pre>
+</div></div></li></ol><h3 id="Security-ChangingtoHiveServer2">Changing to Hive Server 2</h3><p>You will need to change to Hive Server 2 in order to use Hive in non-local mode with Kerberos. On the Hive server, edit the file <code>/etc/gphd/init.d/hive-server</code> and change the line:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">server_name="server"</pre>
+</div></div><p>to:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">server_name="server2"</pre>
+</div></div><p> </p><p>Then restart the Hive Server:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/etc/init.d/hive-server restart.</pre>
+</div></div><h3 id="Security-Hivewarehousepermissionsissues">Hive warehouse permissions issues</h3><p>As of this version, there is a known issue with Hive permissions in that the default 775 warehouse permissions on /hive/gphd/warehouse will prevent write access by non-superuser users. The simplest way to resolve this is, as the hdfs user, change the permissions to 777. If this is not acceptable, then Hive external tables could provide a solution.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>You must have created an <code>hdfs</code> principal to do HDFS administration work, such as changing permissions on other users' or root level directories.</p>
+</div>
+</div>
+<h3 id="Security-ConnectingandusingsecureHivewithBeeline">Connecting and using secure Hive with Beeline</h3><p>In order to use secure Hive, you should create a Kerberos principal for the <code>hive</code> user; this is your Hive administrator principal. </p><p>Whenever you want to grant privileges to an ordinary user, you need to be logged in as the <code>hive</code> superuser.</p><p>To log in as a particular user using beeline:</p><ol><li>Make sure there are no tickets for any other user in your cache (running <code>kdestroy</code> and the <code>knit</code> user will ensure this).</li><li><code>kinit</code> as the Hive user you want to log in as.</li><li>Connect to beeline using the form: </li></ol><p style="margin-left: 30.0px;"><code>!connect jdbc:hive2://&lt;hive_server2_fqdn&gt;:10000/&lt;database&gt;;principal=hive/&lt;hive_server2_fqdn&gt;@REALM</code></p><p style="margin-left: 30.0px;">where:</p><p style="margin-left: 30.0px;"><code>&lt;hive_server2_fqdn&gt;</code> is the FQDN of the host for the Hive Server role.</p><p style="margin-left: 30.0px;"><code>&lt;database&gt;</code> is the database to connect to (for example, default).</p><p style="margin-left: 30.0px;"><code>REALM</code> is your Kerberos realm.</p><p> </p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<ul><li>Unless you already have performed kinit as the user you want to connect as, and have ensured that only that user has a ticket in the cache (using klist), you will need to enter your kerberos principal name and password twice: once before starting beeline, by doing kinit, and again when queried by Hive during connect.</li><li>Remember that in order for an ordinary user to do anything you must first follow the above sequence for user "hive" (Hive administrator) and GRANT the user privileges.</li><li>As of the version tested, SHOW GRANT does not show any actual information in beeline, so you can only tell if a GRANT worked by testing as that user (or looking for errors in the hive log).</li><li>GRANTing as another user will not have any effect on databases that are not owned by that user. For example, if your grant creates permissions in database "default" as user "tester", that user will not actually get permissions to database "default" (and you may not receive an error- so be aware).</li></ul>
+</div>
+</div>
+<p> </p><h2 id="Security-ConfigureHCatalog(WebHCat)onsecureHive">Configure HCatalog (WebHCat) on secure Hive</h2><p>HCatalog is a tool that operates on the Hive metastore. If you want to use the HCatalog RESTFul APIs, aka., WebHCat, security configuration is required to enable the security functionality of the WebHCat server.</p><h3 id="Security-Prerequisites">Prerequisites</h3><ul><li>Hive is installed and configured properly on your cluster.</li><li>Hive metastore is configured to work in remote mode.</li><li>Security is properly enabled for Hive, as shown in the <a href="#Security-HiveSecureConfiguration">Hive Secure Configuration</a> section.</li><li>HCatalog and WebHCat are installed and configured properly on your cluster.</li></ul><h3 id="Security-CreatekeytabfilefortheWebHCatserver">Create keytab file for the WebHCat server</h3><p>Create a keytab file that contains the <code>HTTP</code> principal:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&gt; kadmin.local
+kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/webhcat-hostid.service.keytab  HTTP/host_fqdn@REALM</pre>
+</div></div><h3 id="Security-DistributethekeytabfiletotheWebHCatserver">Distribute the keytab file to the WebHCat server</h3><p>Copy the generated <code>/etc/security/phd/keytab/webhcat-hostid.service.keytab</code> file to the machine where the WebHCat server is running. Put it under <code>/etc/security/phd/keytab/</code>. Then, create symbolic link and adjust file owner and permissions:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&gt; chown hive:hadoop /etc/security/phd/keytab/webhcat-hostid.service.keytab
+&gt; chmod 400 /etc/security/phd/keytab/webhcat-hostid.service.keytab
+&gt; ln -s /etc/security/phd/keytab/webhcat-hostid.service.keytab /etc/security/phd/keytab/webhcat.service.keytab</pre>
+</div></div><h3 id="Security-ConfigureWebHCatandproxyusers">Configure WebHCat and proxy users</h3><p>On the WebHCat server machine, edit the file <code>/etc/gphd/webhcat/conf/webhcat-site.xml</code> and add the following properties:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>webhcat-site.xml</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: xml; gutter: false" style="font-size:12px;">&lt;property&gt;
+    &lt;name&gt;templeton.kerberos.secret&lt;/name&gt;
+    &lt;value&gt;SuPerS3c3tV@lue!&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+    &lt;name&gt;templeton.kerberos.keytab&lt;/name&gt;
+    &lt;value&gt;/etc/security/phd/keytab/webhcat.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+    &lt;name&gt;templeton.kerberos.principal&lt;/name&gt;
+    &lt;value&gt;HTTP/_HOST@&lt;REALM&gt;&lt;/value&gt;
+&lt;/property&gt;</pre>
+</div></div><p>Note that, in the above snippet, you need to replace <code>&lt;FQDN&gt;</code> with the correct FQDN of your WebHCat server machine. Replace <code>&lt;REALM&gt;</code> with the Kerberos realm name you are using for your cluster.  You may set the  <code>templeton.kerberos.secret</code> property value to any random secret value.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>In most cases, when the WebHCat server starts, it reads the Hive metastore information from the corresponding Hive configuration files (<code>/etc/gphd/hive/conf/hive-site.xml)</code>. If your WebHCat server is not running on the same machine as the Hive server, you may need manually copy <code>/etc/gphd/hive/conf/hive-site.xml</code> from the Hive server machine to the WebHCat server machine before restarting the WebHCat server.</p>
+</div>
+</div>
+<p>After editing the <code>webhcat-site.xml</code> file, you need to restart the WebHCat server to make the changes take effect.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&gt; service webhcat-server restart</pre>
+</div></div><p>Because WebHCat will access the HDFS NameNode, you need configure Hadoop to allow impersonation as the <code>HTTP</code> user.  Edit <code>/etc/gphd/hadoop/conf/core-site.xml</code> on all your HDFS node machines, add the following content if it isn't already there:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>core-site.xml</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: xml; gutter: false" style="font-size:12px;">&lt;property&gt;
+    &lt;name&gt;hadoop.proxyuser.HTTP.hosts&lt;/name&gt;
+    &lt;value&gt;*&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;hadoop.proxyuser.HTTP.groups&lt;/name&gt;
+    &lt;value&gt;*&lt;/value&gt;
+&lt;/property&gt;</pre>
+</div></div><p>After you edit core-site.xml, restart all HDFS services to make the change work.</p><h3 id="Security-VerifyWebHCatisworking">Verify WebHCat is working</h3><p>Ensure you have an installed version of <code>curl</code> that supports GSS-negotiation by calling <code>curl -V</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&gt; curl 7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.13.6.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2
+Protocols: tftp ftp telnet dict ldap ldaps http file https ftps scp sftp
+Features: GSS-Negotiate IDN IPv6 Largefile NTLM SSL libz</pre>
+</div></div><p>Then do:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&gt; kinit &lt;username&gt;
+&lt;output omitted, you will need enter password to login&gt;
+&gt; curl -i -u : --negotiate 'http://&lt;FQDN&gt;:&lt;PORT&gt;/templeton/v1/ddl/database'
+HTTP/1.1 401
+WWW-Authenticate: Negotiate
+Set-Cookie: hadoop.auth=;Path=/;Expires=Thu, 01-Jan-1970 00:00:00 GMT
+Cache-Control: must-revalidate,no-cache,no-store
+Content-Type: text/html;charset=ISO-8859-1
+Content-Length: 1274
+Server: Jetty(7.6.0.v20120127)
+
+HTTP/1.1 200 OK
+Set-Cookie: hadoop.auth="u=root&amp;p=root@EXAMPLE.COM&amp;t=kerberos&amp;e=1393939264464&amp;s=mJG9x4mE4S9BMDCbSeRcVKyRY5g=";Version=1;Path=/;Discard
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Server: Jetty(7.6.0.v20120127)
+
+{"databases":["default"]}</pre>
+</div></div><p>In the above snippet, replace <code>&lt;FQDN&gt;</code> with the real FQDN of your WebHCat server machine, and replace <code>&lt;PORT&gt;</code> with your WebHCat server port (by default, it's 50111).</p><p>If you see output similar to the above (a 401 response followed by a 200 one), your secured WebHCat installation is functioning properly.</p><p> </p><p><span class="confluence-anchor-link" id="Security-SecureHAWQ"></span></p><h2 id="Security-HAWQonSecureHDFS">HAWQ on Secure HDFS</h2><h3 id="Security-Requirements">Requirements</h3><ul><li>A secure HDFS installation</li><li>HDFS on wire encryption (<code>dfs.encrypt.data.transfer</code>) MUST be set to <code>false</code>.</li><li>A new un-initialized HAWQ instance or a stopped already initialized HAWQ instance that was previously running on non-secured HDFS</li></ul><h3 id="Security-Preparation">Preparation</h3><ol><li>If HAWQ is already initialized and running, stop HAWQ by running <code>service hawq stop</code> or <code>&lt;HAWQ installation directory&gt;/bin/gpstop</code>.</li><li>Secure the HDFS cluster using the instructions provided in this Guide or using available security tools.</li><li>Insure HDFS is running properly in secured mode.</li><li>Insure that the property <code>dfs.encrypt.data.transfer</code> is set to <code>false</code> in the <code>hdfs-site.xml</code> for your cluster.</li></ol><h3 id="Security-Configuration">Configuration</h3><ol><li><p>Generate a "postgres" principal and keytab file as shown below:</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>The form of principal for the HAWQ master is <code>postgres@REALM</code>, where <code>postgres</code> is the default service name of HAWQ and <code>REALM</code> is the default realm in the cluster's Kerberos configuration. In the examples below, we use <code>EXAMPLE.COM</code> for the <code>REALM</code> part; this should be replaced by your cluster's actual <code>REALM</code>.</p>
+</div>
+</div>
+<div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin: addprinc -randkey postgres@EXAMPLE.COM
+kadmin: ktadd -k /etc/security/phd/keytab/hawq.service.keytab postgres@EXAMPLE.COM </pre>
+</div></div></li><li><p>Move this keytab file to the appropriate keytab directory on the HAWQ master node (for example, <code>/etc/security/phd/keytab/</code>).</p></li><li><p>Set the ownership of the keytab file to <code>gpadmin:gpadmin</code> and the permissions to 400.</p></li><li><p>Refer to your <code>gpinitsystem_config</code> file (typically in <code>/etc/gphd/hawq/conf</code>) to determine your configured HAWQ HDFS data directory (typically <code>/hawq_data</code>). This will be the last part of the <code>DFS_URL</code> value. For example, if <code>DFS_URL</code> is set to <code>centos61-2:8020/hawq_data, </code> then your HAWQ HDFS data directory is <code>/hawq_data.</code></p></li><li><p>Create (if required) the HAWQ HDFS data directory in HDFS, and assign ownership as <code>postgres:gpadmin</code> and permissions 755.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<ul><li>If HAWQ has already been initialized and the directory exists, just modify the owner and permissions as shown.</li><li>You need to have HDFS super-user permissions to create or modify a directory in HDFS root. If necessary, create an "hdfs" principal to accomplish this task.</li></ul>
+</div>
+</div>
+</li><li>If not present, create in HDFS the directory <code>/user/gpadmin</code> with ownership <code>gpadmin:gpadmin</code> and permissions 777.</li><li><p>Modify the <code>hdfs-client.xml</code> file (typically in <code>/usr/lib/gphd/hawq/etc</code>), on the master node and ALL segment server nodes, by adding the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;hadoop.security.authentication&lt;/name&gt;
+  &lt;value&gt;kerberos&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.namenode.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;HDFS_NAMENODE_PRINCIPAL&lt;/value&gt;
+&lt;/property&gt;</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<ul><li><code>hdfs-client.xml</code> is in <code>&lt;HAWQ installation directory&gt;/etc</code>, typically <code>/usr/lib/gphd/hawq/etc</code>.</li><li>These property blocks should be in the file but commented out, if so uncomment and edit the values.</li><li><code>HDFS_NAMENODE_PRINCIPAL</code> should be value from your cluster's <code>hdfs-site.xml</code> file.</li><li>Make sure the namenode principal value is correct.</li></ul>
+</div>
+</div>
+</li><li><p>Edit your <code>gpinitsystem_config</code> file (typically in<code> /etc/gphd/hawq/conf</code>) and add (or uncomment if they are present and commented out):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">KERBEROS_KEYFILE=/path/to/keytab/file
+ENABLE_SECURE_FILESYSTEM=on	</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<ul><li>Make sure there is no space between the <code>key=value</code>; for example: <code>ENABLE_SECURE_FILESYSTEM = on</code> will cause errors because there are spaces.</li><li>Make sure the value of <code>KERBEROS_KEYFILE</code> is the full path of where you placed the <code>hawq.service.keytab</code> file on the master.</li></ul>
+</div>
+</div>
+</li><li>If HAWQ has already been initialized prior to being secured, run the following commands on the HAWQ master as the <code>gpadmin</code> user:<ol><li><code> service hawq start</code></li><li><code> source /usr/local/hawq/greenplum_path.sh </code></li><li><code>gpconfig --masteronly -c krb_server_keyfile -v "'/path/to/keytab/file'"</code> <br/> <strong>NOTE</strong> The single quotes ' after/before the double quotes " in the keytab string above are required!</li><li><code>service hawq stop</code></li></ol></li><li>After you have completed all these steps, you can start or initialize HAWQ:<ol><li>If HAWQ was already initialized on non-secured HDFS before this process, start it by running <code>service hawq start</code> or <code>&lt;HAWQ installation directory&gt;/bin/gpstart</code>.</li><li>If HAWQ has not been initialized, initialize it now.</li></ol></li><li>Verify HAWQ is operating properly, if not, see the next section.</li></ol><h3 id="Security-Troubleshooting">Troubleshooting</h3><p>If initialization or start-up fails, you can look into the gpinitsystem log output and the namenode logs to see if you can pinpoint the cause. Possible causes:</p><ul><li>Incorrect values in your <code>hdfs-client.xml</code></li><li><code>hdfs-client.xml</code> not updated on master and all segment servers</li><li>Unable to login with Kerberos; possible bad keytab or principal for "postgres"<ul><li>Validate on master by entering the following: <code> <br/>kinit -k &lt;keytab dir path&gt;/hawq.service.keytab postgres@EXAMPLE.COM </code></li></ul></li><li>Wrong HAWQ HDFS data directory or directory permissions: Check your <code>gpinitsystem_config</code> <strong> </strong>file and the <code>DFS_URL</code> value and the directory permissions.</li><li>Unable to create the HAWQ HDFS data directory errors: ensure that you have created the proper directory as specified in <code>gpinitsystem_config</code> and that the ownership and permissions are correct.</li></ul><p><br/> <span class="confluence-anchor-link" id="Security-Auditing"></span></p><h2 id="Security-Auditing">Auditing</h2><p>You can enable auditing before deployment or re-configuration of a cluster.</p><p>To enable auditing:</p><ol><li><p>Locate your templates directory (by default ClusterConfigDir). This directory is created during initial installation, see the Pivotal HD Enterprise 2.0 Installation and Administrator Guide for details.</p></li><li><p>For HDFS and MapReduce, locate the <code>hdfs</code> subdirectory and edit the <code>log4j.properties</code> file as follows:<br/>For HDFS, change the line:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> hdfs.audit.logger=INFO,NullAppender</pre>
+</div></div><p>to:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hdfs.audit.logger=INFO,RFAAUDIT</pre>
+</div></div><p>For MapReduce change line:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">mapred.audit.logger=INFO,NullAppender</pre>
+</div></div><p>to:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">mapred.audit.logger=INFO,RFAAUDIT</pre>
+</div></div><p>For other components, locate the component sub-directory in the template and its corresponding <code>log4j.properties</code> file and make similar edits.</p><p>To specify the auditing output location:</p><p>By default, log files and other auditing information is output to <code>/var/log/gphd/.</code></p><p>To set up logging to go to syslog, define the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># Configure syslog appender
+log4j.appender.SYSLOG=org.apache.log4j.net.SyslogAppender
+log4j.appender.SYSLOG.syslogHost=loghost
+log4j.appender.SYSLOG.layout=org.apache.log4j.PatternLayout
+log4j.appender.SYSLOG.layout.ConversionPattern=%d{ISO8601} %p %c: %m%n
+log4j.appender.SYSLOG.Facility=LOCAL1</pre>
+</div></div><p>You can now log audit information to syslog, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hdfs.audit.logger=INFO,SYSLOG</pre>
+</div></div><p>You can also log to file and syslog. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hdfs.audit.logger=INFO,RFAAUDIT,SYSLOG</pre>
+</div></div><p>Note that these changes only go into effect after deployment or re-configuration.</p></li></ol><p> </p><p style="text-align: left;"><span class="confluence-anchor-link" id="Security-SecureWebAccess"></span></p><h2 id="Security-SecureWebAccess" style="text-align: left;">Secure Web Access</h2><p style="text-align: left;">This section describes how to configure WebHDFS on a secure PHD cluster.</p><h3 id="Security-Overview" style="text-align: left;">Overview</h3><p style="text-align: left;">WebHDFS is a REST API that allows a user to perform various HDFS operations.</p><p style="text-align: left;">More details about these APIs are here: <a class="external-link" href="http://hadoop.apache.org/docs/r1.0.4/webhdfs.html" rel="nofollow">WebHDFS REST API</a></p><p style="text-align: left;">On an insecure cluster, the user can run any <code>webhdfs</code> command as any user, including as <code>root</code>, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;"> $ curl -i "http://&lt;HOST&gt;:&lt;PORT&gt;/webhdfs/v1/?user.name=root&amp;op=LISTSTATUS" </pre>
+</div></div><p style="text-align: left;"><strong>Note</strong>: Where <code>&lt;HOST&gt;:&lt;PORT&gt; </code>is the HTTP address of the namenode (the value of <code>dfs.http.address</code> in the <code>hdfs-site.xml</code>), by default, the port number is 50070.</p><p style="text-align: left;">The client receives a JSON response that looks like this:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: plain; gutter: false" style="font-size:12px;">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 427
+
+{
+  "FileStatuses":
+  {
+    "FileStatus":
+    [
+      {
+        "accessTime"      : 1320171722771,
+        "blockSize"       : 33554432,
+        "group"           : "supergroup",
+        "length"          : 24930,
+        "modificationTime": 1320171722771,
+        "owner"           : "webuser",
+        "pathSuffix"      : "a.patch",
+        "permission"      : "644",
+        "replication"     : 1,
+        "type"            : "FILE"
+      },
+      {
+        "accessTime"      : 0,
+        "blockSize"       : 0,
+        "group"           : "supergroup",
+        "length"          : 0,
+        "modificationTime": 1320895981256,
+        "owner"           : "szetszwo",
+        "pathSuffix"      : "bar",
+        "permission"      : "711",
+        "replication"     : 0,
+        "type"            : "DIRECTORY"
+      },
+      ...
+    ]
+  }
+}
+</pre>
+</div></div><h3 id="Security-Prerequisites.1" style="text-align: left;">Prerequisites</h3><p style="text-align: left;"><strong> Secure Cluster</strong></p><p style="text-align: left;">Before accessing WebHDFS in secure mode, you need to secure the underlying Hadoop cluster, as described earlier in this chapter, starting with <a href="#Security-ConfiguringKerberosforHDFSandYARN(MapReduce)">Configuring Kerberos for HDFS and YARN (MapReduce)</a>.</p><p style="text-align: left;">Note that as part of the procedure to secure your cluster, you will <a href="#Security-EdittheSiteXML">edit the site.xml file</a>.  The <code>dfs.webhdfs.enabled</code> and <code>dfs.web.authentication.kerberos.principal</code> properties in this file must be set correctly to enable secure WebHDFS.</p><p style="text-align: left;">After security is enabled, all WebHDFS operations will fail with a 401 error until you use WebHDFS in secure mode.</p><h3 id="Security-ConfiguringSecureWebHDFS" style="text-align: left;">Configuring Secure WebHDFS </h3><p style="text-align: left;">Once the cluster is secured, perform the following steps.</p><h4 id="Security-CreateaPrincipal" style="text-align: left;">Create a Principal</h4><p style="text-align: left;">To access WebHDFS in secure mode, a new Kerberos user (or Principal) must be created in Kerberos. To do this, use the <code>kadmin.local</code> command on the host where Kerberos is installed, and then run the <code>addprinc &lt;username&gt;</code> command. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: plain; gutter: false" style="font-size:12px;"># kadmin.local
+Authenticating as principal root/admin@TESTREALM.COM with password.
+kadmin.local:  addprinc testuser
+WARNING: no policy specified for testuser@TESTREALM.COM; defaulting to no policy
+Enter password for principal "testuser@TESTREALM.COM": 
+Re-enter password for principal "testuser@TESTREALM.COM": 
+Principal "testuser@TESTREALM.COM" created.
+</pre>
+</div></div><h4 id="Security-AddtoGroups" style="text-align: left;">Add to Groups</h4><p><strong>Optional</strong></p><p style="text-align: left;">Group information is accessed on the Namenode. If you need the Principal you just created (<code>testuser</code>, in our example above)  to reside in specific groups (for example, if you need permission to run a <code>GETCONTENTSUMMARY</code> command), you need to create an OS user on the Namenode that belongs to the groups you need: for example, <code>hadoop</code>.</p><p style="text-align: left;">To add a regular user on the NameNode, run the <code>useradd</code> command, as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">adduser -N -g hadoop testuser
+</pre>
+</div></div><h3 id="Security-UsingWebHDFSinSecureMode" style="text-align: left;">Using WebHDFS in Secure Mode</h3><p style="text-align: left;">To verify WebHDFS works in secure mode, perform the following steps:</p><h4 id="Security-Authenticate" style="text-align: left;">Authenticate</h4><p style="text-align: left;">You must authenticate yourself as a valid Kerberos user. Do this by running <code style="text-align: left;">kinit</code> command with your user name – in this example: <code>testuser</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: plain; gutter: false" style="font-size:12px;">$ kinit testuser
+Password for testuser@TESTREALM.COM:
+</pre>
+</div></div><h4 id="Security-VerifyyourAuthentication" style="text-align: left;">Verify your Authentication</h4><p><strong>Optional</strong></p><p style="text-align: left;">If <code style="text-align: left;">kinit</code> is successful, you will be able to validate that you have a valid Kerberos ticket by using the <code style="text-align: left;">klist</code> command, as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: plain; gutter: false" style="font-size:12px;">$ klist
+Ticket cache: FILE:/tmp/krb5cc_0
+Default principal: testuser@TESTREALM.COM
+
+Valid starting     Expires            Service principal
+09/19/13 01:36:40  09/20/13 01:36:40  krbtgt/TESTREALM.COM@TESTREALM.COM
+        renew until 09/26/13 01:36:40
+</pre>
+</div></div><h4 id="Security-VerifyCurlsupportsKerberosNegotiate" style="text-align: left;">Verify Curl supports Kerberos Negotiate</h4><p style="text-align: left;">Your version of curl must support Keberos's GSS-Negotiate feature; you can verify this by running the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: plain; gutter: false" style="font-size:12px;">$ curl -V
+curl 7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8x zlib/1.2.5
+Protocols: dict file ftp ftps gopher http https imap imaps ldap ldaps pop3 pop3s rtsp smtp smtps telnet tftp 
+Features: AsynchDNS GSS-Negotiate IPv6 Largefile NTLM NTLM_WB SSL libz
+</pre>
+</div></div><h4 id="Security-RunSecureWebHDFS" style="text-align: left;">Run Secure WebHDFS</h4><p style="text-align: left;">You can now run a secure WebHDFS command.</p><p>Note the <code style="text-align: left;">--negotiate</code> parameter in curl, which turns on Kerberos negotiate.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">curl -i --negotiate -u testuser "http://&lt;HOST&gt;:50070/webhdfs/v1/?op=GETCONTENTSUMMARY"
+</pre>
+</div></div><p style="text-align: left;">You should see a response like this:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: plain; gutter: false" style="font-size:12px;">Enter host password for user 'testuser':
+HTTP/1.1 401 
+Date: Thu, 19 Sep 2013 01:45:55 GMT
+Pragma: no-cache
+Date: Thu, 19 Sep 2013 01:45:55 GMT
+Pragma: no-cache
+WWW-Authenticate: Negotiate
+Set-Cookie: hadoop.auth=;Path=/;Expires=Thu, 01-Jan-1970 00:00:00 GMT
+Content-Type: text/html;charset=ISO-8859-1
+Cache-Control: must-revalidate,no-cache,no-store
+Content-Length: 1358
+Server: Jetty(7.6.10.v20130312)
+
+HTTP/1.1 200 OK
+Date: Thu, 19 Sep 2013 01:45:55 GMT
+Pragma: no-cache
+Cache-Control: no-cache
+Date: Thu, 19 Sep 2013 01:45:55 GMT
+Pragma: no-cache
+Set-Cookie: hadoop.auth="u=testuser&amp;p=testuser@SMUNGEEREALM.COM&amp;t=kerberos&amp;e=1379591155709&amp;s=zlzr9/EuqluQ9C2F6Yg8Fex9YzI=";Path=/
+Expires: Thu, 01 Jan 1970 00:00:00 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Server: Jetty(7.6.10.v20130312)
+
+{"ContentSummary":{"directoryCount":29,"fileCount":9,"length":3156,"quota":2147483647,"spaceConsumed":9468,"spaceQuota":-1}}
+</pre>
+</div></div><p style="text-align: left;">This response verifies that you are accessing WebHDFS in secure mode. Note the initial 401 response above, followed by the 200 response. This is a result of the curl Kerberos negotiation.</p><h2 id="Security-SecureHDFSwebaccessviaHttpFS">Secure HDFS web access via HttpFS</h2><p>HttpFS is another set of RESTful APIs that enable you to operate HDFS via the HTTP protocol. It has API's compatible with WebHDFS. You also need configuration changes to make it work with security.</p><h3 id="Security-Prerequisites.2">Prerequisites</h3><ul><li>Have Hadoop and HDFS installed and security enabled</li><li>Have HttpFS installed correctly</li></ul><h3 id="Security-AddprincipalforHttpFS">Add principal for HttpFS</h3><p>HttpFS needs two principals, one for secured HTTP access and another for secured Hadoop access. Since, in secured Hadoop, there is already an <code>HTTP/&lt;host FQDN&gt;@&lt;realm&gt;</code> principal for all HTTP access, only one new principal needs to be added. Run the following commands on KDC host (or use kadmin from another host):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&gt; kadmin.local
+kadmin.local : addprinc -randkey httpfs/host_fqdn@REALM</pre>
+</div></div><h3 id="Security-Createanddistributekeytab">Create and distribute keytab</h3><p>Put the new <code>httpfs/host_fqdn@REALM</code> principal and the existing <code>HTTP/host_fqdn@REALM</code> principal keys into one keytab file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local : ktadd -norandkey -k /etc/security/phd/keytab/httpfs-hostid.service.keytab httpfs/host_fqdn@REALM HTTP/host_fqdn@REALM</pre>
+</div></div><p>The above command should create the file <code>/etc/security/phd/keytab/httpfs-hostid.service.keytab</code>. Distribute this keytab file to the node where you installed HttpFS as <code>/etc/security/phd/keytab/httpfs.&lt;host_fqdn&gt;.service.keytab</code>.</p><h3 id="Security-Setthekeytabfileownershipandpermissions">Set the keytab file ownership and permissions</h3><p>Owner and permissions need to be properly setup for the distributed keytab file, to make it readable by HttpFS service. It is also recommended to make a symbol link as below:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&gt; chown httpfs:hadoop /etc/security/phd/keytab/httpfs.&lt;host_fqdn&gt;.service.keytab
+&gt; chmod 400 /etc/security/phd/keytab/httpfs.&lt;host_fqdn&gt;.service.keytab
+&gt; ln -s /etc/security/phd/keytab/httpfs.&lt;host_fqdn&gt;.service.keytab /etc/security/phd/keytab/httpfs.service.keytab</pre>
+</div></div><h3 id="Security-Configuration.1">Configuration</h3><p>Edit the file <code>/etc/gphd/hadoop-httpfs/conf/httpfs-site.xml </code>and add the following properties to the configuration file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>httpfs-site.xml</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: html/xml; gutter: false" style="font-size:12px;">&lt;property&gt;
+    &lt;name&gt;httpfs.authentication.type&lt;/name&gt;
+    &lt;value&gt;kerberos&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;httpfs.hadoop.authentication.type&lt;/name&gt;
+    &lt;value&gt;kerberos&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;httpfs.authentication.kerberos.principal&lt;/name&gt;
+    &lt;value&gt;HTTP/&lt;host_fqdn&gt;@&lt;REALM&gt;&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;httpfs.authentication.kerberos.keytab&lt;/name&gt;
+    &lt;value&gt;/etc/security/phd/keytab/httpfs.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;httpfs.hadoop.authentication.kerberos.principal&lt;/name&gt;
+    &lt;value&gt;httpfs/&lt;host_fqdn&gt;@&lt;REALM&gt;&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;httpfs.hadoop.authentication.kerberos.keytab&lt;/name&gt;
+    &lt;value&gt;/etc/security/phd/keytab/httpfs.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+    &lt;name&gt;httpfs.authentication.kerberos.name.rules&lt;/name&gt;
+    &lt;value&gt;DEFAULT&lt;/value&gt;
+    &lt;!-- same as the value of hadoop.security.auth_to_local in your core-site.xml --&gt;
+&lt;/property&gt;</pre>
+</div></div><p>Note that you should replace <code>&lt;host_fqdn&gt;@&lt;REALM&gt;</code> with your real FQDN and REALM in the above example. The property value of <code>httpfs.authentication.kerberos.name.rules</code> should be the same as the value of the property <code>hadoop.security.auth_to_local</code> in your <code>/etc/gphd/hadoop/conf/core-site.xml</code>.</p><h3 id="Security-RestartHttpFS">Restart HttpFS</h3><p>Next, restart HttpFS service to apply the configuration changes:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&gt; service hadoop-httpfs restart</pre>
+</div></div><h3 id="Security-Verifyit'sworking">Verify it's working</h3><p>You need curl with GSS negotiation enabled to verify that secured HttpFS is working. Check your curl features with:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&gt; curl -V
+curl 7.19.7 (x86_64-unknown-linux-gnu) libcurl/7.19.7 NSS/3.12.7.0 zlib/1.2.3 libidn/1.18 libssh2/1.2.2
+Protocols: tftp ftp telnet dict ldap ldaps http file https ftps scp sftp
+Features: GSS-Negotiate IDN IPv6 Largefile NTLM SSL libz</pre>
+</div></div><p>Now,  you need to login as a user who has a corresponding principal in the KDC, We use user <code>hadoop</code> as an example</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&gt; su - hadoop
+hadoop&gt; kinit
+&lt;output omitted, you need password to login&gt;
+hadoop&gt; curl -i --negotiate -u : "http://&lt;host_fqdn&gt;:&lt;PORT&gt;/webhdfs/v1/user?op=LISTSTATUS"
+HTTP/1.1 401 Unauthorized
+Server: Apache-Coyote/1.1
+WWW-Authenticate: Negotiate
+Set-Cookie: hadoop.auth=""; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
+Content-Type: text/html;charset=utf-8
+Content-Length: 951
+Date: Wed, 26 Feb 2014 09:37:51 GMT
+
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Set-Cookie: hadoop.auth="u=hadoop&amp;p=hadoop@EXAMPLE.COM&amp;t=kerberos-dt&amp;e=1393443472388&amp;s=18UnRj4g0DqUTHyPqC7kC3amsr0="; Version=1; Path=/
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Wed, 26 Feb 2014 09:37:51 GMT
+
+{"FileStatuses":{"FileStatus":[{"pathSuffix":"hadoop","type":"DIRECTORY","length":0,"owner":"hadoop","group":"hadoop","permission":"755","accessTime":0,"modificationTime":1393384282224,"blockSize":0,"replication":0},{"pathSuffix":"history","type":"DIRECTORY","length":0,"owner":"mapred","group":"hadoop","permission":"1777","accessTime":0,"modificationTime":1393384456756,"blockSize":0,"replication":0},{"pathSuffix":"hive","type":"DIRECTORY","length":0,"owner":"hive","group":"hadoop","permission":"755","accessTime":0,"modificationTime":1393384258263,"blockSize":0,"replication":0},{"pathSuffix":"oozie","type":"DIRECTORY","length":0,"owner":"oozie","group":"hadoop","permission":"755","accessTime":0,"modificationTime":1393384338240,"blockSize":0,"replication":0}]}}</pre>
+</div></div><p>In the above example, please ensure you replace <code>&lt;host_fqdn&gt;</code> with a real FQDN in your environment (it MUST be a FQDN, any short name or alias like "<code>localhost"</code> will not work), and replace  <code>&lt;PORT&gt;</code> with the actual port (by default, it is 14000).</p><p>If you see output similar to the above (one 401 response and one 200 response following it), your secured HttpFS is working.</p><h2 id="Security-FlumeSecurityConfiguration">Flume Security Configuration</h2><p>This section describes the Flume security configurations.</p><h3 id="Security-Prerequisites.3">Prerequisites</h3><ul><li>Flume must be installed on the cluster.</li><li>Security has been enabled for HDFS on the cluster.</li></ul><h3 id="Security-CreatetheFlumePrincipal">Create the Flume Principal</h3><p>On the KDC admin server, create a principal for the flume server:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: addprinc -randkey flume/host_fqdn@REALM</pre>
+</div></div><h3 id="Security-CreatetheFlumeKeytabFiles">Create the Flume Keytab Files</h3><p>On the KDC admin server, create the Flume keytab files:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/flume-hostid.service.keytab flume/host_fqdn@REALM</pre>
+</div></div><h3 id="Security-DistributetheFlumeKeytabFilestotheFlumeserverandchangetheownershipandpermission">Distribute the Flume Keytab Files to the Flume server and change the ownership and permission</h3><p>Move the keytab file created in the previous step to the  <code>/etc/security/phd/keytab</code> directory on the host running the Flume server, then run the following commands on the Flume server:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">cd /etc/security/phd/keytab
+
+chgrp flume flume-hostid.service.keytab
+ 
+chown flume flume-hostid.service.keytab
+ 
+chmod 400 flume-hostid.service.keytab
+ 
+ln -s flume-hostid.service.keytab flume.service.keytab</pre>
+</div></div><h3 id="Security-AsingleuserforallHDFSsinks">A single user for all HDFS sinks</h3><p>Add following properties in <code>/etc/gphd/flume/conf/flume.conf</code> in the Flume server:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">agentName.sinks.sinkName.hdfs.kerberosPrincipal = flume-hostid/host_fqdn@REALM
+agentName.sinks.sinkName.hdfs.kerberosKeytab = /etc/security/phd/keytab/flume.service.keytab</pre>
+</div></div><p> </p><p>Flume configuration example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">agent.sources = r1
+agent.sinks = k1
+agent.channels = c1
+
+# Describe/configure the source
+agent.sources.r1.type = netcat
+agent.sources.r1.bind = localhost
+agent.sources.r1.port = 44444
+
+# Describe the sink
+agent.sinks.k1.type = hdfs
+agent.sinks.k1.hdfs.path = hdfs://centos64-1.localdomain/user/flume
+agent.sinks.k1.hdfs.fileType = DataStream
+agent.sinks.k1.hdfs.kerberosPrincipal = flume/_HOST@REALM.COM
+agent.sinks.k1.hdfs.kerberosKeytab = /etc/security/phd/keytab/flume.service.keytab
+
+# Use a channel which buffers events in memory
+agent.channels.c1.type = memory
+agent.channels.c1.capacity = 1000
+agent.channels.c1.transactionCapacity = 100
+
+# Bind the source and sink to the channel
+agent.sources.r1.channels = c1
+agent.sinks.k1.channel = c1
+
+</pre>
+</div></div><h3 id="Security-DifferentusersacrossmultipleHDFSsinks">Different users across multiple HDFS sinks</h3><p>The same keytab path must be used across all HDFS sinks in the same agent, since Flume does not support using multiple Kerberos principals or keytabs in the same agent.</p><p>If multiple users on HDFS are used, impersonation in core-site.xml in Hadoop must be configured:</p><h4 id="Security-Configureimpersonationincore-site.xml">Configure impersonation in core-site.xml</h4><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">property&gt;
+     &lt;name&gt;hadoop.proxyuser.flume.groups&lt;/name&gt;
+     &lt;value&gt;group1,group2&lt;/value&gt;
+     &lt;description&gt;Allow the flume user to impersonate any members of group1 and group2&lt;/description&gt;
+&lt;/property&gt;
+&lt;property&gt;
+     &lt;name&gt;hadoop.proxyuser.flume.hosts&lt;/name&gt;
+     &lt;value&gt;host1,host2&lt;/value&gt;
+     &lt;description&gt;Allow the flume user to connect only from host1 and host2 to impersonate a user&lt;/description&gt;
+&lt;/property&gt;</pre>
+</div></div><p> </p><h4 id="Security-Flumeconfigurationformultiplesinks">Flume configuration for multiple sinks</h4><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">agent.sinks.sink-1.type = HDFS
+agent.sinks.sink-1.hdfs.kerberosPrincipal = flume-hostid/_HOST@REALM
+agent.sinks.sink-1.hdfs.kerberosKeytab = /etc/security/phd/keytab/flume.service.keytab
+agent.sinks.sink-1.hdfs.proxyUser = log1
+
+agent.sinks.sink-2.type = HDFS
+agent.sinks.sink-2.hdfs.kerberosPrincipal = flume-hostid/_HOST@REALM
+agent.sinks.sink-2.hdfs.kerberosKeytab = /etc/security/phd/keytab/flume.service.keytab
+agent.sinks.sink-2.hdfs.proxyUser = log2</pre>
+</div></div><p> </p><p>Flume configuration example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">agent.sources = r1
+agent.sinks = k1
+agent.channels = c1
+
+# Describe/configure the source
+agent.sources.r1.type = netcat
+agent.sources.r1.bind = localhost
+agent.sources.r1.port = 44444
+
+# Describe the sink
+agent.sinks.k1.type = hdfs
+agent.sinks.k1.hdfs.path = hdfs://centos64-1.localdomain/user/flume1
+agent.sinks.k1.hdfs.fileType = DataStream
+agent.sinks.k1.hdfs.kerberosPrincipal = flume/_HOST@REALM
+agent.sinks.k1.hdfs.kerberosKeytab = /etc/security/phd/keytab/flume.service.keytab
+agent.sinks.k1.hdfs.proxyUser = log1
+
+# Use a channel which buffers events in memory
+agent.channels.c1.type = memory
+agent.channels.c1.capacity = 1000
+agent.channels.c1.transactionCapacity = 100
+
+# Bind the source and sink to the channel
+agent.sources.r1.channels = c1
+agent.sinks.k1.channel = c1
+
+agent.sources = r2
+agent.sinks = k2
+agent.channels = c2
+
+# Describe/configure the source
+agent.sources.r2.type = netcat
+agent.sources.r2.bind = localhost
+agent.sources.r2.port = 55555
+
+# Describe the sink
+agent.sinks.k2.type = hdfs
+agent.sinks.k2.hdfs.path = hdfs://centos64-1.localdomain/user/flume2
+agent.sinks.k2.hdfs.fileType = DataStream
+agent.sinks.k2.hdfs.kerberosPrincipal = flume/_HOST@REALM
+agent.sinks.k2.hdfs.kerberosKeytab = /etc/security/phd/keytab/flume.service.keytab
+agent.sinks.k2.hdfs.proxyUser = log2
+
+# Use a channel which buffers events in memory
+agent.channels.c2.type = memory
+agent.channels.c2.capacity = 1000
+agent.channels.c2.transactionCapacity = 100
+
+# Bind the source and sink to the channel
+agent.sources.r2.channels = c2
+agent.sinks.k2.channel = c2</pre>
+</div></div><p> </p><h2 id="Security-OozieSecurityConfiguration">Oozie Security Configuration</h2><p>This section describes Oozie security configuration.</p><h3 id="Security-Prerequisites.4">Prerequisites</h3><ul><li>The Oozie server must be installed on the cluster.</li><li>Security must be enabled for HDFS and YARN on the cluster.</li></ul><h3 id="Security-CreatetheOoziePrincipal">Create the Oozie Principal</h3><p>On the KDC admin server, create a principal for the Oozie server:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: addprinc -randkey oozie/&lt;host_fqdn&gt;@REALM</pre>
+</div></div><p>where <code>&lt;host_fqdn&gt;</code> is the host where the Oozie server is running.</p><h3 id="Security-CreatetheHTTPPrincipalfortheOozieServer">Create the HTTP Principal for the Oozie Server</h3> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+                            Skip this step if the principal has already been created.
+                    </div>
+</div>
+<p>On the KDC admin server, create the HTTP principal for the host running the Oozie server.  This principal may have been created when enabling security for other services.  Skip this step if that is the case.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: addprinc -randkey HTTP/&lt;host_fqdn&gt;@REALM</pre>
+</div></div><h3 id="Security-CreatetheOozieKeytabFiles">Create the Oozie Keytab Files</h3><p>On the KDC admin server, create the Oozie keytab files:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/oozie-&lt;host_fqdn&gt;.service.keytab oozie/&lt;host_fqdn&gt;@REALM HTTP/&lt;host_fqdn&gt;@REALM</pre>
+</div></div><h3 id="Security-CopytheOozieKeytabFilestotheOozieserverandchangetheownershipandpermission">Copy the Oozie Keytab Files to the Oozie server and change the ownership and permission</h3><p>Move the keytab file created in the previous step to the <code>/etc/security/phd/keytab</code> directory on the host running the Oozie server:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">scp /ect/security/phd/keytab/oozie-&lt;host_fqdn&gt;.service.keytab &lt;oozie.host.name&gt;:/etc/security/phd/keytab/</pre>
+</div></div><p>Then run the following commands on the Oozie server:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">cd /etc/security/phd/keytab
+
+chgrp hadoop oozie-&lt;host_fqdn&gt;.service.keytab
+ 
+chown oozie oozie-&lt;host_fqdn&gt;.service.keytab
+ 
+chmod 400 oozie-&lt;host_fqdn&gt;.service.keytab
+ 
+ln -s oozie-&lt;host_fqdn&gt;.service.keytab oozie.service.keytab</pre>
+</div></div><h3 id="Security-EdittheOozieConfiguration">Edit the Oozie Configuration</h3><p>On the Oozie server, locate the Oozie configuration file, <code>/etc/gphd/oozie/conf/oozie-site.xml</code>, and change the following properties to configure Oozie to run in secure mode:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Property</th><th class="confluenceTh">Value</th></tr><tr><td class="confluenceTd"><p><code>oozie.service.HadoopAccessorService.kerberos.enabled</code></p></td><td class="confluenceTd">true</td></tr><tr><td class="confluenceTd"><code>local.realm</code></td><td class="confluenceTd"><code>&lt;YOUR-REALM&gt;</code></td></tr><tr><td class="confluenceTd"><code>oozie.service.HadoopAccessorService.keytab.file</code></td><td class="confluenceTd"><code>/etc/security/phd/keytab/oozie.service.keytab</code></td></tr><tr><td class="confluenceTd"><p><code>oozie.service.HadoopAccessorService.kerberos.principal</code></p></td><td class="confluenceTd"><p><code>oozie/_HOST@&lt;YOUR-REALM&gt;</code></p></td></tr><tr><td class="confluenceTd"><p><code>oozie.authentication.type</code></p></td><td class="confluenceTd"><p>simple</p></td></tr><tr><td class="confluenceTd"><p><code>oozie.authentication.kerberos.principal</code></p></td><td class="confluenceTd"><p><code>HTTP/</code>_HOST<code>@&lt;YOUR-REALM&gt;</code></p></td></tr><tr><td class="confluenceTd"><p><code>oozie.authentication.kerberos.name.rules</code></p></td><td class="confluenceTd"><p>Use the value configured for <code>hadoop.security.auth_to_local</code> in <code>core-site.xml</code>. The default value is <code>DEFAULT</code> if not set in the <code>core-site.xml</code>.</p></td></tr></tbody></table></div><h3 id="Security-UsingOoziewithaSecureHiveMetastoreServer">Using Oozie with a Secure Hive Metastore Server</h3><p>For hive actions to connect to a secure hive metastore, you need to add credential configuration to the <code> /etc/gphd/oozie/conf/oozie-site.xml</code> file, as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;oozie.credentials.credentialclasses&lt;/name&gt;
+  &lt;value&gt;
+    hcat=org.apache.oozie.action.hadoop.HCatCredentials,hive=org.apache.oozie.action.hadoop.HbaseCredentials
+  &lt;/value&gt;
+&lt;/property&gt;</pre>
+</div></div><h3 id="Security-VerifySecureOozie">Verify Secure Oozie</h3><p>Login as the authorized user, <code>kinit</code> then <code style="color: rgb(0,0,0);">cd</code> into the home directory of the authorized user, then run the Oozie Hive action:</p><div><div class="syntaxhighlighter nogutter java"><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">oozie job -oozie http://&lt;oozier_hostname&gt;:11000/oozie -config examples/apps/hive/job.properties -run</pre>
+</div></div><p> </p></div></div><p>Check Oozie job status using the<code> job_ID</code> returned after running the above command:</p><div><div class="syntaxhighlighter nogutter java"><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">oozie job -oozie http://&lt;oozie.host.name&gt;:11000/oozie -info &lt;JOBID&gt;</pre>
+</div></div><p> </p></div></div><h2 id="Security-SqoopSecurityConfiguration">Sqoop Security Configuration</h2><p><code>kerberos</code> configuration is required for a user submitting Sqoop jobs.</p><h2 id="Security-PigSecurityConfiguration">Pig Security Configuration</h2><p><code>kerberos</code> configuration is required for a user submitting Pig jobs.</p><h2 id="Security-MahoutSecurityConfiguration">Mahout Security Configuration</h2><p><code>kerberos</code> configuration is required for suser submitting Mahout jobs.</p><p> </p><p><span class="confluence-anchor-link" id="Security-Troubleshooting"></span></p><h2 id="Security-Troubleshooting.1">Troubleshooting</h2><p><strong>Log Files</strong></p><p>A good first step is to look for exceptions that may give you a clue as to the problem in the log files (where <code>hostname </code>is the host where the log file is located):</p><ul><li>namenode:<code> /var/log/gphd/hadoop-hdfs/hadoop-hdfs-namenode-hostname.log</code></li><li>resourcemanager: <code>/var/log/gphd/hadoop-yarn/yarn-yarn-resourcemanager-hostname.log</code></li><li>historyserver:<code> /var/log/gphd/hadoop-mapreduce/mapred-mapred-historyserver-hostname.log</code></li><li>datanode:<code> /var/log/gphd/hadoop-hdfs/hadoop-hdfs-datanode-hostname.log </code></li><li>nodemanager: <code>/var/log/gphd//hadoop-yarn/yarn-yarn-nodemanager-hostname.log</code></li></ul><p style="margin-left: 30.0px;">You can enable debug level logging for the Java Kerberos classes by editing <code>/etc/default/hadoop</code> and setting the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">HADOOP_OPTS="$HADOOP_OPTS -Dsun.security.krb5.debug=true"
+</pre>
+</div></div><p> </p><p>Also, remember that Kerberos operation in Hadoop in very sensitive to proper networking configuration:</p><ul><li>Host IP's for service nodes must reverse map to the FQDN's used to create the node principal for the service/FQDN.</li><li>hostname -f on a node must give the FQDN used to create the principal for the service/FQDN.</li></ul><p>Make sure your networking is properly configured before attempting to secure a cluster!</p><p> </p><p><strong>Data node will not start:</strong></p><ul><li>If you are getting a message about a data node requiring privileged resources to start, check that your ports are &lt; 1024 in<code> yarn-site.xml</code></li><li>Make sure you only changed the ports indicated in the instructions to be &lt; 1024</li><li>Make sure <code>core-site.xml</code> is configured to use Kerberos.</li><li>Check that the keytab and principal entries in site xml, and the keytab directory owner/group is correct.<ul><li>To inspect keytab files run: <code>klist -e -k -t pathtokeytab</code></li></ul></li><li>Check that you modified <code>hadoop-env.sh</code> and<code> /etc/init.d/hadoop-hdfs-datanode</code> properly.</li><li>If these are correct, run  <code>/etc/init.d/hadoop-hdfs-datanode start</code> and look at the output.</li><li>If there are no printed errors or it complains that no VM can be found, it is a JSVC problem.See <a href="#Security-BuildingandInstallingJSVC">Installing JSVC</a> .</li></ul><p><strong>Cannot find principal:</strong></p><ul><li>Check keytab and principal entries in the site xml, and in keytab dir perms.</li><li>Cannot get password for username: check keytab and principal entries in the site xml, and the keytab dir perms. If these all look OK, then run <code>kinit -k -t ./etc/security/phd/keytab/servicename.service.keytab</code> ; you should get no errors (just a prompt back). If there is an error, check that the principal and keytab are correct. Check to make sure you used<code> -norandkey</code> when creating keytab files. </li></ul><p><strong>Node manager will not start:</strong></p><ul><li>Login failure due to policy error exceptions in logs (typically seen as a remote exception to node manager for resource manager): check <code>/usr/lib/gphd/hadoop/etc/hadoop/hadoop-policy.xml</code> and replace any occurrences of <code>${HADOOP_HDFS_USER}</code> with <code>hdfs</code> and <code>${HADOOP_YARN_USER}</code> with <code>yarn</code>.</li></ul>
+</div></div>
+            </div><!-- end of content-->
+            
+            
+          </div><!-- end of container -->
+        </div><!--end of container-fluid-->
+      </div><!--end of main-wrap-->
+
+      <div class="site-footer desktop-only">
+          <div class="container-fluid">
+              <div class="site-footer-links">
+                  <span class="version"><a href='/'>Pivotal Documentation</a></span>
+                  <span>&copy;
+                      <script>
+                          var d = new Date();
+                          document.write(d.getFullYear());
+                      </script>
+                      <a href='http://gopivotal.com'>Pivotal Software</a> Inc. All Rights Reserved.
+                  </span>
+              </div>
+          </div>
+      </div>
+
+      <script type="text/javascript">
+          (function() {
+              var didInit = false;
+              function initMunchkin() {
+                  if(didInit === false) {
+                      didInit = true;
+                      Munchkin.init('625-IUJ-009');
+                  }
+              }
+              var s = document.createElement('script');
+              s.type = 'text/javascript';
+              s.async = true;
+              s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+              s.onreadystatechange = function() {
+                  if (this.readyState == 'complete' || this.readyState == 'loaded') {
+                      initMunchkin();
+                  }
+              };
+              s.onload = initMunchkin;
+              document.getElementsByTagName('head')[0].appendChild(s);
+          })();
+      </script>
+  </div><!--end of viewport-->
+  <div id="scrim"></div>
+</body>
+</html>
