@@ -875,7 +875,11 @@ Options:
 <p><span class="confluence-anchor-link" id="AdministeringPHDUsingtheCLI-EnablingHA"></span></p><h3 id="AdministeringPHDUsingtheCLI-HighAvailability">High Availability</h3><h4 id="AdministeringPHDUsingtheCLI-EnableHA"><span class="confluence-anchor-link" id="AdministeringPHDUsingtheCLI-EnableHA"></span></h4><h4 id="AdministeringPHDUsingtheCLI-EnablingHighAvailabilityonaCluster" style="text-align: left;">Enabling High Availability on a Cluster</h4><ul style="text-align: left;"><li>High availability is disabled by default.</li><li>Currently we only support Quorum Journal-based storage for high availability.</li><li>PCC 2.1 is the first version to support HA. If you are running an earlier version, download and import the latest version of Pivotal Command Center (PCC). (See <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a> for details.)</li></ul> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
-<p>Before you enable HA for any cluster, make sure you take into consideration our recommended <a href="InstallingPHDUsingtheCLI.html#InstallingPHDUsingtheCLI-HABestPractices">HA Best Practices</a>.</p>
+<p>Before you enable HA for any cluster:</p>
+<ul><li>Make sure you take into consideration our recommended <a href="InstallingPHDUsingtheCLI.html#InstallingPHDUsingtheCLI-HABestPractices">HA Best Practices</a>.</li>
+<li>Checkpoint your NameNode:</li>
+<ol><li>Stop all incoming data traffic.</li>
+<li><p>Then force checkpoint by running the following command:</br><code>sudo -u hdfs hdfs secondarynamenode -checkpoint force</code></p></li></ol></ul>
 </div>
 </div>
 <p style="text-align: left;">To enable HA for a new cluster; follow the instructions provided in the <em>High Availability</em> section of <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>.</p><p style="text-align: left;">To enable HA for an existing cluster, see below.</p><ol style="text-align: left;"><li><p>Stop the cluster:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
@@ -1685,7 +1689,6 @@ ENABLE_SECURE_FILESYSTEM=on</pre>
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># secure operation stuff -- comment the following lines, if present and not commented. Ignore if a property is missing.
 export HADOOP_SECURE_DN_USER=hdfs
 export HADOOP_SECURE_DN_LOG_DIR=${HADOOP_LOG_DIR}/hdfs
-export HADOOP_PID_DIR=/var/run/gphd/hadoop-hdfs/
 export HADOOP_SECURE_DN_PID_DIR=${HADOOP_PID_DIR}</pre>
 </div></div></li><li><p>For PHD-1.1.1.0 and lower, remove <code>/etc/gphd/zookeeper/conf/java.env</code> from all zookeeper-server nodes (if present). We recommend that you back up the file before removing.</p></li><li>Remove security from any manually installed service, following the reverse of the instructions to enable them.</li><li><p>Start the Cluster. At this point, security should be disabled and you may run test commands to validate data is still accessible in non-secure mode. </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client start -l &lt;CLUSTER_NAME&gt;</pre>
