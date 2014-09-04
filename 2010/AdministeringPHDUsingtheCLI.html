@@ -1279,7 +1279,7 @@ sudo -u hdfs hdfs dfsadmin -saveNamespace</pre>
 </div></div></li></ol></li><li><p>Stop the Zookeeper service from ICM Admin node. </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client stop -l test -s zookeeper</pre>
 </div></div></li></ol></li><li><p>You now need to remove security related changes from other service configuration files and scripts. You can use <code>icm_client reconfigure</code> for this purpose. Make sure it runs successfully on all nodes before proceeding further. Perform the following steps on the ICM Admin node.</p><ol><li><p>Fetch the current configuration in a directory <code>SecureConfiguration</code> :</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client fetch-configuration -o SecureConfiguration</pre>
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client fetch-configuration -o SecureConfiguration -l &lt;clustername&gt; </pre>
 </div></div></li><li>Copy <code>SecureConfiguration</code> to <code>NonSecureConfiguration.</code></li><li><p>Change to <code>NonSecureConfiguration</code> directory and make the following modifications to disable security-related changes:</p> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
