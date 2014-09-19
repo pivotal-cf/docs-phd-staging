@@ -10,17 +10,11 @@
   <title>Disabling Security on a 1.1.1 Cluster | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- TESTING -->
   <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
   <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
   <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
   <script src="javascripts/all.js" type="text/javascript"></script>
   
-  <!--  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
-  <script src="/javascripts/all.js" type="text/javascript"></script>-->
-
   <script type="text/javascript">
     if (window.location.host === 'docs.pivotal.io') {
       var _gaq = _gaq || [];
@@ -39,27 +33,8 @@
    <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
    
    <!-- Left-navigation code -->
-    <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
     <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
-    <script src="javascripts/jquery.cookie.js" type="text/javascript"></script>
-    <script src="javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
-    <script src="javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
-    <script type="text/javascript">
-                    $(document).ready(function($){
-					$('#accordion-1').dcAccordion({
-						eventType: 'click',
-						autoClose: true,
-						saveState: true,
-						disableLink: false,
-						speed: 'fast',
-						classActive: 'test',
-						showCount: false
-					});
-					});
-        </script>
-    <link href="stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
-    <!-- End left-navigation code -->
+    <!--End left-navigation code -->
    
 </head>
 
@@ -92,27 +67,28 @@
       s.parentNode.insertBefore(wf, s);
     })();
   </script>
-
-  <header class="header header-layout">
-		<h1 class="logo"><a href="/" class="logo">Pivotal HD Documentation</a></h1>      
-      
-		<div class="header-links js-bar-links">
-			<div class="btn-menu" data-behavior="MenuMobile"></div>
-			<div class="header-item">
-			  <a href="http://docs.pivotal.io">Docs Home</a>
-			</div>
-			<div class="header-item">
-			  <a href="http://support.pivotal.io" target="_blank">Support</a>
-			</div>
-			<div class="header-item searchbar js-searchbar">
-			  <a class="search-icon" data-behavior="Search"></a>
-			  <div class="search-input">
-				<!-- Google CSE Search Box -->
-				<div class="search-input-inner" id="docs-search">
-					<gcse:search></gcse:search>
-				</div>
-			  </div>
-			</div>
+   
+    <header class="header header-layout">
+      <h1 class="logo">
+        <a href="index.html">Pivotal HD Documentation</a> v2.1.0
+      </h1>
+      <div class="header-links js-bar-links">
+        <div class="btn-menu" data-behavior="MenuMobile"></div>
+        <div class="header-item">
+          <a href="http://docs.pivotal.io">Docs Home</a>
+        </div>
+        <div class="header-item">
+          <a href="http://support.pivotal.io" target="_blank">Support</a>
+        </div>
+        <div class="header-item searchbar js-searchbar">
+          <a class="search-icon" data-behavior="Search"></a>
+          <div class="search-input">
+            <!-- Google CSE Search Box -->
+            <div class="search-input-inner" id="docs-search">
+                <gcse:search></gcse:search>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
     
@@ -120,9 +96,8 @@
     
 	<!--INSERT SIDENAV -->
 	<div id="sub-nav" class="nav-container">
-   <ul class="accordion" id="accordion-1">
-      <li>
-         <a href="PivotalHD.html">Pivotal HD</a>
+
+         <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
          <ul>
             <li>
                <a href="PHDEnterprise2.1.0ReleaseNotes.html">PHD Enterprise 2.1.0 Release Notes</a>
@@ -335,12 +310,54 @@
                               </li>
                               <li>
                                  <a href="DecommissioningSlaveNodes.html">Decommissioning Slave Nodes</a>
+                                 <ul>
+                                    <li>
+                                       <a href="DecommissionNodesOverview.html">Decommission Nodes Overview</a>
+                                    </li>
+                                    <li>
+                                       <a href="DecommissioningtheDataNode.html">Decommissioning the Data Node</a>
+                                    </li>
+                                    <li>
+                                       <a href="DecommissioningtheYARNNodeManager.html">Decommissioning the YARN NodeManager</a>
+                                    </li>
+                                    <li>
+                                       <a href="ShuttingDowntheSlaveNode.html">Shutting Down the Slave Node</a>
+                                    </li>
+                                    <li>
+                                       <a href="ReplacingtheSlaveNode.html">Replacing the Slave Node</a>
+                                    </li>
+                                    <li>
+                                       <a href="ReplacingtheSlaveNodeDisk.html">Replacing the Slave Node Disk</a>
+                                    </li>
+                                 </ul>
                               </li>
                               <li>
                                  <a href="HighAvailability.html">High Availability</a>
+                                 <ul>
+                                    <li>
+                                       <a href="DisablingHighAvailability.html">Disabling High Availability</a>
+                                    </li>
+                                    <li>
+                                       <a href="EnablingRe-enablingHighAvailability.html">Enabling/Re-enabling High Availability</a>
+                                    </li>
+                                    <li>
+                                       <a href="HighAvailabilityCommandReference.html">High Availability Command Reference</a>
+                                    </li>
+                                 </ul>
                               </li>
                               <li>
                                  <a href="SecurityKerberosAuthentication.html">Security/Kerberos Authentication</a>
+                                 <ul>
+                                    <li>
+                                       <a href="EnablingKerberosAuthentication.html">Enabling Kerberos Authentication</a>
+                                    </li>
+                                    <li>
+                                       <a href="DisablingKerberosAuthentication.html">Disabling Kerberos Authentication</a>
+                                    </li>
+                                    <li>
+                                       <a href="SecureModeCommands.html">Secure Mode Commands</a>
+                                    </li>
+                                 </ul>
                               </li>
                               <li>
                                  <a href="UninstallingaCluster.html">Uninstalling a Cluster</a>
@@ -527,9 +544,8 @@
                </ul>
             </li>
          </ul>
-      </li>
-      <li>
-         <a href="PivotalCommandCenter.html">Pivotal Command Center</a>
+
+         <p class="productname"><a href="PivotalCommandCenter.html">Pivotal Command Center</a></p>
          <ul>
             <li>
                <a href="PCC2.3.0ReleaseNotes.html">PCC 2.3.0 Release Notes</a>
@@ -686,9 +702,8 @@
                </ul>
             </li>
          </ul>
-      </li>
-      <li>
-         <a href="PivotalHAWQ.html">Pivotal HAWQ</a>
+
+         <p class="productname"><a href="PivotalHAWQ.html">Pivotal HAWQ</a></p>
          <ul>
             <li>
                <a href="HAWQ1.2.1ReleaseNotes.html">HAWQ 1.2.1 Release Notes</a>
@@ -849,7 +864,7 @@
                            <a href="CREATETYPE.html">CREATE TYPE</a>
                         </li>
                         <li>
-                           <a href="CREATE-USER.html">CREATE USER</a>
+                           <a href="CREATEUSER.html">CREATE USER</a>
                         </li>
                         <li>
                            <a href="CREATEVIEW.html">CREATE VIEW</a>
@@ -909,7 +924,7 @@
                            <a href="DROPTYPE.html">DROP TYPE</a>
                         </li>
                         <li>
-                           <a href="DROP-USER.html">DROP USER</a>
+                           <a href="DROPUSER.html">DROP USER</a>
                         </li>
                         <li>
                            <a href="DROPVIEW.html">DROP VIEW</a>
@@ -1111,9 +1126,8 @@
                </ul>
             </li>
          </ul>
-      </li>
-   </ul>
-</div> 
+
+</div>
    
 	<!-- end INSERT SIDENAV -->
 	
