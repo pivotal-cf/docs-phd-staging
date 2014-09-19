@@ -1,0 +1,1367 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>Disabling High Availability | Pivotal HD Docs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TESTING -->
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <script src="javascripts/all.js" type="text/javascript"></script>
+  
+  <!--  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <script src="/javascripts/all.js" type="text/javascript"></script>-->
+
+  <script type="text/javascript">
+    if (window.location.host === 'docs.pivotal.io') {
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-39702075-1']);
+      _gaq.push(['_setDomainName', 'pivotal.io']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    }
+  </script>
+  <!-- Confluence HTML stylesheet -->
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+   
+   <!-- Left-navigation code -->
+    <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+    <script src="javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+        </script>
+    <link href="stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+    <!-- End left-navigation code -->
+   
+</head>
+
+<body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
+
+<div class="viewport">
+<div class='wrap'>
+  <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+  <script type="text/javascript">
+      try {
+          Typekit.load();
+      } catch (e) {
+      }
+  </script>
+  <script type="text/javascript">
+      document.domain = "pivotal.io";
+  </script>
+
+  <script type="text/javascript">
+    WebFontConfig = {
+      google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
+
+  <header class="header header-layout">
+		<h1 class="logo"><a href="/" class="logo">Pivotal HD Documentation</a></h1>      
+      
+		<div class="header-links js-bar-links">
+			<div class="btn-menu" data-behavior="MenuMobile"></div>
+			<div class="header-item">
+			  <a href="http://docs.pivotal.io">Docs Home</a>
+			</div>
+			<div class="header-item">
+			  <a href="http://support.pivotal.io" target="_blank">Support</a>
+			</div>
+			<div class="header-item searchbar js-searchbar">
+			  <a class="search-icon" data-behavior="Search"></a>
+			  <div class="search-input">
+				<!-- Google CSE Search Box -->
+				<div class="search-input-inner" id="docs-search">
+					<gcse:search></gcse:search>
+				</div>
+			  </div>
+			</div>
+      </div>
+    </header>
+    
+    <div class="container">
+    
+	<!--INSERT SIDENAV -->
+	<div id="sub-nav" class="nav-container">
+   <ul class="accordion" id="accordion-1">
+      <li>
+         <a href="PivotalHD.html">Pivotal HD</a>
+         <ul>
+            <li>
+               <a href="PHDEnterprise2.1.0ReleaseNotes.html">PHD Enterprise 2.1.0 Release Notes</a>
+            </li>
+            <li>
+               <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+               <ul>
+                  <li>
+                     <a href="OverviewofPHD.html">Overview of PHD</a>
+                  </li>
+                  <li>
+                     <a href="InstallationOverview.html">Installation Overview</a>
+                     <ul>
+                        <li>
+                           <a href="CommandLineInstallationFeatures.html">Command Line Installation Features</a>
+                        </li>
+                        <li>
+                           <a href="DeploymentOptions.html">Deployment Options</a>
+                        </li>
+                        <li>
+                           <a href="PlanningyourPHDClusterDeployment.html">Planning your PHD Cluster Deployment</a>
+                        </li>
+                        <li>
+                           <a href="BestPracticesforSelectingHardware.html">Best Practices for Selecting Hardware</a>
+                        </li>
+                        <li>
+                           <a href="BestPracticesforDeployingHadoopServices.html">Best Practices for Deploying Hadoop Services</a>
+                        </li>
+                        <li>
+                           <a href="HighAvailabilityBestPractices.html">High Availability Best Practices</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="PHDInstallationPrerequisites.html">PHD Installation Prerequisites</a>
+                     <ul>
+                        <li>
+                           <a href="BeforeYouBeginInstallingPHD.html">Before You Begin Installing PHD</a>
+                        </li>
+                        <li>
+                           <a href="PHDPrerequisiteChecklist.html">PHD Prerequisite Checklist</a>
+                        </li>
+                        <li>
+                           <a href="PHD-DNSLookup.html">PHD - DNS Lookup</a>
+                        </li>
+                        <li>
+                           <a href="PHD-JAVAJDK.html">PHD - JAVA JDK</a>
+                        </li>
+                        <li>
+                           <a href="PHD-VerifyPackageAccessibility.html">PHD - Verify Package Accessibility</a>
+                        </li>
+                        <li>
+                           <a href="PHD-TurnOffiptables.html">PHD - Turn Off iptables</a>
+                        </li>
+                        <li>
+                           <a href="PHD-DisableSELinux.html">PHD - Disable SELinux</a>
+                        </li>
+                        <li>
+                           <a href="EPELYumRepository.html">EPEL Yum Repository</a>
+                        </li>
+                        <li>
+                           <a href="SudoConfigurationFiles.html">Sudo Configuration Files</a>
+                        </li>
+                        <li>
+                           <a href="FQDN.html">FQDN</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+                     <ul>
+                        <li>
+                           <a href="PHDInstallationChecklist.html">PHD Installation Checklist</a>
+                        </li>
+                        <li>
+                           <a href="InstallingPivotalCommandCenter.html">Installing Pivotal Command Center</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringKerberosandLDAP.html">Configuring Kerberos and LDAP</a>
+                        </li>
+                        <li>
+                           <a href="PHD-ImportingthePackages.html">PHD - Importing the Packages</a>
+                        </li>
+                        <li>
+                           <a href="EditingtheClusterConfigurationFiles.html">Editing the Cluster Configuration Files</a>
+                        </li>
+                        <li>
+                           <a href="EditingtheHAWQConfigurationFile.html">Editing the HAWQ Configuration File</a>
+                        </li>
+                        <li>
+                           <a href="ForPXFwithGemFireXD.html">For PXF with GemFire XD</a>
+                        </li>
+                        <li>
+                           <a href="DeployingtheCluster.html">Deploying the Cluster</a>
+                        </li>
+                        <li>
+                           <a href="StartingtheCluster.html">Starting the Cluster</a>
+                        </li>
+                        <li>
+                           <a href="InitializingandStartingHAWQ.html">Initializing and Starting HAWQ</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="PHDPost-Installation.html">PHD Post-Installation</a>
+                     <ul>
+                        <li>
+                           <a href="VerifyingPHDServiceStatus.html">Verifying PHD Service Status</a>
+                        </li>
+                        <li>
+                           <a href="RunningPHDSamplePrograms.html">Running PHD Sample Programs</a>
+                        </li>
+                        <li>
+                           <a href="Post-InstallationReferenceInformation.html">Post-Installation Reference Information</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="PHDUpgradePrerequisites.html">PHD Upgrade Prerequisites</a>
+                     <ul>
+                        <li>
+                           <a href="UpgradePrerequisiteChecklist.html">Upgrade Prerequisite Checklist</a>
+                        </li>
+                        <li>
+                           <a href="FileLocationsandBackups.html">File Locations and Backups</a>
+                        </li>
+                        <li>
+                           <a href="VerifyJavaJDK.html">Verify Java JDK</a>
+                        </li>
+                        <li>
+                           <a href="CompactHBaseTables.html">Compact HBase Tables</a>
+                        </li>
+                        <li>
+                           <a href="SudoConfigurationFile.html">Sudo Configuration File</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="UpgradingPHD2.0.xto2.1.0.html">Upgrading PHD 2.0.x to 2.1.0</a>
+                     <ul>
+                        <li>
+                           <a href="PHDUpgradeChecklist-2.0.xto2.1.0.html">PHD Upgrade Checklist - 2.0.x to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="UpgradeInstructions-2.0.xto2.1.0.html">Upgrade Instructions - 2.0.x to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="MovingHAWQFilespacetoHA-enabledHDFS-2.0.xto2.1.0.html">Moving HAWQ Filespace to HA-enabled HDFS - 2.0.x to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="UpgradeReferenceInformation-2.0.xto2.1.0.html">Upgrade Reference Information - 2.0.x to 2.1.0</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="UpgradingPHDfrom1.1.1to2.1.0.html">Upgrading PHD from 1.1.1 to 2.1.0</a>
+                     <ul>
+                        <li>
+                           <a href="UpgradeChecklist-1.1.1to2.1.0.html">Upgrade Checklist - 1.1.1 to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="UpgradeInstructions-1.1.1to2.1.0.html">Upgrade Instructions - 1.1.1 to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="MovingHAWQFilespacetoHA-enabledHDFS-1.1.1to2.1.0.html">Moving HAWQ Filespace to HA-enabled HDFS - 1.1.1 to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="UpgradeReferenceInformation-1.1.1to2.1.0.html">Upgrade Reference Information - 1.1.1 to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="DisablingSecurityona1.1.1Cluster.html">Disabling Security on a 1.1.1 Cluster</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+                     <ul>
+                        <li>
+                           <a href="ManagingaPHDCluster.html">Managing a PHD Cluster</a>
+                           <ul>
+                              <li>
+                                 <a href="StartingaCluster.html">Starting a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="StoppingaCluster.html">Stopping a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="RestartingaCluster.html">Restarting a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="ReconfiguringaCluster.html">Reconfiguring a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="AddingRemovingServices.html">Adding/Removing Services</a>
+                              </li>
+                              <li>
+                                 <a href="AddingHoststoaCluster.html">Adding Hosts to a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="RetrievingInformationaboutaDeployedCluster.html">Retrieving Information about a Deployed Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="ListingClusters.html">Listing Clusters</a>
+                              </li>
+                              <li>
+                                 <a href="ExpandingaCluster.html">Expanding a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="ShrinkingaCluster.html">Shrinking a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="DecommissioningSlaveNodes.html">Decommissioning Slave Nodes</a>
+                              </li>
+                              <li>
+                                 <a href="HighAvailability.html">High Availability</a>
+                              </li>
+                              <li>
+                                 <a href="SecurityKerberosAuthentication.html">Security/Kerberos Authentication</a>
+                              </li>
+                              <li>
+                                 <a href="UninstallingaCluster.html">Uninstalling a Cluster</a>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="ManagingHAWQ.html">Managing HAWQ</a>
+                           <ul>
+                              <li>
+                                 <a href="InitializingHAWQ.html">Initializing HAWQ</a>
+                              </li>
+                              <li>
+                                 <a href="StartingHAWQ.html">Starting HAWQ</a>
+                              </li>
+                              <li>
+                                 <a href="StoppingHAWQ.html">Stopping HAWQ</a>
+                              </li>
+                              <li>
+                                 <a href="ModifyingHAWQUserConfiguration.html">Modifying HAWQ User Configuration</a>
+                              </li>
+                              <li>
+                                 <a href="ExpandingHAWQ.html">Expanding HAWQ</a>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="ManagingPHDRolesandHosts.html">Managing PHD Roles and Hosts</a>
+                        </li>
+                        <li>
+                           <a href="PHDServicesReference.html">PHD Services Reference</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="PHDFAQ-FrequentlyAskedQuestions.html">PHD FAQ - Frequently Asked Questions</a>
+                  </li>
+                  <li>
+                     <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+                  </li>
+                  <li>
+                     <a href="PHDRESTAPIs.html">PHD REST APIs</a>
+                     <ul>
+                        <li>
+                           <a href="SwaggerwithOAuth.html">Swagger with OAuth</a>
+                        </li>
+                        <li>
+                           <a href="ListofPHDRESTAPIs.html">List of PHD REST APIs</a>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </li>
+            <li>
+               <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+               <ul>
+                  <li>
+                     <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+                  </li>
+                  <li>
+                     <a href="ManuallyInstallingandUsingPivotalHD2.1Stack.html">Manually Installing and Using Pivotal HD 2.1 Stack</a>
+                     <ul>
+                        <li>
+                           <a href="DistributionContents.html">Distribution Contents</a>
+                        </li>
+                        <li>
+                           <a href="ApacheConfigurationReference.html">Apache Configuration Reference</a>
+                        </li>
+                        <li>
+                           <a href="AccessingPHD2.1.html">Accessing PHD 2.1</a>
+                        </li>
+                        <li>
+                           <a href="HadoopHDFS.html">Hadoop HDFS</a>
+                        </li>
+                        <li>
+                           <a href="HadoopYARN.html">Hadoop YARN</a>
+                        </li>
+                        <li>
+                           <a href="HadoopPseudo-distributedConfiguration.html">Hadoop Pseudo-distributed Configuration</a>
+                        </li>
+                        <li>
+                           <a href="Zookeeper.html">Zookeeper</a>
+                        </li>
+                        <li>
+                           <a href="HBase.html">HBase</a>
+                        </li>
+                        <li>
+                           <a href="Hive.html">Hive</a>
+                        </li>
+                        <li>
+                           <a href="HCatalog.html">HCatalog</a>
+                        </li>
+                        <li>
+                           <a href="Pig.html">Pig</a>
+                        </li>
+                        <li>
+                           <a href="Mahout.html">Mahout</a>
+                        </li>
+                        <li>
+                           <a href="Flume.html">Flume</a>
+                        </li>
+                        <li>
+                           <a href="Sqoop.html">Sqoop</a>
+                        </li>
+                        <li>
+                           <a href="Oozie.html">Oozie</a>
+                        </li>
+                        <li>
+                           <a href="GraphLab.html">GraphLab</a>
+                        </li>
+                        <li>
+                           <a href="Hamster.html">Hamster</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="ManuallyUpgradingPivotalHDStacktoPHD2.1.html">Manually Upgrading Pivotal HD Stack to PHD 2.1</a>
+                  </li>
+                  <li>
+                     <a href="PivotalHadoopEnhancements.html">Pivotal Hadoop Enhancements</a>
+                  </li>
+                  <li>
+                     <a href="Security.html">Security</a>
+                     <ul>
+                        <li>
+                           <a href="SecurityOverview.html">Security Overview</a>
+                        </li>
+                        <li>
+                           <a href="KerberosSetup.html">Kerberos Setup</a>
+                        </li>
+                        <li>
+                           <a href="LDAPSetup.html">LDAP Setup</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringKerberosforHDFSandYARNMapReduce.html">Configuring Kerberos for HDFS and YARN (MapReduce)</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringKerberosforHDFSHighAvailability.html">Configuring Kerberos for HDFS High Availability</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureZookeeper.html">Configuring Secure Zookeeper</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureHBase.html">Configuring Secure HBase</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureHive.html">Configuring Secure Hive</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringHCatalogWebHCatonSecureHive.html">Configuring HCatalog (WebHCat) on Secure Hive</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringHAWQonSecureHDFS.html">Configuring HAWQ on Secure HDFS</a>
+                        </li>
+                        <li>
+                           <a href="EnablingAuditing.html">Enabling Auditing</a>
+                        </li>
+                        <li>
+                           <a href="SecureWebAccess.html">Secure Web Access</a>
+                        </li>
+                        <li>
+                           <a href="SecureWebAccessviaHttpFS.html">Secure Web Access via HttpFS</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureFlume.html">Configuring Secure Flume</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureOozie.html">Configuring Secure Oozie</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureSqoop.html">Configuring Secure Sqoop</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecurePig.html">Configuring Secure Pig</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureMahout.html">Configuring Secure Mahout</a>
+                        </li>
+                        <li>
+                           <a href="Security-Troubleshooting.html">Security - Troubleshooting</a>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </li>
+         </ul>
+      </li>
+      <li>
+         <a href="PivotalCommandCenter.html">Pivotal Command Center</a>
+         <ul>
+            <li>
+               <a href="PCC2.3.0ReleaseNotes.html">PCC 2.3.0 Release Notes</a>
+            </li>
+            <li>
+               <a href="PCCUserGuide.html">PCC User Guide</a>
+               <ul>
+                  <li>
+                     <a href="PCCOverview.html">PCC Overview</a>
+                  </li>
+                  <li>
+                     <a href="PCCInstallationPrerequisites.html">PCC Installation Prerequisites</a>
+                     <ul>
+                        <li>
+                           <a href="BeforeYouBeginInstallingPCC.html">Before You Begin Installing PCC</a>
+                        </li>
+                        <li>
+                           <a href="PCCPrerequisiteChecklist.html">PCC Prerequisite Checklist</a>
+                        </li>
+                        <li>
+                           <a href="PCC-DNSLookup.html">PCC - DNS Lookup</a>
+                        </li>
+                        <li>
+                           <a href="PCC-JAVAJDK.html">PCC - JAVA JDK</a>
+                        </li>
+                        <li>
+                           <a href="PCC-VerifyPackageAccessibility.html">PCC - Verify Package Accessibility</a>
+                        </li>
+                        <li>
+                           <a href="PCC-TurnOffiptables.html">PCC - Turn Off iptables</a>
+                        </li>
+                        <li>
+                           <a href="PCC-DisableSELinux.html">PCC - Disable SELinux</a>
+                        </li>
+                        <li>
+                           <a href="PCC-EPELYumRepository.html">PCC - EPEL Yum Repository</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="InstallationInstructions.html">Installation Instructions</a>
+                     <ul>
+                        <li>
+                           <a href="SupportedPlatformsandBrowsers.html">Supported Platforms and Browsers</a>
+                        </li>
+                        <li>
+                           <a href="PCCInstallationChecklist.html">PCC Installation Checklist</a>
+                        </li>
+                        <li>
+                           <a href="InstallPCC.html">Install PCC</a>
+                        </li>
+                        <li>
+                           <a href="PCC-ImportingthePackages.html">PCC - Importing the Packages</a>
+                        </li>
+                        <li>
+                           <a href="LaunchingPCC.html">Launching PCC</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="UninstallingPCC.html">Uninstalling PCC</a>
+                  </li>
+                  <li>
+                     <a href="UpgradingPCC.html">Upgrading PCC</a>
+                  </li>
+                  <li>
+                     <a href="UsingPCC.html">Using PCC</a>
+                     <ul>
+                        <li>
+                           <a href="PCCUIOverview.html">PCC UI Overview</a>
+                        </li>
+                        <li>
+                           <a href="LoggingIn.html">Logging In</a>
+                        </li>
+                        <li>
+                           <a href="PCCUISettings.html">PCC UI Settings</a>
+                        </li>
+                        <li>
+                           <a href="PCCUIUserManagement.html">PCC UI User Management</a>
+                        </li>
+                        <li>
+                           <a href="ClusterStatusPage.html">Cluster Status Page</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringandDeployingaCluster.html">Configuring and Deploying a Cluster</a>
+                           <ul>
+                              <li>
+                                 <a href="LaunchingtheAddClusterWizard.html">Launching the Add Cluster Wizard</a>
+                              </li>
+                              <li>
+                                 <a href="CreateClusterDefinition.html">Create Cluster Definition</a>
+                              </li>
+                              <li>
+                                 <a href="VersionsServicesandHosts.html">Versions, Services, and Hosts</a>
+                              </li>
+                              <li>
+                                 <a href="HostVerification.html">Host Verification</a>
+                              </li>
+                              <li>
+                                 <a href="ClusterTopology.html">Cluster Topology</a>
+                              </li>
+                              <li>
+                                 <a href="ClusterConfiguration.html">Cluster Configuration</a>
+                              </li>
+                              <li>
+                                 <a href="Validation.html">Validation</a>
+                              </li>
+                              <li>
+                                 <a href="DeploymentStatus.html">Deployment Status</a>
+                              </li>
+                              <li>
+                                 <a href="Summary.html">Summary</a>
+                              </li>
+                              <li>
+                                 <a href="StartingtheClusterfromtheUI.html">Starting the Cluster from the UI</a>
+                              </li>
+                              <li>
+                                 <a href="InitializingandConfiguringHAWQ.html">Initializing and Configuring HAWQ</a>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="StartingStoppingandUninstallingaCluster.html">Starting, Stopping, and Uninstalling a Cluster</a>
+                        </li>
+                        <li>
+                           <a href="PCCUIDashboard.html">PCC UI Dashboard</a>
+                        </li>
+                        <li>
+                           <a href="ClusterAnalysis.html">Cluster Analysis</a>
+                        </li>
+                        <li>
+                           <a href="MapReduceJobMonitor.html">MapReduce Job Monitor</a>
+                        </li>
+                        <li>
+                           <a href="YarnAppMonitor.html">Yarn App Monitor</a>
+                        </li>
+                        <li>
+                           <a href="HAWQQueryMonitor.html">HAWQ Query Monitor</a>
+                        </li>
+                        <li>
+                           <a href="Topology.html">Topology</a>
+                        </li>
+                        <li>
+                           <a href="Logs.html">Logs</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="ConfiguringPCCforLDAP.html">Configuring PCC for LDAP</a>
+                  </li>
+                  <li>
+                     <a href="CommandLineReference.html">Command Line Reference</a>
+                  </li>
+               </ul>
+            </li>
+         </ul>
+      </li>
+      <li>
+         <a href="PivotalHAWQ.html">Pivotal HAWQ</a>
+         <ul>
+            <li>
+               <a href="HAWQ1.2.1ReleaseNotes.html">HAWQ 1.2.1 Release Notes</a>
+            </li>
+            <li>
+               <a href="HAWQInstallationandUpgrade.html">HAWQ Installation and Upgrade</a>
+               <ul>
+                  <li>
+                     <a href="PreparingtoInstallHAWQ.html">Preparing to Install HAWQ</a>
+                  </li>
+                  <li>
+                     <a href="InstallingHAWQ.html">Installing HAWQ</a>
+                  </li>
+                  <li>
+                     <a href="InstallingtheHAWQComponents.html">Installing the HAWQ Components</a>
+                  </li>
+                  <li>
+                     <a href="UpgradingHAWQandComponents.html">Upgrading HAWQ and Components</a>
+                  </li>
+                  <li>
+                     <a href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a>
+                  </li>
+               </ul>
+            </li>
+            <li>
+               <a href="HAWQAdministration.html">HAWQ Administration</a>
+               <ul>
+                  <li>
+                     <a href="HAWQOverview.html">HAWQ Overview</a>
+                  </li>
+                  <li>
+                     <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+                  </li>
+                  <li>
+                     <a href="UsingHAWQtoQueryData.html">Using HAWQ to Query Data</a>
+                  </li>
+                  <li>
+                     <a href="UsingProceduralLanguages.html">Using Procedural Languages</a>
+                  </li>
+                  <li>
+                     <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+                  </li>
+                  <li>
+                     <a href="ConfiguringKerberosAuthentication.html">Configuring Kerberos Authentication</a>
+                  </li>
+                  <li>
+                     <a href="ConfiguringLDAPAuthentication.html">Configuring LDAP Authentication</a>
+                  </li>
+                  <li>
+                     <a href="BackingUpandRestoringHAWQDatabases.html">Backing Up and Restoring HAWQ Databases</a>
+                  </li>
+                  <li>
+                     <a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a>
+                  </li>
+                  <li>
+                     <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+                  </li>
+                  <li>
+                     <a href="HAWQFilespacesandHighAvailabilityEnabledHDFS.html">HAWQ Filespaces and High Availability Enabled HDFS</a>
+                  </li>
+                  <li>
+                     <a href="SQLCommandReference.html">SQL Command Reference</a>
+                     <ul>
+                        <li>
+                           <a href="ABORT.html">ABORT</a>
+                        </li>
+                        <li>
+                           <a href="ANALYZE.html">ANALYZE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERAGGREGATE.html">ALTER AGGREGATE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERFUNCTION.html">ALTER FUNCTION</a>
+                        </li>
+                        <li>
+                           <a href="ALTEROPERATOR.html">ALTER OPERATOR</a>
+                        </li>
+                        <li>
+                           <a href="ALTEROPERATORCLASS.html">ALTER OPERATOR CLASS</a>
+                        </li>
+                        <li>
+                           <a href="ALTERROLE.html">ALTER ROLE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERTABLE.html">ALTER TABLE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERTABLESPACE.html">ALTER TABLESPACE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERTYPE.html">ALTER TYPE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERUSER.html">ALTER USER</a>
+                        </li>
+                        <li>
+                           <a href="BEGIN.html">BEGIN</a>
+                        </li>
+                        <li>
+                           <a href="CHECKPOINT.html">CHECKPOINT</a>
+                        </li>
+                        <li>
+                           <a href="CLOSE.html">CLOSE</a>
+                        </li>
+                        <li>
+                           <a href="COMMIT.html">COMMIT</a>
+                        </li>
+                        <li>
+                           <a href="COPY.html">COPY</a>
+                        </li>
+                        <li>
+                           <a href="CREATEAGGREGATE.html">CREATE AGGREGATE</a>
+                        </li>
+                        <li>
+                           <a href="CREATEDATABASE.html">CREATE DATABASE</a>
+                        </li>
+                        <li>
+                           <a href="CREATEEXTERNALTABLE.html">CREATE EXTERNAL TABLE</a>
+                        </li>
+                        <li>
+                           <a href="CREATEFUNCTION.html">CREATE FUNCTION</a>
+                        </li>
+                        <li>
+                           <a href="CREATEGROUP.html">CREATE GROUP</a>
+                        </li>
+                        <li>
+                           <a href="CREATELANGUAGE.html">CREATE LANGUAGE</a>
+                        </li>
+                        <li>
+                           <a href="CREATEOPERATOR.html">CREATE OPERATOR</a>
+                        </li>
+                        <li>
+                           <a href="CREATEOPERATORCLASS.html">CREATE OPERATOR CLASS</a>
+                        </li>
+                        <li>
+                           <a href="CREATERESOURCEQUEUE.html">CREATE RESOURCE QUEUE</a>
+                        </li>
+                        <li>
+                           <a href="CREATEROLE.html">CREATE ROLE</a>
+                        </li>
+                        <li>
+                           <a href="CREATESCHEMA.html">CREATE SCHEMA</a>
+                        </li>
+                        <li>
+                           <a href="CREATESEQUENCE.html">CREATE SEQUENCE</a>
+                        </li>
+                        <li>
+                           <a href="CREATETABLE.html">CREATE TABLE</a>
+                        </li>
+                        <li>
+                           <a href="CREATETABLEAS.html">CREATE TABLE AS</a>
+                        </li>
+                        <li>
+                           <a href="CREATETABLESPACE.html">CREATE TABLESPACE</a>
+                        </li>
+                        <li>
+                           <a href="CREATETYPE.html">CREATE TYPE</a>
+                        </li>
+                        <li>
+                           <a href="CREATE-USER.html">CREATE USER</a>
+                        </li>
+                        <li>
+                           <a href="CREATEVIEW.html">CREATE VIEW</a>
+                        </li>
+                        <li>
+                           <a href="DEALLOCATE.html">DEALLOCATE</a>
+                        </li>
+                        <li>
+                           <a href="DECLARE.html">DECLARE</a>
+                        </li>
+                        <li>
+                           <a href="DROPAGGREGATE.html">DROP AGGREGATE</a>
+                        </li>
+                        <li>
+                           <a href="DROPDATABASE.html">DROP DATABASE</a>
+                        </li>
+                        <li>
+                           <a href="DROPEXTERNALTABLE.html">DROP EXTERNAL TABLE</a>
+                        </li>
+                        <li>
+                           <a href="DROPFILESPACE.html">DROP FILESPACE</a>
+                        </li>
+                        <li>
+                           <a href="DROPFUNCTION.html">DROP FUNCTION</a>
+                        </li>
+                        <li>
+                           <a href="DROPGROUP.html">DROP GROUP</a>
+                        </li>
+                        <li>
+                           <a href="DROPOPERATOR.html">DROP OPERATOR</a>
+                        </li>
+                        <li>
+                           <a href="DROPOPERATORCLASS.html">DROP OPERATOR CLASS</a>
+                        </li>
+                        <li>
+                           <a href="DROPOWNED.html">DROP OWNED</a>
+                        </li>
+                        <li>
+                           <a href="DROPRESOURCEQUEUE.html">DROP RESOURCE QUEUE</a>
+                        </li>
+                        <li>
+                           <a href="DROPROLE.html">DROP ROLE</a>
+                        </li>
+                        <li>
+                           <a href="DROPSCHEMA.html">DROP SCHEMA</a>
+                        </li>
+                        <li>
+                           <a href="DROPSEQUENCE.html">DROP SEQUENCE</a>
+                        </li>
+                        <li>
+                           <a href="DROPTABLE.html">DROP TABLE</a>
+                        </li>
+                        <li>
+                           <a href="DROPTABLESPACE.html">DROP TABLESPACE</a>
+                        </li>
+                        <li>
+                           <a href="DROPTYPE.html">DROP TYPE</a>
+                        </li>
+                        <li>
+                           <a href="DROP-USER.html">DROP USER</a>
+                        </li>
+                        <li>
+                           <a href="DROPVIEW.html">DROP VIEW</a>
+                        </li>
+                        <li>
+                           <a href="END.html">END</a>
+                        </li>
+                        <li>
+                           <a href="EXECUTE.html">EXECUTE</a>
+                        </li>
+                        <li>
+                           <a href="EXPLAIN.html">EXPLAIN</a>
+                        </li>
+                        <li>
+                           <a href="FETCH.html">FETCH</a>
+                        </li>
+                        <li>
+                           <a href="GRANT.html">GRANT</a>
+                        </li>
+                        <li>
+                           <a href="INSERT.html">INSERT</a>
+                        </li>
+                        <li>
+                           <a href="PREPARE.html">PREPARE</a>
+                        </li>
+                        <li>
+                           <a href="REASSIGNOWNED.html">REASSIGN OWNED</a>
+                        </li>
+                        <li>
+                           <a href="RELEASESAVEPOINT.html">RELEASE SAVEPOINT</a>
+                        </li>
+                        <li>
+                           <a href="RESET.html">RESET</a>
+                        </li>
+                        <li>
+                           <a href="REVOKE.html">REVOKE</a>
+                        </li>
+                        <li>
+                           <a href="ROLLBACK.html">ROLLBACK</a>
+                        </li>
+                        <li>
+                           <a href="ROLLBACKTOSAVEPOINT.html">ROLLBACK TO SAVEPOINT</a>
+                        </li>
+                        <li>
+                           <a href="SAVEPOINT.html">SAVEPOINT</a>
+                        </li>
+                        <li>
+                           <a href="SELECT.html">SELECT</a>
+                        </li>
+                        <li>
+                           <a href="SELECTINTO.html">SELECT INTO</a>
+                        </li>
+                        <li>
+                           <a href="SET.html">SET</a>
+                        </li>
+                        <li>
+                           <a href="SETROLE.html">SET ROLE</a>
+                        </li>
+                        <li>
+                           <a href="SETSESSIONAUTHORIZATION.html">SET SESSION AUTHORIZATION</a>
+                        </li>
+                        <li>
+                           <a href="SHOW.html">SHOW</a>
+                        </li>
+                        <li>
+                           <a href="TRUNCATE.html">TRUNCATE</a>
+                        </li>
+                        <li>
+                           <a href="VACUUM.html">VACUUM</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+                     <ul>
+                        <li>
+                           <a href="gpactivatestandby.html">gpactivatestandby</a>
+                        </li>
+                        <li>
+                           <a href="gpcheckperf.html">gpcheckperf</a>
+                        </li>
+                        <li>
+                           <a href="gpconfig.html">gpconfig</a>
+                        </li>
+                        <li>
+                           <a href="gpexpand.html">gpexpand</a>
+                        </li>
+                        <li>
+                           <a href="gpextract.html">gpextract</a>
+                        </li>
+                        <li>
+                           <a href="gpfdist.html">gpfdist</a>
+                        </li>
+                        <li>
+                           <a href="gpfilespace.html">gpfilespace</a>
+                        </li>
+                        <li>
+                           <a href="gpinitstandby.html">gpinitstandby</a>
+                        </li>
+                        <li>
+                           <a href="gpinitsystem.html">gpinitsystem</a>
+                        </li>
+                        <li>
+                           <a href="gpload.html">gpload</a>
+                        </li>
+                        <li>
+                           <a href="gplogfilter.html">gplogfilter</a>
+                        </li>
+                        <li>
+                           <a href="gprecoverseg.html">gprecoverseg</a>
+                        </li>
+                        <li>
+                           <a href="gpscp.html">gpscp</a>
+                        </li>
+                        <li>
+                           <a href="gpstart.html">gpstart</a>
+                        </li>
+                        <li>
+                           <a href="gpssh.html">gpssh</a>
+                        </li>
+                        <li>
+                           <a href="gssh-exkeys.html">gssh-exkeys</a>
+                        </li>
+                        <li>
+                           <a href="gpstate.html">gpstate</a>
+                        </li>
+                        <li>
+                           <a href="gpstop.html">gpstop</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="ClientUtilityReference.html">Client Utility Reference</a>
+                     <ul>
+                        <li>
+                           <a href="createdb.html">createdb</a>
+                        </li>
+                        <li>
+                           <a href="createlang.html">createlang</a>
+                        </li>
+                        <li>
+                           <a href="createuser.html">createuser</a>
+                        </li>
+                        <li>
+                           <a href="dropdb.html">dropdb</a>
+                        </li>
+                        <li>
+                           <a href="dropuser.html">dropuser</a>
+                        </li>
+                        <li>
+                           <a href="pg_dump.html">pg_dump</a>
+                        </li>
+                        <li>
+                           <a href="pg_dumpall.html">pg_dumpall</a>
+                        </li>
+                        <li>
+                           <a href="pg_restore.html">pg_restore</a>
+                        </li>
+                        <li>
+                           <a href="psql.html">psql</a>
+                        </li>
+                        <li>
+                           <a href="vacuumdb.html">vacuumdb</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>
+                  </li>
+                  <li>
+                     <a href="CharacterSetSupportReference.html">Character Set Support Reference</a>
+                  </li>
+                  <li>
+                     <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+                  </li>
+                  <li>
+                     <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+                  </li>
+                  <li>
+                     <a href="SystemCatalogReference.html">System Catalog Reference</a>
+                  </li>
+                  <li>
+                     <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+                  </li>
+                  <li>
+                     <a href="ManagingHAWQLogFiles.html">Managing HAWQ Log Files</a>
+                  </li>
+               </ul>
+            </li>
+            <li>
+               <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+               <ul>
+                  <li>
+                     <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+                  </li>
+                  <li>
+                     <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+                  </li>
+               </ul>
+            </li>
+         </ul>
+      </li>
+   </ul>
+</div> 
+   
+	<!-- end INSERT SIDENAV -->
+	
+	<main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container">Disabling High Availability</h1>
+          <div id="js-quick-links"></div>          
+        
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>     
+        
+		<!-- Python script replaces main content -->
+		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Disabling High Availability</div><div class="wiki-content group" id="main-content">
+<p>Starting with PHD 2.1, high availability is enabled by default for new installations.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>HDFS commands need a Kerberos ticket when running in secure mode.  See <a href="SecureModeCommands.html">Secure Mode Commands</a> for more details.</p>
+</div>
+</div>
+<p> </p><p>To disable high availability:</p><ol><li><p>Synchronize the active and standby NameNode data. On the NameNode, run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo -u hdfs hdfs dfsadmin -safemode enter
+sudo -u hdfs hdfs dfsadmin -saveNamespace</pre>
+</div></div></li><li><p>Stop the cluster.  On the Admin node, run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client stop -l &lt;CLUSTERNAME&gt;</pre>
+</div></div></li><li><p>For HAWQ users, stop HAWQ:</p><p>From the HAWQ master, as <code>gpadmin</code>, run the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/etc/init.d/hawq stop</pre>
+</div></div></li><li><p>Back up the NameNode data. On both the active and standby NameNode copy <code> {dfs.namenode.name.dir}/ </code>current to a backup directory.</p></li><li><p>Fetch the configurations for the cluster in a local directory:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client fetch-configuration -l &lt;CLUSTERNAME&gt; -o &lt;LOCALDIR&gt;</pre>
+</div></div></li><li>Edit <code>clusterConfig.xml</code> as follows:<br/><p>Uncomment out the <code>secondarynamenode</code> role in <code>hdfs</code> service.</p><p>Comment the <code>standbynamenode</code> and <code>journalnode</code> roles in <code>hdfs</code> service.<br/>Uncomment or add the secondary.namenode.disk.mount.points.</p><p>Comment the <code>nameservices</code>, <code>namenode1id</code>, <code>namenode2id</code>, <code>journalpath</code>, and <code>journalport</code> entries in <code>serviceConfigGlobals.<br/> <br/> </code></p></li><li><p>Edit <code>hdfs/hdfs-site.xml</code> as follows:<br/>Comment the following properties:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt; 
+  &lt;name&gt;dfs.nameservices&lt;/name&gt; 
+  &lt;value&gt;${nameservices}&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.ha.namenodes.${nameservices}&lt;/name&gt; 
+  &lt;value&gt;${namenode1id},${namenode2id}&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.namenode.rpc-address.${nameservices}.${namenode1id}&lt;/name&gt; 
+  &lt;value&gt;${namenode}:8020&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.namenode.rpc-address.${nameservices}.${namenode2id}&lt;/name&gt; 
+  &lt;value&gt;${standbynamenode}:8020&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.namenode.http-address.${nameservices}.${namenode1id}&lt;/name&gt; 
+  &lt;value&gt;${namenode}:50070&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.namenode.http-address.${nameservices}.${namenode2id}&lt;/name&gt; 
+  &lt;value&gt;${standbynamenode}:50070&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.namenode.shared.edits.dir&lt;/name&gt; 
+  &lt;value&gt;qjournal://${journalnode}/${nameservices}&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.client.failover.proxy.provider.${nameservices}&lt;/name&gt; 
+  &lt;value&gt;org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.ha.fencing.methods&lt;/name&gt; 
+  &lt;value&gt;
+  sshfence
+  shell(/bin/true)
+  &lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;property&gt;
+  &lt;name&gt;dfs.ha.fencing.ssh.private-key-files&lt;/name&gt;
+  &lt;value&gt;/home/hdfs/.ssh/id_rsa&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt; 
+  &lt;name&gt;dfs.journalnode.edits.dir&lt;/name&gt; 
+  &lt;value&gt;${journalpath}&lt;/value&gt; 
+&lt;/property&gt; 
+
+&lt;!-- Namenode Auto HA related properties --&gt; 
+&lt;property&gt;
+   &lt;name&gt;dfs.ha.automatic-failover.enabled&lt;/name&gt;
+   &lt;value&gt;true&lt;/value&gt;
+ &lt;/property&gt;
+&lt;!-- END Namenode Auto HA related properties --&gt;</pre>
+</div></div><p>Uncomment or add the following properties:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;
+  &lt;value&gt;${secondarynamenode}:50090&lt;/value&gt;
+  &lt;description&gt;
+    The secondary namenode http server address and port.
+  &lt;/description&gt;
+&lt;/property&gt;</pre>
+</div></div></li><li><p>Edit <code>yarn/yarn-site.xml:</code></p><p>Comment the following property:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+    &lt;name&gt;mapreduce.job.hdfs-servers&lt;/name&gt;
+    &lt;value&gt;hdfs://${nameservices}&lt;/value&gt;
+&lt;/property&gt;
+</pre>
+</div></div><p>and add the following property:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+     &lt;name&gt;mapreduce.job.hdfs-servers&lt;/name&gt;
+    &lt;value&gt;hdfs://${namenode}:${dfs.port}&lt;/value&gt;
+&lt;/property&gt;
+</pre>
+</div></div></li><li><p>Edit <code>hdfs/core-site.xml</code> as follows:</p><p>Set the following property key value:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;fs.defaultFS&lt;/name&gt;
+  &lt;value&gt;hdfs://${namenode}:${dfs.port}&lt;/value&gt; 
+  &lt;description&gt;The name of the default file system.  A URI whose
+  scheme and authority determine the FileSystem implementation.  The
+  uri's scheme determines the config property (fs.SCHEME.impl) naming
+  the FileSystem implementation class.  The uri's authority is used to
+  determine the host, port, etc. for a filesystem.&lt;/description&gt;
+&lt;/property&gt;</pre>
+</div></div><p>Comment the following property:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+   &lt;name&gt;ha.zookeeper.quorum&lt;/name&gt;
+   &lt;value&gt;${zookeeper-server}:${zookeeper.client.port}&lt;/value&gt;
+ &lt;/property&gt;</pre>
+</div></div></li><li><p>Edit <code>hbase/hbase-site.xml</code> as follows:<br/>Set the following property key value:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+    &lt;name&gt;hbase.rootdir&lt;/name&gt;
+    &lt;value&gt;hdfs://${namenode}:${dfs.port}/apps/hbase/data&lt;/value&gt;
+    &lt;description&gt;The directory shared by region servers and into
+    which HBase persists.  The URL should be 'fully-qualified'
+    to include the filesystem scheme.  For example, to specify the
+    HDFS directory '/hbase' where the HDFS instance's namenode is
+    running at namenode.example.org on port 9000, set this value to:
+    hdfs://namenode.example.org:9000/hbase.  By default HBase writes
+    into /tmp.  Change this configuration else all data will be lost
+    on machine restart.
+    &lt;/description&gt;
+&lt;/property&gt;</pre>
+</div></div></li><li><p>To disable HA for HAWQ, uncomment the default <code>DFS_URL</code> property and comment out <code>DFS_URL</code> in <code>hawq/gpinitsystem_config</code> as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">DFS_URL=${namenode}:${dfs.port}/hawq_data
+#### For Non-HA comment the following line
+#DFS_URL=${nameservices}/hawq_data</pre>
+</div></div></li><li><p>Comment the following properties to <code>hawq/hdfs-client.xml</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">	&lt;property&gt;
+		&lt;name&gt;dfs.nameservices&lt;/name&gt;
+		&lt;value&gt;${nameservices}&lt;/value&gt;
+	&lt;/property&gt;
+	
+	&lt;property&gt;
+		&lt;name&gt;dfs.ha.namenodes.${nameservices}&lt;/name&gt;
+		&lt;value&gt;${namenode1id},${namenode2id}&lt;/value&gt;
+	&lt;/property&gt;
+	
+	&lt;property&gt;
+		&lt;name&gt;dfs.namenode.rpc-address.${nameservices}.${namenode1id}&lt;/name&gt;
+		&lt;value&gt;${namenode}:8020&lt;/value&gt;
+	&lt;/property&gt;
+	
+	&lt;property&gt;
+		&lt;name&gt;dfs.namenode.rpc-address.${nameservices}.${namenode2id}&lt;/name&gt;
+		&lt;value&gt;${standbynamenode}:8020&lt;/value&gt;
+	&lt;/property&gt;
+	&lt;property&gt;
+		&lt;name&gt;dfs.namenode.http-address.${nameservices}.${namenode1id}&lt;/name&gt;
+		&lt;value&gt;${namenode}:50070&lt;/value&gt;
+	&lt;/property&gt;
+	
+	&lt;property&gt;
+		&lt;name&gt;dfs.namenode.http-address.${nameservices}.${namenode2id}&lt;/name&gt;
+		&lt;value&gt;${standbynamenode}:50070&lt;/value&gt;
+	&lt;/property&gt;
+	
+	&lt;property&gt;
+		&lt;name&gt;dfs.client.failover.proxy.provider.${nameservices}&lt;/name&gt;
+		&lt;value&gt;org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider&lt;/value&gt;
+	&lt;/property&gt;</pre>
+</div></div></li><li><p> Change owner and permission for file <code>container-executor.cfg</code> located in <code>/etc/gphd/hadoop/conf </code>on all cluster nodes, where file is present:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">chmod 644 /etc/gphd/conf.gphd-2.0.1/container-executor.cfg
+chown root:root /etc/gphd/conf.gphd-2.0.1/container-executor.cfg</pre>
+</div></div></li><li><p>Run the following command to reconfigure the cluster with your new configuration file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> icm_client reconfigure -l &lt;CLUSTERNAME&gt; -c &lt;LOCALDIR&gt;</pre>
+</div></div></li><li><p>Start the cluster:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client start -l &lt;CLUSTERNAME&gt;</pre>
+</div></div></li><li>Update the HIVE Metastore:<br/>Hive metastore contains references to <code>hdfs</code> path with <code>nameservices </code>in the url. This needs to be updated to use the <code>namenode:port</code>.<br/> <strong>Note</strong>: Make sure metastore is not running and is backed up to a persistent store before running the update commands.<br/><ol><li>Login to the host configured as <code>hive-metastore</code>.</li><li><p>Display the current NameNode and hdfspath for the Hive warehouse directory:<br/> <code>/usr/lib/gphd/hive/bin/metatool -listFSRoot<br/> <br/> </code></p><p>Run the following command:<br/> <code>/usr/lib/gphd/hive/bin/metatool -updateLocation hdfs://&lt;current_namenode&gt;:&lt;dfs_port&gt; hdfs://&lt;nameservices&gt;</code> <br/> <br/>where: <code>nameservices</code> is the logical name used for the nameservices in a HA enabled cluster and <code>current_namenode</code> is the hostname of the NameNode on the cluster after reconfiguring to disable HA.</p> <div class="aui-message warning shadowed information-macro">
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p>When specifying the <code>nameservices</code>, do not use underscores ('_'), for example, <code>phd_cluster</code>.</p>
+</div>
+</div>
+<p><code> </code></p></li></ol></li><li><p>For HAWQ users, restart HAWQ services for your configuration changes to take effect. <br/>From the HAWQ master, as <code>gpadmin</code>, run the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/etc/init.d/hawq start</pre>
+</div></div></li></ol><p><strong>Related:</strong></p><p><a href="EnablingRe-enablingHighAvailability.html">Enabling/Re-enabling High Availability</a></p><p><a href="HighAvailabilityBestPractices.html">High Availability Best Practices</a></p><p><a href="HighAvailabilityCommandReference.html">High Availability Command Reference</a></p>
+</div>
+		
+		</main><!--end of content-->
+
+  </div><!-- end of container -->
+
+  <script type="text/javascript">
+    (function() {
+      var didInit = false;
+      function initMunchkin() {
+        if(didInit === false) {
+          didInit = true;
+          Munchkin.init('625-IUJ-009');
+        }
+      }
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+      s.onreadystatechange = function() {
+        if (this.readyState == 'complete' || this.readyState == 'loaded') {
+          initMunchkin();
+        }
+      };
+      s.onload = initMunchkin;
+      document.getElementsByTagName('head')[0].appendChild(s);
+    })();
+  </script>
+</div><!--end of wrap-->
+</div><!--end of viewport-->
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href='/'>Pivotal Documentation</a>
+      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>
+
+
+            
+      
+      
+      
+      

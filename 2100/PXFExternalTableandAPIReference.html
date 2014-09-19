@@ -1,0 +1,2165 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>PXF External Table and API Reference | Pivotal HD Docs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TESTING -->
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <script src="javascripts/all.js" type="text/javascript"></script>
+  
+  <!--  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <script src="/javascripts/all.js" type="text/javascript"></script>-->
+
+  <script type="text/javascript">
+    if (window.location.host === 'docs.pivotal.io') {
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-39702075-1']);
+      _gaq.push(['_setDomainName', 'pivotal.io']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    }
+  </script>
+  <!-- Confluence HTML stylesheet -->
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+   
+   <!-- Left-navigation code -->
+    <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+    <script src="javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+        </script>
+    <link href="stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+    <!-- End left-navigation code -->
+   
+</head>
+
+<body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
+
+<div class="viewport">
+<div class='wrap'>
+  <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+  <script type="text/javascript">
+      try {
+          Typekit.load();
+      } catch (e) {
+      }
+  </script>
+  <script type="text/javascript">
+      document.domain = "pivotal.io";
+  </script>
+
+  <script type="text/javascript">
+    WebFontConfig = {
+      google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
+
+  <header class="header header-layout">
+		<h1 class="logo"><a href="/" class="logo">Pivotal HD Documentation</a></h1>      
+      
+		<div class="header-links js-bar-links">
+			<div class="btn-menu" data-behavior="MenuMobile"></div>
+			<div class="header-item">
+			  <a href="http://docs.pivotal.io">Docs Home</a>
+			</div>
+			<div class="header-item">
+			  <a href="http://support.pivotal.io" target="_blank">Support</a>
+			</div>
+			<div class="header-item searchbar js-searchbar">
+			  <a class="search-icon" data-behavior="Search"></a>
+			  <div class="search-input">
+				<!-- Google CSE Search Box -->
+				<div class="search-input-inner" id="docs-search">
+					<gcse:search></gcse:search>
+				</div>
+			  </div>
+			</div>
+      </div>
+    </header>
+    
+    <div class="container">
+    
+	<!--INSERT SIDENAV -->
+	<div id="sub-nav" class="nav-container">
+   <ul class="accordion" id="accordion-1">
+      <li>
+         <a href="PivotalHD.html">Pivotal HD</a>
+         <ul>
+            <li>
+               <a href="PHDEnterprise2.1.0ReleaseNotes.html">PHD Enterprise 2.1.0 Release Notes</a>
+            </li>
+            <li>
+               <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+               <ul>
+                  <li>
+                     <a href="OverviewofPHD.html">Overview of PHD</a>
+                  </li>
+                  <li>
+                     <a href="InstallationOverview.html">Installation Overview</a>
+                     <ul>
+                        <li>
+                           <a href="CommandLineInstallationFeatures.html">Command Line Installation Features</a>
+                        </li>
+                        <li>
+                           <a href="DeploymentOptions.html">Deployment Options</a>
+                        </li>
+                        <li>
+                           <a href="PlanningyourPHDClusterDeployment.html">Planning your PHD Cluster Deployment</a>
+                        </li>
+                        <li>
+                           <a href="BestPracticesforSelectingHardware.html">Best Practices for Selecting Hardware</a>
+                        </li>
+                        <li>
+                           <a href="BestPracticesforDeployingHadoopServices.html">Best Practices for Deploying Hadoop Services</a>
+                        </li>
+                        <li>
+                           <a href="HighAvailabilityBestPractices.html">High Availability Best Practices</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="PHDInstallationPrerequisites.html">PHD Installation Prerequisites</a>
+                     <ul>
+                        <li>
+                           <a href="BeforeYouBeginInstallingPHD.html">Before You Begin Installing PHD</a>
+                        </li>
+                        <li>
+                           <a href="PHDPrerequisiteChecklist.html">PHD Prerequisite Checklist</a>
+                        </li>
+                        <li>
+                           <a href="PHD-DNSLookup.html">PHD - DNS Lookup</a>
+                        </li>
+                        <li>
+                           <a href="PHD-JAVAJDK.html">PHD - JAVA JDK</a>
+                        </li>
+                        <li>
+                           <a href="PHD-VerifyPackageAccessibility.html">PHD - Verify Package Accessibility</a>
+                        </li>
+                        <li>
+                           <a href="PHD-TurnOffiptables.html">PHD - Turn Off iptables</a>
+                        </li>
+                        <li>
+                           <a href="PHD-DisableSELinux.html">PHD - Disable SELinux</a>
+                        </li>
+                        <li>
+                           <a href="EPELYumRepository.html">EPEL Yum Repository</a>
+                        </li>
+                        <li>
+                           <a href="SudoConfigurationFiles.html">Sudo Configuration Files</a>
+                        </li>
+                        <li>
+                           <a href="FQDN.html">FQDN</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+                     <ul>
+                        <li>
+                           <a href="PHDInstallationChecklist.html">PHD Installation Checklist</a>
+                        </li>
+                        <li>
+                           <a href="InstallingPivotalCommandCenter.html">Installing Pivotal Command Center</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringKerberosandLDAP.html">Configuring Kerberos and LDAP</a>
+                        </li>
+                        <li>
+                           <a href="PHD-ImportingthePackages.html">PHD - Importing the Packages</a>
+                        </li>
+                        <li>
+                           <a href="EditingtheClusterConfigurationFiles.html">Editing the Cluster Configuration Files</a>
+                        </li>
+                        <li>
+                           <a href="EditingtheHAWQConfigurationFile.html">Editing the HAWQ Configuration File</a>
+                        </li>
+                        <li>
+                           <a href="ForPXFwithGemFireXD.html">For PXF with GemFire XD</a>
+                        </li>
+                        <li>
+                           <a href="DeployingtheCluster.html">Deploying the Cluster</a>
+                        </li>
+                        <li>
+                           <a href="StartingtheCluster.html">Starting the Cluster</a>
+                        </li>
+                        <li>
+                           <a href="InitializingandStartingHAWQ.html">Initializing and Starting HAWQ</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="PHDPost-Installation.html">PHD Post-Installation</a>
+                     <ul>
+                        <li>
+                           <a href="VerifyingPHDServiceStatus.html">Verifying PHD Service Status</a>
+                        </li>
+                        <li>
+                           <a href="RunningPHDSamplePrograms.html">Running PHD Sample Programs</a>
+                        </li>
+                        <li>
+                           <a href="Post-InstallationReferenceInformation.html">Post-Installation Reference Information</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="PHDUpgradePrerequisites.html">PHD Upgrade Prerequisites</a>
+                     <ul>
+                        <li>
+                           <a href="UpgradePrerequisiteChecklist.html">Upgrade Prerequisite Checklist</a>
+                        </li>
+                        <li>
+                           <a href="FileLocationsandBackups.html">File Locations and Backups</a>
+                        </li>
+                        <li>
+                           <a href="VerifyJavaJDK.html">Verify Java JDK</a>
+                        </li>
+                        <li>
+                           <a href="CompactHBaseTables.html">Compact HBase Tables</a>
+                        </li>
+                        <li>
+                           <a href="SudoConfigurationFile.html">Sudo Configuration File</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="UpgradingPHD2.0.xto2.1.0.html">Upgrading PHD 2.0.x to 2.1.0</a>
+                     <ul>
+                        <li>
+                           <a href="PHDUpgradeChecklist-2.0.xto2.1.0.html">PHD Upgrade Checklist - 2.0.x to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="UpgradeInstructions-2.0.xto2.1.0.html">Upgrade Instructions - 2.0.x to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="MovingHAWQFilespacetoHA-enabledHDFS-2.0.xto2.1.0.html">Moving HAWQ Filespace to HA-enabled HDFS - 2.0.x to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="UpgradeReferenceInformation-2.0.xto2.1.0.html">Upgrade Reference Information - 2.0.x to 2.1.0</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="UpgradingPHDfrom1.1.1to2.1.0.html">Upgrading PHD from 1.1.1 to 2.1.0</a>
+                     <ul>
+                        <li>
+                           <a href="UpgradeChecklist-1.1.1to2.1.0.html">Upgrade Checklist - 1.1.1 to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="UpgradeInstructions-1.1.1to2.1.0.html">Upgrade Instructions - 1.1.1 to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="MovingHAWQFilespacetoHA-enabledHDFS-1.1.1to2.1.0.html">Moving HAWQ Filespace to HA-enabled HDFS - 1.1.1 to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="UpgradeReferenceInformation-1.1.1to2.1.0.html">Upgrade Reference Information - 1.1.1 to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="DisablingSecurityona1.1.1Cluster.html">Disabling Security on a 1.1.1 Cluster</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+                     <ul>
+                        <li>
+                           <a href="ManagingaPHDCluster.html">Managing a PHD Cluster</a>
+                           <ul>
+                              <li>
+                                 <a href="StartingaCluster.html">Starting a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="StoppingaCluster.html">Stopping a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="RestartingaCluster.html">Restarting a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="ReconfiguringaCluster.html">Reconfiguring a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="AddingRemovingServices.html">Adding/Removing Services</a>
+                              </li>
+                              <li>
+                                 <a href="AddingHoststoaCluster.html">Adding Hosts to a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="RetrievingInformationaboutaDeployedCluster.html">Retrieving Information about a Deployed Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="ListingClusters.html">Listing Clusters</a>
+                              </li>
+                              <li>
+                                 <a href="ExpandingaCluster.html">Expanding a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="ShrinkingaCluster.html">Shrinking a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="DecommissioningSlaveNodes.html">Decommissioning Slave Nodes</a>
+                              </li>
+                              <li>
+                                 <a href="HighAvailability.html">High Availability</a>
+                              </li>
+                              <li>
+                                 <a href="SecurityKerberosAuthentication.html">Security/Kerberos Authentication</a>
+                              </li>
+                              <li>
+                                 <a href="UninstallingaCluster.html">Uninstalling a Cluster</a>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="ManagingHAWQ.html">Managing HAWQ</a>
+                           <ul>
+                              <li>
+                                 <a href="InitializingHAWQ.html">Initializing HAWQ</a>
+                              </li>
+                              <li>
+                                 <a href="StartingHAWQ.html">Starting HAWQ</a>
+                              </li>
+                              <li>
+                                 <a href="StoppingHAWQ.html">Stopping HAWQ</a>
+                              </li>
+                              <li>
+                                 <a href="ModifyingHAWQUserConfiguration.html">Modifying HAWQ User Configuration</a>
+                              </li>
+                              <li>
+                                 <a href="ExpandingHAWQ.html">Expanding HAWQ</a>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="ManagingPHDRolesandHosts.html">Managing PHD Roles and Hosts</a>
+                        </li>
+                        <li>
+                           <a href="PHDServicesReference.html">PHD Services Reference</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="PHDFAQ-FrequentlyAskedQuestions.html">PHD FAQ - Frequently Asked Questions</a>
+                  </li>
+                  <li>
+                     <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+                  </li>
+                  <li>
+                     <a href="PHDRESTAPIs.html">PHD REST APIs</a>
+                     <ul>
+                        <li>
+                           <a href="SwaggerwithOAuth.html">Swagger with OAuth</a>
+                        </li>
+                        <li>
+                           <a href="ListofPHDRESTAPIs.html">List of PHD REST APIs</a>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </li>
+            <li>
+               <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+               <ul>
+                  <li>
+                     <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+                  </li>
+                  <li>
+                     <a href="ManuallyInstallingandUsingPivotalHD2.1Stack.html">Manually Installing and Using Pivotal HD 2.1 Stack</a>
+                     <ul>
+                        <li>
+                           <a href="DistributionContents.html">Distribution Contents</a>
+                        </li>
+                        <li>
+                           <a href="ApacheConfigurationReference.html">Apache Configuration Reference</a>
+                        </li>
+                        <li>
+                           <a href="AccessingPHD2.1.html">Accessing PHD 2.1</a>
+                        </li>
+                        <li>
+                           <a href="HadoopHDFS.html">Hadoop HDFS</a>
+                        </li>
+                        <li>
+                           <a href="HadoopYARN.html">Hadoop YARN</a>
+                        </li>
+                        <li>
+                           <a href="HadoopPseudo-distributedConfiguration.html">Hadoop Pseudo-distributed Configuration</a>
+                        </li>
+                        <li>
+                           <a href="Zookeeper.html">Zookeeper</a>
+                        </li>
+                        <li>
+                           <a href="HBase.html">HBase</a>
+                        </li>
+                        <li>
+                           <a href="Hive.html">Hive</a>
+                        </li>
+                        <li>
+                           <a href="HCatalog.html">HCatalog</a>
+                        </li>
+                        <li>
+                           <a href="Pig.html">Pig</a>
+                        </li>
+                        <li>
+                           <a href="Mahout.html">Mahout</a>
+                        </li>
+                        <li>
+                           <a href="Flume.html">Flume</a>
+                        </li>
+                        <li>
+                           <a href="Sqoop.html">Sqoop</a>
+                        </li>
+                        <li>
+                           <a href="Oozie.html">Oozie</a>
+                        </li>
+                        <li>
+                           <a href="GraphLab.html">GraphLab</a>
+                        </li>
+                        <li>
+                           <a href="Hamster.html">Hamster</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="ManuallyUpgradingPivotalHDStacktoPHD2.1.html">Manually Upgrading Pivotal HD Stack to PHD 2.1</a>
+                  </li>
+                  <li>
+                     <a href="PivotalHadoopEnhancements.html">Pivotal Hadoop Enhancements</a>
+                  </li>
+                  <li>
+                     <a href="Security.html">Security</a>
+                     <ul>
+                        <li>
+                           <a href="SecurityOverview.html">Security Overview</a>
+                        </li>
+                        <li>
+                           <a href="KerberosSetup.html">Kerberos Setup</a>
+                        </li>
+                        <li>
+                           <a href="LDAPSetup.html">LDAP Setup</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringKerberosforHDFSandYARNMapReduce.html">Configuring Kerberos for HDFS and YARN (MapReduce)</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringKerberosforHDFSHighAvailability.html">Configuring Kerberos for HDFS High Availability</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureZookeeper.html">Configuring Secure Zookeeper</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureHBase.html">Configuring Secure HBase</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureHive.html">Configuring Secure Hive</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringHCatalogWebHCatonSecureHive.html">Configuring HCatalog (WebHCat) on Secure Hive</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringHAWQonSecureHDFS.html">Configuring HAWQ on Secure HDFS</a>
+                        </li>
+                        <li>
+                           <a href="EnablingAuditing.html">Enabling Auditing</a>
+                        </li>
+                        <li>
+                           <a href="SecureWebAccess.html">Secure Web Access</a>
+                        </li>
+                        <li>
+                           <a href="SecureWebAccessviaHttpFS.html">Secure Web Access via HttpFS</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureFlume.html">Configuring Secure Flume</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureOozie.html">Configuring Secure Oozie</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureSqoop.html">Configuring Secure Sqoop</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecurePig.html">Configuring Secure Pig</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureMahout.html">Configuring Secure Mahout</a>
+                        </li>
+                        <li>
+                           <a href="Security-Troubleshooting.html">Security - Troubleshooting</a>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </li>
+         </ul>
+      </li>
+      <li>
+         <a href="PivotalCommandCenter.html">Pivotal Command Center</a>
+         <ul>
+            <li>
+               <a href="PCC2.3.0ReleaseNotes.html">PCC 2.3.0 Release Notes</a>
+            </li>
+            <li>
+               <a href="PCCUserGuide.html">PCC User Guide</a>
+               <ul>
+                  <li>
+                     <a href="PCCOverview.html">PCC Overview</a>
+                  </li>
+                  <li>
+                     <a href="PCCInstallationPrerequisites.html">PCC Installation Prerequisites</a>
+                     <ul>
+                        <li>
+                           <a href="BeforeYouBeginInstallingPCC.html">Before You Begin Installing PCC</a>
+                        </li>
+                        <li>
+                           <a href="PCCPrerequisiteChecklist.html">PCC Prerequisite Checklist</a>
+                        </li>
+                        <li>
+                           <a href="PCC-DNSLookup.html">PCC - DNS Lookup</a>
+                        </li>
+                        <li>
+                           <a href="PCC-JAVAJDK.html">PCC - JAVA JDK</a>
+                        </li>
+                        <li>
+                           <a href="PCC-VerifyPackageAccessibility.html">PCC - Verify Package Accessibility</a>
+                        </li>
+                        <li>
+                           <a href="PCC-TurnOffiptables.html">PCC - Turn Off iptables</a>
+                        </li>
+                        <li>
+                           <a href="PCC-DisableSELinux.html">PCC - Disable SELinux</a>
+                        </li>
+                        <li>
+                           <a href="PCC-EPELYumRepository.html">PCC - EPEL Yum Repository</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="InstallationInstructions.html">Installation Instructions</a>
+                     <ul>
+                        <li>
+                           <a href="SupportedPlatformsandBrowsers.html">Supported Platforms and Browsers</a>
+                        </li>
+                        <li>
+                           <a href="PCCInstallationChecklist.html">PCC Installation Checklist</a>
+                        </li>
+                        <li>
+                           <a href="InstallPCC.html">Install PCC</a>
+                        </li>
+                        <li>
+                           <a href="PCC-ImportingthePackages.html">PCC - Importing the Packages</a>
+                        </li>
+                        <li>
+                           <a href="LaunchingPCC.html">Launching PCC</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="UninstallingPCC.html">Uninstalling PCC</a>
+                  </li>
+                  <li>
+                     <a href="UpgradingPCC.html">Upgrading PCC</a>
+                  </li>
+                  <li>
+                     <a href="UsingPCC.html">Using PCC</a>
+                     <ul>
+                        <li>
+                           <a href="PCCUIOverview.html">PCC UI Overview</a>
+                        </li>
+                        <li>
+                           <a href="LoggingIn.html">Logging In</a>
+                        </li>
+                        <li>
+                           <a href="PCCUISettings.html">PCC UI Settings</a>
+                        </li>
+                        <li>
+                           <a href="PCCUIUserManagement.html">PCC UI User Management</a>
+                        </li>
+                        <li>
+                           <a href="ClusterStatusPage.html">Cluster Status Page</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringandDeployingaCluster.html">Configuring and Deploying a Cluster</a>
+                           <ul>
+                              <li>
+                                 <a href="LaunchingtheAddClusterWizard.html">Launching the Add Cluster Wizard</a>
+                              </li>
+                              <li>
+                                 <a href="CreateClusterDefinition.html">Create Cluster Definition</a>
+                              </li>
+                              <li>
+                                 <a href="VersionsServicesandHosts.html">Versions, Services, and Hosts</a>
+                              </li>
+                              <li>
+                                 <a href="HostVerification.html">Host Verification</a>
+                              </li>
+                              <li>
+                                 <a href="ClusterTopology.html">Cluster Topology</a>
+                              </li>
+                              <li>
+                                 <a href="ClusterConfiguration.html">Cluster Configuration</a>
+                              </li>
+                              <li>
+                                 <a href="Validation.html">Validation</a>
+                              </li>
+                              <li>
+                                 <a href="DeploymentStatus.html">Deployment Status</a>
+                              </li>
+                              <li>
+                                 <a href="Summary.html">Summary</a>
+                              </li>
+                              <li>
+                                 <a href="StartingtheClusterfromtheUI.html">Starting the Cluster from the UI</a>
+                              </li>
+                              <li>
+                                 <a href="InitializingandConfiguringHAWQ.html">Initializing and Configuring HAWQ</a>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="StartingStoppingandUninstallingaCluster.html">Starting, Stopping, and Uninstalling a Cluster</a>
+                        </li>
+                        <li>
+                           <a href="PCCUIDashboard.html">PCC UI Dashboard</a>
+                        </li>
+                        <li>
+                           <a href="ClusterAnalysis.html">Cluster Analysis</a>
+                        </li>
+                        <li>
+                           <a href="MapReduceJobMonitor.html">MapReduce Job Monitor</a>
+                        </li>
+                        <li>
+                           <a href="YarnAppMonitor.html">Yarn App Monitor</a>
+                        </li>
+                        <li>
+                           <a href="HAWQQueryMonitor.html">HAWQ Query Monitor</a>
+                        </li>
+                        <li>
+                           <a href="Topology.html">Topology</a>
+                        </li>
+                        <li>
+                           <a href="Logs.html">Logs</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="ConfiguringPCCforLDAP.html">Configuring PCC for LDAP</a>
+                  </li>
+                  <li>
+                     <a href="CommandLineReference.html">Command Line Reference</a>
+                  </li>
+               </ul>
+            </li>
+         </ul>
+      </li>
+      <li>
+         <a href="PivotalHAWQ.html">Pivotal HAWQ</a>
+         <ul>
+            <li>
+               <a href="HAWQ1.2.1ReleaseNotes.html">HAWQ 1.2.1 Release Notes</a>
+            </li>
+            <li>
+               <a href="HAWQInstallationandUpgrade.html">HAWQ Installation and Upgrade</a>
+               <ul>
+                  <li>
+                     <a href="PreparingtoInstallHAWQ.html">Preparing to Install HAWQ</a>
+                  </li>
+                  <li>
+                     <a href="InstallingHAWQ.html">Installing HAWQ</a>
+                  </li>
+                  <li>
+                     <a href="InstallingtheHAWQComponents.html">Installing the HAWQ Components</a>
+                  </li>
+                  <li>
+                     <a href="UpgradingHAWQandComponents.html">Upgrading HAWQ and Components</a>
+                  </li>
+                  <li>
+                     <a href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a>
+                  </li>
+               </ul>
+            </li>
+            <li>
+               <a href="HAWQAdministration.html">HAWQ Administration</a>
+               <ul>
+                  <li>
+                     <a href="HAWQOverview.html">HAWQ Overview</a>
+                  </li>
+                  <li>
+                     <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+                  </li>
+                  <li>
+                     <a href="UsingHAWQtoQueryData.html">Using HAWQ to Query Data</a>
+                  </li>
+                  <li>
+                     <a href="UsingProceduralLanguages.html">Using Procedural Languages</a>
+                  </li>
+                  <li>
+                     <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+                  </li>
+                  <li>
+                     <a href="ConfiguringKerberosAuthentication.html">Configuring Kerberos Authentication</a>
+                  </li>
+                  <li>
+                     <a href="ConfiguringLDAPAuthentication.html">Configuring LDAP Authentication</a>
+                  </li>
+                  <li>
+                     <a href="BackingUpandRestoringHAWQDatabases.html">Backing Up and Restoring HAWQ Databases</a>
+                  </li>
+                  <li>
+                     <a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a>
+                  </li>
+                  <li>
+                     <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+                  </li>
+                  <li>
+                     <a href="HAWQFilespacesandHighAvailabilityEnabledHDFS.html">HAWQ Filespaces and High Availability Enabled HDFS</a>
+                  </li>
+                  <li>
+                     <a href="SQLCommandReference.html">SQL Command Reference</a>
+                     <ul>
+                        <li>
+                           <a href="ABORT.html">ABORT</a>
+                        </li>
+                        <li>
+                           <a href="ANALYZE.html">ANALYZE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERAGGREGATE.html">ALTER AGGREGATE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERFUNCTION.html">ALTER FUNCTION</a>
+                        </li>
+                        <li>
+                           <a href="ALTEROPERATOR.html">ALTER OPERATOR</a>
+                        </li>
+                        <li>
+                           <a href="ALTEROPERATORCLASS.html">ALTER OPERATOR CLASS</a>
+                        </li>
+                        <li>
+                           <a href="ALTERROLE.html">ALTER ROLE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERTABLE.html">ALTER TABLE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERTABLESPACE.html">ALTER TABLESPACE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERTYPE.html">ALTER TYPE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERUSER.html">ALTER USER</a>
+                        </li>
+                        <li>
+                           <a href="BEGIN.html">BEGIN</a>
+                        </li>
+                        <li>
+                           <a href="CHECKPOINT.html">CHECKPOINT</a>
+                        </li>
+                        <li>
+                           <a href="CLOSE.html">CLOSE</a>
+                        </li>
+                        <li>
+                           <a href="COMMIT.html">COMMIT</a>
+                        </li>
+                        <li>
+                           <a href="COPY.html">COPY</a>
+                        </li>
+                        <li>
+                           <a href="CREATEAGGREGATE.html">CREATE AGGREGATE</a>
+                        </li>
+                        <li>
+                           <a href="CREATEDATABASE.html">CREATE DATABASE</a>
+                        </li>
+                        <li>
+                           <a href="CREATEEXTERNALTABLE.html">CREATE EXTERNAL TABLE</a>
+                        </li>
+                        <li>
+                           <a href="CREATEFUNCTION.html">CREATE FUNCTION</a>
+                        </li>
+                        <li>
+                           <a href="CREATEGROUP.html">CREATE GROUP</a>
+                        </li>
+                        <li>
+                           <a href="CREATELANGUAGE.html">CREATE LANGUAGE</a>
+                        </li>
+                        <li>
+                           <a href="CREATEOPERATOR.html">CREATE OPERATOR</a>
+                        </li>
+                        <li>
+                           <a href="CREATEOPERATORCLASS.html">CREATE OPERATOR CLASS</a>
+                        </li>
+                        <li>
+                           <a href="CREATERESOURCEQUEUE.html">CREATE RESOURCE QUEUE</a>
+                        </li>
+                        <li>
+                           <a href="CREATEROLE.html">CREATE ROLE</a>
+                        </li>
+                        <li>
+                           <a href="CREATESCHEMA.html">CREATE SCHEMA</a>
+                        </li>
+                        <li>
+                           <a href="CREATESEQUENCE.html">CREATE SEQUENCE</a>
+                        </li>
+                        <li>
+                           <a href="CREATETABLE.html">CREATE TABLE</a>
+                        </li>
+                        <li>
+                           <a href="CREATETABLEAS.html">CREATE TABLE AS</a>
+                        </li>
+                        <li>
+                           <a href="CREATETABLESPACE.html">CREATE TABLESPACE</a>
+                        </li>
+                        <li>
+                           <a href="CREATETYPE.html">CREATE TYPE</a>
+                        </li>
+                        <li>
+                           <a href="CREATE-USER.html">CREATE USER</a>
+                        </li>
+                        <li>
+                           <a href="CREATEVIEW.html">CREATE VIEW</a>
+                        </li>
+                        <li>
+                           <a href="DEALLOCATE.html">DEALLOCATE</a>
+                        </li>
+                        <li>
+                           <a href="DECLARE.html">DECLARE</a>
+                        </li>
+                        <li>
+                           <a href="DROPAGGREGATE.html">DROP AGGREGATE</a>
+                        </li>
+                        <li>
+                           <a href="DROPDATABASE.html">DROP DATABASE</a>
+                        </li>
+                        <li>
+                           <a href="DROPEXTERNALTABLE.html">DROP EXTERNAL TABLE</a>
+                        </li>
+                        <li>
+                           <a href="DROPFILESPACE.html">DROP FILESPACE</a>
+                        </li>
+                        <li>
+                           <a href="DROPFUNCTION.html">DROP FUNCTION</a>
+                        </li>
+                        <li>
+                           <a href="DROPGROUP.html">DROP GROUP</a>
+                        </li>
+                        <li>
+                           <a href="DROPOPERATOR.html">DROP OPERATOR</a>
+                        </li>
+                        <li>
+                           <a href="DROPOPERATORCLASS.html">DROP OPERATOR CLASS</a>
+                        </li>
+                        <li>
+                           <a href="DROPOWNED.html">DROP OWNED</a>
+                        </li>
+                        <li>
+                           <a href="DROPRESOURCEQUEUE.html">DROP RESOURCE QUEUE</a>
+                        </li>
+                        <li>
+                           <a href="DROPROLE.html">DROP ROLE</a>
+                        </li>
+                        <li>
+                           <a href="DROPSCHEMA.html">DROP SCHEMA</a>
+                        </li>
+                        <li>
+                           <a href="DROPSEQUENCE.html">DROP SEQUENCE</a>
+                        </li>
+                        <li>
+                           <a href="DROPTABLE.html">DROP TABLE</a>
+                        </li>
+                        <li>
+                           <a href="DROPTABLESPACE.html">DROP TABLESPACE</a>
+                        </li>
+                        <li>
+                           <a href="DROPTYPE.html">DROP TYPE</a>
+                        </li>
+                        <li>
+                           <a href="DROP-USER.html">DROP USER</a>
+                        </li>
+                        <li>
+                           <a href="DROPVIEW.html">DROP VIEW</a>
+                        </li>
+                        <li>
+                           <a href="END.html">END</a>
+                        </li>
+                        <li>
+                           <a href="EXECUTE.html">EXECUTE</a>
+                        </li>
+                        <li>
+                           <a href="EXPLAIN.html">EXPLAIN</a>
+                        </li>
+                        <li>
+                           <a href="FETCH.html">FETCH</a>
+                        </li>
+                        <li>
+                           <a href="GRANT.html">GRANT</a>
+                        </li>
+                        <li>
+                           <a href="INSERT.html">INSERT</a>
+                        </li>
+                        <li>
+                           <a href="PREPARE.html">PREPARE</a>
+                        </li>
+                        <li>
+                           <a href="REASSIGNOWNED.html">REASSIGN OWNED</a>
+                        </li>
+                        <li>
+                           <a href="RELEASESAVEPOINT.html">RELEASE SAVEPOINT</a>
+                        </li>
+                        <li>
+                           <a href="RESET.html">RESET</a>
+                        </li>
+                        <li>
+                           <a href="REVOKE.html">REVOKE</a>
+                        </li>
+                        <li>
+                           <a href="ROLLBACK.html">ROLLBACK</a>
+                        </li>
+                        <li>
+                           <a href="ROLLBACKTOSAVEPOINT.html">ROLLBACK TO SAVEPOINT</a>
+                        </li>
+                        <li>
+                           <a href="SAVEPOINT.html">SAVEPOINT</a>
+                        </li>
+                        <li>
+                           <a href="SELECT.html">SELECT</a>
+                        </li>
+                        <li>
+                           <a href="SELECTINTO.html">SELECT INTO</a>
+                        </li>
+                        <li>
+                           <a href="SET.html">SET</a>
+                        </li>
+                        <li>
+                           <a href="SETROLE.html">SET ROLE</a>
+                        </li>
+                        <li>
+                           <a href="SETSESSIONAUTHORIZATION.html">SET SESSION AUTHORIZATION</a>
+                        </li>
+                        <li>
+                           <a href="SHOW.html">SHOW</a>
+                        </li>
+                        <li>
+                           <a href="TRUNCATE.html">TRUNCATE</a>
+                        </li>
+                        <li>
+                           <a href="VACUUM.html">VACUUM</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+                     <ul>
+                        <li>
+                           <a href="gpactivatestandby.html">gpactivatestandby</a>
+                        </li>
+                        <li>
+                           <a href="gpcheckperf.html">gpcheckperf</a>
+                        </li>
+                        <li>
+                           <a href="gpconfig.html">gpconfig</a>
+                        </li>
+                        <li>
+                           <a href="gpexpand.html">gpexpand</a>
+                        </li>
+                        <li>
+                           <a href="gpextract.html">gpextract</a>
+                        </li>
+                        <li>
+                           <a href="gpfdist.html">gpfdist</a>
+                        </li>
+                        <li>
+                           <a href="gpfilespace.html">gpfilespace</a>
+                        </li>
+                        <li>
+                           <a href="gpinitstandby.html">gpinitstandby</a>
+                        </li>
+                        <li>
+                           <a href="gpinitsystem.html">gpinitsystem</a>
+                        </li>
+                        <li>
+                           <a href="gpload.html">gpload</a>
+                        </li>
+                        <li>
+                           <a href="gplogfilter.html">gplogfilter</a>
+                        </li>
+                        <li>
+                           <a href="gprecoverseg.html">gprecoverseg</a>
+                        </li>
+                        <li>
+                           <a href="gpscp.html">gpscp</a>
+                        </li>
+                        <li>
+                           <a href="gpstart.html">gpstart</a>
+                        </li>
+                        <li>
+                           <a href="gpssh.html">gpssh</a>
+                        </li>
+                        <li>
+                           <a href="gssh-exkeys.html">gssh-exkeys</a>
+                        </li>
+                        <li>
+                           <a href="gpstate.html">gpstate</a>
+                        </li>
+                        <li>
+                           <a href="gpstop.html">gpstop</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="ClientUtilityReference.html">Client Utility Reference</a>
+                     <ul>
+                        <li>
+                           <a href="createdb.html">createdb</a>
+                        </li>
+                        <li>
+                           <a href="createlang.html">createlang</a>
+                        </li>
+                        <li>
+                           <a href="createuser.html">createuser</a>
+                        </li>
+                        <li>
+                           <a href="dropdb.html">dropdb</a>
+                        </li>
+                        <li>
+                           <a href="dropuser.html">dropuser</a>
+                        </li>
+                        <li>
+                           <a href="pg_dump.html">pg_dump</a>
+                        </li>
+                        <li>
+                           <a href="pg_dumpall.html">pg_dumpall</a>
+                        </li>
+                        <li>
+                           <a href="pg_restore.html">pg_restore</a>
+                        </li>
+                        <li>
+                           <a href="psql.html">psql</a>
+                        </li>
+                        <li>
+                           <a href="vacuumdb.html">vacuumdb</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>
+                  </li>
+                  <li>
+                     <a href="CharacterSetSupportReference.html">Character Set Support Reference</a>
+                  </li>
+                  <li>
+                     <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+                  </li>
+                  <li>
+                     <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+                  </li>
+                  <li>
+                     <a href="SystemCatalogReference.html">System Catalog Reference</a>
+                  </li>
+                  <li>
+                     <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+                  </li>
+                  <li>
+                     <a href="ManagingHAWQLogFiles.html">Managing HAWQ Log Files</a>
+                  </li>
+               </ul>
+            </li>
+            <li>
+               <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+               <ul>
+                  <li>
+                     <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+                  </li>
+                  <li>
+                     <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+                  </li>
+               </ul>
+            </li>
+         </ul>
+      </li>
+   </ul>
+</div> 
+   
+	<!-- end INSERT SIDENAV -->
+	
+	<main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container">PXF External Table and API Reference</h1>
+          <div id="js-quick-links"></div>          
+        
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>     
+        
+		<!-- Python script replaces main content -->
+		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : PXF External Table and API Reference</div><div class="wiki-content group" id="main-content">
+<p align="LEFT">The Java API lets you extend PXF functionality and add new services and formats without changing HAWQ. The API includes four classes: Fragmenter, Accessor, Resolver, and Analyzer. The Fragmenter, Accessor, and Resolver classes must be implemented to add a new service. The Analyzer class is optional.</p><h2 id="PXFExternalTableandAPIReference-CreatinganExternalTable">Creating an External Table</h2><p align="LEFT">Syntax for an <em>EXTERNAL TABLE</em> that uses the PXF protocol is as follows:.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE ext_table &lt;attr list, ...&gt;
+LOCATION('pxf://&lt;namenode&gt;:&lt;port&gt;/path/to/data?FRAGMENTER=package.name.FragmenterForX&amp;ACCESSOR=package.name.AccessorForX&amp;RESOLVER=package.name.ResolverForX&amp;&lt;Other custom user options&gt;=&lt;value&gt;')FORMAT 'custom'(formatter='pxfwritable_import');</pre>
+</div></div><p> Where:</p><h5 id="PXFExternalTableandAPIReference-Table:Parametervaluesanddescription">Table: Parameter values and description</h5><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p align="LEFT"><strong>Parameter</strong></p></td><td class="confluenceTd"><p align="LEFT"><strong>Value and description</strong></p></td></tr><tr><td class="confluenceTd"><p align="LEFT">namenode</p></td><td class="confluenceTd"><p align="LEFT">The current host of the PXF service is HDFS Namenode port.</p></td></tr><tr><td class="confluenceTd"><p align="LEFT">REST </p></td><td class="confluenceTd"><p align="LEFT">Port for Namenode, 50070 by default.</p></td></tr><tr><td class="confluenceTd" colspan="1">path/to/data</td><td class="confluenceTd" colspan="1"> A directory, file name, wildcard pattern, table name, etc.</td></tr><tr><td class="confluenceTd" colspan="1">FRAGMENTER</td><td class="confluenceTd" colspan="1"> The plugin (Java class) to use for fragmenting data. Used in READABLE external tables only.</td></tr><tr><td class="confluenceTd" colspan="1">ACCESSOR</td><td class="confluenceTd" colspan="1">The plugin (Java class) to use for accessing the data. Used in READABLE and WRITABLE tables.</td></tr><tr><td class="confluenceTd" colspan="1">RESOLVER</td><td class="confluenceTd" colspan="1">The plugin (java class) to use for serializing and deserializing the data. Used in READABLE and WRITABLE tables.</td></tr><tr><td class="confluenceTd" colspan="1">Custom Options</td><td class="confluenceTd" colspan="1">Anything else that is desired to add. Will be passed in runtime to the plugins indicated above. </td></tr></tbody></table></div><p align="LEFT">For more information about this example, see <em><a href="PXFExternalTableandAPIReference.html">About the Java Class Services and Formats</a> and <a href="PXFInstallationandAdministration.html">PFX Installation and Administration</a>.</em></p><h2 id="PXFExternalTableandAPIReference-AbouttheJavaClassServicesandFormats">About the Java Class Services and Formats</h2><p>The Java class names you must include in the PXF URI are: Fragmenter, Accessor, and Resolver. The Fragmenter class  is mandatory for READABLE tables, and not supported for WRITABLE tables. Pivotal recommends that you reuse a previously-defined Accessor or Resolver data format.</p><p>All the attributes are passed from HAWQ as headers to the PXF Java service. The Java service retrieves the source data and converts it to a HAWQ-readable format. You can pass any additional information to the user-implemented services.</p><p>The example in<em> <a href="PXFExternalTableandAPIReference.html">Creating an External Table</a></em> shows the available keys and associated values. The example also contains attributes that are passed in from the HAWQ side. The available keys and associated values are as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">FRAGMENTER: ‘pkg.name.FragmenterForX’
+ACCESSOR: ‘pkg.name.AccessorForX’
+RESOLVER: ‘pkg.name.ResolverForX’
+</pre>
+</div></div><p>These three Java plugins and the optional plugin, Analyzer, extend the <em>com.pivotal.pxf.api.utilities.Plugin</em> class.</p><p>The Java classes can be described as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">package com.pivotal.pxf.api.utilities;
+/**
+ * Base class for all plugin types (Accessor, Resolver, Fragmenter, Analyzer, ...).
+ * Manages the meta data.
+ */
+public class Plugin {
+    protected InputData inputData;
+    /**
+     * Constructs a plugin.
+     *
+     * @param input the input data
+     */
+    public Plugin(InputData input) {
+        this.inputData = input;
+    }
+    /**
+     * Checks if the plugin is thread safe or not, based on inputData.
+     *
+     * @return true if plugin is thread safe
+     */
+    public boolean isThreadSafe() {
+        return true;
+    }
+}</pre>
+</div></div><p>Attributes are available through the <em>com.pivotal.pxf.api.utilities.InputData</em> class. The following example shows how <em>inputData.getProperty(‘USERINFO1’)</em> returns <em>optional_info</em>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/**
+ * Common configuration available to all PXF plugins. Represents input data
+ * coming from client applications, such as Hawq.
+ */
+public class InputData {
+
+    /**
+     * Constructs an InputData from a copy.
+     * Used to create from an extending class.
+     *
+     * @param copy the input data to copy
+     */
+    public InputData(InputData copy);
+
+    /**
+     * Returns a user defined property.
+     *
+     * @param userProp the lookup user property
+     * @return property value as a String
+     */
+    public String getUserProperty(String userProp);
+
+    /** Returns the request parameters */
+    public Map&lt;String, String&gt; getParametersMap();
+
+    /**
+     * set the byte serialization of a fragment meta data
+     * @param location start, len, and location of the fragment
+     */
+    public void setFragmentMetadata(byte[] location);
+    /** the byte serialization of a data fragment */
+    public byte[] getFragmentMetadata();
+
+    /** 
+     * Gets any custom user data that may have been passed from the 
+     * fragmenter. Will mostly be used by the accessor or resolver. 
+     */
+    public byte[] getFragmentUserData();
+
+    /** 
+     * Sets any custom user data that needs to be shared across plugins. 
+     * Will mostly be set by the fragmenter. 
+     */
+    public void setFragmentUserData(byte[] userData);
+
+    /** Returns the number of segments in GP. */
+    public int getTotalSegments();
+
+    /** Returns the current segment ID. */
+    public int getSegmentId();
+
+    /** Returns true if there is a filter string to parse. */
+    public boolean hasFilter();
+
+    /** Returns the filter string, &lt;tt&gt;null&lt;/tt&gt; if #hasFilter is &lt;tt&gt;false&lt;/tt&gt; */
+    public String getFilterString();
+
+    /** Returns tuple description. */
+    public ArrayList&lt;ColumnDescriptor&gt; getTupleDescription();
+
+    /** Returns the number of columns in tuple description. */
+    public int getColumns();
+
+    /** Returns column index from tuple description. */
+    public ColumnDescriptor getColumn(int index);
+
+	/**
+	 * Returns the column descriptor of the recordkey column. If the recordkey
+	 * column was not specified by the user in the create table statement will
+	 * return null.
+	 */
+    public ColumnDescriptor getRecordkeyColumn();
+
+    /** Returns the data source of the required resource (i.e a file path or a table name). */
+    public String getDataSource();
+
+    /** Sets the data source for the required resource */
+    public void setDataSource(String dataSource);
+
+    /** Returns the path of the schema used for various deserializers e.g, Avro file name, Java object file name. */
+    public void verifyDataSchemaAccessible() throws FileNotFoundException, IllegalArgumentException;
+    
+    /** Returns the path of the schema used for various deserializers e.g, Avro file name, Java object file name. */
+    public String getDataSchemaName();
+
+    /** Returns the ClassName for the java class that was defined as Accessor */
+    public String getAccessor();
+
+    /** Returns the ClassName for the java class that was defined as Resolver */
+    public String getResolver();
+
+	/**
+	 * Returns the ClassName for the java class that was defined as Fragmenter
+	 * or null if no fragmenter was defined
+	 */
+    public String getFragmenter();
+
+	/**
+	 * Returns the ClassName for the java class that was defined as Analyzer or
+	 * null if no analyzer was defined
+	 */
+    public String getAnalyzer();
+
+    /** Returns the compression codec name (&lt;tt&gt;null&lt;/tt&gt; means no compression) */
+    public String getCompressCodec();
+
+    /**
+     * Returns the compression type (can be null)
+     * Allowed values: RECORD, BLOCK.
+     */
+    public String getCompressType();
+
+    /**
+     * Returns the contents of pxf_remote_service_login set in Hawq.
+     * Should the user set it to an empty string this function will return null.
+     *
+     * @return remote login details if set, null otherwise
+     */
+    public String getLogin();
+
+    /**
+     * Returns the contents of pxf_remote_service_secret set in Hawq.
+     * Should the user set it to an empty string this function will return null.
+     *
+     * @return remote password if set, null otherwise
+     */
+    public String getSecret();
+
+    public boolean isThreadSafe();
+
+	/** 
+	 * Returns a data fragment index. plan to deprecate it in favor of using
+	 * getFragmentMetadata().
+	 */
+	public int getDataFragment();
+}</pre>
+</div></div><h3 id="PXFExternalTableandAPIReference-Fragmenter">Fragmenter</h3> <div class="aui-message hint shadowed information-macro">
+<p class="title">Note</p>
+<span class="aui-icon icon-hint">Icon</span>
+<div class="message-content">
+<p>The Fragmenter Plugin reads data into HAWQ. Such tables are called READABLE PXF tables. The Fragmenter Plugin cannot write data out of HAWQ. Such tables are called WRITABLE tables.</p>
+</div>
+</div>
+<p align="LEFT">The Fragmenter is responsible for passing datasource metadata back to HAWQ. It also returns a list of data fragments to the Accessor or Resolver. Each data fragment describes some part of the requested data set. It contains the datasource name, such as the file or table name, including the hostname where it is located. For example, if the source is a HDFS file, the Fragmenter returns a list of data fragments containing a HDFS file block. Each fragment includes the location of the block. If the source data is an HBase table, the Fragmenter returns information about table regions, including their locations.</p><p align="LEFT">The following implementations are shipped with PXF 2.2 and higher:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">com.pivotal.pxf.plugins.hdfs.HdfsDataFragmenter
+com.pivotal.pxf.plugins.hbase.HBaseDataFragmenter
+com.pivotal.pxf.plugins.hive.HiveDataFragmenter</pre>
+</div></div><p>The Fragmenter.getFragments() methods returns a List&lt;Fragment&gt;:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">package com.pivotal.pxf.api;
+/*
+ * Fragment holds a data fragment' information.
+ * Fragmenter.getFragments() returns a list of fragments.
+ */
+public class Fragment
+{
+ 	private String sourceName;    // File path+name, table name, etc.
+    private int index;        // Fragment index (incremented per sourceName)
+    private String[] replicas;    // Fragment replicas (1 or more)
+    private byte[] metadata;    // Fragment metadata information (starting point + length, region location, etc.)
+    private byte[] userData;    // ThirdParty data added to a fragment. Ignored if null
+	...
+}</pre>
+</div></div><p>Any Fragmenter class needs to extend <em>com.pivotal.pxf.api.Fragmenter</em>:</p><h4 id="PXFExternalTableandAPIReference-com.pivotal.pxf.api.Fragmenter">com.pivotal.pxf.api.Fragmenter</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">package com.pivotal.pxf.api;
+/*
+ * Interface that defines the splitting of a data resource into fragments that can be processed in parallel
+ * GetFragments returns the fragments information of a given path (source name and location of each fragment).
+ * Used to get fragments of data that could be read in parallel from the different segments.
+ */
+public abstract class Fragmenter extends Plugin {
+    	protected List&lt;Fragment&gt; fragments;
+	
+	public Fragmenter(InputData metaData) {
+		super(metaData);
+		fragments = new LinkedList&lt;Fragment&gt;();
+	}
+	
+	/*
+	 * path is a data source URI that can appear as a file name, a directory name  or a wildcard
+	 * returns the data fragments
+	 */
+	public abstract List&lt;Fragment&gt; getFragments() throws Exception;
+}   </pre>
+</div></div><h4 id="PXFExternalTableandAPIReference-ClassDescription">Class Description</h4><p><em>getFragments()</em> returns a string in a JSON format of the retrieved fragment. For example, if the input path is a HDFS directory, the source name for each fragment should include the file name including the path for the fragment.  </p><h3 id="PXFExternalTableandAPIReference-Accessor"><a name="RTF37363238383a204865616432" rel="nofollow"></a>Accessor</h3><p>The Accessor retrieves specific fragments and passes records back to the Resolver. For example, the Accessor creates a <em>FileInputFormat</em> and a Record Reader for an HDFS file and sends this to the Resolver. In the case of HBase or Hive files, the Accessor returns single rows from an HBase or Hive table. PXF 1.x or higher contains the following implementations:</p><h5 id="PXFExternalTableandAPIReference-Table:Accessorbaseclasses">Table: Accessor base classes<span lang="EN"> </span></h5><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p align="LEFT"><strong>Accessor class</strong></p></td><td class="confluenceTd"><p align="LEFT"><strong>Description</strong></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>com.pivotal.pxf.plugins.hdfs.HdfsAtomicDataAccessor</em></p></td><td class="confluenceTd"><p align="LEFT">Base class for accessing datasources which cannot be split. These will be accessed by a single HAWQ segment.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: plain; gutter: false" style="font-size:12px;">QuotedLineBreakAccessor - Accessor for TEXT files that has records with embedded linebreaks</pre>
+</div></div></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>com.pivotal.pxf.plugins.hdfs.HdfsSplittableDataAccessor</em></p><p align="LEFT"> </p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">Base class for accessing HDFS files using <em>RecordReaders</em>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: plain; gutter: false" style="font-size:12px;">LineBreakAccessor - Accessor for TEXT files (replaced the deprecated TextFileAccessor, LineReaderAccessor)
+AvroFileAccessor - Accessor for Avro files
+</pre>
+</div></div><p><span style="font-size: xx-small;"> </span></p></td></tr><tr><td class="confluenceTd" colspan="1"> com.pivotal.pxf.plugins.hive.HiveAccessor</td><td class="confluenceTd" colspan="1">Accessor for Hive tables </td></tr><tr><td class="confluenceTd" colspan="1">com.pivotal.pxf.plugins.hbase.HBaseAccessor </td><td class="confluenceTd" colspan="1">Accessor for HBase tables </td></tr></tbody></table></div><p align="LEFT">The class must extend the <em>com.pivotal.pxf.Plugin class,</em> and implement one or both interface<em>s: </em></p><ul><li><em>com.pivotal.pxf.api.ReadAccessor</em></li><li><em>com.pivotal.pxf.api.WriteAccessor</em></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">package com.pivotal.pxf.api;
+/*
+ * Internal interface that defines the access to data on the source
+ * data store (e.g, a file on HDFS, a region of an HBase table, etc).
+ * All classes that implement actual access to such data sources must 
+ * respect this interface
+ */
+public interface ReadAccessor {
+	public boolean openForRead() throws Exception;
+	public OneRow readNextObject() throws Exception;
+	public void closeForRead() throws Exception;
+}</pre>
+</div></div><p><span style="font-size: medium;"> </span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">package com.pivotal.pxf.api;
+/*
+ * An interface for writing data into a data store
+ * (e.g, a sequence file on HDFS).
+ * All classes that implement actual access to such data sources must 
+ * respect this interface
+ */
+public interface WriteAccessor {
+	public boolean openForWrite() throws Exception;
+	public OneRow writeNextObject(OneRow onerow) throws Exception;
+	public void closeForWrite() throws Exception;
+}</pre>
+</div></div><p><span style="font-size: medium;"> </span></p><p align="LEFT">The Accessor calls o<em>penForRead() to read existing data</em>. After reading the data, it calls c<em>loseForRead()</em>. <em>readNextObject()</em> and returns one of the following:</p><ul><li>a single record, encapsulated in a OneRow object</li><li>null if it reaches <em>EOF</em></li></ul><p align="LEFT">The Accessor calls<em> openForWrite() </em>to write data out.<em> </em>After writing the data, it writes a <em>OneRow</em> object with <em>writeNextObject()</em>, and when done calls <em>closeForWrite()</em>. <em>OneRow</em> represents a key-value item.</p><h4 id="PXFExternalTableandAPIReference-com.pivotal.pxf.api.OneRow:">com.pivotal.pxf.api.OneRow:</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">package com.pivotal.pxf.api;
+/*
+ * Represents one row in the external system data store. Supports
+ * the general case where one row contains both a record and a
+ * separate key like in the HDFS key/value model for MapReduce
+ * (Example: HDFS sequence file)
+ */
+public class OneRow {
+    /*
+     * Default constructor
+     */
+    public OneRow()
+
+    /*
+     * Constructor sets key and data
+     */
+    public OneRow(Object inKey, Object inData)
+
+    /*
+     * Copy constructor
+     */
+    public OneRow(OneRow copy)
+　
+    /*
+     * Setter for key
+     */
+    public void setKey(Object inKey)
+　
+    /*
+     * Setter for data
+     */
+    public void setData(Object inData)
+    /*
+     * Accessor for key
+     */
+    public Object getKey()
+　
+    /*
+     * Accessor for data
+     */
+    public Object getData()
+　
+    /*
+     * Show content
+     */
+    public String toString()
+}</pre>
+</div></div><h3 id="PXFExternalTableandAPIReference-Resolver">Resolver</h3><p>The Resolver deserializes records in the <em>OneRow</em> format and serializes them to a list of <em>OneField</em> objects. PXF converts a <em>OneField</em> object to a HAWQ-readable <em>GPDBWritable</em> format. PXF 1.x or higher contains the following implementations:</p><h5 id="PXFExternalTableandAPIReference-Table:Resolverbaseclasses">Table: Resolver base classes<span lang="EN"> </span></h5><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p align="LEFT"><strong>Resolver class</strong></p></td><td class="confluenceTd"><p align="LEFT"><strong>Description</strong></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>com.pivotal.pxf.plugins.hdfs.StringPassResolver</em></p><p align="LEFT"> </p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">Supports:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">GPBWritable VARCHAR</pre>
+</div></div><p><em>StringPassResolver </em>replaced the deprecated <em>TextResolver. </em>It passes whole records (composed of any data types) as strings without parsing them</p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>com.pivotal.pxf.plugins.hdfs.WritableResolver</em></p></td><td class="confluenceTd"><p align="LEFT">Resolver for custom Hadoop Writable implementations. Custom class can be specified with the schema<em> {{,}}</em> and supports the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">DataType.BOOLEAN
+DataType.INTEGER
+DataType.BIGINT
+DataType.REAL
+DataType.FLOAT8
+DataType.VARCHAR
+DataType.BYTEA</pre>
+</div></div></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>com.pivotal.pxf.plugins.hdfs.AvroResolver</em></p></td><td class="confluenceTd"><p align="LEFT">Supports the same field objects as <em>WritableResolver</em>. </p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>com.pivotal.pxf.plugins.hbase.HBaseResolver</em></p></td><td class="confluenceTd"><p align="LEFT">Supports the same field objects as <em>WritableResolver</em> and also supports the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">DataType.SMALLINT
+DataType.NUMERIC
+DataType.TEXT
+DataType.BPCHAR
+DataType.TIMESTAMP</pre>
+</div></div></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>com.pivotal.pxf.plugins.hive.HiveResolver</em></p><p align="LEFT"> </p><p align="LEFT"> </p></td><td class="confluenceTd"><p align="LEFT">Supports the same field objects as <em>WritableResolver</em> and also supports the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">DataType.SMALLINT
+DataType.TEXT
+DataType.TIMESTAMP</pre>
+</div></div></td></tr></tbody></table></div><p>The class needs to extend the <em>com.pivotal.pxf.resolvers.Plugin class </em>, and implement one or both interface<em>s: </em></p><ul><li><em>com.pivotal.pxf.api.ReadResolver</em></li><li><em>com.pivotal.pxf.api.WriteResolver</em></li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">package com.pivotal.pxf.api;
+/*
+ * Interface that defines the deserialization of one record brought from
+ * the data Accessor. Every implementation of a deserialization method
+ * (e.g, Writable, Avro, ...) must implement this interface.
+ */
+public interface ReadResolver {  
+    public List&lt;OneField&gt; getFields(OneRow row) throws Exception;
+}</pre>
+</div></div><p><em><br/></em></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">package com.pivotal.pxf.api;
+/*
+* Interface that defines the serialization of data read from the DB
+* into a OneRow object.
+* Every implementation of a serialization method 
+* (e.g, Writable, Avro, ...) must implement this interface.
+*/
+public interface WriteResolver {
+    public OneRow setFields(List&lt;OneField&gt; record) throws Exception;
+}</pre>
+</div></div> <div class="aui-message hint shadowed information-macro">
+<p class="title">Notes</p>
+<span class="aui-icon icon-hint">Icon</span>
+<div class="message-content">
+<ul><li>getFields should return a List&lt;OneField&gt;, each OneField representing a single field.</li><li><em>setFields </em>should return a single <em>OneRow </em>object, given a List&lt;OneField&gt;.</li></ul>
+</div>
+</div>
+<p> </p><h4 id="PXFExternalTableandAPIReference-com.pivotal.pxf.api.OneField">com.pivotal.pxf.api.OneField</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">package com.pivotal.pxf.api;
+/*
+ * Defines one field on a deserialized record.
+ * 'type' is in OID values recognized by GPDBWritable
+ * 'val' is the actual field value
+ */
+public class OneField {
+    public OneField() {}
+    public OneField(int type, Object val)    {
+        this.type = type;
+        this.val = val;
+    }
+
+    public int type;
+    public Object val;
+}</pre>
+</div></div><p> </p><p>The value of t<em>ype</em> should follow the com.pivotal.pxf.api.io.DataType <em>enums</em>. v<em>al</em> is the appropriate Java class. Supported types are as follows:</p><h4 id="PXFExternalTableandAPIReference-Table:Resolversupportedtypes">Table: Resolver supported types</h4><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p align="LEFT"><strong>DataType recognized OID</strong></p></td><td class="confluenceTd"><p align="LEFT"><strong>Field value</strong></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>DataType.SMALLINT</em></p></td><td class="confluenceTd"><p align="LEFT"><em>Short</em></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>DataType.INTEGER</em></p></td><td class="confluenceTd"><p align="LEFT"><em>Integer</em></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>DataType.BIGINT</em></p></td><td class="confluenceTd"><p align="LEFT"><em>Long</em></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>DataType.REAL </em></p></td><td class="confluenceTd"><p align="LEFT"><em>Float</em></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>DataType.FLOAT8</em></p></td><td class="confluenceTd"><p align="LEFT"><em>Double</em></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>DataType.NUMERIC</em></p></td><td class="confluenceTd"><p align="LEFT"><em>String ( "651687465135468432168421") </em></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>DataType.BOOLEAN</em></p></td><td class="confluenceTd"><p align="LEFT">Boolean</p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>DataType.VARCHAR</em><em style="line-height: 1.4285;background-color: transparent;"> </em></p></td><td class="confluenceTd"> </td></tr><tr><td class="confluenceTd" colspan="1"><em>DataType.BPCHAR</em></td><td class="confluenceTd" colspan="1"> </td></tr><tr><td class="confluenceTd" colspan="1"><em>DataType.TEXT</em></td><td class="confluenceTd" colspan="1"><em>String</em></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>DataType.BYTEA</em></p></td><td class="confluenceTd"><p align="LEFT"><em>byte [] </em></p></td></tr><tr><td class="confluenceTd"><p align="LEFT"><em>DataType.TIMESTAMP</em></p></td><td class="confluenceTd"><p align="LEFT"><em>Timestamp</em></p></td></tr></tbody></table></div><h3 id="PXFExternalTableandAPIReference-Analyzer">Analyzer</h3><p align="LEFT">The Analyzer provides PXF statistical data for the HAWQ query optimizer. For a detailed explanation about HAWQ statistical data gathering, see <em>ANALYZE</em> in the SQL Command Reference of the <em><a href="HAWQAdministration.html">Pivotal HAWK Administrator Guide</a></em>. Implement the PXF Analyzer for the HDFS text, sequence, and AVRO files. For HBase tables and Hive tables, the Analyzer returns default values.</p><p align="LEFT"><strong>Notes</strong>:</p><ul><li>The new <em>boolean guc pxf_enable_stat_collection</em> requests statistics. The default value is <em>on</em>. When you turn it off, the statistics collected reflect default values.</li><li>Pivotal recommends that you implement the Analyzer to return an estimated result as fast as possible.</li></ul><p align="LEFT">The class needs to extend <em>com.pivotal.pxf.api.Analyzer</em>.</p><h4 id="PXFExternalTableandAPIReference-com.pivotal.pxf.analyzers.Analyzer">com.pivotal.pxf.analyzers.Analyzer</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">package com.pivotal.pxf.api;
+import com.pivotal.pxf.api.utilities.InputData;
+import com.pivotal.pxf.api.utilities.Plugin;
+
+/*
+ * Abstract class that defines getting statistics for ANALYZE.
+ * getEstimatedStats returns statistics for a given path
+ * (block size, number of blocks, number of tuples).
+ * Used when calling ANALYZE on a PXF external table, to get 
+ * table's statistics that are used by the optimizer to plan queries. 
+ */
+public abstract class Analyzer extends Plugin
+{
+	public Analyzer(InputData inputData)
+	{
+		super(inputData);
+	}
+	
+	/*
+	 * 'path' is the data source name (e.g, file, dir, wildcard, table name).
+	 * returns the data statistics in json format.
+	 * 
+	 * NOTE: It is highly recommended to implement an extremely fast logic
+	 * that returns *estimated* statistics. Scanning all the data for exact
+	 * statistics is considered bad practice.
+	 */
+	public AnalyzerStats getEstimatedStats(String data) throws Exception
+	{
+		/* Return default values */
+		return new AnalyzerStats();
+	}	
+}</pre>
+</div></div><p align="LEFT"><em>getEstimatedStats</em> creates a<em>n AnalyzerStats</em> , and returns the result <em>AnalyzerStats</em><em>.dataToJSON</em>.</p><h4 id="PXFExternalTableandAPIReference-com.pivotal.pxf.api.AnalyzerStats">com.pivotal.pxf.api.<em>AnalyzerStats</em></h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">package com.pivotal.pxf.api;
+import java.io.IOException;
+import org.codehaus.jackson.map.ObjectMapper;
+
+/*
+ * AnalyzerStats is a public class that represents the size
+ * information of given path.
+ */
+public class AnalyzerStats {
+	private static final long DEFAULT_BLOCK_SIZE = 67108864L; // 64MB (in bytes)
+	private static final long DEFAULT_NUMBER_OF_BLOCKS = 1L;
+	private static final long DEFAULT_NUMBER_OF_TUPLES = 1000000L;
+	
+	private long	blockSize;		// block size (in bytes)	
+	private long	numberOfBlocks;	// number of blocks
+	private long    numberOfTuples; // number of tuples
+	
+	public AnalyzerStats(long blockSize,
+                         long numberOfBlocks,
+                         long numberOfTuples)
+	{
+		this.setBlockSize(blockSize);
+		this.setNumberOfBlocks(numberOfBlocks);
+		this.setNumberOfTuples(numberOfTuples);
+	}
+		
+	/*
+	 * Default values
+	 */
+	public AnalyzerStats()
+	{
+		this(DEFAULT_BLOCK_SIZE, DEFAULT_NUMBER_OF_BLOCKS, DEFAULT_NUMBER_OF_TUPLES);
+	}
+	
+	/*
+	 * Given a AnalyzerStats, serialize it in JSON to be used as
+	 * the result string for HAWQ. An example result is as follows:
+	 *
+	 * {"PXFDataSourceStats":{"blockSize":67108864,"numberOfBlocks":1,"numberOfTuples":5}}
+	 */
+	public static String dataToJSON(AnalyzerStats stats) throws IOException
+	{
+		ObjectMapper	mapper	= new ObjectMapper();
+        // mapper serializes all members of the class by default
+        return "{\"PXFDataSourceStats\":" + mapper.writeValueAsString(stats) + "}";
+    }
+    /*
+     * Given a stats structure, convert it to be readable. Intended
+     * for debugging purposes only. 'datapath' is the data path part of
+     * the original URI (e.g., table name, *.csv, etc).
+     */
+    public static String dataToString(AnalyzerStats stats, String datapath) {
+        return "Statistics information for \"" + datapath + "\" " +
+                " Block Size: " + stats.blockSize +
+                ", Number of blocks: " + stats.numberOfBlocks +
+                ", Number of tuples: " + stats.numberOfTuples;
+    }
+    public long getBlockSize() {
+		return blockSize;
+	}
+	private void setBlockSize(long blockSize) {
+		this.blockSize = blockSize;
+	}
+	public long getNumberOfBlocks() {
+		return numberOfBlocks;
+	}
+	private void setNumberOfBlocks(long numberOfBlocks) {
+		this.numberOfBlocks = numberOfBlocks;
+	}
+	public long getNumberOfTuples() {
+		return numberOfTuples;
+	}
+	private void setNumberOfTuples(long numberOfTuples) {
+		this.numberOfTuples = numberOfTuples;
+	}	
+}    </pre>
+</div></div><h2 id="PXFExternalTableandAPIReference-AboutCustomProfiles">About Custom Profiles</h2><p>Administrators can add new profiles or edit the built-in profiles in <span style="line-height: 1.4285;background-color: transparent;"><em>pxf-profiles.xml</em> file. You need to apply the changes using ICM reconfigure.  All PXF users can use the profiles in <em>pxf-profiles.xml</em>.</span></p><p>Each profile has a mandatory unique name, and an optional description.</p><p>In addition, each profile contains a set of plugins that are an extensible set of metadata attributes.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>Custom Profile Example</b></div><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: html/xml; gutter: false" style="font-size:12px;">&lt;profile&gt;
+	&lt;name&gt;MyCustomProfile&lt;/name&gt;
+    &lt;description&gt;A Custom Profile Example&lt;/description&gt;
+    &lt;plugins&gt;
+    	&lt;fragmenter&gt;package.name.CustomProfileFragmenter&lt;/fragmenter&gt;
+        &lt;accessor&gt;package.name.CustomProfileAccessor&lt;/accessor&gt;
+        &lt;customPlugin1&gt;package.name.MyCustomPluginValue1&lt;/customPlugin1&gt;
+		&lt;customPlugin2&gt;package.name.MyCustomPluginValue2&lt;/customPlugin2&gt;
+    &lt;/plugins&gt;
+&lt;/profile&gt;</pre>
+</div></div><h2 id="PXFExternalTableandAPIReference-AboutQueryFilterPush-Down">About Query Filter Push-Down</h2><p>If a query includes a number of WHERE clause filters,  HAWQ may push all or some queries to PXF. If pushed to PXF, the Accessor can use the filtering information when accessing the data source to fetch tuples. These filters only return records that pass filter evaluation conditions. This reduces data processing and reduces network traffic from the SQL engine.</p><p><span>This topic includes the following information:</span></p><ul><li>Filter Availability and Ordering<span> </span></li><li><span>Creating a Filter Builder class</span></li><li><span>Filter Operations</span></li><li><span>Sample Implementation</span></li><li><span>Using Filters</span></li></ul><h3 id="PXFExternalTableandAPIReference-FilterAvailabilityandOrdering">Filter Availability and Ordering</h3><p><span style="color: rgb(51,51,51);">PXF allows push-down filtering if the following rules are met:</span></p><ul><li><span> <span>Uses only</span> single expressions or a group of AND'ed expressions - no OR'ed expressions.</span></li><li><span>Uses only expressions of supported data types and operators. See  <em><a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a> </em> for more information.</span></li></ul><p><span>FilterParser scans the pushed down filter list and uses the user's build() implementation to build the filter. </span></p><ul><li><span>For simple expressions (e.g, a &gt;= 5), FilterParser places column objects on the left of the expression and constants on the right. </span></li><li><span>For compound expressions (e.g &lt;expression&gt; AND &lt;expression&gt;) it handles three cases in the build() function:</span></li></ul><ol><ol><li>Simple Expression: &lt;Column Index&gt; &lt;Operation&gt; &lt;Constant&gt;</li><li><span>Compound Expression: &lt;Filter Object&gt; AND &lt;Filter Object&gt;</span></li><li><span>Compound Expression: &lt;List of Filter Objects&gt; AND &lt;Filter Object&gt;</span></li></ol></ol><h3 class="p1" id="PXFExternalTableandAPIReference-CreatingaFilterBuilderClass">Creating a Filter Builder Class</h3><p class="p2">To check if a filter queried PXF, call the <em>InputData hasFilter()</em> function:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> /*
+  * Returns true if there is a filter string to parse
+  */
+ public boolean hasFilter()
+ {
+     return filterStringValid;
+ }
+</pre>
+</div></div><p class="p1">If <em>hasFilter()</em> returns <em>false</em>, there is no filter information. If it returns <em>true</em>, PXF parses the serialized filter string into a meaningful filter object to use later. To do so, create a filter builder class that implements the <em>FilterParser.FilterBuilder </em> <span>interface:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> /*
+  * Interface a user of FilterParser should implement
+  * This is used to let the user build filter expressions in the manner she 
+  * sees fit
+  *
+  * When an operator is parsed, this function is called to let the user decide
+  * what to do with it operands.
+  */
+ interface FilterBuilder {
+     public Object build(Operation operation, Object left, Object right) throws Exception;
+ }</pre>
+</div></div><p>While PXF parses the serialized filter string from the incoming HAWQ query, it calls the <em>build() interface</em> function. PXF calls this function for each condition or filter pushed down to PXF. Implementing this function returns some Filter object or representation that the Accessor or Resolver uses in runtime to filter out records. The<em> build()</em> function accepts an Operation as input, and left and right operands.</p><h3 id="PXFExternalTableandAPIReference-FilterOperations">Filter Operations</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> /*
+  * Operations supported by the parser
+  */
+ public enum Operation
+ {
+     HDOP_LT, //less than
+     HDOP_GT, //greater than
+     HDOP_LE, //less than or equal
+     HDOP_GE, //greater than or equal
+     HDOP_EQ, //equal
+     HDOP_NE, //not equal
+     HDOP_AND //AND'ed conditions
+ };
+</pre>
+</div></div><h4 id="PXFExternalTableandAPIReference-FilterOperands">Filter Operands</h4><p>There are three types of operands:</p><ul><li>Column Index</li><li>Constant</li><li>Filter Object</li></ul><h4 id="PXFExternalTableandAPIReference-ColumnIndex">Column Index</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> /*
+  * The class represents a column index
+  * It used to know the type of an operand in the stack
+  */
+ public class ColumnIndex
+ {
+     private int index;
+     
+     public ColumnIndex(int idx)
+     {
+         index = idx;
+     }
+ 
+     public int index()
+     {
+         return index;
+     }
+ }</pre>
+</div></div><h4 id="PXFExternalTableandAPIReference-Constant">Constant</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> /*
+  * The class represents a constant object (String, Long, ...)
+  * It used to know the type of an operand in the stack
+  */
+ public class Constant
+ {
+      private Object constant;
+
+      public Constant(Object obj)
+      {
+          constant = obj;
+      }
+ 
+      public Object constant()
+      {
+          return constant;
+      }
+ }</pre>
+</div></div><h4 id="PXFExternalTableandAPIReference-FilterObject">Filter Object</h4><p>Filter Objects can be internal, such as those you define; or external, those that the remote system uses. For example, for HBase, you define the HBase <em>Filter </em>class (<span><em>org.apache.hadoop.hbase.filter.Filter</em>), while for Hive, you use an internal default representation created by the PXF framework, called <em>BasicFilter </em>. You can decide the filter object to use, including writing a new one. <em>BasicFilter</em> is the most common:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> /*
+  * Basic filter provided for cases where the target storage system does not provide it's own filter
+  * For example: Hbase storage provides it's own filter but for a Writable based record in a SequenceFile
+  * there is no filter provided and so we need to have a default
+  */
+ static public class BasicFilter
+ {
+     private Operation oper;
+     private ColumnIndex column;
+     private Constant constant;
+ 
+     /*
+      * C'tor
+      */
+     public BasicFilter(Operation inOper, ColumnIndex inColumn, Constant inConstant)
+     {
+         oper = inOper;
+         column = inColumn;
+         constant = inConstant;
+     }
+ 
+     /*
+      * returns oper field
+      */
+     public Operation getOperation()
+     {
+         return oper;
+     }
+ 
+     /*
+      * returns column field
+      */
+     public ColumnIndex getColumn()
+     {
+         return column;
+     }
+ 
+     /*
+      * returns constant field
+      */
+     public Constant getConstant()
+     {
+         return constant;
+     }
+ }</pre>
+</div></div><h3 id="PXFExternalTableandAPIReference-SampleImplementation">Sample Implementation</h3><p><span>Let's look at the following sample implementation of the filter builder class and its <em>build()</em> function that handles all 3 cases. Let's assume that BasicFilter was used to hold our filter operations</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">public class MyDemoFilterBuilder implements FilterParser.FilterBuilder
+{
+	private InputData inputData;
+
+	public MyDataFilterBuilder(InputData input)
+	{
+		inputData = input;
+	}
+
+	/*
+	 * Translates a filterString into a FilterParser.BasicFilter or a list of such filters
+	 */
+	public Object getFilterObject(String filterString) throws Exception
+	{
+		FilterParser parser = new FilterParser(this);
+		Object result = parser.parse(filterString);
+
+		if (!(result instanceof FilterParser.BasicFilter) &amp;&amp; !(result instanceof List))
+			throw new Exception("String " + filterString + " resolved to no filter");
+
+		return result;
+	}
+ 
+	public Object build(FilterParser.Operation opId, 
+						Object leftOperand, 
+						Object rightOperand) throws Exception
+	{
+		if (leftOperand instanceof FilterParser.BasicFilter)
+		{
+			//sanity check
+			if (opId != FilterParser.Operation.HDOP_AND || !(rightOperand instanceof FilterParser.BasicFilter))
+				throw new Exception("Only AND is allowed between compound expressions");
+
+			//case 3
+			if (leftOperand instanceof List)
+				return handleCompoundOperations((List&lt;FilterParser.BasicFilter&gt;)leftOperand, (FilterParser.BasicFilter)rightOperand);
+			//case 2
+			else 
+				return handleCompoundOperations((FilterParser.BasicFilter)leftOperand, (FilterParser.BasicFilter)rightOperand);
+		}
+
+		//sanity check
+		if (!(rightOperand instanceof FilterParser.Constant))
+			throw new Exception("expressions of column-op-column are not supported");
+
+		//case 1 (assume column is on the left)
+		return handleSimpleOperations(opId, (FilterParser.ColumnIndex)leftOperand, (FilterParser.Constant)rightOperand);
+	}
+
+	private FilterParser.BasicFilter handleSimpleOperations(FilterParser.Operation opId,
+															FilterParser.ColumnIndex column,
+															FilterParser.Constant constant)
+	{
+		return new FilterParser.BasicFilter(opId, column, constant);
+	}
+
+	private  List handleCompoundOperations(List&lt;FilterParser.BasicFilter&gt; left, 
+									   FilterParser.BasicFilter right)
+	{
+		left.add(right);
+		return left;
+	}
+
+	private List handleCompoundOperations(FilterParser.BasicFilter left, 
+										  FilterParser.BasicFilter right)
+	{
+		List&lt;FilterParser.BasicFilter&gt; result = new LinkedList&lt;FilterParser.BasicFilter&gt;();
+
+	 	result.add(left);
+		result.add(right);
+		return result;
+	}
+}</pre>
+</div></div><p>Here is an example of creating a filter-builder class to implement the Filter interface, implement the <em>build()</em> function, and generate the Filter object. To do this, use either the Accessor, Resolver, or both to call the <em>getFilterObject</em> function:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">if (inputData.hasFilter())
+{
+	String filterStr = inputData.filterString();
+	DemoFilterBuilder demobuilder = new DemoFilterBuilder(inputData);
+	Object filter = demobuilder.getFilterObject(filterStr);
+	...
+}</pre>
+</div></div><h3 id="PXFExternalTableandAPIReference-UsingFilters">Using Filters</h3><p>Once you have built the FIlter object(s), you can use them to read data and filter out records that do not meet the filter conditions:</p><ol><li>Check whether you have a single or multiple filters.</li><li>Evaluate each filter and iterate over each filter in the list. Disqualify the record if filter conditions fail.</li></ol><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">if (filter instanceof List)
+{
+	for (Object f : (List)filter)
+		&lt;evaluate f&gt;; //may want to break if evaluation results in negative answer for any filter.
+}
+else
+{
+	&lt;evaluate filter&gt;;
+}</pre>
+</div></div><p>Example of evaluating a single filter:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">//Get our BasicFilter Object
+FilterParser.BasicFilter bFilter = (FilterParser.BasicFilter)filter;
+
+ 
+//Get operation and operator values
+FilterParser.Operation op = bFilter.getOperation(); 
+int colIdx = bFilter.getColumn().index();
+String val = bFilter.getConstant().constant().toString();
+
+//Get more info about the column if desired
+ColumnDescriptor col = input.getColumn(colIdx);
+String colName = filterColumn.columnName();
+ 
+//Now evaluate it against the actual column value in the record...</pre>
+</div></div><h2 class="p2" id="PXFExternalTableandAPIReference-Reference">Reference</h2><p align="LEFT">This section contains the following information:</p><ul><li>External Table Samples</li><li>Plugin Examples</li><li>Configuration Files</li></ul><h3 id="PXFExternalTableandAPIReference-ExternalTableExamples">External Table Examples</h3><h4 id="PXFExternalTableandAPIReference-Example1">Example 1</h4><p align="LEFT">Shows an external table that can analyze all <em>Sequencefiles </em>that are populated <em>Writable </em>serialized records and exist inside the hdfs directory <em>sales/2012/01</em>. <em>SaleItem.class</em> is a Java class that implements the <em>Writable </em>interface and describes a Java record that includes three class members.</p><p align="LEFT"><strong>Note</strong>: In this example, the class member names do not necessarily match the database attribute names, but the types match. <em>SaleItem.class</em> must exist in the classpath of every Datanode.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE jan_2012_sales (id int, total int, comments varchar) 
+LOCATION ('pxf://10.76.72.26:50070/sales/2012/01/*.seq?FRAGMENTER=com.pivotal.pxf.plugins.hdfs.HdfsDataFragmenter&amp;ACCESSOR=com.pivotal.pxf.plugins.hdfs.SequenceFileAccessor&amp;RESOLVER=com.pivotal.pxf.plugins.hdfs.WritableResolver&amp;DATA-SCHEMA=SaleItem')
+FORMAT ‘custom’ (formatter='pxfwritable_import');</pre>
+</div></div><h4 id="PXFExternalTableandAPIReference-Example2">Example 2</h4><p align="LEFT">Example 2 shows an external table that can analyze an HBase table called<em> sales</em>. It has 10 column families <em>(cf1 – cf10)</em> and many qualifier names in each family. This example focuses on the <em>rowkey</em>, the qualifier<em> saleid</em> inside column family <em>cf1</em>, and the qualifier <em>comments</em> inside column family <em>cf8</em> and uses Direct Mapping:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE hbase_sales (hbaserowkey text, "cf1:saleid" int, "cf8:comments" varchar)
+LOCATION
+('pxf://10.76.72.26:50070/sales?PROFILE=HBase')
+FORMAT ‘custom’ (formatter='pxfwritable_import');</pre>
+</div></div><h4 id="PXFExternalTableandAPIReference-Example3">Example 3</h4><p align="LEFT">This example uses Indirect Mapping. Note how the attribute name changes and how they correspond to the HBase lookup table. Executing a <em>SELECT from my_hbase_sales</em>, the attribute names automatically convert to their HBase correspondents.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE my_hbase_sales (hbaserowkey text, id int, cmts varchar) 
+LOCATION
+('pxf://10.76.72.26:8080/sales?PROFILE=HBase')
+FORMAT ‘custom’ (formatter='pxfwritable_import');</pre>
+</div></div><h4 id="PXFExternalTableandAPIReference-Example4">Example 4</h4><p>Shows an example for a writable table of compressed data. </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE WRITABLE EXTERNAL TABLE sales_aggregated_2012 (id int, total int, comments varchar) 
+LOCATION
+('pxf://10.76.72.26:8080/sales/2012/aggregated?PROFILE=HdfsTextSimple&amp;COMPRESSION_CODEC=org.apache.hadoop.io.compress.BZip2Codec')
+FORMAT ‘TEXT’;</pre>
+</div></div><h4 id="PXFExternalTableandAPIReference-Example5">Example 5</h4><p>Shows an example for writable table into sequence file, using schema file. Note that for write, the formatter is <em>pxfwritable_export.</em></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE WRITABLE EXTERNAL TABLE sales_max_2012 (id int, total int, comments varchar) 
+LOCATION
+('pxf://10.76.72.26:8080/sales/2012/max?FRAGMENTER=com.pivotal.pxf.plugins.hdfs.HdfsDataFragmenter&amp;ACCESSOR=com.pivotal.pxf.plugins.hdfs.SequenceFileAccessor&amp;RESOLVER=com.pivotal.pxf.plugins.hdfs.WritableResolver&amp;DATA-SCHEMA=SaleItem')
+FORMAT ‘custom’ (formatter='pxfwritable_export');</pre>
+</div></div><h3 id="PXFExternalTableandAPIReference-PluginExamples">Plugin Examples</h3><p align="LEFT">This section contains sample dummy implantations of all four plug-ins. It also contains a usage example.</p><h4 id="PXFExternalTableandAPIReference-DummyFragmenter">Dummy Fragmenter</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">import com.pivotal.pxf.api.Fragmenter;
+import com.pivotal.pxf.api.Fragment;
+import com.pivotal.pxf.api.utilities.InputData;
+import java.util.List;
+
+/*
+ * Class that defines the splitting of a data resource into fragments that can
+ * be processed in parallel
+ * getFragments() returns the fragments information of a given path (source name and location of each fragment).
+ * Used to get fragments of data that could be read in parallel from the different segments.
+ * Dummy implementation, for documentation
+ */
+public class DummyFragmenter extends Fragmenter {
+    public DummyFragmenter(InputData metaData) {
+        super(metaData);
+    }
+    /*
+     * path is a data source URI that can appear as a file name, a directory name  or a wildcard
+     * returns the data fragments - identifiers of data and a list of available hosts
+     */
+    @Override
+    public List&lt;Fragment&gt; getFragments() throws Exception {
+        String localhostname = java.net.InetAddress.getLocalHost().getHostName();
+        String[] localHosts = new String[]{localhostname, localhostname};
+        fragments.add(new Fragment(inputData.dataSource() + ".1" /* source name */,
+                localHosts /* available hosts list */,
+                "fragment1".getBytes()));
+        fragments.add(new Fragment(inputData.dataSource() + ".2" /* source name */,
+                localHosts /* available hosts list */,
+                "fragment2".getBytes()));
+        fragments.add(new Fragment(inputData.dataSource() + ".3" /* source name */,
+                localHosts /* available hosts list */,
+                "fragment3".getBytes()));
+        return fragments;
+    }
+}</pre>
+</div></div><h4 id="PXFExternalTableandAPIReference-DummyAccessor">Dummy Accessor</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">import com.pivotal.pxf.api.ReadAccessor;
+import com.pivotal.pxf.api.WriteAccessor;
+import com.pivotal.pxf.api.OneRow;
+import com.pivotal.pxf.api.utilities.InputData;
+import com.pivotal.pxf.api.utilities.Plugin;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/*
+ * Internal interface that defines the access to a file on HDFS.  All classes
+ * that implement actual access to an HDFS file (sequence file, avro file,...)
+ * must respect this interface
+ * Dummy implementation, for documentation
+ */
+public class DummyAccessor extends Plugin implements ReadAccessor, WriteAccessor {
+    private static final Log LOG = LogFactory.getLog(DummyAccessor.class);
+    private int rowNumber;
+    private int fragmentNumber;
+    public DummyAccessor(InputData metaData) {
+        super(metaData);
+    }
+    @Override
+    public boolean openForRead() throws Exception {
+        /* fopen or similar */
+        return true;
+    }
+    @Override
+    public OneRow readNextObject() throws Exception {
+        /* return next row , &lt;key=fragmentNo.rowNo, val=rowNo,text,fragmentNo&gt;*/
+        /* check for EOF */
+        if (fragmentNumber &gt; 0)
+            return null; /* signal EOF, close will be called */
+        int fragment = inputData.getDataFragment();
+        String fragmentMetadata = new String(inputData.getFragmentMetadata());
+        /* generate row */
+        OneRow row = new OneRow(fragment + "." + rowNumber, /* key */
+                rowNumber + "," + fragmentMetadata + "," + fragment /* value */);
+        /* advance */
+        rowNumber += 1;
+        if (rowNumber == 2) {
+            rowNumber = 0;
+            fragmentNumber += 1;
+        } 
+        /* return data */
+        return row;
+    }
+    @Override
+    public void closeForRead() throws Exception {
+        /* fclose or similar */
+    }
+    @Override
+    public boolean openForWrite() throws Exception {
+        /* fopen or similar */
+        return true;
+    }
+    @Override
+    public boolean writeNextObject(OneRow onerow) throws Exception {
+        LOG.info(onerow.getData());
+        return true;
+    }
+    @Override
+    public void closeForWrite() throws Exception {
+        /* fclose or similar */
+    }
+}</pre>
+</div></div><h4 id="PXFExternalTableandAPIReference-DummyResolver">Dummy Resolver</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">import com.pivotal.pxf.api.OneField;
+import com.pivotal.pxf.api.OneRow;
+import com.pivotal.pxf.api.ReadResolver;
+import com.pivotal.pxf.api.WriteResolver;
+import com.pivotal.pxf.api.utilities.InputData;
+import com.pivotal.pxf.api.utilities.Plugin;
+import java.util.LinkedList;
+import java.util.List;
+import static com.pivotal.pxf.api.io.DataType.INTEGER;
+import static com.pivotal.pxf.api.io.DataType.VARCHAR;
+
+/*
+ * Class that defines the deserializtion of one record brought from the external input data.
+ * Every implementation of a deserialization method (Writable, Avro, BP, Thrift, ...)
+ * must inherit this abstract class
+ * Dummy implementation, for documentation
+ */
+public class DummyResolver extends Plugin implements ReadResolver, WriteResolver {
+    private int rowNumber;
+    public DummyResolver(InputData metaData) {
+        super(metaData);
+        rowNumber = 0;
+    }
+    @Override
+    public List&lt;OneField&gt; getFields(OneRow row) throws Exception {
+        /* break up the row into fields */
+        List&lt;OneField&gt; output = new LinkedList&lt;OneField&gt;();
+        String[] fields = ((String) row.getData()).split(",");
+        output.add(new OneField(INTEGER.getOID() /* type */, Integer.parseInt(fields[0]) /* value */));
+        output.add(new OneField(VARCHAR.getOID(), fields[1]));
+        output.add(new OneField(INTEGER.getOID(), Integer.parseInt(fields[2])));
+        return output;
+    }
+    @Override
+    public OneRow setFields(List&lt;OneField&gt; record) throws Exception {
+        /* should read inputStream row by row */
+        return rowNumber &gt; 5
+                ? null
+                : new OneRow(null, "row number " + rowNumber++);
+    }
+}</pre>
+</div></div><h4 id="PXFExternalTableandAPIReference-DummyAnalyzer">Dummy Analyzer</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">import com.pivotal.pxf.api.AnalyzerStats;
+import com.pivotal.pxf.api.ReadAccessor;
+import com.pivotal.pxf.api.Analyzer;
+import com.pivotal.pxf.api.utilities.InputData;
+
+/*
+ * Class that defines getting statistics for ANALYZE.
+ * getEstimatedStats returns statistics for a given path
+ * (block size, number of blocks, number of tuples).
+ * Used when calling ANALYZE on a GPXF external table,
+ * to get table's statistics that are used by the optimizer to plan queries. 
+ * Dummy implementation, for documentation
+ */
+public class DummyAnalyzer extends Analyzer {
+    public DummyAnalyzer(InputData metaData) {
+        super(metaData);
+    }
+
+    /*
+     * path is a data source URI that can appear as a file name, a directory name or a wildcard
+     * returns the data statistics in json format
+     */
+    @Override
+    public AnalyzerStats getEstimatedStats(String data) throws Exception {
+        return new AnalyzerStats(160000 /* disk block size in bytes */,
+                3 /* number of disk blocks */,
+                6 /* total number of rows */);
+    }
+} </pre>
+</div></div><h4 id="PXFExternalTableandAPIReference-UsageExample">Usage Example</h4><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">psql=# CREATE EXTERNAL TABLE dummy_tbl (int1 integer, word text, int2 integer)
+location
+('pxf://localhost:50070/dummy_location?FRAGMENTER=DummyFragmenter&amp;ACCESSOR=DummyAccessor&amp;RESOLVER=DummyResolver&amp;ANALYZER=DummyAnalyzer') format'custom' (formatter = 'pxfwritable_import');
+　
+CREATE EXTERNAL TABLE
+psql=# SELECT * FROM dummy_tbl;
+int1 | word | int2
+------+------+------
+0 | fragment1 | 0
+1 | fragment1 | 0
+0 | fragment2 | 0
+1 | fragment2 | 0
+0 | fragment3 | 0
+1 | fragment3 | 0
+(6 rows)
+psql=# CREATE WRITABLE EXTERNAL TABLE dummy_tbl_write (int1 integer, word text, int2 integer)
+location
+('pxf://localhost:50070/dummy_location?ACCESSOR=DummyAccessor&amp;RESOLVER=DummyResolver') 
+format'custom' (formatter = 'pxfwritable_import');
+　
+CREATE EXTERNAL TABLE
+psql=# INSERT INTO dummy_tbl_write VALUES (1, 'a', 11), (2, 'b', 22);
+INSERT 0 2
+
+
+</pre>
+</div></div><h3 id="PXFExternalTableandAPIReference-ConfigurationFiles">Configuration Files</h3><p align="LEFT">This section contains sample environment variable files for HDFS, HIVE, and HBase:</p><h4 id="PXFExternalTableandAPIReference-hadoop-env.sh">hadoop-env.sh</h4><p align="LEFT">You can use this file to configure the following types of configurations:</p><ul><li>HDFS only</li><li>HDFS and HBase</li><li>HDFS, HBase, and Hive</li></ul><h5 id="PXFExternalTableandAPIReference-HDFSonly">HDFS only</h5><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export GPHD_ROOT=/usr/lib/gphd
+export HADOOP_CLASSPATH=\
+$GPHD_ROOT/pxf/pxf-core.jar:\
+$GPHD_ROOT/pxf/pxf-api.jar:\
+$GPHD_ROOT/publicstage:\</pre>
+</div></div><h5 id="PXFExternalTableandAPIReference-HDFSandHBase">HDFS and HBase</h5><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export GPHD_ROOT=/usr/lib/gphd
+export HADOOP_CLASSPATH=\
+$GPHD_ROOT/pxf/pxf-core.jar:\
+$GPHD_ROOT/pxf/pxf-api.jar:\
+$GPHD_ROOT/publicstage:\
+$GPHD_ROOT/zookeeper/zookeeper-3.4.5-gphd-3.0.0.0.jar:\
+$GPHD_ROOT/hbase/lib/hbase-common-0.96.0-hadoop2-gphd-3.0.0.0.jar:\
+$GPHD_ROOT/hbase/lib/hbase-protocol-0.96.0-hadoop2-gphd-3.0.0.0.jar:\
+$GPHD_ROOT/hbase/lib/hbase-client-0.96.0-hadoop2-gphd-3.0.0.0.jar:\
+$GPHD_ROOT/hbase/lib/hbase-thrift-0.96.0-hadoop2-gphd-3.0.0.0.jar:\
+$GPHD_ROOT/hbase/lib/htrace-core-2.01.jar:\
+/etc/gphd/hbase/conf:\</pre>
+</div></div><h5 id="PXFExternalTableandAPIReference-HDFS,HBase,andHive">HDFS, HBase, and Hive</h5><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export GPHD_ROOT=/usr/lib/gphd
+export HADOOP_CLASSPATH=\
+$GPHD_ROOT/pxf/pxf-core.jar:\
+$GPHD_ROOT/pxf/pxf-api.jar:\
+$GPHD_ROOT/publicstage:\
+$GPHD_ROOT/zookeeper/zookeeper-3.4.5-gphd-3.0.0.0.jar:\
+$GPHD_ROOT/hbase/lib/hbase-common-0.96.0-hadoop2-gphd-3.0.0.0.jar:\
+$GPHD_ROOT/hbase/lib/hbase-protocol-0.96.0-hadoop2-gphd-3.0.0.0.jar:\
+$GPHD_ROOT/hbase/lib/hbase-client-0.96.0-hadoop2-gphd-3.0.0.0.jar:\
+$GPHD_ROOT/hbase/lib/hbase-thrift-0.96.0-hadoop2-gphd-3.0.0.0.jar:\
+$GPHD_ROOT/hbase/lib/htrace-core-2.01.jar:\
+/etc/gphd/hbase/conf:\
+$GPHD_ROOT/hive/lib/hive-service-0.12.0-gphd-3.0.0.0.jar:\
+$GPHD_ROOT/hive/lib/hive-metastore-0.12.0-gphd-3.0.0.0.jar:\
+$GPHD_ROOT/hive/lib/hive-common-0.12.0-gphd-3.0.0.0.jar:\
+$GPHD_ROOT/hive/lib/hive-exec-0.12.0-gphd-3.0.0.0.jar:\
+$GPHD_ROOT/hive/lib/libfb303-0.9.0.jar:\
+$GPHD_ROOT/hive/lib/libthrift-0.9.0.jar:\</pre>
+</div></div><h4 id="PXFExternalTableandAPIReference-hbase-site.xml">hbase-site.xml</h4><p align="LEFT">You can use this file to configure the following types of configurations:</p><ul><li>HBase</li><li>HDFS, HBase and Hive</li></ul><h4 id="PXFExternalTableandAPIReference-HBase">HBase</h4><p align="LEFT">The Java Class path requires the PXF JAR filse. <em>hbase-site.xml</em> needs to be configured to match the hbase settings on all nodes (Namenode and Datanodes).</p><p align="LEFT"><strong><span style="font-size: xx-small;"><strong><span style="font-size: xx-small;"> </span> </strong> <strong> </strong> <strong> </strong> <strong> </strong> <span style="font-size: xx-small;"> </span></span></strong></p><h2 id="PXFExternalTableandAPIReference-CredentialsforRemoteServices">Credentials for Remote Services</h2><h2 id="PXFExternalTableandAPIReference-CredentialsforremoteservicesallowsaPXFplugintoaccessaremoteservicethatrequirescredentials."><span style="color: rgb(51,51,51);line-height: 1.4285;font-size: 14.0px;">Credentials for remote services allows a PXF plugin to access a remote service that requires credentials.</span></h2><h3 id="PXFExternalTableandAPIReference-InHAWQ">In HAWQ</h3><p>For these credentials, we implemented two GUCs in HAWQ:</p><ol><li>pxf_remote_service_login - a string of characters detailing information regarding login (i.e. user name).</li><li>pxf_remote_service_secret - a string of characters detailing information that is considered secret (i.e. password).</li></ol><p>Currently, we store the contents of the two GUCs in memory, without any security, for the whole session. Leaving the session will insecurely drop the GUCs' contents.</p><p> </p> <div class="aui-message hint shadowed information-macro">
+<span class="aui-icon icon-hint">Icon</span>
+<div class="message-content">
+<p>These GUCs are temporary and could soon be marked deprecated, in favor of a complete solution for managing credentials for remote services in PXF.</p>
+</div>
+</div>
+<h3 id="PXFExternalTableandAPIReference-InaPXFPlugin">In a PXF Plugin</h3><p>As a PXF plugin, the content of the two GUCs is available through the following InputData API functions:</p><ol><li>string getLogin()</li><li>string getSecret()</li></ol><p>Both functions will return 'null' if the corresponding HAWQ GUC was set to an empty string or wasn't set at all. </p>
+</div>
+		
+		</main><!--end of content-->
+
+  </div><!-- end of container -->
+
+  <script type="text/javascript">
+    (function() {
+      var didInit = false;
+      function initMunchkin() {
+        if(didInit === false) {
+          didInit = true;
+          Munchkin.init('625-IUJ-009');
+        }
+      }
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+      s.onreadystatechange = function() {
+        if (this.readyState == 'complete' || this.readyState == 'loaded') {
+          initMunchkin();
+        }
+      };
+      s.onload = initMunchkin;
+      document.getElementsByTagName('head')[0].appendChild(s);
+    })();
+  </script>
+</div><!--end of wrap-->
+</div><!--end of viewport-->
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href='/'>Pivotal Documentation</a>
+      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>
+
+
+            
+      
+      
+      
+      

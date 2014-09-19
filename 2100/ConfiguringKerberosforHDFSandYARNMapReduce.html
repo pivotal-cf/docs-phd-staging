@@ -1,0 +1,1574 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>Configuring Kerberos for HDFS and YARN (MapReduce) | Pivotal HD Docs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- TESTING -->
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <script src="javascripts/all.js" type="text/javascript"></script>
+  
+  <!--  <link href="/stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <script src="/javascripts/all.js" type="text/javascript"></script>-->
+
+  <script type="text/javascript">
+    if (window.location.host === 'docs.pivotal.io') {
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-39702075-1']);
+      _gaq.push(['_setDomainName', 'pivotal.io']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    }
+  </script>
+  <!-- Confluence HTML stylesheet -->
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+   
+   <!-- Left-navigation code -->
+    <!-- http://www.designchemical.com/lab/jquery-vertical-accordion-menu-plugin/examples/# -->
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="javascripts/jquery.hoverIntent.minified.js" type="text/javascript"></script>
+    <script src="javascripts/jquery.dcjqaccordion.2.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+                    $(document).ready(function($){
+					$('#accordion-1').dcAccordion({
+						eventType: 'click',
+						autoClose: true,
+						saveState: true,
+						disableLink: false,
+						speed: 'fast',
+						classActive: 'test',
+						showCount: false
+					});
+					});
+        </script>
+    <link href="stylesheets/grey.css" rel="stylesheet" type="text/css" /> 
+    <!-- End left-navigation code -->
+   
+</head>
+
+<body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
+
+<div class="viewport">
+<div class='wrap'>
+  <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+  <script type="text/javascript">
+      try {
+          Typekit.load();
+      } catch (e) {
+      }
+  </script>
+  <script type="text/javascript">
+      document.domain = "pivotal.io";
+  </script>
+
+  <script type="text/javascript">
+    WebFontConfig = {
+      google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
+
+  <header class="header header-layout">
+		<h1 class="logo"><a href="/" class="logo">Pivotal HD Documentation</a></h1>      
+      
+		<div class="header-links js-bar-links">
+			<div class="btn-menu" data-behavior="MenuMobile"></div>
+			<div class="header-item">
+			  <a href="http://docs.pivotal.io">Docs Home</a>
+			</div>
+			<div class="header-item">
+			  <a href="http://support.pivotal.io" target="_blank">Support</a>
+			</div>
+			<div class="header-item searchbar js-searchbar">
+			  <a class="search-icon" data-behavior="Search"></a>
+			  <div class="search-input">
+				<!-- Google CSE Search Box -->
+				<div class="search-input-inner" id="docs-search">
+					<gcse:search></gcse:search>
+				</div>
+			  </div>
+			</div>
+      </div>
+    </header>
+    
+    <div class="container">
+    
+	<!--INSERT SIDENAV -->
+	<div id="sub-nav" class="nav-container">
+   <ul class="accordion" id="accordion-1">
+      <li>
+         <a href="PivotalHD.html">Pivotal HD</a>
+         <ul>
+            <li>
+               <a href="PHDEnterprise2.1.0ReleaseNotes.html">PHD Enterprise 2.1.0 Release Notes</a>
+            </li>
+            <li>
+               <a href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+               <ul>
+                  <li>
+                     <a href="OverviewofPHD.html">Overview of PHD</a>
+                  </li>
+                  <li>
+                     <a href="InstallationOverview.html">Installation Overview</a>
+                     <ul>
+                        <li>
+                           <a href="CommandLineInstallationFeatures.html">Command Line Installation Features</a>
+                        </li>
+                        <li>
+                           <a href="DeploymentOptions.html">Deployment Options</a>
+                        </li>
+                        <li>
+                           <a href="PlanningyourPHDClusterDeployment.html">Planning your PHD Cluster Deployment</a>
+                        </li>
+                        <li>
+                           <a href="BestPracticesforSelectingHardware.html">Best Practices for Selecting Hardware</a>
+                        </li>
+                        <li>
+                           <a href="BestPracticesforDeployingHadoopServices.html">Best Practices for Deploying Hadoop Services</a>
+                        </li>
+                        <li>
+                           <a href="HighAvailabilityBestPractices.html">High Availability Best Practices</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="PHDInstallationPrerequisites.html">PHD Installation Prerequisites</a>
+                     <ul>
+                        <li>
+                           <a href="BeforeYouBeginInstallingPHD.html">Before You Begin Installing PHD</a>
+                        </li>
+                        <li>
+                           <a href="PHDPrerequisiteChecklist.html">PHD Prerequisite Checklist</a>
+                        </li>
+                        <li>
+                           <a href="PHD-DNSLookup.html">PHD - DNS Lookup</a>
+                        </li>
+                        <li>
+                           <a href="PHD-JAVAJDK.html">PHD - JAVA JDK</a>
+                        </li>
+                        <li>
+                           <a href="PHD-VerifyPackageAccessibility.html">PHD - Verify Package Accessibility</a>
+                        </li>
+                        <li>
+                           <a href="PHD-TurnOffiptables.html">PHD - Turn Off iptables</a>
+                        </li>
+                        <li>
+                           <a href="PHD-DisableSELinux.html">PHD - Disable SELinux</a>
+                        </li>
+                        <li>
+                           <a href="EPELYumRepository.html">EPEL Yum Repository</a>
+                        </li>
+                        <li>
+                           <a href="SudoConfigurationFiles.html">Sudo Configuration Files</a>
+                        </li>
+                        <li>
+                           <a href="FQDN.html">FQDN</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="InstallingPHDUsingtheCLI.html">Installing PHD Using the CLI</a>
+                     <ul>
+                        <li>
+                           <a href="PHDInstallationChecklist.html">PHD Installation Checklist</a>
+                        </li>
+                        <li>
+                           <a href="InstallingPivotalCommandCenter.html">Installing Pivotal Command Center</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringKerberosandLDAP.html">Configuring Kerberos and LDAP</a>
+                        </li>
+                        <li>
+                           <a href="PHD-ImportingthePackages.html">PHD - Importing the Packages</a>
+                        </li>
+                        <li>
+                           <a href="EditingtheClusterConfigurationFiles.html">Editing the Cluster Configuration Files</a>
+                        </li>
+                        <li>
+                           <a href="EditingtheHAWQConfigurationFile.html">Editing the HAWQ Configuration File</a>
+                        </li>
+                        <li>
+                           <a href="ForPXFwithGemFireXD.html">For PXF with GemFire XD</a>
+                        </li>
+                        <li>
+                           <a href="DeployingtheCluster.html">Deploying the Cluster</a>
+                        </li>
+                        <li>
+                           <a href="StartingtheCluster.html">Starting the Cluster</a>
+                        </li>
+                        <li>
+                           <a href="InitializingandStartingHAWQ.html">Initializing and Starting HAWQ</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="PHDPost-Installation.html">PHD Post-Installation</a>
+                     <ul>
+                        <li>
+                           <a href="VerifyingPHDServiceStatus.html">Verifying PHD Service Status</a>
+                        </li>
+                        <li>
+                           <a href="RunningPHDSamplePrograms.html">Running PHD Sample Programs</a>
+                        </li>
+                        <li>
+                           <a href="Post-InstallationReferenceInformation.html">Post-Installation Reference Information</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="PHDUpgradePrerequisites.html">PHD Upgrade Prerequisites</a>
+                     <ul>
+                        <li>
+                           <a href="UpgradePrerequisiteChecklist.html">Upgrade Prerequisite Checklist</a>
+                        </li>
+                        <li>
+                           <a href="FileLocationsandBackups.html">File Locations and Backups</a>
+                        </li>
+                        <li>
+                           <a href="VerifyJavaJDK.html">Verify Java JDK</a>
+                        </li>
+                        <li>
+                           <a href="CompactHBaseTables.html">Compact HBase Tables</a>
+                        </li>
+                        <li>
+                           <a href="SudoConfigurationFile.html">Sudo Configuration File</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="UpgradingPHD2.0.xto2.1.0.html">Upgrading PHD 2.0.x to 2.1.0</a>
+                     <ul>
+                        <li>
+                           <a href="PHDUpgradeChecklist-2.0.xto2.1.0.html">PHD Upgrade Checklist - 2.0.x to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="UpgradeInstructions-2.0.xto2.1.0.html">Upgrade Instructions - 2.0.x to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="MovingHAWQFilespacetoHA-enabledHDFS-2.0.xto2.1.0.html">Moving HAWQ Filespace to HA-enabled HDFS - 2.0.x to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="UpgradeReferenceInformation-2.0.xto2.1.0.html">Upgrade Reference Information - 2.0.x to 2.1.0</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="UpgradingPHDfrom1.1.1to2.1.0.html">Upgrading PHD from 1.1.1 to 2.1.0</a>
+                     <ul>
+                        <li>
+                           <a href="UpgradeChecklist-1.1.1to2.1.0.html">Upgrade Checklist - 1.1.1 to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="UpgradeInstructions-1.1.1to2.1.0.html">Upgrade Instructions - 1.1.1 to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="MovingHAWQFilespacetoHA-enabledHDFS-1.1.1to2.1.0.html">Moving HAWQ Filespace to HA-enabled HDFS - 1.1.1 to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="UpgradeReferenceInformation-1.1.1to2.1.0.html">Upgrade Reference Information - 1.1.1 to 2.1.0</a>
+                        </li>
+                        <li>
+                           <a href="DisablingSecurityona1.1.1Cluster.html">Disabling Security on a 1.1.1 Cluster</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="AdministeringPHDUsingtheCLI.html">Administering PHD Using the CLI</a>
+                     <ul>
+                        <li>
+                           <a href="ManagingaPHDCluster.html">Managing a PHD Cluster</a>
+                           <ul>
+                              <li>
+                                 <a href="StartingaCluster.html">Starting a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="StoppingaCluster.html">Stopping a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="RestartingaCluster.html">Restarting a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="ReconfiguringaCluster.html">Reconfiguring a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="AddingRemovingServices.html">Adding/Removing Services</a>
+                              </li>
+                              <li>
+                                 <a href="AddingHoststoaCluster.html">Adding Hosts to a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="RetrievingInformationaboutaDeployedCluster.html">Retrieving Information about a Deployed Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="ListingClusters.html">Listing Clusters</a>
+                              </li>
+                              <li>
+                                 <a href="ExpandingaCluster.html">Expanding a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="ShrinkingaCluster.html">Shrinking a Cluster</a>
+                              </li>
+                              <li>
+                                 <a href="DecommissioningSlaveNodes.html">Decommissioning Slave Nodes</a>
+                              </li>
+                              <li>
+                                 <a href="HighAvailability.html">High Availability</a>
+                              </li>
+                              <li>
+                                 <a href="SecurityKerberosAuthentication.html">Security/Kerberos Authentication</a>
+                              </li>
+                              <li>
+                                 <a href="UninstallingaCluster.html">Uninstalling a Cluster</a>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="ManagingHAWQ.html">Managing HAWQ</a>
+                           <ul>
+                              <li>
+                                 <a href="InitializingHAWQ.html">Initializing HAWQ</a>
+                              </li>
+                              <li>
+                                 <a href="StartingHAWQ.html">Starting HAWQ</a>
+                              </li>
+                              <li>
+                                 <a href="StoppingHAWQ.html">Stopping HAWQ</a>
+                              </li>
+                              <li>
+                                 <a href="ModifyingHAWQUserConfiguration.html">Modifying HAWQ User Configuration</a>
+                              </li>
+                              <li>
+                                 <a href="ExpandingHAWQ.html">Expanding HAWQ</a>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="ManagingPHDRolesandHosts.html">Managing PHD Roles and Hosts</a>
+                        </li>
+                        <li>
+                           <a href="PHDServicesReference.html">PHD Services Reference</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="PHDFAQ-FrequentlyAskedQuestions.html">PHD FAQ - Frequently Asked Questions</a>
+                  </li>
+                  <li>
+                     <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
+                  </li>
+                  <li>
+                     <a href="PHDRESTAPIs.html">PHD REST APIs</a>
+                     <ul>
+                        <li>
+                           <a href="SwaggerwithOAuth.html">Swagger with OAuth</a>
+                        </li>
+                        <li>
+                           <a href="ListofPHDRESTAPIs.html">List of PHD REST APIs</a>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </li>
+            <li>
+               <a href="StackandToolsReference.html">Stack and Tools Reference</a>
+               <ul>
+                  <li>
+                     <a href="OverviewofApacheStackandPivotalComponents.html">Overview of Apache Stack and Pivotal Components</a>
+                  </li>
+                  <li>
+                     <a href="ManuallyInstallingandUsingPivotalHD2.1Stack.html">Manually Installing and Using Pivotal HD 2.1 Stack</a>
+                     <ul>
+                        <li>
+                           <a href="DistributionContents.html">Distribution Contents</a>
+                        </li>
+                        <li>
+                           <a href="ApacheConfigurationReference.html">Apache Configuration Reference</a>
+                        </li>
+                        <li>
+                           <a href="AccessingPHD2.1.html">Accessing PHD 2.1</a>
+                        </li>
+                        <li>
+                           <a href="HadoopHDFS.html">Hadoop HDFS</a>
+                        </li>
+                        <li>
+                           <a href="HadoopYARN.html">Hadoop YARN</a>
+                        </li>
+                        <li>
+                           <a href="HadoopPseudo-distributedConfiguration.html">Hadoop Pseudo-distributed Configuration</a>
+                        </li>
+                        <li>
+                           <a href="Zookeeper.html">Zookeeper</a>
+                        </li>
+                        <li>
+                           <a href="HBase.html">HBase</a>
+                        </li>
+                        <li>
+                           <a href="Hive.html">Hive</a>
+                        </li>
+                        <li>
+                           <a href="HCatalog.html">HCatalog</a>
+                        </li>
+                        <li>
+                           <a href="Pig.html">Pig</a>
+                        </li>
+                        <li>
+                           <a href="Mahout.html">Mahout</a>
+                        </li>
+                        <li>
+                           <a href="Flume.html">Flume</a>
+                        </li>
+                        <li>
+                           <a href="Sqoop.html">Sqoop</a>
+                        </li>
+                        <li>
+                           <a href="Oozie.html">Oozie</a>
+                        </li>
+                        <li>
+                           <a href="GraphLab.html">GraphLab</a>
+                        </li>
+                        <li>
+                           <a href="Hamster.html">Hamster</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="ManuallyUpgradingPivotalHDStacktoPHD2.1.html">Manually Upgrading Pivotal HD Stack to PHD 2.1</a>
+                  </li>
+                  <li>
+                     <a href="PivotalHadoopEnhancements.html">Pivotal Hadoop Enhancements</a>
+                  </li>
+                  <li>
+                     <a href="Security.html">Security</a>
+                     <ul>
+                        <li>
+                           <a href="SecurityOverview.html">Security Overview</a>
+                        </li>
+                        <li>
+                           <a href="KerberosSetup.html">Kerberos Setup</a>
+                        </li>
+                        <li>
+                           <a href="LDAPSetup.html">LDAP Setup</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringKerberosforHDFSandYARNMapReduce.html">Configuring Kerberos for HDFS and YARN (MapReduce)</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringKerberosforHDFSHighAvailability.html">Configuring Kerberos for HDFS High Availability</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureZookeeper.html">Configuring Secure Zookeeper</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureHBase.html">Configuring Secure HBase</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureHive.html">Configuring Secure Hive</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringHCatalogWebHCatonSecureHive.html">Configuring HCatalog (WebHCat) on Secure Hive</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringHAWQonSecureHDFS.html">Configuring HAWQ on Secure HDFS</a>
+                        </li>
+                        <li>
+                           <a href="EnablingAuditing.html">Enabling Auditing</a>
+                        </li>
+                        <li>
+                           <a href="SecureWebAccess.html">Secure Web Access</a>
+                        </li>
+                        <li>
+                           <a href="SecureWebAccessviaHttpFS.html">Secure Web Access via HttpFS</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureFlume.html">Configuring Secure Flume</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureOozie.html">Configuring Secure Oozie</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureSqoop.html">Configuring Secure Sqoop</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecurePig.html">Configuring Secure Pig</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringSecureMahout.html">Configuring Secure Mahout</a>
+                        </li>
+                        <li>
+                           <a href="Security-Troubleshooting.html">Security - Troubleshooting</a>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </li>
+         </ul>
+      </li>
+      <li>
+         <a href="PivotalCommandCenter.html">Pivotal Command Center</a>
+         <ul>
+            <li>
+               <a href="PCC2.3.0ReleaseNotes.html">PCC 2.3.0 Release Notes</a>
+            </li>
+            <li>
+               <a href="PCCUserGuide.html">PCC User Guide</a>
+               <ul>
+                  <li>
+                     <a href="PCCOverview.html">PCC Overview</a>
+                  </li>
+                  <li>
+                     <a href="PCCInstallationPrerequisites.html">PCC Installation Prerequisites</a>
+                     <ul>
+                        <li>
+                           <a href="BeforeYouBeginInstallingPCC.html">Before You Begin Installing PCC</a>
+                        </li>
+                        <li>
+                           <a href="PCCPrerequisiteChecklist.html">PCC Prerequisite Checklist</a>
+                        </li>
+                        <li>
+                           <a href="PCC-DNSLookup.html">PCC - DNS Lookup</a>
+                        </li>
+                        <li>
+                           <a href="PCC-JAVAJDK.html">PCC - JAVA JDK</a>
+                        </li>
+                        <li>
+                           <a href="PCC-VerifyPackageAccessibility.html">PCC - Verify Package Accessibility</a>
+                        </li>
+                        <li>
+                           <a href="PCC-TurnOffiptables.html">PCC - Turn Off iptables</a>
+                        </li>
+                        <li>
+                           <a href="PCC-DisableSELinux.html">PCC - Disable SELinux</a>
+                        </li>
+                        <li>
+                           <a href="PCC-EPELYumRepository.html">PCC - EPEL Yum Repository</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="InstallationInstructions.html">Installation Instructions</a>
+                     <ul>
+                        <li>
+                           <a href="SupportedPlatformsandBrowsers.html">Supported Platforms and Browsers</a>
+                        </li>
+                        <li>
+                           <a href="PCCInstallationChecklist.html">PCC Installation Checklist</a>
+                        </li>
+                        <li>
+                           <a href="InstallPCC.html">Install PCC</a>
+                        </li>
+                        <li>
+                           <a href="PCC-ImportingthePackages.html">PCC - Importing the Packages</a>
+                        </li>
+                        <li>
+                           <a href="LaunchingPCC.html">Launching PCC</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="UninstallingPCC.html">Uninstalling PCC</a>
+                  </li>
+                  <li>
+                     <a href="UpgradingPCC.html">Upgrading PCC</a>
+                  </li>
+                  <li>
+                     <a href="UsingPCC.html">Using PCC</a>
+                     <ul>
+                        <li>
+                           <a href="PCCUIOverview.html">PCC UI Overview</a>
+                        </li>
+                        <li>
+                           <a href="LoggingIn.html">Logging In</a>
+                        </li>
+                        <li>
+                           <a href="PCCUISettings.html">PCC UI Settings</a>
+                        </li>
+                        <li>
+                           <a href="PCCUIUserManagement.html">PCC UI User Management</a>
+                        </li>
+                        <li>
+                           <a href="ClusterStatusPage.html">Cluster Status Page</a>
+                        </li>
+                        <li>
+                           <a href="ConfiguringandDeployingaCluster.html">Configuring and Deploying a Cluster</a>
+                           <ul>
+                              <li>
+                                 <a href="LaunchingtheAddClusterWizard.html">Launching the Add Cluster Wizard</a>
+                              </li>
+                              <li>
+                                 <a href="CreateClusterDefinition.html">Create Cluster Definition</a>
+                              </li>
+                              <li>
+                                 <a href="VersionsServicesandHosts.html">Versions, Services, and Hosts</a>
+                              </li>
+                              <li>
+                                 <a href="HostVerification.html">Host Verification</a>
+                              </li>
+                              <li>
+                                 <a href="ClusterTopology.html">Cluster Topology</a>
+                              </li>
+                              <li>
+                                 <a href="ClusterConfiguration.html">Cluster Configuration</a>
+                              </li>
+                              <li>
+                                 <a href="Validation.html">Validation</a>
+                              </li>
+                              <li>
+                                 <a href="DeploymentStatus.html">Deployment Status</a>
+                              </li>
+                              <li>
+                                 <a href="Summary.html">Summary</a>
+                              </li>
+                              <li>
+                                 <a href="StartingtheClusterfromtheUI.html">Starting the Cluster from the UI</a>
+                              </li>
+                              <li>
+                                 <a href="InitializingandConfiguringHAWQ.html">Initializing and Configuring HAWQ</a>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <a href="StartingStoppingandUninstallingaCluster.html">Starting, Stopping, and Uninstalling a Cluster</a>
+                        </li>
+                        <li>
+                           <a href="PCCUIDashboard.html">PCC UI Dashboard</a>
+                        </li>
+                        <li>
+                           <a href="ClusterAnalysis.html">Cluster Analysis</a>
+                        </li>
+                        <li>
+                           <a href="MapReduceJobMonitor.html">MapReduce Job Monitor</a>
+                        </li>
+                        <li>
+                           <a href="YarnAppMonitor.html">Yarn App Monitor</a>
+                        </li>
+                        <li>
+                           <a href="HAWQQueryMonitor.html">HAWQ Query Monitor</a>
+                        </li>
+                        <li>
+                           <a href="Topology.html">Topology</a>
+                        </li>
+                        <li>
+                           <a href="Logs.html">Logs</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="ConfiguringPCCforLDAP.html">Configuring PCC for LDAP</a>
+                  </li>
+                  <li>
+                     <a href="CommandLineReference.html">Command Line Reference</a>
+                  </li>
+               </ul>
+            </li>
+         </ul>
+      </li>
+      <li>
+         <a href="PivotalHAWQ.html">Pivotal HAWQ</a>
+         <ul>
+            <li>
+               <a href="HAWQ1.2.1ReleaseNotes.html">HAWQ 1.2.1 Release Notes</a>
+            </li>
+            <li>
+               <a href="HAWQInstallationandUpgrade.html">HAWQ Installation and Upgrade</a>
+               <ul>
+                  <li>
+                     <a href="PreparingtoInstallHAWQ.html">Preparing to Install HAWQ</a>
+                  </li>
+                  <li>
+                     <a href="InstallingHAWQ.html">Installing HAWQ</a>
+                  </li>
+                  <li>
+                     <a href="InstallingtheHAWQComponents.html">Installing the HAWQ Components</a>
+                  </li>
+                  <li>
+                     <a href="UpgradingHAWQandComponents.html">Upgrading HAWQ and Components</a>
+                  </li>
+                  <li>
+                     <a href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a>
+                  </li>
+               </ul>
+            </li>
+            <li>
+               <a href="HAWQAdministration.html">HAWQ Administration</a>
+               <ul>
+                  <li>
+                     <a href="HAWQOverview.html">HAWQ Overview</a>
+                  </li>
+                  <li>
+                     <a href="HAWQQueryProcessing.html">HAWQ Query Processing</a>
+                  </li>
+                  <li>
+                     <a href="UsingHAWQtoQueryData.html">Using HAWQ to Query Data</a>
+                  </li>
+                  <li>
+                     <a href="UsingProceduralLanguages.html">Using Procedural Languages</a>
+                  </li>
+                  <li>
+                     <a href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>
+                  </li>
+                  <li>
+                     <a href="ConfiguringKerberosAuthentication.html">Configuring Kerberos Authentication</a>
+                  </li>
+                  <li>
+                     <a href="ConfiguringLDAPAuthentication.html">Configuring LDAP Authentication</a>
+                  </li>
+                  <li>
+                     <a href="BackingUpandRestoringHAWQDatabases.html">Backing Up and Restoring HAWQ Databases</a>
+                  </li>
+                  <li>
+                     <a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a>
+                  </li>
+                  <li>
+                     <a href="HAWQInputFormatforMapReduce.html">HAWQ InputFormat for MapReduce</a>
+                  </li>
+                  <li>
+                     <a href="HAWQFilespacesandHighAvailabilityEnabledHDFS.html">HAWQ Filespaces and High Availability Enabled HDFS</a>
+                  </li>
+                  <li>
+                     <a href="SQLCommandReference.html">SQL Command Reference</a>
+                     <ul>
+                        <li>
+                           <a href="ABORT.html">ABORT</a>
+                        </li>
+                        <li>
+                           <a href="ANALYZE.html">ANALYZE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERAGGREGATE.html">ALTER AGGREGATE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERFUNCTION.html">ALTER FUNCTION</a>
+                        </li>
+                        <li>
+                           <a href="ALTEROPERATOR.html">ALTER OPERATOR</a>
+                        </li>
+                        <li>
+                           <a href="ALTEROPERATORCLASS.html">ALTER OPERATOR CLASS</a>
+                        </li>
+                        <li>
+                           <a href="ALTERROLE.html">ALTER ROLE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERTABLE.html">ALTER TABLE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERTABLESPACE.html">ALTER TABLESPACE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERTYPE.html">ALTER TYPE</a>
+                        </li>
+                        <li>
+                           <a href="ALTERUSER.html">ALTER USER</a>
+                        </li>
+                        <li>
+                           <a href="BEGIN.html">BEGIN</a>
+                        </li>
+                        <li>
+                           <a href="CHECKPOINT.html">CHECKPOINT</a>
+                        </li>
+                        <li>
+                           <a href="CLOSE.html">CLOSE</a>
+                        </li>
+                        <li>
+                           <a href="COMMIT.html">COMMIT</a>
+                        </li>
+                        <li>
+                           <a href="COPY.html">COPY</a>
+                        </li>
+                        <li>
+                           <a href="CREATEAGGREGATE.html">CREATE AGGREGATE</a>
+                        </li>
+                        <li>
+                           <a href="CREATEDATABASE.html">CREATE DATABASE</a>
+                        </li>
+                        <li>
+                           <a href="CREATEEXTERNALTABLE.html">CREATE EXTERNAL TABLE</a>
+                        </li>
+                        <li>
+                           <a href="CREATEFUNCTION.html">CREATE FUNCTION</a>
+                        </li>
+                        <li>
+                           <a href="CREATEGROUP.html">CREATE GROUP</a>
+                        </li>
+                        <li>
+                           <a href="CREATELANGUAGE.html">CREATE LANGUAGE</a>
+                        </li>
+                        <li>
+                           <a href="CREATEOPERATOR.html">CREATE OPERATOR</a>
+                        </li>
+                        <li>
+                           <a href="CREATEOPERATORCLASS.html">CREATE OPERATOR CLASS</a>
+                        </li>
+                        <li>
+                           <a href="CREATERESOURCEQUEUE.html">CREATE RESOURCE QUEUE</a>
+                        </li>
+                        <li>
+                           <a href="CREATEROLE.html">CREATE ROLE</a>
+                        </li>
+                        <li>
+                           <a href="CREATESCHEMA.html">CREATE SCHEMA</a>
+                        </li>
+                        <li>
+                           <a href="CREATESEQUENCE.html">CREATE SEQUENCE</a>
+                        </li>
+                        <li>
+                           <a href="CREATETABLE.html">CREATE TABLE</a>
+                        </li>
+                        <li>
+                           <a href="CREATETABLEAS.html">CREATE TABLE AS</a>
+                        </li>
+                        <li>
+                           <a href="CREATETABLESPACE.html">CREATE TABLESPACE</a>
+                        </li>
+                        <li>
+                           <a href="CREATETYPE.html">CREATE TYPE</a>
+                        </li>
+                        <li>
+                           <a href="CREATE-USER.html">CREATE USER</a>
+                        </li>
+                        <li>
+                           <a href="CREATEVIEW.html">CREATE VIEW</a>
+                        </li>
+                        <li>
+                           <a href="DEALLOCATE.html">DEALLOCATE</a>
+                        </li>
+                        <li>
+                           <a href="DECLARE.html">DECLARE</a>
+                        </li>
+                        <li>
+                           <a href="DROPAGGREGATE.html">DROP AGGREGATE</a>
+                        </li>
+                        <li>
+                           <a href="DROPDATABASE.html">DROP DATABASE</a>
+                        </li>
+                        <li>
+                           <a href="DROPEXTERNALTABLE.html">DROP EXTERNAL TABLE</a>
+                        </li>
+                        <li>
+                           <a href="DROPFILESPACE.html">DROP FILESPACE</a>
+                        </li>
+                        <li>
+                           <a href="DROPFUNCTION.html">DROP FUNCTION</a>
+                        </li>
+                        <li>
+                           <a href="DROPGROUP.html">DROP GROUP</a>
+                        </li>
+                        <li>
+                           <a href="DROPOPERATOR.html">DROP OPERATOR</a>
+                        </li>
+                        <li>
+                           <a href="DROPOPERATORCLASS.html">DROP OPERATOR CLASS</a>
+                        </li>
+                        <li>
+                           <a href="DROPOWNED.html">DROP OWNED</a>
+                        </li>
+                        <li>
+                           <a href="DROPRESOURCEQUEUE.html">DROP RESOURCE QUEUE</a>
+                        </li>
+                        <li>
+                           <a href="DROPROLE.html">DROP ROLE</a>
+                        </li>
+                        <li>
+                           <a href="DROPSCHEMA.html">DROP SCHEMA</a>
+                        </li>
+                        <li>
+                           <a href="DROPSEQUENCE.html">DROP SEQUENCE</a>
+                        </li>
+                        <li>
+                           <a href="DROPTABLE.html">DROP TABLE</a>
+                        </li>
+                        <li>
+                           <a href="DROPTABLESPACE.html">DROP TABLESPACE</a>
+                        </li>
+                        <li>
+                           <a href="DROPTYPE.html">DROP TYPE</a>
+                        </li>
+                        <li>
+                           <a href="DROP-USER.html">DROP USER</a>
+                        </li>
+                        <li>
+                           <a href="DROPVIEW.html">DROP VIEW</a>
+                        </li>
+                        <li>
+                           <a href="END.html">END</a>
+                        </li>
+                        <li>
+                           <a href="EXECUTE.html">EXECUTE</a>
+                        </li>
+                        <li>
+                           <a href="EXPLAIN.html">EXPLAIN</a>
+                        </li>
+                        <li>
+                           <a href="FETCH.html">FETCH</a>
+                        </li>
+                        <li>
+                           <a href="GRANT.html">GRANT</a>
+                        </li>
+                        <li>
+                           <a href="INSERT.html">INSERT</a>
+                        </li>
+                        <li>
+                           <a href="PREPARE.html">PREPARE</a>
+                        </li>
+                        <li>
+                           <a href="REASSIGNOWNED.html">REASSIGN OWNED</a>
+                        </li>
+                        <li>
+                           <a href="RELEASESAVEPOINT.html">RELEASE SAVEPOINT</a>
+                        </li>
+                        <li>
+                           <a href="RESET.html">RESET</a>
+                        </li>
+                        <li>
+                           <a href="REVOKE.html">REVOKE</a>
+                        </li>
+                        <li>
+                           <a href="ROLLBACK.html">ROLLBACK</a>
+                        </li>
+                        <li>
+                           <a href="ROLLBACKTOSAVEPOINT.html">ROLLBACK TO SAVEPOINT</a>
+                        </li>
+                        <li>
+                           <a href="SAVEPOINT.html">SAVEPOINT</a>
+                        </li>
+                        <li>
+                           <a href="SELECT.html">SELECT</a>
+                        </li>
+                        <li>
+                           <a href="SELECTINTO.html">SELECT INTO</a>
+                        </li>
+                        <li>
+                           <a href="SET.html">SET</a>
+                        </li>
+                        <li>
+                           <a href="SETROLE.html">SET ROLE</a>
+                        </li>
+                        <li>
+                           <a href="SETSESSIONAUTHORIZATION.html">SET SESSION AUTHORIZATION</a>
+                        </li>
+                        <li>
+                           <a href="SHOW.html">SHOW</a>
+                        </li>
+                        <li>
+                           <a href="TRUNCATE.html">TRUNCATE</a>
+                        </li>
+                        <li>
+                           <a href="VACUUM.html">VACUUM</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+                     <ul>
+                        <li>
+                           <a href="gpactivatestandby.html">gpactivatestandby</a>
+                        </li>
+                        <li>
+                           <a href="gpcheckperf.html">gpcheckperf</a>
+                        </li>
+                        <li>
+                           <a href="gpconfig.html">gpconfig</a>
+                        </li>
+                        <li>
+                           <a href="gpexpand.html">gpexpand</a>
+                        </li>
+                        <li>
+                           <a href="gpextract.html">gpextract</a>
+                        </li>
+                        <li>
+                           <a href="gpfdist.html">gpfdist</a>
+                        </li>
+                        <li>
+                           <a href="gpfilespace.html">gpfilespace</a>
+                        </li>
+                        <li>
+                           <a href="gpinitstandby.html">gpinitstandby</a>
+                        </li>
+                        <li>
+                           <a href="gpinitsystem.html">gpinitsystem</a>
+                        </li>
+                        <li>
+                           <a href="gpload.html">gpload</a>
+                        </li>
+                        <li>
+                           <a href="gplogfilter.html">gplogfilter</a>
+                        </li>
+                        <li>
+                           <a href="gprecoverseg.html">gprecoverseg</a>
+                        </li>
+                        <li>
+                           <a href="gpscp.html">gpscp</a>
+                        </li>
+                        <li>
+                           <a href="gpstart.html">gpstart</a>
+                        </li>
+                        <li>
+                           <a href="gpssh.html">gpssh</a>
+                        </li>
+                        <li>
+                           <a href="gssh-exkeys.html">gssh-exkeys</a>
+                        </li>
+                        <li>
+                           <a href="gpstate.html">gpstate</a>
+                        </li>
+                        <li>
+                           <a href="gpstop.html">gpstop</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="ClientUtilityReference.html">Client Utility Reference</a>
+                     <ul>
+                        <li>
+                           <a href="createdb.html">createdb</a>
+                        </li>
+                        <li>
+                           <a href="createlang.html">createlang</a>
+                        </li>
+                        <li>
+                           <a href="createuser.html">createuser</a>
+                        </li>
+                        <li>
+                           <a href="dropdb.html">dropdb</a>
+                        </li>
+                        <li>
+                           <a href="dropuser.html">dropuser</a>
+                        </li>
+                        <li>
+                           <a href="pg_dump.html">pg_dump</a>
+                        </li>
+                        <li>
+                           <a href="pg_dumpall.html">pg_dumpall</a>
+                        </li>
+                        <li>
+                           <a href="pg_restore.html">pg_restore</a>
+                        </li>
+                        <li>
+                           <a href="psql.html">psql</a>
+                        </li>
+                        <li>
+                           <a href="vacuumdb.html">vacuumdb</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>
+                  </li>
+                  <li>
+                     <a href="CharacterSetSupportReference.html">Character Set Support Reference</a>
+                  </li>
+                  <li>
+                     <a href="HAWQEnvironmentVariables.html">HAWQ Environment Variables</a>
+                  </li>
+                  <li>
+                     <a href="HAWQDataTypes.html">HAWQ Data Types</a>
+                  </li>
+                  <li>
+                     <a href="SystemCatalogReference.html">System Catalog Reference</a>
+                  </li>
+                  <li>
+                     <a href="hawq_toolkitReference.html">hawq_toolkit Reference</a>
+                  </li>
+                  <li>
+                     <a href="ManagingHAWQLogFiles.html">Managing HAWQ Log Files</a>
+                  </li>
+               </ul>
+            </li>
+            <li>
+               <a href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>
+               <ul>
+                  <li>
+                     <a href="PXFInstallationandAdministration.html">PXF Installation and Administration</a>
+                  </li>
+                  <li>
+                     <a href="PXFExternalTableandAPIReference.html">PXF External Table and API Reference</a>
+                  </li>
+               </ul>
+            </li>
+         </ul>
+      </li>
+   </ul>
+</div> 
+   
+	<!-- end INSERT SIDENAV -->
+	
+	<main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container">Configuring Kerberos for HDFS and YARN (MapReduce)</h1>
+          <div id="js-quick-links"></div>          
+        
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>     
+        
+		<!-- Python script replaces main content -->
+		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Configuring Kerberos for HDFS and YARN (MapReduce)</div><div class="wiki-content group" id="main-content">
+<p>At a minimum, Kerberos provides protection against user and service spoofing attacks, and allows for enforcement of user HDFS access permissions. The installation is not difficult, but requires very specific instructions with many steps, and suffers from the same difficulties as any system requiring distributed configuration. Pivotal is working to automate the process to make it simple for users to enable/disable secure PHD clusters. Until then, these instructions are intended to provide a step by step process for getting a cluster up and running in secure mode.</p><p>This section includes the following topics:</p><p><style type="text/css">/*<![CDATA[*/
+div.rbtoc1410924392341 {padding: 0px;}
+div.rbtoc1410924392341 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1410924392341 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1410924392341">
+<ul class="toc-indentation">
+<li><a href="#ConfiguringKerberosforHDFSandYARN(MapReduce)-CreatingthePrincipalsandKeytabs">Creating the Principals and Keytabs</a>
+<ul class="toc-indentation">
+<li><a href="#ConfiguringKerberosforHDFSandYARN(MapReduce)-CreatethePrincipals">Create the Principals</a></li>
+<li><a href="#ConfiguringKerberosforHDFSandYARN(MapReduce)-CreatetheKeytabFiles">Create the Keytab Files</a>
+<ul class="toc-indentation">
+<li><a href="#ConfiguringKerberosforHDFSandYARN(MapReduce)-DistributetheKeytabFiles">Distribute the Keytab Files</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#ConfiguringKerberosforHDFSandYARN(MapReduce)-InstallingJavaSupportItems">Installing Java Support Items</a>
+<ul class="toc-indentation">
+<li><a href="#ConfiguringKerberosforHDFSandYARN(MapReduce)-InstallJCEonallClusterHosts">Install JCE on all Cluster Hosts</a></li>
+<li><a href="#ConfiguringKerberosforHDFSandYARN(MapReduce)-CheckJSVConallDatanodes">Check JSVC on all Datanodes</a></li>
+</ul>
+</li>
+<li><a href="#ConfiguringKerberosforHDFSandYARN(MapReduce)-ModifyingContainerandScript">Modifying Container and Script</a>
+<ul class="toc-indentation">
+<li><a href="#ConfiguringKerberosforHDFSandYARN(MapReduce)-ConfiguretheLinuxContainer">Configure the Linux Container</a></li>
+<li><a href="#ConfiguringKerberosforHDFSandYARN(MapReduce)-EdittheEnvironmentontheDatanodes">Edit the Environment on the Datanodes</a></li>
+</ul>
+</li>
+<li><a href="#ConfiguringKerberosforHDFSandYARN(MapReduce)-EditingtheSiteXML">Editing the Site XML</a>
+<ul class="toc-indentation">
+<li><a href="#ConfiguringKerberosforHDFSandYARN(MapReduce)-Using_HOSTinSiteXML">Using _HOST in Site XML</a></li>
+<li><a href="#ConfiguringKerberosforHDFSandYARN(MapReduce)-EdittheSiteXML">Edit the Site XML</a></li>
+</ul>
+</li>
+<li><a href="#ConfiguringKerberosforHDFSandYARN(MapReduce)-CompletingtheHDFS/YARNSecureConfiguration">Completing the HDFS/YARN Secure Configuration</a></li>
+<li><a href="#ConfiguringKerberosforHDFSandYARN(MapReduce)-TurningSecureModeOff">Turning Secure Mode Off</a></li>
+<li><a href="#ConfiguringKerberosforHDFSandYARN(MapReduce)-BuildingandInstallingJSVC">Building and Installing JSVC</a></li>
+</ul>
+</div></p><p>Note that after the initial HDFS/YARN configuration, other services that need to be set up to run on secure HDFS (for example, HBase), or that you want to also secure (for example, Zookeeper), need to configured.</p><p><strong>Important</strong>: Save your command history; it will help in checking for errors when troubleshooting.</p><p><span class="confluence-anchor-link" id="ConfiguringKerberosforHDFSandYARN(MapReduce)-CreatePrincipal"></span></p><h2 id="ConfiguringKerberosforHDFSandYARN(MapReduce)-CreatingthePrincipalsandKeytabs">Creating the Principals and Keytabs</h2><p>These instructions are for MIT Kerberos 5; command syntax for other Kerberos versions may be different.</p><p>Principals (Kerberos users) are of the form:<code> name/role@REALM</code>. For our purposes the name will be a PHD service name (for example, <code>hdfs</code>), and the role will be a DNS resolvable fully-qualified hostname (<code>host_fqdn</code>); one you could use to connect to the host in question.</p><p><strong>Important</strong>:</p><ul><li>Replace <code>REALM</code> with the KDC realm you are using for your PHD cluster, where it appears.</li><li>The host names used MUST be resolvable to an address on all the cluster hosts and MUST be of the form <code>host.domain,</code> as some Hadoop components require at least one "." part in the host names used for principals.</li><li>The names of the principals seem to matter, as some processes may throw exceptions if you change them. Hence, it is safest to use the specified Hadoop principal names.</li><li>Hadoop supports an<code> _HOST</code> tag in the site XML that is interpreted as the <code>host_fqdn,</code> but this must be used properly. See <a href="ConfiguringKerberosforHDFSandYARNMapReduce.html">Using _HOST in Site XML</a>.</li></ul><p>For the HDFS services, you will need to create an <code>hdfs/host_fqdn</code> principal for each host running an HDFS service (name node, secondary name node, data node).</p><p>For YARN services, you will need to create a <code>yarn/host_fqdn</code> principal for each host running a YARN service (resource manager, node manager, proxy server).</p><p>For MapReduce services, you need to create a principal,<code> mapred/host_fqdn</code> for the Job History Server.</p><h3 id="ConfiguringKerberosforHDFSandYARN(MapReduce)-CreatethePrincipals">Create the Principals</h3><p>To create the required secure HD principals (running <code>kadmin.local</code>):</p><ul><li>For each cluster host (excepting client-only hosts) run:  </li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">addprinc -randkey HTTP/&lt;host_fqdn&gt;@&lt;REALM&gt;</pre>
+</div></div><ul><li>HDFS (name node, secondary name node, data nodes), for each HDFS service host  run:</li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> addprinc -randkey hdfs/&lt;host_fqdn&gt;@&lt;REALM&gt;</pre>
+</div></div><ul><li>YARN (resource manager, node managers, proxy server), for each YARN service host run:</li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">addprinc -randkey yarn/&lt;host_fqdn&gt;@&lt;REALM&gt;</pre>
+</div></div><ul><li>MAPRED (job history server): for each JHS service host run:</li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">addprinc -randkey  mapred/&lt;host_fqdn&gt;@&lt;REALM&gt;</pre>
+</div></div> <div class="aui-message warning shadowed information-macro">
+<p class="title">Important</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p> If you have 1000 cluster hosts running HDFS and YARN, you will need 2000 HDFS and YARN principals, and need to distribute their keytab files. It is recommended that you use a cluster-local KDC for this purpose and configure cross-realm trust to your organizational Active Directory or other Kerberos KDC.</p>
+</div>
+</div>
+<h3 id="ConfiguringKerberosforHDFSandYARN(MapReduce)-CreatetheKeytabFiles">Create the Keytab Files</h3><p><strong>Important</strong>: You MUST use<code> kadmin.local</code> (or the equivalent in your KDC) for this step on the KDC, as <code>kadmin</code> does not support <code>-norandkey.</code></p><p><strong>Important</strong>: You can put the keytab files anywhere during this step. In this document, we created a directory<code> /etc/security/phd/keytab/</code> and are using this directory on cluster hosts, and so, for consistency, are placing them in a similarly named directory on the KDC. If the node you are on already has files in <code>/etc/security/phd/keytab/,</code> it may be advisable to create a separate, empty, directory for this step.</p><p>Each service's keytab file for a given host will have the service principal for that host and the HTTP principal for that host in the file.</p><p><strong>HDFS key tabs</strong></p><p>For each host having an HDFS process (name node, secondary name node, data nodes), run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/hdfs-hostid.service.keytab  hdfs/&lt;host_fqdn&gt;@&lt;REALM&gt; HTTP/&lt;host_fqdn@&lt;REALM&gt;</pre>
+</div></div><p>where <code>hostid</code> is the short name for the host, for example, <code>vm1</code>, <code>vm2</code>, etc. This is to differentiate the files by host. You can use the hostname if desired.</p><p>For example, for a three node cluster (one node name node, two data nodes):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/hdfs-vm2.service.keytab hdfs/centos62-2.localdomain@BIGDATA.COM HTTP/centos62-2.localdomain@BIGDATA.COM
+kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/hdfs-vm3.service.keytab hdfs/centos62-3.localdomain@BIGDATA.COM HTTP/centos62-3.localdomain@BIGDATA.COM
+kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/hdfs-vm4.service.keytab hdfs/centos62-4.localdomain@BIGDATA.COM HTTP/centos62-4.localdomain@BIGDATA.COM
+</pre>
+</div></div><p> </p><p><strong>YARN keytabs</strong></p><p>For each host having a YARN process (resource manager, node manager or proxy server), run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local:  ktadd -norandkey -k /etc/security/phd/keytab/yarn-hostid.service.keytab yarn/&lt;host_fqdn&gt;@&lt;REALM&gt;   HTTP/&lt;host_fqdn&gt;@&lt;REALM&gt;</pre>
+</div></div><p>For example, for a three node cluster (one node resource manager, two node managers):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/yarn-vm2.service.keytab yarn/centos62-2.localdomain@BIGDATA.COM HTTP/centos62-2.localdomain@BIGDATA.COM
+kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/yarn-vm3.service.keytab yarn/centos62-3.localdomain@BIGDATA.COM HTTP/centos62-3.localdomain@BIGDATA.COM
+kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/yarn-vm4.service.keytab yarn/centos62-4.localdomain@BIGDATA.COM HTTP/centos62-4.localdomain@BIGDATA.COM
+</pre>
+</div></div><p> </p><p><strong>MAPRED keytabs</strong></p><p>For each host having a MapReduce job history server, run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local:  ktadd -norandkey -k /etc/security/phd/keytab/mapred-hostid.service.keytab  mapred/host_fqdn@REALM  HTTP/host_fqdn@REALM</pre>
+</div></div><p>For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/mapred-vm2.service.keytab mapred/centos62-2.localdomain@BIGDATA.COM HTTP/centos62-2.localdomain@BIGDATA.COM
+</pre>
+</div></div><h4 id="ConfiguringKerberosforHDFSandYARN(MapReduce)-DistributetheKeytabFiles">Distribute the Keytab Files</h4><ol><li>On each cluster node, create the directory for the keytab files; here, we are using <code>/etc/security/phd/keytab</code>.</li><li>Move all the keytab files for a given host to the keytab directory on that host. For example: <code>hdfs-vm2.service.keytab</code>, <code>yarn-vm2.service.keytab</code> and <code>mapred-vm2.service.keytab</code> go to host vm2</li><li>On each host:</li></ol><ol><li><ol><li>Change the permissions on all key tabs to read by owner only: <br/> <code>chmod 400 *.keytab</code></li><li>Change the group on all keytab files to hadoop: <br/> <code>chgrp hadoop *</code></li><li>Change the owner of each keytab to the relevant principal name. <br/>For example, for <code>yarn-vm2.service.keytab</code> run: <code> <br/>chown yarn yarn-vm2.service.keytab</code></li><li>Create links to the files of the form <code> <em>principalname.service.keytab</em> </code>. <br/>For example, for <code>yarn-vm2.service.keytab</code> run:<br/> <code> ln -s yarn-vm2.service.keytab yarn.service.keytab</code></li></ol></li></ol> <div class="aui-message warning shadowed information-macro">
+<p class="title">important</p>
+<span class="aui-icon icon-warning">Icon</span>
+<div class="message-content">
+<p> The last step above allows you to maintain clear identification of each keytab file while also allowing you to have common site xml files across cluster hosts.</p>
+</div>
+</div>
+<p>This is an example keytab directory for a cluster control node (namenode, resource manager, JHS):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">lrwxrwxrwx 1 root      root    23 Jun 10 23:50 hdfs.service.keytab -&gt; hdfs-vm2.service.keytab
+-r-------- 1 hdfs      hadoop 954 Jun 10 23:44 hdfs-vm2.service.keytab
+lrwxrwxrwx 1 root      root    25 Jun 10 23:51 mapred.service.keytab -&gt; mapred-vm2.service.keytab
+-r-------- 1 mapred    hadoop 966 Jun 10 23:44 mapred-vm2.service.keytab
+lrwxrwxrwx 1 root      root    23 Jun 10 23:51 yarn.service.keytab -&gt; yarn-vm2.service.keytab
+-r-------- 1 yarn      hadoop 954 Jun 10 23:44 yarn-vm2.service.keytab
+</pre>
+</div></div><p> </p><p>This is an example keytab directory for a cluster node (datanode, node manager, proxy server):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">lrwxrwxrwx 1 root root    23 Jun 11 01:58 hdfs.service.keytab -&gt; hdfs-vm3.service.keytab
+-r-------- 1 hdfs hadoop 954 Jun 10 23:45 hdfs-vm3.service.keytab
+lrwxrwxrwx 1 root root    23 Jun 11 01:58 yarn.service.keytab -&gt; yarn-vm3.service.keytab
+-r-------- 1 yarn hadoop 954 Jun 10 23:45 yarn-vm3.service.keytab
+</pre>
+</div></div><h2 id="ConfiguringKerberosforHDFSandYARN(MapReduce)-InstallingJavaSupportItems">Installing Java Support Items</h2><h3 id="ConfiguringKerberosforHDFSandYARN(MapReduce)-InstallJCEonallClusterHosts">Install JCE on all Cluster Hosts</h3><p><strong>Important</strong>: This step is only if you are using AES-256.</p><p class="emoticon emoticon-warning" title="(warning)"><strong>Note</strong>: These files will already exist in your environment and look the same, but are the <em>limited strength</em> encryption files; you must replace them with the unlimited strength files to use AES-256</p><ol><li>Download and unzip the JCE file for your JDK version (Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files 7 for JDK 7).</li><li>Place the <code>local_policy.jar</code> and <code>US_export_policy.jar</code> files in the <code>/usr/java/default/jre/lib/security/</code> directory on all cluster hosts.</li></ol><h3 id="ConfiguringKerberosforHDFSandYARN(MapReduce)-CheckJSVConallDatanodes">Check JSVC on all Datanodes</h3><p>JSVC allows a Java process to start as root and then switch to a less privileged user, and is required for the datanode process to start in secure mode. Your distribution comes with a pre-built JSVC; you need to verify it can find a JVM as follows:</p><ol><li>Run:<br/> <code>/usr/libexec/bigtop-utils/jsvc  -help<br/> <br/> </code></li><li>Look under the printed<code> -jvm</code> item in the output and you should see something like: <br/><p><code>use a specific Java Virtual Machine. Available JVMs:</code> <br/> <code>'server'</code> <br/>If you do not see the <code>server</code> line, this jsvc will not work for your platform, so try the following actions:</p><p>a. Install JSVC using yum and run the check again; if it fails try the next step.</p><p>b. Build from source and install manually (see <a href="ConfiguringKerberosforHDFSandYARNMapReduce.html">Building and Installing JSVC</a>).</p></li></ol><p>If you have datanode start-up problems and no other errors are obvious, it might be a JSVC problem and you may need to perform step 2, above, another time. JSVC is very picky about platform and JDK matching, so use the <a href="ConfiguringKerberosforHDFSandYARNMapReduce.html">Building and Installing JSVC</a> instructions for your system OS and JDK.</p><h2 id="ConfiguringKerberosforHDFSandYARN(MapReduce)-ModifyingContainerandScript">Modifying Container and Script</h2><h3 id="ConfiguringKerberosforHDFSandYARN(MapReduce)-ConfiguretheLinuxContainer">Configure the Linux Container</h3><ol><li><p>Edit the <code>/usr/lib/gphd/hadoop-yarn/etc/hadoop/container-executor.cfg</code> as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># NOTE: these next two should be set to the same values they have in yarn-site.xml
+yarn.nodemanager.local-dirs=/data/1/yarn/nm-local-dir
+yarn.nodemanager.log-dirs=/data/1/yarn/userlogs
+# configured value of yarn.nodemanager.linux-container-executor.group
+yarn.nodemanager.linux-container-executor.group=yarn
+# comma separated list of users who can not run applications
+banned.users=hdfs,yarn,mapred,bin
+# Prevent other super-users
+min.user.id=500
+</pre>
+</div></div><p><strong>Note</strong>: The <code>min.user.id</code> varies by Linux distribution; for CentOS it is 500, RedHat is 1000.</p></li><li><p>Check the permissions on <code>/usr/lib/gphd/hadoop-yarn/bin/container-executor</code>. They should look like:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">---Sr-s--- 1 root yarn   364 Jun 11 00:08 container-executor
+</pre>
+</div></div><p>If they do not, then set the owner, group and permissions as:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">chown root:yarn container-executor
+chmod 050 container-executor
+chmod u+s container-executor
+chmod g+s container-executor
+</pre>
+</div></div></li></ol><p>Check the permissions on <code>/usr/lib/gphd/hadoop-yarn/etc/hadoop/container-executor.cfg</code>. They should look like:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">-rw-r--r-- 1 root root 363 Jul  4 00:29 /usr/lib/gphd/hadoop-yarn/etc/hadoop/container-executor.cfg
+</pre>
+</div></div><p>If they do not, then set them as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">chown root:root container-executor.cfg
+chmod 644 container-executor.cfg
+</pre>
+</div></div><h3 id="ConfiguringKerberosforHDFSandYARN(MapReduce)-EdittheEnvironmentontheDatanodes">Edit the Environment on the Datanodes</h3><p> </p><p><strong>Important</strong>:</p><ul><li class="emoticon emoticon-warning" title="(warning)">At this point you should STOP the cluster, if it is running.</li><li class="emoticon emoticon-warning" title="(warning)">You only need to perform the steps below on the data nodes.</li></ul><ol><li><p>Uncomment the lines at the bottom of <code>/etc/default/hadoop-hdfs-datanode</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># secure operation stuff
+export HADOOP_SECURE_DN_USER=hdfs
+export HADOOP_SECURE_DN_LOG_DIR=${HADOOP_LOG_DIR}/hdfs
+export HADOOP_PID_DIR=/var/run/gphd/hadoop-hdfs/
+export HADOOP_SECURE_DN_PID_DIR=${HADOOP_PID_DIR}
+</pre>
+</div></div></li><li><p>Set the JSVC variable:<br/>If you are using the included <code>jsvc</code> the<code> JSVC_HOME</code> variable in <code>/etc/default/hadoop</code> , it should already be properly set:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export JSVC_HOME=/usr/libexec/bigtop-utils
+</pre>
+</div></div><p>If, however, you built or hand-installed JSVC, your <code>JSVC_HOME</code> will be<code> /usr/bin</code> , so you must set it appropriately. Modify<code> /etc/default/hadoop</code> and set the proper <code>JSVC_HOME</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export JSVC_HOME=/usr/bin
+</pre>
+</div></div><p><strong>Important</strong>: Make sure<code> JSVC_HOME</code> points to the correct<code> jsvc</code> binary.</p></li></ol> <div class="aui-message problem shadowed information-macro">
+<span class="aui-icon icon-problem">Icon</span>
+<div class="message-content">
+<p>As long as<code> HADOOP_SECURE_DN_USER</code> is, set the datanode will try to start in secure mode.</p>
+</div>
+</div>
+<p><strong> <br/> </strong></p><p><span class="confluence-anchor-link" id="ConfiguringKerberosforHDFSandYARN(MapReduce)-SiteXML"></span></p><h2 id="ConfiguringKerberosforHDFSandYARN(MapReduce)-EditingtheSiteXML">Editing the Site XML</h2><h3 id="ConfiguringKerberosforHDFSandYARN(MapReduce)-Using_HOSTinSiteXML">Using _HOST in Site XML</h3><p>You can maintain consistent site XML by using the <code>_HOST</code> <em> </em>keyword for the<code> host_fqdn</code> part in the site XML if:</p><ul><li>Your cluster nodes were identified with fully qualified domain names when configuring the cluster.</li><li><code>hostname -f</code> on all nodes yields the proper fully qualified hostname (same as the one used when creating the principals).</li></ul><p>You cannot use constructs like<code> _HOST.domain</code>; these will be interpreted literally.</p><p>You can only use<code> _HOST</code> in the site XML; files such as <code>jaas.conf,</code> needed for Zookeeper and HBase, must use actual FQDN's for hosts.</p><p><span class="confluence-anchor-link" id="ConfiguringKerberosforHDFSandYARN(MapReduce)-EditSite"></span></p><h3 id="ConfiguringKerberosforHDFSandYARN(MapReduce)-EdittheSiteXML">Edit the Site XML</h3><p>Finally, we are ready to edit the site XML to turn on secure mode. Before getting into this, it is good to understand who needs to talk to whom. By "talk" we mean using authenticated kerberos to initiate establishment of a communication channel. Doing this requires that you know your own principal, to identify yourself, and know the principal of the service you want to talk to. To be able to use its principal, a service needs to be able to login to Kerberos without a password, using a keytab file.</p><ul><li>Each service needs to know its own principal name.</li><li>Each running service on a node needs a service/host specific keytab file to start up.</li><li>Each data node needs to talk to the name node.</li><li>Each node manager needs to talk to the resource manager and the job history server.</li><li>Each client/gateway node needs to talk to the name node, resource manager and job history server.</li></ul><p><strong>Important</strong>:</p><ul><li>Redundant keytab files on some hosts do no harm and it makes management easier to have constant files. Remember, though, that the host_fqdn MUST be correct for each entry. Remembering this helps when setting up and troubleshooting the site xml files.</li><li>Before making changes, backup the current site xml files so that you can return to non-secure operation, if needed.</li></ul><p>Most of the changes can be consistent throughout the cluster site XML. Unfortunately, since data node and node manager principals are host-name-dependent (or more correctly the role for the YARN principal is set to the <code>host_fqdn</code>), the <code>yarn-site.xml</code> for data node and node manager principals will differ across the cluster.</p><ol><li><p>Edit <code>/usr/lib/gphd/hadoop/etc/hadoop/core-site.xml</code> as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
+  &lt;name&gt;hadoop.security.authentication&lt;/name&gt;
+  &lt;value&gt;kerberos&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hadoop.security.authorization&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+
+
+&lt;!-- THE PROPERTY BELOW IS OPTIONAL: IT ENABLES ON WIRE RPC ENCRYPTION --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hadoop.rpc.protection&lt;/name&gt;
+  &lt;value&gt;privacy&lt;/value&gt;
+&lt;/property&gt;</pre>
+</div></div></li><li><p>Edit  <code>/usr/lib/gphd/hadoop/etc/hadoop/hdfs-site.xml</code> as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;!-- WARNING: do not create duplicate entries: check for existing entries and modify if they exist! --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.block.access.token.enable&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;!-- short circuit reads do not work when security is enabled for PHD VERSION LOWER THAN 2.0 so disable ONLY for them --&gt;
+&lt;!-- For PHD greater than or equal to 2.0, set this to true --&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.client.read.shortcircuit&lt;/name&gt;
+  &lt;value&gt;false&lt;/value&gt;
+&lt;/property&gt;
+&lt;!-- name node secure configuration info --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.namenode.keytab.file&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hdfs.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.namenode.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;hdfs/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.namenode.kerberos.http.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.namenode.kerberos.internal.spnego.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- (optional) secondary name node secure configuration info --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.secondary.namenode.keytab.file&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hdfs.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.secondary.namenode.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;hdfs/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.secondary.namenode.kerberos.http.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.secondary.namenode.kerberos.internal.spnego.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- data node secure configuration info --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.data.dir.perm&lt;/name&gt;
+  &lt;value&gt;700&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- these ports must be set &lt; 1024 for secure operation --&gt;
+&lt;!-- conversely they must be set back to &gt; 1024 for non-secure operation --&gt;
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.address&lt;/name&gt;
+  &lt;value&gt;0.0.0.0:1004&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.http.address&lt;/name&gt;
+  &lt;value&gt;0.0.0.0:1006&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- remember the principal for the datanode is the principal this hdfs-site.xml file is on --&gt;
+
+&lt;!-- these (next three) need only be set on data nodes --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;hdfs/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.kerberos.http.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.keytab.file&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hdfs.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+ 
+&lt;!-- OPTIONAL - set these to enable secure WebHDSF --&gt;
+ 
+&lt;!-- on all HDFS cluster nodes (namenode, secondary namenode, datanode's) --&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.webhdfs.enabled&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.web.authentication.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;!-- since we included the HTTP principal all keytabs we can use it here --&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.web.authentication.kerberos.keytab&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hdfs.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;!-- THE PROPERTIES BELOW ARE OPTIONAL AND REQUIRE RPC PRIVACY (core-site): THEY ENABLE ON WIRE HDFS BLOCK ENCRYPTION --&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.encrypt.data.transfer&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.encrypt.data.transfer.algorithm&lt;/name&gt;
+  &lt;value&gt;rc4&lt;/value&gt;
+  &lt;description&gt;may be "rc4" or "3des" - 3des has a significant performance impact&lt;/description&gt;
+&lt;/property&gt;
+ </pre>
+</div></div></li><li><p>Edit <code>/usr/lib/gphd/hadoop/etc/hadoop/yarn-site.xml</code> as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;!-- resource manager secure configuration info --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.resourcemanager.principal&lt;/name&gt;
+  &lt;value&gt;yarn/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.resourcemanager.keytab&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/yarn.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- remember the principal for the node manager is the principal for the host this yarn-site.xml file is on --&gt;
+
+&lt;!-- these (next four) need only be set on node manager nodes --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.principal&lt;/name&gt;
+  &lt;value&gt;yarn/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.keytab&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/yarn.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.container-executor.class&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.linux-container-executor.group&lt;/name&gt;
+  &lt;value&gt;yarn&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- OPTIONAL - set these to enable secure proxy server node --&gt; 
+
+&lt;property&gt;
+  &lt;name&gt;yarn.web-proxy.keytab&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/yarn.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.web-proxy.principal&lt;/name&gt;
+  &lt;value&gt;yarn/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;</pre>
+</div></div></li><li><p>Edit <code>/usr/lib/gphd/hadoop/etc/hadoop/mapred-site.xml</code> as follows:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;!-- job history server secure configuration info --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;mapreduce.jobhistory.keytab&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/mapred.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;mapreduce.jobhistory.principal&lt;/name&gt;
+  &lt;value&gt;mapred/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+</pre>
+</div></div></li></ol><h2 id="ConfiguringKerberosforHDFSandYARN(MapReduce)-CompletingtheHDFS/YARNSecureConfiguration">Completing the HDFS/YARN Secure Configuration</h2><ol><li><p>Start the cluster:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ icm_client start</pre>
+</div></div></li><li>Check that all the processes listed below start up. If not, go to the <a href="Security-Troubleshooting.html">Security - Troubleshooting</a>.<br/><ul><li>Control processes: namenode, resourcemanager, historyserver should all be running.</li><li>Cluster worker processes: datanode and namenode should be running.<br/> <strong>Note</strong>: Until you do HBase security configuration, HBase will not start up on a secure cluster.</li></ul></li><li><p>Create a principal for a standard user (the user must exist as a Linux user on all cluster hosts):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin: addprinc testuser</pre>
+</div></div><p>Set the password when prompted.</p></li><li><p>Login as that user on a client box (or any cluster box, if you do not have specific client purposed systems).</p></li><li><p>Get your Kerberos TGT by running <code>kinit</code> and entering the password:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kinit testuser</pre>
+</div></div></li><li><p>Test simple HDFS file list and directory create:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop fs -ls
+hadoop fs -mkdir testdir</pre>
+</div></div><p>If these do not work, go to the <a href="Security-Troubleshooting.html">Troubleshooting </a>section.</p></li><li>[Optional] Set the sticky bit on the <code>/tmp</code> directory (prevents non-super-users from moving or deleting other users' files in <code>/tmp</code>):<ol><li>Login as <code>gpadmin</code> on any HDFS service node (namenode, datanode).</li><li><p>Execute the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo -u hdfs kinit -k -t /etc/security/phd/keytab/hdfs.service.keytab hdfs/this-host_fqdn@REALM</pre>
+</div></div></li><li><p>Execute the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo -u hdfs hadoop fs -chmod 1777 /tmp</pre>
+</div></div></li><li><p>Run a simple MapReduce job such as the Pi example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hadoop jar /usr/lib/gphd/hadoop-mapreduce/hadoop-mapreduce-examples-2.0.2-alpha-gphd-2.0.1.0.jar pi 10 100</pre>
+</div></div></li></ol></li></ol><p>If this all works, then you are ready to configure other services. If not, see the <a href="ConfiguringKerberosforHDFSandYARNMapReduce.html">Troubleshooting </a>section.</p><h2 id="ConfiguringKerberosforHDFSandYARN(MapReduce)-TurningSecureModeOff">Turning Secure Mode Off</h2><p>To turn off secure mode:</p><ol><li><p>Stop the cluster:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">icm_client stop</pre>
+</div></div></li><li>Comment out<code> HADOOP_SECURE_DN_USER</code> in<code> hadoop-env.sh</code> and <code>/etc/init.d/hadoop-hdfs-datanode</code> on all data nodes.</li><li>Either:<ol><li>If you made backups as suggested above:<br/>Restore the original site xml files<br/>or:</li><li>If you do not have backups, then edit the site xml as follows:</li></ol></li></ol><ul><li><ul><li><ul><li>Set the Linux container executable to <code>org.apache.hadoop.yarn.server.nodemanager.DefaultContainerExecutor</code> on all data nodes.</li><li>Set <code>dfs.block.access.token.enable</code> to <code>false</code> on all data nodes.</li><li>Return the datanode ports modified above so they are &gt; 1024 again.</li><li>Set <code>hadoop.security.authentication</code> to <code>simple</code> and <code>hadoop.security.authorization</code> to <code>false </code>in <code>core-site.xml</code> on all cluster nodes.</li><li>Undo the changes to the Zookeeper site xml and configuration files.</li><li>If applicable, revert the changes to the <code>hdfs-client.xml</code> and <code>gpinisystem_config</code> for HAWQ.</li><li>If applicable, undo the changes to the Hive and HBase site xml, configuration, and environments.</li><li>Start the cluster.</li></ul></li></ul></li></ul><p><span class="confluence-anchor-link" id="ConfiguringKerberosforHDFSandYARN(MapReduce)-BuildJSVC"></span></p><h2 id="ConfiguringKerberosforHDFSandYARN(MapReduce)-BuildingandInstallingJSVC">Building and Installing JSVC</h2><p>In order for the data nodes to start as root to get secure ports,  then switch back to the hdfs user, jsvc must be installed (<a class="external-link" href="http://commons.apache.org/proper/commons-daemon/download_daemon.cgi" rel="nofollow">http://commons.apache.org/proper/commons-daemon/download_daemon.cgi</a>). If the packaged jsvc binary is not working, we recommend building jscv from source for your platform.</p><p>You only need to perform the make on one node, then the binary can be distributed to the others (assuming all systems are the same basic image):</p><ol><li><p>Install gcc and make (you can remove them after this process if desired):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">yum install gcc make</pre>
+</div></div></li><li>Download the Apache commons daemon. For example, <code>commons-daemon-</code>1.0<code>.15-src.zip</code> was tested.<br/>The demon is available here: <a class="external-link" href="http://commons.apache.org/proper/commons-daemon/download_daemon.cgi" rel="nofollow">http://commons.apache.org/proper/commons-daemon/download_daemon.cgi</a></li><li><code>scp</code> it to one of your data node cluster systems.</li><li>Uncompress it.</li><li><p>Change to the install directory:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">cd commons-daemon-1.0.15-src/src/native/unix</pre>
+</div></div></li><li><p>If you are on a 64-bit machine and using a 64 bit JVM, run these exports before configure/make:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export CFLAGS=-m64
+export LDFLAGS=-m64</pre>
+</div></div></li><li><p>Configure and make it:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">./configure --with-java=/usr/java/default
+make</pre>
+</div></div></li><li><p>Manually install it to the following location:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">mv ./jsvc  /usr/bin/jsvc</pre>
+</div></div></li><li><p>Check that the correct jsvc was found by running:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">which jsvc</pre>
+</div></div><p>The correct output is:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/usr/bin/jsvc</pre>
+</div></div></li><li><p>Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">jsvc -help  </pre>
+</div></div><p><br/>Look under the printed <code>-jvm</code> item and you should see something like:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">use a specific Java Virtual Machine. Available JVMs:
+'server'</pre>
+</div></div><p>If the line under <code>Available JVMs</code> (where <code>server</code> is above) is blank, there is a problem, as it cannot find the JVM. Check that the JDK is installed properly in <code>/usr/java/default</code>.</p></li></ol><p> </p>
+</div>
+		
+		</main><!--end of content-->
+
+  </div><!-- end of container -->
+
+  <script type="text/javascript">
+    (function() {
+      var didInit = false;
+      function initMunchkin() {
+        if(didInit === false) {
+          didInit = true;
+          Munchkin.init('625-IUJ-009');
+        }
+      }
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+      s.onreadystatechange = function() {
+        if (this.readyState == 'complete' || this.readyState == 'loaded') {
+          initMunchkin();
+        }
+      };
+      s.onload = initMunchkin;
+      document.getElementsByTagName('head')[0].appendChild(s);
+    })();
+  </script>
+</div><!--end of wrap-->
+</div><!--end of viewport-->
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href='/'>Pivotal Documentation</a>
+      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>
+
+
+            
+      
+      
+      
+      
