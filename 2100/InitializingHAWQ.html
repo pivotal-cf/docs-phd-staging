@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>Initializing HAWQ | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -368,7 +367,7 @@
                            <a href="ManagingHAWQ.html">Managing HAWQ</a>
                            <ul>
                               <li>
-                                 <a href="InitializingHAWQ.html">Initializing HAWQ</a>
+                                 <a class="active" href="InitializingHAWQ.html">Initializing HAWQ</a>
                               </li>
                               <li>
                                  <a href="StartingHAWQ.html">Starting HAWQ</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,25 +1140,25 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Initializing HAWQ</div><div class="wiki-content group" id="main-content">
-<p>Initializing HAWQ completes the following:<ul><li>Initializes the HAWQ master and the segment hosts</li><li>Starts the HAWQ master, segments, and the underlying postgres database</li></ul><p>You need to initialize HAWQ only once, after the cluster has started and after HDFS is up and running.</p><p>To initialize HAWQ:</p><ul style="list-style-type: square;"><li><p>Verify HDFS is running: <br/>Logon to the client node, NameNode or DataNode as <code>gpadmin</code> and run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<p>Initializing HAWQ completes the following:<ul><li>Initializes the HAWQ master and the segment hosts</li><li>Starts the HAWQ master, segments, and the underlying postgres database</li></ul><p>You need to initialize HAWQ only once, after the cluster has started and after HDFS is up and running.</p><p>To initialize HAWQ:</p><ul style="list-style-type: square;"><li><p>Verify HDFS is running: <br>Logon to the client node, NameNode or DataNode as <code>gpadmin</code> and run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ hdfs dfs -ls /
 </pre>
 </div></div> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
-<p>If you have deployed a secure cluster with kerberos authentication. You must have a kerberos principal created for <code>gpadmin</code> and do <code>kinit</code> before running the previous command.</p><p>To add a principal for <code>gpadmin</code>, do the following o<span style="line-height: 1.4285715;background-color: transparent;">n the PCC admin node:</span></p><p><code> sudo kadmin.local<br/> add princ gpadmin</code> <code> <br/> </code> Provide a password for the <code>gpadmin</code> principal<br/> <code> exit</code></p>
+<p>If you have deployed a secure cluster with kerberos authentication. You must have a kerberos principal created for <code>gpadmin</code> and do <code>kinit</code> before running the previous command.</p><p>To add a principal for <code>gpadmin</code>, do the following o<span style="line-height: 1.4285715;background-color: transparent;">n the PCC admin node:</span></p><p><code> sudo kadmin.local<br> add princ gpadmin</code> <code> <br> </code> Provide a password for the&nbsp;<code>gpadmin</code>&nbsp;principal<br> <code> exit</code></p>
 </div>
 </div>
-<p>  Sample Output:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">  Found 4 items 
-  drwxr-xr-x   - mapred hadoop          0 2013-06-15 15:49 /mapred 
-  drwxrwxrwx   - hdfs   hadoop          0 2013-06-15 15:49 /tmp 
-  drwxrwxrwx   - hdfs   hadoop          0 2013-06-15 15:50 /user 
-  drwxr-xr-x   - hdfs   hadoop          0 2013-06-15 15:50 /yarn
+<p>&nbsp; Sample Output:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&nbsp; Found 4 items&nbsp;
+  drwxr-xr-x&nbsp;&nbsp; - mapred hadoop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 2013-06-15 15:49 /mapred&nbsp;
+  drwxrwxrwx&nbsp;&nbsp; - hdfs&nbsp;&nbsp; hadoop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 2013-06-15 15:49 /tmp&nbsp;
+  drwxrwxrwx&nbsp;&nbsp; - hdfs&nbsp;&nbsp; hadoop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 2013-06-15 15:50 /user&nbsp;
+  drwxr-xr-x&nbsp;&nbsp; - hdfs&nbsp;&nbsp; hadoop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 2013-06-15 15:50 /yarn
 </pre>
-</div></div></li></ul><ol><li><strong>Security</strong>:  If you have security enabled:<ol><li>Make sure you have a kerberos principal for <code>gpadmin</code></li><li>Locate HAWQ's data directory:<br/>On the HAWQ master, open <code>/etc/gphd/hawq/conf/gpinitsystem_config</code> <br/>Locate <code>DFS URL</code> and obtain the directory after <code>nameservice</code> or <code>namenode</code>. By default the value of this is <code>hawq_data</code>. We will refer to it as <code>HAWQ_DATA_DIR</code> for purpose of this document.</li><li><p>Create <code>HAWQ_DATA_DIR</code> on HDFS:<br/>Start the cluster using<code> icm_client</code>. Make sure HDFS service is up and running, then<br/>As <code>gpadmin</code>, on namenode or client machine, run the following:<br/> <br/> <code>kinit</code> <br/> <code>hadoop fs -mkdir /&lt;HAWQ_DATA_DIR&gt; </code> <br/> <code>hadoop fs -chown -R postgres:gpadmin /&lt;HAWQ_DATA_DIR&gt;</code> <br/> <code>hadoop fs -mkdir /user/gpadmin</code> <br/> <code>hadoop fs -chown gpadmin:gpadmin /user/gpadmin</code> <br/> <code>hadoop fs -chmod 777 /user/gpadmin</code> <br/> <code>kdestroy</code> </p></li></ol></li><li>As <code>gpadmin</code>, exchange keys, then initialize HAWQ from the HAWQ master.<br/> <code>ssh</code> to the HAWQ Master before you initialize HAWQ<br/>Note that HAWQ is implicitly started as part of the initialization.<br/><p>For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li></ul><ol><li><strong>Security</strong>:&nbsp; If you have security enabled:<ol><li>Make sure you have a kerberos principal for <code>gpadmin</code></li><li>Locate HAWQ's data directory:<br>On the HAWQ master, open <code>/etc/gphd/hawq/conf/gpinitsystem_config</code> <br>Locate <code>DFS URL</code> and obtain the directory after <code>nameservice</code> or <code>namenode</code>. By default the value of this is <code>hawq_data</code>. We will refer to it as <code>HAWQ_DATA_DIR</code> for purpose of this document.</li><li><p>Create <code>HAWQ_DATA_DIR</code> on HDFS:<br>Start the cluster using<code> icm_client</code>. Make sure HDFS service is up and running, then<br>As <code>gpadmin</code>, on namenode or client machine, run the following:<br> <br> <code>kinit</code> <br> <code>hadoop fs -mkdir /&lt;HAWQ_DATA_DIR&gt;&nbsp;</code> <br> <code>hadoop fs -chown -R postgres:gpadmin /&lt;HAWQ_DATA_DIR&gt;</code> <br> <code>hadoop fs -mkdir /user/gpadmin</code> <br> <code>hadoop fs -chown gpadmin:gpadmin /user/gpadmin</code> <br> <code>hadoop fs -chmod 777 /user/gpadmin</code> <br> <code>kdestroy</code> </p></li></ol></li><li>As <code>gpadmin</code>, exchange keys, then initialize HAWQ from the HAWQ master.<br> <code>ssh</code> to the HAWQ Master before you initialize HAWQ<br>Note that HAWQ is implicitly started as part of the initialization.<br><p>For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ su - gpadmin
 $ source /usr/local/hawq/greenplum_path.sh
 $ gpssh-exkeys -f HAWQ_HOSTS.txt # where HAWQ_HOSTS.txt has a set of hawq nodes
@@ -1178,9 +1177,9 @@ $ /etc/init.d/hawq init</pre>
 </div></p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1204,28 +1203,21 @@ $ /etc/init.d/hawq init</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

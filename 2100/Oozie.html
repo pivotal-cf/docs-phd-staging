@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>Oozie | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -463,7 +462,7 @@
                            <a href="Sqoop.html">Sqoop</a>
                         </li>
                         <li>
-                           <a href="Oozie.html">Oozie</a>
+                           <a class="active" href="Oozie.html">Oozie</a>
                         </li>
                         <li>
                            <a href="GraphLab.html">GraphLab</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,14 +1140,14 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Oozie</div><div class="wiki-content group" id="main-content">
-<p><style type="text/css">/*<![CDATA[*/
+<p><style type="text/css">/**/
 div.rbtoc1410924389817 {padding: 0px;}
 div.rbtoc1410924389817 ul {list-style: disc;margin-left: 0px;}
 div.rbtoc1410924389817 li {margin-left: 0px;padding-left: 0px;}
 
-/*]]>*/</style><div class="toc-macro rbtoc1410924389817">
+/**/</style><div class="toc-macro rbtoc1410924389817">
 <ul class="toc-indentation">
 <li><a href="#Oozie-AboutOozie">About Oozie</a></li>
 <li><a href="#Oozie-InstallingOozie">Installing Oozie</a>
@@ -1172,8 +1171,8 @@ div.rbtoc1410924389817 li {margin-left: 0px;padding-left: 0px;}
 </ul>
 </li>
 </ul>
-</div></p><h2 id="Oozie-AboutOozie">About Oozie</h2><p>Oozie is a workflow scheduler system to manage Apache Hadoop jobs.</p><p>For more info, refer to the Apache Oozie page: <a class="external-link" href="http://oozie.apache.org/" rel="nofollow"> http://oozie.apache.org/</a></p><h2 id="Oozie-InstallingOozie">Installing Oozie</h2><p>This section specifies how to install Oozie.</p><h3 id="Oozie-Prerequisites">Prerequisites</h3><p>Oozie is built on top of Hadoop, so Hadoop packages must be installed to get Oozie running. See the Hadoop section for Hadoop installation instructions, Oozie can manipulate Hive jobs and Pig jobs in the workflow. So if you want to use Hive jobs or Pig jobs in your workflow, Hive and Pig packages must be installed. See the Hive section and Pig section for their installation instructions.</p><h3 id="Oozie-OozieRPMPackages">Oozie RPM Packages</h3><p>Oozie contains an oozie-client rpm package and an oozie package. The Oozie package depends on the oozie-client package.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><code> <strong>oozie-client-&lt;PHD_OOZIE_VERSION&gt;-&lt;nn&gt;.noarch.rpm</strong> </code></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Client and Core</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>bigtop-util, hadoop-client</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Oozie client package provides the oozie library and client binary to connect to Oozie service.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Oozie service node and Oozie client node </p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><code> <strong>oozie-&lt;PHD_OOZIE_VERSION&gt;-&lt;nn&gt;.noarch.rpm</strong> </code></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon(Oozie server)</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>bigtop-tomcat, hadoop-client, oozie-client;</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon package to provide Oozie service.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Oozie service node</p></td></tr></tbody></table></div><h3 id="Oozie-OozieclientSetup">Oozie client Setup</h3><p>Install the oozie-client package on the client host that submits workflows to Oozie service.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/utility/rpm/bigtop-utils-&lt;PHD_BIGTOP_UTILS_VERSION&gt;-&lt;nn&gt;.noarch.rpm
+</div></p><h2 id="Oozie-AboutOozie">About Oozie</h2><p>Oozie is a workflow scheduler system to manage Apache Hadoop jobs.</p><p>For more info, refer to the Apache Oozie page: <a class="external-link" href="http://oozie.apache.org/" rel="nofollow"> http://oozie.apache.org/</a></p><h2 id="Oozie-InstallingOozie">Installing Oozie</h2><p>This section specifies how to install Oozie.</p><h3 id="Oozie-Prerequisites">Prerequisites</h3><p>Oozie is built on top of Hadoop, so Hadoop packages must be installed to get Oozie running. See the Hadoop section for Hadoop installation instructions, Oozie can manipulate Hive jobs and Pig jobs in the workflow. So if you want to use Hive jobs or Pig jobs in your workflow, Hive and Pig packages must be installed. See the Hive section and Pig section for their installation instructions.</p><h3 id="Oozie-OozieRPMPackages">Oozie RPM Packages</h3><p>Oozie contains an oozie-client rpm package and an oozie package. The Oozie package depends on the oozie-client package.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><code> <strong>oozie-client-&lt;PHD_OOZIE_VERSION&gt;-&lt;nn&gt;.noarch.rpm</strong> </code></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Client and Core</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>bigtop-util, hadoop-client</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Oozie client package provides the oozie library and client binary to connect to Oozie service.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Oozie service node and Oozie client node&nbsp;</p></td></tr></tbody></table></div><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><code> <strong>oozie-&lt;PHD_OOZIE_VERSION&gt;-&lt;nn&gt;.noarch.rpm</strong> </code></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>Daemon(Oozie server)</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>bigtop-tomcat, hadoop-client, oozie-client;</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>Daemon package to provide Oozie service.</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Oozie service node</p></td></tr></tbody></table></div><h3 id="Oozie-OozieclientSetup">Oozie client Setup</h3><p>Install the oozie-client package on the client host that submits workflows to Oozie service.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$&nbsp;sudo rpm -ivh working_dir/utility/rpm/bigtop-utils-&lt;PHD_BIGTOP_UTILS_VERSION&gt;-&lt;nn&gt;.noarch.rpm
 $ sudo rpm -ivh working_dir/oozie/rpm/oozie-client-&lt;PHD_OOZIE_VERSION&gt;-&lt;nn&gt;.noarch.rpm</pre>
 </div></div> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
@@ -1182,13 +1181,13 @@ $ sudo rpm -ivh working_dir/oozie/rpm/oozie-client-&lt;PHD_OOZIE_VERSION&gt;-&lt
 </div>
 </div>
 <h3 id="Oozie-OozieServerSetup[Optional]">Oozie Server Setup [Optional]</h3><p>Install the oozie-client package and oozie package to provide Oozie service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/utility/rpm/bigtop-utils-&lt;PHD_BIGTOP_UTILS_VERSION&gt;-&lt;nn&gt;.noarch.rpm
+<pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$&nbsp;sudo rpm -ivh working_dir/utility/rpm/bigtop-utils-&lt;PHD_BIGTOP_UTILS_VERSION&gt;-&lt;nn&gt;.noarch.rpm
 $ sudo rpm -ivh working_dir/utility/rpm/bigtop-tomcat-&lt;PHD_BIGTOP_TOMCAT_VERSION&gt;-&lt;nn&gt;.noarch.rpm
 $ sudo rpm -ivh working_dir/oozie/rpm/oozie-client-&lt;PHD_OOZIE_VERSION&gt;-&lt;nn&gt;.noarch.rpm
 $ sudo rpm -ivh working_dir/oozie/rpm/oozie-&lt;PHD_OOZIE_VERSION&gt;-&lt;nn&gt;.noarch.rpm</pre>
-</div></div><h3 id="Oozie-OozieConfiguration">Oozie Configuration</h3><p>Oozie configuration files are located in the following directory:<code> </code></p><p style="margin-left: 30.0px;"><code>/etc/gphd/oozie/conf/</code></p><p>This contains the default configuration templates for quick reference and modification.</p><p>You can modify these configuration templates or create your own configuration set.</p><h3 id="Oozie-OozieEnvironmentConfiguration">Oozie Environment Configuration</h3><p>You can overwrite the oozie environment as long as exporting vars in <code>/etc/gphd/oozie/conf/oozie-env.sh</code></p><p>For example, if you want to define the oozie data directory, export <code>OOZIE_DATA</code> in <code>/etc/gphd/oozie/conf/oozie-env.sh</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><h3 id="Oozie-OozieConfiguration">Oozie Configuration</h3><p>Oozie configuration files are located in the following directory:<code>&nbsp;</code></p><p style="margin-left: 30.0px;"><code>/etc/gphd/oozie/conf/</code></p><p>This contains the default configuration templates for quick reference and modification.</p><p>You can modify these configuration templates or create your own configuration set.</p><h3 id="Oozie-OozieEnvironmentConfiguration">Oozie Environment Configuration</h3><p>You can overwrite the oozie environment as long as exporting vars in <code>/etc/gphd/oozie/conf/oozie-env.sh</code></p><p>For example, if you want to define the oozie data directory, export <code>OOZIE_DATA</code> in&nbsp;<code>/etc/gphd/oozie/conf/oozie-env.sh</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">export OOZIE_DATA=&lt;YOUR_PATH&gt;</pre>
-</div></div><p>Make sure that the owner and user group of<code> &lt;YOUR_PATH&gt;</code> is <code> oozie:oozie </code>.</p><h3 id="Oozie-SetupDatabase">Setup Database</h3><p><strong>[OPTIONAL]<br/> </strong></p><p>By default, Oozie is configured to use Embedded Derby, however Oozie also works with HSQL, Derby, MySQL, Oracle and PostgreSQL databases.</p><p>Oozie bundles the JDBC drivers for HSQL, Embedded Derby and PostgreSQL.</p><p>HSQL is normally used for testcases as it is an in-memory database and all data is lost everytime Oozie is stopped.</p><p>If you are using MySQL, Oracle or PostgreSQL, the Oozie database schema must be created. By default, Oozie creates its tables automatically.</p><p>The <code>bin/addtowar.sh</code> and the <code>oozie-setup.sh</code> scripts have an option <code>-jars</code> that can be used to add the Oracle or MySQL JDBC driver JARs to the Oozie WAR file.</p><p>The SQL database used by Oozie is configured using the following configuration properties (default values shown):</p><div class="section"><pre>  oozie.db.schema.name=oozie
+</div></div><p>Make sure that the owner and user group of<code> &lt;YOUR_PATH&gt;</code> is <code> oozie:oozie </code>.</p><h3 id="Oozie-SetupDatabase">Setup Database</h3><p><strong>[OPTIONAL]<br> </strong></p><p>By default, Oozie is configured to use Embedded Derby, however Oozie also works with HSQL, Derby, MySQL, Oracle and PostgreSQL databases.</p><p>Oozie bundles the JDBC drivers for HSQL, Embedded Derby and PostgreSQL.</p><p>HSQL is normally used for testcases as it is an in-memory database and all data is lost everytime Oozie is stopped.</p><p>If you are using MySQL, Oracle or PostgreSQL, the Oozie database schema must be created. By default, Oozie creates its tables automatically.</p><p>The&nbsp;<code>bin/addtowar.sh</code>&nbsp;and the&nbsp;<code>oozie-setup.sh</code>&nbsp;scripts have an option&nbsp;<code>-jars</code>&nbsp;that can be used to add the Oracle or MySQL JDBC driver JARs to the Oozie WAR file.</p><p>The SQL database used by Oozie is configured using the following configuration properties (default values shown):</p><div class="section"><pre>  oozie.db.schema.name=oozie
   oozie.service.JPAService.create.db.schema=true
   oozie.service.JPAService.validate.db.connection=false
   oozie.service.JPAService.jdbc.driver=org.apache.derby.jdbc.EmbeddedDriver
@@ -1199,10 +1198,10 @@ $ sudo rpm -ivh working_dir/oozie/rpm/oozie-&lt;PHD_OOZIE_VERSION&gt;-&lt;nn&gt;
 </pre><p>These values should be changed to match the database you are using.</p> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
-<div class="message-content"><ul><li>If the <code>oozie.db.schema.create</code> property is set to <code>true </code>(default) the Oozie tables are created automatically if they are not found in the database at Oozie start-up time. In a production system this option should be set to <code>false </code>once the database tables have been created.</li><li>If the <code>oozie.db.schema.creat</code>e property is set to true, the <code>oozie.service.JPAService.validate.db.connection </code>property value is ignored and Oozie handles it as set to <code>false</code>.</li></ul></div>
+<div class="message-content"><ul><li>If the&nbsp;<code>oozie.db.schema.create</code>&nbsp;property is set to&nbsp;<code>true&nbsp;</code>(default) the Oozie tables are created automatically if they are not found in the database at Oozie start-up time. In a production system this option should be set to&nbsp;<code>false&nbsp;</code>once the database tables have been created.</li><li>If the&nbsp;<code>oozie.db.schema.creat</code>e&nbsp;property is set to true, the&nbsp;<code>oozie.service.JPAService.validate.db.connection&nbsp;</code>property value is ignored and Oozie handles it as set to&nbsp;<code>false</code>.</li></ul></div>
 </div>
 </div>
-<p> </p></div><h2 id="Oozie-UsingOozie">Using Oozie</h2><h3 id="Oozie-OozieClient">Oozie Client</h3><p>To run Oozie scripts on a client machine, use the command <code>oozie</code> with the sub-command directly in shell. Each sub-command may have different arguments.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<p>&nbsp;</p></div><h2 id="Oozie-UsingOozie">Using Oozie</h2><h3 id="Oozie-OozieClient">Oozie Client</h3><p>To run Oozie scripts on a client machine, use the command <code>oozie</code> with the sub-command directly in shell. Each sub-command may have different arguments.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ oozie [sub-command]</pre>
 </div></div><p>Check the oozie command usage by running:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ oozie help</pre>
@@ -1220,7 +1219,7 @@ $ sudo rpm -ivh working_dir/oozie/rpm/oozie-&lt;PHD_OOZIE_VERSION&gt;-&lt;nn&gt;
 $ sudo -u hdfs hdfs dfs -chown oozie /user/oozie</pre>
 </div></div></li><li><p>Create the oozie database:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ sudo service oozie init</pre>
-</div></div></li><li><p>Download <code>extjs-2.2</code> from here <a class="external-link" href="http://extjs.com/deploy/ext-2.2.zip" rel="nofollow" style="text-decoration: underline;">http://extjs.com/deploy/ext-2.2.zip</a>. Put the zip file in a new directory named <code>/tmp/oozie-libext</code>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p>Download <code>extjs-2.2</code> from here&nbsp;<a class="external-link" href="http://extjs.com/deploy/ext-2.2.zip" rel="nofollow" style="text-decoration: underline;">http://extjs.com/deploy/ext-2.2.zip</a>. Put the zip file in a new directory named <code>/tmp/oozie-libext</code>.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ wget http://extjs.com/deploy/ext-2.2.zip
 $ mkdir -p /tmp/oozie-libext
 $ mv ext-2.2.zip /tmp/oozie-libext
@@ -1239,17 +1238,17 @@ $ sudo service oozie status</pre>
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ mkdir /tmp/oozie-example
 $ cd /tmp/oozie-example
 $ tar xzf /usr/lib/gphd/oozie/oozie-examples.tar.gz</pre>
-</div></div></li><li><p>Change the job properties in the examples.<br/>Change the following files:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p>Change the job properties in the examples.<br>Change the following files:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">/tmp/oozie-example/examples/apps/map-reduce/job.properties
 /tmp/oozie-example/examples/apps/hive/job.properties
 /tmp/oozie-example/examples/apps/pig/job.properties</pre>
 </div></div><p>In each file, set the following properties:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">nameNode=hdfs://&lt;namenode-host&gt;:&lt;namenode-port&gt;
 jobTracker=&lt;resource-manager-host&gt;:&lt;resource-manager-port&gt;</pre>
-</div></div><p>Use the exact hostname and service port in your cluster. </p><p> </p></li><li>Edit the Oozie <code>workflow.xml</code> as follows:<br/><p>The Oozie <code>workflow.xml</code> is in the following directory:</p><p><code>/tmp/oozie-example/examples/apps/hive</code></p><p>Add the NameNode variable as a prefix to all paths, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>Use the exact hostname and service port in your cluster.&nbsp;</p><p>&nbsp;</p></li><li>Edit the Oozie <code>workflow.xml</code> as follows:<br><p>The Oozie <code>workflow.xml</code> is in the following directory:</p><p><code>/tmp/oozie-example/examples/apps/hive</code></p><p>Add the NameNode variable as a prefix to all paths, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;param&gt;INPUT=${nameNode}/user/${wf:user()}/${examplesRoot}/input-data/table&lt;/param&gt;
 &lt;param&gt;OUTPUT=${nameNode}/user/${wf:user()}/${examplesRoot}/output-data/hive&lt;/param&gt;</pre>
-</div></div><div><div class="syntaxhighlighter nogutter java"><p> </p></div></div><p>Also make sure to reference the <code>hive-oozie-site.xml</code> using the <code>job-xml</code> tag in the workflow. The <code>&lt;job-xml&gt;</code> element needs to be put inside the <code>&lt;hive&gt;</code> element between the <code>&lt;prepare&gt;</code> and <code>&lt;configuration&gt;</code> elements in the <code>examples/apps/hive/workflow.</code> <code>xml</code> file, as shown below:</p><div><div class="syntaxhighlighter nogutter java"><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><div><div class="syntaxhighlighter nogutter java"><p>&nbsp;</p></div></div><p>Also make sure to reference the&nbsp;<code>hive-oozie-site.xml</code>&nbsp;using the&nbsp;<code>job-xml</code>&nbsp;tag in the workflow. The&nbsp;<code>&lt;job-xml&gt;</code> element needs to be put inside the <code>&lt;hive&gt;</code>&nbsp;element between the&nbsp;<code>&lt;prepare&gt;</code>&nbsp;and&nbsp;<code>&lt;configuration&gt;</code>&nbsp;elements in the <code>examples/apps/hive/workflow.</code> <code>xml</code>&nbsp;file, as shown below:</p><div><div class="syntaxhighlighter nogutter java"><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;workflow-app xmlns="uri:oozie:workflow:0.2" name="hive-wf"&gt;
     &lt;start to="hive-node"/&gt;
     &lt;action name="hive-node"&gt;
@@ -1281,23 +1280,23 @@ jobTracker=&lt;resource-manager-host&gt;:&lt;resource-manager-port&gt;</pre>
 &lt;/workflow-app&gt;</pre>
 </div></div></div></div></li><li><p>Put example code onto HDFS:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ hdfs dfs -put examples /user/&lt;username&gt;</pre>
-</div></div><p>Where <code>&lt;username&gt;</code> is the name of user who issues this command.</p><p> </p></li><li>Submit a map reduce example workflow<ol><li><p>Submit workflow:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>Where <code>&lt;username&gt;</code> is the name of user who issues this command.</p><p>&nbsp;</p></li><li>Submit a map reduce example workflow<ol><li><p>Submit workflow:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ oozie job -oozie http://localhost:11000/oozie -config examples/apps/map-reduce/job.properties  -run
 job: &lt;oozie-job-id&gt;</pre>
-</div></div></li><li><p>Check workflow status. <br/>Where <code>&lt;oozie-job-id&gt;</code> is the same id in the output of the last command.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p>Check workflow status. <br>Where <code>&lt;oozie-job-id&gt;</code> is the same id in the output of the last command.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ oozie job -oozie http://localhost:11000/oozie -info &lt;oozie-job-id&gt;</pre>
-</div></div></li></ol></li><li>Oozie Setup for Hive:<br/> <br/><ol><li><p>Remote Metastore Mode (recommended):<br/> <br/>Put the Hive jars into the Tomcat class loader path. Make the following change in the<code> /var/lib/gphd/oozie/tomcat-deployment/conf/catalina.properties</code> file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li></ol></li><li>Oozie Setup for Hive:<br> <br><ol><li><p>Remote Metastore Mode (recommended):<br> <br>Put the Hive jars into the Tomcat class loader path. Make the following change in the<code> /var/lib/gphd/oozie/tomcat-deployment/conf/catalina.properties</code> file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">common.loader=${catalina.home}/lib,${catalina.home}/lib/*.jar,/var/lib/gphd/oozie/*.jar,/usr/lib/gphd/oozie/libtools/*.jar,/usr/lib/gphd/oozie/oozie-core/*.jar,/usr/lib/gphd/hadoop/client/*.jar,/usr/lib/gphd/hive/lib/*.jar</pre>
 </div></div> <div class="aui-message warning shadowed information-macro">
 <p class="title">common loader classpath</p>
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
-<p>Make sure <span style="line-height: 1.4285715;">${catalina.home}/lib,${catalina.home}/lib/*.jar are at the beginning of the classpath. Keep the jars in the classpath as the following order.</span></p><p><span style="line-height: 1.4285715;">- Tomcat Jars (the jars under <span>${catalina.home}/lib</span>)</span></p><p><span style="line-height: 1.4285715;">- Oozie Jars (the jars under ${oozie.home}, <span>${oozie.home}/<span>libtools</span>, <span>${oozie.home}/oozie-core )</span> </span> </span></p><p><span style="line-height: 1.4285715;"> <span> <span>- Hadoop Jars (the jars under ${hadoop.home}/client/ )</span> </span> </span></p><p><span style="line-height: 1.4285715;"> <span> <span>- Hive Jars (the jars under ${hive.home}/lib )</span> </span> </span></p>
+<p>Make sure <span style="line-height: 1.4285715;">${catalina.home}/lib,${catalina.home}/lib/*.jar are at the beginning of the classpath. Keep the jars in the classpath as the following order.</span></p><p><span style="line-height: 1.4285715;">-&nbsp;Tomcat Jars (the jars under <span>${catalina.home}/lib</span>)</span></p><p><span style="line-height: 1.4285715;">-&nbsp;Oozie Jars (the jars under ${oozie.home}, <span>${oozie.home}/<span>libtools</span>, <span>${oozie.home}/oozie-core )</span> </span> </span></p><p><span style="line-height: 1.4285715;"> <span> <span>-&nbsp;Hadoop Jars (the jars under ${hadoop.home}/client/ )</span> </span> </span></p><p><span style="line-height: 1.4285715;"> <span> <span>-&nbsp;Hive Jars (the jars under ${hive.home}/lib )</span> </span> </span></p>
 </div>
 </div>
-</li><li><p>Local Metastore Mode:<br/> <br/> Upload the JDBC driver to Oozie sharelib <br/> <br/>To enable the local metastore mode, comment out the <code>hive.metastore.uris </code>property and verify that Hive still works properly at the command-line.In local metastore mode, Oozie hive actions do not connect to the Hive Metastore, but instead talk to the database directly. In this setup, the appropriate JDBC driver (for example, for Postgres) needs to be made available to hive jobs running within Oozie:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> sudo -u oozie hdfs dfs -put /usr/lib/gphd/hive/lib/postgresql-jdbc.jar /user/oozie/share/lib/hive</pre>
-</div></div></li></ol></li><li>Submit the Hive example workflow.<br/> <br/><ol><li><p>Upload the Hive configuration file onto HDFS</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</li><li><p>Local Metastore Mode:<br> <br> Upload the JDBC driver to Oozie sharelib <br> <br>To enable the local metastore mode, comment out the&nbsp;<code>hive.metastore.uris&nbsp;</code>property and verify that Hive still works properly at the command-line.In local metastore mode, Oozie hive actions do not connect to the Hive Metastore, but instead talk to the database directly. In this setup, the appropriate JDBC driver (for example, for Postgres) needs to be made available to hive jobs running within Oozie:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&nbsp;sudo -u oozie hdfs dfs -put /usr/lib/gphd/hive/lib/postgresql-jdbc.jar /user/oozie/share/lib/hive</pre>
+</div></div></li></ol></li><li>Submit the Hive example workflow.<br> <br><ol><li><p>Upload the Hive configuration file onto HDFS</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ sudo -u oozie hdfs dfs -put /etc/gphd/hive/conf/hive-site.xml /user/oozie/hive-oozie-site.xml</pre>
 </div></div> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
@@ -1315,14 +1314,14 @@ job: &lt;oozie-job-id&gt;</pre>
 job: &lt;oozie-job-id&gt;</pre>
 </div></div></li><li><p>Check the workflow status.</p><p>Where <code>&lt;oozie-job-id&gt;</code> is the same id in the output of the last command.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ oozie job -oozie http://localhost:11000/oozie -info &lt;oozie-job-id&gt;</pre>
-</div></div></li></ol></li></ol><h3 id="Oozie-OozieinHAMode-BestPractices">Oozie in HA Mode - Best Practices</h3><ul><li>Ensure that HA is configured correctly and identically on all nodes, including client nodes. Specifically, ensure that the following variables are set appropriately in <code>hdfs-site.xml</code>:</li></ul><p style="margin-left: 60.0px;"><code> dfs.nameservices</code></p><p style="margin-left: 60.0px;"><code>dfs.ha.namenodes.nameservice ID  </code></p><p style="margin-left: 60.0px;"><code>dfs.namenode.rpc-address.nameservice ID.name node ID </code></p><p style="margin-left: 60.0px;"><code>dfs.namenode.http-address.nameservice ID.name node ID </code></p><p style="margin-left: 60.0px;"><code>dfs.namenode.shared.edits.dir </code></p><p style="margin-left: 60.0px;"><code>dfs.client.failover.proxy.provider.nameservice ID </code></p><p style="margin-left: 60.0px;"><code>dfs.ha.fencing.methods </code></p><p style="margin-left: 30.0px;">And in <code>core-site.xml</code>:</p><p style="margin-left: 60.0px;"><code> fs.defaultFS</code></p><ul><li><p>Use the namenode HA service in <code>mapreduce.job.hdfs-servers</code> in <code>yarn-site.xml</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li></ol></li></ol><h3 id="Oozie-OozieinHAMode-BestPractices">Oozie in HA Mode - Best Practices</h3><ul><li>Ensure that HA is configured correctly and identically on all nodes, including client nodes. Specifically, ensure that the following variables are set appropriately in <code>hdfs-site.xml</code>:</li></ul><p style="margin-left: 60.0px;"><code> dfs.nameservices</code></p><p style="margin-left: 60.0px;"><code>dfs.ha.namenodes.nameservice ID&nbsp; </code></p><p style="margin-left: 60.0px;"><code>dfs.namenode.rpc-address.nameservice ID.name node ID </code></p><p style="margin-left: 60.0px;"><code>dfs.namenode.http-address.nameservice ID.name node ID </code></p><p style="margin-left: 60.0px;"><code>dfs.namenode.shared.edits.dir </code></p><p style="margin-left: 60.0px;"><code>dfs.client.failover.proxy.provider.nameservice ID </code></p><p style="margin-left: 60.0px;"><code>dfs.ha.fencing.methods </code></p><p style="margin-left: 30.0px;">And in <code>core-site.xml</code>:</p><p style="margin-left: 60.0px;"><code> fs.defaultFS</code></p><ul><li><p>Use the namenode HA service in <code>mapreduce.job.hdfs-servers</code> in <code>yarn-site.xml</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
     &lt;name&gt;mapreduce.job.hdfs-servers&lt;/name&gt;
     &lt;value&gt;hdfs://test&lt;/value&gt;
 &lt;/property&gt;</pre>
 </div></div></li></ul><ul><li>While using Namenode HA, create all tables using the HA service as the HDFS location:</li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">CREATE EXTERNAL TABLE test (a INT) STORED AS TEXTFILE LOCATION 'hdfs://test/user/myuser/examples/input-data/table/';</pre>
-</div></div><div><div class="syntaxhighlighter nogutter java"><p> </p></div></div><ul><li>Verify that all tables in Hive are created using the HA service as the HDFS location (note the location in the example below refers to <code>hdfs://test/</code>, which is the HA service.)</li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><div><div class="syntaxhighlighter nogutter java"><p>&nbsp;</p></div></div><ul><li>Verify that all tables in Hive are created using the HA service as the HDFS location (note the location in the example below refers to&nbsp;<code>hdfs://test/</code>, which is the HA service.)</li></ul><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hive&gt; describe extended mytable;
 OK
 a                       int                     None
@@ -1346,9 +1345,9 @@ viewExpandedText:null, tableType:EXTERNAL_TABLE)</pre>
 </div></div>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1372,28 +1371,21 @@ viewExpandedText:null, tableType:EXTERNAL_TABLE)</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

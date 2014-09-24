@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>PCC - Disable SELinux | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -578,7 +577,7 @@
                            <a href="PCC-TurnOffiptables.html">PCC - Turn Off iptables</a>
                         </li>
                         <li>
-                           <a href="PCC-DisableSELinux.html">PCC - Disable SELinux</a>
+                           <a class="active" href="PCC-DisableSELinux.html">PCC - Disable SELinux</a>
                         </li>
                         <li>
                            <a href="PCC-EPELYumRepository.html">PCC - EPEL Yum Repository</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,18 +1140,18 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : PCC - Disable SELinux</div><div class="wiki-content group" id="main-content">
 <p><span style="color: rgb(51,51,51);">Before you being your installation, verify that SELinux is disabled:</span><p>As <code>root</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># sestatus
 </pre>
-</div></div><p> If SELinux is disabled, one of the following is returned:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>&nbsp;If SELinux is disabled, one of the following is returned:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">SELinuxstatus: disabled
 </pre>
-</div></div><p>  or</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>&nbsp; or</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">SELinux status: permissive
 </pre>
-</div></div><h3 id="PCC-DisableSELinux-DisablingSELinuxTemporarily">Disabling SELinux Temporarily</h3><p>If SELinux status is <em>enabled</em>, you can temporarily disable it or make it permissive (this meets requirements for installation) by running the following command:</p><p>  As <code>root</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><h3 id="PCC-DisableSELinux-DisablingSELinuxTemporarily">Disabling SELinux Temporarily</h3><p>If SELinux status is <em>enabled</em>, you can temporarily disable it or make it permissive (this meets requirements for installation) by running the following command:</p><p>&nbsp; As <code>root</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># echo 0 &gt; /selinux/enforce
 </pre>
 </div></div> <div class="aui-message warning shadowed information-macro">
@@ -1161,12 +1160,12 @@
 <p>This only temporarily disables SELinux; once the host is rebooted, SELinux will be re-enabled. We therefore recommend permanently disabling SELinux, described below, while running Pivotal HD/HAWQ (however, this requires a reboot).</p>
 </div>
 </div>
-<h3 id="PCC-DisableSELinux-DisablingSELinuxPermanently">Disabling SELinux <span>Permanently</span></h3><p>You can permanently disable SELinux by editing the <code>/etc/selinux/config</code> file as follows:</p><p>Change the value for the SELINUX parameter to:</p><p style="margin-left: 30.0px;"><code>SELINUX=disabled</code></p><p>Then reboot the system.</p></p><p><strong>Next Steps:</strong> <strong>Next Steps:</strong> If you need to set up an <a href="PCC-EPELYumRepository.html">EPEL Yum repository</a>, do that now, otherwise you should now have met all of the prerequisites, and can now proceed with your PCC Installation.</p><p> </p>
+<h3 id="PCC-DisableSELinux-DisablingSELinuxPermanently">Disabling SELinux&nbsp;<span>Permanently</span></h3><p>You can permanently disable SELinux by editing the <code>/etc/selinux/config</code> file as follows:</p><p>Change the value for the SELINUX parameter to:</p><p style="margin-left: 30.0px;"><code>SELINUX=disabled</code></p><p>Then reboot the system.</p></p><p><strong>Next Steps:</strong> <strong>Next Steps:</strong> If you need to set up an <a href="PCC-EPELYumRepository.html">EPEL Yum repository</a>, do that now, otherwise you should now have met all of the prerequisites, and can now proceed with your PCC Installation.</p><p>&nbsp;</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1190,28 +1189,21 @@
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

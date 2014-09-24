@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>Configuring Secure HBase | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -501,7 +500,7 @@
                            <a href="ConfiguringSecureZookeeper.html">Configuring Secure Zookeeper</a>
                         </li>
                         <li>
-                           <a href="ConfiguringSecureHBase.html">Configuring Secure HBase</a>
+                           <a class="active" href="ConfiguringSecureHBase.html">Configuring Secure HBase</a>
                         </li>
                         <li>
                            <a href="ConfiguringSecureHive.html">Configuring Secure Hive</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,14 +1140,14 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Configuring Secure HBase</div><div class="wiki-content group" id="main-content">
-<p>If you are running secure HBase you should also also run a secure Zookeeper (see <a href="ConfiguringSecureZookeeper.html">Configuring Secure Zookeeper</a>). You can, however, set the HBase master and region servers up to use Kerberos and test that they start without a secure Zookeeper.</p><p>This section covers the basics of how to get HBase up and running in secure mode; for further information see the HBase documentation (<a class="external-link" href="http://hbase.apache.org/book/security.html" rel="nofollow">http://hbase.apache.org/book/security.html</a>).</p><p>This section includes the following topics:</p><p><style type="text/css">/*<![CDATA[*/
+<p>If you are running secure HBase you should also also run a secure Zookeeper (see&nbsp;<a href="ConfiguringSecureZookeeper.html">Configuring Secure Zookeeper</a>). You can, however, set the HBase master and region servers up to use Kerberos and test that they start without a secure Zookeeper.</p><p>This section covers the basics of how to get HBase up and running in secure mode; for further information see the HBase documentation (<a class="external-link" href="http://hbase.apache.org/book/security.html" rel="nofollow">http://hbase.apache.org/book/security.html</a>).</p><p>This section includes the following topics:</p><p><style type="text/css">/**/
 div.rbtoc1410924393372 {padding: 0px;}
 div.rbtoc1410924393372 ul {list-style: disc;margin-left: 0px;}
 div.rbtoc1410924393372 li {margin-left: 0px;padding-left: 0px;}
 
-/*]]>*/</style><div class="toc-macro rbtoc1410924393372">
+/**/</style><div class="toc-macro rbtoc1410924393372">
 <ul class="toc-indentation">
 <li><a href="#ConfiguringSecureHBase-HBaseMasterandRegionservers">HBase Master and Regionservers</a>
 <ul class="toc-indentation">
@@ -1190,8 +1189,8 @@ ln -s hbase-hostid.service.keytab hbase.service.keytab</pre>
 &lt;/property&gt;
 
 &lt;property&gt;
-  &lt;name&gt;hbase.security.authorization&lt;/name&gt;
-  &lt;value&gt;true&lt;/value&gt;
+&nbsp; &lt;name&gt;hbase.security.authorization&lt;/name&gt;
+&nbsp; &lt;value&gt;true&lt;/value&gt;
 &lt;/property&gt;
 
 &lt;property&gt;
@@ -1252,7 +1251,7 @@ HTable table = new HTable(conf, tablename);
 </div></div><p>You must also give the REST principal access privileges. Do this by adding the rest-principal-name to the <em>acl</em> table in HBase. Adding the permissions below are sufficient, according to the HBase documentation:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">grant 'rest-principal-name', 'RWCA'
 </pre>
-</div></div><h3 id="ConfiguringSecureHBase-ThriftClientConfiguration">Thrift Client Configuration</h3><p>See the HBase documentation here: <a class="external-link" href="http://hbase.apache.org/book/security.html" rel="nofollow">http://hbase.apache.org/book/security.html</a>) for instructions on configuring Thrift clients.</p><h2 id="ConfiguringSecureHBase-ConfiguringHBasewithSecureZookeeper">Configuring HBase with Secure Zookeeper</h2><p>For secure HBase, you should also run a secure Zookeeper (see <a href="ConfiguringSecureZookeeper.html">Configuring Secure Zookeeper</a>). If you do so, you will need to execute the steps in this section. These steps must be done on the HBase master and all region servers.</p><ol><li><p>Create a file called <code>/etc/gphd/hbase/conf/jaas.conf</code> and the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><h3 id="ConfiguringSecureHBase-ThriftClientConfiguration">Thrift Client Configuration</h3><p>See the HBase documentation here: <a class="external-link" href="http://hbase.apache.org/book/security.html" rel="nofollow">http://hbase.apache.org/book/security.html</a>)&nbsp;for instructions on configuring Thrift clients.</p><h2 id="ConfiguringSecureHBase-ConfiguringHBasewithSecureZookeeper">Configuring HBase with Secure Zookeeper</h2><p>For secure HBase, you should also run a secure Zookeeper (see <a href="ConfiguringSecureZookeeper.html">Configuring Secure Zookeeper</a>). If you do so, you will need to execute the steps in this section. These steps must be done on the HBase master and all region servers.</p><ol><li><p>Create a file called&nbsp;<code>/etc/gphd/hbase/conf/jaas.conf</code> and the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">Client {
   com.sun.security.auth.module.Krb5LoginModule required
   useKeyTab=true
@@ -1280,38 +1279,38 @@ export HBASE_MANAGES_ZK=false
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kerberos.removeHostFromPrincipal=true
 kerberos.removeRealmFromPrincipal=true
 </pre>
-</div></div></li></ol><h2 id="ConfiguringSecureHBase-AccessControlandPXFExternalTables">Access Control and PXF External Tables</h2><p>The version of HBase distributed with PHD supports access control. Basic mappings of permissions (RWCA) to operations allowed are as follows:</p><p> </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">permission</th><th class="confluenceTh">operations</th></tr><tr><th class="confluenceTh" colspan="1">Read</th><th class="confluenceTh" colspan="1"> </th></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Get</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Exists</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Scan</td></tr><tr><th class="confluenceTh" colspan="1">Write</th><th class="confluenceTh" colspan="1"> </th></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Put</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Delete</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Lock/UnlockRow</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">IncrementColumnValue</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">CheckAndDelete/Put</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Flush</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Compact</td></tr><tr><th class="confluenceTh" colspan="1">Create</th><th class="confluenceTh" colspan="1"> </th></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Admin</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Alter</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Drop</td></tr><tr><th class="confluenceTh" colspan="1">Admin</th><th class="confluenceTh" colspan="1"> </th></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Enable/Disable</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">&gt;Snapshot/Restore/Clone</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Split</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Major Compact</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Grant</td></tr><tr><td class="confluenceTd"> </td><td class="confluenceTd">Revoke</td></tr><tr><td class="confluenceTd" colspan="1"> </td><td class="confluenceTd" colspan="1"><p>Shutdown</p></td></tr></tbody></table></div><div class="itemizedlist"><p> </p><p><strong>Scopes of Permissions:</strong></p><p>Table:</p><div class="itemizedlist"><ul><li>Read: User can read from any column family in a table</li><li>Write: User can write to any column family in a table</li><li>Create: User can alter table attributes; add, alter, or drop column families; and drop the table.</li><li>Admin: User can alter table attributes; add, alter, or drop column families; and enable, disable, or drop the table. User can also trigger region (re)assignments or relocation.</li></ul></div><p> </p><p>Column Family:</p><div class="itemizedlist"><ul><li>Read: User can read from the column family</li><li>Write: User can write to the column family</li></ul></div></div><p> </p><p>For PHD, the Hbase superuser is the "hbase" user/principal. There is an implicit global scope for permissions granted by the superuser.</p><p>Tables have an OWNER attribute that defaults to the table creator but may be changed with an Alter operation.</p><p> </p><p>See the HBase documentation here: <a class="external-link" href="http://hbase.apache.org/book/hbase.accesscontrol.configuration.html" rel="nofollow">http://hbase.apache.org/book/hbase.accesscontrol.configuration.html</a> for further details on configuring and using access controls.</p><p> </p><p>Set the properties shown below to enable access control:</p><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li></ol><h2 id="ConfiguringSecureHBase-AccessControlandPXFExternalTables">Access Control and PXF External Tables</h2><p>The version of HBase distributed with PHD supports access control. Basic mappings of permissions (RWCA) to operations allowed are as follows:</p><p>&nbsp;</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">permission</th><th class="confluenceTh">operations</th></tr><tr><th class="confluenceTh" colspan="1">Read</th><th class="confluenceTh" colspan="1">&nbsp;</th></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">Get</td></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">Exists</td></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">Scan</td></tr><tr><th class="confluenceTh" colspan="1">Write</th><th class="confluenceTh" colspan="1">&nbsp;</th></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">Put</td></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">Delete</td></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">Lock/UnlockRow</td></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">IncrementColumnValue</td></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">CheckAndDelete/Put</td></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">Flush</td></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">Compact</td></tr><tr><th class="confluenceTh" colspan="1">Create</th><th class="confluenceTh" colspan="1">&nbsp;</th></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">Admin</td></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">Alter</td></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">Drop</td></tr><tr><th class="confluenceTh" colspan="1">Admin</th><th class="confluenceTh" colspan="1">&nbsp;</th></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">Enable/Disable</td></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">&gt;Snapshot/Restore/Clone</td></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">Split</td></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">Major Compact</td></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">Grant</td></tr><tr><td class="confluenceTd">&nbsp;</td><td class="confluenceTd">Revoke</td></tr><tr><td class="confluenceTd" colspan="1">&nbsp;</td><td class="confluenceTd" colspan="1"><p>Shutdown</p></td></tr></tbody></table></div><div class="itemizedlist"><p>&nbsp;</p><p><strong>Scopes of Permissions:</strong></p><p>Table:</p><div class="itemizedlist"><ul><li>Read: User can read from any column family in a table</li><li>Write: User can write to any column family in a table</li><li>Create: User can alter table attributes; add, alter, or drop column families; and drop the table.</li><li>Admin: User can alter table attributes; add, alter, or drop column families; and enable, disable, or drop the table. User can also trigger region (re)assignments or relocation.</li></ul></div><p>&nbsp;</p><p>Column Family:</p><div class="itemizedlist"><ul><li>Read: User can read from the column family</li><li>Write: User can write to the column family</li></ul></div></div><p>&nbsp;</p><p>For PHD, the Hbase superuser is the "hbase" user/principal. There is an implicit global scope for permissions granted by the superuser.</p><p>Tables have an OWNER attribute that defaults to the table creator but may be changed with an Alter operation.</p><p>&nbsp;</p><p>See the HBase documentation here:&nbsp;<a class="external-link" href="http://hbase.apache.org/book/hbase.accesscontrol.configuration.html" rel="nofollow">http://hbase.apache.org/book/hbase.accesscontrol.configuration.html</a>&nbsp;for further details on configuring and using access controls.</p><p>&nbsp;</p><p>Set the properties shown below to enable access control:</p><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
   &lt;name&gt;hbase.security.authorization&lt;/name&gt;
   &lt;value&gt;true&lt;/value&gt;
 &lt;/property&gt;
- 
+&nbsp;
 &lt;property&gt;
   &lt;name&gt;hbase.coprocessor.master.classes&lt;/name&gt;
   &lt;value&gt;org.apache.hadoop.hbase.security.access.AccessController&lt;/value&gt;
 &lt;/property&gt;
- 
+&nbsp;
 &lt;property&gt;
   &lt;name&gt;hbase.coprocessor.region.classes&lt;/name&gt;
   &lt;value&gt;org.apache.hadoop.hbase.security.access.AccessController, org.apache.hadoop.hbase.security.token.TokenProvider&lt;/value&gt;
 &lt;/property&gt;
- </pre>
-</div></div><p> </p><p>When access control is enabled you will need to explicitly grant users permissions to the database as shown below (example assumes it is being run on an HBase service host). You may also choose to create a specific hbase principal (hbase@REALM) for HBase administration rather than using the service keytab as shown below; this would allow administration from any client host.</p><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+&nbsp;</pre>
+</div></div><p>&nbsp;</p><p>When access control is enabled you will need to explicitly grant users permissions to the database as shown below (example assumes it is being run on an HBase service host). You may also choose to create a specific hbase principal (hbase@REALM) for HBase administration rather than using the service keytab as shown below; this would allow administration from any client host.</p><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># sudo -u hbase kinit -kt /etc/security/phd/keytab/hbase.service.keytab hbase/&lt;host_fqdn&gt;
 # sudo -u hbase hbase shell
 hbase&gt; grant 'myuser', 'RWCA'
 # kdestroy</pre>
-</div></div><h3 id="ConfiguringSecureHBase-PXFAccess">PXF Access</h3><p>If you are using PXF external HBase tables, you will need to grant user 'hdfs"  permissions as above.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><h3 id="ConfiguringSecureHBase-PXFAccess">PXF Access</h3><p>If you are using PXF external HBase tables, you will need to grant user 'hdfs" &nbsp;permissions as above.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># sudo -u hbase kinit -kt /etc/security/phd/keytab/hbase.service.keytab hbase/&lt;host_fqdn&gt;
 # sudo -u hbase hbase shell
 hbase&gt; grant 'hdfs', 'RWCA'
 # kdestroy</pre>
-</div></div><p> </p><p> </p>
+</div></div><p>&nbsp;</p><p>&nbsp;</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1335,28 +1334,21 @@ hbase&gt; grant 'hdfs', 'RWCA'
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

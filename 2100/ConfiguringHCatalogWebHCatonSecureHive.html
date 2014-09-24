@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>Configuring HCatalog (WebHCat) on Secure Hive | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -507,7 +506,7 @@
                            <a href="ConfiguringSecureHive.html">Configuring Secure Hive</a>
                         </li>
                         <li>
-                           <a href="ConfiguringHCatalogWebHCatonSecureHive.html">Configuring HCatalog (WebHCat) on Secure Hive</a>
+                           <a class="active" href="ConfiguringHCatalogWebHCatonSecureHive.html">Configuring HCatalog (WebHCat) on Secure Hive</a>
                         </li>
                         <li>
                            <a href="ConfiguringHAWQonSecureHDFS.html">Configuring HAWQ on Secure HDFS</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,14 +1140,14 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Configuring HCatalog (WebHCat) on Secure Hive</div><div class="wiki-content group" id="main-content">
-<p>HCatalog is a tool that operates on the Hive metastore. If you want to use the HCatalog RESTFul APIs, aka, WebHCat, security configuration is required to enable the security functionality of the WebHCat server.</p><p>This section includes the following topics:</p><p><style type="text/css">/*<![CDATA[*/
+<p>HCatalog is a tool that operates on the Hive metastore. If you want to use the HCatalog RESTFul APIs, aka, WebHCat, security configuration is required to enable the security functionality of the WebHCat server.</p><p>This section includes the following topics:</p><p><style type="text/css">/**/
 div.rbtoc1410924393628 {padding: 0px;}
 div.rbtoc1410924393628 ul {list-style: disc;margin-left: 0px;}
 div.rbtoc1410924393628 li {margin-left: 0px;padding-left: 0px;}
 
-/*]]>*/</style><div class="toc-macro rbtoc1410924393628">
+/**/</style><div class="toc-macro rbtoc1410924393628">
 <ul class="toc-indentation">
 <li><a href="#ConfiguringHCatalog(WebHCat)onSecureHive-Prerequisites">Prerequisites</a></li>
 <li><a href="#ConfiguringHCatalog(WebHCat)onSecureHive-CreateKeytabFilefortheWebHCatServer">Create Keytab File for the WebHCat Server</a></li>
@@ -1159,7 +1158,7 @@ div.rbtoc1410924393628 li {margin-left: 0px;padding-left: 0px;}
 </div></p><h2 id="ConfiguringHCatalog(WebHCat)onSecureHive-Prerequisites">Prerequisites</h2><ul><li>Hive is installed and configured properly on your cluster.</li><li>Hive metastore is configured to work in remote mode.</li><li>Security is properly enabled for Hive, as shown in the <a href="ConfiguringSecureHive.html">Configuring Secure Hive</a> section.</li><li>HCatalog and WebHCat are installed and configured properly on your cluster.</li></ul><h2 id="ConfiguringHCatalog(WebHCat)onSecureHive-CreateKeytabFilefortheWebHCatServer">Create Keytab File for the WebHCat Server</h2><p>Create a keytab file that contains the <code>HTTP</code> principal:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&gt; kadmin.local
 kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/webhcat-hostid.service.keytab  HTTP/host_fqdn@REALM</pre>
-</div></div><h2 id="ConfiguringHCatalog(WebHCat)onSecureHive-DistributetheKeytabFiletotheWebHCatServer">Distribute the Keytab File to the WebHCat Server</h2><p>Copy the generated <code>/etc/security/phd/keytab/webhcat-hostid.service.keytab</code> file to the machine where the WebHCat server is running. Put it under <code>/etc/security/phd/keytab/</code>. Then, create symbolic link and adjust file owner and permissions:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><h2 id="ConfiguringHCatalog(WebHCat)onSecureHive-DistributetheKeytabFiletotheWebHCatServer">Distribute the Keytab File to the WebHCat Server</h2><p>Copy the generated <code>/etc/security/phd/keytab/webhcat-hostid.service.keytab</code> file to the machine where the WebHCat server is running. Put it under&nbsp;<code>/etc/security/phd/keytab/</code>. Then, create symbolic link and adjust file owner and permissions:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&gt; chown hive:hadoop /etc/security/phd/keytab/webhcat-hostid.service.keytab
 &gt; chmod 400 /etc/security/phd/keytab/webhcat-hostid.service.keytab
 &gt; ln -s /etc/security/phd/keytab/webhcat-hostid.service.keytab /etc/security/phd/keytab/webhcat.service.keytab</pre>
@@ -1178,7 +1177,7 @@ kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/webhcat-hostid.servic
     &lt;name&gt;templeton.kerberos.principal&lt;/name&gt;
     &lt;value&gt;HTTP/_HOST@&lt;REALM&gt;&lt;/value&gt;
 &lt;/property&gt;</pre>
-</div></div><p>Note that, in the above snippet, you need to replace <code>&lt;FQDN&gt;</code> with the correct FQDN of your WebHCat server machine. Replace <code>&lt;REALM&gt;</code> with the Kerberos realm name you are using for your cluster.  You may set the  <code>templeton.kerberos.secret</code> property value to any random secret value.</p> <div class="aui-message warning shadowed information-macro">
+</div></div><p>Note that, in the above snippet, you need to replace <code>&lt;FQDN&gt;</code> with the correct FQDN of your WebHCat server machine. Replace <code>&lt;REALM&gt;</code> with the Kerberos realm name you are using for your cluster. &nbsp;You may set the &nbsp;<code>templeton.kerberos.secret</code>&nbsp;property value to any random secret value.</p> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
 <p>In most cases, when the WebHCat server starts, it reads the Hive metastore information from the corresponding Hive configuration files (<code>/etc/gphd/hive/conf/hive-site.xml)</code>. If your WebHCat server is not running on the same machine as the Hive server, you may need manually copy <code>/etc/gphd/hive/conf/hive-site.xml</code> from the Hive server machine to the WebHCat server machine before restarting the WebHCat server.</p>
@@ -1186,7 +1185,7 @@ kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/webhcat-hostid.servic
 </div>
 <p>After editing the <code>webhcat-site.xml</code> file, you need to restart the WebHCat server to make the changes take effect.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&gt; service webhcat-server restart</pre>
-</div></div><p>Because WebHCat will access the HDFS NameNode, you need configure Hadoop to allow impersonation as the <code>HTTP</code> user.  Edit <code>/etc/gphd/hadoop/conf/core-site.xml</code> on all your HDFS node machines, add the following content if it isn't already there:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>core-site.xml</b></div><div class="codeContent panelContent pdl">
+</div></div><p>Because WebHCat will access the HDFS NameNode, you need configure Hadoop to allow impersonation as the&nbsp;<code>HTTP</code> user.&nbsp; Edit <code>/etc/gphd/hadoop/conf/core-site.xml</code> on all your HDFS node machines, add the following content if it isn't already there:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;"><b>core-site.xml</b></div><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: xml; gutter: false" style="font-size:12px;">&lt;property&gt;
     &lt;name&gt;hadoop.proxyuser.HTTP.hosts&lt;/name&gt;
     &lt;value&gt;*&lt;/value&gt;
@@ -1195,7 +1194,7 @@ kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/webhcat-hostid.servic
     &lt;name&gt;hadoop.proxyuser.HTTP.groups&lt;/name&gt;
     &lt;value&gt;*&lt;/value&gt;
 &lt;/property&gt;</pre>
-</div></div><p>After you edit core-site.xml, restart all HDFS services to make the change work.</p><h2 id="ConfiguringHCatalog(WebHCat)onSecureHive-VerifyWebHCatisWorking">Verify WebHCat is Working</h2><p>Ensure you have an installed version of <code>curl</code> that supports GSS-negotiation by calling <code>curl -V</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>After you edit core-site.xml, restart all HDFS services to make the change work.</p><h2 id="ConfiguringHCatalog(WebHCat)onSecureHive-VerifyWebHCatisWorking">Verify WebHCat is Working</h2><p>Ensure you have an installed version of&nbsp;<code>curl</code>&nbsp;that supports GSS-negotiation by calling <code>curl -V</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&gt; curl 7.19.7 (x86_64-redhat-linux-gnu) libcurl/7.19.7 NSS/3.13.6.0 zlib/1.2.3 libidn/1.18 libssh2/1.4.2
 Protocols: tftp ftp telnet dict ldap ldaps http file https ftps scp sftp
 Features: GSS-Negotiate IDN IPv6 Largefile NTLM SSL libz</pre>
@@ -1222,9 +1221,9 @@ Server: Jetty(7.6.0.v20120127)
 </div></div><p>In the above snippet, replace <code>&lt;FQDN&gt;</code> with the real FQDN of your WebHCat server machine, and replace <code>&lt;PORT&gt;</code> with your WebHCat server port (by default, it's 50111).</p><p>If you see output similar to the above (a 401 response followed by a 200 one), your secured WebHCat installation is functioning properly.</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1248,28 +1247,21 @@ Server: Jetty(7.6.0.v20120127)
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

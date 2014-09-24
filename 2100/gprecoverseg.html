@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>gprecoverseg | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -1034,7 +1033,7 @@
                            <a href="gplogfilter.html">gplogfilter</a>
                         </li>
                         <li>
-                           <a href="gprecoverseg.html">gprecoverseg</a>
+                           <a class="active" href="gprecoverseg.html">gprecoverseg</a>
                         </li>
                         <li>
                            <a href="gpscp.html">gpscp</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,13 +1140,13 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : gprecoverseg</div><div class="wiki-content group" id="main-content">
 <p>Recovers a segment instance that has been marked as down.</p><p class="bridge2">Synopsis</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gprecoverseg [-p new_recover_host[,...] [-d master_data_directory] [-B parallel_processes] [-F] [-a] [-q] [-l logfile_directory]
 gprecoverseg -?
 gprecoverseg --version</pre>
-</div></div><p class="bridge2">Description</p><p>The gprecoverseg utility reactivates failed segment instances.Once gprecoverseg completes this process, the system will be recovered.</p><p>A segment instance can fail for several reasons, such as a host failure, network failure, or disk failure. When a segment instance fails, its status is marked as down in the HAWQ Database system catalog, and the master will random pickup a segment to process query for a session. In order to bring the failed segment instance back into operation again, you must first correct the problem that made it fail in the first place, and then recover the segment instance in the HAWQ Database using gprecoverseg.</p><p>Segment recovery using gprecoverseg requires that you have at least one alive segment to recover from. For systems that do not have alive segment do a system restart to bring the segments back online (gpstop -r).</p><p>By default, a failed segment is recovered in place, meaning that the system brings the segment back online on the same host and data directory location on which it was originally configured. </p><p>If the data directory was removed or damaged, gprecoverseg can recover the data directory (using -F). This requires that you have at least one alive segment to recover from.</p><p align="LEFT">In some cases, this may not be possible (for example, if a host was physically damaged and cannot be recovered). In this situation, gprecoverseg allows you to recover failed segments to a completely new host (using -p). In this scenario, to prevent HAWQ having an unbalanced workload, all the the segments on the failed host should be moved to the new host. You must manually kill the other alive segments left on the failed host before you try to run gprecoverseg.</p><p>The new recovery segment host must be pre-installed with the HAWQ software and configured exactly the same as the existing segment hosts. A spare data directory location must exist on all currently configured segment hosts and have enough disk space to accommodate the failed segments.</p><p>If you do not have mirroring enabled, or if you have both a primary and its mirror down, you must take manual steps to recover the failed segment instances and then restart the system, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p class="bridge2">Description</p><p>The gprecoverseg utility reactivates failed segment instances.Once gprecoverseg completes this process, the system will be recovered.</p><p>A segment instance can fail for several reasons, such as a host failure, network failure, or disk failure. When a segment instance fails, its status is marked as down in the HAWQ Database system catalog, and the master will random pickup a segment to process query for a session. In order to bring the failed segment instance back into operation again, you must first correct the problem that made it fail in the first place, and then recover the segment instance in the HAWQ Database using gprecoverseg.</p><p>Segment recovery using gprecoverseg requires that you have at least one alive segment to recover from. For systems that do not have alive segment do a system restart to bring the segments back online (gpstop -r).</p><p>By default, a failed segment is recovered in place, meaning that the system brings the segment back online on the same host and data directory location on which it was originally configured.&nbsp;</p><p>If the data directory was removed or damaged, gprecoverseg can recover the data directory (using -F). This requires that you have at least one alive segment to recover from.</p><p align="LEFT">In some cases, this may not be possible (for example, if a host was physically damaged and cannot be recovered). In this situation, gprecoverseg allows you to recover failed segments to a completely new host (using -p). In this scenario, to prevent HAWQ having an unbalanced workload, all the the segments on the failed host should be moved to the new host. You must manually kill the other alive segments left on the failed host before you try to run gprecoverseg.</p><p>The new recovery segment host must be pre-installed with the HAWQ software and configured exactly the same as the existing segment hosts. A spare data directory location must exist on all currently configured segment hosts and have enough disk space to accommodate the failed segments.</p><p>If you do not have mirroring enabled, or if you have both a primary and its mirror down, you must take manual steps to recover the failed segment instances and then restart the system, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstop -r</pre>
 </div></div><p class="bridge2">Options</p><pre>-a (do not prompt)</pre><p style="margin-left: 30.0px;">Do not prompt the user for confirmation.If gprecovery -a cannot recover successfully, HAWQ will raise an exception and tell user to use the -F or -p option.</p><pre>-B parallel_processes</pre><p style="margin-left: 30.0px;">The number of segments to recover in parallel. If not specified, the utility will start up to four parallel processes, depending on how many segment instances it needs to recover.</p><pre>-d master_data_directory</pre><p style="margin-left: 30.0px;">Optional. The master host data directory. If not specified, the value set for $MASTER_DATA_DIRECTORY will be used.</p><pre>-F (full recovery)</pre><p style="margin-left: 30.0px;">Optional. Perform a full copy of the active segment instance in order to recover the failed segment. The default is to only restart the failed segment in-place.</p><p class="bridge2">Comments</p><p>Lines beginning with # are treated as comments and ignored.</p><p class="bridge3">Filespace Order</p><p>The first comment line that is not a comment specifies filespace ordering. This line starts with filespaceOrder= and is followed by list of filespace names delimited by a colon. For example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">filespaceOrder=raid1:raid2</pre>
@@ -1159,7 +1158,7 @@ sdw1-1:50001:/data1/mirror/gpseg16SPACE
 sdw4-1:50001:51001:/data1/recover1/gpseg16:/data1/fs1/gps
 eg16</pre>
 </div></div><p class="bridge3">Obtaining a Sample File</p><pre>-l <em>logfile_directory</em>
-</pre><p style="margin-left: 30.0px;">The directory to write the log file. Defaults to ~/gpAdminLogs.</p><pre>-p new_recover_host[,...]</pre><p style="margin-left: 30.0px;">Specifies a spare host outside of the currently configured HAWQ database array on which to recover invalid segments. In the case of multiple failed segment hosts, you can specify a comma-separated list. The spare host must have the HAWQ database installed and configured, and have the same hardware and OS configuration as the current segment hosts (same OS version, locales, gpadmin user account, data directory locations created, ssh keys exchanged, number of network interfaces, network interface naming convention, and so on).</p><p style="margin-left: 30.0px;">Before using this option:</p><ul><li>Make sure that all the segments on the failed hosts are marked down.</li><li>If you see any segments that are alive on the failed hosts, kill the segments or shutdown the failed hosts.</li><li>Specify a new host for each failed host. </li></ul><pre>-q (no screen output)</pre><p style="margin-left: 30.0px;">Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.</p><pre>-v (verbose)</pre><p align="LEFT" style="margin-left: 30.0px;">Sets logging output to verbose.</p><pre>--version (version)</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the version of this utility.</p><pre>-? (help)</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the online help.</p><p class="bridge2">Examples</p><p align="LEFT">Recover any failed segment instances in place:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</pre><p style="margin-left: 30.0px;">The directory to write the log file. Defaults to ~/gpAdminLogs.</p><pre>-p new_recover_host[,...]</pre><p style="margin-left: 30.0px;">Specifies a spare host outside of the currently configured HAWQ database array on which to recover invalid segments. In the case of multiple failed segment hosts, you can specify a comma-separated list. The spare host must have the HAWQ database installed and configured, and have the same hardware and OS configuration as the current segment hosts (same OS version, locales, gpadmin user account, data directory locations created, ssh keys exchanged, number of network interfaces, network interface naming convention, and so on).</p><p style="margin-left: 30.0px;">Before using this option:</p><ul><li>Make sure that all the segments on the failed hosts are marked down.</li><li>If you see any segments that are alive on the failed hosts, kill the segments or shutdown the failed hosts.</li><li>Specify a new host for each failed host.&nbsp;</li></ul><pre>-q (no screen output)</pre><p style="margin-left: 30.0px;">Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.</p><pre>-v (verbose)</pre><p align="LEFT" style="margin-left: 30.0px;">Sets logging output to verbose.</p><pre>--version (version)</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the version of this utility.</p><pre>-? (help)</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the online help.</p><p class="bridge2">Examples</p><p align="LEFT">Recover any failed segment instances in place:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">$ gprecoverseg</pre>
 </div></div><p>Recreate any failed segment instances in place</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">$ gprecoverseg -f</pre>
@@ -1168,9 +1167,9 @@ eg16</pre>
 </div></div><p class="bridge2">See Also</p><p align="LEFT">gpstart, gpstop</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1194,28 +1193,21 @@ eg16</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

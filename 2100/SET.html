@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>SET | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -978,7 +977,7 @@
                            <a href="SELECTINTO.html">SELECT INTO</a>
                         </li>
                         <li>
-                           <a href="SET.html">SET</a>
+                           <a class="active" href="SET.html">SET</a>
                         </li>
                         <li>
                            <a href="SETROLE.html">SET ROLE</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,17 +1140,17 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : SET</div><div class="wiki-content group" id="main-content">
 <p>Changes the value of a HAWQ configuration parameter.</p><p class="bridge2">Synopsis</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">SET [SESSION | LOCAL] configuration_parameter {TO | =} value | 'value' | DEFAULT}
 SET [SESSION | LOCAL] TIME ZONE {timezone | LOCAL | DEFAULT}</pre>
-</div></div><p class="bridge2">Description</p><p>The SET command changes server configuration parameters. Any configuration parameter classified as a <em>session </em> parameter can be changed on-the-fly with SET (see <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>). SET only affects the value used by the current session.</p><p align="LEFT">If SET or SET SESSION is issued within a transaction that is later aborted, the effects of the SET command disappear when the transaction is rolled back. Once the surrounding transaction is committed, the effects will persist until the end of the session, unless overridden by another SET.</p><p align="LEFT">The effects of SET LOCAL last only till the end of the current transaction, whether committed or not. A special case is SET followed by SET LOCAL within a single transaction: the SET LOCAL value will be seen until the end of the transaction, but afterwards (if the transaction is committed) the SET value will take effect.</p><p class="bridge2">Parameters</p><pre>SESSION</pre><p align="LEFT" style="margin-left: 30.0px;">Specifies that the command takes effect for the current session. This is the default.</p><pre>LOCAL</pre><p style="margin-left: 30.0px;">Specifies that the command takes effect for only the current transaction. After COMMIT or ROLLBACK, the session-level setting takes effect again. Note that SET LOCAL will appear to have no effect if it is executed outside of a transaction.</p><pre>configuration_parameter</pre><p style="margin-left: 30.0px;">The name of a HAWQ configuration parameter. Only parameters classified as session can be changed with SET. See <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>.</p><pre>value</pre><p style="margin-left: 30.0px;">New value of parameter. Values can be specified as string constants, identifiers,numbers, or comma-separated lists of these. DEFAULT can be used to specify resetting the parameter to its default value. If specifying memory sizing or time units, enclose the value in single quotes.</p><pre>TIME ZONE</pre><p style="margin-left: 30.0px;">SET TIME ZONE value is an alias for SET timezone TO <em>value</em>. The syntax SET TIME ZONE allows special syntax for the time zone specification. Here are examples of valid values</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p class="bridge2">Description</p><p>The SET command changes server configuration parameters. Any configuration parameter classified as a&nbsp;<em>session&nbsp;</em> parameter can be changed on-the-fly with SET (see <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>). SET only affects the value used by the current session.</p><p align="LEFT">If SET or SET SESSION is issued within a transaction that is later aborted, the effects of the SET command disappear when the transaction is rolled back. Once the surrounding transaction is committed, the effects will persist until the end of the session, unless overridden by another SET.</p><p align="LEFT">The effects of SET LOCAL last only till the end of the current transaction, whether committed or not. A special case is SET followed by SET LOCAL within a single transaction: the SET LOCAL value will be seen until the end of the transaction, but afterwards (if the transaction is committed) the SET value will take effect.</p><p class="bridge2">Parameters</p><pre>SESSION</pre><p align="LEFT" style="margin-left: 30.0px;">Specifies that the command takes effect for the current session. This is the default.</p><pre>LOCAL</pre><p style="margin-left: 30.0px;">Specifies that the command takes effect for only the current transaction. After COMMIT or ROLLBACK, the session-level setting takes effect again. Note that SET LOCAL will appear to have no effect if it is executed outside of a transaction.</p><pre>configuration_parameter</pre><p style="margin-left: 30.0px;">The name of a HAWQ configuration parameter. Only parameters classified as session can be changed with SET. See <a href="HAWQServerConfigurationParameters.html">HAWQ Server Configuration Parameters</a>.</p><pre>value</pre><p style="margin-left: 30.0px;">New value of parameter. Values can be specified as string constants, identifiers,numbers, or comma-separated lists of these. DEFAULT can be used to specify resetting the parameter to its default value. If specifying memory sizing or time units, enclose the value in single quotes.</p><pre>TIME ZONE</pre><p style="margin-left: 30.0px;">SET TIME ZONE value is an alias for SET timezone TO&nbsp;<em>value</em>. The syntax SET TIME ZONE allows special syntax for the time zone specification. Here are examples of valid values</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">'PST8PDT'
 'Europe/Rome'
 -7 (time zone 7 hours west from UTC)
 INTERVAL '-08:00' HOUR TO MINUTE (time zone 8 hours west from UTC)</pre>
-</div></div><pre>LOCAL<br/>DEFAULT</pre><p align="LEFT" style="margin-left: 30.0px;">Set the time zone to your local time zone (the one that the server’s operating system defaults to).</p><p class="bridge2">Examples</p><p>Set the schema search path:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><pre>LOCAL<br>DEFAULT</pre><p align="LEFT" style="margin-left: 30.0px;">Set the time zone to your local time zone (the one that the server’s operating system defaults to).</p><p class="bridge2">Examples</p><p>Set the schema search path:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">SET search_path TO my_schema, public;</pre>
 </div></div><p align="LEFT">Increase work memory to 200 MB:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">SET work_mem TO '200MB';</pre>
@@ -1164,9 +1163,9 @@ INTERVAL '-08:00' HOUR TO MINUTE (time zone 8 hours west from UTC)</pre>
 </div></div><p class="bridge2">Compatibility</p><p align="LEFT">SET TIME ZONE extends syntax defined in the SQL standard. The standard allows only numeric time zone offsets while HAWQ allows more flexible time-zone specifications. All other SET features are HAWQ extensions.</p><p class="bridge2">See Also</p><p><a href="RESET.html">RESET</a>, <a href="SHOW.html">SHOW</a></p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1190,28 +1189,21 @@ INTERVAL '-08:00' HOUR TO MINUTE (time zone 8 hours west from UTC)</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

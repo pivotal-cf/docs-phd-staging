@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>Upgrading HAWQ and Components | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -721,7 +720,7 @@
                      <a href="InstallingtheHAWQComponents.html">Installing the HAWQ Components</a>
                   </li>
                   <li>
-                     <a href="UpgradingHAWQandComponents.html">Upgrading HAWQ and Components</a>
+                     <a class="active" href="UpgradingHAWQandComponents.html">Upgrading HAWQ and Components</a>
                   </li>
                   <li>
                      <a href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,14 +1140,14 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Upgrading HAWQ and Components</div><div class="wiki-content group" id="main-content">
-<p>This section describes how to upgrade HAWQ and its components.</p><p><style type="text/css">/*<![CDATA[*/
+<p>This section describes how to upgrade HAWQ and its components.</p><p><style type="text/css">/**/
 div.rbtoc1410924414312 {padding: 0px;}
 div.rbtoc1410924414312 ul {list-style: disc;margin-left: 0px;}
 div.rbtoc1410924414312 li {margin-left: 0px;padding-left: 0px;}
 
-/*]]>*/</style><div class="toc-macro rbtoc1410924414312">
+/**/</style><div class="toc-macro rbtoc1410924414312">
 <ul class="toc-indentation">
 <li><a href="#UpgradingHAWQandComponents-UpgradingHAWQ">Upgrading HAWQ</a>
 <ul class="toc-indentation">
@@ -1156,7 +1155,7 @@ div.rbtoc1410924414312 li {margin-left: 0px;padding-left: 0px;}
 <li><a href="#UpgradingHAWQandComponents-UpgradingtoHAWQ1.2.0.0">Upgrading to HAWQ 1.2.0.0</a></li>
 </ul>
 </li>
-<li><a href="#UpgradingHAWQandComponents-UpgradingtheComponents">Upgrading the Components </a>
+<li><a href="#UpgradingHAWQandComponents-UpgradingtheComponents">Upgrading&nbsp;the Components&nbsp;</a>
 <ul class="toc-indentation">
 <li><a href="#UpgradingHAWQandComponents-PrerequisitesforUpgradingMADlib">Prerequisites for Upgrading MADlib</a></li>
 <li><a href="#UpgradingHAWQandComponents-UpgradingMADlibonHAWQ1.2.0.0">Upgrading MADlib on HAWQ 1.2.0.0</a></li>
@@ -1165,14 +1164,14 @@ div.rbtoc1410924414312 li {margin-left: 0px;padding-left: 0px;}
 </li>
 <li><a href="#UpgradingHAWQandComponents-TroubleshootingaFailedUpgrade">Troubleshooting a Failed Upgrade</a></li>
 </ul>
-</div></p><h2 id="UpgradingHAWQandComponents-UpgradingHAWQ">Upgrading HAWQ</h2><p>The upgrade path supported for this release is HAWQ 1.1.x to HAWQ 1.2.0.0. Pivotal recommends that you use the ICM to upgrade your HAWQ system from 1.1.x to 1.2.0.0.</p> <div class="aui-message warning shadowed information-macro">
+</div></p><h2 id="UpgradingHAWQandComponents-UpgradingHAWQ">Upgrading HAWQ</h2><p>The upgrade path supported for this release is HAWQ 1.1.x&nbsp;to HAWQ 1.2.0.0. Pivotal recommends that you use the ICM to upgrade your HAWQ system from 1.1.x to 1.2.0.0.</p> <div class="aui-message warning shadowed information-macro">
 <p class="title">Notes</p>
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
 <ul><li>Pivotal recommends that you back up any existing data before upgrading to HAWQ1.2.0.0</li><li>Follow these instructions if you installed HAWQ manually. To upgrade the PHD Manager, see <em><a href="PHDInstallationandAdministration.html">Pivotal HD Enterprise Installation and Administration</a></em>.</li></ul>
 </div>
 </div>
-<h3 id="UpgradingHAWQandComponents-PreparingtoUpgradeHAWQ">Preparing to Upgrade HAWQ</h3><p>Perform these steps on your current HAWQ system. This procedure is performed from your HAWQ master host and should be executed by the HAWQ superuser (gpadmin).</p><ol><li>Log in to the HAWQ master as the gpadmin user</li><li><p>(<em>optional</em> ) Vacuum all databases prior to upgrade. </p></li><li><p>(<em>optional</em> ) Clean out old server log files from your master and segment data directories.</p> <div class="aui-message warning shadowed information-macro">
+<h3 id="UpgradingHAWQandComponents-PreparingtoUpgradeHAWQ">Preparing to Upgrade HAWQ</h3><p>Perform these steps on your current HAWQ system. This procedure is performed from your HAWQ master host and should be executed by the HAWQ superuser (gpadmin).</p><ol><li>Log in to the HAWQ master as the gpadmin user</li><li><p>(<em>optional</em> ) Vacuum all databases prior to upgrade.&nbsp;</p></li><li><p>(<em>optional</em> ) Clean out old server log files from your master and segment data directories.</p> <div class="aui-message warning shadowed information-macro">
 <p class="title">Note</p>
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
@@ -1190,12 +1189,12 @@ div.rbtoc1410924414312 li {margin-left: 0px;padding-left: 0px;}
 </div></div></li><li><p>After all segment hosts have been upgraded, you can log in as gpadmin user and restart your HAWQ system:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ su - gpadmin
 $ gpstart</pre>
-</div></div></li></ol><h2 id="UpgradingHAWQandComponents-UpgradingtheComponents">Upgrading the Components </h2><p>This section describes how you can upgrade components such as MADlib, PL/R, pgcrypto, and PL/Java.</p><div class="aui-message warning shadowed information-macro"><div class="message-content"><p>If you have previously installed versions of PL/R, and pgcrypto packages, then you must download newer binary compatible version of these packages from Pivotal. You will then need to re-install the newer binaries. See <em><a href="InstallingtheHAWQComponents.html">Installing Cryptographic Functions for PostgreSQL </a></em>for instructions.</p></div></div><p> PL/Java is a new component, therefore if you are installing PL/Java as a part of the upgrade or expansion process, then make sure you have carried out steps as described in <em><a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a></em>, in the <em><a href="HAWQAdministration.html">HAWQ Administration</a> </em>documentation.</p><h3 id="UpgradingHAWQandComponents-PrerequisitesforUpgradingMADlib">Prerequisites for Upgrading MADlib</h3><ol><li>Ensure that you have upgraded PHD 1.1 to PHD 2.0.</li><li><p>Ensure that HAWQ 1.2.0.0 is installed on all nodes.</p><p>During a HAWQ upgrade to 1.2, the gpmigrator script drops the built-in MADlib objects (functions, aggregates, and types). If you have user defined (UDF) objects that depend on these Madlib objects, then the gpmigrator script detects direct or indirect dependencies in all the databases and creates a log. To proceed with the migration:</p></li></ol><ol><li style="margin-left: 30.0px;">Backup the data.</li><li style="margin-left: 30.0px;">Drop all UDFs before resuming the migration process.</li></ol><h3 id="UpgradingHAWQandComponents-UpgradingMADlibonHAWQ1.2.0.0">Upgrading MADlib on HAWQ 1.2.0.0</h3><ol><li><p>Log in to your HAWQ master host as the HAWQ administrative user: </p></li><li>To check for Madlib dependencies, set the environment variables: <code>PGPORT</code>(<code>default=5432</code>), <code>PGUSER</code>(default=current logged on user),<code> PGHOST(default=localhost)</code> and <code>PGPASSWORD</code> (If empty, the script will prompt for a password)</li><li>Run <code>gpmigrator SOURCE_VERSION_GPHOME TARGET_VERSION_GPHOME</code></li><li>If there are user defined objects that depend on Madlib functionality, then the script will detect these and halt. Take appropriate action to remove these dependencies.</li></ol><p style="margin-left: 30.0px;">When the gpmigrator reports success, the new HAWQ database will be up and running. The gpmigrator script backs up the original catalog and restores it in case of failures. This leaves the database in a usable state.</p><h5 id="UpgradingHAWQandComponents-" style="margin-left: 30.0px;"><span style="color: rgb(34,34,34);"> </span></h5><h3 id="UpgradingHAWQandComponents-ManualResizeofinput.localread.default.buffersize">Manual Resize of input.localread.default.buffersize</h3><p style="margin-left: 30.0px;"><span style="color: rgb(34,34,34);">An older version of hdfs-client.xml with a smaller buffer size might be retained during upgrade to HAWQ 1.2.1.0, resulting in performance degradation for those using Parquet storage format. This issue does not occur with new installations. To avoid this issue, Pivotal recommends manually setting <span style="color: rgb(34,34,34);">the input.localread.default.</span><span style="color: rgb(34,34,34);">buffersize parameter to 2097152 in the hdfs-climate.xml file, as follows:</span></span></p><p style="margin-left: 30.0px;"><span style="color: rgb(34,34,34);"><span style="color: rgb(34,34,34);"><span>&lt;property&gt;</span><br/><span>&lt;name&gt;input.localread.default.buffersize&lt;/name&gt;</span><br/><span>&lt;value&gt;2097152&lt;/value&gt;</span><br/><span>&lt;description&gt;</span><br/><span>number of bytes of the buffer which is used to hold the data from block file and verify checksum.</span><br/><span>it is only used when "dfs.client.read.shortcircuit" is set to true. default is 1048576.</span><br/><span>&lt;/description&gt;</span><br/><span>&lt;/property&gt;</span></span></span></p><p style="margin-left: 30.0px;"><span style="color: rgb(34,34,34);"><span style="color: rgb(34,34,34);"><br/></span></span></p><h2 id="UpgradingHAWQandComponents-TroubleshootingaFailedUpgrade">Troubleshooting a Failed Upgrade</h2><p align="LEFT">If you experience issues during the migration process, go to the Support page at Support Zone or contact Pivotal customer support at one of the following numbers:</p><ul><li>United States: 800-782-4362 (1-800-SVC-4EMC)</li><li>Canada: 800-543-4782</li><li>Worldwide: +1-508-497-7901</li></ul><p align="LEFT">Be prepared to provide the following information:</p><ul><li>A detailed list of upgrade procedures completed.</li><li>Log output from gpmigrator (located in ~/gpAdminLogs).</li></ul>
+</div></div></li></ol><h2 id="UpgradingHAWQandComponents-UpgradingtheComponents">Upgrading&nbsp;the Components&nbsp;</h2><p>This section describes how you can upgrade components such as MADlib, PL/R, pgcrypto, and PL/Java.</p><div class="aui-message warning shadowed information-macro"><div class="message-content"><p>If you have&nbsp;previously installed versions of PL/R,&nbsp;and pgcrypto packages, then you must download newer binary compatible version of these packages from Pivotal. You will then need to re-install the newer binaries. See&nbsp;<em><a href="InstallingtheHAWQComponents.html">Installing Cryptographic Functions for PostgreSQL </a></em>for instructions.</p></div></div><p>&nbsp;PL/Java is a new component, therefore if you are installing PL/Java as a part of the upgrade or expansion process, then make sure you have carried out steps as described in&nbsp;<em><a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a></em>, in the <em><a href="HAWQAdministration.html">HAWQ Administration</a> </em>documentation.</p><h3 id="UpgradingHAWQandComponents-PrerequisitesforUpgradingMADlib">Prerequisites for Upgrading MADlib</h3><ol><li>Ensure that you have upgraded PHD 1.1 to PHD 2.0.</li><li><p>Ensure that HAWQ 1.2.0.0 is installed on all nodes.</p><p>During&nbsp;a HAWQ&nbsp;upgrade to 1.2, the gpmigrator script drops the built-in MADlib objects (functions, aggregates, and types). If you have user defined (UDF) objects that depend on these Madlib objects, then the gpmigrator script detects direct or indirect dependencies in all the databases and&nbsp;creates a log. To proceed with the migration:</p></li></ol><ol><li style="margin-left: 30.0px;">Backup the data.</li><li style="margin-left: 30.0px;">Drop all UDFs before resuming the migration process.</li></ol><h3 id="UpgradingHAWQandComponents-UpgradingMADlibonHAWQ1.2.0.0">Upgrading MADlib on HAWQ 1.2.0.0</h3><ol><li><p>Log in to your HAWQ master host as the HAWQ administrative user:&nbsp;</p></li><li>To check for Madlib dependencies, set the environment variables: <code>PGPORT</code>(<code>default=5432</code>), <code>PGUSER</code>(default=current logged on user),<code> PGHOST(default=localhost)</code> and <code>PGPASSWORD</code> (If empty, the script will prompt for a password)</li><li>Run <code>gpmigrator SOURCE_VERSION_GPHOME TARGET_VERSION_GPHOME</code></li><li>If there are user defined objects that depend on Madlib functionality, then the script will detect these and halt. Take appropriate action to remove these dependencies.</li></ol><p style="margin-left: 30.0px;">When the gpmigrator reports success, the new HAWQ database will be up and running. The gpmigrator script backs up the original catalog and restores it in case of failures. This leaves the database in a usable state.</p><h5 id="UpgradingHAWQandComponents-" style="margin-left: 30.0px;"><span style="color: rgb(34,34,34);">&nbsp;</span></h5><h3 id="UpgradingHAWQandComponents-ManualResizeofinput.localread.default.buffersize">Manual Resize of input.localread.default.buffersize</h3><p style="margin-left: 30.0px;"><span style="color: rgb(34,34,34);">An older version of&nbsp;hdfs-client.xml with a smaller buffer size might be retained during upgrade to HAWQ 1.2.1.0, resulting in performance degradation for those using Parquet storage format. This issue does not occur with new installations. To avoid this issue, Pivotal recommends manually setting&nbsp;<span style="color: rgb(34,34,34);">the&nbsp;input.localread.default.</span><span style="color: rgb(34,34,34);">buffersize parameter to 2097152 in the hdfs-climate.xml file, as follows:</span></span></p><p style="margin-left: 30.0px;"><span style="color: rgb(34,34,34);"><span style="color: rgb(34,34,34);"><span>&lt;property&gt;</span><br><span>&lt;name&gt;input.localread.default.buffersize&lt;/name&gt;</span><br><span>&lt;value&gt;2097152&lt;/value&gt;</span><br><span>&lt;description&gt;</span><br><span>number of bytes of the buffer which is used to hold the data from block file and verify checksum.</span><br><span>it is only used when "dfs.client.read.shortcircuit" is set to true. default is 1048576.</span><br><span>&lt;/description&gt;</span><br><span>&lt;/property&gt;</span></span></span></p><p style="margin-left: 30.0px;"><span style="color: rgb(34,34,34);"><span style="color: rgb(34,34,34);"><br></span></span></p><h2 id="UpgradingHAWQandComponents-TroubleshootingaFailedUpgrade">Troubleshooting a Failed Upgrade</h2><p align="LEFT">If you experience issues during the migration process, go to the Support page at Support Zone or contact&nbsp;Pivotal customer support at one of the following numbers:</p><ul><li>United States: 800-782-4362 (1-800-SVC-4EMC)</li><li>Canada: 800-543-4782</li><li>Worldwide: +1-508-497-7901</li></ul><p align="LEFT">Be prepared to provide the following information:</p><ul><li>A detailed list of upgrade procedures completed.</li><li>Log output from gpmigrator (located in ~/gpAdminLogs).</li></ul>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1219,28 +1218,21 @@ $ gpstart</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

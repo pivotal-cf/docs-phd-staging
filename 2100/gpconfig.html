@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>gpconfig | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -1007,7 +1006,7 @@
                            <a href="gpcheckperf.html">gpcheckperf</a>
                         </li>
                         <li>
-                           <a href="gpconfig.html">gpconfig</a>
+                           <a class="active" href="gpconfig.html">gpconfig</a>
                         </li>
                         <li>
                            <a href="gpexpand.html">gpexpand</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,7 +1140,7 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : gpconfig</div><div class="wiki-content group" id="main-content">
 <p>Sets server configuration parameters on all segments within a HAWQ system.</p><p class="bridge2">Synopsis</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpconfig -c param_name -v value [-m master_value | --masteronly]
@@ -1150,8 +1149,8 @@
 	[--skipvalidation] [--verbose] [--debug]
 gpconfig -s param_name [--verbose] [--debug] 
 gpconfig --help</pre>
-</div></div><p class="bridge2">Description</p><p>The gpconfig utility allows you to set, unset, or view configuration parameters from the postgresql.conf files of all instances (master, segments, and mirrors) in your HAWQ system. When setting a parameter, you can also specify a different value for the master, if necessary. For example, parameters such as max_connections require a different setting on the master than what is used for the segments. If you want to set or unset a global or master-only parameter, use the --masteronly option.</p><p>gpconfig cannot change the configuration parameters if there are failed segments in the system. gpconfig can only be used to manage certain parameters. For example, you cannot use it to set parameters such as port, which is required to be distinct for every segment instance.</p><p>Use the -l (list) option to see a complete list of configuration parameters supported by gpconfig. When gpconfig sets a configuration parameter in a segment postgresql.conf file, the new parameter setting always displays at the bottom of the file. When you use gpconfig to remove a configuration parameter setting, gpconfig comments out the parameter in all segment postgresql.conf files, thereby restoring the system default setting. For example, if you use gpconfig to remove (comment out) a parameter and later add it back (set a new value), there will be two instances of the parameter; one that is commented out, and one that is enabled and inserted at the bottom of the postgresql.conf file.</p><p>After setting a parameter, you must restart your HAWQ system or reload the postgresql.conf files for the change to take effect. Whether you require a restart or a reload depends on the parameter. See the <em> <a href="HAWQServerConfigurationParameters.html">Server Configuration Parameters</a> </em>reference for more information about the server configuration parameters.</p><p>To show the currently set values for a parameter across the system, use the -s option.</p><p>gpconfig uses the following environment variables to connect to the HAWQ master instance and obtain system configuration information:</p><ul><li>PGHOST</li><li>PGPORT</li><li>PGUSER</li><li>PGPASSWORD</li><li>PGDATABASE</li></ul><p class="bridge2">Options</p><pre>-c | --change param_name</pre><p style="margin-left: 30.0px;">Changes a configuration parameter setting by adding the new setting to the bottom of the postgresql.conf files.</p><pre>-v | --value value</pre><p style="margin-left: 30.0px;">The value to use for the configuration parameter you specified with the -c option. By default, this value is applied to all segments, their mirrors, the master, and the standby master.</p><pre>-m | -<em>-</em>
-  mastervalue master_value </pre><p align="LEFT" style="margin-left: 30.0px;">The master value to use for the configuration parameter you specified with the -c option. If specified, this value only applies to the master and standby master. This option can only be used with -v.</p><pre>--masteronly</pre><p style="margin-left: 30.0px;">When specified, gpconfig will only edit the master postgresql.conf file.</p><pre>-r | --remove param_name</pre><p style="margin-left: 30.0px;">Removes a configuration parameter setting by commenting out the entry in the postgresql.conf files.</p><pre>-l | --list</pre><p align="LEFT" style="margin-left: 30.0px;">Lists all configuration parameters supported by the gpconfig utility.</p><pre> -s | --sho param_name</pre><p align="LEFT" style="margin-left: 30.0px;">Shows the value for a specified configuration parameter used on all instances (master and segments) of the HAWQ system. If there is a discrepancy in a parameter value between instances, the gpconfig utility displays an error message. The gpconfig utility reads parameter values directly from the database, and not the postgresql.conf file. If you are using gpconfig to set configuration parameters across all segments, then running gpconfig -s to verify the changes, you might still see the previous (old) values. You must reload the configuration files (gpstop -u) or restart the system (gpstop -r) for changes to take effect.</p><pre>--skipvalidation</pre><p style="margin-left: 30.0px;">Overrides the system validation checks of gpconfig and allows you to operate on any server configuration parameter, including hidden parameters and restricted parameters that cannot be changed by gpconfig. When used with the -l option (list), it shows the list of restricted parameters. This option should only be used to set parameters when directed by HAWQ Customer Support.</p><pre>--verbose</pre><p style="margin-left: 30.0px;">Displays additional log information during gpconfig command execution.</p><pre>--debug</pre><p style="margin-left: 30.0px;">Sets logging output to debug level.</p><pre>-? | -h | --help</pre><p style="margin-left: 30.0px;">Displays the online help.</p><p class="bridge2">Examples</p><p>Set the max_connections setting to 100 on all segments and 10 on the master:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p class="bridge2">Description</p><p>The gpconfig utility allows you to set, unset, or view configuration parameters from the postgresql.conf files of all instances (master, segments, and mirrors) in your HAWQ system. When setting a parameter, you can also specify a different value for the master, if necessary. For example, parameters such as max_connections require a different setting on the master than what is used for the segments. If you want to set or unset a global or master-only parameter, use the --masteronly option.</p><p>gpconfig cannot change the configuration parameters if there are failed segments in the system. gpconfig can only be used to manage certain parameters. For example, you cannot use it to set parameters such as port, which is required to be distinct for every segment instance.</p><p>Use the -l (list) option to see a complete list of configuration parameters supported by gpconfig. When gpconfig sets a configuration parameter in a segment postgresql.conf file, the new parameter setting always displays at the bottom of the file. When you use gpconfig to remove a configuration parameter setting, gpconfig comments out the parameter in all segment postgresql.conf files, thereby restoring the system default setting. For example, if you use gpconfig to remove (comment out) a parameter and later add it back (set a new value), there will be two instances of the parameter; one that is commented out, and one that is enabled and inserted at the bottom of the postgresql.conf file.</p><p>After setting a parameter, you must restart your HAWQ system or reload the postgresql.conf files for the change to take effect. Whether you require a restart or a reload depends on the parameter. See the&nbsp;<em> <a href="HAWQServerConfigurationParameters.html">Server Configuration Parameters</a>&nbsp;</em>reference for more information about the server configuration parameters.</p><p>To show the currently set values for a parameter across the system, use the -s option.</p><p>gpconfig uses the following environment variables to connect to the HAWQ master instance and obtain system configuration information:</p><ul><li>PGHOST</li><li>PGPORT</li><li>PGUSER</li><li>PGPASSWORD</li><li>PGDATABASE</li></ul><p class="bridge2">Options</p><pre>-c | --change param_name</pre><p style="margin-left: 30.0px;">Changes a configuration parameter setting by adding the new setting to the bottom of the postgresql.conf files.</p><pre>-v | --value value</pre><p style="margin-left: 30.0px;">The value to use for the configuration parameter you specified with the -c option. By default, this value is applied to all segments, their mirrors, the master, and the standby master.</p><pre>-m | -<em>-</em>
+  mastervalue master_value </pre><p align="LEFT" style="margin-left: 30.0px;">The master value to use for the configuration parameter you specified with the -c option. If specified, this value only applies to the master and standby master. This option can only be used with -v.</p><pre>--masteronly</pre><p style="margin-left: 30.0px;">When specified, gpconfig will only edit the master postgresql.conf file.</p><pre>-r | --remove param_name</pre><p style="margin-left: 30.0px;">Removes a configuration parameter setting by commenting out the entry in the postgresql.conf files.</p><pre>-l | --list</pre><p align="LEFT" style="margin-left: 30.0px;">Lists all configuration parameters supported by the gpconfig utility.</p><pre>&nbsp;-s | --sho param_name</pre><p align="LEFT" style="margin-left: 30.0px;">Shows the value for a specified configuration parameter used on all instances (master and segments) of the HAWQ system. If there is a discrepancy in a parameter value between instances, the gpconfig utility displays an error message. The gpconfig utility reads parameter values directly from the database, and not the postgresql.conf file. If you are using gpconfig to set configuration parameters across all segments, then running gpconfig -s to verify the changes, you might still see the previous (old) values. You must reload the configuration files (gpstop -u) or restart the system (gpstop -r) for changes to take effect.</p><pre>--skipvalidation</pre><p style="margin-left: 30.0px;">Overrides the system validation checks of gpconfig and allows you to operate on any server configuration parameter, including hidden parameters and restricted parameters that cannot be changed by gpconfig. When used with the -l option (list), it shows the list of restricted parameters. This option should only be used to set parameters when directed by HAWQ Customer Support.</p><pre>--verbose</pre><p style="margin-left: 30.0px;">Displays additional log information during gpconfig command execution.</p><pre>--debug</pre><p style="margin-left: 30.0px;">Sets logging output to debug level.</p><pre>-? | -h | --help</pre><p style="margin-left: 30.0px;">Displays the online help.</p><p class="bridge2">Examples</p><p>Set the max_connections setting to 100 on all segments and 10 on the master:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpconfig -c max_connections -v 100 -m 10</pre>
 </div></div><p>Comment out all instances of the default_statistics_target configuration parameter, and restore the system default:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpconfig -r default_statistics_target</pre>
@@ -1162,9 +1161,9 @@ gpconfig --help</pre>
 </div></div><p class="bridge2">See Also</p><p>gpstop</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1188,28 +1187,21 @@ gpconfig --help</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

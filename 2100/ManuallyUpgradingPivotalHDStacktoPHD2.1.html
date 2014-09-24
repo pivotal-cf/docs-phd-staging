@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>Manually Upgrading Pivotal HD Stack to PHD 2.1 | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -474,7 +473,7 @@
                      </ul>
                   </li>
                   <li>
-                     <a href="ManuallyUpgradingPivotalHDStacktoPHD2.1.html">Manually Upgrading Pivotal HD Stack to PHD 2.1</a>
+                     <a class="active" href="ManuallyUpgradingPivotalHDStacktoPHD2.1.html">Manually Upgrading Pivotal HD Stack to PHD 2.1</a>
                   </li>
                   <li>
                      <a href="PivotalHadoopEnhancements.html">Pivotal Hadoop Enhancements</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,34 +1140,34 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Manually Upgrading Pivotal HD Stack to PHD 2.1</div><div class="wiki-content group" id="main-content">
-<p>Pivotal HD Stack supports the following upgrade:</p><ul><li>Upgrade from PHD 1.1.1 to PHD 2.1</li><li>Upgrade from PHD 2.0.1 to PHD 2.1</li></ul><p>This section describes how to manually upgrade your Pivotal HD stack components.</p><p>PHD supports only stack-level upgrade; it doesn't support component-level upgrade. All PHD components should come from same release package and all PHD components need to upgrade to same release version.</p><h2 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-GeneralUpgradeTasksforEachComponent">General Upgrade Tasks for Each Component</h2><p>For each component upgrade, the following steps need to be followed:</p><ul><li>Backup Configuration</li><li>Stop Service</li><li>RPM upgrade</li><li>Restore Configuration</li><li>Start Service</li></ul><h2 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-ComponentstobeUpgraded(ICMsupported)">Components to be Upgraded (ICM supported)</h2><ul><li>Zookeeper</li><li>Bigtop utilities</li><li>HDFS</li><li>Yarn</li><li>HBase</li><li>Hive</li><li>Pig</li><li>Mahout</li></ul><p>The above components upgrade is supported through the CLI. Manual RPM upgrade is risky and upgrade through the CLI is strongly recommended.</p><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeBigtopUtilities">Upgrade Bigtop Utilities</h3><p>     RPM Upgrade Bigtop Utilies</p><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeZookeeper">Upgrade Zookeeper</h3><ol><li>Backup existing configuration files.</li><li>Stop the zookeeper-server service.</li><li>RPM Upgrade Zookeeper.</li><li>Restore backup configuration files and make sure configuration is compatible with the new installed version.</li><li>Restart the zookeeper-server service on Zookeeper server.</li></ol><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeHadoop">Upgrade Hadoop</h3><p>     Refer to <a class="external-link" href="http://wiki.apache.org/hadoop/Hadoop_Upgrade" rel="nofollow">http://wiki.apache.org/hadoop/Hadoop_Upgrade</a> for Hadoop data upgrade/migration. The following steps only cover Hadoop configuration and packages upgrade.</p><ol><li>Backup existing configuration files.</li><li>Stop Hadoop services.</li><li>RPM upgrade Hadoop.</li><li>Restore backup configuration files and make sure configuration is compatible with new installed version.</li><li>Restart Hadoop services.</li></ol><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeHBase">Upgrade HBase</h3><p>     Refer to <a class="external-link" href="http://hbase.apache.org/book/upgrading.html" rel="nofollow">http://hbase.apache.org/book/upgrading.html</a> for hbase data upgrade/migration. The following steps only cover hbase configuration and packages upgrade.</p><ol><li>Backup existing configuration files.</li><li>Stop HBase master/region/thrift/restful service.</li><li>RPM upgrade Hbase.</li><li>Restore backup configuration files and make sure configuration is compatible with the new installed version.</li><li>Restart HBase master/region/thrift/restful service.</li></ol><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeHive">Upgrade Hive</h3><p>     Refer to <a class="external-link" href="https://cwiki.apache.org/confluence/display/Hive/Hive+Schema+Tool" rel="nofollow">https://cwiki.apache.org/confluence/display/Hive/Hive+Schema+Tool</a> for Hive data upgrade/migration. The following steps only cover Hive configuration and packages upgrade.</p><ol><li>Backup existing configuration files.</li><li>Stop Hive Server, Hive Server2, metastore services.</li><li>RPM upgrade Hive</li><li>Restore backup configuration files and make sure configuration is compatible with the new installed version.</li><li>If you use postgresql as the metastore DB, please copy postgresql-jdbc.jar to /usr/lib/gphd/hive/lib on hive-server node.</li><li>Restart Hive Server, Hive Server2, metastore services.</li></ol><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradePig">Upgrade Pig</h3><ol><li>Backup existing configuration files.</li><li>RPM upgrade Pig.</li><li>Restore backup configuration files and make sure configuration is compatible with new installed version.</li><li>Restore any customized UDF jars to lib directory.</li></ol><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeMahout">Upgrade Mahout</h3><ol><li>Backup existing configuration files.</li><li>RPM upgrade Mahout</li><li>Restore backup configuration files and make sure configuration is compatible with new installed version.</li></ol><h2 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-ComponentstobeUpgraded(ICMnotsupported)">Components to be Upgraded (ICM not supported)</h2><ul><li>Sqoop</li><li>Flume</li><li>Oozie</li><li>Hcatlog</li></ul><p>These instructions assume that the following components were already upgraded to PHD stack 1.1.1 and worked correctly:</p><ul><li>Zookeeper</li><li>Hadoop</li><li>Hbase</li><li>Hive</li><li>Pig</li><li>Mahout</li></ul><p>RPM upgrade requires <code>root</code> privileges on the nodes to be upgraded. Unless specified, all the following operations should be run by user <code>root</code>.</p><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeFlume">Upgrade Flume</h3><ol><li><p><strong>Backup existing configuration files</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<p>Pivotal HD Stack supports the following upgrade:</p><ul><li>Upgrade from PHD 1.1.1 to PHD 2.1</li><li>Upgrade from PHD 2.0.1 to PHD 2.1</li></ul><p>This section describes how to manually upgrade your Pivotal HD stack components.</p><p>PHD supports only stack-level upgrade; it doesn't support component-level upgrade. All PHD components should come from same release package and all PHD components need to upgrade to same release version.</p><h2 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-GeneralUpgradeTasksforEachComponent">General Upgrade Tasks for Each Component</h2><p>For each component upgrade, the following steps need to be followed:</p><ul><li>Backup Configuration</li><li>Stop Service</li><li>RPM upgrade</li><li>Restore Configuration</li><li>Start Service</li></ul><h2 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-ComponentstobeUpgraded(ICMsupported)">Components to be Upgraded (ICM supported)</h2><ul><li>Zookeeper</li><li>Bigtop utilities</li><li>HDFS</li><li>Yarn</li><li>HBase</li><li>Hive</li><li>Pig</li><li>Mahout</li></ul><p>The above components upgrade is supported through the CLI. Manual RPM upgrade is risky and upgrade through the CLI is strongly recommended.</p><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeBigtopUtilities">Upgrade Bigtop Utilities</h3><p>&nbsp;&nbsp;&nbsp;&nbsp; RPM Upgrade Bigtop Utilies</p><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeZookeeper">Upgrade Zookeeper</h3><ol><li>Backup&nbsp;existing configuration files.</li><li>Stop the zookeeper-server service.</li><li>RPM Upgrade Zookeeper.</li><li>Restore backup configuration files and make sure configuration is compatible with the new installed version.</li><li>Restart the zookeeper-server service on Zookeeper server.</li></ol><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeHadoop">Upgrade Hadoop</h3><p>&nbsp;&nbsp;&nbsp;&nbsp; Refer to&nbsp;<a class="external-link" href="http://wiki.apache.org/hadoop/Hadoop_Upgrade" rel="nofollow">http://wiki.apache.org/hadoop/Hadoop_Upgrade</a> for Hadoop data upgrade/migration. The following steps only cover Hadoop configuration and packages upgrade.</p><ol><li>Backup&nbsp;existing configuration files.</li><li>Stop Hadoop services.</li><li>RPM upgrade Hadoop.</li><li>Restore backup configuration files and make sure configuration is compatible with new installed version.</li><li>Restart Hadoop services.</li></ol><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeHBase">Upgrade HBase</h3><p>&nbsp;&nbsp;&nbsp;&nbsp; Refer to <a class="external-link" href="http://hbase.apache.org/book/upgrading.html" rel="nofollow">http://hbase.apache.org/book/upgrading.html</a> for hbase data upgrade/migration. The following steps only cover hbase configuration and packages upgrade.</p><ol><li>Backup&nbsp;existing configuration files.</li><li>Stop HBase master/region/thrift/restful service.</li><li>RPM upgrade Hbase.</li><li>Restore backup configuration files&nbsp;and make sure configuration is compatible with the new installed version.</li><li>Restart&nbsp;HBase master/region/thrift/restful service.</li></ol><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeHive">Upgrade Hive</h3><p>&nbsp;&nbsp;&nbsp;&nbsp; Refer to <a class="external-link" href="https://cwiki.apache.org/confluence/display/Hive/Hive+Schema+Tool" rel="nofollow">https://cwiki.apache.org/confluence/display/Hive/Hive+Schema+Tool</a> for Hive data upgrade/migration. The following steps only cover Hive configuration and packages upgrade.</p><ol><li>Backup&nbsp;existing configuration files.</li><li>Stop Hive Server, Hive Server2, metastore services.</li><li>RPM upgrade Hive</li><li>Restore backup configuration files&nbsp;and make sure configuration is compatible with the new installed version.</li><li>If you use postgresql as the metastore DB, please copy postgresql-jdbc.jar to /usr/lib/gphd/hive/lib on hive-server node.</li><li>Restart&nbsp;Hive Server, Hive Server2, metastore services.</li></ol><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradePig">Upgrade Pig</h3><ol><li>Backup&nbsp;existing configuration files.</li><li>RPM upgrade Pig.</li><li>Restore backup configuration files&nbsp;and make sure configuration is compatible with new installed version.</li><li>Restore any customized UDF jars to lib directory.</li></ol><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeMahout">Upgrade Mahout</h3><ol><li>Backup&nbsp;existing configuration files.</li><li>RPM upgrade Mahout</li><li>Restore&nbsp;backup configuration files&nbsp;and make sure configuration is compatible with new installed version.</li></ol><h2 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-ComponentstobeUpgraded(ICMnotsupported)">Components to be Upgraded (ICM not supported)</h2><ul><li>Sqoop</li><li>Flume</li><li>Oozie</li><li>Hcatlog</li></ul><p>These instructions assume that the following components were already upgraded to PHD stack&nbsp;1.1.1 and worked correctly:</p><ul><li>Zookeeper</li><li>Hadoop</li><li>Hbase</li><li>Hive</li><li>Pig</li><li>Mahout</li></ul><p>RPM upgrade requires <code>root</code> privileges on the nodes to be upgraded.&nbsp;Unless specified, all the following operations should be run by user <code>root</code>.</p><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeFlume">Upgrade Flume</h3><ol><li><p><strong>Backup&nbsp;existing configuration files</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ cp -r /etc/gphd/flume/conf &lt;where to save Flume configuration&gt;
 $ cp -r /etc/default/flume* &lt;where to save Flume environment&gt;</pre>
-</div></div></li><li><p><strong>Stop Flume Agent Service</strong></p><p>Before you begin the upgrade, stop the<code> flume-agent</code> service:<strong> <br/> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p><strong>Stop Flume Agent Service</strong></p><p>Before you begin the upgrade, stop the<code> flume-agent</code> service:<strong> <br> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service flume-agent stop
 </pre>
-</div></div><p><strong> <br/> </strong></p></li><li><p><strong> <strong>Upgrade the Flume<br/> </strong> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p><strong> <br> </strong></p></li><li><p><strong> <strong>Upgrade the Flume<br> </strong> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -U flume-&lt;PHD_FLUME_VERSIOIN&gt;.noarch.rpm
 $ sudo rpm -qa | grep flume
 flume-&lt;PHD_FLUME_VERSION&gt;.noarch</pre>
-</div></div></li><li><p><strong> <strong>Upgrade the Flume Agent<br/> </strong> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p><strong> <strong>Upgrade the Flume Agent<br> </strong> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -U flume-&lt;PHD_FLUME_VERSION&gt;.noarch.rpm flume-agent-&lt;PHD_FLUME_VERSION&gt;.noarch.rpm
 $ sudo rpm -qa | grep flume
 flume-&lt;PHD_FLUME_VERSION&gt;.noarch
 flume-agent-&lt;PHD_FLUME_VERSION&gt;.noarch</pre>
-</div></div></li><li><p><strong> <strong>Restore the old configurations<br/> </strong> </strong></p><p>After upgrading all Flume packages, you need to restore your configuration files in <code>/etc/gphd/flume/conf</code>, especially the <code>flume.conf</code>.<br/>Check your previous backup configuration files, and manually add any change you made back to your upgraded configuration files.<br/>You also need to restore flume environment files in /etc/default, if they were changed.</p></li><li><p><strong>Restart Flume Agent Service</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p><strong> <strong>Restore the old configurations<br> </strong> </strong></p><p>After upgrading all Flume packages, you need to restore your configuration files in&nbsp;<code>/etc/gphd/flume/conf</code>, especially the&nbsp;<code>flume.conf</code>.<br>Check your previous backup configuration files, and manually add any change you made back to your upgraded configuration files.<br>You also need to restore flume environment files in /etc/default, if they were changed.</p></li><li><p><strong>Restart Flume Agent Service</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service flume-agent start
 </pre>
-</div></div></li></ol><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeSqoop">Upgrade Sqoop</h3><ol><li><strong>Backup existing configuration files</strong> <br/><p>We also require you back up the external jar files used to connect with the database for Sqoop:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li></ol><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeSqoop">Upgrade Sqoop</h3><ol><li><strong>Backup&nbsp;existing configuration files</strong> <br><p>We also require you back up the external jar files used to connect with the database for Sqoop:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ cp -r /etc/gphd/sqoop/conf &lt;where to save Sqoop configuration&gt;
 $ cp -r /usr/lib/gphd/sqoop/lib &lt;where to save external jar files&gt;
 $ cp -r /etc/default/sqoop* &lt;where to save Sqoop environment&gt;</pre>
-</div></div></li><li><p><strong>Stop Sqoop Metastore Service<br/> </strong>Before you run the upgrade, first stop the <code>sqoop-metastore</code> service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p><strong>Stop Sqoop Metastore Service<br> </strong>Before you run the upgrade, first stop the <code>sqoop-metastore</code> service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service sqoop-metastore stop
 </pre>
-</div></div></li><li><p><strong>Upgrade Sqoop Client<br/> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p><strong>Upgrade Sqoop Client<br> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ rpm -U sqoop-&lt;PHD_SQOOP_VERSION&gt;.noarch.rpm
 $ rpm -qa | grep sqoop
 sqoop-&lt;PHD_SQOOP_VERSION&gt;.noarch</pre>
@@ -1177,15 +1176,15 @@ sqoop-&lt;PHD_SQOOP_VERSION&gt;.noarch</pre>
 $ rpm -qa | grep sqoop
 sqoop-&lt;PHD_SQOOP_VERSION&gt;.noarch
 sqoop-metastore-&lt;PHD_SQOOP_VERSION&gt;.noarch</pre>
-</div></div></li><li><strong> <strong>Restore old configurations<br/> </strong> </strong><p>After upgrading all Sqoop packages, you need to restore your configuration files in <code>/etc/gphd/sqoop/conf</code>, especially the <code>sqoop-site.xml</code>.</p><p>Check your previous backup configuration files, and manually add back any change you made to your upgraded configuration files.</p><p>You also need to restore your external jar files to <code>/usr/lib/gphd/sqoop/lib</code>.<br/>You also need to restore Sqoop environment files in /etc/default, if they were changed. </p><strong> <br/> </strong></li><li><p><strong> <strong>Restart Sqoop Metastore service<br/> </strong> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><strong> <strong>Restore old configurations<br> </strong> </strong><p>After upgrading all Sqoop packages, you need to restore your configuration files in&nbsp;<code>/etc/gphd/sqoop/conf</code>, especially the&nbsp;<code>sqoop-site.xml</code>.</p><p>Check your previous backup configuration files, and manually add back any change you made to your upgraded configuration files.</p><p>You also need to restore your external jar files to <code>/usr/lib/gphd/sqoop/lib</code>.<br>You also need to restore Sqoop environment files in /etc/default, if they were changed.&nbsp;</p><strong> <br> </strong></li><li><p><strong> <strong>Restart Sqoop Metastore service<br> </strong> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service sqoop-metastore start
 </pre>
-</div></div></li></ol><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeOozie">Upgrade Oozie</h3><ol><li><p><strong>Backup existing configuration files</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li></ol><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeOozie">Upgrade Oozie</h3><ol><li><p><strong>Backup&nbsp;existing configuration files</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ cp -r /etc/gphd/oozie/conf &lt;where to save Oozie configuration&gt;</pre>
-</div></div></li><li><p><strong>Stop Oozie Service<br/> </strong>Before you run the upgrade, first stop <code>Oozie</code> service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p><strong>Stop Oozie Service<br> </strong>Before you run the upgrade, first stop <code>Oozie</code> service:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service oozie stop
 </pre>
-</div></div></li><li><p><strong>Upgrade Oozie Rpms<br/> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p><strong>Upgrade Oozie Rpms<br> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo rpm -U oozie-client-&lt;PHD_OOZIE_VERSION&gt;.noarch.rpm oozie-&lt;PHD_OOZIE_VERSION&gt;.noarch.rpm
 $ sudo rpm -qa | grep oozie
 oozie-client-&lt;PHD_OOZIE_VERSION&gt;.noarch
@@ -1198,7 +1197,7 @@ oozie-&lt;PHD_OOZIE_VERSION&gt;.noarch</pre>
 <p>PHD_OOZIE_OLD_VERSION is the old Oozie version in previous PHD release.</p>
 </div>
 </div>
-<p><strong> <br/> </strong></p></li><li><p><strong>Copy Oozie Data</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<p><strong> <br> </strong></p></li><li><p><strong>Copy Oozie Data</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u oozie cp -r /var/lib/gphd/oozie-&lt;PHD_OOZIE_OLD_VERSION&gt;/* /var/lib/gphd/oozie/</pre>
 </div></div> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
@@ -1206,7 +1205,7 @@ oozie-&lt;PHD_OOZIE_VERSION&gt;.noarch</pre>
 <p>PHD_OOZIE_OLD_VERSION is the old Oozie version in previous PHD release. The default OOZIE_DATA is "/var/lib/gphd/oozie/". If OOZIE_DATA is set to another path, you have to put it into the path you set.</p>
 </div>
 </div>
-</li><li><strong> <strong>Restore old configurations<br/> </strong> </strong><p>After upgrading all Oozie packages, you need to restore your configuration files in <code>/etc/gphd/oozie/conf</code> <br/> Check your previous backup configuration files, and manually add any change you made back to your upgraded configuration files.<br/> You also need to restore Oozie environment files in /etc/default, if they were changed.  </p><strong> <br/> </strong></li><li><p><strong>Upgrade Oozie database</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</li><li><strong> <strong>Restore old configurations<br> </strong> </strong><p>After upgrading all Oozie packages, you need to restore your configuration files in&nbsp;<code>/etc/gphd/oozie/conf</code> <br> Check your previous backup configuration files, and manually add any change you made back to your upgraded configuration files.<br> You also need to restore Oozie environment files in /etc/default, if they were changed. &nbsp;</p><strong> <br> </strong></li><li><p><strong>Upgrade Oozie database</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo -u oozie oozie-setup db upgrade -run
 $ sudo -u oozie oozie-setup db postupgrade -run
 </pre>
@@ -1215,24 +1214,24 @@ $ sudo -u oozie oozie-setup db postupgrade -run
 $ sudo -u oozie hdfs dfs -rm -r share
 Deleted share
 $ sudo -u oozie oozie-setup sharelib create -fs hdfs://&lt;NameNodeHost&gt;:&lt;HDFSPort&gt;</pre>
-</div></div><p><strong>Note</strong>: Make sure that there is a file named "ext-2.2.zip" in &lt;ext-js-2.2-path &gt;.</p></li><li><p><strong> <strong>Restart Oozie service<br/> </strong> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p><strong>Note</strong>: Make sure that there is a file named "ext-2.2.zip" in&nbsp;&lt;ext-js-2.2-path &gt;.</p></li><li><p><strong> <strong>Restart Oozie service<br> </strong> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service oozie start
 </pre>
-</div></div></li></ol><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeHCatalog">Upgrade HCatalog</h3><ol><li><p><strong>Backup existing configuration files</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li></ol><h3 id="ManuallyUpgradingPivotalHDStacktoPHD2.1-UpgradeHCatalog">Upgrade HCatalog</h3><ol><li><p><strong>Backup&nbsp;existing configuration files</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ cp -r /etc/gphd/hcatalog/conf &lt;where to save HCatlog configuration&gt;
 $ cp -r /etc/default/hcatalog* &lt;where to save HCatlog environment&gt;
 $ cp -r /etc/default/webhcat* &lt;where to save Webhcat environment&gt;</pre>
-</div></div></li><li><p><strong>Stop webhcat-server Service</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p><strong>Stop&nbsp;webhcat-server Service</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service webhcat-server stop
 </pre>
-</div></div></li><li><p><strong>Stop hcatalog-server Service<br/> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p><strong>Stop&nbsp;hcatalog-server Service<br> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hcatalog-server stop
 </pre>
-</div></div></li><li><p><strong>Upgrade <strong>webhcat-server</strong> <br/> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p><strong>Upgrade <strong>webhcat-server</strong> <br> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ rpm -U webhcat-server-&lt;PHD_HCATALOG_VERSION&gt;.noarch.rpm
 $ rpm -qa | grep webhcat-server
 webhcat-server-&lt;PHD_HCATALOG_VERSION&gt;.noarch.rpm</pre>
-</div></div></li><li><p><strong>Upgrade <strong>webhcat</strong> <br/> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p><strong>Upgrade <strong>webhcat</strong> <br> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ rpm -U webhcat-&lt;PHD_HCATALOG_VERSION&gt;.noarch.rpm
 $ rpm -qa | grep webhcat
 webhcat-&lt;PHD_HCATALOG_VERSION&gt;.noarch.rpm</pre>
@@ -1240,22 +1239,22 @@ webhcat-&lt;PHD_HCATALOG_VERSION&gt;.noarch.rpm</pre>
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ rpm -U hcatalog-server-&lt;PHD_HCATALOG_VERSION&gt;.noarch.rpm
 $ rpm -qa | grep hcatalog-server
 hcatalog-server-&lt;PHD_HCATALOG_VERSION&gt;.noarch.rpm</pre>
-</div></div></li><li><p><strong>Upgrade <strong>hcatalog</strong> <br/> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p><strong>Upgrade <strong>hcatalog</strong> <br> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ rpm -U hcatalog-&lt;PHD_HCATALOG_VERSION&gt;.noarch.rpm
 $ rpm -qa | grep hcatalog
 hcatalog-&lt;PHD_HCATALOG_VERSION&gt;.noarch.rpm</pre>
-</div></div></li><li><strong> <strong>Restore old configurations<br/> </strong> </strong><p>After upgrading all  packages, you need to restore your configuration files in /etc/gphd/hcatalog/conf.</p><p>Check your previous backup configuration files, and manually add any change you made back to your upgraded configuration files.<br/> You also need to restore hcatalog and webhcat environment files in /etc/default if they were changed.</p><strong> <br/> </strong></li><li><p><strong> <strong>Restart </strong> </strong> <strong> <strong>webhcat-server</strong> </strong> <strong> <strong> service<br/> </strong> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><strong> <strong>Restore old configurations<br> </strong> </strong><p>After upgrading all&nbsp; packages, you need to restore your configuration files in /etc/gphd/hcatalog/conf.</p><p>Check your previous backup configuration files, and manually add any change you made back to your upgraded configuration files.<br> You also need to restore hcatalog and webhcat environment files in /etc/default if they were changed.</p><strong> <br> </strong></li><li><p><strong> <strong>Restart </strong> </strong> <strong> <strong>webhcat-server</strong> </strong> <strong> <strong> service<br> </strong> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service webhcat-server start
 </pre>
-</div></div></li><li><p><strong> <strong>Restart </strong> </strong> <strong>hcatalog-server</strong> <strong> <strong> service<br/> </strong> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p><strong> <strong>Restart </strong> </strong> <strong>hcatalog-server</strong> <strong> <strong> service<br> </strong> </strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">$ sudo service hcatalog-server start
 </pre>
 </div></div></li></ol>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1279,28 +1278,21 @@ hcatalog-&lt;PHD_HCATALOG_VERSION&gt;.noarch.rpm</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

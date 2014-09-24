@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>Configuring HAWQ on Secure HDFS | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -510,7 +509,7 @@
                            <a href="ConfiguringHCatalogWebHCatonSecureHive.html">Configuring HCatalog (WebHCat) on Secure Hive</a>
                         </li>
                         <li>
-                           <a href="ConfiguringHAWQonSecureHDFS.html">Configuring HAWQ on Secure HDFS</a>
+                           <a class="active" href="ConfiguringHAWQonSecureHDFS.html">Configuring HAWQ on Secure HDFS</a>
                         </li>
                         <li>
                            <a href="EnablingAuditing.html">Enabling Auditing</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,7 +1140,7 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Configuring HAWQ on Secure HDFS</div><div class="wiki-content group" id="main-content">
 <p><span class="confluence-anchor-link" id="ConfiguringHAWQonSecureHDFS-SecureHAWQ"></span></p><h2 id="ConfiguringHAWQonSecureHDFS-HAWQonSecureHDFS">HAWQ on Secure HDFS</h2><h3 id="ConfiguringHAWQonSecureHDFS-Requirements">Requirements</h3><ul><li>A secure HDFS installation</li><li>HDFS on wire encryption (<code>dfs.encrypt.data.transfer</code>) MUST be set to <code>false</code>.</li><li>A new un-initialized HAWQ instance or a stopped already initialized HAWQ instance that was previously running on non-secured HDFS</li></ul><h3 id="ConfiguringHAWQonSecureHDFS-Preparation">Preparation</h3><ol><li>If HAWQ is already initialized and running, stop HAWQ by running <code>service hawq stop</code> or <code>&lt;HAWQ installation directory&gt;/bin/gpstop</code>.</li><li>Secure the HDFS cluster using the instructions provided in this Guide or using available security tools.</li><li>Insure HDFS is running properly in secured mode.</li><li>Insure that the property <code>dfs.encrypt.data.transfer</code> is set to <code>false</code> in the <code>hdfs-site.xml</code> for your cluster.</li></ol><h3 id="ConfiguringHAWQonSecureHDFS-Configuration">Configuration</h3><ol><li><p>Generate a "postgres" principal and keytab file as shown below:</p> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
@@ -1151,7 +1150,7 @@
 </div>
 <div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin: addprinc -randkey postgres@EXAMPLE.COM
-kadmin: ktadd -k /etc/security/phd/keytab/hawq.service.keytab postgres@EXAMPLE.COM </pre>
+kadmin: ktadd -k /etc/security/phd/keytab/hawq.service.keytab postgres@EXAMPLE.COM&nbsp;</pre>
 </div></div></li><li><p>Move this keytab file to the appropriate keytab directory on the HAWQ master node (for example, <code>/etc/security/phd/keytab/</code>).</p></li><li><p>Set the ownership of the keytab file to <code> gpadmin:gpadmin </code> and the permissions to 400.</p></li><li><p>Refer to your <code>gpinitsystem_config</code> file (typically in <code>/etc/gphd/hawq/conf</code>) to determine your configured HAWQ HDFS data directory (typically <code>/hawq_data</code>). This will be the last part of the <code>DFS_URL</code> value. For example, if <code>DFS_URL</code> is set to <code>centos61-2:8020/hawq_data, </code> then your HAWQ HDFS data directory is <code>/hawq_data.</code></p></li><li><p>Create (if required) the HAWQ HDFS data directory in HDFS, and assign ownership as <code>postgres:gpadmin</code> and permissions 755.</p> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
@@ -1183,12 +1182,12 @@ ENABLE_SECURE_FILESYSTEM=on	</pre>
 <ul><li>Make sure there is no space between the <code>key=value</code>; for example: <code>ENABLE_SECURE_FILESYSTEM = on</code> will cause errors because there are spaces.</li><li>Make sure the value of <code>KERBEROS_KEYFILE</code> is the full path of where you placed the <code>hawq.service.keytab</code> file on the master.</li></ul>
 </div>
 </div>
-</li><li>If HAWQ has already been initialized prior to being secured, run the following commands on the HAWQ master as the <code>gpadmin</code> user:<ol><li><code> service hawq start</code></li><li><code> source /usr/local/hawq/greenplum_path.sh </code></li><li><code>gpconfig --masteronly -c krb_server_keyfile -v "'/path/to/keytab/file'"</code> <br/> <strong>NOTE</strong> The single quotes ' after/before the double quotes " in the keytab string above are required!</li><li><code>service hawq stop</code></li></ol></li><li>After you have completed all these steps, you can start or initialize HAWQ:<ol><li>If HAWQ was already initialized on non-secured HDFS before this process, start it by running <code>service hawq start</code> or <code>&lt;HAWQ installation directory&gt;/bin/gpstart</code>.</li><li>If HAWQ has not been initialized, initialize it now.</li></ol></li><li>Verify HAWQ is operating properly, if not, see the next section.</li></ol><h3 id="ConfiguringHAWQonSecureHDFS-Troubleshooting">Troubleshooting</h3><p>If initialization or start-up fails, you can look into the gpinitsystem log output and the namenode logs to see if you can pinpoint the cause. Possible causes:</p><ul><li>Incorrect values in your <code>hdfs-client.xml</code></li><li><code>hdfs-client.xml</code> not updated on master and all segment servers</li><li>Unable to login with Kerberos; possible bad keytab or principal for "postgres"<ul><li>Validate on master by entering the following: <code> <br/>kinit -k &lt;keytab dir path&gt;/hawq.service.keytab postgres@EXAMPLE.COM </code></li></ul></li><li>Wrong HAWQ HDFS data directory or directory permissions: Check your <code>gpinitsystem_config</code> <strong> </strong>file and the <code>DFS_URL</code> value and the directory permissions.</li><li>Unable to create the HAWQ HDFS data directory errors: ensure that you have created the proper directory as specified in <code>gpinitsystem_config</code> and that the ownership and permissions are correct.</li></ul>
+</li><li>If HAWQ has already been initialized prior to being secured, run the following commands on the HAWQ master as the <code>gpadmin</code> user:<ol><li><code> service hawq start</code></li><li><code> source /usr/local/hawq/greenplum_path.sh </code></li><li><code>gpconfig --masteronly -c krb_server_keyfile -v "'/path/to/keytab/file'"</code> <br> <strong>NOTE</strong> The single quotes ' after/before the double quotes " in the keytab string above are required!</li><li><code>service hawq stop</code></li></ol></li><li>After you have completed all these steps, you can start or initialize HAWQ:<ol><li>If HAWQ was already initialized on non-secured HDFS before this process, start it by running <code>service hawq start</code> or <code>&lt;HAWQ installation directory&gt;/bin/gpstart</code>.</li><li>If HAWQ has not been initialized, initialize it now.</li></ol></li><li>Verify HAWQ is operating properly, if not, see the next section.</li></ol><h3 id="ConfiguringHAWQonSecureHDFS-Troubleshooting">Troubleshooting</h3><p>If initialization or start-up fails, you can look into the gpinitsystem log output and the namenode logs to see if you can pinpoint the cause. Possible causes:</p><ul><li>Incorrect values in your <code>hdfs-client.xml</code></li><li><code>hdfs-client.xml</code>&nbsp;not updated on master and all segment servers</li><li>Unable to login with Kerberos; possible bad keytab or principal for "postgres"<ul><li>Validate on master by entering the following: <code> <br>kinit -k &lt;keytab dir path&gt;/hawq.service.keytab&nbsp;postgres@EXAMPLE.COM </code></li></ul></li><li>Wrong HAWQ HDFS data directory or directory permissions: Check your&nbsp;<code>gpinitsystem_config</code> <strong>&nbsp;</strong>file and the <code>DFS_URL</code> value and the directory permissions.</li><li>Unable to create the HAWQ HDFS data directory errors: ensure that you have created the proper directory as specified in&nbsp;<code>gpinitsystem_config</code> and that the ownership and permissions are correct.</li></ul>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1212,28 +1211,21 @@ ENABLE_SECURE_FILESYSTEM=on	</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

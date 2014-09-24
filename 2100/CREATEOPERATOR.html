@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>CREATE OPERATOR | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -834,7 +833,7 @@
                            <a href="CREATELANGUAGE.html">CREATE LANGUAGE</a>
                         </li>
                         <li>
-                           <a href="CREATEOPERATOR.html">CREATE OPERATOR</a>
+                           <a class="active" href="CREATEOPERATOR.html">CREATE OPERATOR</a>
                         </li>
                         <li>
                            <a href="CREATEOPERATORCLASS.html">CREATE OPERATOR CLASS</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,7 +1140,7 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : CREATE OPERATOR</div><div class="wiki-content group" id="main-content">
 <p>Defines a new operator.</p><p class="bridge2">Synopsis</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE OPERATOR name ( 
@@ -1152,24 +1151,24 @@
 	[, HASHES] [, MERGES] 
 	[, SORT1 = left_sort_op] [, SORT2 = right_sort_op] 
 	[, LTCMP = less_than_op] [, GTCMP = greater_than_op] )</pre>
-</div></div><p class="bridge2">Description</p><p>CREATE OPERATOR defines a new operator. The user who defines an operator becomes its owner. </p><p>The operator name is a sequence of up to NAMEDATALEN-1 (63 by default) characters from the following list: <span>+ - * / &lt; &gt; = ~ ! @ # % ^ &amp; | ` ?</span></p><p>There are a few restrictions on your choice of name:</p><ul><li> -- and /* cannot appear anywhere in an operator name, since they will be taken as the start of a comment. </li><li>A multicharacter operator name cannot end in or , unless the name also contains at least one of these characters: ~ ! @ # % ^ &amp; | ` ?</li></ul><p>For example, @- is an allowed operator name, but *- is not. This restriction allows HAWQ to parse SQL-compliant commands without requiring spaces between tokens. </p><p>The operator != is mapped to &lt;&gt; on input, so these two names are always equivalent. </p><p>At least one of LEFTARG and RIGHTARG must be defined. For binary operators, both must be defined. For right unary operators, only LEFTARG should be defined, while for left unary operators only RIGHTARG should be defined. </p><p>The <em>funcname </em> procedure must have been previously defined using CREATE FUNCTION, must be IMMUTABLE, and must be defined to accept the correct number of arguments (either one or two) of the indicated types. </p><p>The other clauses specify optional operator optimization clauses. These clauses should be provided whenever appropriate to speed up queries that use the operator. But if you provide them, you must be sure that they are correct. Incorrect use of an optimization clause can result in server process crashes, subtly wrong output, or other unexpected results. You can always leave out an optimization clause if you are not sure about it.</p><p class="bridge2">Parameters</p><pre>name</pre><p style="margin-left: 30.0px;">The (optionally schema-qualified) name of the operator to be defined. Two operators in the same schema can have the same name if they operate on different data types.</p><pre>funcname</pre><p style="margin-left: 30.0px;">The function used to implement this operator (must be an IMMUTABLE function).</p><pre>lefttype</pre><p style="margin-left: 30.0px;">The data type of the operator’s left operand, if any. This option would be omitted for a left-unary operator. </p><pre>righttype</pre><p style="margin-left: 30.0px;">The data type of the operator’s right operand, if any. This option would be omitted for a right-unary operator.</p><pre>com_op</pre><p style="margin-left: 30.0px;">The optional COMMUTATOR clause names an operator that is the commutator of the operator being defined. We say that operator A is the commutator of operator B if (x A y) equals (y B x) for all possible input values x, y. Notice that B is also the commutator of A. For example, operators &lt; and &gt; for a particular data type are usually each others commutators, and operator + is usually commutative with itself. But operator - is usually not commutative with anything. The left operand type of a commutable operator is the same as the right operand type of its commutator, and vice versa. So the name of the commutator operator is all that needs to be provided in the COMMUTATOR clause. </p><pre>neg_op</pre><p style="margin-left: 30.0px;">The optional NEGATOR clause names an operator that is the negator of the operator being defined. We say that operator A is the negator of operator B if both return Boolean results and (x A y) equals NOT (x B y) for all possible inputs x, y. Notice that B is also the negator of A. For example, &lt; and &gt;= are a negator pair for most data types. An operator’s negator must have the same left and/or right operand types as the operator to be defined, so only the operator name need be given in the NEGATOR clause.</p><pre>res_proc</pre><p style="margin-left: 30.0px;">The optional RESTRICT names a restriction selectivity estimation function for the operator. Note that this is a function name, not an operator name. RESTRICT clauses only make sense for binary operators that return boolean. The idea behind a restriction selectivity estimator is to guess what fraction of the rows in a table will satisfy a WHERE-clause condition of the form:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p class="bridge2">Description</p><p>CREATE OPERATOR defines a new operator. The user who defines an operator becomes its owner.&nbsp;</p><p>The operator name is a sequence of up to NAMEDATALEN-1 (63 by default) characters from the following list: <span>+ - * / &lt; &gt; = ~ ! @ # % ^ &amp; | ` ?</span></p><p>There are a few restrictions on your choice of name:</p><ul><li>&nbsp;-- and /* cannot appear anywhere in an operator name, since they will be taken as the start of a comment.&nbsp;</li><li>A multicharacter operator name cannot end in or , unless the name also contains at least one of these characters: ~ ! @ # % ^ &amp; | ` ?</li></ul><p>For example, @- is an allowed operator name, but *- is not. This restriction allows HAWQ to parse SQL-compliant commands without requiring spaces between tokens.&nbsp;</p><p>The operator != is mapped to &lt;&gt; on input, so these two names are always equivalent.&nbsp;</p><p>At least one of LEFTARG and RIGHTARG must be defined. For binary operators, both must be defined. For right unary operators, only LEFTARG should be defined, while for left unary operators only RIGHTARG should be defined.&nbsp;</p><p>The <em>funcname </em> procedure must have been previously defined using CREATE FUNCTION, must be IMMUTABLE, and must be defined to accept the correct number of arguments (either one or two) of the indicated types.&nbsp;</p><p>The other clauses specify optional operator optimization clauses. These clauses should be provided whenever appropriate to speed up queries that use the operator. But if you provide them, you must be sure that they are correct. Incorrect use of an optimization clause can result in server process crashes, subtly wrong output, or other unexpected results. You can always leave out an optimization clause if you are not sure about it.</p><p class="bridge2">Parameters</p><pre>name</pre><p style="margin-left: 30.0px;">The (optionally schema-qualified) name of the operator to be defined. Two operators in the same schema can have the same name if they operate on different data types.</p><pre>funcname</pre><p style="margin-left: 30.0px;">The function used to implement this operator (must be an IMMUTABLE function).</p><pre>lefttype</pre><p style="margin-left: 30.0px;">The data type of the operator’s left operand, if any. This option would be omitted for a left-unary operator.&nbsp;</p><pre>righttype</pre><p style="margin-left: 30.0px;">The data type of the operator’s right operand, if any. This option would be omitted for a right-unary operator.</p><pre>com_op</pre><p style="margin-left: 30.0px;">The optional COMMUTATOR clause names an operator that is the commutator of the operator being defined. We say that operator A is the commutator of operator B if (x A y) equals (y B x) for all possible input values x, y. Notice that B is also the commutator of A. For example, operators &lt; and &gt; for a particular data type are usually each others commutators, and operator + is usually commutative with itself. But operator - is usually not commutative with anything. The left operand type of a commutable operator is the same as the right operand type of its commutator, and vice versa. So the name of the commutator operator is all that needs to be provided in the COMMUTATOR clause.&nbsp;</p><pre>neg_op</pre><p style="margin-left: 30.0px;">The optional NEGATOR clause names an operator that is the negator of the operator being defined. We say that operator A is the negator of operator B if both return Boolean results and (x A y) equals NOT (x B y) for all possible inputs x, y. Notice that B is also the negator of A. For example, &lt; and &gt;= are a negator pair for most data types. An operator’s negator must have the same left and/or right operand types as the operator to be defined, so only the operator name need be given in the NEGATOR clause.</p><pre>res_proc</pre><p style="margin-left: 30.0px;">The optional RESTRICT names a restriction selectivity estimation function for the operator. Note that this is a function name, not an operator name. RESTRICT clauses only make sense for binary operators that return boolean. The idea behind a restriction selectivity estimator is to guess what fraction of the rows in a table will satisfy a WHERE-clause condition of the form:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">column OP constant</pre>
-</div></div><p style="margin-left: 38.0px;">for the current operator and a particular constant value. This assists the optimizer by giving it some idea of how many rows will be eliminated by <span>WHERE </span>clauses that have this form. </p><p style="margin-left: 38.0px;">You can usually just use one of the following system standard estimator functions for many of your own operators:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">eqsel for = 
-neqsel for &lt;&gt; 
-scalarltsel for &lt; or &lt;= 
+</div></div><p style="margin-left: 38.0px;">for the current operator and a particular constant value. This assists the optimizer by giving it some idea of how many rows will be eliminated by <span>WHERE </span>clauses that have this form.&nbsp;</p><p style="margin-left: 38.0px;">You can usually just use one of the following system standard estimator functions for many of your own operators:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">eqsel for =&nbsp;
+neqsel for &lt;&gt;&nbsp;
+scalarltsel for &lt; or &lt;=&nbsp;
 scalargtsel for &gt; or &gt;=</pre>
 </div></div><pre>join_proc</pre><p style="margin-left: 30.0px;">The optional JOIN clause names a join selectivity estimation function for the operator. Note that this is a function name, not an operator name. JOIN clauses only make sense for binary operators that return boolean. The idea behind a join selectivity estimator is to guess what fraction of the rows in a pair of tables will satisfy a WHERE-clause condition of the form</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">table1.column1 OP table2.column2</pre>
 </div></div><p style="margin-left: 38.0px;">for the current operator. This helps the optimizer by letting it figure out which of several possible join sequences is likely to take the least work.</p><p style="margin-left: 38.0px;">You can usually just use one of the following system standard join selectivity estimator functions for many of your own operators:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">eqjoinsel for = 
-neqjoinsel for &lt;&gt; 
-scalarltjoinsel for &lt; or &lt;= 
-scalargtjoinsel for &gt; or &gt;= 
-areajoinsel for 2D area-based comparisons 
-positionjoinsel for 2D position-based comparisons 
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">eqjoinsel for =&nbsp;
+neqjoinsel for &lt;&gt;&nbsp;
+scalarltjoinsel for &lt; or &lt;=&nbsp;
+scalargtjoinsel for &gt; or &gt;=&nbsp;
+areajoinsel for 2D area-based comparisons&nbsp;
+positionjoinsel for 2D position-based comparisons&nbsp;
 contjoinsel for 2D containment-based comparisons</pre>
-</div></div><pre>HASHES</pre><p style="margin-left: 30.0px;">The optional HASHES clause tells the system that it is permissible to use the hash join method for a join based on this operator. HASHES only makes sense for a binary operator that returns boolean. The hash join operator can only return true for pairs of left and right values that hash to the same hash code. If two values get put in different hash buckets, the join will never compare them at all, implicitly assuming that the result of the join operator must be false. So it never makes sense to specify HASHES for operators that do not represent equality. </p><p style="margin-left: 30.0px;">To be marked HASHES, the join operator must appear in a hash index operator class. Attempts to use the operator in hash joins will fail at run time if no such operator class exists. The system needs the operator class to find the data-type-specific hash function for the operator’s input data type. You must also supply a suitable hash function before you can create the operator class. Care should be exercised when preparing a hash function, because there are machine-dependent ways in which it might fail to do the right thing.</p><pre>MERGES</pre><p style="margin-left: 30.0px;">The MERGES clause, if present, tells the system that it is permissible to use the merge-join method for a join based on this operator. MERGES only makes sense for a binary operator that returns boolean, and in practice the operator must represent equality for some data type or pair of data types. </p><p style="margin-left: 30.0px;">Merge join is based on the idea of sorting the left- and right-hand tables into order and then scanning them in parallel. So, both data types must be capable of being fully ordered, and the join operator must be one that can only succeed for pairs of values that fall at the same place in the sort order. In practice this means that the join operator must behave like equality. It is possible to merge-join two distinct data types so long as they are logically compatible. For example, the smallint-versus-integer equality operator is merge-joinable. We only need sorting operators that will bring both data types into a logically compatible sequence.</p><p style="margin-left: 30.0px;">Execution of a merge join requires that the system be able to identify four operators related to the merge-join equality operator: less-than comparison for the left operand data type, less-than comparison for the right operand data type, less-than comparison between the two data types, and greater-than comparison between the two data types. It is possible to specify these operators individually by name, as the SORT1, SORT2, LTCMP, and GTCMP options respectively. The system will fill in the default names if any of these are omitted when MERGES is specified.</p><pre>left_sort_op</pre><p style="margin-left: 30.0px;">If this operator can support a merge join, the less-than operator that sorts the left-hand data type of this operator. &lt; is the default if not specified.</p><pre>right_sort_op</pre><p style="margin-left: 30.0px;">If this operator can support a merge join, the less-than operator that sorts the right-hand data type of this operator. &lt; is the default if not specified.</p><pre>less_than_op</pre><p style="margin-left: 30.0px;">If this operator can support a merge join, the less-than operator that compares the input data types of this operator. &lt; is the default if not specified. </p><pre>greater_than_op</pre><p style="margin-left: 30.0px;">If this operator can support a merge join, the greater-than operator that compares the input data types of this operator. &gt; is the default if not specified.</p><p style="margin-left: 30.0px;">To give a schema-qualified operator name in optional arguments, use the OPERATOR() syntax, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><pre>HASHES</pre><p style="margin-left: 30.0px;">The optional HASHES clause tells the system that it is permissible to use the hash join method for a join based on this operator. HASHES only makes sense for a binary operator that returns boolean. The hash join operator can only return true for pairs of left and right values that hash to the same hash code. If two values get put in different hash buckets, the join will never compare them at all, implicitly assuming that the result of the join operator must be false. So it never makes sense to specify HASHES for operators that do not represent equality.&nbsp;</p><p style="margin-left: 30.0px;">To be marked HASHES, the join operator must appear in a hash index operator class. Attempts to use the operator in hash joins will fail at run time if no such operator class exists. The system needs the operator class to find the data-type-specific hash function for the operator’s input data type. You must also supply a suitable hash function before you can create the operator class. Care should be exercised when&nbsp;preparing a hash function, because there are machine-dependent ways in which it might fail to do the right thing.</p><pre>MERGES</pre><p style="margin-left: 30.0px;">The MERGES clause, if present, tells the system that it is permissible to use the merge-join method for a join based on this operator. MERGES only makes sense for a binary operator that returns boolean, and in practice the operator must represent equality for some data type or pair of data types.&nbsp;</p><p style="margin-left: 30.0px;">Merge join is based on the idea of sorting the left- and right-hand tables into order and then scanning them in parallel. So, both data types must be capable of being fully ordered, and the join operator must be one that can only succeed for pairs of values that fall at the same place in the sort order. In practice this means that the join operator must behave like equality. It is possible to merge-join two distinct data types so long as they are logically compatible. For example, the smallint-versus-integer equality operator is merge-joinable. We only need sorting operators that will bring both data types into a logically compatible sequence.</p><p style="margin-left: 30.0px;">Execution of a merge join requires that the system be able to identify four operators related to the merge-join equality operator: less-than comparison for the left operand data type, less-than comparison for the right operand data type, less-than comparison between the two data types, and greater-than comparison between the two data types. It is possible to specify these operators individually by name, as the SORT1, SORT2, LTCMP, and GTCMP options respectively. The system will fill in the default names if any of these are omitted when MERGES is specified.</p><pre>left_sort_op</pre><p style="margin-left: 30.0px;">If this operator can support a merge join, the less-than operator that sorts the left-hand data type of this operator. &lt; is the default if not specified.</p><pre>right_sort_op</pre><p style="margin-left: 30.0px;">If this operator can support a merge join, the less-than operator that sorts the right-hand data type of this operator. &lt; is the default if not specified.</p><pre>less_than_op</pre><p style="margin-left: 30.0px;">If this operator can support a merge join, the less-than operator that compares the input data types of this operator. &lt; is the default if not specified.&nbsp;</p><pre>greater_than_op</pre><p style="margin-left: 30.0px;">If this operator can support a merge join, the greater-than operator that compares the input data types of this operator. &gt; is the default if not specified.</p><p style="margin-left: 30.0px;">To give a schema-qualified operator name in optional arguments, use the OPERATOR() syntax, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">COMMUTATOR = OPERATOR(myschema.===) ,</pre>
 </div></div><p class="bridge2">Notes</p><p>Any functions used to implement the operator must be defined as IMMUTABLE.</p><p class="bridge2">Examples</p><p>Here is an example of creating an operator for adding two complex numbers, assuming we have already created the definition of type complex. First define the function that does the work, then define the operator:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE FUNCTION complex_add(complex, complex) 
@@ -1184,12 +1183,12 @@ CREATE OPERATOR + (
 );</pre>
 </div></div><p><span style="line-height: 1.4285715;">To use this operator in a query:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">SELECT (a + b) AS c FROM test_complex;</pre>
-</div></div><p class="bridge2">Compatibility</p><p>CREATE OPERATOR is a HAWQ language extension. The SQL standard does not provide for user-defined operators.</p><p class="bridge2">See Also</p><p><a href="CREATEFUNCTION.html">CREATE FUNCTION</a>, <a href="CREATETYPE.html">CREATE TYPE</a>,</p><p> </p>
+</div></div><p class="bridge2">Compatibility</p><p>CREATE OPERATOR is a HAWQ language extension. The SQL standard does not provide for user-defined operators.</p><p class="bridge2">See Also</p><p><a href="CREATEFUNCTION.html">CREATE FUNCTION</a>, <a href="CREATETYPE.html">CREATE TYPE</a>,</p><p>&nbsp;</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1213,28 +1212,21 @@ CREATE OPERATOR + (
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>Configuring PCC for LDAP | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -694,7 +693,7 @@
                      </ul>
                   </li>
                   <li>
-                     <a href="ConfiguringPCCforLDAP.html">Configuring PCC for LDAP</a>
+                     <a class="active" href="ConfiguringPCCforLDAP.html">Configuring PCC for LDAP</a>
                   </li>
                   <li>
                      <a href="CommandLineReference.html">Command Line Reference</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,27 +1140,27 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Configuring PCC for LDAP</div><div class="wiki-content group" id="main-content">
 <p>This section describes how you can configure PCC to use an existing LDAP server for user authentication.</p><ol><li><p>On the PCC Admin node, navigate to the<code> /usr/local/pivotal-cc/config</code> directory:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">cd /usr/local/pivotal-cc/config</pre>
-</div></div><p><br/><br/></p></li><li><p>Open the <code>ldap.yaml</code> file in an editor, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p><br><br></p></li><li><p>Open the <code>ldap.yaml</code> file in an editor, for example:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">vi ldap.yaml</pre>
-</div></div><p><br/><br/></p></li><li><p>Add the following lines using values from your LDAP setup:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p><br><br></p></li><li><p>Add the following lines using values from your LDAP setup:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">enabled: true
 host: "ldap.yourdomain.com"
 port: 389
 username: "cn=Manager,dc=yourdomain,dc=com"
 password: "changeme"
 base_dn: "ou=Users,dc=yourdomain,dc=com"</pre>
-</div></div><p>Where:<br/><code>host</code> = The domain name of your LDAP server</p><p><code>port</code> = The port for your LDAP server</p><p><code>username</code> = The common name (cn) user to search the LDAP server</p><p><code>password</code> = The password associated with the username</p><p><code>base_dn</code> = The Base Domain Name where user information is located</p><p><code>cn</code> = Common Name</p><p><code>ou</code> = Organizational Unit</p><p><code>dc</code> = Domain Component<br/><br/></p></li><li><p>Save and close <code>ldap.yaml</code></p></li><li><p>Restart PCC:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>Where:<br><code>host</code> = The domain name of your LDAP server</p><p><code>port</code> = The port for your LDAP server</p><p><code>username</code> = The common name (cn) user to search the LDAP server</p><p><code>password</code> = The password associated with the username</p><p><code>base_dn</code> = The Base Domain Name where user information is located</p><p><code>cn</code> = Common Name</p><p><code>ou</code> = Organizational Unit</p><p><code>dc</code> = Domain Component<br><br></p></li><li><p>Save and close <code>ldap.yaml</code></p></li><li><p>Restart PCC:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># service commander restart</pre>
-</div></div></li></ol><p>Now when you add a user to PCC (see  <a href="PCCUIUserManagement.html">PCC UI User Management</a>) you can use the <strong>Check username</strong> link to select an LDAP-authenticated user; once set up, this user can then log in to PCC using his/her LDAP username and password.</p><p> </p><p> </p><p> </p>
+</div></div></li></ol><p>Now when you add a user to PCC (see&nbsp; <a href="PCCUIUserManagement.html">PCC UI User Management</a>) you can use the <strong>Check username</strong> link to select an LDAP-authenticated user; once set up, this user can then log in to PCC using his/her LDAP username and password.</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1185,28 +1184,21 @@ base_dn: "ou=Users,dc=yourdomain,dc=com"</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

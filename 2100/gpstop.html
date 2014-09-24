@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>gpstop | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -1052,7 +1051,7 @@
                            <a href="gpstate.html">gpstate</a>
                         </li>
                         <li>
-                           <a href="gpstop.html">gpstop</a>
+                           <a class="active" href="gpstop.html">gpstop</a>
                         </li>
                      </ul>
                   </li>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,7 +1140,7 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : gpstop</div><div class="wiki-content group" id="main-content">
 <p align="LEFT">Stops or restarts a HAWQ system.</p><p class="bridge2">Synopsis</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstop [-d master_data_directory] [-B parallel_processes]
@@ -1150,11 +1149,11 @@ gpstop -m [-d master_data_directory] [-y] [-l logfile_directory][-v | -q]
 gpstop -u [-d master_data_directory] [-l logfile_directory] [-v | -q]
 gpstop --version
 gpstop -? | -h | --help</pre>
-</div></div><p class="bridge2">Description</p><p align="LEFT">The gpstop utility is used to stop the database servers that comprise a HAWQ system.</p><p align="LEFT">When you stop a HAWQ system, you are actually stopping several database server processes at once (the master and all of the segment instances). The gpstop utility handles the shutdown of the individual instances. Each instance is shutdown in parallel.</p><p align="LEFT">By default, you are not allowed to shut down HAWQ if there are any client connections to the database. Use the -M fast option to roll back all in progress transactions and terminate any connections before shutting down. If there are any transactions in progress, the default behavior is to wait for them to commit before shutting down.</p><p align="LEFT">With the -u option, the utility uploads changes made to the master pg_hba.conf file or to <em>runtime </em>configuration parameters in the master postgresql.conf file without interruption of service. Note that any active sessions will not pick up the changes until they reconnect to the database.</p><p class="bridge2">Options</p><pre>-a (do not prompt)</pre><p align="LEFT" style="margin-left: 30.0px;">Do not prompt the user for confirmation.</p><pre>-B parallel_processes</pre><p align="LEFT" style="margin-left: 30.0px;">The number of segments to stop in parallel. If not specified, the utility will start up to 60 parallel processes depending on how many segment instances it needs to stop.</p><pre>-d master_data_directory</pre><p align="LEFT" style="margin-left: 30.0px;">Optional. The master host data directory. If not specified, the value set for $MASTER_DATA_DIRECTORY will be used.</p><pre>-l logfile_directory</pre><p align="LEFT" style="margin-left: 30.0px;">The directory to write the log file. Defaults to ~/gpAdminLogs.</p><pre>-m (master only)</pre><p align="LEFT" style="margin-left: 30.0px;">Optional. Shuts down a HAWQ master instance that was started in maintenance mode.</p><pre>-M fast (fast shutdown - rollback)</pre><p align="LEFT" style="margin-left: 30.0px;">Fast shut down. Any transactions in progress are interrupted and rolled back.</p><pre>-M immediate (immediate shutdown - abort)</pre><p align="LEFT" style="margin-left: 30.0px;">Immediate shut down. Any transactions in progress are aborted. This shutdown mode is not recommended. This mode kills all database processes without allowing the database server to complete transaction processing or clean up any temporary or in-process work files.</p><pre>-M smart (smart shutdown - warn)</pre><p align="LEFT" style="margin-left: 30.0px;">Smart shut down. If there are active connections, this command fails with a warning. This is the default shutdown mode.</p><pre>-q (no screen output)</pre><p align="LEFT" style="margin-left: 30.0px;">Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.</p><pre>-r (restart)</pre><p align="LEFT" style="margin-left: 30.0px;">Restart after shutdown is complete.</p><pre>-t timeout_seconds</pre><p align="LEFT" style="margin-left: 30.0px;">Specifies a timeout threshold (in seconds) to wait for a segment instance to shutdown. If a segment instance does not shutdown in the specified number of seconds, gpstop displays a message indicating that one or more segments are still in the process of shutting down and that you cannot restart HAWQ until the segment instance(s) are stopped. This option is useful in situations where gpstop is executed and there are very large transactions that need to rollback. These large transactions can take over a minute to rollback and surpass the default timeout period of 600 seconds.</p><pre>-u (reload pg_hba.conf and postgresql.conf files only)</pre><p align="LEFT" style="margin-left: 30.0px;">This option reloads the pg_hba.conf files of the master and segments and the runtime parameters of the postgresql.conf files but does not shutdown the HAWQ array. Use this option to make new configuration settings active after editing postgresql.conf or pg_hba.conf. Note that this only applies to configuration parameters that are designated as <em>runtime </em>parameters. In HAWQ if there are some failed segments, this option can not be executed.</p><pre>-v (verbose output)</pre><p align="LEFT" style="margin-left: 30.0px;">Displays detailed status, progress and error messages output by the utility.</p><pre>--version (show utility version)</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the version of this utility.</p><pre>-y (do not stop standby master)</pre><p align="LEFT" style="margin-left: 30.0px;">Do not stop the standby master process. The default is to stop the standby master.</p><pre>-? | -h | --help (help)</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the online help. </p><p class="bridge2">Examples</p><p align="LEFT">Stop a HAWQ system in smart mode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p class="bridge2">Description</p><p align="LEFT">The gpstop utility is used to stop the database servers that comprise a HAWQ system.</p><p align="LEFT">When you stop a HAWQ system, you are actually stopping several database server processes at once (the master and all of the segment instances). The gpstop utility handles the shutdown of the individual instances. Each instance is shutdown in parallel.</p><p align="LEFT">By default, you are not allowed to shut down HAWQ if there are any client connections to the database. Use the -M fast option to roll back all in progress transactions and terminate any connections before shutting down. If there are any transactions in progress, the default behavior is to wait for them to commit before shutting down.</p><p align="LEFT">With the -u option, the utility uploads changes made to the master pg_hba.conf file or to&nbsp;<em>runtime&nbsp;</em>configuration parameters in the master postgresql.conf file without interruption of service. Note that any active sessions will not pick up the changes until they reconnect to the database.</p><p class="bridge2">Options</p><pre>-a (do not prompt)</pre><p align="LEFT" style="margin-left: 30.0px;">Do not prompt the user for confirmation.</p><pre>-B parallel_processes</pre><p align="LEFT" style="margin-left: 30.0px;">The number of segments to stop in parallel. If not specified, the utility will start up to 60 parallel processes depending on how many segment instances it needs to stop.</p><pre>-d master_data_directory</pre><p align="LEFT" style="margin-left: 30.0px;">Optional. The master host data directory. If not specified, the value set for $MASTER_DATA_DIRECTORY will be used.</p><pre>-l logfile_directory</pre><p align="LEFT" style="margin-left: 30.0px;">The directory to write the log file. Defaults to ~/gpAdminLogs.</p><pre>-m (master only)</pre><p align="LEFT" style="margin-left: 30.0px;">Optional. Shuts down a HAWQ master instance that was started in maintenance mode.</p><pre>-M fast (fast shutdown - rollback)</pre><p align="LEFT" style="margin-left: 30.0px;">Fast shut down. Any transactions in progress are interrupted and rolled back.</p><pre>-M immediate (immediate shutdown - abort)</pre><p align="LEFT" style="margin-left: 30.0px;">Immediate shut down. Any transactions in progress are aborted. This shutdown mode is not recommended. This mode kills all database processes without allowing the database server to complete transaction processing or clean up any temporary or in-process work files.</p><pre>-M smart (smart shutdown - warn)</pre><p align="LEFT" style="margin-left: 30.0px;">Smart shut down. If there are active connections, this command fails with a warning. This is the default shutdown mode.</p><pre>-q (no screen output)</pre><p align="LEFT" style="margin-left: 30.0px;">Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.</p><pre>-r (restart)</pre><p align="LEFT" style="margin-left: 30.0px;">Restart after shutdown is complete.</p><pre>-t timeout_seconds</pre><p align="LEFT" style="margin-left: 30.0px;">Specifies a timeout threshold (in seconds) to wait for a segment instance to shutdown. If a segment instance does not shutdown in the specified number of seconds, gpstop displays a message indicating that one or more segments are still in the process of shutting down and that you cannot restart HAWQ until the segment instance(s) are stopped. This option is useful in situations where gpstop is executed and there are very large transactions that need to rollback. These large transactions can take over a minute to rollback and surpass the default timeout period of 600 seconds.</p><pre>-u (reload pg_hba.conf and postgresql.conf files only)</pre><p align="LEFT" style="margin-left: 30.0px;">This option reloads the pg_hba.conf files of the master and segments and the runtime parameters of the postgresql.conf files but does not shutdown the HAWQ array. Use this option to make new configuration settings active after editing postgresql.conf or pg_hba.conf. Note that this only applies to configuration parameters that are designated as&nbsp;<em>runtime&nbsp;</em>parameters. In HAWQ if there are some failed segments, this option can not be executed.</p><pre>-v (verbose output)</pre><p align="LEFT" style="margin-left: 30.0px;">Displays detailed status, progress and error messages output by the utility.</p><pre>--version (show utility version)</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the version of this utility.</p><pre>-y (do not stop standby master)</pre><p align="LEFT" style="margin-left: 30.0px;">Do not stop the standby master process. The default is to stop the standby master.</p><pre>-? | -h | --help (help)</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the online help.&nbsp;</p><p class="bridge2">Examples</p><p align="LEFT">Stop a HAWQ system in smart mode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstop</pre>
 </div></div><p>Stop a HAWQ system in fast mode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstop -M fast</pre>
-</div></div><p>Stop all segment instances and then restart HAWQ system:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>Stop all segment instances and then restart&nbsp;HAWQ system:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstop - r</pre>
 </div></div><p>Stop a master instance that was started in maintenance mode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstop -m</pre>
@@ -1163,9 +1162,9 @@ gpstop -? | -h | --help</pre>
 </div></div><p class="bridge2">See also</p><p>gpstart</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1189,28 +1188,21 @@ gpstop -? | -h | --help</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

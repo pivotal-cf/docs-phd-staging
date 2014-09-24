@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>CREATE LANGUAGE | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -831,7 +830,7 @@
                            <a href="CREATEGROUP.html">CREATE GROUP</a>
                         </li>
                         <li>
-                           <a href="CREATELANGUAGE.html">CREATE LANGUAGE</a>
+                           <a class="active" href="CREATELANGUAGE.html">CREATE LANGUAGE</a>
                         </li>
                         <li>
                            <a href="CREATEOPERATOR.html">CREATE OPERATOR</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,26 +1140,26 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : CREATE LANGUAGE</div><div class="wiki-content group" id="main-content">
 <p>Defines a new procedural language.</p><p class="bridge2">Synopsis</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE [PROCEDURAL] LANGUAGE name
 CREATE [TRUSTED] [PROCEDURAL] LANGUAGE name  HANDLER call_handler [VALIDATOR valfunction]</pre>
-</div></div><p class="bridge2">Description</p><p align="LEFT">CREATE LANGUAGE registers a new procedural language with a HAWQ database. Subsequently, functions and trigger procedures can be defined in this new language. You must be a superuser to register a new language. The PL/pgSQL language is already registered in all databases by default.</p><p align="LEFT">CREATE LANGUAGE effectively associates the language name with a call handler that is responsible for executing functions written in that language. For a function written in a procedural language (a language other than C or SQL), the database server has no built-in knowledge about how to interpret the function’s source code. The task is passed to a special handler that knows the details of the language. The handler could either do all the work of parsing, syntax analysis, execution, and so on or it could serve as a bridge between Pivotal HAWQ Database and an existing implementation of a programming language. The handler itself is a C language function compiled into a shared object and loaded on demand, just like any other C function. A language handler has also been added for PL/R, but the PL/R language package is not pre-installed with HAWQ Database. See <a href="UsingProceduralLanguages.html">Using Procedural Languages</a>.</p><p align="LEFT">The PL/R libraries require the correct version R to be installed. Download the appropriate extensions from the Pivotal Download Center, then install the extensions. See the Pivotal HAWQ Installation Guide for details. This ensures that all underlying dependencies are installed along with the extensions.</p><p align="LEFT">To use the PL/R procedural language you must make sure that the systems that run Pivotal HAWQ Database (master and all segments) have the R language installed and the PL/R package library (plr.so) added to their Pivotal HAWQ installation on all hosts. Pivotal provides compiled packages for R and PL/R that you can install.</p><p align="LEFT">There are two forms of the CREATE LANGUAGE command. In the first form, the user supplies just the name of the desired language, and the Pivotal HAWQ Database server consults the <em>pg_pltemplate </em> system catalog to determine the correct parameters. In the second form, the user supplies the language parameters along with the language name. The second form can be used to create a language that is not defined in <em>pg_pltemplate</em>  .</p><p>When the server finds an entry in the <em>pg_pltemplate </em> catalog for the given language name, it will use the catalog data even if the command includes language parameters. This behavior simplifies loading of old dump files, which are likely to contain out-of-date information about language support functions.</p><p class="bridge2">Parameters</p><pre>TRUSTED</pre><p style="margin-left: 30.0px;">Ignored if the server has an entry for the specified language name in <em>pg_pltemplate</em>  . Specifies that the call handler for the language is safe and does not offer an unprivileged user any functionality to bypass access restrictions. If this key word is omitted when registering the language, only users with the superuser privilege can use this language to create new functions.</p><pre>PROCEDURAL</pre><p style="margin-left: 30.0px;">Indicates that this is a procedural language.</p><pre>name</pre><p style="margin-left: 30.0px;">The name of the new procedural language. The language name is case insensitive. The name must be unique among the languages in the database. Built-in support is included for plpgsql, plpython, plpythonu, and plr. plpgsql is already installed by default in HAWQ Database.</p><pre>HANDLER call_handler</pre><p style="margin-left: 30.0px;">Ignored if the server has an entry for the specified language name in <em>pg_pltemplate</em>  . The name of a previously registered function that will be called to execute the procedural language functions. The call handler for a procedural language must be written in a compiled language such as C with version 1 call convention and registered with HAWQ Database as a function taking no arguments and returning the language_handler type, a placeholder type that is simply used to identify the function as a call handler.</p><pre>VALIDATOR valfunction</pre><p style="margin-left: 30.0px;">Ignored if the server has an entry for the specified language name in <em>pg_pltemplate</em>  . <em>valfunction </em> is the name of a previously registered function that will be called when a new function in the language is created, to validate the new function. If no validator function is specified, then a new function will not be checked when it is created. The validator function must take one argument of type oid, which will be the OID of the to-be-created function, and will typically return void.</p><p style="margin-left: 30.0px;">A validator function would typically inspect the function body for syntactical correctness, but it can also look at other properties of the function, for example if the language cannot handle certain argument types. To signal an error, the validator function should use the ereport() function. The return value of the function is ignored.</p><p class="bridge2">Notes</p><p>The PL/pgSQL language is installed by default in HAWQ Database.</p><p align="LEFT">The system catalog <em>pg_language </em> records information about the currently installed languages.</p><p align="LEFT">To create functions in a procedural language, a user must have the USAGE privilege for the language. By default, USAGE is granted to PUBLIC (everyone) for trusted languages. This may be revoked if desired.</p><p align="LEFT">Procedural languages are local to individual databases. However, a language can be installed into the <em>template1 </em> database, which will cause it to be available automatically in all subsequently-created databases.</p><p align="LEFT">The call handler function and the validator function (if any) must already exist if the server does not have an entry for the language in <em>pg_pltemplate</em>  . But when there is an entry, the functions need not already exist; they will be automatically defined if not present in the database.</p><p>Any shared library that implements a language must be located in the same LD_LIBRARY_PATH location on all segment hosts in your HAWQ Database array.</p><p class="bridge2">Examples</p><p>The preferred way of creating any of the standard procedural languages:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p class="bridge2">Description</p><p align="LEFT">CREATE LANGUAGE registers a new procedural language with a&nbsp;HAWQ database. Subsequently, functions and trigger procedures can be defined in this new language. You must be a superuser to register a new language. The PL/pgSQL language is already registered in all databases by default.</p><p align="LEFT">CREATE LANGUAGE effectively associates the language name with a call handler that is responsible for executing functions written in that language. For a function written in a procedural language (a language other than C or SQL), the database server has no built-in knowledge about how to interpret the function’s source code. The task is passed to a special handler that knows the details of the language. The handler could either do all the work of parsing, syntax analysis, execution, and so on or it could serve as a bridge between&nbsp;Pivotal HAWQ&nbsp;Database and an existing implementation of a programming language. The handler itself is a C language function compiled into a shared object and loaded on demand, just like any other C function. A language handler has also been added for PL/R, but the PL/R language package is not pre-installed with&nbsp;HAWQ Database. See <a href="UsingProceduralLanguages.html">Using Procedural Languages</a>.</p><p align="LEFT">The PL/R libraries require the correct version R to be installed. Download the appropriate extensions from the Pivotal Download Center, then install the extensions. See the Pivotal HAWQ Installation Guide for details. This ensures that all underlying dependencies are installed along with the extensions.</p><p align="LEFT">To use the PL/R procedural language you must make sure that the systems that run Pivotal HAWQ Database (master and all segments) have the R language installed and the PL/R package library (plr.so) added to their Pivotal HAWQ installation on all hosts. Pivotal provides compiled packages for R and PL/R that you can install.</p><p align="LEFT">There are two forms of the CREATE LANGUAGE command. In the first form, the user supplies just the name of the desired language, and the&nbsp;Pivotal HAWQ&nbsp;Database server consults the&nbsp;<em>pg_pltemplate&nbsp;</em>&nbsp;system catalog to determine the correct parameters. In the second form, the user supplies the language parameters along with the language name. The second form can be used to create a language that is not defined in&nbsp;<em>pg_pltemplate</em>&nbsp;&nbsp;.</p><p>When the server finds an entry in the&nbsp;<em>pg_pltemplate&nbsp;</em>&nbsp;catalog for the given language name, it will use the catalog data even if the command includes language parameters. This behavior simplifies loading of old dump files, which are likely to contain out-of-date information about language support functions.</p><p class="bridge2">Parameters</p><pre>TRUSTED</pre><p style="margin-left: 30.0px;">Ignored if the server has an entry for the specified language name in&nbsp;<em>pg_pltemplate</em>&nbsp;&nbsp;. Specifies that the call handler for the language is safe and does not offer an unprivileged user any functionality to bypass access restrictions. If this key word is omitted when registering the language, only users with the superuser privilege can use this language to create new functions.</p><pre>PROCEDURAL</pre><p style="margin-left: 30.0px;">Indicates that this is a procedural language.</p><pre>name</pre><p style="margin-left: 30.0px;">The name of the new procedural language. The language name is case insensitive. The name must be unique among the languages in the database. Built-in support is included for plpgsql, plpython, plpythonu, and plr. plpgsql is already installed by default in&nbsp;HAWQ Database.</p><pre>HANDLER call_handler</pre><p style="margin-left: 30.0px;">Ignored if the server has an entry for the specified language name in&nbsp;<em>pg_pltemplate</em>&nbsp;&nbsp;. The name of a previously registered function that will be called to execute the procedural language functions. The call handler for a procedural language must be written in a compiled language such as C with version 1 call convention and registered with&nbsp;HAWQ Database as a function taking no arguments and returning the language_handler type, a placeholder type that is simply used to identify the function as a call handler.</p><pre>VALIDATOR valfunction</pre><p style="margin-left: 30.0px;">Ignored if the server has an entry for the specified language name in&nbsp;<em>pg_pltemplate</em>&nbsp;&nbsp;.&nbsp;<em>valfunction&nbsp;</em>&nbsp;is the name of a previously registered function that will be called when a new function in the language is created, to validate the new function. If no validator function is specified, then a new function will not be checked when it is created. The validator function must take one argument of type oid, which will be the OID of the to-be-created function, and will typically return void.</p><p style="margin-left: 30.0px;">A validator function would typically inspect the function body for syntactical correctness, but it can also look at other properties of the function, for example if the language cannot handle certain argument types. To signal an error, the validator function should use the ereport() function. The return value of the function is ignored.</p><p class="bridge2">Notes</p><p>The PL/pgSQL language is installed by default in HAWQ Database.</p><p align="LEFT">The system catalog&nbsp;<em>pg_language&nbsp;</em>&nbsp;records information about the currently installed languages.</p><p align="LEFT">To create functions in a procedural language, a user must have the USAGE privilege for the language. By default, USAGE is granted to PUBLIC (everyone) for trusted languages. This may be revoked if desired.</p><p align="LEFT">Procedural languages are local to individual databases. However, a language can be installed into the&nbsp;<em>template1&nbsp;</em>&nbsp;database, which will cause it to be available automatically in all subsequently-created databases.</p><p align="LEFT">The call handler function and the validator function (if any) must already exist if the server does not have an entry for the language in&nbsp;<em>pg_pltemplate</em>&nbsp;&nbsp;. But when there is an entry, the functions need not already exist; they will be automatically defined if not present in the database.</p><p>Any shared library that implements a language must be located in the same LD_LIBRARY_PATH location on all segment hosts in your&nbsp;HAWQ Database array.</p><p class="bridge2">Examples</p><p>The preferred way of creating any of the standard procedural languages:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE LANGUAGE plpgsql;
 CREATE LANGUAGE plr; </pre>
-</div></div><p align="LEFT">For a language not known in the <em>pg_pltemplate </em> catalog:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p align="LEFT">For a language not known in the&nbsp;<em>pg_pltemplate&nbsp;</em>&nbsp;catalog:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE FUNCTION plsample_call_handler() RETURNS language_handler
 	AS '$libdir/plsample'
 	LANGUAGE C;
 CREATE LANGUAGE plsample
 	HANDLER plsample_call_handler;</pre>
-</div></div><p class="bridge2">Compatibility</p><p>CREATE LANGUAGE is a Pivotal HAWQ Database extension.</p><p class="bridge2">See Also</p><p align="LEFT"><a href="CREATEFUNCTION.html">CREATE FUNCTION</a></p>
+</div></div><p class="bridge2">Compatibility</p><p>CREATE LANGUAGE is a&nbsp;Pivotal HAWQ&nbsp;Database extension.</p><p class="bridge2">See Also</p><p align="LEFT"><a href="CREATEFUNCTION.html">CREATE FUNCTION</a></p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1184,28 +1183,21 @@ CREATE LANGUAGE plsample
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

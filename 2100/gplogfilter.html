@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>gplogfilter | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -1031,7 +1030,7 @@
                            <a href="gpload.html">gpload</a>
                         </li>
                         <li>
-                           <a href="gplogfilter.html">gplogfilter</a>
+                           <a class="active" href="gplogfilter.html">gplogfilter</a>
                         </li>
                         <li>
                            <a href="gprecoverseg.html">gprecoverseg</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,7 +1140,7 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : gplogfilter</div><div class="wiki-content group" id="main-content">
 <p>Searches through HAWQ log files for specified entries.</p><p class="bridge2">Synopsis</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gplogfilter [timestamp_options] [pattern_options] [output_options] [input_options] [input_file]
@@ -1151,10 +1150,10 @@ gplogfilter --version</pre>
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpssh -f seg_host_file
 =&gt; source /usr/local/greenplum-db/greenplum_path.sh
 =&gt; gplogfilter -n 3 /gpdata/*/pg_log/gpdb*.log</pre>
-</div></div><p>By default, the output of gplogfilter is sent to standard output. Use the -o option to send the output to a file or a directory. If you supply an output file name ending in .gz, the output file will be compressed by default using maximum compression. If the output destination is a directory, the output file is given the same name as the input file.</p><p class="bridge2">Options</p><p class="bridge3">Timestamp Options</p><pre>-b datetime  | --begin=datetime</pre><p style="margin-left: 30.0px;">Specifies a starting date and time to begin searching for log entries in the format of YYYY-MM-DD [hh:mm[:ss]]</p><pre>-e <em>datetime </em>
+</div></div><p>By default, the output of gplogfilter is sent to standard output. Use the -o option to send the output to a file or a directory. If you supply an output file name ending in .gz, the output file will be compressed by default using maximum compression. If the output destination is a directory, the output file is given the same name as the input file.</p><p class="bridge2">Options</p><p class="bridge3">Timestamp Options</p><pre>-b datetime &nbsp;| --begin=datetime</pre><p style="margin-left: 30.0px;">Specifies a starting date and time to begin searching for log entries in the format of YYYY-MM-DD [hh:mm[:ss]]</p><pre>-e <em>datetime </em>
   | --end=datetime</pre><p style="margin-left: 30.0px;">Specifies an ending date and time to stop searching for log entries in the format of YYYY-MM-DD [hh:mm[:ss]]</p><pre>-d <em>time </em>
   | --duration=time</pre><p style="margin-left: 30.0px;">Specifies a time duration to search for log entries in the format of [hh][:mm[:ss]]. If used without either the -b or -e option, will use the current time as a basis.</p><p class="bridge3">Pattern Matching Options</p><pre>-c i[gnore]|r[espect] | --case=i[gnore]|r[espect]</pre><p style="margin-left: 30.0px;">Matching of alphabetic characters is case sensitive by default unless proceeded by the --case=ignore option.</p><pre>-C '&lt;string&gt;' | --columns='&lt;string&gt;'</pre><p style="margin-left: 30.0px;">Selects specific columns from the log file. Specify the desired columns as a comma-delimited string of column numbers beginning with 1, where the second column from left is 2, the third is 3, and so on.</p><pre>-f 'string' | --find='<em>string</em>
-  '</pre><p style="margin-left: 30.0px;">Finds the log entries containing the specified string.</p><pre>-F 'string ' | --nofind='string '</pre><p style="margin-left: 30.0px;">Rejects the log entries containing the specified string.</p><p align="LEFT">-m <em>regex </em> | --match=<em>regex</em></p><p style="margin-left: 30.0px;">Finds log entries that match the specified Python regular expression. See <a class="external-link" href="http://docs.python.org/library/re.html" rel="nofollow"> http://docs.python.org/library/re.html</a>  for Python regular expression syntax.</p><p>-M <em>regex </em> | --nomatch=<em>regex</em></p><p style="margin-left: 30.0px;">Rejects log entries that match the specified Python regular expression.  See <a class="external-link" href="http://docs.python.org/library/re.html" rel="nofollow">http://docs.python.org/library/re.html</a> for Python regular expression syntax.</p><p align="LEFT">-t | --trouble</p><p style="margin-left: 30.0px;">Finds only the log entries that have ERROR:, FATAL:, or PANIC: in the first line.</p><p class="bridge3">Output Options</p><p align="LEFT">-n <em>integer </em> | --tail=<em>integer</em></p><p style="margin-left: 30.0px;">Limits the output to the last <em>integer </em> of qualifying log entries found.</p><p>-s <em>offset </em> [<em>limit</em> ] | --slice=<em>offset </em> [<em>limit</em> ]</p><p style="margin-left: 30.0px;">From the list of qualifying log entries, returns the <em>limit </em> number of entries starting at the <em>offset </em> entry number, where an <em>offset </em> of zero (0) denotes the first entry in the result set and an <em>offset </em> of any number greater than zero counts back from the end of the result set.</p><p align="LEFT">-o <em>output_file </em> | --out=<em>output_file</em></p><p style="margin-left: 30.0px;">Writes the output to the specified file or directory location instead of STDOUT.</p><pre>-z 0-9 | --zip=0-9</pre><p style="margin-left: 30.0px;">Compresses the output file to the specified compression level using gzip, where 0 is no compression and 9 is maximum compression. If you supply an output file name ending in .gz, the output file will be compressed by default using maximum compression.</p><pre>-a | --append</pre><p align="LEFT" style="margin-left: 30.0px;">If the output file already exists, appends to the file instead of overwriting it.</p><p class="bridge3">Input Options</p><pre>input_file. </pre><p align="LEFT" style="margin-left: 30.0px;">The name of the input log file(s) to search through. If an input file is not supplied, gplogfilter will use the $MASTER_DATA_DIRECTORY environment variable to locate the HAWQ master log file. To read from standard input, use a dash (-) as the input file name.</p><pre>-u | --unzip</pre><p align="LEFT" style="margin-left: 30.0px;">Uncompress the input file using gunzip. If the input file name ends in .gz, it will be uncompressed by default.</p><pre>--help</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the online help.</p><pre>--version</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the version of this utility.</p><p class="bridge2">Examples</p><p align="LEFT">Display the last three error messages in the master log file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+  '</pre><p style="margin-left: 30.0px;">Finds the log entries containing the specified string.</p><pre>-F 'string&nbsp;' | --nofind='string&nbsp;'</pre><p style="margin-left: 30.0px;">Rejects the log entries containing the specified string.</p><p align="LEFT">-m&nbsp;<em>regex&nbsp;</em> | --match=<em>regex</em></p><p style="margin-left: 30.0px;">Finds log entries that match the specified Python regular expression. See&nbsp;<a class="external-link" href="http://docs.python.org/library/re.html" rel="nofollow"> http://docs.python.org/library/re.html</a>&nbsp;&nbsp;for Python regular expression syntax.</p><p>-M&nbsp;<em>regex&nbsp;</em> | --nomatch=<em>regex</em></p><p style="margin-left: 30.0px;">Rejects log entries that match the specified Python regular expression. &nbsp;See&nbsp;<a class="external-link" href="http://docs.python.org/library/re.html" rel="nofollow">http://docs.python.org/library/re.html</a>&nbsp;for Python regular expression syntax.</p><p align="LEFT">-t | --trouble</p><p style="margin-left: 30.0px;">Finds only the log entries that have ERROR:, FATAL:, or PANIC: in the first line.</p><p class="bridge3">Output Options</p><p align="LEFT">-n&nbsp;<em>integer&nbsp;</em> | --tail=<em>integer</em></p><p style="margin-left: 30.0px;">Limits the output to the last&nbsp;<em>integer&nbsp;</em> of qualifying log entries found.</p><p>-s&nbsp;<em>offset&nbsp;</em> [<em>limit</em>&nbsp;] | --slice=<em>offset&nbsp;</em> [<em>limit</em>&nbsp;]</p><p style="margin-left: 30.0px;">From the list of qualifying log entries, returns the&nbsp;<em>limit&nbsp;</em> number of entries starting at the&nbsp;<em>offset&nbsp;</em> entry number, where an&nbsp;<em>offset&nbsp;</em> of zero (0) denotes the first entry in the result set and an&nbsp;<em>offset&nbsp;</em> of any number greater than zero counts back from the end of the result set.</p><p align="LEFT">-o&nbsp;<em>output_file&nbsp;</em> | --out=<em>output_file</em></p><p style="margin-left: 30.0px;">Writes the output to the specified file or directory location instead of STDOUT.</p><pre>-z 0-9 | --zip=0-9</pre><p style="margin-left: 30.0px;">Compresses the output file to the specified compression level using gzip, where 0 is no compression and 9 is maximum compression. If you supply an output file name ending in .gz, the output file will be compressed by default using maximum compression.</p><pre>-a | --append</pre><p align="LEFT" style="margin-left: 30.0px;">If the output file already exists, appends to the file instead of overwriting it.</p><p class="bridge3">Input Options</p><pre>input_file. </pre><p align="LEFT" style="margin-left: 30.0px;">The name of the input log file(s) to search through. If an input file is not supplied, gplogfilter will use the $MASTER_DATA_DIRECTORY environment variable to locate the HAWQ master log file. To read from standard input, use a dash (-) as the input file name.</p><pre>-u | --unzip</pre><p align="LEFT" style="margin-left: 30.0px;">Uncompress the input file using gunzip. If the input file name ends in .gz, it will be uncompressed by default.</p><pre>--help</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the online help.</p><pre>--version</pre><p align="LEFT" style="margin-left: 30.0px;">Displays the version of this utility.</p><p class="bridge2">Examples</p><p align="LEFT">Display the last three error messages in the master log file:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gplogfilter -t -n 3</pre>
 </div></div><p>Display all log messages in the master log file timestamped in the last 10 minutes:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gplogfilter -d :10</pre>
@@ -1164,12 +1163,12 @@ gplogfilter --version</pre>
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpssh -f seg_hosts_file -e 'source
 /usr/local/greenplum-db/greenplum_path.sh ; gplogfilter -f
 con6 /gpdata/*/pg_log/gpdb.log' &gt; seglog.out</pre>
-</div></div><p class="bridge2">See Also</p><p><a href="gpssh.html">gpssh</a>, <a href="gpscp.html">gpscp</a></p>
+</div></div><p class="bridge2">See Also</p><p><a href="gpssh.html">gpssh</a>,&nbsp;<a href="gpscp.html">gpscp</a></p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1193,28 +1192,21 @@ con6 /gpdata/*/pg_log/gpdb.log' &gt; seglog.out</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

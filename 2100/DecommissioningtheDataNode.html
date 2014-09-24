@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>Decommissioning the Data Node | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -315,7 +314,7 @@
                                        <a href="DecommissionNodesOverview.html">Decommission Nodes Overview</a>
                                     </li>
                                     <li>
-                                       <a href="DecommissioningtheDataNode.html">Decommissioning the Data Node</a>
+                                       <a class="active" href="DecommissioningtheDataNode.html">Decommissioning the Data Node</a>
                                     </li>
                                     <li>
                                        <a href="DecommissioningtheYARNNodeManager.html">Decommissioning the YARN NodeManager</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,23 +1140,23 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Decommissioning the Data Node</div><div class="wiki-content group" id="main-content">
-<p>These procedures assume that Name Node High Availability (HA) is enabled (a Pivotal best practice, and in PHD 2.1 and higher, the default configuration). If HA is not enabled, skip the additional steps for the Standby Name Node.</p><p> </p><p>We recommend that you run a filesystem check on HDFS to verify the filesystem is healthy before you proceed with decommissioning any nodes.  Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<p>These procedures assume that Name Node High Availability (HA) is enabled (a Pivotal best practice, and in PHD 2.1 and higher, the default configuration). If HA is not enabled, skip the additional steps for the Standby Name Node.</p><p>&nbsp;</p><p>We recommend that you run a filesystem check on HDFS to verify the filesystem is healthy before you proceed with decommissioning any nodes. &nbsp;Run:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpadmin# sudo -u hdfs hdfs fsck /</pre>
-</div></div><p><strong><span style="color: rgb(51,51,51);"><br/></span></strong></p><p><strong><span style="color: rgb(51,51,51);">On the Active Name Node:</span><span style="color: rgb(51,51,51);"> </span></strong></p><ol><li>Edit the<code> /etc/gphd/hadoop/conf/dfs.exclude</code> file and add the Data Node hostnames to be removed (separated by newline character). Make sure you use the fully qualified domain name (FQDN) for each hostname.</li><li><p><span>Instruct the Active NameNode to refresh it’s nodelist by re-reading the<code> .exclude</code> and<code> .include</code> files:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p><strong><span style="color: rgb(51,51,51);"><br></span></strong></p><p><strong><span style="color: rgb(51,51,51);">On the Active Name Node:</span><span style="color: rgb(51,51,51);">&nbsp;</span></strong></p><ol><li>Edit the<code> /etc/gphd/hadoop/conf/dfs.exclude</code> file and add the Data Node hostnames to be removed (separated by newline character). Make sure you use the fully qualified domain name (FQDN) for each hostname.</li><li><p><span>Instruct the Active NameNode to refresh it’s nodelist by re-reading the<code> .exclude</code> and<code> .include</code> files:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpadmin# sudo -u hdfs hdfs dfsadmin –fs hdfs://&lt;active_namenode_fqdn&gt; –refreshNodes</pre>
 </div></div></li></ol><p><strong>On the Standby NameNode:</strong></p><ol><li><span>Edit the <code>/etc/gphd/hadoop/conf/dfs.exclude</code> file and add the DataNode hostnames to be removed (separated by newline character). Make sure you use the FQDN for each hostname.</span></li><li><p><span>Instruct the Standby NameNode to refresh it’s nodelist by re-reading the<code> .exclude</code> and<code> .include</code> files:</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpadmin# sudo -u hdfs hdfs dfsadmin -fs hdfs://&lt;standby_namenode fqdn&gt; –refreshNodes</pre>
-</div></div><p><span style="color: rgb(51,51,51);"> </span></p></li></ol><p><strong>Check the Decommission Status:</strong></p><p>You can monitor the decommission progress by accessing the Name Node WebUI (<code>http://&lt;active_namenode_host&gt;:50070</code>) and navigating to the <strong>Decommissioning Nodes</strong> page. </p><p>You can also monitor the status via the command line by executing one of the following commands on any Name Node or Data Node in the cluster (verbose/concise):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p><span style="color: rgb(51,51,51);">&nbsp;</span></p></li></ol><p><strong>Check the Decommission Status:</strong></p><p>You can monitor the decommission progress by accessing the Name Node WebUI (<code>http://&lt;active_namenode_host&gt;:50070</code>) and navigating to the <strong>Decommissioning Nodes</strong> page.&nbsp;</p><p>You can also monitor the status via the command line by executing one of the following commands on any Name Node or Data Node in the cluster (verbose/concise):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpadmin# sudo -u hdfs hdfs dfsadmin –report
 gpadmin# sudo -u hdfs hdfs dfsadmin -report | grep -B 2 Decommission</pre>
-</div></div><p>Check whether the admin state has changed to <strong>Decommission in Progress</strong> for the Data Nodes being decommissioned.  When all the Data Nodes report their state as <strong>Decommissioned</strong>, then all the blocks have been replicated.</p><p><strong><br/></strong></p><p><strong>Next steps: </strong></p><p><strong><a href="DecommissioningtheYARNNodeManager.html">Decommissioning the YARN NodeManager</a></strong></p><p><a href="ShuttingDowntheSlaveNode.html"><strong>Shutting Down the Slave Node</strong></a></p><p> </p>
+</div></div><p>Check whether the admin state has changed to <strong>Decommission in Progress</strong> for the Data Nodes being decommissioned.&nbsp; When all the Data Nodes report their state as <strong>Decommissioned</strong>, then all the blocks have been replicated.</p><p><strong><br></strong></p><p><strong>Next steps: </strong></p><p><strong><a href="DecommissioningtheYARNNodeManager.html">Decommissioning the YARN NodeManager</a></strong></p><p><a href="ShuttingDowntheSlaveNode.html"><strong>Shutting Down the Slave Node</strong></a></p><p>&nbsp;</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1181,28 +1180,21 @@ gpadmin# sudo -u hdfs hdfs dfsadmin -report | grep -B 2 Decommission</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

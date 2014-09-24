@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>Upgrade Instructions - 2.0.x to 2.1.0 | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -242,7 +241,7 @@
                            <a href="PHDUpgradeChecklist-2.0.xto2.1.0.html">PHD Upgrade Checklist - 2.0.x to 2.1.0</a>
                         </li>
                         <li>
-                           <a href="UpgradeInstructions-2.0.xto2.1.0.html">Upgrade Instructions - 2.0.x to 2.1.0</a>
+                           <a class="active" href="UpgradeInstructions-2.0.xto2.1.0.html">Upgrade Instructions - 2.0.x to 2.1.0</a>
                         </li>
                         <li>
                            <a href="MovingHAWQFilespacetoHA-enabledHDFS-2.0.xto2.1.0.html">Moving HAWQ Filespace to HA-enabled HDFS - 2.0.x to 2.1.0</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,7 +1140,7 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Upgrade Instructions - 2.0.x to 2.1.0</div><div class="wiki-content group" id="main-content">
 <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
@@ -1149,7 +1148,7 @@
 <p>Before you start your upgrade; make sure you have met all the <a href="PHDUpgradePrerequisites.html">Upgrade Prerequisites</a>.</p>
 </div>
 </div>
-<p>Follow the instructions below to upgrade PHD 2.0.1 to PHD 2.1:</p><ol><li><strong> <span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-VerifyState"></span>Verify the current state of the cluster<br/> </strong><ol class="_mce_tagged_br"><li>Using the Pivotal Command Center user interface, check to see if any services are down. If any service is down or is running with errors, address those issues before upgrading.</li><li>On one of the HDFS nodes, as <code>gpadmin</code>, run:<br/><code>sudo -u hdfs hdfs dfsadmin -report</code><br/>An example of the output is below.<br/>Make sure that there are no <code>Under replicated blocks</code>, <code>Blocks with corrupt replicas</code>, or <code>Missing blocks</code>. Make sure there are no dead or decommissioned nodes.<code> <br/> </code>If you have decommissioned DataNodes, removed then from the cluster using the <code>icm_client remove-slaves</code> command (see <a href="ShrinkingaCluster.html">Shrinking a Cluster</a>). You can always add them back after you have completed the upgrade procedure (see <a href="ExpandingaCluster.html">Expanding a Cluster</a>).<code> <br/> </code>If you have dead DataNodes, either remove then or bring them back up.<code> <br/> </code></li><li>Run <code>fsck</code> and ensure that the filesystem is healthy, for example there are no corrupt files. An example of the output is below.<br/><p><strong>dfsadmin report example</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<p>Follow the instructions below to upgrade PHD 2.0.1 to PHD 2.1:</p><ol><li><strong> <span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-VerifyState"></span>Verify the current state of the cluster<br> </strong><ol class="_mce_tagged_br"><li>Using the Pivotal Command Center user interface, check to see if any services are down. If any service is down or is running with errors, address those issues before upgrading.</li><li>On one of the HDFS nodes, as <code>gpadmin</code>, run:<br><code>sudo -u hdfs hdfs dfsadmin -report</code><br>An example of the output is below.<br>Make sure that there are no <code>Under replicated blocks</code>, <code>Blocks with corrupt replicas</code>, or <code>Missing blocks</code>. Make sure there are no dead or decommissioned nodes.<code> <br> </code>If you have decommissioned DataNodes, removed then from the cluster using the <code>icm_client remove-slaves</code> command (see <a href="ShrinkingaCluster.html">Shrinking a Cluster</a>). You can always add them back after you have completed the upgrade procedure (see <a href="ExpandingaCluster.html">Expanding a Cluster</a>).<code> <br> </code>If you have dead DataNodes, either remove then or bring them back up.<code> <br> </code></li><li>Run <code>fsck</code> and ensure that the filesystem is healthy, for example there are no corrupt files. An example of the output is below.<br><p><strong>dfsadmin report example</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo -u hdfs hdfs dfsadmin -report
 Configured Capacity: 93657587712 (87.23 GB)
 Present Capacity: 81391808512 (75.80 GB)
@@ -1201,7 +1200,7 @@ The filesystem under path '/' is HEALTHY</pre>
 <p>If you cannot get a cluster into a healthy state, contact Pivotal Support before continuing with your upgrade.</p>
 </div>
 </div>
-</li></ol></li><li><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-StopServices"></span><strong>Stop Services:</strong><ol><li>Stop HAWQ. As <code>gpadmin</code>, on the HAWQ master run:<br/><code>$ /etc/init.d/hawq stop </code></li><li>Stop PHD services.  As <code>gpadmin</code>, run:<br/><code>$ icm_client stop -l &lt;CLUSTERNAME&gt;</code></li><li>Stop PCC. As <code>root</code>, run:<br/><code>$ service commander stop</code></li><li><p>Stop GemFire XD locator. On the locator node, as <code>root</code> run:<br/><code>$ gfxd locator stop -dir=&lt;path to locator dir&gt;</code></p></li><li><p>Stop GemFire XD servers. On each GemFire server node, as <code>root</code> run:</p><p><code>$ gfxd server stop -dir=&lt;path to server dir&gt;</code></p><code><br/>  </code></li></ol></li><li><strong> <span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-ExtractPCC"></span>Import and upgrade PCC:</strong><br/><ol><li>Download the new PCC file from <a class="external-link" href="https://network.gopivotal.com/" rel="nofollow"> Pivotal Network </a>.</li><li>Copy the new PCC tar file to your installation directory on the admin node, for example: <br/><code>$ scp ./PCC-2.3.x.<strong> <em>version.build.os</em> </strong>.x86_64.tar.gz host:/root/phd/ </code></li><li>Login as <code>root</code> and untar to that directory:<br/><code>$ cd /root/phd </code><br class="atl-forced-newline"/><code>$ tar --no-same-owner -zxvf PCC-2.3.x.<strong> <em>version.build.os</em> </strong>.x86_64.tar.gz</code></li><li>As <code>root</code>, run the PCC installation script from the directory where it is installed: <br class="atl-forced-newline"/><code>$ ./install</code></li></ol> <div class="aui-message warning shadowed information-macro">
+</li></ol></li><li><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-StopServices"></span><strong>Stop Services:</strong><ol><li>Stop HAWQ. As&nbsp;<code>gpadmin</code>, on the HAWQ master run:<br><code>$ /etc/init.d/hawq stop </code></li><li>Stop PHD services.&nbsp; As <code>gpadmin</code>, run:<br><code>$ icm_client stop -l &lt;CLUSTERNAME&gt;</code></li><li>Stop PCC. As <code>root</code>, run:<br><code>$ service commander stop</code></li><li><p>Stop GemFire XD locator. On the locator node, as <code>root</code> run:<br><code>$ gfxd locator stop -dir=&lt;path to locator dir&gt;</code></p></li><li><p>Stop GemFire XD servers. On each GemFire server node, as <code>root</code> run:</p><p><code>$ gfxd server stop -dir=&lt;path to server dir&gt;</code></p><code><br>&nbsp; </code></li></ol></li><li><strong> <span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-ExtractPCC"></span>Import and upgrade PCC:</strong><br><ol><li>Download the new PCC file from <a class="external-link" href="https://network.gopivotal.com/" rel="nofollow"> Pivotal Network </a>.</li><li>Copy the new PCC tar file to your installation directory on the admin node, for example:&nbsp;<br><code>$ scp ./PCC-2.3.x.<strong>&nbsp;<em>version.build.os</em>&nbsp;</strong>.x86_64.tar.gz&nbsp;host:/root/phd/&nbsp;</code></li><li>Login as <code>root</code> and untar to that directory:<br><code>$ cd /root/phd&nbsp;</code><br class="atl-forced-newline"><code>$ tar --no-same-owner -zxvf PCC-2.3.x.<strong>&nbsp;<em>version.build.os</em> </strong>.x86_64.tar.gz</code></li><li>As <code>root</code>, run the PCC installation script from the directory where it is installed:&nbsp;<br class="atl-forced-newline"><code>$ ./install</code></li></ol> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
 <p>There is no need to specify that this is an upgrade; the install utility (<code>./install</code>) detects whether it is a fresh install or an upgrade.</p>
@@ -1210,27 +1209,27 @@ The filesystem under path '/' is HEALTHY</pre>
 <div class="aui-message hint shadowed information-macro">
 <span class="aui-icon icon-hint">Icon</span>
 <div class="message-content">
-<p>The rest of the upgrade procedure is performed by the <code>gpadmin</code> user.  Switch to that user now.</p>
+<p>The rest of the upgrade procedure is performed by the <code>gpadmin</code> user.&nbsp; Switch to that user now.</p>
 </div>
 </div>
-</li><li><p><strong> <span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-ImportPADS"></span>Import new HAWQ package:</strong></p><ol><li><p>Download and extract the new PADS (HAWQ) package from <a class="external-link" href="https://network.gopivotal.com/" rel="nofollow"> Pivotal Network </a>.</p></li><li><p>Run:</p><p><code>   $ icm_client import -s &lt; PATH TO EXTRACTED PADS TAR BALL  &gt;<br/> </code></p><p><code><br/></code></p></li></ol></li><li><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-ImportPRTS"></span><strong>Import new PRTS package:</strong><ol><li>Download and extract the new PRTS (GemFire XD) package from <a class="external-link" href="https://network.gopivotal.com/" rel="nofollow">Pivotal Network </a>.</li><li>Run:<br/><code>$ icm_client import -s &lt; PATH TO EXTRACTED PRTS TAR BALL  &gt;</code><br/><code><br/></code></li></ol></li><li><strong> <span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-ImportPHD"></span>Import new PHD package:</strong><ol><li>Download and extract the new PHD package from <a class="external-link" href="https://network.gopivotal.com/" rel="nofollow"> Pivotal Network </a>.</li><li>Run:<br/><code>$ icm_client import -s &lt; PATH TO EXTRACTED PHD TAR BALL  &gt;</code><br/><span style="font-family: monospace;"><br/></span><br/><br/></li></ol></li><li><p><span style="color: rgb(0,0,0);"><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-EditConfig"></span><strong>Edit the Configuration File:</strong> </span></p><ol><li>Retrieve the auto-generated  cluster configuration for the PHD package you are upgrading to  by running<code> icm_client fetch-upgrade-configuration</code> command. You only need to provide the PHD version for the PHD package you are upgrading to as the value for the <code>-v</code> option as shown in the example. This cluster configuration would be used to reconfigure the cluster after the package upgrades are successful.(See <a href="UpgradeInstructions-2.0.xto2.1.0.html">Upgrade Hawq</a> and <a href="UpgradeInstructions-2.0.xto2.1.0.html">Upgrade PHD</a>)<br/><br/>For example, <span style="color: rgb(0,0,0);">as <code>gpadmin</code>, run:</span>:<br/><pre> $ mkdir ~/upgraded_conf</pre><pre> $ icm_client fetch-upgrade-configuration -v PHD-2.1.0.0 -l &lt;CLUSTERNAME&gt; -o ~/upgraded_conf</pre><p> </p></li><li>This step is only required if <code>gpxf</code> was a configured service in the existing cluster configuration.<br/>Make the following changes to <code>clusterConfig.xml</code> in your newly created <code>upgraded_conf</code> directory:<br/><br/>Remove <code>gpxf</code> from the<code> &lt;services&gt;</code> list.<br/><br/>Add <code>pxf</code> to the<code> &lt;services&gt;</code> list.<br/><span>   * Add <code>pxf-service</code> role to <code>&lt;hostRoleMapping&gt;</code>. Colocate the <code>pxf-service</code> role with namenode and datanode.</span><br/><span>   </span><code><span>  &lt;pxf&gt;</span></code><p><code><span>     &lt;pxf-service&gt;&lt;/pxf-service&gt;</span></code></p><p><code><span>    &lt;/pxf&gt;</span></code><br/><br/>Delete the <code>gpxf</code> directory from <code>upgraded_conf</code> directory:</p><code>   $ rm -rf ~/upgraded_conf/gpxf</code><br/><br/>Add the new PXF template to <code>upgraded_conf</code>. You can do this by fetching the new template and copying the<code> pxf</code> directory from the template.<br/>       For example, <span style="color: rgb(0,0,0);">as <code>gpadmin</code>, run:</span><br/><code>   $ mkdir ~/new_template</code><br/><code>   $ icm_client fetch-template -o ~/new_template</code><br/><code>   $ cp -r ~/<span>new_template/pxf </span><span>upgraded_conf</span></code><br/><br/></li><li><span>Specify security.  The configuration file already has a<code> &lt;securityEnabled&gt;</code> parameter. Set this to either <strong>True</strong> or <strong>False</strong>.    If <strong>True</strong>, follow the steps for configuring security after this step.      <br/></span></li></ol><p> </p></li><li><p><strong> <span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-UpgradeHAWQ"></span>Upgrade HAWQ:<br/> </strong><strong> <strong> <br/> </strong> </strong></p> <div class="aui-message warning shadowed information-macro">
+</li><li><p><strong> <span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-ImportPADS"></span>Import new HAWQ package:</strong></p><ol><li><p>Download and extract the new PADS (HAWQ) package from <a class="external-link" href="https://network.gopivotal.com/" rel="nofollow"> Pivotal Network </a>.</p></li><li><p>Run:</p><p><code>&nbsp;&nbsp; $ icm_client import -s &lt; PATH TO&nbsp;EXTRACTED PADS TAR BALL&nbsp; &gt;<br> </code></p><p><code><br></code></p></li></ol></li><li><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-ImportPRTS"></span><strong>Import new PRTS package:</strong><ol><li>Download and extract the new PRTS (GemFire XD) package from&nbsp;<a class="external-link" href="https://network.gopivotal.com/" rel="nofollow">Pivotal Network&nbsp;</a>.</li><li>Run:<br><code>$ icm_client import -s &lt; PATH TO EXTRACTED PRTS TAR BALL&nbsp; &gt;</code><br><code><br></code></li></ol></li><li><strong> <span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-ImportPHD"></span>Import new PHD package:</strong><ol><li>Download and extract the new PHD package from <a class="external-link" href="https://network.gopivotal.com/" rel="nofollow"> Pivotal Network </a>.</li><li>Run:<br><code>$ icm_client import -s &lt; PATH TO EXTRACTED PHD TAR BALL&nbsp; &gt;</code><br><span style="font-family: monospace;"><br></span><br><br></li></ol></li><li><p><span style="color: rgb(0,0,0);"><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-EditConfig"></span><strong>Edit the Configuration File:</strong>&nbsp;</span></p><ol><li>Retrieve the auto-generated &nbsp;cluster configuration for the PHD package you are upgrading to &nbsp;by running<code> icm_client fetch-upgrade-configuration</code> command. You only need to provide the PHD version for the PHD package you are upgrading to as the value for the <code>-v</code> option as shown in the example. This cluster configuration would be used to reconfigure the cluster after the package upgrades are successful.(See <a class="active" href="UpgradeInstructions-2.0.xto2.1.0.html">Upgrade Hawq</a> and <a class="active" href="UpgradeInstructions-2.0.xto2.1.0.html">Upgrade PHD</a>)<br><br>For example, <span style="color: rgb(0,0,0);">as <code>gpadmin</code>, run:</span>:<br><pre> $ mkdir ~/upgraded_conf</pre><pre> $ icm_client fetch-upgrade-configuration -v PHD-2.1.0.0 -l &lt;CLUSTERNAME&gt; -o ~/upgraded_conf</pre><p>&nbsp;</p></li><li>This step is only required if <code>gpxf</code> was a configured service in the existing cluster configuration.<br>Make the following changes to <code>clusterConfig.xml</code> in your newly created <code>upgraded_conf</code> directory:<br><br>Remove <code>gpxf</code> from the<code> &lt;services&gt;</code> list.<br><br>Add <code>pxf</code> to the<code> &lt;services&gt;</code> list.<br><span>&nbsp;&nbsp; * Add <code>pxf-service</code> role to <code>&lt;hostRoleMapping&gt;</code>. Colocate the <code>pxf-service</code> role with namenode and datanode.</span><br><span>&nbsp;&nbsp; </span><code><span>&nbsp; &lt;pxf&gt;</span></code><p><code><span>&nbsp;&nbsp;&nbsp;&nbsp; &lt;pxf-service&gt;&lt;/pxf-service&gt;</span></code></p><p><code><span>&nbsp;&nbsp;&nbsp; &lt;/pxf&gt;</span></code><br><br>Delete the <code>gpxf</code> directory from <code>upgraded_conf</code> directory:</p><code>&nbsp;&nbsp; $ rm -rf ~/upgraded_conf/gpxf</code><br><br>Add the new PXF template to <code>upgraded_conf</code>. You can do this by fetching the new template and copying the<code> pxf</code> directory from the template.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; For example, <span style="color: rgb(0,0,0);">as <code>gpadmin</code>, run:</span><br><code>&nbsp;&nbsp; $ mkdir ~/new_template</code><br><code>&nbsp;&nbsp; $ icm_client fetch-template -o ~/new_template</code><br><code>&nbsp;&nbsp; $ cp -r ~/<span>new_template/pxf </span><span>upgraded_conf</span></code><br><br></li><li><span>Specify security.&nbsp; The configuration file already has a<code> &lt;securityEnabled&gt;</code> parameter. Set this to either <strong>True</strong> or <strong>False</strong>. &nbsp;&nbsp; If <strong>True</strong>, follow the steps for configuring security after this step.&nbsp; &nbsp; &nbsp; <br></span></li></ol><p>&nbsp;</p></li><li><p><strong> <span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-UpgradeHAWQ"></span>Upgrade HAWQ:<br> </strong><strong> <strong> <br> </strong> </strong></p> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
 <p>This section is only applicable if you installed Pivotal ADS (HAWQ) using PHD's CLI; if you installed Pivotal ADS manually, refer to the <em>HAWQ Installation and Upgrade Guide</em> for manual upgrade instructions.</p>
 </div>
 </div>
-</li><ol><li><p><span style="color: rgb(0,0,0);">To upgrade PADS (HAWQ), as <code>gpadmin</code>, run:</span><br/><span style="color: rgb(0,0,0);"> <code> $ icm_client upgrade -l &lt;CLUSTERNAME&gt; -s pads -o &lt; PATH TO EXTRACTED OLD ADS TAR BALL &gt; -n &lt; PATH TO EXTRACTED NEW ADS TAR BALL &gt;<br/> </code></span></p></li><li><p><span style="color: rgb(0,0,0);">Optional: You can delete the old HAWQ rpm file by running:</span><br/><span style="color: rgb(0,0,0);"> <code>$ yum erase &lt;HAWQ_OLD_RPM_NAME&gt; </code></span></p><p><span style="color: rgb(0,0,0);"><code> </code></span></p></li></ol><li><p><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-UpgradePRTS"></span><strong>Upgrade PRTS:</strong></p><p>To upgrade PRTS (GemFire XD), as <code>gpadmin</code> run:</p><p><code>   <span style="color: rgb(0,0,0);">$ icm_client upgrade -l &lt;CLUSTERNAME&gt; -s prts</span></code><br/><span style="color: rgb(0,0,0);"><br/></span></p></li><li><p><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-UpgradePHD"></span><strong>Upgrade PHD:</strong><br/><span>If your cluster is configured with HAWQ, make sure you complete upgrading Pivotal ADS (see previous step), before proceeding with Pivotal HD upgrade.</span><span style="color: rgb(0,0,0);"> To upgrade PHD, as <code>gpadmin</code>, run:</span><span style="color: rgb(0,0,0);"> </span><br/><span style="color: rgb(0,0,0);"><code>$ icm_client upgrade -l &lt;CLUSTERNAME&gt; -s phd</code></span><span style="color: rgb(0,0,0);"> </span><br/><span style="color: rgb(0,0,0);">This upgrades the PHD stack on all cluster nodes. <br/></span><span style="color: rgb(0,0,0);"><br/></span></p></li><li><p><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-UpgradePXF"></span>If you have PXF using GFXD as a data source:</p><p>Add <code>'/usr/lib/gphd/gfxd/lib/gemfirexd.jar'</code> on a new line to <code>ClusterConfigDir/pxf/pxf-public.classpath</code>.</p></li><li><p><span> </span><strong><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-ReconfigureCluster"></span>Reconfigure the cluster:</strong></p><p>Reconfigure your cluster with the new upgraded configuration:</p><p>As <code>gpadmin</code>, run:<br/><code>$ icm_client reconfigure -l &lt;CLUSTERNAME&gt; -c ~/upgraded_conf</code><br/><br/></p></li><li><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-RestartCluster"></span><strong>Restart the cluster:</strong><br/>As <code>gpadmin</code>, run:<br/><code>$ icm_client restart -l &lt;CLUSTERNAME&gt;</code><br/><br/></li><li><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-RestartHAWQ"></span><strong>Restart HAWQ:</strong><p>As <code>gpadmin</code>, run:<br/><code>$ <code class="java plain">/etc/init.d/hawq start</code></code></p><p> </p><strong> </strong></li><li><p><strong> <strong> <strong> <strong> <span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-Manual"></span> </strong> </strong> </strong>Reconfigure Manually Installed Services:<br/> </strong>Services that were manually installed on an existing cluster are not upgraded by a CLI upgrade. After the PHD upgrade, you need to manually reconfigure these services to work with the upgraded PHD.  Refer to the <em>Pivotal HD Enterprise Stack and Tool Reference Guide</em> for details.</p> <div class="aui-message warning shadowed information-macro">
+</li><ol><li><p><span style="color: rgb(0,0,0);">To upgrade PADS (HAWQ), as <code>gpadmin</code>, run:</span><br><span style="color: rgb(0,0,0);"> <code>&nbsp;$ icm_client upgrade -l &lt;CLUSTERNAME&gt; -s pads -o &lt; PATH TO EXTRACTED OLD ADS TAR BALL &gt;&nbsp;-n &lt; PATH TO EXTRACTED NEW ADS TAR BALL &gt;<br> </code></span></p></li><li><p><span style="color: rgb(0,0,0);">Optional: You can delete the old HAWQ rpm file by running:</span><br><span style="color: rgb(0,0,0);"> <code>$ yum erase &lt;HAWQ_OLD_RPM_NAME&gt;&nbsp;</code></span></p><p><span style="color: rgb(0,0,0);"><code>&nbsp;</code></span></p></li></ol><li><p><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-UpgradePRTS"></span><strong>Upgrade&nbsp;PRTS:</strong></p><p>To upgrade PRTS (GemFire XD), as <code>gpadmin</code> run:</p><p><code>&nbsp; &nbsp;<span style="color: rgb(0,0,0);">$ icm_client upgrade -l &lt;CLUSTERNAME&gt; -s prts</span></code><br><span style="color: rgb(0,0,0);"><br></span></p></li><li><p><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-UpgradePHD"></span><strong>Upgrade PHD:</strong><br><span>If your cluster is configured with HAWQ, make sure you complete upgrading Pivotal ADS (see previous step), before proceeding with Pivotal HD upgrade.</span><span style="color: rgb(0,0,0);">&nbsp;To upgrade PHD, as <code>gpadmin</code>, run:</span><span style="color: rgb(0,0,0);">&nbsp;</span><br><span style="color: rgb(0,0,0);"><code>$ icm_client upgrade -l &lt;CLUSTERNAME&gt; -s phd</code></span><span style="color: rgb(0,0,0);">&nbsp;</span><br><span style="color: rgb(0,0,0);">This upgrades the PHD stack on all cluster nodes. <br></span><span style="color: rgb(0,0,0);"><br></span></p></li><li><p><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-UpgradePXF"></span>If you have PXF using GFXD as a data source:</p><p>Add&nbsp;<code>'/usr/lib/gphd/gfxd/lib/gemfirexd.jar'</code>&nbsp;on a new line to&nbsp;<code>ClusterConfigDir/pxf/pxf-public.classpath</code>.</p></li><li><p><span>&nbsp;</span><strong><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-ReconfigureCluster"></span>Reconfigure the cluster:</strong></p><p>Reconfigure your cluster with the new upgraded configuration:</p><p>As <code>gpadmin</code>, run:<br><code>$ icm_client reconfigure -l &lt;CLUSTERNAME&gt; -c ~/upgraded_conf</code><br><br></p></li><li><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-RestartCluster"></span><strong>Restart the cluster:</strong><br>As <code>gpadmin</code>, run:<br><code>$ icm_client restart -l &lt;CLUSTERNAME&gt;</code><br><br></li><li><span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-RestartHAWQ"></span><strong>Restart HAWQ:</strong><p>As <code>gpadmin</code>, run:<br><code>$ <code class="java plain">/etc/init.d/hawq start</code></code></p><p>&nbsp;</p><strong> </strong></li><li><p><strong> <strong> <strong> <strong> <span class="confluence-anchor-link" id="UpgradeInstructions-2.0.xto2.1.0-Manual"></span> </strong> </strong> </strong>Reconfigure Manually Installed Services:<br> </strong>Services that were manually installed on an existing cluster are not upgraded by a CLI upgrade. After the PHD upgrade, you need to manually reconfigure these services to work with the upgraded PHD.&nbsp; Refer to the <em>Pivotal HD Enterprise Stack and Tool Reference Guide</em> for details.</p> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
-<p>Backing up the configuration files for these services is a prerequisite for this upgrade procedure.  See the <em> <a href="StackandToolsReference.html">Pivotal HD Enterprise Stack and Tools Reference</a> </em>for the locations of these configuration files.</p>
+<p>Backing up the configuration files for these services is a prerequisite for this upgrade procedure.&nbsp; See the <em> <a href="StackandToolsReference.html">Pivotal HD Enterprise Stack and Tools Reference</a> </em>for the locations of these configuration files.</p>
 </div>
 </div>
-<p><br/><span style="color: rgb(255,0,0);"> </span></p></li><li><strong>For HA Clusters: Move HAWQ filespace to HA enabled HDFS:<br/> </strong>For HAWQ, you need to move the HAWQ filespace to HA-enabled HDFS, as described in the next step, <a href="MovingHAWQFilespacetoHA-enabledHDFS-2.0.xto2.1.0.html">Moving HAWQ Filespace to HA-enabled HDFS - 2.0.x to 2.1.0</a></li></ol><p>If you are not using HAWQ in a HA environment, your cluster should now be upgraded. At this point, you should check to see if all your services are running and your data is intact. <a href="RunningPHDSamplePrograms.html">Running PHD Sample Programs</a> provides instructions for testing the various services.</p>
+<p><br><span style="color: rgb(255,0,0);">&nbsp;</span></p></li><li><strong>For HA Clusters: Move HAWQ filespace to HA enabled HDFS:<br> </strong>For HAWQ, you need to move the HAWQ filespace to HA-enabled HDFS, as described in the next step, <a href="MovingHAWQFilespacetoHA-enabledHDFS-2.0.xto2.1.0.html">Moving HAWQ Filespace to HA-enabled HDFS - 2.0.x to 2.1.0</a></li></ol><p>If you are not using HAWQ in a HA environment, your cluster should now be upgraded. At this point, you should check to see if all your services are running and your data is intact. <a href="RunningPHDSamplePrograms.html">Running PHD Sample Programs</a> provides instructions for testing the various services.</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1254,28 +1253,21 @@ The filesystem under path '/' is HEALTHY</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

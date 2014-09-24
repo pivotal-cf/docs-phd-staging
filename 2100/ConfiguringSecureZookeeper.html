@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>Configuring Secure Zookeeper | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -498,7 +497,7 @@
                            <a href="ConfiguringKerberosforHDFSHighAvailability.html">Configuring Kerberos for HDFS High Availability</a>
                         </li>
                         <li>
-                           <a href="ConfiguringSecureZookeeper.html">Configuring Secure Zookeeper</a>
+                           <a class="active" href="ConfiguringSecureZookeeper.html">Configuring Secure Zookeeper</a>
                         </li>
                         <li>
                            <a href="ConfiguringSecureHBase.html">Configuring Secure HBase</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,14 +1140,14 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Configuring Secure Zookeeper</div><div class="wiki-content group" id="main-content">
-<p>Zookeeper secure configuration for server is recommended for HBase.</p><p><strong>Important</strong>: STOP cluster services before doing this configuration.</p><p>This section includes the following topics:</p><p><style type="text/css">/*<![CDATA[*/
+<p>Zookeeper secure configuration for server is recommended for HBase.</p><p><strong>Important</strong>: STOP cluster services before doing this configuration.</p><p>This section includes the following topics:</p><p><style type="text/css">/**/
 div.rbtoc1410924393055 {padding: 0px;}
 div.rbtoc1410924393055 ul {list-style: disc;margin-left: 0px;}
 div.rbtoc1410924393055 li {margin-left: 0px;padding-left: 0px;}
 
-/*]]>*/</style><div class="toc-macro rbtoc1410924393055">
+/**/</style><div class="toc-macro rbtoc1410924393055">
 <ul class="toc-indentation">
 <li><a href="#ConfiguringSecureZookeeper-ZookeeperServers">Zookeeper Servers</a>
 <ul class="toc-indentation">
@@ -1165,7 +1164,7 @@ div.rbtoc1410924393055 li {margin-left: 0px;padding-left: 0px;}
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">kadmin: addprinc -randkey zookeeper/host_fqdn@REALM</pre>
 </div></div><h3 id="ConfiguringSecureZookeeper-CreatetheZookeeperKeytabFiles">Create the Zookeeper Keytab Files</h3><p>For each Zookeeper server host:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">ktadd -norandkey -k /etc/security/phd/keytab/zookeeper-hostid.service.keytab zookeeper/host_fqdn@REALM</pre>
-</div></div><h3 id="ConfiguringSecureZookeeper-DistributetheZookeeperKeytabFiles">Distribute the Zookeeper Keytab Files</h3><p>For each Zookeeper server host:</p><p>Move the appropriate keytab file for each host to that hosts' <code>/etc/security/phd/keytab</code> directory, then run the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><h3 id="ConfiguringSecureZookeeper-DistributetheZookeeperKeytabFiles">Distribute the Zookeeper Keytab Files</h3><p>For each Zookeeper server host:</p><p>Move the appropriate keytab file for each host to that hosts'&nbsp;<code>/etc/security/phd/keytab</code> directory, then run the following:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">chgrp hadoop zookeeper-hostid.service.keytab
 
 chown zookeeper zookeeper-hostid.service.keytab
@@ -1187,12 +1186,12 @@ jaasLoginRenew=3600000
   principal="zookeeper/host_fqdn@REALM";
 };
 </pre>
-</div></div></li><li><p>Add the following line to<code> /etc/gphd/zookeeper/conf/java.env</code> (create the file if it does not exist). </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p>Add the following line to<code> /etc/gphd/zookeeper/conf/java.env</code> (create the file if it does not exist).&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export JVMFLAGS="-Djava.security.auth.login.config=/etc/gphd/zookeeper/conf/jaas.conf"
 </pre>
 </div></div><p>If JVMFLAGS already exists, then modify that and add new values within quotes separated by spaces. For example, modify "export JVMFLAGS="-Xmx2048m" to:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export JVMFLAGS="-Xmx2048m -Djava.security.auth.login.config=/etc/gphd/zookeeper/conf/jaas.conf"</pre>
-</div></div></li></ol><h3 id="ConfiguringSecureZookeeper-VerifytheZookeeperConfiguration">Verify the Zookeeper Configuration</h3><ol><li>Start up the cluster and connect using a client.<br/> <strong>Note</strong>: You do not need to set up clients to use Kerberos but if you want this functionality, see <a href="ConfiguringSecureZookeeper.html">Zookeeper Clients</a>.</li><li>Connect as: <code>zookeeper-client -server hostname:port </code> <br/> <strong>Note</strong>: The port is defined in<code> /etc/gphd/zookeeper/conf/zoo.cfg</code> and is typically 2181.</li><li><p>Create a protected znode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li></ol><h3 id="ConfiguringSecureZookeeper-VerifytheZookeeperConfiguration">Verify the Zookeeper Configuration</h3><ol><li>Start up the cluster and connect using a client.<br> <strong>Note</strong>: You do not need to set up clients to use Kerberos but if you want this functionality, see <a class="active" href="ConfiguringSecureZookeeper.html">Zookeeper Clients</a>.</li><li>Connect as: <code>zookeeper-client -server hostname:port </code> <br> <strong>Note</strong>: The port is defined in<code> /etc/gphd/zookeeper/conf/zoo.cfg</code> and is typically 2181.</li><li><p>Create a protected znode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">create /testznode testznodedata sasl:zkcli@REALM:cdwra</pre>
 </div></div></li><li><p>Verify the znode:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">getAcl /testznode:</pre>
@@ -1224,9 +1223,9 @@ jaasLoginRenew=3600000
 </div></div><p><strong>Important</strong>:</p><p style="margin-left: 30.0px;">You cannot do this on a server node, as the <code>-Dsun.net.spi.nameservice.provider.1=dns, sun</code>, line could cause the server to fail to start.</p><p style="margin-left: 30.0px;">You should now be able to establish a secure session with zookeeper-client. Test this by starting zookeeper-client and insuring no errors occur while connecting.</p><p style="margin-left: 30.0px;">You may have issues with addressing or be forced to use the actual server IP address with the <code>-server </code>option for zookeeper-client to handle incompatibilities between the settings needed to make the Kerberos lookups work (<code>-Dsun.net.spi.nameservice.provider.1=dns,sun</code>) and what makes the Java host resolution work. This problem also may be encountered in trying to set up HBase to communicate with a secure Zookeeper, where it is more difficult to resolve.</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1250,28 +1249,21 @@ jaasLoginRenew=3600000
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

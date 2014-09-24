@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>CREATE TABLE AS | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -855,7 +854,7 @@
                            <a href="CREATETABLE.html">CREATE TABLE</a>
                         </li>
                         <li>
-                           <a href="CREATETABLEAS.html">CREATE TABLE AS</a>
+                           <a class="active" href="CREATETABLEAS.html">CREATE TABLE AS</a>
                         </li>
                         <li>
                            <a href="CREATETABLESPACE.html">CREATE TABLESPACE</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,7 +1140,7 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : CREATE TABLE AS</div><div class="wiki-content group" id="main-content">
 <p>Defines a new table from the results of a query.</p><p class="bridge2">Synopsis</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE [ [GLOBAL | LOCAL] {TEMPORARY | TEMP} ] TABLE table_name
@@ -1161,20 +1160,20 @@
    OIDS[=TRUE|FALSE]
    PAGESIZE={1024-1073741823}
    ROWGROUPSIZE={1024-1073741823}</pre>
-</div></div><p class="bridge2">Description</p><p>CREATE TABLE AS creates a table and fills it with data computed by a SELECT command. The table columns have the names and data types associated with the output columns of the SELECT, however you can override the column names by giving an explicit list of new column names.</p><p align="LEFT">CREATE TABLE AS creates a new table and evaluates the query just once to fill the new table initially. The new table will not track subsequent changes to the source  tables of the query.</p><p class="bridge2">Parameters</p><pre>GLOBAL | LOCAL</pre><p align="LEFT" style="margin-left: 30.0px;">These keywords are present for SQL standard compatibility, but have no effect in HAWQ Database.</p><pre>TEMPORARY | TEMP</pre><p align="LEFT" style="margin-left: 30.0px;">If specified, the new table is created as a temporary table. Temporary tables are automatically dropped at the end of a session, or optionally at the end of the current transaction (see ON COMMIT). Existing permanent tables with the same name are not visible to the current session while the temporary table exists, unless they are referenced with schema-qualified names.</p><pre>table_name</pre><p align="LEFT" style="margin-left: 30.0px;">The name (optionally schema-qualified) of the new table to be created.</p><pre>column_name</pre><p style="margin-left: 30.0px;">The name of a column in the new table. If column names are not provided, they are taken from the output column names of the query. If the table is created from an EXECUTE command, a column name list cannot be specified.</p><pre>WITH (<em>storage_parameter </em>=<em>value</em>)</pre><p style="margin-left: 30.0px;">The WITH clause can be used to set storage options for the table. Note that you can also set different storage parameters on a particular partition or subpartition by declaring the WITH clause in the partition specification. The following storage options are available:</p><p align="LEFT" style="margin-left: 60.0px;"><strong>APPENDONLY</strong> - Set to TRUE to create the table as an append-only table. If FALSE or not declared, the table will be created as a regular heap-storage table.</p><p align="LEFT" style="margin-left: 60.0px;"><strong>BLOCKSIZE</strong> - Set to the size, in bytes for each block in a table. The BLOCKSIZE must be between 8192 and 2097152 bytes, and be a multiple of 8192. The default is 32768.</p><p align="LEFT" style="margin-left: 60.0px;"><strong>ORIENTATION</strong> - Set to column for column-oriented storage, or row (the default) for row-oriented storage, or parquet. This option is only valid if APPENDONLY=TRUE. Heap-storage tables can only be row-oriented.</p><p align="LEFT" style="margin-left: 60.0px;"><strong>COMPRESSTYPE</strong> - Set to ZLIB (the default) or QUICKLZ to specify the type of compression used. QuickLZ uses less CPU power and compresses data faster at a lower compression ratio than zlib. Conversely, zlib provides more compact compression ratios at lower speeds. This option is only valid if APPENDONLY=TRUE</p><p align="LEFT" style="margin-left: 60.0px;"><strong>COMPRESSLEVEL</strong> - For zlib compression of append-only tables, set to a value between 1 (fastest compression) to 9 (highest compression ratio). QuickLZ compression level can only be set to 1. If not declared, the default is 1. This option is only valid if APPENDONLY=TRUE.</p><p align="LEFT" style="margin-left: 60.0px;"><strong>OIDS</strong> - Set to OIDS=FALSE (the default) so that rows do not have object identifiers assigned to them. Pivotal strongly recommends that you do not enable OIDS when creating a table. On large tables, such as those in a typical HAWQ system, using OIDs for table rows can cause wrap-around of the 32-bit OID counter. Once the counter wraps around, OIDs can no longer be assumed to be unique, which not only makes them useless to user applications, but can also cause problems in the HAWQ Database system catalog tables. In addition, excluding OIDs from a table reduces the space required to store the table on disk by 4 bytes per row, slightly improving performance. OIDS are not allowed on column-oriented tables.</p><pre>ON COMMIT</pre><p align="LEFT" style="margin-left: 30.0px;">The behavior of temporary tables at the end of a transaction block can be controlled using ON COMMIT. The three options are:</p><pre>PRESERVE ROWS</pre><p style="margin-left: 30.0px;">No special action is taken at the ends of transactions for temporary tables. This is the default behavior.</p><pre>DELETE ROWS</pre><p style="margin-left: 30.0px;">All rows in the temporary table will be deleted at the end of each transaction block. Essentially, an automatic TRUNCATE is done at each commit.</p><pre>DROP</pre><p style="margin-left: 30.0px;">The temporary table will be dropped at the end of the current transaction block.</p><pre>TABLESPACE tablespace</pre><p style="margin-left: 30.0px;"><em>  </em>The tablespace is the name of the tablespace in which the new table is to be created. If not specified, the database’s default tablespace is used.</p><pre>AS query</pre><p style="margin-left: 30.0px;">A SELECT command, or an EXECUTE command that runs a prepared SELECT query.</p><pre>DISTRIBUTED BY (column , [ ... ] )<br/>DISTRIBUTED RANDOMLY</pre><p style="margin-left: 30.0px;">Used to declare the HAWQ distribution policy for the table. One or more columns can be used as the distribution key, meaning those columns are used by the hashing algorithm to divide the data evenly across all of the segments. The distribution key should be the primary key of the table or a unique column (or set of columns). If that is not possible, then you may choose to distribute randomly, which will send the data round-robin to the segment instances. If not supplied, then either the PRIMARY KEY (if the table has one) or the first eligible column of the table will be used. </p><p class="bridge2">Notes</p><p>This command is functionally similar to SELECT INTO, but it is preferred since it is less likely to be confused with other uses of the SELECT INTO syntax. Furthermore, CREATE TABLE AS offers a superset of the functionality offered by SELECT INTO.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p class="bridge2">Description</p><p>CREATE TABLE AS creates a table and fills it with data computed by a SELECT command. The table columns have the names and data types associated with the output columns of the SELECT, however you can override the column names by giving an explicit list of new column names.</p><p align="LEFT">CREATE TABLE AS creates a new table and evaluates the query just once to fill the new table initially. The new table will not track subsequent changes to the source&nbsp; tables of the query.</p><p class="bridge2">Parameters</p><pre>GLOBAL | LOCAL</pre><p align="LEFT" style="margin-left: 30.0px;">These keywords are present for SQL standard compatibility, but have no effect in&nbsp;HAWQ Database.</p><pre>TEMPORARY | TEMP</pre><p align="LEFT" style="margin-left: 30.0px;">If specified, the new table is created as a temporary table. Temporary tables are automatically dropped at the end of a session, or optionally at the end of the current transaction (see ON COMMIT). Existing permanent tables with the same name are not visible to the current session while the temporary table exists, unless they are referenced with schema-qualified names.</p><pre>table_name</pre><p align="LEFT" style="margin-left: 30.0px;">The name (optionally schema-qualified) of the new table to be created.</p><pre>column_name</pre><p style="margin-left: 30.0px;">The name of a column in the new table. If column names are not provided, they are taken from the output column names of the query. If the table is created from an EXECUTE command, a column name list cannot be specified.</p><pre>WITH (<em>storage_parameter </em>=<em>value</em>)</pre><p style="margin-left: 30.0px;">The WITH clause can be used to set storage options for the table. Note that you can also set different storage parameters on a particular partition or subpartition by declaring the WITH clause in the partition specification. The following storage options are available:</p><p align="LEFT" style="margin-left: 60.0px;"><strong>APPENDONLY</strong>&nbsp;- Set to TRUE to create the table as an append-only table. If FALSE or not declared, the table will be created as a regular heap-storage table.</p><p align="LEFT" style="margin-left: 60.0px;"><strong>BLOCKSIZE</strong>&nbsp;- Set to the size, in bytes for each block in a table. The BLOCKSIZE must be between 8192 and 2097152 bytes, and be a multiple of 8192. The default is 32768.</p><p align="LEFT" style="margin-left: 60.0px;"><strong>ORIENTATION</strong>&nbsp;- Set to column for column-oriented storage, or row (the default) for row-oriented storage, or parquet. This option is only valid if APPENDONLY=TRUE. Heap-storage tables can only be row-oriented.</p><p align="LEFT" style="margin-left: 60.0px;"><strong>COMPRESSTYPE</strong>&nbsp;- Set to ZLIB (the default) or QUICKLZ to specify the type of compression used. QuickLZ uses less CPU power and compresses data faster at a lower compression ratio than zlib. Conversely, zlib provides more compact compression ratios at lower speeds. This option is only valid if APPENDONLY=TRUE</p><p align="LEFT" style="margin-left: 60.0px;"><strong>COMPRESSLEVEL</strong>&nbsp;- For zlib compression of append-only tables, set to a value between 1 (fastest compression) to 9 (highest compression ratio). QuickLZ compression level can only be set to 1. If not declared, the default is 1. This option is only valid if APPENDONLY=TRUE.</p><p align="LEFT" style="margin-left: 60.0px;"><strong>OIDS</strong>&nbsp;- Set to OIDS=FALSE (the default) so that rows do not have object identifiers assigned to them.&nbsp;Pivotal strongly recommends that you do not enable OIDS when creating a table. On large tables, such as those in a typical HAWQ system, using OIDs for table rows can cause wrap-around of the 32-bit OID counter. Once the counter wraps around, OIDs can no longer be assumed to be unique, which not only makes them useless to user applications, but can also cause problems in the&nbsp;HAWQ Database system catalog tables. In addition, excluding OIDs from a table reduces the space required to store the table on disk by 4 bytes per row, slightly improving performance. OIDS are not allowed on column-oriented tables.</p><pre>ON COMMIT</pre><p align="LEFT" style="margin-left: 30.0px;">The behavior of temporary tables at the end of a transaction block can be controlled using ON COMMIT. The three options are:</p><pre>PRESERVE ROWS</pre><p style="margin-left: 30.0px;">No special action is taken at the ends of transactions for temporary tables. This is the default behavior.</p><pre>DELETE ROWS</pre><p style="margin-left: 30.0px;">All rows in the temporary table will be deleted at the end of each transaction block. Essentially, an automatic TRUNCATE is done at each commit.</p><pre>DROP</pre><p style="margin-left: 30.0px;">The temporary table will be dropped at the end of the current transaction block.</p><pre>TABLESPACE tablespace</pre><p style="margin-left: 30.0px;"><em>&nbsp;&nbsp;</em>The tablespace is the name of the tablespace in which the new table is to be created. If not specified, the database’s default tablespace is used.</p><pre>AS query</pre><p style="margin-left: 30.0px;">A SELECT command, or an EXECUTE command that runs a prepared SELECT query.</p><pre>DISTRIBUTED BY (column&nbsp;, [ ... ] )<br>DISTRIBUTED RANDOMLY</pre><p style="margin-left: 30.0px;">Used to declare the HAWQ distribution policy for the table. One or more columns can be used as the distribution key, meaning those columns are used by the hashing algorithm to divide the data evenly across all of the segments. The distribution key should be the primary key of the table or a unique column (or set of columns). If that is not possible, then you may choose to distribute randomly, which will send the data round-robin to the segment instances. If not supplied, then either the PRIMARY KEY (if the table has one) or the first eligible column of the table will be used.&nbsp;</p><p class="bridge2">Notes</p><p>This command is functionally similar to SELECT INTO, but it is preferred since it is less likely to be confused with other uses of the SELECT INTO syntax. Furthermore,&nbsp;CREATE TABLE AS offers a superset of the functionality offered by SELECT INTO.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">CREATE TABLE AS can be used for fast data loading from external table data sources. See CREATE EXTERNAL TABLE.</pre>
-</div></div><p class="bridge2">Examples</p><p>Create a new table <em>films_recent </em> consisting of only recent entries from the table <em>films</em>  :</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p class="bridge2">Examples</p><p>Create a new table&nbsp;<em>films_recent&nbsp;</em>&nbsp;consisting of only recent entries from the table&nbsp;<em>films</em>&nbsp;&nbsp;:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">CREATE TABLE films_recent AS SELECT * FROM films WHERE date_prod &gt;= '2007-01-01';</pre>
-</div></div><p align="LEFT">Create a new temporary table <em>films_recent</em>  , consisting of only recent entries from the table films, using a prepared statement. The new table has OIDs and will be dropped at commit:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p align="LEFT">Create a new temporary table&nbsp;<em>films_recent</em>&nbsp;&nbsp;, consisting of only recent entries from the table films, using a prepared statement. The new table has OIDs and will be dropped at commit:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">PREPARE recentfilms(date) AS SELECT * FROM films WHERE date_prod &gt; $1;
 CREATE TEMP TABLE films_recent WITH (OIDS) ON COMMIT DROP AS
 EXECUTE recentfilms('2007-01-01');</pre>
-</div></div><p class="bridge2">Compatibility</p><p align="LEFT">CREATE TABLE AS conforms to the SQL standard, with the following exceptions:</p><ul><li>The standard requires parentheses around the subquery clause; in HAWQ, these parentheses are optional.</li><li>The standard defines a WITH [NO] DATA clause; this is not currently implemented in HAWQ. The behavior provided by HAWQ is equivalent to the standard’s WITH DATA case. WITH NO DATA can be simulated by appending LIMIT 0 to the query.</li><li>HAWQ Database handles temporary tables differently from the standard; see CREATE TABLE for details.</li><li>The WITH clause is a HAWQ extension; neither storage parameters nor OIDs are in the standard.</li><li>The HAWQ concept of tablespaces is not part of the standard. The TABLESPACE clause is an extension.</li></ul><p class="bridge2"> See Also</p><p align="LEFT"><a href="CREATEEXTERNALTABLE.html">CREATE EXTERNAL TABLE</a>, <a href="EXECUTE.html">EXECUTE</a>, <a href="SELECT.html">SELECT</a>, <a href="SELECTINTO.html">SELECT INTO</a></p>
+</div></div><p class="bridge2">Compatibility</p><p align="LEFT">CREATE TABLE AS conforms to the SQL standard, with the following exceptions:</p><ul><li>The standard requires parentheses around the subquery clause; in HAWQ, these parentheses are optional.</li><li>The standard defines a WITH [NO] DATA clause; this is not currently implemented in HAWQ. The behavior provided by HAWQ is equivalent to the standard’s WITH DATA case. WITH NO DATA can be simulated by appending LIMIT 0 to the query.</li><li>HAWQ&nbsp;Database handles temporary tables differently from the standard; see CREATE TABLE for details.</li><li>The WITH clause is a HAWQ extension; neither storage parameters nor OIDs are in the standard.</li><li>The HAWQ concept of tablespaces is not part of the standard. The TABLESPACE clause is an extension.</li></ul><p class="bridge2">&nbsp;See Also</p><p align="LEFT"><a href="CREATEEXTERNALTABLE.html">CREATE EXTERNAL TABLE</a>, <a href="EXECUTE.html">EXECUTE</a>, <a href="SELECT.html">SELECT</a>, <a href="SELECTINTO.html">SELECT INTO</a></p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1198,28 +1197,21 @@ EXECUTE recentfilms('2007-01-01');</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

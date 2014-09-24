@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>GraphLab | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -466,7 +465,7 @@
                            <a href="Oozie.html">Oozie</a>
                         </li>
                         <li>
-                           <a href="GraphLab.html">GraphLab</a>
+                           <a class="active" href="GraphLab.html">GraphLab</a>
                         </li>
                         <li>
                            <a href="Hamster.html">Hamster</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,21 +1140,21 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : GraphLab</div><div class="wiki-content group" id="main-content">
-<p><style type="text/css">/*<![CDATA[*/
+<p><style type="text/css">/**/
 div.rbtoc1410924389990 {padding: 0px;}
 div.rbtoc1410924389990 ul {list-style: disc;margin-left: 0px;}
 div.rbtoc1410924389990 li {margin-left: 0px;padding-left: 0px;}
 
-/*]]>*/</style><div class="toc-macro rbtoc1410924389990">
+/**/</style><div class="toc-macro rbtoc1410924389990">
 <ul class="toc-indentation">
 <li><a href="#GraphLab-InstallingGraphLab">Installing GraphLab</a>
 <ul class="toc-indentation">
 <li><a href="#GraphLab-AboutGraphLab">About GraphLab</a></li>
 <li><a href="#GraphLab-Prerequisites">Prerequisites</a></li>
 <li><a href="#GraphLab-GraphLabRPMPackages">GraphLab RPM Packages</a></li>
-<li><a href="#GraphLab-Re-configtheHadoop"> Re-config the Hadoop</a></li>
+<li><a href="#GraphLab-Re-configtheHadoop">&nbsp;Re-config the Hadoop</a></li>
 <li><a href="#GraphLab-RunninganExample">Running an Example</a></li>
 <li><a href="#GraphLab-RecommendedYARNconfigurationsGraphLabonHamster">Recommended YARN configurations GraphLab on Hamster</a>
 <ul class="toc-indentation">
@@ -1167,9 +1166,9 @@ div.rbtoc1410924389990 li {margin-left: 0px;padding-left: 0px;}
 </ul>
 </li>
 </ul>
-</div></p><h2 id="GraphLab-InstallingGraphLab">Installing GraphLab</h2><h3 id="GraphLab-AboutGraphLab">About GraphLab</h3><p>GraphLab is a powerful new system for designing and implementing parallel algorithms in machine learning. It is a graph-based, high performance, distributed computation framework written in C++.  It makes use of MPI and has its own programming model.</p><p>You can find more information about GraphLab here: <a class="external-link" href="http://graphlab.org/" rel="nofollow">GraphLab.org</a>.</p><p>Because GraphLab itself cannot run on YARN, we have integrated GraphLab into Hadoop using Hamster.</p><p>Following is an architecture diagram for GraphLab on Hadoop:</p><p><img class="confluence-embedded-image" data-image-src="attachments/67047907/68125265.png" src="attachments/67047907/68125265.png" width="400"/></p><h3 id="GraphLab-Prerequisites">Prerequisites</h3><ul><li><code>hadoop-libhdfs*.rpm</code> and JRE package <br/>If GraphLab algorithm's input/output are from/to HDFS, then <code>hadoop-libhdfs*.rpm</code> and JRE package are required. <br/>When installing PHD, make sure that <code>hadoop-libhdfs*.rpm</code> is installed and  <code>$JAVA_HOME/jre/lib/amd64/server/libjvm.so</code> is found.</li><li>Hamster-1.1</li></ul><h3 id="GraphLab-GraphLabRPMPackages">GraphLab RPM Packages</h3><p>GraphLab consists of the following graphlab <code>rpm</code> package:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><code> <strong>graphlab-&lt;PHD_GraphLab_VERSION&gt;-1.x86_64.rpm</strong> </code></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>GraphLab</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Hamster, hadoop-libhdfs*.rpm, jre package </p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>GraphLab installation package</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Every node in the YARN cluster and the client workstation that will access the YARN service.</p></td></tr></tbody></table></div><p><br/> <strong>GraphLab Setup</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></p><h2 id="GraphLab-InstallingGraphLab">Installing GraphLab</h2><h3 id="GraphLab-AboutGraphLab">About GraphLab</h3><p>GraphLab is a powerful new system for designing and implementing parallel algorithms in machine learning. It is a graph-based, high performance, distributed computation framework written in C++.&nbsp; It makes use of MPI and has its own programming model.</p><p>You can find more information about GraphLab here: <a class="external-link" href="http://graphlab.org/" rel="nofollow">GraphLab.org</a>.</p><p>Because GraphLab itself cannot run on YARN, we have integrated GraphLab into Hadoop using Hamster.</p><p>Following is an architecture diagram for GraphLab on Hadoop:</p><p><img class="confluence-embedded-image" data-image-src="attachments/67047907/68125265.png" src="attachments/67047907/68125265.png" width="400"></p><h3 id="GraphLab-Prerequisites">Prerequisites</h3><ul><li><code>hadoop-libhdfs*.rpm</code>&nbsp;and JRE package&nbsp;<br>If GraphLab algorithm's input/output are from/to HDFS, then&nbsp;<code>hadoop-libhdfs*.rpm</code>&nbsp;and JRE package&nbsp;are required. <br>When installing PHD, make sure that&nbsp;<code>hadoop-libhdfs*.rpm</code>&nbsp;is installed and &nbsp;<code>$JAVA_HOME/jre/lib/amd64/server/libjvm.so</code>&nbsp;is found.</li><li>Hamster-1.1</li></ul><h3 id="GraphLab-GraphLabRPMPackages">GraphLab RPM Packages</h3><p>GraphLab consists of the following graphlab&nbsp;<code>rpm</code>&nbsp;package:</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd" colspan="2"><p><code> <strong>graphlab-&lt;PHD_GraphLab_VERSION&gt;-1.x86_64.rpm</strong> </code></p></td></tr><tr><td class="confluenceTd"><p><strong>Type</strong></p></td><td class="confluenceTd"><p>GraphLab</p></td></tr><tr><td class="confluenceTd"><p><strong>Requires</strong></p></td><td class="confluenceTd"><p>Hamster,&nbsp;hadoop-libhdfs*.rpm,&nbsp;jre package&nbsp;</p></td></tr><tr><td class="confluenceTd"><p><strong>Description</strong></p></td><td class="confluenceTd"><p>GraphLab installation package</p></td></tr><tr><td class="confluenceTd"><p><strong>Install on Nodes</strong></p></td><td class="confluenceTd"><p>Every node in the YARN cluster and the client workstation that will access the YARN service.</p></td></tr></tbody></table></div><p><br> <strong>GraphLab Setup</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ sudo rpm -ivh working_dir/graphlab/rpm/graphlab-&lt;PHD_GraphLab_VERSION&gt;-1.x86_64.rpm</pre>
-</div></div><h3 id="GraphLab-Re-configtheHadoop"><span> </span><span>Re-config the Hadoop</span></h3><p>During GraphLab process running, it will consume a large amount of virtual memory. Once the amount of virtual memory it consumes is beyond the YARN's configuration, NodeManager will kill the container in which the GraphLab process locates.  Therefore, we recommend that you set <code>yarn.nodemanager.vmem-pmem-ration</code>  to a higher value (e.g., 100)  or disable the vmem checking in<code> $HADOOP_CONF_DIR/yarn-site.xml</code>.</p><p><code><span style="color: rgb(80,0,80);">&lt;property&gt;</span></code><br/><code><span style="color: rgb(80,0,80);">  &lt;name&gt;yarn.nodemanager.vmem-pmem-ratio</span><span style="color: rgb(80,0,80);">&lt;/name&gt;</span></code><br/><code><span style="color: rgb(80,0,80);">  &lt;value&gt;100&lt;/value&gt;</span></code><br/><code><span style="color: rgb(80,0,80);">&lt;/property&gt;</span></code></p><p>or:</p><p><code>&lt;property&gt;</code><br/><code>  &lt;name&gt;yarn.nodemanager.vmem-check-enabled&lt;/name&gt;</code><br/><code>  &lt;value&gt;false&lt;/value&gt;</code><br/><code>&lt;/property&gt;</code></p><p>After set this, restart all NodeManagers to make this configuration taking effect.</p><h3 id="GraphLab-RunninganExample">Running an Example</h3><p>Following is an example to test that GraphLab is working:</p><p>Create a <code>connected_component.ini</code> file that contains the following:</p><p style="margin-left: 30.0px;"><code>1 2 4.0</code> <br/> <code>2 3 1.0</code> <br/> <code>3 4 5.0</code> <br/> <code>4 5 2.0</code> <br/> <code>5 3 3.0</code></p><p>Run the following commands to place this file in HDFS, and create a folder in HDFS for write output:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><h3 id="GraphLab-Re-configtheHadoop"><span>&nbsp;</span><span>Re-config the Hadoop</span></h3><p>During GraphLab process running, it will consume a large amount of virtual memory. Once the amount of virtual memory it consumes is beyond the YARN's configuration, NodeManager will kill the container in which the GraphLab process locates. &nbsp;Therefore, we recommend that you set <code>yarn.nodemanager.vmem-pmem-ration</code>&nbsp; to a higher value (e.g., 100) &nbsp;or disable the vmem checking in<code> $HADOOP_CONF_DIR/yarn-site.xml</code>.</p><p><code><span style="color: rgb(80,0,80);">&lt;property&gt;</span></code><br><code><span style="color: rgb(80,0,80);">&nbsp; &lt;name&gt;yarn.nodemanager.vmem-pmem-ratio</span><span style="color: rgb(80,0,80);">&lt;/name&gt;</span></code><br><code><span style="color: rgb(80,0,80);">&nbsp; &lt;value&gt;100&lt;/value&gt;</span></code><br><code><span style="color: rgb(80,0,80);">&lt;/property&gt;</span></code></p><p>or:</p><p><code>&lt;property&gt;</code><br><code>&nbsp; &lt;name&gt;yarn.nodemanager.vmem-check-enabled&lt;/name&gt;</code><br><code>&nbsp; &lt;value&gt;false&lt;/value&gt;</code><br><code>&lt;/property&gt;</code></p><p>After set this, restart all NodeManagers to make this configuration taking effect.</p><h3 id="GraphLab-RunninganExample">Running an Example</h3><p>Following is an example to test that GraphLab is working:</p><p>Create a <code>connected_component.ini</code> file that contains the following:</p><p style="margin-left: 30.0px;"><code>1 2 4.0</code> <br> <code>2 3 1.0</code> <br> <code>3 4 5.0</code> <br> <code>4 5 2.0</code> <br> <code>5 3 3.0</code></p><p>Run the following commands to place this file in HDFS, and create a folder in HDFS for write output:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo -u hdfs hadoop fs -mkdir /graphlab
 sudo -u hdfs hadoop fs -copyFromLocal /path/to/connected_component.ini /graphlab/connected_component.ini
 sudo -u hdfs hadoop fs -mkdir -p /graphlab/connected_component/output
@@ -1177,7 +1176,7 @@ sudo -u hdfs hadoop fs -chmod 777 /graphlab/connected_component/output
 </pre>
 </div></div><p>Run the following command to execute a GraphLab job:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">mpirun -np 2 /${graphlab_installation_dir}/graph_analytics/connected_component  --saveprefix=hdfs://${hdfs_hostname}:${hdfs_port}/graphlab/connected_component/output/ --graph=hdfs://${hdfs_hostname}:${hdfs_port}/graphlab/connected_component.ini --format=tsv</pre>
-</div></div><p><span style="color: rgb(0,0,0);">After the job has finished,  you can check the output in HDFS.</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p><span style="color: rgb(0,0,0);">After the job has finished,&nbsp; you can check the output in HDFS.</span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">hadoop fs -ls /graphlab/connected_component/output
  
 Found 8 items
@@ -1189,9 +1188,9 @@ Found 8 items
 -rw-r--r--   3 yarn supergroup          0 2014-07-08 01:56 /graphlab/connected_component/output/_6_of_8
 -rw-r--r--   3 yarn supergroup          0 2014-07-08 01:56 /graphlab/connected_component/output/_7_of_8
 -rw-r--r--   3 yarn supergroup          4 2014-07-08 01:56 /graphlab/connected_component/output/_8_of_8</pre>
-</div></div><p> </p><p><span style="color: rgb(0,102,0);font-size: 20.0px;line-height: 1.5;">Using GraphLab</span></p><p>You can find Usage information for GraphLab's toolkits here: <a class="external-link" href="http://docs.graphlab.org/toolkits.html" rel="nofollow">http://docs.graphlab.org/toolkits.html</a>.</p><h3 id="GraphLab-RecommendedYARNconfigurationsGraphLabonHamster">Recommended YARN configurations GraphLab on Hamster</h3><h4 id="GraphLab-Resourceallocation/monitoring">Resource allocation / monitoring</h4><p>In YARN, both virtual and physical memory usage for processes running on node managers are checked, if your program used more memory than requested, it will be killed by node manager. You can change your memory/cpu limit for your processes by specifying -mem (--mem-per-proc) and -cpu (--cpu-per-proc). For example, if you want your program using 2G memory and 2 cores, you can use following command to execute your job.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>&nbsp;</p><p><span style="color: rgb(0,102,0);font-size: 20.0px;line-height: 1.5;">Using GraphLab</span></p><p>You can find Usage information for GraphLab's toolkits here:&nbsp;<a class="external-link" href="http://docs.graphlab.org/toolkits.html" rel="nofollow">http://docs.graphlab.org/toolkits.html</a>.</p><h3 id="GraphLab-RecommendedYARNconfigurationsGraphLabonHamster">Recommended YARN configurations GraphLab on Hamster</h3><h4 id="GraphLab-Resourceallocation/monitoring">Resource allocation / monitoring</h4><p>In YARN, both virtual and physical memory usage for processes running on node managers are checked, if your program used more memory than requested, it will be killed by node manager. You can change your memory/cpu limit for your processes by specifying -mem (--mem-per-proc) and -cpu (--cpu-per-proc). For example, if you want your program using 2G memory and 2 cores, you can use following command to execute your job.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">hamster -mem 2048 -cpu 2 -np N &lt;your-program and parameters&gt; </pre>
-</div></div><p>By default, -mem is 1024 (in MB) and -cpu is 1. But this is not enough, YARN itself has some properties will take effect on resource allocation and monitoring, all in yarn-site.xml in $HADOOP_CONF_DIR.</p><ul><li><strong>yarn.scheduler.maximum-allocation-mb and yarn.scheduler.maximum-allocation-vcores</strong> <br/> The two options will limit YARN's maximum resource allocation for each launched process. By default, they're 8192 (8GB memory) and 32 (cores), if your process need more than this limit, you need increase theirs values. GraphLab will consume lots of memory, <strong>we suggest at least, specify maximum allocation memory in YARN to 16GB</strong>. Otherwise, you may find your program frequently killed by node managers, which can be found in logs of node managers.</li><li><strong>yarn.nodemanager.vmem-check-enabled and yarn.nodemanager.vmem-pmem-ratio</strong> <br/> First option indicated if we need check virtual memory. For example, some program will use a lot of virtual memory but barely use physic memory (GraphLab is an example). If you think it's unnecessary to check virtual memory, you can set it to <strong>false</strong> to disable this checking (default is true). The second option is the ratio for physical memory to virtual memory, default is 2.1. For example, if you specified 2G memory (which can be specified by hamster -mem 2048 ...) for your processes, the limit of its physical memory is 2G, and the limit of its virtual memory is 2.1 * 2G = 4.2G. This process will be killed  <strong>either</strong> it used 2G physical memory or 4.2G virtual memory. We suggest set a higher value of this to reduce your processes killed by node manager when it used too much virtual memory.</li></ul><h4 id="GraphLab-FetchlogforHamsterjob">Fetch log for Hamster job</h4><p>A traditional OpenMPI program has a feature that allows you to get logs when jobs are running. In Hamster 1.0 we don't support this because we launch MPI processes in a different way, however you can still get all log files after the job is finished.</p><p>We recommend that you set <code>yarn.log-aggregation-enable</code> to <code>true</code> in the <code>yarn-site.xml</code> (by default this is disabled). If this is left disabled, fetching logs for Hamster jobs is more complicated, as you have to use the YARN web server to get your logs like other applications (for example, map-reduce).</p><p>When the <code>yarn.log-aggregation-enable</code> set to <code>true</code>, you need to be aware that the parent directory of <code>yarn.nodemanager.remote-app-log-dir</code> in HDFS should have write permission for the <code>yarn</code>user. By default, the <code>yarn.nodemanager.remote-app-log-dir</code> is set to <code>/tmp/logs</code>.</p><p>Once you have set the above properties, run the following command to get the log after your job has finished:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>By default, -mem is 1024 (in MB) and -cpu is 1. But this is not enough, YARN itself has some properties will take effect on resource allocation and monitoring, all in yarn-site.xml in $HADOOP_CONF_DIR.</p><ul><li><strong>yarn.scheduler.maximum-allocation-mb and yarn.scheduler.maximum-allocation-vcores</strong> <br> The two options will limit YARN's maximum resource allocation for each launched process. By default, they're 8192 (8GB memory) and 32 (cores), if your process need more than this limit, you need increase theirs values. GraphLab will consume lots of memory,&nbsp;<strong>we suggest at least, specify maximum allocation memory in YARN to 16GB</strong>. Otherwise, you may find your program frequently killed by node managers, which can be found in logs of node managers.</li><li><strong>yarn.nodemanager.vmem-check-enabled and yarn.nodemanager.vmem-pmem-ratio</strong> <br> First option indicated if we need check virtual memory. For example, some program will use a lot of virtual memory but barely use physic memory (GraphLab is an example). If you think it's unnecessary to check virtual memory, you can set it to&nbsp;<strong>false</strong>&nbsp;to disable this checking (default is true). The second option is the ratio for physical memory to virtual memory, default is 2.1. For example, if you specified 2G memory (which can be specified by hamster -mem 2048 ...) for your processes, the limit of its physical memory is 2G, and the limit of its virtual memory is 2.1 * 2G = 4.2G. This process will be killed&nbsp; <strong>either</strong> it used 2G physical memory or 4.2G virtual memory. We suggest set a higher value of this to reduce your processes killed by node manager when it used too much virtual memory.</li></ul><h4 id="GraphLab-FetchlogforHamsterjob">Fetch log for Hamster job</h4><p>A traditional OpenMPI program has a feature that allows you to get logs when jobs are running. In Hamster 1.0 we don't support this because we launch MPI processes in a different way, however you can still get all log files after the job is finished.</p><p>We recommend that you set <code>yarn.log-aggregation-enable</code> to <code>true</code> in the <code>yarn-site.xml</code> (by default this is disabled). If this is left disabled, fetching logs for Hamster jobs is more complicated, as you have to use the YARN web server to get your logs like other applications (for example, map-reduce).</p><p>When the <code>yarn.log-aggregation-enable</code> set to <code>true</code>, you need to be aware that the parent directory of <code>yarn.nodemanager.remote-app-log-dir</code> in HDFS should have write permission for the <code>yarn</code>user. By default, the <code>yarn.nodemanager.remote-app-log-dir</code> is set to <code>/tmp/logs</code>.</p><p>Once you have set the above properties, run the following command to get the log after your job has finished:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">yarn logs -applicationId &lt;application ID&gt; -appOwner &lt;Application Owner&gt;</pre>
 </div></div><p>Note that <code>-appOwner</code> should be set to the user name used to submit Hamster job; when you used a different user name execute the <code>yarn logs</code> command.</p><h3 id="GraphLab-Troubleshooting">Troubleshooting</h3><p><strong>Q: I'm unable to see Hadoop logs.</strong></p><p>A: You need to add the following property in <code>yarn-site.xml</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"> &lt;property&gt;
@@ -1199,7 +1198,7 @@ Found 8 items
     &lt;name&gt;yarn.nodemanager.delete.debug-delay-sec&lt;/name&gt;
     &lt;value&gt;1800&lt;/value&gt;
   &lt;/property&gt;</pre>
-</div></div><p>Then restart resource manager and nodemanager.</p><p><strong>Q: When I run <code>hamster -np 3 /absolute/path/to/hello_c</code>, the following error is thrown:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>Then restart resource manager and nodemanager.</p><p><strong>Q: When I run&nbsp;<code>hamster -np 3 /absolute/path/to/hello_c</code>, the following error is thrown:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">Caused by: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.security.AccessControlException): Permission denied: user=root, access=WRITE, inode="/user":hdfs:supergroup:drwxr-xr-x
 at org.apache.hadoop.hdfs.server.namenode.FSPermissionChecker.check(FSPermissionChecker.java:234)
 at org.apache.hadoop.hdfs.server.namenode.FSPermissionChecker.check(FSPermissionChecker.java:214)
@@ -1213,7 +1212,7 @@ at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.mkdirs(FSNamesystem.java:
 at org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.mkdirs(NameNodeRpcServer.java:745)</pre>
 </div></div><p>A: Run the following command:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">sudo -u hdfs hadoop fs -chmod 777 /userhadoop fs -mkdir /user/root</pre>
-</div></div><p><br/> <br/> <strong>Q: I see the following in the YARN logs:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p><br> <br> <strong>Q: I see the following in the YARN logs:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">14/02/17 09:52:30 ERROR event.HamsterEventHandler: exception when launch HNP process
 java.io.IOException: Cannot run program "mpirun": error=13, Permission denied
 at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
@@ -1227,7 +1226,7 @@ at java.lang.UNIXProcess.&lt;init&gt;(UNIXProcess.java:135)
 at java.lang.ProcessImpl.start(ProcessImpl.java:130)
 at java.lang.ProcessBuilder.start(ProcessBuilder.java:1021)
 ... 4 more</pre>
-</div></div><p>A: Check if the node that is running the hamster application has openmpi installed.</p><p><br/> <strong>Q: I see the following information in logs:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>A: Check if the node that is running the hamster application has openmpi installed.</p><p><br> <strong>Q: I see the following information in logs:</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">LogType: stderr
 LogLength: 48
 Log Contents:
@@ -1235,12 +1234,12 @@ Log Contents:
 LogType: stdout
 LogLength: 0
 Log Contents:</pre>
-</div></div><p>A: Make sure <code>$JAVA_HOME</code> is set:</p><p style="margin-left: 30.0px;">Run this command:</p><p style="margin-left: 30.0px;"><code>echo $JAVA_HOME</code></p><p style="margin-left: 30.0px;">You should see something like this:</p><p style="margin-left: 30.0px;"><code>/usr/java/latest<br/> <br/> </code></p><p><strong> Q: I see the following information in logs: <br/> </strong></p><p style="margin-left: 30.0px;"><code>ERROR: fiber_control.cpp(launch:229): Check failed: b&lt;nworkers [1 &lt; 1]</code></p><p>A: Find another machine which has more than 1 core, this is a limitation of GraphLab.</p>
+</div></div><p>A: Make sure <code>$JAVA_HOME</code> is set:</p><p style="margin-left: 30.0px;">Run this command:</p><p style="margin-left: 30.0px;"><code>echo $JAVA_HOME</code></p><p style="margin-left: 30.0px;">You should see something like this:</p><p style="margin-left: 30.0px;"><code>/usr/java/latest<br> <br> </code></p><p><strong> Q: I see the following information in logs: <br> </strong></p><p style="margin-left: 30.0px;"><code>ERROR: fiber_control.cpp(launch:229): Check failed: b&lt;nworkers [1 &lt; 1]</code></p><p>A: Find another machine which has more than 1 core, this is a limitation of GraphLab.</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1264,28 +1263,21 @@ Log Contents:</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>gpstate | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -1049,7 +1048,7 @@
                            <a href="gssh-exkeys.html">gssh-exkeys</a>
                         </li>
                         <li>
-                           <a href="gpstate.html">gpstate</a>
+                           <a class="active" href="gpstate.html">gpstate</a>
                         </li>
                         <li>
                            <a href="gpstop.html">gpstop</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,14 +1140,14 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : gpstate</div><div class="wiki-content group" id="main-content">
 <p>Shows the status of a running HAWQ system.</p><p class="bridge2">Synopsis</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstate 
 [-d master_data_directory] [-B parallel_processes]
 [-s | -b | -Q] [-p] [-i] [-f] [-v | -q] [-l log_directory]
 gpstate -? | -h | --help</pre>
-</div></div><p class="bridge2">Description</p><p>The gpstate utility displays information about a running HAWQ instance. There is additional information you may want to know about a HAWQ system, since it is comprised of multiple database instances (segments) spanning multiple machines. The gpstate utility provides additional status information for a HAWQ system, such as:</p><ul><li>Which segments are down.</li><li>Master and segment configuration information (hosts, data directories, etc.).</li><li>The ports used by the system.</li></ul><p class="bridge2">Options</p><pre>-b (brief status)</pre><p style="margin-left: 30.0px;">Optional. Display a brief summary of the state of the HAWQ system. This is the default option.</p><pre>-B parallel_processes</pre><p style="margin-left: 30.0px;">The number of segments to check in parallel. If not specified, the utility will start up to 60 parallel processes depending on how many segment instances it needs to check.</p><pre>-d master_data_directory</pre><p align="LEFT" style="margin-left: 30.0px;">Optional. The master data directory. If not specified, the value set for $MASTER_DATA_DIRECTORY will be used.</p><pre>-f (show standby master details)</pre><p style="margin-left: 30.0px;">Display details of the standby master host if configured.</p><pre>-i (show HAWQ version)</pre><p style="margin-left: 30.0px;">Display the HAWQ software version information for each instance.</p><pre>-l logfile_directory</pre><p style="margin-left: 30.0px;">The directory to write the log file. Defaults to ~/gpAdminLogs.</p><pre>-p (show ports)</pre><p style="margin-left: 30.0px;">List the port numbers used throughout the HAWQ system.</p><pre>-q (no screen output)</pre><p align="LEFT" style="margin-left: 30.0px;">Optional. Run in quiet mode. Except for warning messages, command output is not displayed on the screen. However, this information is still written to the log file.</p><pre>-Q (quick status)</pre><p style="margin-left: 30.0px;">Optional. Checks segment status in the system catalog on the master host. Does not poll the segments for status.</p><pre>-s (detailed status)</pre><p align="LEFT" style="margin-left: 30.0px;">Optional. Displays detailed status information for the HAWQ system.</p><pre>-v (verbose output)</pre><p style="margin-left: 30.0px;">Optional. Displays error messages and outputs detailed status and progress information.</p><pre>-? | -h | --help (help)</pre><p style="margin-left: 30.0px;">Displays the online help.</p><p class="bridge2">Output Field Definitions</p><p align="LEFT">The following output fields are reported by gpstate -s for the master:</p><p class="bridge3">Table - gpstate output data for the master</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Output Data</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd">Master host</td><td class="confluenceTd">Host name of the master</td></tr><tr><td class="confluenceTd">Master process ID</td><td class="confluenceTd">PID of the mater database listener</td></tr><tr><td class="confluenceTd">Master data dictionary</td><td class="confluenceTd">File system location of the master database</td></tr><tr><td class="confluenceTd">Master port</td><td class="confluenceTd">Port of the master database listener process</td></tr><tr><td class="confluenceTd">Master current role</td><td class="confluenceTd">dispatch=regular operating mode utility=maintenance mode</td></tr><tr><td class="confluenceTd">HAWQ array configuration type</td><td class="confluenceTd"><p>Standard=one NIC per host</p><p>Multi-home=multiple NICs per host </p></td></tr><tr><td class="confluenceTd">HAWQ initsystem version </td><td class="confluenceTd">HAWQ version when system was first initialized  </td></tr><tr><td class="confluenceTd">HAWQ current version </td><td class="confluenceTd">Current version of HAWQ </td></tr><tr><td class="confluenceTd">postgres version </td><td class="confluenceTd">The version of Postgres that HAWQ is based on </td></tr><tr><td class="confluenceTd">HAWQ mirroring status </td><td class="confluenceTd">Physical mirroring, SAN or none </td></tr><tr><td class="confluenceTd">Master standby </td><td class="confluenceTd">Host name of the standby master, active or passive </td></tr></tbody></table></div><p>The following output fields are reported by gpstate -s for each segment:</p><p class="bridge3">Table - gpstate output data for segments</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Output Data</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd"><p>Hostname</p></td><td class="confluenceTd"><p>System-configured host name</p></td></tr><tr><td class="confluenceTd"><p>Address</p></td><td class="confluenceTd"><p>network address host name (NIC name)</p></td></tr><tr><td class="confluenceTd"><p>Datadir</p></td><td class="confluenceTd"><p>File system location of segment data directory</p></td></tr><tr><td class="confluenceTd"><p>Port</p></td><td class="confluenceTd"><p align="LEFT">Port number of segment database listener process</p></td></tr><tr><td class="confluenceTd">Current Role</td><td class="confluenceTd"><p>Current role of a segment: <em>Primary</em></p></td></tr><tr><td class="confluenceTd"><p>Preferred Role</p></td><td class="confluenceTd"><p>Role at system initialization time: <em>Primary</em> <em> </em></p></td></tr><tr><td class="confluenceTd"><p>File postmaster.pid</p></td><td class="confluenceTd">Status of postmaster.pid lock file: <em>Found </em> or Missing</td></tr><tr><td class="confluenceTd"><p>PID from postmaster.pid file</p></td><td class="confluenceTd"><p>PID found in the postmaster.pid file </p></td></tr><tr><td class="confluenceTd"><p>Lock files in /tmp </p></td><td class="confluenceTd"><p align="LEFT">A segment port lock file for its postgres process is created in /tmp (file is removed when a segment shuts down) </p></td></tr><tr><td class="confluenceTd"> Active PID</td><td class="confluenceTd">Active process ID of a segment</td></tr><tr><td class="confluenceTd">Master reports status as</td><td class="confluenceTd">Segment status as reported in the system catalog: <em>Up </em>or <em>Down</em></td></tr><tr><td class="confluenceTd" colspan="1"> Database status</td><td class="confluenceTd" colspan="1">Status of HAWQ to incoming requests: <em>Up</em>, <em>Down</em>, or Suspended. A <em>Suspended </em> state means database activity is temporarily paused while a segment transitions from one state to another.</td></tr></tbody></table></div><p class="bridge2">Examples</p><p align="LEFT">Show detailed status information of a HAWQ system:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p class="bridge2">Description</p><p>The gpstate utility displays information about a running HAWQ instance. There is additional information you may want to know about a HAWQ system, since it is comprised of multiple database instances (segments) spanning multiple machines. The gpstate utility provides additional status information for a HAWQ system, such as:</p><ul><li>Which segments are down.</li><li>Master and segment configuration information (hosts, data directories, etc.).</li><li>The ports used by the system.</li></ul><p class="bridge2">Options</p><pre>-b (brief status)</pre><p style="margin-left: 30.0px;">Optional. Display a brief summary of the state of the HAWQ system. This is the default option.</p><pre>-B parallel_processes</pre><p style="margin-left: 30.0px;">The number of segments to check in parallel. If not specified, the utility will start up to 60 parallel processes depending on how many segment instances it needs to check.</p><pre>-d master_data_directory</pre><p align="LEFT" style="margin-left: 30.0px;">Optional. The master data directory. If not specified, the value set for $MASTER_DATA_DIRECTORY will be used.</p><pre>-f (show standby master details)</pre><p style="margin-left: 30.0px;">Display details of the standby master host if configured.</p><pre>-i (show HAWQ version)</pre><p style="margin-left: 30.0px;">Display the HAWQ software version information for each instance.</p><pre>-l logfile_directory</pre><p style="margin-left: 30.0px;">The directory to write the log file. Defaults to ~/gpAdminLogs.</p><pre>-p (show ports)</pre><p style="margin-left: 30.0px;">List the port numbers used throughout the HAWQ system.</p><pre>-q (no screen output)</pre><p align="LEFT" style="margin-left: 30.0px;">Optional. Run in quiet mode. Except for warning messages, command output is not displayed on the screen. However, this information is still written to the log file.</p><pre>-Q (quick status)</pre><p style="margin-left: 30.0px;">Optional. Checks segment status in the system catalog on the master host. Does not poll the segments for status.</p><pre>-s (detailed status)</pre><p align="LEFT" style="margin-left: 30.0px;">Optional. Displays detailed status information for the HAWQ system.</p><pre>-v (verbose output)</pre><p style="margin-left: 30.0px;">Optional. Displays error messages and outputs detailed status and progress information.</p><pre>-? | -h | --help (help)</pre><p style="margin-left: 30.0px;">Displays the online help.</p><p class="bridge2">Output Field Definitions</p><p align="LEFT">The following output fields are reported by gpstate -s for the master:</p><p class="bridge3">Table - gpstate output data for the master</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Output Data</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd">Master host</td><td class="confluenceTd">Host name of the master</td></tr><tr><td class="confluenceTd">Master process ID</td><td class="confluenceTd">PID of the mater database listener</td></tr><tr><td class="confluenceTd">Master data dictionary</td><td class="confluenceTd">File system location of the master database</td></tr><tr><td class="confluenceTd">Master port</td><td class="confluenceTd">Port of the master database listener process</td></tr><tr><td class="confluenceTd">Master current role</td><td class="confluenceTd">dispatch=regular operating mode utility=maintenance&nbsp;mode</td></tr><tr><td class="confluenceTd">HAWQ array configuration type</td><td class="confluenceTd"><p>Standard=one NIC per host</p><p>Multi-home=multiple NICs per host&nbsp;</p></td></tr><tr><td class="confluenceTd">HAWQ initsystem version&nbsp;</td><td class="confluenceTd">HAWQ version when system was first initialized&nbsp;&nbsp;</td></tr><tr><td class="confluenceTd">HAWQ&nbsp;current version&nbsp;</td><td class="confluenceTd">Current version of HAWQ&nbsp;</td></tr><tr><td class="confluenceTd">postgres version&nbsp;</td><td class="confluenceTd">The version of Postgres that HAWQ is based on&nbsp;</td></tr><tr><td class="confluenceTd">HAWQ mirroring&nbsp;status&nbsp;</td><td class="confluenceTd">Physical mirroring, SAN or&nbsp;none&nbsp;</td></tr><tr><td class="confluenceTd">Master standby&nbsp;</td><td class="confluenceTd">Host&nbsp;name of the standby master, active or passive&nbsp;</td></tr></tbody></table></div><p>The following output fields are reported by gpstate -s for each segment:</p><p class="bridge3">Table - gpstate output data for segments</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Output Data</th><th class="confluenceTh">Description</th></tr><tr><td class="confluenceTd"><p>Hostname</p></td><td class="confluenceTd"><p>System-configured host name</p></td></tr><tr><td class="confluenceTd"><p>Address</p></td><td class="confluenceTd"><p>network address host name (NIC name)</p></td></tr><tr><td class="confluenceTd"><p>Datadir</p></td><td class="confluenceTd"><p>File system location of segment data directory</p></td></tr><tr><td class="confluenceTd"><p>Port</p></td><td class="confluenceTd"><p align="LEFT">Port number of segment database listener process</p></td></tr><tr><td class="confluenceTd">Current Role</td><td class="confluenceTd"><p>Current role of a segment: <em>Primary</em></p></td></tr><tr><td class="confluenceTd"><p>Preferred Role</p></td><td class="confluenceTd"><p>Role at system initialization time: <em>Primary</em> <em> </em></p></td></tr><tr><td class="confluenceTd"><p>File postmaster.pid</p></td><td class="confluenceTd">Status of postmaster.pid lock file: <em>Found </em> or Missing</td></tr><tr><td class="confluenceTd"><p>PID from postmaster.pid file</p></td><td class="confluenceTd"><p>PID found in the postmaster.pid file&nbsp;</p></td></tr><tr><td class="confluenceTd"><p>Lock files in /tmp&nbsp;</p></td><td class="confluenceTd"><p align="LEFT">A&nbsp;segment port lock file for its postgres process is created in /tmp (file is removed when a segment shuts down)&nbsp;</p></td></tr><tr><td class="confluenceTd">&nbsp;Active PID</td><td class="confluenceTd">Active process ID of a segment</td></tr><tr><td class="confluenceTd">Master reports status as</td><td class="confluenceTd">Segment status as reported in the system catalog: <em>Up </em>or <em>Down</em></td></tr><tr><td class="confluenceTd" colspan="1">&nbsp;Database status</td><td class="confluenceTd" colspan="1">Status of HAWQ to incoming requests: <em>Up</em>, <em>Down</em>, or Suspended. A <em>Suspended </em> state means database activity is temporarily paused while a segment transitions from one state to another.</td></tr></tbody></table></div><p class="bridge2">Examples</p><p align="LEFT">Show detailed status information of a HAWQ system:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstate -s</pre>
 </div></div><p align="LEFT">Do a quick check for down segments in the master host system catalog:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">gpstate -Q</pre>
@@ -1159,9 +1158,9 @@ gpstate -? | -h | --help</pre>
 </div></div><p class="bridge2">See Also</p><p align="LEFT">gpstart, gplogfilter</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1185,28 +1184,21 @@ gpstate -? | -h | --help</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

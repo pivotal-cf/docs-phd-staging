@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>ALTER ROLE | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -786,7 +785,7 @@
                            <a href="ALTEROPERATORCLASS.html">ALTER OPERATOR CLASS</a>
                         </li>
                         <li>
-                           <a href="ALTERROLE.html">ALTER ROLE</a>
+                           <a class="active" href="ALTERROLE.html">ALTER ROLE</a>
                         </li>
                         <li>
                            <a href="ALTERTABLE.html">ALTER TABLE</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,7 +1140,7 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : ALTER ROLE</div><div class="wiki-content group" id="main-content">
 <p>Changes a database role (user or group).</p><p class="bridge2">Synopsis</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">ALTER ROLE name RENAME TO newname
@@ -1167,7 +1166,7 @@ where attributes and values are:
     | [ DENY deny_point ]
     | [ DENY BETWEEN deny_point AND deny_point]
     | [ DROP DENY FOR deny_point ]</pre>
-</div></div><p class="bridge2">Description</p><p align="LEFT">ALTER ROLE changes the attributes of a HAWQ role. There are several variants of this command:</p><ul><li>RENAME — Changes the name of the role. Database superusers can rename any role. Roles having CREATEROLE privilege can rename non-superuser roles. The current session user cannot be renamed (connect as a different user to rename a role). Because MD5-encrypted passwords use the role name as cryptographic salt, renaming a role clears its password if the password is MD5-encrypted.</li><li>SET | RESET — changes a role’s session default for a specified configuration parameter. Whenever the role subsequently starts a new session, the specified value becomes the session default, overriding whatever setting is present in server configuration file (postgresql.conf). For a role without LOGIN privilege, session defaults have no effect. Ordinary roles can change their own session defaults. Superusers can change anyone’s session defaults. Roles having CREATEROLE privilege can change defaults for non-superuser roles. See "Server Configuration Parameters"  for more information on all user-settable configuration parameters.</li><li>RESOURCE QUEUE — Assigns the role to a workload management resource queue. The role would then be subject to the limits assigned to the resource queue when issuing queries. Specify NONE to assign the role to the default resource queue. A role can only belong to one resource queue. For a role without LOGIN privilege, resource queues have no effect. See CREATE RESOURCE QUEUE for more information.</li><li>WITH option — Changes many of the role attributes that can be specified in CREATE ROLE. Attributes not mentioned in the command retain their previous settings. Database superusers can change any of these settings for any role. Roles having CREATEROLE privilege can change any of these settings, but only for non-superuser roles. Ordinary roles can only change their own password.</li></ul><p class="bridge2">Parameters</p><pre>name</pre><p align="LEFT" style="margin-left: 30.0px;">The name of the role whose attributes are to be altered.</p><pre>newname</pre><p align="LEFT" style="margin-left: 30.0px;">The new name of the role.</p><pre>config_parameter=value</pre><p align="LEFT" style="margin-left: 30.0px;">Set this role’s session default for the specified configuration parameter to the given value. If value is DEFAULT or if RESET is used, the role-specific variable setting is removed, so the role will inherit the system-wide default setting in new sessions. Use RESET ALL to clear all role-specific settings. See SET and "Server Configuration Parameters" for more information about configuration parameters.</p><pre>queue_name</pre><p align="LEFT" style="margin-left: 30.0px;">The name of the resource queue to which the user-level role is to be assigned. Only roles with LOGIN privilege can be assigned to a resource queue. To unassign a role from a resource queue and put it in the default resource queue, specify NONE. A role can only belong to one resource queue.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p class="bridge2">Description</p><p align="LEFT">ALTER ROLE changes the attributes of a HAWQ role. There are several variants of this command:</p><ul><li>RENAME — Changes the name of the role. Database superusers can rename any role. Roles having CREATEROLE privilege can rename non-superuser roles. The current session user cannot be renamed (connect as a different user to rename a role). Because MD5-encrypted passwords use the role name as cryptographic salt, renaming a role clears its password if the password is MD5-encrypted.</li><li>SET | RESET — changes a role’s session default for a specified configuration parameter. Whenever the role subsequently starts a new session, the specified value becomes the session default, overriding whatever setting is present in server configuration file (postgresql.conf). For a role without LOGIN privilege, session defaults have no effect. Ordinary roles can change their own session defaults. Superusers can change anyone’s session defaults. Roles having CREATEROLE privilege can change defaults for non-superuser roles. See "Server Configuration Parameters" &nbsp;for more information on all user-settable configuration parameters.</li><li>RESOURCE QUEUE — Assigns the role to a workload management resource queue. The role would then be subject to the limits assigned to the resource queue when issuing queries. Specify NONE to assign the role to the default resource queue. A role can only belong to one resource queue. For a role without LOGIN privilege, resource queues have no effect. See CREATE RESOURCE QUEUE for more information.</li><li>WITH option — Changes many of the role attributes that can be specified in CREATE ROLE. Attributes not mentioned in the command retain their previous settings. Database superusers can change any of these settings for any role. Roles having CREATEROLE privilege can change any of these settings, but only for non-superuser roles. Ordinary roles can only change their own password.</li></ul><p class="bridge2">Parameters</p><pre>name</pre><p align="LEFT" style="margin-left: 30.0px;">The name of the role whose attributes are to be altered.</p><pre>newname</pre><p align="LEFT" style="margin-left: 30.0px;">The new name of the role.</p><pre>config_parameter=value</pre><p align="LEFT" style="margin-left: 30.0px;">Set this role’s session default for the specified configuration parameter to the given value. If value is DEFAULT or if RESET is used, the role-specific variable setting is removed, so the role will inherit the system-wide default setting in new sessions. Use RESET ALL to clear all role-specific settings. See SET and "Server Configuration Parameters" for more information about configuration parameters.</p><pre>queue_name</pre><p align="LEFT" style="margin-left: 30.0px;">The name of the resource queue to which the user-level role is to be assigned. Only roles with LOGIN privilege can be assigned to a resource queue. To unassign a role from a resource queue and put it in the default resource queue, specify NONE. A role can only belong to one resource queue.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">SUPERUSER | NOSUPERUSER
 CREATEDB | NOCREATEDB
 CREATEROLE | NOCREATEROLE
@@ -1184,11 +1183,11 @@ VALID UNTIL 'timestamp'</pre>
 DENY BETWEEN deny_point AND deny_point</pre>
 </div></div><p align="LEFT" style="margin-left: 30.0px;">The DENY and DENY BETWEEN keywords set time-based constraints that are enforced at login. DENY sets a day or a day and time to deny access. DENY BETWEEN sets an interval during which access is denied. Both use the parameter deny_point that has following format:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">DAY day [ TIME 'time' ]</pre>
-</div></div><p align="LEFT" style="margin-left: 30.0px;">The two parts of the <em>deny_point</em> parameter use the following formats:</p><p align="LEFT" style="margin-left: 30.0px;">For day:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p align="LEFT" style="margin-left: 30.0px;">The two parts of the&nbsp;<em>deny_point</em>&nbsp;parameter use the following formats:</p><p align="LEFT" style="margin-left: 30.0px;">For day:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">{'Sunday'| 'Monday' | 'Tuesday' |'Wednesday' | 'Thursday' | 'Friday' | 'Saturday' | 0-6 }</pre>
 </div></div><p align="LEFT" style="margin-left: 30.0px;">For time:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">{ 00-23 : 00-59 | 01-12 : 00-59 { AM | PM }}</pre>
-</div></div><p align="LEFT" style="margin-left: 30.0px;">The<em> DENY BETWEEN clause uses two deny_point parameters:</em></p><pre style="margin-left: 30.0px;">DENY BETWEEN deny_point and deny_point</pre><p style="margin-left: 30.0px;">DROP DENY FOR deny_point</p><p style="margin-left: 30.0px;">The DROP DENY FOR clause removes a time-based constraint from the role. It uses the deny_point parameter described above.</p><p class="bridge2">Notes</p><p align="LEFT">Use GRANT and REVOKE for adding and removing role memberships.</p><p align="LEFT">Caution must be exercised when specifying an unencrypted password with this command. The password will be transmitted to the server in clear text, and it might also be logged in the client’s command history or the server log. The psql command-line client contains a meta-command \password that can be used to safely change a role’s password.</p><p align="LEFT">It is also possible to tie a session default to a specific database rather than to a role. Role-specific settings override database-specific ones if there is a conflict.</p><p class="bridge2">Examples</p><p align="LEFT">Change the password for a role:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p align="LEFT" style="margin-left: 30.0px;">The<em>&nbsp;DENY BETWEEN clause uses two deny_point parameters:</em></p><pre style="margin-left: 30.0px;">DENY BETWEEN deny_point and deny_point</pre><p style="margin-left: 30.0px;">DROP DENY FOR deny_point</p><p style="margin-left: 30.0px;">The DROP DENY FOR clause removes a time-based constraint from the role. It uses the deny_point parameter described above.</p><p class="bridge2">Notes</p><p align="LEFT">Use GRANT and REVOKE for adding and removing role memberships.</p><p align="LEFT">Caution must be exercised when specifying an unencrypted password with this command. The password will be transmitted to the server in clear text, and it might also be logged in the client’s command history or the server log. The psql command-line client contains a meta-command \password that can be used to safely change a role’s password.</p><p align="LEFT">It is also possible to tie a session default to a specific database rather than to a role. Role-specific settings override database-specific ones if there is a conflict.</p><p class="bridge2">Examples</p><p align="LEFT">Change the password for a role:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">ALTER ROLE daria WITH PASSWORD 'passwd123';</pre>
 </div></div><p>Change a password expiration date:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">ALTER ROLE scott VALID UNTIL 'May 4 12:00:00 2015 +1';</pre>
@@ -1206,12 +1205,12 @@ DENY BETWEEN deny_point AND deny_point</pre>
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">ALTER ROLE user3 DENY DAY 'Sunday';</pre>
 </div></div><p>Alter a role to remove the constraint that does not allow login access on Sundays:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">ALTER ROLE user3 DROP DENY FOR DAY 'Sunday';</pre>
-</div></div><p class="bridge2">Compatibility</p><p>The ALTER ROLE statement is a HAWQ extension.</p><p class="bridge2">See Also</p><p><a href="CREATEROLE.html">CREATE ROLE</a>, <a href="DROPROLE.html">DROP ROLE</a>, <a href="SET.html">SET</a>, <a href="CREATERESOURCEQUEUE.html">CREATE RESOURCE QUEUE</a>, <a href="GRANT.html">GRANT</a>, <a href="REVOKE.html">REVOKE</a> </p>
+</div></div><p class="bridge2">Compatibility</p><p>The ALTER ROLE statement is a HAWQ extension.</p><p class="bridge2">See Also</p><p><a href="CREATEROLE.html">CREATE ROLE</a>, <a href="DROPROLE.html">DROP ROLE</a>, <a href="SET.html">SET</a>, <a href="CREATERESOURCEQUEUE.html">CREATE RESOURCE QUEUE</a>, <a href="GRANT.html">GRANT</a>, <a href="REVOKE.html">REVOKE</a>&nbsp;</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1235,28 +1234,21 @@ DENY BETWEEN deny_point AND deny_point</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

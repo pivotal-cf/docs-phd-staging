@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>CREATE RESOURCE QUEUE | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -840,7 +839,7 @@
                            <a href="CREATEOPERATORCLASS.html">CREATE OPERATOR CLASS</a>
                         </li>
                         <li>
-                           <a href="CREATERESOURCEQUEUE.html">CREATE RESOURCE QUEUE</a>
+                           <a class="active" href="CREATERESOURCEQUEUE.html">CREATE RESOURCE QUEUE</a>
                         </li>
                         <li>
                            <a href="CREATEROLE.html">CREATE ROLE</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,7 +1140,7 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : CREATE RESOURCE QUEUE</div><div class="wiki-content group" id="main-content">
 <p>Defines a new resource queue.</p><p class="bridge2">Synopsis</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">CREATE RESOURCE QUEUE name WITH (queue_attribute=value [, ... ])
@@ -1156,18 +1155,18 @@
         [ MIN_COST=float ]
         [ PRIORITY={MIN|LOW|MEDIUM|HIGH|MAX} ]
         [ MEMORY_LIMIT='memory_units' ]</pre>
-</div></div><p class="bridge2">Description</p><p align="LEFT">Creates a new resource queue for HAWQ workload management. A resource queue must have either an ACTIVE_STATEMENTS or a MAX_COST value (or it can have both). Only a superuser can create a resource queue.</p><p align="LEFT">Resource queues with an ACTIVE_STATEMENTS threshold set a maximum limit on the number of queries that can be executed by roles assigned to that queue. The limit controls the number of active queries that are allowed to run at the same time. The value for ACTIVE_STATEMENTS should be an integer greater than 0.</p><p align="LEFT">Resource queues with a MAX_COST threshold set a maximum limit on the total cost of queries that can be executed by roles assigned to that queue. Cost is measured in the estimated total cost for the query, as determined by the HAWQ query planner (as shown in the EXPLAIN output for a query). Therefore, an administrator must be familiar with the queries typically executed on the system in order to set an appropriate cost threshold for a queue. Cost is measured in units of disk page fetches;1.0 equals one sequential disk page read. The value for MAX_COST is specified as a floating point number (for example 100.0) or can also be specified as an exponent (for example 1e+2). If a resource queue is limited based on a cost threshold, then the administrator can allow COST_OVERCOMMIT=TRUE (the default). This means that a query that exceeds the allowed cost threshold will be allowed to run but only when the system is idle. If COST_OVERCOMMIT=FALSE is specified, queries that exceed the cost limit will always be rejected and never allowed to run. Specifying a value for MIN_COST allows the administrator to define a cost for small queries that will be exempt from resource queueing.</p><p align="LEFT">If a value is not defined for ACTIVE_STATEMENTS or MAX_COST, it is set to -1 by default (meaning no limit). After defining a resource queue, you must assign roles to the queue using the ALTER ROLE or CREATE ROLE command.</p><p>You can optionally assign a PRIORITY to a resource queue to control the relative share of available CPU resources used by queries associated with the queue in relation to other resource queues. If a value is not defined for PRIORITY, queries associated with the queue have a default priority of MEDIUM.</p><p>Resource queues with an optional MEMORY_LIMIT threshold set a maximum limit on the amount of memory that all queries submitted through a resource queue can consume on a segment host. This determines the total amount of memory that all worker processes of a query can consume on a segment host during query execution. Pivotal recommends that MEMORY_LIMIT be used in conjunction with ACTIVE_STATEMENTS rather than with MAX_COST. The default amount of memory allotted per query on statement-based queues is: MEMORY_LIMIT/ACTIVE_STATEMENTS. The default amount of memory allotted per query on cost-based queues is: MEMORY_LIMIT * (query_cost / MAX_COST).</p><p>The default memory allotment can be overridden on a per-query basis using the statement_mem server configuration parameter, provided that MEMORY_LIMIT or max_statement_mem is not exceeded. For example, to allocate more memory to a particular query:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p class="bridge2">Description</p><p align="LEFT">Creates a new resource queue for HAWQ workload management. A resource queue must have either an ACTIVE_STATEMENTS or a MAX_COST value (or it can have both). Only a superuser can create a resource queue.</p><p align="LEFT">Resource queues with an ACTIVE_STATEMENTS threshold set a maximum limit on the number of queries that can be executed by roles assigned to that queue. The limit controls the number of active queries that are allowed to run at the same time. The value for ACTIVE_STATEMENTS should be an integer greater than 0.</p><p align="LEFT">Resource queues with a MAX_COST threshold set a maximum limit on the total cost of queries that can be executed by roles assigned to that queue. Cost is measured in the estimated total cost for the query, as determined by the HAWQ query planner (as shown in the EXPLAIN output for a query). Therefore, an administrator must be familiar with the queries typically executed on the system in order to set an appropriate cost threshold for a queue. Cost is measured in units of disk page fetches;1.0 equals one sequential disk page read. The value for MAX_COST is specified as a floating point number (for example 100.0) or can also be specified as an exponent (for example 1e+2). If a resource queue is limited based on a cost threshold, then the administrator can allow COST_OVERCOMMIT=TRUE (the default). This means that a query that exceeds the allowed cost threshold will be allowed to run but only when the system is idle. If COST_OVERCOMMIT=FALSE is specified, queries that exceed the cost limit will always be rejected and never allowed to run. Specifying a value for MIN_COST allows the administrator to define a cost for small queries that will be exempt from resource queueing.</p><p align="LEFT">If a value is not defined for ACTIVE_STATEMENTS or MAX_COST, it is set to -1 by default (meaning no limit). After defining a resource queue, you must assign roles to the queue using the ALTER ROLE or CREATE ROLE command.</p><p>You can optionally assign a PRIORITY to a resource queue to control the relative share of available CPU resources used by queries associated with the queue in relation to other resource queues. If a value is not defined for PRIORITY, queries associated with the queue have a default priority of MEDIUM.</p><p>Resource queues with an optional MEMORY_LIMIT threshold set a maximum limit on the amount of memory that all queries submitted through a resource queue can consume on a segment host. This determines the total amount of memory that all worker processes of a query can consume on a segment host during query execution.&nbsp;Pivotal recommends that MEMORY_LIMIT be used in conjunction with ACTIVE_STATEMENTS rather than with MAX_COST. The default amount of memory allotted per query on statement-based queues is: MEMORY_LIMIT/ACTIVE_STATEMENTS. The default amount of memory allotted per query on cost-based queues is: MEMORY_LIMIT * (query_cost / MAX_COST).</p><p>The default memory allotment can be overridden on a per-query basis using the statement_mem server configuration parameter, provided that MEMORY_LIMIT or max_statement_mem is not exceeded. For example, to allocate more memory to a particular query:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">=&gt; SET statement_mem='2GB';
 =&gt; SELECT * FROM my_big_table WHERE column='value' ORDER BY id;
 =&gt; RESET statement_mem;</pre>
-</div></div><p>As a general guideline, MEMORY_LIMIT for all of your resource queues should not exceed the amount of physical memory of a segment host.If workloads are staggered over multiple queues, memory allocations can be oversubscribed. However, queries can be cancelled during execution if the segment host memory limit specified in gp_vmem_protect_limit is exceeded.</p><p class="bridge2">Parameters</p><pre>name</pre><p style="margin-left: 30.0px;">The name of the resource queue.</p><pre>ACTIVE_STATEMENTS integer</pre><p style="margin-left: 30.0px;">Resource queues with an ACTIVE_STATEMENTS threshold limit the number of queries that can be executed by roles assigned to that queue. It controls the number of active queries that are allowed to run at the same time. The value for ACTIVE_STATEMENTS should be an integer greater than 0.</p><pre>MEMORY_LIMIT ' memory_units '</pre><p style="margin-left: 30.0px;">Sets the total memory quota for all statements submitted from users in this resource queue. Memory units can be specified in kB, MB or GB. The minimum memory quota for a resource queue is 10MB. There is no maximum, however the upper boundary at query execution time is limited by the physical memory of a segment host. The default is no limit (-1).</p><pre>MAX_COST float</pre><p style="margin-left: 30.0px;">Resource queues with a MAX_COST threshold set a maximum limit on the total cost of queries that can be executed by roles assigned to that queue. Cost is measured in the <em>estimated total cost </em> for the query as determined by the HAWQ query planner (as shown in the EXPLAIN output for a query). Therefore, an administrator must be familiar with the queries typically executed on the system in order to set an appropriate cost threshold for a queue. Cost is measured in units of disk page fetches; 1.0 equals one sequential disk page read. The value for MAX_COST is specified as a floating point number (for example 100.0) or can also be specified as an exponent (for example 1e+2).</p><pre>COST_OVERCOMMIT boolean</pre><p style="margin-left: 30.0px;">If a resource queue is limited based on MAX_COST, then the administrator can allow COST_OVERCOMMIT (the default). This means that a query that exceeds the allowed cost threshold will be allowed to run but only when the system is idle. If COST_OVERCOMMIT=FALSE is specified, queries that exceed the cost limit will always be rejected and never allowed to run.</p><pre>MIN_COST float</pre><p style="margin-left: 30.0px;">The minimum query cost limit of what is considered a small query. Queries with a cost under this limit will not be queued and run immediately. Cost is measured in the estimated total cost for the query as determined by the HAWQ query planner (as shown in the EXPLAIN output for a query). Therefore, an administrator must be familiar with the queries typically executed on the system in order to set an appropriate cost for what is considered a small query. Cost is measured in units of disk page fetches; 1.0 equals one sequential disk page read. The value for MIN_COST is specified as a floating point number (for example 100.0) or can also be specified as an exponent (for example 1e+2).</p><pre>PRIORITY={MIN|LOW|MEDIUM|HIGH|MAX}</pre><p style="margin-left: 30.0px;">Sets the priority of queries associated with a resource queue. Queries or statements in queues with higher priority levels will receive a larger share of available CPU resources in case of contention. Queries in low-priority queues may be delayed while higher priority queries are executed. If no priority is specified, queries associated with the queue have a priority of MEDIUM.</p><p class="bridge2">Notes</p><p><span style="line-height: 1.4285715;">There is also another system view named </span><em style="line-height: 1.4285715;">pg_stat_resqueues </em><span style="line-height: 1.4285715;"> which shows statistical metrics for a resource queue over time. To use this view, however, you must enable the stats_queue_level server configuration parameter.</span></p><p>CREATE RESOURCE QUEUE cannot be run within a transaction.</p><p class="bridge2">Examples</p><p>Create a resource queue with an active query limit of 20:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>As a general guideline, MEMORY_LIMIT for all of your resource queues should not exceed the amount of physical memory of a segment host.If workloads are staggered over multiple queues, memory allocations can be oversubscribed. However, queries can be cancelled during execution if the segment host memory limit specified in gp_vmem_protect_limit is exceeded.</p><p class="bridge2">Parameters</p><pre>name</pre><p style="margin-left: 30.0px;">The name of the resource queue.</p><pre>ACTIVE_STATEMENTS integer</pre><p style="margin-left: 30.0px;">Resource queues with an ACTIVE_STATEMENTS threshold limit the number of queries that can be executed by roles assigned to that queue. It controls the number of active queries that are allowed to run at the same time. The value for ACTIVE_STATEMENTS should be an integer greater than 0.</p><pre>MEMORY_LIMIT ' memory_units&nbsp;'</pre><p style="margin-left: 30.0px;">Sets the total memory quota for all statements submitted from users in this resource queue. Memory units can be specified in kB, MB or GB. The minimum memory quota for a resource queue is 10MB. There is no maximum, however the upper boundary at query execution time is limited by the physical memory of a segment host. The default is no limit (-1).</p><pre>MAX_COST float</pre><p style="margin-left: 30.0px;">Resource queues with a MAX_COST threshold set a maximum limit on the total cost of queries that can be executed by roles assigned to that queue. Cost is measured in the&nbsp;<em>estimated total cost&nbsp;</em>&nbsp;for the query as determined by the HAWQ query planner (as shown in the EXPLAIN output for a query). Therefore, an administrator must be familiar with the queries typically executed on the system in order to set an appropriate cost threshold for a queue. Cost is measured in units of disk page fetches; 1.0 equals one sequential disk page read. The value for MAX_COST is specified as a floating point number (for example 100.0) or can also be specified as an exponent (for example 1e+2).</p><pre>COST_OVERCOMMIT boolean</pre><p style="margin-left: 30.0px;">If a resource queue is limited based on MAX_COST, then the administrator can allow COST_OVERCOMMIT (the default). This means that a query that exceeds the allowed cost threshold will be allowed to run but only when the system is idle. If COST_OVERCOMMIT=FALSE is specified, queries that exceed the cost limit will always be rejected and never allowed to run.</p><pre>MIN_COST float</pre><p style="margin-left: 30.0px;">The minimum query cost limit of what is considered a small query. Queries with a cost under this limit will not be queued and run immediately. Cost is measured in the estimated total cost for the query as determined by the HAWQ query planner (as shown in the EXPLAIN output for a query). Therefore, an administrator must be familiar with the queries typically executed on the system in order to set an appropriate cost for what is considered a small query. Cost is measured in units of disk page fetches; 1.0 equals one sequential disk page read. The value for MIN_COST is specified as a floating point number (for example 100.0) or can also be specified as an exponent (for example 1e+2).</p><pre>PRIORITY={MIN|LOW|MEDIUM|HIGH|MAX}</pre><p style="margin-left: 30.0px;">Sets the priority of queries associated with a resource queue. Queries or statements in queues with higher priority levels will receive a larger share of available CPU resources in case of contention. Queries in low-priority queues may be delayed while higher priority queries are executed. If no priority is specified, queries associated with the queue have a priority of MEDIUM.</p><p class="bridge2">Notes</p><p><span style="line-height: 1.4285715;">There is also another system view named&nbsp;</span><em style="line-height: 1.4285715;">pg_stat_resqueues&nbsp;</em><span style="line-height: 1.4285715;">&nbsp;which shows statistical metrics for a resource queue over time. To use this view, however, you must enable the stats_queue_level server configuration parameter.</span></p><p>CREATE RESOURCE QUEUE cannot be run within a transaction.</p><p class="bridge2">Examples</p><p>Create a resource queue with an active query limit of 20:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">CREATE RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=20);</pre>
 </div></div><p>Create a resource queue with an active query limit of 20 and a total memory limit of 2000MB (each query will be allocated 100MB of segment host memory at execution time):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">CREATE RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=20,MEMORY_LIMIT='2000MB');
 </pre>
 </div></div><p>Create a resource queue with a query cost limit of 3000.0:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">CREATE RESOURCE QUEUE myqueue WITH (MAX_COST=3000.0); </pre>
-</div></div><p>Create a resource queue with a query cost limit of 3<sup>10</sup> (or 30000000000.0) and do not allow overcommit. Allow small queries with a cost under 500 to run immediately:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">CREATE RESOURCE QUEUE myqueue WITH (MAX_COST=3000.0);&nbsp;</pre>
+</div></div><p>Create a resource queue with a query cost limit of 3<sup>10</sup>&nbsp;(or 30000000000.0) and do not allow overcommit. Allow small queries with a cost under 500 to run immediately:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">CREATE RESOURCE QUEUE myqueue WITH (MAX_COST=3e+10,COST_OVERCOMMIT=FALSE, MIN_COST=500.0);</pre>
 </div></div><p>Create a resource queue with both an active query limit and a query cost limit:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">CREATE RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=30,
@@ -1176,7 +1175,7 @@ MAX_COST=5000.00);</pre>
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">CREATE RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=5,
 PRIORITY=MAX);</pre>
 </div></div><p>View the status of all resource queues:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">SELECT q.oid as queueid, q.rsqname as rsqname,
+<pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">SELECT&nbsp;q.oid as queueid, q.rsqname as rsqname,
 	t1.value::int as rsqcountlimit, 
 	t2.value::int as rsqcountvalue, 
 	t3.value::real as rsqcostlimit, 
@@ -1194,7 +1193,7 @@ FROM pg_resqueue q,
 	pg_resqueue_status_kv() t6 (queueid oid, key text, value text),
 	pg_resqueue_status_kv() t7 (queueid oid, key text, value text),
 	pg_resqueue_status_kv() t8 (queueid oid, key text, value text)
-WHERE 
+WHERE&nbsp;
 	q.oid = t1.queueid 
 	AND t1.queueid = t2.queueid 
 	AND t2.queueid = t3.queueid 
@@ -1252,9 +1251,9 @@ WHERE q.oid = t1.queueid
 </div></div><p class="bridge2">Compatibility</p><p align="LEFT"><code>CREATE RESOURCE QUEUE</code> is a HAWQ extension. There is no provision for resource queues or workload management in the SQL standard.</p><p class="bridge2">See Also</p><p><a href="ALTERROLE.html">ALTER ROLE</a>, <a href="CREATEROLE.html">CREATE ROLE</a>, <a href="DROPRESOURCEQUEUE.html">DROP RESOURCE QUEUE</a></p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1278,28 +1277,21 @@ WHERE q.oid = t1.queueid
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

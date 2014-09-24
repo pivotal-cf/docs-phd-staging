@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>Command Line Reference | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -697,7 +696,7 @@
                      <a href="ConfiguringPCCforLDAP.html">Configuring PCC for LDAP</a>
                   </li>
                   <li>
-                     <a href="CommandLineReference.html">Command Line Reference</a>
+                     <a class="active" href="CommandLineReference.html">Command Line Reference</a>
                   </li>
                </ul>
             </li>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,14 +1140,14 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Command Line Reference</div><div class="wiki-content group" id="main-content">
-<p>This section provides descriptions and syntax for the command line operations you can perform.</p><p><style type="text/css">/*<![CDATA[*/
+<p>This section provides descriptions and syntax for the command line operations you can perform.</p><p><style type="text/css">/**/
 div.rbtoc1410924411486 {padding: 0px;}
 div.rbtoc1410924411486 ul {list-style: disc;margin-left: 0px;}
 div.rbtoc1410924411486 li {margin-left: 0px;padding-left: 0px;}
 
-/*]]>*/</style><div class="toc-macro rbtoc1410924411486">
+/**/</style><div class="toc-macro rbtoc1410924411486">
 <ul class="toc-indentation">
 <li><a href="#CommandLineReference-BackupandRestore">Backup and Restore</a>
 <ul class="toc-indentation">
@@ -1175,24 +1174,24 @@ div.rbtoc1410924411486 li {margin-left: 0px;padding-left: 0px;}
 <p>You should backup your data each time you make a configuration or topology change for your cluster or if you add or delete clusters. Trying to restore old backup on the admin node when the cluster topology or configuration has been changed since the backup will result in inconsistent configuration and potentially unusable cluster.</p>
 </div>
 </div>
-<p> </p><p>To perform the backup run the following script:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<p>&nbsp;</p><p>To perform the backup run the following script:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># /usr/lib/gphd/gphdmgr/bin/gphdmgr_backup.sh</pre>
-</div></div><p>The script does not require any input and produces the backup file <code>phdmgr_backup_[timestamp].tar.gz</code> in the current working directory, where <code>timestamp</code> is the number corresponding to the current system time.</p><h3 id="CommandLineReference-Restore">Restore</h3><p>Run the restore script to replace all configuration files and all data in the PCC database from a backup file on a local disk. There are two restore scenarios:</p><ul><li><strong>Restore data on a new node</strong>. If you had a backup from the old admin node and you need to provision a new admin node, install PCC on the new admin node, then restore data from the backup produced on the old admin node. Hostnames, IP addresses and system configuration of the old and new nodes have to be identical.<br/><br/></li><li><strong>Restore data on the same node</strong>. You can restore data from the backup file on the same admin node where the backup was produced. Make sure the PCC version has not been updated since the backup was made.</li></ul><p> </p> <div class="aui-message warning shadowed information-macro">
+</div></div><p>The script does not require any input and produces the backup file <code>phdmgr_backup_[timestamp].tar.gz</code>&nbsp;in the current working directory, where&nbsp;<code>timestamp</code> is the number corresponding to the current system time.</p><h3 id="CommandLineReference-Restore">Restore</h3><p>Run the restore script to replace all configuration files and all data in the PCC database from a backup file on a local disk. There are two restore scenarios:</p><ul><li><strong>Restore data on a new node</strong>. If you had a backup from the old admin node and you need to provision a new admin node, install PCC on the new admin node, then restore data from the backup produced on the old admin node. Hostnames, IP addresses and system configuration of the old and new nodes have to be identical.<br><br></li><li><strong>Restore data on the same node</strong>. You can restore data from the backup file on the same admin node where the backup was produced. Make sure the PCC version has not been updated since the backup was made.</li></ul><p>&nbsp;</p> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
 <p>The restore procedure replaces all your configuration files and database data with the data from the backup file, so use with caution.</p>
 </div>
 </div>
-<p> </p><p>To perform the restore run the following script:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<p>&nbsp;</p><p>To perform the restore run the following script:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># /usr/lib/gphd/gphdmgr/bin/gphdmgr_restore.sh phdmgr_backup_[timestamp].tar.gz
- 
+&nbsp;
 Your data will be permanently removed. Do you want to continue? y</pre>
 </div></div><p>The script takes the name of the backup file as an argument and asks the user for the confirmation before proceeding with the restore. The script takes care of stopping the PCC services, performing the restore, and restarting the services.</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1216,28 +1215,21 @@ Your data will be permanently removed. Do you want to continue? y</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

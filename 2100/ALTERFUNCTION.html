@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>ALTER FUNCTION | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -777,7 +776,7 @@
                            <a href="ALTERAGGREGATE.html">ALTER AGGREGATE</a>
                         </li>
                         <li>
-                           <a href="ALTERFUNCTION.html">ALTER FUNCTION</a>
+                           <a class="active" href="ALTERFUNCTION.html">ALTER FUNCTION</a>
                         </li>
                         <li>
                            <a href="ALTEROPERATOR.html">ALTER OPERATOR</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,7 +1140,7 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : ALTER FUNCTION</div><div class="wiki-content group" id="main-content">
 <p>Changes the definition of a function.</p><p class="bridge2">Synopsis</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">ALTER FUNCTION name ( [ [argmode] [argname] argtype [, ...] ] ) action [, ... ] [RESTRICT]
@@ -1154,18 +1153,18 @@ where action is one of:
 {CALLED ON NULL INPUT | RETURNS NULL ON NULL INPUT | STRICT}
 {IMMUTABLE | STABLE | VOLATILE}
 {[EXTERNAL] SECURITY INVOKER | [EXTERNAL] SECURITY DEFINER}</pre>
-</div></div><p class="bridge2">Description</p><p>ALTER FUNCTION changes the definition of a function. </p><p>You must own the function to use ALTER FUNCTION. To change a function’s schema, you must also have CREATE privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have CREATE privilege on the function’s schema. (These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the function. However, a superuser can alter ownership of any function anyway.)</p><p class="bridge2">Parameters</p><pre>name</pre><p style="margin-left: 30.0px;">The name (optionally schema-qualified) of an existing function. </p><pre>argmode</pre><p style="margin-left: 30.0px;">The mode of an argument: either IN, OUT, or INOUT. If omitted, the default is IN. Note that ALTER FUNCTION does not actually pay any attention to OUT arguments, since only the input arguments are needed to determine the function’s identity. So it is sufficient to list the IN and INOUT arguments.</p><pre>argname</pre><p style="margin-left: 30.0px;">The name of an argument. Note that ALTER FUNCTION does not actually pay any attention to argument names, since only the argument data types are needed to determine the function’s identity.</p><pre>argtype</pre><p style="margin-left: 30.0px;">The data type(s) of the function’s arguments (optionally schema-qualified), if any. </p><pre>new_name</pre><p style="margin-left: 30.0px;">The new name of the function. </p><pre>new_owner</pre><p style="margin-left: 30.0px;">The new owner of the function. Note that if the function is marked SECURITY DEFINER, it will subsequently execute as the new owner. </p><pre>new_schema</pre><p style="margin-left: 30.0px;">The new schema for the function. </p><pre>CALLED ON NULL INPUT<br/>RETURNS NULL ON NULL INPUT<br/>STRICT</pre><p style="margin-left: 30.0px;">CALLED ON NULL INPUT changes the function so that it will be invoked when some or all of its arguments are null. RETURNS NULL ON NULL INPUT or STRICT changes the function so that it is not invoked if any of its arguments are null; instead, a null result is assumed automatically. See CREATE FUNCTION for more information.</p><pre>IMMUTABLE<br/>STABLE<br/>VOLATILE</pre><p style="margin-left: 30.0px;">Change the volatility of the function to the specified setting. See CREATE FUNCTION for details. </p><pre>[ EXTERNAL ] SECURITY INVOKER<br/>[ EXTERNAL ] SECURITY DEFINER</pre><p style="margin-left: 30.0px;">Change whether the function is a security definer or not. The key word EXTERNAL is ignored for SQL conformance. See CREATE FUNCTION for more information about this capability.</p><pre>RESTRICT</pre><p style="margin-left: 30.0px;">Ignored for conformance with the SQL standard.</p><p class="bridge2">Notes</p><p>HAWQ has limitations on the use of functions defined as STABLE or VOLATILE. See CREATE FUNCTION for more information.</p><p class="bridge2">Examples</p><p>To rename the function <em>sqrt </em>for type <em>integer </em>to <em>square_root</em>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p class="bridge2">Description</p><p>ALTER FUNCTION changes the definition of a function.&nbsp;</p><p>You must own the function to use ALTER FUNCTION. To change a function’s schema, you must also have CREATE privilege on the new schema. To alter the owner, you must also be a direct or indirect member of the new owning role, and that role must have CREATE privilege on the function’s schema. (These restrictions enforce that altering the owner does not do anything you could not do by dropping and recreating the function. However, a superuser can alter ownership of any function anyway.)</p><p class="bridge2">Parameters</p><pre>name</pre><p style="margin-left: 30.0px;">The name (optionally schema-qualified) of an existing function.&nbsp;</p><pre>argmode</pre><p style="margin-left: 30.0px;">The mode of an argument: either IN, OUT, or INOUT. If omitted, the default is IN. Note that ALTER FUNCTION does not actually pay any attention to OUT arguments, since only the input arguments are needed to determine the function’s identity. So it is sufficient to list the IN and INOUT arguments.</p><pre>argname</pre><p style="margin-left: 30.0px;">The name of an argument. Note that ALTER FUNCTION does not actually pay any attention to argument names, since only the argument data types are needed to determine the function’s identity.</p><pre>argtype</pre><p style="margin-left: 30.0px;">The data type(s) of the function’s arguments (optionally schema-qualified), if any.&nbsp;</p><pre>new_name</pre><p style="margin-left: 30.0px;">The new name of the function.&nbsp;</p><pre>new_owner</pre><p style="margin-left: 30.0px;">The new owner of the function. Note that if the function is marked SECURITY DEFINER, it will subsequently execute as the new owner.&nbsp;</p><pre>new_schema</pre><p style="margin-left: 30.0px;">The new schema for the function.&nbsp;</p><pre>CALLED ON NULL INPUT<br>RETURNS NULL ON NULL INPUT<br>STRICT</pre><p style="margin-left: 30.0px;">CALLED ON NULL INPUT changes the function so that it will be invoked when some or all of its arguments are null. RETURNS NULL ON NULL INPUT or STRICT changes the function so that it is not invoked if any of its arguments are null; instead, a null result is assumed automatically. See CREATE FUNCTION for more information.</p><pre>IMMUTABLE<br>STABLE<br>VOLATILE</pre><p style="margin-left: 30.0px;">Change the volatility of the function to the specified setting. See CREATE FUNCTION for details.&nbsp;</p><pre>[ EXTERNAL ] SECURITY INVOKER<br>[ EXTERNAL ] SECURITY DEFINER</pre><p style="margin-left: 30.0px;">Change whether the function is a security definer or not. The key word EXTERNAL is ignored for SQL conformance. See CREATE FUNCTION for more information about this capability.</p><pre>RESTRICT</pre><p style="margin-left: 30.0px;">Ignored for conformance with the SQL standard.</p><p class="bridge2">Notes</p><p>HAWQ&nbsp;has limitations on the use of functions defined as STABLE or VOLATILE. See CREATE FUNCTION&nbsp;for more information.</p><p class="bridge2">Examples</p><p>To rename the function <em>sqrt </em>for type <em>integer </em>to <em>square_root</em>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">ALTER FUNCTION sqrt(integer) RENAME TO square_root;</pre>
 </div></div><p>To change the owner of the function sqrt for type integer to joe:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">ALTER FUNCTION sqrt(integer) OWNER TO joe;</pre>
 </div></div><p>To change the schema of the function sqrtfor type integer to math:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">ALTER FUNCTION sqrt(integer) SET SCHEMA math;</pre>
-</div></div><p class="bridge2">Compatibility</p><p>This statement is partially compatible with the ALTER FUNCTION statement in the SQL standard. The standard allows more properties of a function to be modified, but does not provide the ability to rename a function, make a function a security definer, or change the owner, schema, or volatility of a function. The standard also requires the RESTRICT key word, which is optional in HAWQ.</p><p class="bridge2">See Also</p><p><a href="CREATEAGGREGATE.html">CREATE AGGREGATE</a>, <a href="DROPAGGREGATE.html">DROP AGGREGATE</a></p><p> </p>
+</div></div><p class="bridge2">Compatibility</p><p>This statement is partially compatible with the ALTER FUNCTION statement in the SQL standard. The standard allows more properties of a function to be modified, but does not provide the ability to rename a function, make a function a security definer, or change the owner, schema, or volatility of a function. The standard also requires the RESTRICT key word, which is optional in HAWQ.</p><p class="bridge2">See Also</p><p><a href="CREATEAGGREGATE.html">CREATE AGGREGATE</a>,&nbsp;<a href="DROPAGGREGATE.html">DROP AGGREGATE</a></p><p>&nbsp;</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1189,28 +1188,21 @@ where action is one of:
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

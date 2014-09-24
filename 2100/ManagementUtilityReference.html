@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>Management Utility Reference | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -998,7 +997,7 @@
                      </ul>
                   </li>
                   <li>
-                     <a href="ManagementUtilityReference.html">Management Utility Reference</a>
+                     <a class="active" href="ManagementUtilityReference.html">Management Utility Reference</a>
                      <ul>
                         <li>
                            <a href="gpactivatestandby.html">gpactivatestandby</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,14 +1140,14 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Management Utility Reference</div><div class="wiki-content group" id="main-content">
-<p>This section provides references for the command-line management utilities provided with HAWQ. HAWQ provides the standard client and server programs, and additional management utilities to administer a distributed HAWQ DBMS.</p><p>The HAWQ management utilities are located in <code>$GPHOME/bin</code>.</p><p class="bridge2">Backend Server Programs</p><p>The following server programs handle the parallelism and distribution of a HAWQ system. Users and administrators do not access these programs directly, but do so through the HAWQ management tools and utilities.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Program Name</th><th class="confluenceTh">Description</th><th class="confluenceTh">Alternative</th></tr><tr><td class="confluenceTd">initdb</td><td class="confluenceTd"><p align="LEFT">This program is called by gpinitsystem when initializing a HAWQ array. It is used internally to create the individual segment instances and the master instance.</p></td><td class="confluenceTd">gpinitsystem</td></tr><tr><td class="confluenceTd">ipclean</td><td class="confluenceTd"><p align="LEFT">Cleans up shared memory and semaphores from aborted backend servers.</p></td><td class="confluenceTd">N/A</td></tr><tr><td class="confluenceTd">gypsyncmaster</td><td class="confluenceTd"><p align="LEFT">This is the HAWQ program that starts the gpsyncagent process on the standby master host. Administrators do not call this program directly, but do so through the management scripts that initialize and/or activate a standby master for a HAWQ system. This process is responsible for keeping the standby master up to date with the primary master via a transactionlog replication process. </p></td><td class="confluenceTd">gpinitstandby<br/>gpactivatestandby</td></tr><tr><td class="confluenceTd">pg_controldata</td><td class="confluenceTd"><p align="LEFT">Displays control information of the database cluster.</p></td><td class="confluenceTd"> gpstate</td></tr><tr><td class="confluenceTd">pg_ctl</td><td class="confluenceTd"><p align="LEFT">This program is called by gpstart and gpstop when starting or stopping a HAWQ array. It is used internally to stop and start the individual segment instances and the master instance in parallel and with the correct options.</p></td><td class="confluenceTd">gpstart<br/>gpstop </td></tr><tr><td class="confluenceTd">pg_resetxlog</td><td class="confluenceTd"> Resets the transaction log.</td><td class="confluenceTd">N/A </td></tr><tr><td class="confluenceTd">postgres </td><td class="confluenceTd"><p align="LEFT">The postgres executable is the actual PostgreSQL server process that processes queries.</p></td><td class="confluenceTd">The main postgres process (postmaster) creates other postgres subprocesses and postgres sessions, as needed to handle client connections.</td></tr><tr><td class="confluenceTd">postmaster</td><td class="confluenceTd"><p align="LEFT">postmaster starts the postgres database server listener process that accepts client connections. In HAWQ, a postgres database listener process runs on the HAWQ Master Instance and on each Segment Instance.</p></td><td class="confluenceTd"><p align="LEFT">In HAWQ, you use gpstart and gpstop to start all postmasters (postgres processes) in the system at once, in the correct order and with the correct options.</p></td></tr></tbody></table></div><p> </p><p><ul class="childpages-macro"><li><a href="gpactivatestandby.html">gpactivatestandby</a></li><li><a href="gpcheckperf.html">gpcheckperf</a></li><li><a href="gpconfig.html">gpconfig</a></li><li><a href="gpexpand.html">gpexpand</a></li><li><a href="gpextract.html">gpextract</a></li><li><a href="gpfdist.html">gpfdist</a></li><li><a href="gpfilespace.html">gpfilespace</a></li><li><a href="gpinitstandby.html">gpinitstandby</a></li><li><a href="gpinitsystem.html">gpinitsystem</a></li><li><a href="gpload.html">gpload</a></li><li><a href="gplogfilter.html">gplogfilter</a></li><li><a href="gprecoverseg.html">gprecoverseg</a></li><li><a href="gpscp.html">gpscp</a></li><li><a href="gpstart.html">gpstart</a></li><li><a href="gpssh.html">gpssh</a></li><li><a href="gssh-exkeys.html">gssh-exkeys</a></li><li><a href="gpstate.html">gpstate</a></li><li><a href="gpstop.html">gpstop</a></li></ul></p><p align="LEFT"> </p>
+<p>This section provides references for the command-line management utilities provided with HAWQ. HAWQ provides the standard client and server programs, and additional management utilities to administer a distributed HAWQ DBMS.</p><p>The HAWQ management utilities are located in <code>$GPHOME/bin</code>.</p><p class="bridge2">Backend Server Programs</p><p>The following server programs handle the parallelism and distribution of a HAWQ system. Users and administrators do not access these programs directly, but do so through the HAWQ management tools and utilities.</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><th class="confluenceTh">Program Name</th><th class="confluenceTh">Description</th><th class="confluenceTh">Alternative</th></tr><tr><td class="confluenceTd">initdb</td><td class="confluenceTd"><p align="LEFT">This program is called by gpinitsystem when initializing a HAWQ array. It is used internally to create the individual segment instances and the master instance.</p></td><td class="confluenceTd">gpinitsystem</td></tr><tr><td class="confluenceTd">ipclean</td><td class="confluenceTd"><p align="LEFT">Cleans up shared memory and semaphores from aborted backend servers.</p></td><td class="confluenceTd">N/A</td></tr><tr><td class="confluenceTd">gypsyncmaster</td><td class="confluenceTd"><p align="LEFT">This is the HAWQ program that starts the gpsyncagent process on the standby master host. Administrators do not call this program directly, but do so through the management scripts that initialize and/or activate a standby master for a HAWQ system. This process is responsible for keeping the standby master up to date with the primary master via a transactionlog replication process.&nbsp;</p></td><td class="confluenceTd">gpinitstandby<br>gpactivatestandby</td></tr><tr><td class="confluenceTd">pg_controldata</td><td class="confluenceTd"><p align="LEFT">Displays control information of the database cluster.</p></td><td class="confluenceTd">&nbsp;gpstate</td></tr><tr><td class="confluenceTd">pg_ctl</td><td class="confluenceTd"><p align="LEFT">This program is called by gpstart and gpstop when starting or stopping a HAWQ array. It is used internally to stop and start the individual segment instances and the master instance in parallel and with the correct options.</p></td><td class="confluenceTd">gpstart<br>gpstop&nbsp;</td></tr><tr><td class="confluenceTd">pg_resetxlog</td><td class="confluenceTd">&nbsp;Resets the transaction log.</td><td class="confluenceTd">N/A&nbsp;</td></tr><tr><td class="confluenceTd">postgres&nbsp;</td><td class="confluenceTd"><p align="LEFT">The postgres executable is the actual PostgreSQL server process that processes queries.</p></td><td class="confluenceTd">The main postgres process (postmaster) creates other postgres subprocesses and postgres sessions, as needed to handle client connections.</td></tr><tr><td class="confluenceTd">postmaster</td><td class="confluenceTd"><p align="LEFT">postmaster starts the postgres database server listener process that accepts client connections. In HAWQ, a postgres database listener process runs on the HAWQ Master Instance and on each Segment Instance.</p></td><td class="confluenceTd"><p align="LEFT">In HAWQ, you use gpstart and gpstop to start all postmasters (postgres processes) in the system at once, in the correct order and with the correct options.</p></td></tr></tbody></table></div><p>&nbsp;</p><p><ul class="childpages-macro"><li><a href="gpactivatestandby.html">gpactivatestandby</a></li><li><a href="gpcheckperf.html">gpcheckperf</a></li><li><a href="gpconfig.html">gpconfig</a></li><li><a href="gpexpand.html">gpexpand</a></li><li><a href="gpextract.html">gpextract</a></li><li><a href="gpfdist.html">gpfdist</a></li><li><a href="gpfilespace.html">gpfilespace</a></li><li><a href="gpinitstandby.html">gpinitstandby</a></li><li><a href="gpinitsystem.html">gpinitsystem</a></li><li><a href="gpload.html">gpload</a></li><li><a href="gplogfilter.html">gplogfilter</a></li><li><a href="gprecoverseg.html">gprecoverseg</a></li><li><a href="gpscp.html">gpscp</a></li><li><a href="gpstart.html">gpstart</a></li><li><a href="gpssh.html">gpssh</a></li><li><a href="gssh-exkeys.html">gssh-exkeys</a></li><li><a href="gpstate.html">gpstate</a></li><li><a href="gpstop.html">gpstop</a></li></ul></p><p align="LEFT">&nbsp;</p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1172,28 +1171,21 @@
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

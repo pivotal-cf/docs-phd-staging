@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>High Availability Command Reference | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -341,7 +340,7 @@
                                        <a href="EnablingRe-enablingHighAvailability.html">Enabling/Re-enabling High Availability</a>
                                     </li>
                                     <li>
-                                       <a href="HighAvailabilityCommandReference.html">High Availability Command Reference</a>
+                                       <a class="active" href="HighAvailabilityCommandReference.html">High Availability Command Reference</a>
                                     </li>
                                  </ul>
                               </li>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,20 +1140,20 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : High Availability Command Reference</div><div class="wiki-content group" id="main-content">
 <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
-<p>HDFS commands need a Kerberos ticket when running in secure mode.  See <a href="SecureModeCommands.html">Secure Mode Commands</a> for more details.</p>
+<p>HDFS commands need a Kerberos ticket when running in secure mode.&nbsp; See <a href="SecureModeCommands.html">Secure Mode Commands</a> for more details.</p>
 </div>
 </div>
-<p> </p><p><strong><code>haadmin</code> Reference:</strong></p><ul><li><code>hdfs haadmin</code> prints help for all subcommands and options. <code>serviceid </code>is the logical name configured for each NameNode, as <code>namenode1id</code> and <code>namenode2id</code>, in <code>clusterConfig.xml</code></li><li>Check state of a given NameNode:<em> <br/></em></li></ul><p style="margin-left: 60.0px;"><code>hdfs haadmin -getServiceState &lt;serviceid&gt; Ex : hdfs haadmin -getServiceState nn1</code></p><ul><li>Transition a given NameNode to standby:<em> <br/></em></li></ul><p style="margin-left: 60.0px;"><code>hdfs haadmin -transitionToStandby &lt;serviceid&gt;</code> <em> <br/></em></p><p style="margin-left: 60.0px;">For example:</p><p style="margin-left: 60.0px;"><code>hdfs haadmin -transitionToStandby  nn1</code></p><ul><li>Transition a given NameNode to active:</li></ul><p style="margin-left: 60.0px;">hdfs haadmin -transitionToActive &lt;serviceid&gt;</p><p style="margin-left: 60.0px;">For example:</p><p style="margin-left: 60.0px;"><code>hdfs haadmin -transitionToActive  nn1</code></p><ul><li>Failover between two NameNodes: </li></ul><p style="margin-left: 60.0px;"><code>hdfs haadmin -failover &lt;serviceid&gt; &lt;serviceid&gt;</code></p><p style="margin-left: 60.0px;">For example:</p><p style="margin-left: 60.0px;"><code>hdfs haadmin -failover nn1 nn2</code></p>
+<p>&nbsp;</p><p><strong><code>haadmin</code> Reference:</strong></p><ul><li><code>hdfs haadmin</code>&nbsp;prints help for all subcommands and options.&nbsp;<code>serviceid&nbsp;</code>is the logical name configured for each NameNode, as&nbsp;<code>namenode1id</code>&nbsp;and&nbsp;<code>namenode2id</code>, in&nbsp;<code>clusterConfig.xml</code></li><li>Check state of a given NameNode:<em>&nbsp;<br></em></li></ul><p style="margin-left: 60.0px;"><code>hdfs haadmin -getServiceState &lt;serviceid&gt; Ex :&nbsp;hdfs haadmin -getServiceState nn1</code></p><ul><li>Transition a given NameNode to standby:<em>&nbsp;<br></em></li></ul><p style="margin-left: 60.0px;"><code>hdfs haadmin -transitionToStandby&nbsp;&lt;serviceid&gt;</code>&nbsp;<em>&nbsp;<br></em></p><p style="margin-left: 60.0px;">For example:</p><p style="margin-left: 60.0px;"><code>hdfs haadmin -transitionToStandby&nbsp; nn1</code></p><ul><li>Transition a given NameNode to active:</li></ul><p style="margin-left: 60.0px;">hdfs haadmin -transitionToActive &lt;serviceid&gt;</p><p style="margin-left: 60.0px;">For example:</p><p style="margin-left: 60.0px;"><code>hdfs haadmin -transitionToActive &nbsp;nn1</code></p><ul><li>Failover between two NameNodes:&nbsp;</li></ul><p style="margin-left: 60.0px;"><code>hdfs haadmin -failover &lt;serviceid&gt; &lt;serviceid&gt;</code></p><p style="margin-left: 60.0px;">For example:</p><p style="margin-left: 60.0px;"><code>hdfs haadmin -failover nn1 nn2</code></p>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1178,28 +1177,21 @@
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

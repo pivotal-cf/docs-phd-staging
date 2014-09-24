@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>Backing Up and Restoring HAWQ Databases | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -753,7 +752,7 @@
                      <a href="ConfiguringLDAPAuthentication.html">Configuring LDAP Authentication</a>
                   </li>
                   <li>
-                     <a href="BackingUpandRestoringHAWQDatabases.html">Backing Up and Restoring HAWQ Databases</a>
+                     <a class="active" href="BackingUpandRestoringHAWQDatabases.html">Backing Up and Restoring HAWQ Databases</a>
                   </li>
                   <li>
                      <a href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,31 +1140,31 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Backing Up and Restoring HAWQ Databases</div><div class="wiki-content group" id="main-content">
-<p><style type="text/css">/*<![CDATA[*/
+<p><style type="text/css">/**/
 div.rbtoc1410924421196 {padding: 0px;}
 div.rbtoc1410924421196 ul {list-style: disc;margin-left: 0px;}
 div.rbtoc1410924421196 li {margin-left: 0px;padding-left: 0px;}
 
-/*]]>*/</style><div class="toc-macro rbtoc1410924421196">
+/**/</style><div class="toc-macro rbtoc1410924421196">
 <ul class="toc-indentation">
 <li><a href="#BackingUpandRestoringHAWQDatabases-UsinggpfdistorPXF">Using gpfdist or PXF</a>
 <ul class="toc-indentation">
 <li><a href="#BackingUpandRestoringHAWQDatabases-PerformingaParallelBackup">Performing a Parallel Backup</a></li>
 <li><a href="#BackingUpandRestoringHAWQDatabases-RestoringfromaBackup">Restoring from a Backup</a></li>
-<li><a href="#BackingUpandRestoringHAWQDatabases-DifferencesbetweengpfdistandPXF">Differences between gpfdist and PXF </a></li>
+<li><a href="#BackingUpandRestoringHAWQDatabases-DifferencesbetweengpfdistandPXF">Differences between gpfdist and PXF&nbsp;</a></li>
 </ul>
 </li>
 <li><a href="#BackingUpandRestoringHAWQDatabases-Usingpg_dumpandpg_restore">Using pg_dump and pg_restore</a></li>
 <li><a href="#BackingUpandRestoringHAWQDatabases-AboutBackingUpRawData">About Backing Up Raw Data</a></li>
-<li><a href="#BackingUpandRestoringHAWQDatabases-EstimatingtheBestPractice">Estimating the Best Practice </a></li>
+<li><a href="#BackingUpandRestoringHAWQDatabases-EstimatingtheBestPractice">Estimating the Best Practice&nbsp;</a></li>
 <li><a href="#BackingUpandRestoringHAWQDatabases-EstimatingSpaceRequirements">Estimating Space Requirements</a></li>
 <li><a href="#BackingUpandRestoringHAWQDatabases-Usinggpfdist">Using gpfdist</a>
 <ul class="toc-indentation">
 <li><a href="#BackingUpandRestoringHAWQDatabases-Example">Example</a>
 <ul class="toc-indentation">
-<li><a href="#BackingUpandRestoringHAWQDatabases-Usinggpfdisttobackupthetpchdatabase:">Using gpfdist to back up the tpch database:</a></li>
+<li><a href="#BackingUpandRestoringHAWQDatabases-Usinggpfdisttobackupthetpchdatabase:">Using gpfdist to back up the tpch&nbsp;database:</a></li>
 <li><a href="#BackingUpandRestoringHAWQDatabases-Torecoverusinggpfdist:">To recover using gpfdist:</a></li>
 </ul>
 </li>
@@ -1174,26 +1173,26 @@ div.rbtoc1410924421196 li {margin-left: 0px;padding-left: 0px;}
 </li>
 <li><a href="#BackingUpandRestoringHAWQDatabases-UsingPXF">Using PXF</a>
 <ul class="toc-indentation">
-<li><a href="#BackingUpandRestoringHAWQDatabases-UsingPXFtobackupthetpchdatabase:">Using PXF to back up the tpch database:</a></li>
+<li><a href="#BackingUpandRestoringHAWQDatabases-UsingPXFtobackupthetpchdatabase:">Using PXF to back up the&nbsp;tpch database:</a></li>
 <li><a href="#BackingUpandRestoringHAWQDatabases-TorecoverfromaPXFbackup:">To recover from a PXF backup:</a></li>
 </ul>
 </li>
 </ul>
-</div></p><p>This chapter provides information on backing up and restoring databases in HAWQ system.</p><p>As an administrator, you will need to backup and restore your database. HAWQ provides three utilities to help you backup your data:</p><ul><li><code>gpfdist</code></li><li>PXF</li><li><code>pg_dump</code></li></ul><p><code>gpfdist</code> and PXF are parallel loading and unloading tools that provide the best performance.  You can use <code>pg_dump</code>, a non-parallel utility, to migrate from PostgreSQL to HAWQ. See About Parallel Backup and Restore using gpfdist or PXF and About Non-Parallel Backup and Restore using pg_dump and pg_restore.</p><p>This section describes these three utilities to help you decide what fits your needs.</p><p>For information about backing up raw data from ETL processes, see About Backup Raw Data.</p><h2 id="BackingUpandRestoringHAWQDatabases-UsinggpfdistorPXF">Using gpfdist or PXF</h2><p>You can perform a parallel backup in HAWQ using gpfdist or PXF to unload all data to external tables. Backup files can reside on a local file system or HDFS. To recover tables, you can load data back from external tables to the database. </p><h3 id="BackingUpandRestoringHAWQDatabases-PerformingaParallelBackup">Performing a Parallel Backup</h3><ol><li><p>Check the database size to ensure that the file system has enough space to save the backed up files.</p></li><li><p>Use the <code>pg_dump</code> utility to dump the schema of the target database.</p></li><li><p>Create a writable external table for each table to back up to that database.</p></li><li><p>Load table data into the newly created external tables.</p> <div class="aui-message warning shadowed information-macro">
+</div></p><p>This chapter provides information on backing up and restoring databases in HAWQ system.</p><p>As an administrator, you will need to backup and restore your database. HAWQ provides three utilities to help you backup your data:</p><ul><li><code>gpfdist</code></li><li>PXF</li><li><code>pg_dump</code></li></ul><p><code>gpfdist</code> and PXF&nbsp;are parallel loading and unloading tools that provide the best performance. &nbsp;You can use <code>pg_dump</code>, a non-parallel utility, to&nbsp;migrate from PostgreSQL to HAWQ. See About Parallel Backup and Restore using gpfdist or PXF and About Non-Parallel Backup and Restore using pg_dump and pg_restore.</p><p>This section describes these three utilities to help you decide what fits your needs.</p><p>For information about backing up raw data from ETL processes, see About Backup Raw Data.</p><h2 id="BackingUpandRestoringHAWQDatabases-UsinggpfdistorPXF">Using gpfdist or PXF</h2><p>You can perform a parallel backup in HAWQ using gpfdist or PXF&nbsp;to unload all data to external tables. Backup files can reside on a local file system or HDFS. To recover tables, you can load data back from external tables to the database.&nbsp;</p><h3 id="BackingUpandRestoringHAWQDatabases-PerformingaParallelBackup">Performing a Parallel Backup</h3><ol><li><p>Check the database size to ensure that the file system has enough space to save the backed up files.</p></li><li><p>Use the&nbsp;<code>pg_dump</code> utility to dump the schema of the target database.</p></li><li><p>Create a writable external table for each table to back up to that database.</p></li><li><p>Load table data into the newly created external tables.</p> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
                             Pivotal recommends that you put the insert statements in a single transaction to prevent problems if you perform any update operations during the backup.
                     </div>
 </div>
-</li></ol><h3 id="BackingUpandRestoringHAWQDatabases-RestoringfromaBackup">Restoring from a Backup</h3><ol><li>Create a database to recover to.</li><li>Recreate the schema from the schema file (created during the <code>pg_dump</code> process).</li><li><p>Create a readable external table for each table in the database.</p></li><li><p>Load data from the external table to the actual table.</p></li><li>Run the ANALYZE command once loading is complete. This ensures that the query planner generates optimal plan based on up-to-date table statistics.</li></ol><h3 id="BackingUpandRestoringHAWQDatabases-DifferencesbetweengpfdistandPXF">Differences between gpfdist and PXF </h3><p>gpfdist and PXF differ in the following ways:</p><ul><li><code>gpfdist</code> stores backup files on local file system, while PXF stores files on HDFS.</li><li><code>gpfdist</code> only supports plain text format, while PXF also supports binary format like AVRO and customized format.</li><li><code>gpfdist</code> doesn’t support generating compressed file, while PXF supports compression (you can specify compression codec used in Hadoop like <code>org.apache.hadoop.io.compress.GzipCodec</code>).</li><li>Both <code>gpfdist</code> and PXF both have fast loading performance, but gpfdist is much faster than PXF.</li></ul><h2 id="BackingUpandRestoringHAWQDatabases-Usingpg_dumpandpg_restore">Using pg_dump and pg_restore</h2><p>HAWQ supports the PostgreSQL backup and restore utilities, <code>pg_dump</code> and <code>pg_restore</code>. The <code>pg_dump</code> utility creates a single, large dump file in the master host containing the data from all active segments. The <code>pg_restore</code> utility restores a HAWQ database from the archive created by <code>pg_dump</code>. In most cases, this is probably not practical, as there is most likely not enough disk space in the master host for creating a single backup file of an entire distributed database. HAWQ supports these utilities in case you are migrating data from PostgreSQL to HAWQ.</p><p>To create a backup archive for database <code>mydb</code>:</p><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</li></ol><h3 id="BackingUpandRestoringHAWQDatabases-RestoringfromaBackup">Restoring from a Backup</h3><ol><li>Create a database to recover to.</li><li>Recreate the schema from the schema file (created during the <code>pg_dump</code> process).</li><li><p>Create a readable external table for each table in the database.</p></li><li><p>Load data from the external table to the actual table.</p></li><li>Run the ANALYZE command once loading is complete. This ensures that the query planner generates optimal plan based on up-to-date table statistics.</li></ol><h3 id="BackingUpandRestoringHAWQDatabases-DifferencesbetweengpfdistandPXF">Differences between gpfdist and PXF&nbsp;</h3><p>gpfdist and PXF differ in the following ways:</p><ul><li><code>gpfdist</code> stores backup files on local file system, while PXF stores files on HDFS.</li><li><code>gpfdist</code> only supports plain text format, while PXF also supports binary format like AVRO and customized format.</li><li><code>gpfdist</code> doesn’t support generating compressed file, while PXF supports compression (you can specify compression codec used in Hadoop like <code>org.apache.hadoop.io.compress.GzipCodec</code>).</li><li>Both <code>gpfdist</code> and PXF both have fast loading performance, but gpfdist is much faster than PXF.</li></ul><h2 id="BackingUpandRestoringHAWQDatabases-Usingpg_dumpandpg_restore">Using pg_dump and pg_restore</h2><p>HAWQ supports the PostgreSQL backup and restore utilities, <code>pg_dump</code> and <code>pg_restore</code>. The&nbsp;<code>pg_dump</code>&nbsp;utility creates a single, large dump file in the master host containing the data from all active segments. The&nbsp;<code>pg_restore</code>&nbsp;utility restores a HAWQ database from the archive created by <code>pg_dump</code>. In most cases, this is probably not practical, as there is most likely not enough disk space in the master host for creating a single backup file of an entire distributed database. HAWQ supports these utilities in case you are migrating data from PostgreSQL to HAWQ.</p><p>To create a backup archive for database <code>mydb</code>:</p><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ pg_dump -Ft -f mydb.tar mydb</pre>
-</div></div><p>To create a compressed backup using custom format and compression level 3:</p></div><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>To create a compressed backup using custom format and compression level 3:</p></div><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ pg_dump -Fc -Z3 -f mydb.dump mydb</pre>
 </div></div><p>To restore from an archive using <code>pg_restore</code>:</p></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ pg_restore -d new_db mydb.dump</pre>
-</div></div><h2 id="BackingUpandRestoringHAWQDatabases-AboutBackingUpRawData">About Backing Up Raw Data</h2><p>Parallel backup using <code>gpfdist </code>or PXF works fine in most cases. There are a couple of situations where you cannot perform parallel backup and restore operations:</p><ul><li>Performing periodically incremental backups</li><li>Dumping a large data volume to external tables - this process takes a long time.</li></ul><p>In such situations, you can back up raw data generated during ETL processes and reload it into HAWQ. Pivotal recommends this approach due to it's incremental nature and the flexibility  to choose where you store backup files.</p><h2 id="BackingUpandRestoringHAWQDatabases-EstimatingtheBestPractice">Estimating the Best Practice </h2><p>The table below summaries the differences between the four approaches we discussed above. </p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p align="left"><strong> </strong></p></td><td class="confluenceTd"><p align="left"><strong>gpfdist</strong></p></td><td class="confluenceTd"><p align="left"><strong>PXF</strong></p></td><td class="confluenceTd"><p align="left"><strong>pg_dump</strong></p></td><td class="confluenceTd" colspan="1"><strong>backup raw data</strong></td></tr><tr><td class="confluenceTd"><p align="left"><strong>Is Parallel</strong></p></td><td class="confluenceTd"><p align="left">Yes</p></td><td class="confluenceTd"><p align="left">Yes</p></td><td class="confluenceTd"><p align="left">No</p></td><td class="confluenceTd" colspan="1">No</td></tr><tr><td class="confluenceTd" colspan="1"><strong>Incremental Backup</strong></td><td class="confluenceTd" colspan="1">No</td><td class="confluenceTd" colspan="1">No</td><td class="confluenceTd" colspan="1">No</td><td class="confluenceTd" colspan="1">Yes</td></tr><tr><td class="confluenceTd"><p align="left"><strong>Backup Location</strong></p></td><td class="confluenceTd"><p align="left">Local FS</p></td><td class="confluenceTd"><p align="left">HDFS</p></td><td class="confluenceTd"><p align="left">Local FS</p></td><td class="confluenceTd" colspan="1">Local FS, HDFS</td></tr><tr><td class="confluenceTd"><p align="left"><strong>Format</strong></p></td><td class="confluenceTd"><p align="left">Text, CSV</p></td><td class="confluenceTd"><p align="left">Text, CSV, Custom</p></td><td class="confluenceTd"><p align="left">Text, Tar, Custom</p></td><td class="confluenceTd" colspan="1">Depends on format of row data</td></tr><tr><td class="confluenceTd"><p align="left"><strong>Compression</strong></p></td><td class="confluenceTd"><p align="left">No</p></td><td class="confluenceTd"><p align="left">Yes</p></td><td class="confluenceTd"><p align="left">Only support custom format</p></td><td class="confluenceTd" colspan="1">Optional</td></tr><tr><td class="confluenceTd"><p align="left"><strong>Scalability</strong></p></td><td class="confluenceTd"><p align="left">Good</p></td><td class="confluenceTd"><p align="left">Good</p></td><td class="confluenceTd"><p align="center">---</p></td><td class="confluenceTd" colspan="1">Good</td></tr><tr><td class="confluenceTd"><p align="left"><strong>Performance</strong></p></td><td class="confluenceTd"><p align="left">Fast loading,</p><p align="left">Fast unloading</p></td><td class="confluenceTd"><p align="left">Fast loading,</p><p align="left">Normal unloading</p></td><td class="confluenceTd"><p align="center">---</p></td><td class="confluenceTd" colspan="1">Fast (Just file copy)</td></tr></tbody></table></div><h2 id="BackingUpandRestoringHAWQDatabases-EstimatingSpaceRequirements">Estimating Space Requirements</h2><p>Before you backup your database, ensure that you have enough space to store backup files. This section describes how to get the database size and estimate space requirements.</p><ol style="list-style-type: square;"><li>Use <code>hawq_toolkit</code> to query size of the database you want to backup.<div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><h2 id="BackingUpandRestoringHAWQDatabases-AboutBackingUpRawData">About Backing Up Raw Data</h2><p>Parallel backup using&nbsp;<code>gpfdist&nbsp;</code>or&nbsp;PXF&nbsp;works fine in most cases. There are a couple of situations where you cannot perform parallel backup and restore operations:</p><ul><li>Performing periodically incremental backups</li><li>Dumping a large data volume to external tables - this process takes a long time.</li></ul><p>In such situations, you can back up raw data generated during ETL processes and reload it into HAWQ. Pivotal recommends this approach due to it's incremental nature and the flexibility &nbsp;to choose where you store backup files.</p><h2 id="BackingUpandRestoringHAWQDatabases-EstimatingtheBestPractice">Estimating the Best Practice&nbsp;</h2><p>The table below summaries the differences between the four approaches we discussed above.&nbsp;</p><div class="table-wrap"><table class="confluenceTable"><tbody><tr><td class="confluenceTd"><p align="left"><strong>&nbsp;</strong></p></td><td class="confluenceTd"><p align="left"><strong>gpfdist</strong></p></td><td class="confluenceTd"><p align="left"><strong>PXF</strong></p></td><td class="confluenceTd"><p align="left"><strong>pg_dump</strong></p></td><td class="confluenceTd" colspan="1"><strong>backup raw data</strong></td></tr><tr><td class="confluenceTd"><p align="left"><strong>Is Parallel</strong></p></td><td class="confluenceTd"><p align="left">Yes</p></td><td class="confluenceTd"><p align="left">Yes</p></td><td class="confluenceTd"><p align="left">No</p></td><td class="confluenceTd" colspan="1">No</td></tr><tr><td class="confluenceTd" colspan="1"><strong>Incremental Backup</strong></td><td class="confluenceTd" colspan="1">No</td><td class="confluenceTd" colspan="1">No</td><td class="confluenceTd" colspan="1">No</td><td class="confluenceTd" colspan="1">Yes</td></tr><tr><td class="confluenceTd"><p align="left"><strong>Backup Location</strong></p></td><td class="confluenceTd"><p align="left">Local FS</p></td><td class="confluenceTd"><p align="left">HDFS</p></td><td class="confluenceTd"><p align="left">Local FS</p></td><td class="confluenceTd" colspan="1">Local FS, HDFS</td></tr><tr><td class="confluenceTd"><p align="left"><strong>Format</strong></p></td><td class="confluenceTd"><p align="left">Text, CSV</p></td><td class="confluenceTd"><p align="left">Text, CSV, Custom</p></td><td class="confluenceTd"><p align="left">Text, Tar, Custom</p></td><td class="confluenceTd" colspan="1">Depends on format of row data</td></tr><tr><td class="confluenceTd"><p align="left"><strong>Compression</strong></p></td><td class="confluenceTd"><p align="left">No</p></td><td class="confluenceTd"><p align="left">Yes</p></td><td class="confluenceTd"><p align="left">Only support custom format</p></td><td class="confluenceTd" colspan="1">Optional</td></tr><tr><td class="confluenceTd"><p align="left"><strong>Scalability</strong></p></td><td class="confluenceTd"><p align="left">Good</p></td><td class="confluenceTd"><p align="left">Good</p></td><td class="confluenceTd"><p align="center">---</p></td><td class="confluenceTd" colspan="1">Good</td></tr><tr><td class="confluenceTd"><p align="left"><strong>Performance</strong></p></td><td class="confluenceTd"><p align="left">Fast loading,</p><p align="left">Fast unloading</p></td><td class="confluenceTd"><p align="left">Fast loading,</p><p align="left">Normal unloading</p></td><td class="confluenceTd"><p align="center">---</p></td><td class="confluenceTd" colspan="1">Fast (Just file copy)</td></tr></tbody></table></div><h2 id="BackingUpandRestoringHAWQDatabases-EstimatingSpaceRequirements">Estimating Space Requirements</h2><p>Before you backup your database, ensure that you have enough space to store backup files. This section describes how to get the database size and estimate space requirements.</p><ol style="list-style-type: square;"><li>Use <code>hawq_toolkit</code> to query size of the database you want to backup.<div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">mydb=# SELECT sodddatsize FROM hawq_toolkit.hawq_size_of_database WHERE sodddatname=’mydb’;</pre>
-</div></div><p>If tables in your database are compressed, this query shows the compressed size of the database.</p></div><div><p> </p></div></li><li><p>Estimate the total size of the backup files.</p><p>-  If your database tables and backup files are both compressed, you can use the value <code>soddatsize</code> as an estimate value.</p><p>-  If your database tables are compressed  and backup files are not, you need to multiply <code>soddatsize</code> by the compression ratio. Although this depends on the compression algorithms,   <br/>    Pivotal recommends that you can use an empirical value such as 300%.</p><p>-  If your back files are compressed and database tables are not, you need to divide <code>soddatsize</code> by the compression ratio.</p></li><li>Get space requirement.</li></ol><p style="margin-left: 30.0px;">  -  If you use HDFS with PXF, the space requirement is <code>size_of_backup_files * replication_factor</code>.</p><p style="margin-left: 30.0px;"> -  If you use gpfdist, the space requirement for each gpfdist instance is <code>size_of_backup_files / num_gpfdist_instances</code> since table data will be evenly distributed to all    <br/>    <code>gpfdist </code>instances.</p><h2 id="BackingUpandRestoringHAWQDatabases-Usinggpfdist">Using gpfdist</h2><p>This section discusses <code>gpfdist</code> and shows an example of how to backup and restore HAWQ database.</p><p><code>gpfdist</code> is HAWQ’s parallel file distribution program. It is used by readable external tables and <code>gpload</code> to serve external table files to all HAWQ segments in parallel. It is used by writable external tables to accept output streams from HAWQ segments in parallel and write them out to a file.</p><p>To use <code>gpfdist</code>, start the <code>gpfdist</code> server program on the host where you want to store backup files. You can start multiple <code>gpfdist</code> instances on the same host or on different hosts. For each <code>gpfdist</code> instance, you specify a directory from which <code>gpfdist</code> will serve files for readable external tables or create output files for writable external tables. For example, if you have a dedicated machine for backup with two disks, you can start two <code>gpfdist</code> instances, each using one disk:</p><p><img class="confluence-embedded-image" data-image-src="attachments/72455931/72679990.png" src="attachments/72455931/72679990.png"/></p><p align="center" style="text-align: left;">Figure 1. Deploying multiple <code>gpfdist</code> instances on a backup host</p><p>You can also run <code>gpfdist</code> instances on each segment host. During backup, table data will be evenly distributed to all <code>gpfdist</code> instances specified in the <code>LOCATION</code> clause in the <code>CREATE EXTERNAL TABLE</code> definition.</p><p><img class="confluence-embedded-image" data-image-src="attachments/72455931/72679989.png" src="attachments/72455931/72679989.png"/></p><p align="center" style="text-align: left;">Figure 2. Deploying gpfdist instances on each segment host</p><h3 id="BackingUpandRestoringHAWQDatabases-Example">Example</h3><p>This example of using <code>gpfdist</code> backs up and restores a 1TB <em>tpch</em> database. To do so, start two <code>gpfdist</code> instances on the backup host <em>sdw1</em> with two 1TB disks (One disk mounts at <code>/data1</code>, another disk mounts at <code>/data2</code>).</p><h4 id="BackingUpandRestoringHAWQDatabases-Usinggpfdisttobackupthetpchdatabase:">Using gpfdist to back up the <em>tpch</em> database:</h4><ol><li>Creating backup locations and starting the <code>gpfdist</code> instances.<br/><p>In this example, issuing the first command creates two folders on two different disks with the same postfix “backup/tpch_20140627”. These folders are labeled as backups of the tpch database on 2014-06-27. In the next two commands, the example shows two gpfdist instances, one using port 8080, and another using port 8081.</p><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>If tables in your database are compressed, this query shows the compressed size of the database.</p></div><div><p>&nbsp;</p></div></li><li><p>Estimate the total size of the backup files.</p><p>- &nbsp;If your database tables and backup files are both compressed, you can use the value <code>soddatsize</code> as an estimate value.</p><p>- &nbsp;If your database tables are compressed &nbsp;and backup files are not, you need to multiply <code>soddatsize</code> by the compression ratio. Although this depends on the compression algorithms, &nbsp; <br>&nbsp; &nbsp; Pivotal recommends that you can use an empirical value such as 300%.</p><p>- &nbsp;If your back files are compressed and database tables are not, you need to divide <code>soddatsize</code> by the compression ratio.</p></li><li>Get space requirement.</li></ol><p style="margin-left: 30.0px;">&nbsp; - &nbsp;If you use HDFS with PXF, the space requirement is <code>size_of_backup_files * replication_factor</code>.</p><p style="margin-left: 30.0px;">&nbsp;- &nbsp;If you use gpfdist, the space requirement for each gpfdist instance is <code>size_of_backup_files / num_gpfdist_instances</code>&nbsp;since&nbsp;table data will be evenly distributed to all &nbsp; &nbsp;<br>&nbsp; &nbsp; <code>gpfdist&nbsp;</code>instances.</p><h2 id="BackingUpandRestoringHAWQDatabases-Usinggpfdist">Using gpfdist</h2><p>This section discusses <code>gpfdist</code> and shows an example of how to backup and restore HAWQ database.</p><p><code>gpfdist</code> is HAWQ’s parallel file distribution program. It is used by readable external tables and <code>gpload</code> to serve external table files to all HAWQ segments in parallel. It is used by writable external tables to accept output streams from HAWQ segments in parallel and write them out to a file.</p><p>To use <code>gpfdist</code>, start the <code>gpfdist</code> server program on the host where you want to store backup files. You can start multiple <code>gpfdist</code> instances on the same host or on different hosts. For each <code>gpfdist</code> instance, you specify a directory from which <code>gpfdist</code> will serve files for readable external tables or create output files for writable external tables. For example, if you have a dedicated machine for backup with two disks, you can start two <code>gpfdist</code> instances, each using one disk:</p><p><img class="confluence-embedded-image" data-image-src="attachments/72455931/72679990.png" src="attachments/72455931/72679990.png"></p><p align="center" style="text-align: left;">Figure 1. Deploying multiple <code>gpfdist</code> instances on a backup host</p><p>You can also run <code>gpfdist</code> instances on each segment host. During backup, table data will be evenly distributed to all <code>gpfdist</code> instances specified in the <code>LOCATION</code> clause in the <code>CREATE EXTERNAL TABLE</code> definition.</p><p><img class="confluence-embedded-image" data-image-src="attachments/72455931/72679989.png" src="attachments/72455931/72679989.png"></p><p align="center" style="text-align: left;">Figure 2. Deploying gpfdist instances on each segment host</p><h3 id="BackingUpandRestoringHAWQDatabases-Example">Example</h3><p>This example of using <code>gpfdist</code>&nbsp;backs up and restores a 1TB <em>tpch</em> database. To do so, start two <code>gpfdist</code> instances on the backup host <em>sdw1</em> with two 1TB disks (One disk mounts at <code>/data1</code>, another disk mounts at <code>/data2</code>).</p><h4 id="BackingUpandRestoringHAWQDatabases-Usinggpfdisttobackupthetpchdatabase:">Using gpfdist to back up the <em>tpch</em>&nbsp;database:</h4><ol><li>Creating backup locations and starting the <code>gpfdist</code> instances.<br><p>In this example, issuing the first command creates two folders on two different disks with the same postfix “backup/tpch_20140627”. These folders are labeled as backups of the tpch database on 2014-06-27. In the next two commands, the example shows two gpfdist instances, one using port 8080, and another using port 8081.</p><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">sdw1$ mkdir -p /data1/gpadmin/backup/tpch_20140627 /data2/gpadmin/backup/tpch_20140627
 sdw1$ gpfdist -d /data1/gpadmin/backup/tpch_20140627 -p 8080 &amp;
 sdw1$ gpfdist -d /data2/gpadmin/backup/tpch_20140627 -p 8081 &amp;</pre>
@@ -1201,30 +1200,30 @@ sdw1$ gpfdist -d /data2/gpadmin/backup/tpch_20140627 -p 8081 &amp;</pre>
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">master_host$ pg_dump --schema-only -f tpch.schema tpch
 master_host$ scp tpch.schema sdw1:/data1/gpadmin/backup/tpch_20140627
 </pre>
-</div></div><p>On the HAWQ master host, use the <code>pg_dump</code> utility to save the schema of the tpch database to the file <em>tpch.schema</em>. Copy the schema file to the backup location to restore the database schema .</p><p> </p></li><li><p>Create a writable external table for each table in the database.</p><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>On the HAWQ master host, use the&nbsp;<code>pg_dump</code> utility to save the schema of the tpch database to the file <em>tpch.schema</em>. Copy the schema file to the backup location to restore the database schema .</p><p>&nbsp;</p></li><li><p>Create a writable external table for each table in the database.</p><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">master_host$ psql tpch
-tpch=# create writable external table wext_orders (like orders) location ('gpfdist://sdw1:8080/orders1.csv', 'gpfdist://sdw1:8081/orders2.csv') format 'CSV';
-tpch=# create writable external table wext_lineitem (like lineitem) location ('gpfdist://sdw1:8080/lineitem1.csv', 'gpfdist://sdw1:8081/lineitem2.csv') format 'CSV';</pre>
-</div></div><p>The sample shows two tables in the tech database, <em>orders</em> and <em>line item</em> tables. The sample shows that two corresponding external tables are created. Specify a location or each gpfdist instance in the the LOCATION clause. This sample uses the CSV text format here, but you can also choose other delimited text format. See “CREATE EXTERNAL TABLE”.</p><p> </p></div></li><li><p>Unload data to the external tables.</p><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+tpch=# create writable external table wext_orders (like orders) location&nbsp;('gpfdist://sdw1:8080/orders1.csv', 'gpfdist://sdw1:8081/orders2.csv') format 'CSV';
+tpch=# create writable external table wext_lineitem (like lineitem) location&nbsp;('gpfdist://sdw1:8080/lineitem1.csv', 'gpfdist://sdw1:8081/lineitem2.csv') format 'CSV';</pre>
+</div></div><p>The sample shows two tables in the tech database, <em>orders</em> and&nbsp;<em>line item</em>&nbsp;tables. The sample shows that two corresponding external tables are created. Specify a location or each gpfdist instance in the the LOCATION clause. This sample uses the CSV text format here, but you can also choose other delimited text format. See “CREATE EXTERNAL TABLE”.</p><p>&nbsp;</p></div></li><li><p>Unload data to the external tables.</p><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">tpch=# begin;
 tpch=# insert into wext_orders select * from orders;
 tpch=# insert into wext_lineitem select * from lineitem;
 tpch=# commit;</pre>
-</div></div></div></li><li><p>(Optional) Stop gpfdist servers to free ports for other processes.</p><p>Find the progress id and kill the process.</p><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></div></li><li><p>(Optional) Stop gpfdist servers to free ports for other processes.</p><p>Find the progress id and kill the process.</p><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">sdw1$ ps -ef | grep gpfdist
 sdw1$ kill 612368; kill 612369</pre>
-</div></div></div></li></ol><h4 id="BackingUpandRestoringHAWQDatabases-Torecoverusinggpfdist:">To recover using gpfdist:</h4><ol><li>Restart gpfdist instances if they aren’t running.<div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></div></li></ol><h4 id="BackingUpandRestoringHAWQDatabases-Torecoverusinggpfdist:">To recover using gpfdist:</h4><ol><li>Restart gpfdist instances if they aren’t running.<div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">sdw1$ gpfdist -d /data1/gpadmin/backup/tpch_20140627 -p 8080 &amp;
 sdw1$ gpfdist -d /data2/gpadmin/backup/tpch_20140627 -p 8081 &amp;</pre>
-</div></div></div></li><li><p>Create a new database and restore the schema.</p><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></div></li><li><p>Create a new database and restore the schema.</p><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">master_host$ createdb tpch2
 master_host$ scp sdw1:/data1/gpadmin/backup/tpch_20140627/tpch.schema .
 master_host$ psql -f tpch.schema -d tpch2</pre>
-</div></div></div></li><li><p>Create a readable external table for each table.</p><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></div></li><li><p>Create a readable external table for each table.</p><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">master_host$ psql tpch2
 
-tpch2=# create external table rext_orders (like orders) location ('gpfdist://sdw1:8080/orders1.csv', 'gpfdist://sdw1:8081/orders2.csv') format 'CSV';
-tpch2=# create external table rext_lineitem (like lineitem) location ('gpfdist://sdw1:8080/lineitem1.csv', 'gpfdist://sdw1:8081/lineitem2.csv') format 'CSV';</pre>
+tpch2=# create external table rext_orders (like orders) location&nbsp;('gpfdist://sdw1:8080/orders1.csv', 'gpfdist://sdw1:8081/orders2.csv') format 'CSV';
+tpch2=# create external table rext_lineitem (like lineitem) location&nbsp;('gpfdist://sdw1:8080/lineitem1.csv', 'gpfdist://sdw1:8081/lineitem2.csv') format 'CSV';</pre>
 </div></div> <div class="aui-message warning shadowed information-macro">
 <p class="title">Note</p>
 <span class="aui-icon icon-warning">Icon</span>
@@ -1232,32 +1231,32 @@ tpch2=# create external table rext_lineitem (like lineitem) location ('gpfdist:
 <p>The location clause is the same as the writable external table above.</p>
 </div>
 </div>
-</div></li><li><p>Load data back from external tables.</p><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></li><li><p>Load data back from external tables.</p><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">tpch2=# insert into orders select * from rext_orders;
 tpch2=# insert into lineitem select * from rext_lineitem;</pre>
-</div></div></div></li><li><p>Run the ANALYZE command after data loading.</p><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></div></li><li><p>Run the ANALYZE command after data loading.</p><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">tpch2=# analyze;</pre>
-</div></div></div></li></ol><h3 id="BackingUpandRestoringHAWQDatabases-Troubleshootinggpfdist">Troubleshooting gpfdist</h3><p>Keep in mind that gpfdist is accessed at runtime by the segment instances. Therefore, you must ensure that the HAWQ segment hosts have network access to gpfdist. Since the gpfdist program is a  web server, to test connectivity you can run the following command from each host in your HAWQ array (segments and master):</p><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></div></li></ol><h3 id="BackingUpandRestoringHAWQDatabases-Troubleshootinggpfdist">Troubleshooting gpfdist</h3><p>Keep in mind that gpfdist is accessed at runtime by the segment instances. Therefore, you must ensure that the HAWQ segment hosts have network access to gpfdist. Since the gpfdist program is a &nbsp;web server, to test connectivity you can run the following command from each host in your HAWQ array (segments and master):</p><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">$ wget http://gpfdist_hostname:port/filename</pre>
-</div></div><p> </p></div><p>Also, make sure that your CREATE EXTERNAL TABLE definition has the correct host name, port, and file names for gpfdist. The file names and paths specified should be relative to the directory where gpfdist is serving files (the directory path used when you started the gpfdist program). See “Defining External Tables - Examples”.</p><h2 id="BackingUpandRestoringHAWQDatabases-UsingPXF">Using PXF</h2><p>Pivotal Extension Framework (PXF) is an extensible framework that allows HAWQ to query external system data. The details of how to install and use PXF can be found in “PXF Installation and Administration”.</p><h4 id="BackingUpandRestoringHAWQDatabases-UsingPXFtobackupthetpchdatabase:">Using PXF to back up the <em>tpch</em> database:</h4><ol><li><p>Create a folder on HDFS for this backup.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>&nbsp;</p></div><p>Also, make sure that your CREATE EXTERNAL TABLE definition has the correct host name, port, and file names for gpfdist. The file names and paths specified should be relative to the directory where gpfdist is serving files (the directory path used when you started the gpfdist program). See “Defining External Tables - Examples”.</p><h2 id="BackingUpandRestoringHAWQDatabases-UsingPXF">Using PXF</h2><p>Pivotal Extension Framework (PXF) is an extensible framework that allows HAWQ to query external system data. The details of how to install and use PXF can be found in “PXF Installation and Administration”.</p><h4 id="BackingUpandRestoringHAWQDatabases-UsingPXFtobackupthetpchdatabase:">Using PXF to back up the&nbsp;<em>tpch</em> database:</h4><ol><li><p>Create a folder on HDFS for this backup.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">master_host$ hdfs dfs -mkdir -p /backup/tpch-2014-06-27</pre>
-</div></div></li><li>Dump the database schema using <code>pg_dump</code> and store the schema file in a backup folder.<br/><div><p class="codesample"> </p></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li>Dump the database schema using <code>pg_dump</code> and store the schema file in a backup folder.<br><div><p class="codesample">&nbsp;</p></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">master_host$ pg_dump --schema-only -f tpch.schema tpch
 master_host$ hdfs dfs -copyFromLocal tpch.schema /backup/tpch-2014-06-27</pre>
-</div></div></li><li>Create a writable external table for each table in the database.<br/><div><p class="codesampleCxSpFirst"> </p></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li>Create a writable external table for each table in the database.<br><div><p class="codesampleCxSpFirst">&nbsp;</p></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">master_host$ psql tpch
 
-tpch=# create writable external table wext_orders (like orders) location ('pxf://namenode_host:50070/backup/tpch-2014-06-27/orders?Profile=
+tpch=# create writable external table wext_orders (like orders) location&nbsp;('pxf://namenode_host:50070/backup/tpch-2014-06-27/orders?Profile=
 HdfsTextSimple&amp;COMPRESSION_CODEC=org.apache.hadoop.io.compress.SnappyCodec') format 'TEXT';
 
-tpch=# create writable external table wext_lineitem (like lineitem) location ('pxf://namenode_host:50070/backup/tpch-2014-06-27/lineitem?Profile=
+tpch=# create writable external table wext_lineitem (like lineitem) location&nbsp;('pxf://namenode_host:50070/backup/tpch-2014-06-27/lineitem?Profile=
 HdfsTextSimple&amp;COMPRESSION_CODEC=org.apache.hadoop.io.compress.SnappyCodec') format 'TEXT';</pre>
-</div></div><p>Here, all backup files for the orders table goes inside /backup/tpch-2014-06-27/orders folder, all backup files for the lineitem table goes inside /backup/tpch-2014-06-27/lineitem folder. We use snappy compression to save disk space.</p><p> </p></li><li><p>Unload the data to external tables.</p><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>Here, all backup files for the orders table goes inside /backup/tpch-2014-06-27/orders folder, all backup files for the lineitem table goes inside /backup/tpch-2014-06-27/lineitem folder. We use snappy compression to save disk space.</p><p>&nbsp;</p></li><li><p>Unload the data to external tables.</p><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">tpch=# begin;
 tpch=# insert into wext_orders select * from orders;
 tpch=# insert into wext_lineitem select * from lineitem;
 tpch=# commit;</pre>
-</div></div></div></li><li><p>(Optional) Change HDFS file replication factor for backup folder.<br/> HDFS replicates each block into three blocks by default for reliability. You can decrease this number for your backup files if you need to.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></div></li><li><p>(Optional) Change HDFS file replication factor for backup folder.<br> HDFS replicates each block into three blocks by default for reliability. You can decrease this number for your backup files if you need to.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">master_host$ hdfs dfs -setrep 2 /backup/tpch-2014-06-27</pre>
 </div></div> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
@@ -1265,25 +1264,25 @@ tpch=# commit;</pre>
                             Note that this only changes replication factor for existing files, new files will still use the default replication factor.
                     </div>
 </div>
-</li></ol><h4 id="BackingUpandRestoringHAWQDatabases-TorecoverfromaPXFbackup:">To recover from a PXF backup:</h4><ol><li>Create a new database and restore the schema.<br/><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</li></ol><h4 id="BackingUpandRestoringHAWQDatabases-TorecoverfromaPXFbackup:">To recover from a PXF backup:</h4><ol><li>Create a new database and restore the schema.<br><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: bash; gutter: false" style="font-size:12px;">master_host$ createdb tpch2
 master_host$ hdfs dfs -copyToLocal /backup/tpch-2014-06-27/tpch.schema .
 master_host$ psql -f tpch.schema -d tpch2</pre>
-</div></div></div></li><li><p>Create readable external table for each table to restore.</p><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></div></li><li><p>Create readable external table for each table to restore.</p><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">master_host$ psql tpch2
-tpch2=# create external table rext_orders (like orders) location ('pxf://namenode_host:50070/backup/tpch-2014-06-27/orders?Profile=HdfsTextSimple') format 'TEXT';
-tpch2=# create external table rext_lineitem (like lineitem) location ('pxf://namenode_host:50070/backup/tpch-2014-06-27/lineitem?Profile=HdfsTextSimple') format 'TEXT';</pre>
-</div></div><p>The location clause is almost the same as above, except you don’t have to specify the COMPRESSION_CODEC because PXF will automatically detect it.</p><p> </p></div></li><li><p>Load data back from external tables.</p><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+tpch2=# create external table rext_orders (like orders) location&nbsp;('pxf://namenode_host:50070/backup/tpch-2014-06-27/orders?Profile=HdfsTextSimple') format 'TEXT';
+tpch2=# create external table rext_lineitem (like lineitem) location&nbsp;('pxf://namenode_host:50070/backup/tpch-2014-06-27/lineitem?Profile=HdfsTextSimple') format 'TEXT';</pre>
+</div></div><p>The location clause is almost the same as above, except you don’t have to specify the COMPRESSION_CODEC because PXF will automatically detect it.</p><p>&nbsp;</p></div></li><li><p>Load data back from external tables.</p><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">tpch2=# insert into orders select * from rext_orders;
 tpch2=# insert into lineitem select * from rext_lineitem;</pre>
-</div></div></div></li><li><p>Run ANALYZE after data loading.</p><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></div></li><li><p>Run ANALYZE after data loading.</p><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: sql; gutter: false" style="font-size:12px;">tpch2=# analyze;</pre>
 </div></div></div></li></ol>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1307,28 +1306,21 @@ tpch2=# insert into lineitem select * from rext_lineitem;</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

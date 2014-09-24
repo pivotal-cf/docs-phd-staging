@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>Disabling Security on a 1.1.1 Cluster | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -268,7 +267,7 @@
                            <a href="UpgradeReferenceInformation-1.1.1to2.1.0.html">Upgrade Reference Information - 1.1.1 to 2.1.0</a>
                         </li>
                         <li>
-                           <a href="DisablingSecurityona1.1.1Cluster.html">Disabling Security on a 1.1.1 Cluster</a>
+                           <a class="active" href="DisablingSecurityona1.1.1Cluster.html">Disabling Security on a 1.1.1 Cluster</a>
                         </li>
                      </ul>
                   </li>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,24 +1140,24 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Disabling Security on a 1.1.1 Cluster</div><div class="wiki-content group" id="main-content">
-<h3 id="DisablingSecurityona1.1.1Cluster-DisablingKerberosAuthentication">Disabling Kerberos Authentication</h3><p>You need to disable Security before upgrading a version 1.1.1 cluster. To disable security do the following:</p><ol><li><p>Stop the cluster:</p><div><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<h3 id="DisablingSecurityona1.1.1Cluster-DisablingKerberosAuthentication">Disabling Kerberos Authentication</h3><p>You need to disable Security before upgrading a version 1.1.1 cluster. To disable security do the following:</p><ol><li><p>Stop the cluster:</p><div><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client stop -l &lt;CLUSTERNAME&gt;</pre>
 </div></div></div></li><li><p>If you have HBase installed and HBase-to-Zookeeper communication is secured (true in most cases), do the following steps.Tables created while HBase is secure have ACLs set on them that only allow SASL authenticated users to modify them. In order to operate in non-secure mode, you must do the following. You can skip these steps if you don't have HBase installed.</p><ol><li><p>Start <em>just</em> the Zookeeper service.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client start -l &lt;CLUSTERNAME&gt; -s zookeeper</pre>
 </div></div></li><li>On HBase master:<ol><li><p>Run Zookeeper CLI:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# sudo -u hbase hbase zkcli</pre>
-</div></div></li><li><p>Check if there are any regions in transition. Output <code>[]</code> means there are NO regions in transition at the moment and you don't need to set ACL on this sub znode.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p>Check if there are any regions in transition. Output&nbsp;<code>[]</code>&nbsp;means there are NO regions in transition at the moment and you don't need to set ACL on this sub znode.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[zk: node2.phddev.local:2181,node1.phddev.local:2181,node3.phddev.local:2181(CONNECTED) 0] ls /hbase/region-in-transition
 []</pre>
-</div></div><div><div class="syntaxhighlighter nogutter java"><p> </p></div></div><p>If there are regions in transition, either wait for them to finish (start the cluster again) or set ACL to make them controllable by world. Do this for all the regions. <br/>For example, if you see a region like 156781230:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><div><div class="syntaxhighlighter nogutter java"><p>&nbsp;</p></div></div><p>If there are regions in transition, either wait for them to finish (start the cluster again) or set ACL to make them controllable by world. Do this for all the regions.&nbsp;<br>For example, if you see a region like 156781230:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[zk: node2.phddev.local:2181,node1.phddev.local:2181,node3.phddev.local:2181(CONNECTED) 1] setAcl /hbase/region-in-tranistion/156781230 world:anyone:cdrwa</pre>
 </div></div></li><li><p>Check if there are unassigned regions. If there are any, set ACL to be controllable by world:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[zk: node2.phddev.local:2181,node1.phddev.local:2181,node3.phddev.local:2181(CONNECTED) 2] ls /hbase/unassigned
 [123456789]
 [zk: node2.phddev.local:2181,node1.phddev.local:2181,node3.phddev.local:2181(CONNECTED) 3] setAcl /hbase/unassigned/123456789 world:anyone:cdrwa</pre>
-</div></div></li><li><p class="p1">Do this for all the tables where ACL is set to anything other than <strong> <code> world:anyone:cdrwa;</code> </strong>otherwise, they won't be readable while security is disabled.</p> <div class="aui-message warning shadowed information-macro">
+</div></div></li><li><p class="p1">Do this for all the tables where ACL is set to anything other than <strong> <code> world:anyone:cdrwa;</code>&nbsp;</strong>otherwise, they won't be readable while security is disabled.</p> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
 <p>If you're only disabling security temporarily in order to upgrade, and you intend to enable it again after upgrade, you may skip setting ACLs on tables.</p>
@@ -1185,22 +1184,22 @@
 </div></div> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
-<p class="p1">Alternatively, you may also remove the znode /<code>hbase</code> or any of its sub-znodes such as <code>/hbase/table,</code> as they will be re-created on HBase service restart. Also, this should only be done if HBase-master and HBase-regionserver were shutdown properly and there is no transient state yet to be synced back. </p><p class="p1"><strong>You must use this option with extreme caution and only if you're having trouble starting HBase service. Careless use may cause data loss.</strong></p><p class="p1">To remove a znode, for example<code>/hbase/table</code>, run the following:</p><div class="container" title="Hint: double-click to select code"><div class="line number1 index0 alt2"><code class="java plain">[zk: node2.phddev.local:</code> <code class="java value">2181</code> <code class="java plain">,node1.phddev.local:</code> <code class="java value">2181</code> <code class="java plain">,node3.phddev.local:</code> <code class="java value">2181</code> <code class="java plain">(CONNECTED) </code> <code class="java value">9</code> <code class="java plain">] rmr /hbase/table</code></div></div>
+<p class="p1">Alternatively, you may also remove the znode /<code>hbase</code> or any of its sub-znodes such as <code>/hbase/table,</code> as they will be re-created on HBase service restart. Also, this should only be done if HBase-master and HBase-regionserver were shutdown properly and there is no transient state yet to be synced back.&nbsp;</p><p class="p1"><strong>You must use this option with extreme caution and only if you're having trouble starting HBase service. Careless use may cause data loss.</strong></p><p class="p1">To remove a znode, for example<code>/hbase/table</code>, run the following:</p><div class="container" title="Hint: double-click to select code"><div class="line number1 index0 alt2"><code class="java plain">[zk: node2.phddev.local:</code> <code class="java value">2181</code> <code class="java plain">,node1.phddev.local:</code> <code class="java value">2181</code> <code class="java plain">,node3.phddev.local:</code> <code class="java value">2181</code> <code class="java plain">(CONNECTED) </code> <code class="java value">9</code> <code class="java plain">] rmr /hbase/table</code></div></div>
 </div>
 </div>
 </li><li><p>Quit the Zookeeper CLI on HBase master node. You can disconnect from HBase master now.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[zk: node2.phddev.local:2181,node1.phddev.local:2181,node3.phddev.local:2181(CONNECTED) 10] quit</pre>
 </div></div></li></ol></li><li><p>Stop the Zookeeper service from ICM Admin node.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client stop -l test -s zookeeper</pre>
-</div></div></li></ol></li><li><p>You now need to remove security related changes from other service configuration files and scripts. You can use <code>icm_client reconfigure</code> for this purpose. Make sure it runs successfully on all nodes before proceeding further. Perform the following steps on the ICM Admin node.</p><ol><li><p>Fetch the current configuration in a directory <code>SecureConfiguration</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li></ol></li><li><p>You now need to remove security related changes from other service configuration files and scripts. You can use&nbsp;<code>icm_client reconfigure</code>&nbsp;for this purpose. Make sure it runs successfully on all nodes before proceeding further. Perform the following steps on the ICM Admin node.</p><ol><li><p>Fetch the current configuration in a directory&nbsp;<code>SecureConfiguration</code>:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client fetch-configuration -o SecureConfiguration -l &lt;CLUSTERNAME&gt;</pre>
-</div></div></li><li>Copy <code>SecureConfiguration</code> to <code>NonSecureConfiguration.</code></li><li><p>Change to <code>NonSecureConfiguration</code> directory and make the following modifications to disable security-related changes:</p><p> </p> <div class="aui-message warning shadowed information-macro">
+</div></div></li><li>Copy&nbsp;<code>SecureConfiguration</code>&nbsp;to&nbsp;<code>NonSecureConfiguration.</code></li><li><p>Change to&nbsp;<code>NonSecureConfiguration</code>&nbsp;directory and make the following modifications to disable security-related changes:</p><p>&nbsp;</p> <div class="aui-message warning shadowed information-macro">
 <span class="aui-icon icon-warning">Icon</span>
 <div class="message-content">
 <p>In general, while removing properties, you may ignore and proceed further if the property is already missing, as this could happen because of how the cluster was secured originally. Similarly, while editing properties, if it already has the recommended value, you may safely proceed further.</p>
 </div>
 </div>
-</li><ol><li><p>Remove the following from <code>hdfs/core-site.xml</code> (If present. Ignore if they're not present, which may be the case in clusters secured without ICM's help).</p><p><strong>hdfs/core-site.xml</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</li><ol><li><p>Remove the following from&nbsp;<code>hdfs/core-site.xml</code>&nbsp;(If present. Ignore if they're not present, which may be the case in clusters secured without ICM's help).</p><p><strong>hdfs/core-site.xml</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
   &lt;name&gt;hadoop.security.authentication&lt;/name&gt;
   &lt;value&gt;kerberos&lt;/value&gt;
@@ -1218,7 +1217,7 @@
   &lt;name&gt;hadoop.rpc.protection&lt;/name&gt;
   &lt;value&gt;privacy&lt;/value&gt;
 &lt;/property&gt;</pre>
-</div></div></li><li><p>Remove the following from <code>hdfs/hdfs-site.xml</code>. (If present. Ignore if they're not present, which may be the case in clusters secured without ICM's help) </p><p><strong>hdfs/hdfs-site.xml</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p>Remove the following from&nbsp;<code>hdfs/hdfs-site.xml</code>.&nbsp;(If present. Ignore if they're not present, which may be the case in clusters secured without ICM's help)&nbsp;</p><p><strong>hdfs/hdfs-site.xml</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
   &lt;name&gt;dfs.block.access.token.enable&lt;/name&gt;
   &lt;value&gt;true&lt;/value&gt;
@@ -1343,7 +1342,7 @@
   &lt;name&gt;hadoop.proxyuser.oozie.groups&lt;/name&gt;
   &lt;value&gt;*&lt;/value&gt;
 &lt;/property&gt;</pre>
-</div></div></li><li><p>Edit the following properties in <code>hdfs/hdfs-site.xml</code> to the values described below:</p><p><strong>hdfs/hdfs-site.xml</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p>Edit the following properties in&nbsp;<code>hdfs/hdfs-site.xml</code>&nbsp;to the values described below:</p><p><strong>hdfs/hdfs-site.xml</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;!-- For PHD-1.1.1.0 or PHD-1.1.0.0, set this to false --&gt;
 &lt;property&gt;
   &lt;name&gt;dfs.client.read.shortcircuit&lt;/name&gt;
@@ -1372,7 +1371,7 @@ OR
   &lt;name&gt;dfs.datanode.http.address&lt;/name&gt;
   &lt;value&gt;0.0.0.0:50075&lt;/value&gt;
 &lt;/property&gt;</pre>
-</div></div></li><li><p>Edit <code>hdfs/hadoop-policy.xml</code>. Search for all instances of <code>&lt;value&gt;</code> and replace all instances of <strong> <code>hdfs</code> </strong>with <strong> <code>${HADOOP_HDFS_USER}</code> </strong>and <strong> <code>yarn</code> </strong>with <strong> <code>${HADOOP_YARN_USER}</code> </strong>. Some of the known instances are:</p><strong>hdfs/hadoop-policy.xml</strong> <br/><div><div class="syntaxhighlighter nogutter java"><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p>Edit&nbsp;<code>hdfs/hadoop-policy.xml</code>. Search for all instances of&nbsp;<code>&lt;value&gt;</code>&nbsp;and replace all instances of&nbsp;<strong>&nbsp;<code>hdfs</code>&nbsp;</strong>with&nbsp;<strong> <code>${HADOOP_HDFS_USER}</code>&nbsp;</strong>and&nbsp;<strong>&nbsp;<code>yarn</code>&nbsp;</strong>with&nbsp;<strong>&nbsp;<code>${HADOOP_YARN_USER}</code>&nbsp;</strong>. Some of the known instances are:</p><strong>hdfs/hadoop-policy.xml</strong> <br><div><div class="syntaxhighlighter nogutter java"><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
   &lt;name&gt;security.refresh.usertogroups.mappings.protocol.acl&lt;/name&gt;
   &lt;value&gt;${HADOOP_HDFS_USER}&lt;/value&gt;
@@ -1398,7 +1397,7 @@ OR
   &lt;name&gt;security.admin.protocol.acl&lt;/name&gt;
   &lt;value&gt;${HADOOP_YARN_USER}&lt;/value&gt;
 &lt;/property&gt;</pre>
-</div></div></div></div></li><li><p>Remove the following from <code>yarn/yarn-site.xml</code>. (If present. Ignore if they're not present, which may be the case in clusters secured without ICM's help)</p><p><strong>yarn/yarn-site.xml</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></div></div></li><li><p>Remove the following from&nbsp;<code>yarn/yarn-site.xml</code>.&nbsp;(If present. Ignore if they're not present, which may be the case in clusters secured without ICM's help)</p><p><strong>yarn/yarn-site.xml</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
   &lt;name&gt;yarn.resourcemanager.principal&lt;/name&gt;
   &lt;value&gt;yarn/_HOST@REALM&lt;/value&gt;
@@ -1438,7 +1437,7 @@ OR
   &lt;name&gt;yarn.web-proxy.principal&lt;/name&gt;
   &lt;value&gt;yarn/_HOST@REALM&lt;/value&gt;
 &lt;/property&gt;</pre>
-</div></div></li><li><p>Remove the following from <code>yarn/mapred-site.xml</code>:</p><p><strong>yarn/mapred-site.xml</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p>Remove the following from&nbsp;<code>yarn/mapred-site.xml</code>:</p><p><strong>yarn/mapred-site.xml</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
   &lt;name&gt;mapreduce.jobhistory.keytab&lt;/name&gt;
   &lt;value&gt;/etc/security/phd/keytab/mapred.service.keytab&lt;/value&gt;
@@ -1448,25 +1447,25 @@ OR
   &lt;name&gt;mapreduce.jobhistory.principal&lt;/name&gt;
   &lt;value&gt;mapred/_HOST@REALM&lt;/value&gt;
 &lt;/property&gt;</pre>
-</div></div></li><li><p>Edit <code>yarn/container-executor.cfg</code> as follows:</p><strong>yarn/container-executor.cfg</strong> <br/><div><div class="syntaxhighlighter nogutter java"><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p>Edit&nbsp;<code>yarn/container-executor.cfg</code>&nbsp;as follows:</p><strong>yarn/container-executor.cfg</strong> <br><div><div class="syntaxhighlighter nogutter java"><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">#configured value of yarn.nodemanager.linux-container-executor.group
 yarn.nodemanager.linux-container-executor.group=
 #comma separated list of users who can not run applications
 banned.users=
 #Prevent other super-users
 min.user.id=1000</pre>
-</div></div></div></div></li><li><p>Remove the following from <code>yarn/container-executor.cfg</code>:</p><strong>yarn/container-executor.cfg</strong> <br/><div><div class="syntaxhighlighter nogutter java"><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></div></div></li><li><p>Remove the following from&nbsp;<code>yarn/container-executor.cfg</code>:</p><strong>yarn/container-executor.cfg</strong> <br><div><div class="syntaxhighlighter nogutter java"><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">yarn.nodemanager.local-dirs=/data/1/yarn/nm-local-dir
 yarn.nodemanager.log-dirs=/data/1/yarn/userlogs</pre>
-</div></div></div></div></li><li><p>Remove the following from <code>zookeeper/zoo.cfg</code>:</p><p><strong>zookeeper/zoo.cfg</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></div></div></li><li><p>Remove the following from&nbsp;<code>zookeeper/zoo.cfg</code>:</p><p><strong>zookeeper/zoo.cfg</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">authProvider.1=org.apache.zookeeper.server.auth.SASLAuthenticationProvider
 jaasLoginRenew=3600000
  
 kerberos.removeHostFromPrincipal=true
 kerberos.removeRealmFromPrincipal=true</pre>
-</div></div></li><li><p>For PHD-2.0.0.0 and higher, edit <code>zookeeper/java.env</code> to remove <code>-Djava.security.auth.login.config=/etc/gphd/zookeeper/conf/jaas.conf </code>from JVMFLAGS.</p><strong>zookeeper/java.env</strong> <br/><div><div class="syntaxhighlighter nogutter java"><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p>For PHD-2.0.0.0 and higher, edit&nbsp;<code>zookeeper/java.env</code>&nbsp;to remove&nbsp;<code>-Djava.security.auth.login.config=/etc/gphd/zookeeper/conf/jaas.conf&nbsp;</code>from JVMFLAGS.</p><strong>zookeeper/java.env</strong> <br><div><div class="syntaxhighlighter nogutter java"><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export JVMFLAGS="-Xmx2048m"</pre>
-</div></div></div></div></li><li><p>Remove the following from <code>hbase/hbase-site.xml</code>:</p><strong>hbase/hbase-site.xml</strong> <br/><div><div class="syntaxhighlighter nogutter java"><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></div></div></li><li><p>Remove the following from&nbsp;<code>hbase/hbase-site.xml</code>:</p><strong>hbase/hbase-site.xml</strong> <br><div><div class="syntaxhighlighter nogutter java"><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
   &lt;name&gt;hbase.security.authentication&lt;/name&gt;
   &lt;value&gt;kerberos&lt;/value&gt;
@@ -1525,10 +1524,10 @@ kerberos.removeRealmFromPrincipal=true</pre>
   &lt;name&gt;hbase.rest.kerberos.principal&lt;/name&gt;
   &lt;value&gt;rest-users-principal-name&lt;/value&gt;
 &lt;/property&gt;</pre>
-</div></div></div></div></li><li><p>Remove the following from <code>hbase/hbase-env.sh:</code></p><p><strong>hbase/hbase-env.sh</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></div></div></li><li><p>Remove the following from&nbsp;<code>hbase/hbase-env.sh:</code></p><p><strong>hbase/hbase-env.sh</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">export HBASE_OPTS="$HBASE_OPTS -Djava.security.auth.login.config=/etc/gphd/hbase/conf/jaas.conf"
 </pre>
-</div></div></li><li><p>Remove the following from <code>hive/hive-site.xml</code>:</p><strong>hive/hive-site.xml</strong> <br/><div><div class="syntaxhighlighter nogutter java"><p> </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p>Remove the following from&nbsp;<code>hive/hive-site.xml</code>:</p><strong>hive/hive-site.xml</strong> <br><div><div class="syntaxhighlighter nogutter java"><p>&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
   &lt;name&gt;hive.server2.authentication&lt;/name&gt;
   &lt;value&gt;KERBEROS&lt;/value&gt;
@@ -1589,7 +1588,7 @@ kerberos.removeRealmFromPrincipal=true</pre>
  metastore thrift server. The special string _HOST will be replaced 
 automatically with the correct host name.&lt;/description&gt;
 &lt;/property&gt;</pre>
-</div></div></div></div></li><li><p>For HAWQ: If present, remove the following from <code>hawq/hdfs-client.xml</code>:</p><p>If these properties are not present, you need to manually remove these xml tags on HAWQ nodes after running <code>icm_client reconfigure</code> to disable security on the cluster.</p><p><strong>hawq/hdfs-client.xml</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></div></div></li><li><p>For HAWQ: If present, remove the following from&nbsp;<code>hawq/hdfs-client.xml</code>:</p><p>If these properties are not present, you need to manually remove these xml tags on HAWQ nodes after running&nbsp;<code>icm_client reconfigure</code>&nbsp;to disable security on the cluster.</p><p><strong>hawq/hdfs-client.xml</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">&lt;property&gt;
   &lt;name&gt;hadoop.security.authentication&lt;/name&gt;
   &lt;value&gt;kerberos&lt;/value&gt;
@@ -1599,19 +1598,19 @@ automatically with the correct host name.&lt;/description&gt;
   &lt;name&gt;dfs.namenode.kerberos.principal&lt;/name&gt;
   &lt;value&gt;HDFS_NAMENODE_PRINCIPAL&lt;/value&gt;
 &lt;/property&gt;</pre>
-</div></div></li><li><p>For HAWQ: Remove the following from <code>hawq/gpinitsystem_config</code>:</p><p><strong>hawq/gpinitsystem_config</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p>For HAWQ: Remove the following from&nbsp;<code>hawq/gpinitsystem_config</code>:</p><p><strong>hawq/gpinitsystem_config</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">KERBEROS_KEYFILE=/path/to/keytab/file
 ENABLE_SECURE_FILESYSTEM=on</pre>
-</div></div></li></ol><li><p>Run ICM <code>reconfigure</code> using the <code>NonSecureConfiguration</code> we just modifed to push these changes to cluster nodes:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li></ol><li><p>Run ICM&nbsp;<code>reconfigure</code>&nbsp;using the&nbsp;<code>NonSecureConfiguration</code>&nbsp;we just modifed to push these changes to cluster nodes:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client reconfigure -l &lt;CLUSTERNAME&gt; -c NonSecureConfiguration</pre>
-</div></div></li></ol></li><li><p>With Cluster services still stopped, <strong>co</strong><strong>mment</strong> the following lines (if present; ignore otherwise) in <code>/etc/default/hadoop-hdfs-datanode</code>  on <strong>ALL</strong> DataNodes. </p><p><strong>/etc/default/hadoop-hdfs-datanode on DataNode</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li></ol></li><li><p>With Cluster services still stopped,&nbsp;<strong>co</strong><strong>mment</strong>&nbsp;the following lines (if present; ignore otherwise) in&nbsp;<code>/etc/default/hadoop-hdfs-datanode</code>&nbsp;&nbsp;on&nbsp;<strong>ALL</strong>&nbsp;DataNodes.&nbsp;</p><p><strong>/etc/default/hadoop-hdfs-datanode on DataNode</strong></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;"># secure operation stuff -- comment the following lines, if present and not commented. Ignore if a property is missing.
 export HADOOP_SECURE_DN_USER=hdfs
 export HADOOP_SECURE_DN_LOG_DIR=${HADOOP_LOG_DIR}/hdfs
 export HADOOP_SECURE_DN_PID_DIR=${HADOOP_PID_DIR}</pre>
-</div></div></li><li><p>For PHD-1.1.1.0 and lower, remove <code>/etc/gphd/zookeeper/conf/java.env</code> from all zookeeper-server nodes (if present). We recommend that you back up the file before removing.<br/><br/></p></li><li><p>Remove security from any manually installed service, following the reverse of the instructions to enable them.</p></li><li><p>Start the Cluster:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p>For PHD-1.1.1.0 and lower, remove&nbsp;<code>/etc/gphd/zookeeper/conf/java.env</code>&nbsp;from all zookeeper-server nodes (if present). We recommend that you back up the file before removing.<br><br></p></li><li><p>Remove security from any manually installed service, following the reverse of the instructions to enable them.</p></li><li><p>Start the Cluster:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">[gpadmin]# icm_client start -l &lt;CLUSTERNAME&gt;</pre>
-</div></div></li><li><p>If HAWQ is configured, do the following on HAWQ master as gpadmin:</p><ol><li><p>Source the greenplum path </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p>If HAWQ is configured, do the following on HAWQ master as gpadmin:</p><ol><li><p>Source the greenplum path&nbsp;</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">source /usr/local/hawq/greenplum_path.sh</pre>
 </div></div></li><li><p>If not already running, start HAWQ by running:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">/etc/init.d/hawq start</pre>
@@ -1620,9 +1619,9 @@ export HADOOP_SECURE_DN_PID_DIR=${HADOOP_PID_DIR}</pre>
 </div></div></li></ol><p><span style="line-height: 1.4285715;background-color: transparent;">At this point, security should be disabled and you may run test commands to validate data is still accessible in non-secure mode.</span></p></li></ol>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1646,28 +1645,21 @@ export HADOOP_SECURE_DN_PID_DIR=${HADOOP_PID_DIR}</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

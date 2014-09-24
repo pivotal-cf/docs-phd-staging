@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>Replacing the Slave Node | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -324,7 +323,7 @@
                                        <a href="ShuttingDowntheSlaveNode.html">Shutting Down the Slave Node</a>
                                     </li>
                                     <li>
-                                       <a href="ReplacingtheSlaveNode.html">Replacing the Slave Node</a>
+                                       <a class="active" href="ReplacingtheSlaveNode.html">Replacing the Slave Node</a>
                                     </li>
                                     <li>
                                        <a href="ReplacingtheSlaveNodeDisk.html">Replacing the Slave Node Disk</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,31 +1140,31 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : Replacing the Slave Node</div><div class="wiki-content group" id="main-content">
-<p>There are many situations in which a slave node goes down and the entire server must be replaced.  In these cases, the administrator is not able to issue a decommission, so HDFS will mark the server offline and begin replicating the now missing blocks to bring up replica count back within policy guidelines.   To replace the node, a new server can be brought online with the same configuration (disk mounts, etc.) and the following procedure can be used on the PCC/ICM server to bring the replacement node into the cluster.</p><ol><li><p>Get the current cluster configuration:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<p>There are many situations in which a slave node goes down and the entire server must be replaced.&nbsp; In these cases, the administrator is not able to issue a decommission, so HDFS will mark the server offline and begin replicating the now missing blocks to bring up replica count back within policy guidelines.&nbsp;&nbsp; To replace the node, a new server can be brought online with the same configuration (disk mounts, etc.) and the following procedure can be used on the PCC/ICM server to bring the replacement node into the cluster.</p><ol><li><p>Get the current cluster configuration:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpadmin# icm_client fetch-configuration -o &lt;config directory target&gt; -l &lt;CLUSTERNAME&gt;</pre>
-</div></div></li><li><p><span>Remove the failed node from the cluster by creating a text file containing the fully qualified hostname of the host to replace and then running the ICM command below.  This step is required even if the replacement node will have the same name, because adding a “net-new” node to the cluster will allow us to leverage the ICM automation to properly configure the replaced host.</span> <span> <br/> </span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p><span>Remove the failed node from the cluster by creating a text file containing the fully qualified hostname of the host to replace and then running the ICM command below. &nbsp;This step is required even if the replacement node will have the same name, because adding a “net-new” node to the cluster will allow us to leverage the ICM automation to properly configure the replaced host.</span> <span> <br> </span></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpadmin# icm_client remove-slaves -f &lt;replaced host text file&gt; -l &lt;CLUSTERNAME&gt;</pre>
-</div></div><p><span> <br/> </span></p></li><li><p>Add the replaced host back into the cluster by using the original configuration from the first step.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p><span> <br> </span></p></li><li><p>Add the replaced host back into the cluster by using the original configuration from the first step.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpadmin# icm_client add-slaves -f &lt;replaced host text file&gt; -l &lt;CLUSTERNAME&gt;</pre>
-</div></div></li><li><p>Manually start the slave processes on the newly replaced node:<br/>If node is a Data Node:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div></li><li><p>Manually start the slave processes on the newly replaced node:<br>If node is a Data Node:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpadmin# icm_client start -r datanode -o &lt;hostfile.txt&gt;</pre>
 </div></div><p>If node is a NodeManager:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpadmin# icm_client start -r yarn-nodemanager -o &lt;hostfile.txt&gt;</pre>
 </div></div><p>If node is a HBase Region Server:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpadmin# icm_client start -r hbase-regionserver -o &lt;hostfile.txt&gt;</pre>
-</div></div><p>If node is a HAWQ Segment Server:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>If&nbsp;node is a HAWQ Segment Server:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpadmin# sudo massh &lt;replaced host text file&gt; verbose “service hawq start"</pre>
-</div></div><p>With HAWQ, the database engine needs to be informed that it now has the new segment server online, so you need to login to the HAWQ Master and issue the appropriate recovery commands for HAWQ segments. </p><p>On the HAWQ master:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+</div></div><p>With HAWQ, the database engine needs to be informed that it now has the new segment server online, so you need to login to the HAWQ Master and issue the appropriate recovery commands for HAWQ segments.&nbsp;</p><p>On the HAWQ master:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">gpadmin# source /usr/local.hawq/greenplum_path.sh
 gpadmin# gprecoverseg -F -d &lt;master data directory&gt;</pre>
 </div></div><p>These commands will bring the server back online, but refer to the HAWQ Considerations section above for how to proceed in regards to the data within the database instance itself.</p></li></ol>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1189,28 +1188,21 @@ gpadmin# gprecoverseg -F -d &lt;master data directory&gt;</pre>
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      

@@ -1,18 +1,17 @@
-<!doctype html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
 
-  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
-  <!-- Use title if it's in the page YAML frontmatter -->
+  
   <title>PHD FAQ - Frequently Asked Questions | Pivotal HD Docs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css" />
-  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
-  <link href='http://www.pivotal.io/misc/favicon.ico' rel='shortcut icon'>
+  <link href="stylesheets/master.css" media="screen,print" rel="stylesheet" type="text/css">
+  <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css">
+  <link href="http://www.pivotal.io/misc/favicon.ico" rel="shortcut icon">
   <script src="javascripts/all.js" type="text/javascript"></script>
   
   <script type="text/javascript">
@@ -29,19 +28,19 @@
       })();
     }
   </script>
-  <!-- Confluence HTML stylesheet -->
-   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet"  type="text/css" /> 
+  
+   <link href="stylesheets/site-conf.css" media="screen,print" rel="stylesheet" type="text/css"> 
    
-   <!-- Left-navigation code -->
-    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css" />
-    <!--End left-navigation code -->
+   
+    <link href="stylesheets/dcaccordion.css" rel="stylesheet" type="text/css">
+    
    
 </head>
 
 <body class="pivotalhd pivotalhd_getstarted pivotalhd_getstarted_phd-docs has-subnav">
 
 <div class="viewport">
-<div class='wrap'>
+<div class="wrap">
   <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
   <script type="text/javascript">
       try {
@@ -83,9 +82,9 @@
         <div class="header-item searchbar js-searchbar">
           <a class="search-icon" data-behavior="Search"></a>
           <div class="search-input">
-            <!-- Google CSE Search Box -->
+            
             <div class="search-input-inner" id="docs-search">
-                <gcse:search></gcse:search>
+                <div class="gcse-search"></div>
             </div>
           </div>
         </div>
@@ -94,7 +93,7 @@
     
     <div class="container">
     
-	<!--INSERT SIDENAV -->
+	
 	<div id="sub-nav" class="nav-container">
 
          <p class="productname"><a href="PivotalHD.html">Pivotal HD</a></p>
@@ -393,7 +392,7 @@
                      </ul>
                   </li>
                   <li>
-                     <a href="PHDFAQ-FrequentlyAskedQuestions.html">PHD FAQ - Frequently Asked Questions</a>
+                     <a class="active" href="PHDFAQ-FrequentlyAskedQuestions.html">PHD FAQ - Frequently Asked Questions</a>
                   </li>
                   <li>
                      <a href="PHDTroubleshooting.html">PHD Troubleshooting</a>
@@ -1129,7 +1128,7 @@
 
 </div>
    
-	<!-- end INSERT SIDENAV -->
+	
 	
 	<main class="content content-layout" id="js-content" role="main">
         <a id="top"></a>
@@ -1141,20 +1140,20 @@
           <a href="#top" title="back to top"></a>
         </div>     
         
-		<!-- Python script replaces main content -->
+		
 		<div style="visibility:hidden; height:2px;">Pivotal Product Documentation : PHD FAQ - Frequently Asked Questions</div><div class="wiki-content group" id="main-content">
-<p> </p><p><u><strong>Can I deploy multiple clusters from the same admin?</strong></u></p><p>Yes, you can deploy any number of Pivotal HD clusters from the same admin. You must deploy them in succession, not simultaneously.</p><p> </p><p><u><strong>Can I modify the topology (host to role mapping) of the cluster after the initial install?</strong></u></p><p>Yes, you can change slaves' roles using the CLI, but the master role must be changed manually. If you want to change the master role, contact Support.</p><p> </p><p><u><strong>How do I reformat the namenode?</strong></u></p> <div class="aui-message problem shadowed information-macro">
+<p>&nbsp;</p><p><u><strong>Can I deploy multiple clusters from the same admin?</strong></u></p><p>Yes, you can deploy any number of Pivotal HD clusters from the same admin.&nbsp;You must deploy them in succession, not simultaneously.</p><p>&nbsp;</p><p><u><strong>Can I modify the topology (host to role mapping) of the cluster after the initial install?</strong></u></p><p>Yes, you can change slaves' roles using the CLI, but the master role must be changed manually. If you want to change the master role, contact Support.</p><p>&nbsp;</p><p><u><strong>How do I reformat the namenode?</strong></u></p> <div class="aui-message problem shadowed information-macro">
 <span class="aui-icon icon-problem">Icon</span>
 <div class="message-content">
 <p>These steps will erase all data on HDFS.</p>
 </div>
 </div>
-<p>As user <code>hdfs</code>:</p><p>1. On the namenode, clean up the data in the directories specified for <code>dfs.datanode.name.dir</code><br/>2. On all the datanodes, clean up the data in the directories specified for <code>dfs.datanode.data.dir</code><br/>3. On the namenode, run: <code>hadoop namenode format -force</code></p><p> </p><p><u><strong>Certain services such as hadoop-hdfs-namenode or hadoop-hdfs-datanode do not come up when I run "start cluster"?</strong></u></p><p>Refer to Debugging tips in the Troubleshooting section. It may be that the ports being used by the specific service are already in use. Verify whether the port is already being used using <code>-netstat -na</code>. Kill the existing process if necessary</p><p> </p><p><u><strong>What group and users are created by Pivotal HD?</strong></u></p><p>Please refer to the Troubleshooting section for details about the users and directories created by PCC.</p><p> </p><p><u><strong>What is the allowed time difference amongst the cluster nodes versus the admin node?</strong></u></p><p>The allowed time difference between the cluster nodes is +/-60 secs of admin node time. If the time difference is more, the SSL authentication might fail, leading to cluster deployment failures.</p><p> </p><p><u><strong>Does PCC support simultaneous deployment of multiple clusters?</strong></u></p><p>No. Concurrent deployment is not allowed. Please wait till the first deployment is complete before starting another.</p><p> </p><p><u><strong>Does PCC support hostname both in IP address and FQDN format?</strong></u></p><p>No, only FQDN format is currently supported.</p><p> </p><p><u><strong>Can a node be shared between different clusters?</strong></u></p><p>No, nodes cannot be shared between clusters.</p><p> </p><p><u><strong>I installed puppet-2.7.20 from the Puppet Labs repository but Pivotal HD does not work?</strong></u></p><p>Pivotal HD requires the version of puppet shipped with the product and not the downloadable version from the Puppet Labs repository. Uninstall Puppet and install the one shipped with the product using the <code>icm_client preparehosts</code> command.</p><p> </p><p><u><strong>How do I clean up the nodes if a cluster deployment fails?</strong></u></p><p>Uninstall the cluster using the <code>icm_client uninstall</code> command, then follow the instructions for deploying the cluster again.</p><p> </p><p><u><strong>Will I lose my data if I uninstall the cluster?</strong></u></p><p>Uninstalling the cluster will not wipe out any data. But a subsequent installation would wipe out the configured mount points upon confirmation. Make sure you back out the data.</p><p> </p><p><u><strong>Will I lose my data if I upgrade the PHD/ADS stack through the stack import utility?</strong></u></p><p>Upgrading any stack using the import utility will not affect your cluster/data as long as the upgrade is compatible with the existing data layout.</p><p> </p><p><u><strong>Can I upgrade Pivotal Command Center while the clusters are functioning?</strong></u></p><p>Yes you can. Upgrading the Admin node will not interfere with any of the clusters.</p><p> </p><p><u><strong>How do I change the port used by Pivotal HD?</strong></u></p><p>1. Log onto the machine as <code>root</code>.<br/> 2. Stop Pivotal Command Center:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<p>As user <code>hdfs</code>:</p><p>1. On the namenode, clean up the data in the directories specified for <code>dfs.datanode.name.dir</code><br>2. On all the datanodes, clean up the data in the directories specified for <code>dfs.datanode.data.dir</code><br>3. On the namenode, run: <code>hadoop namenode format -force</code></p><p>&nbsp;</p><p><u><strong>Certain services&nbsp;such as&nbsp;hadoop-hdfs-namenode or hadoop-hdfs-datanode do not come up when I run "start cluster"?</strong></u></p><p>Refer to Debugging tips in the Troubleshooting section. It may be that the ports being used by the specific service are already in use. Verify whether the port is already being used using <code>-netstat -na</code>. Kill the existing process if necessary</p><p>&nbsp;</p><p><u><strong>What group and users are created by&nbsp;Pivotal HD?</strong></u></p><p>Please refer to the Troubleshooting section for details about the users and directories created by PCC.</p><p>&nbsp;</p><p><u><strong>What is the allowed time difference amongst the cluster nodes versus the admin node?</strong></u></p><p>The&nbsp;allowed time difference&nbsp;between the cluster nodes is +/-60 secs of admin node time. If the time difference is more, the SSL authentication might fail, leading to cluster deployment failures.</p><p>&nbsp;</p><p><u><strong>Does PCC support simultaneous deployment of multiple clusters?</strong></u></p><p>No. Concurrent deployment is not allowed. Please wait till the first deployment is complete before starting another.</p><p>&nbsp;</p><p><u><strong>Does PCC support hostname both in IP address and FQDN format?</strong></u></p><p>No, only FQDN format is currently supported.</p><p>&nbsp;</p><p><u><strong>Can a node be shared between different clusters?</strong></u></p><p>No, nodes cannot be shared between clusters.</p><p>&nbsp;</p><p><u><strong>I installed puppet-2.7.20 from the Puppet Labs&nbsp;repository but Pivotal HD does not work?</strong></u></p><p>Pivotal HD requires the version of puppet shipped with the product and not the downloadable version from the Puppet Labs repository. Uninstall Puppet and install the one shipped with the product using the <code>icm_client preparehosts</code> command.</p><p>&nbsp;</p><p><u><strong>How do I clean up the nodes if a cluster deployment fails?</strong></u></p><p>Uninstall the cluster using the <code>icm_client uninstall</code> command, then follow the instructions for deploying the cluster again.</p><p>&nbsp;</p><p><u><strong>Will I lose my data if I uninstall the cluster?</strong></u></p><p>Uninstalling the cluster will not wipe out any data. But a subsequent installation would wipe out the configured mount points upon confirmation. Make sure you back out the data.</p><p>&nbsp;</p><p><u><strong>Will I lose my data if I upgrade the PHD/ADS stack through the stack import utility?</strong></u></p><p>Upgrading any stack using the import utility will not affect your cluster/data as long as the upgrade is compatible with the existing data layout.</p><p>&nbsp;</p><p><u><strong>Can I upgrade Pivotal Command Center while the clusters are functioning?</strong></u></p><p>Yes you can. Upgrading the Admin node will not interfere with any of the clusters.</p><p>&nbsp;</p><p><u><strong>How do I change the port used by Pivotal HD?</strong></u></p><p>1. Log onto the machine as <code>root</code>.<br> 2. Stop Pivotal Command Center:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
 <pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">service commander stop
 </pre>
 </div></div><p>3. Change the port in the jetty file, say from 8080 to 8085:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
-<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">Update the JETTY_PORT property to 8085 in: /usr/lib/gphd/gphdmgr/bin/setenv.sh
-Update ICM_URL property to 8085 in /etc/gphd/gphdmgr/conf/gphdmgr.properties
+<pre class="theme: Confluence; brush: java; gutter: false" style="font-size:12px;">Update the JETTY_PORT property to 8085 in:&nbsp;/usr/lib/gphd/gphdmgr/bin/setenv.sh
+Update ICM_URL property to 8085 in&nbsp;/etc/gphd/gphdmgr/conf/gphdmgr.properties
 Update the gphdmgr_port to 8085 in /usr/local/greenplum-cc/config/app.yml
 </pre>
 </div></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
@@ -1168,9 +1167,9 @@ sed \-i 's/8080/8085/g' /usr/lib/gphd/gphdmgr/lib/client/WSHelper.py
 </div></div>
 </div>
 		
-		</main><!--end of content-->
+		</main>
 
-  </div><!-- end of container -->
+  </div>
 
   <script type="text/javascript">
     (function() {
@@ -1194,28 +1193,21 @@ sed \-i 's/8080/8085/g' /usr/lib/gphd/gphdmgr/lib/client/WSHelper.py
       document.getElementsByTagName('head')[0].appendChild(s);
     })();
   </script>
-</div><!--end of wrap-->
-</div><!--end of viewport-->
+</div>
+</div>
 
 <div id="scrim"></div>
 
 <div class="container">
   <footer class="site-footer-links">
     <div class="copyright">
-      <a href='/'>Pivotal Documentation</a>
-      &copy; 2014 <a href='http://pivotal.io'>Pivotal Software</a> Inc. All Rights Reserved.
+      <a href="/">Pivotal Documentation</a>
+      © 2014 <a href="http://pivotal.io">Pivotal Software</a> Inc. All Rights Reserved.
   </div>
   <div class="support">
-    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a>
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit support</a></div>
   </footer>
-</div><!--end of container-->
+</div>
 
 </body>
 </html>
-
-
-            
-      
-      
-      
-      
