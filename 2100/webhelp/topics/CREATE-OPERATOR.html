@@ -1,0 +1,448 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Defines a new operator. Synopsis CREATE OPERATOR name (        PROCEDURE = funcname        [, LEFTARG = lefttype ] [, RIGHTARG = righttype ]        [, COMMUTATOR = com_op ] [, NEGATOR = neg_op ] ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="CREATE OPERATOR"/><meta name="DC.Relation" scheme="URI" content="../topics/SQLCommandReference.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="topic1"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>CREATE OPERATOR</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="topic1"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a> / <a class="navheader_parent_path" href="../topics/SQLCommandReference.html" title="SQL Command Reference">SQL Command Reference</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/SQLCommandReference.html" title="SQL Command Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SQL Command Reference</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">CREATE OPERATOR</h1>
+
+   <div class="body">
+      <p class="p" id="topic1__sql_command_desc">Defines a new operator.</p>
+
+      <div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2>
+         
+         <pre class="pre codeblock" id="topic1__sql_command_synopsis">CREATE OPERATOR <var class="keyword varname">name</var> ( 
+       PROCEDURE = <var class="keyword varname">funcname</var>
+       [, LEFTARG = <var class="keyword varname">lefttype</var>] [, RIGHTARG = <var class="keyword varname">righttype</var>]
+       [, COMMUTATOR = <var class="keyword varname">com_op</var>] [, NEGATOR = <var class="keyword varname">neg_op</var>]
+       [, RESTRICT = <var class="keyword varname">res_proc</var>] [, JOIN = <var class="keyword varname">join_proc</var>]
+       [, HASHES] [, MERGES]
+       [, SORT1 = <var class="keyword varname">left_sort_op</var>] [, SORT2 = <var class="keyword varname">right_sort_op</var>]
+       [, LTCMP = <var class="keyword varname">less_than_op</var>] [, GTCMP = <var class="keyword varname">greater_than_op</var>] )</pre>
+
+      </div>
+
+      <div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2>
+         
+         <p class="p">
+            <samp class="ph codeph">CREATE OPERATOR</samp> defines a new operator. The user who defines an
+                operator becomes its owner. </p>
+
+         <p class="p">The operator name is a sequence of up to <samp class="ph codeph">NAMEDATALEN</samp>-1 (63 by
+                default) characters from the following list: <samp class="ph codeph">+ - * / &lt; &gt; = ~ ! @ # % ^
+                    &amp; | ` ?</samp>
+         </p>
+
+         <p class="p">There are a few restrictions on your choice of name: </p>
+
+         <ul class="ul">
+            <li class="li" id="topic1__bw144996">
+               <samp class="ph codeph">--</samp> and <samp class="ph codeph">/*</samp> cannot appear anywhere
+                    in an operator name, since they will be taken as the start of a comment. </li>
+
+            <li class="li" id="topic1__bw144998">A multicharacter operator name cannot end in <samp class="ph codeph">+</samp> or
+                        <samp class="ph codeph">-</samp>, unless the name also contains at least one of these
+                    characters: <samp class="ph codeph">~ ! @ # % ^ &amp; | ` ?</samp>
+            </li>
+
+         </ul>
+
+         <p class="p">For example, <samp class="ph codeph">@-</samp> is an allowed operator name, but <samp class="ph codeph">*-</samp>
+                is not. This restriction allows HAWQ to parse SQL-compliant commands without
+                requiring spaces between tokens. </p>
+
+         <p class="p">The operator <samp class="ph codeph">!=</samp> is mapped to <samp class="ph codeph">&lt;&gt;</samp> on input, so
+                these two names are always equivalent. </p>
+
+         <p class="p">At least one of <samp class="ph codeph">LEFTARG</samp> and <samp class="ph codeph">RIGHTARG</samp> must be
+                defined. For binary operators, both must be defined. For right unary operators, only
+                    <samp class="ph codeph">LEFTARG</samp> should be defined, while for left unary operators only
+                    <samp class="ph codeph">RIGHTARG</samp> should be defined. </p>
+
+         <p class="p">The <var class="keyword varname">funcname</var> procedure must have been previously defined using
+                    <samp class="ph codeph">CREATE FUNCTION</samp>, must be <samp class="ph codeph">IMMUTABLE</samp>, and must
+                be defined to accept the correct number of arguments (either one or two) of the
+                indicated types. </p>
+
+         <p class="p">The other clauses specify optional operator optimization clauses. These clauses
+                should be provided whenever appropriate to speed up queries that use the operator.
+                But if you provide them, you must be sure that they are correct. Incorrect use of an
+                optimization clause can result in server process crashes, subtly wrong output, or
+                other unexpected results. You can always leave out an optimization clause if you are
+                not sure about it.</p>
+
+      </div>
+
+      <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Parameters</h2>
+         
+         <dl class="dl parml">
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">name</var>
+               </dt>
+
+               <dd class="dd pd">The (optionally schema-qualified) name of the operator to be defined. Two
+                        operators in the same schema can have the same name if they operate on
+                        different data types.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">funcname</var>
+               </dt>
+
+               <dd class="dd pd">The function used to implement this operator (must be an
+                            <samp class="ph codeph">IMMUTABLE</samp> function).</dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">lefttype</var>
+               </dt>
+
+               <dd class="dd pd">The data type of the operator's left operand, if any. This option would be
+                        omitted for a left-unary operator. </dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">righttype</var>
+               </dt>
+
+               <dd class="dd pd">The data type of the operator's right operand, if any. This option would be
+                        omitted for a right-unary operator.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">com_op</var>
+               </dt>
+
+               <dd class="dd pd">The optional <samp class="ph codeph">COMMUTATOR</samp> clause names an operator that is
+                        the commutator of the operator being defined. We say that operator A is the
+                        commutator of operator B if (x A y) equals (y B x) for all possible input
+                        values x, y. Notice that B is also the commutator of A. For example,
+                        operators <samp class="ph codeph">&lt;</samp> and <samp class="ph codeph">&gt;</samp> for a particular
+                        data type are usually each others commutators, and operator + is usually
+                        commutative with itself. But operator <samp class="ph codeph">-</samp> is usually not
+                        commutative with anything. The left operand type of a commutable operator is
+                        the same as the right operand type of its commutator, and vice versa. So the
+                        name of the commutator operator is all that needs to be provided in the
+                            <samp class="ph codeph">COMMUTATOR</samp> clause. </dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">neg_op</var>
+               </dt>
+
+               <dd class="dd pd">The optional <samp class="ph codeph">NEGATOR</samp> clause names an operator that is the
+                        negator of the operator being defined. We say that operator A is the negator
+                        of operator B if both return Boolean results and (x A y) equals NOT (x B y)
+                        for all possible inputs x, y. Notice that B is also the negator of A. For
+                        example, <samp class="ph codeph">&lt;</samp> and <samp class="ph codeph">&gt;=</samp> are a negator pair
+                        for most data types. An operator's negator must have the same left and/or
+                        right operand types as the operator to be defined, so only the operator name
+                        need be given in the <samp class="ph codeph">NEGATOR</samp> clause.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">res_proc</var>
+               </dt>
+
+               <dd class="dd pd">The optional <samp class="ph codeph">RESTRICT</samp> names a restriction selectivity
+                        estimation function for the operator. Note that this is a function name, not
+                        an operator name. <samp class="ph codeph">RESTRICT</samp> clauses only make sense for
+                        binary operators that return <samp class="ph codeph">boolean</samp>. The idea behind a
+                        restriction selectivity estimator is to guess what fraction of the rows in a
+                        table will satisfy a <samp class="ph codeph">WHERE</samp>-clause condition of the
+                        form:</dd>
+
+               <dd class="dd pd">
+                  <pre class="pre codeblock">column OP constant</pre>
+
+               </dd>
+
+               <dd class="dd pd">for the current operator and a particular constant value. This assists the
+                        optimizer by giving it some idea of how many rows will be eliminated by
+                            <samp class="ph codeph">WHERE</samp> clauses that have this form. </dd>
+
+               <dd class="dd pd">You can usually just use one of the following system standard estimator
+                        functions for many of your own operators: <p class="p">
+                     <samp class="ph codeph">eqsel</samp> for =
+                                </p>
+
+                  <p class="p">
+                     <samp class="ph codeph">neqsel</samp> for &lt;&gt;
+                                </p>
+
+                  <p class="p">
+                     <samp class="ph codeph">scalarltsel</samp> for &lt; or &lt;=
+                                </p>
+
+                  <p class="p">
+                     <samp class="ph codeph">scalargtsel</samp> for &gt; or &gt;= </p>
+
+               </dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">join_proc</var>
+               </dt>
+
+               <dd class="dd pd">The optional <samp class="ph codeph">JOIN</samp> clause names a join selectivity
+                        estimation function for the operator. Note that this is a function name, not
+                        an operator name. <samp class="ph codeph">JOIN</samp> clauses only make sense for binary
+                        operators that return <samp class="ph codeph">boolean</samp>. The idea behind a join
+                        selectivity estimator is to guess what fraction of the rows in a pair of
+                        tables will satisfy a <samp class="ph codeph">WHERE</samp>-clause condition of the
+                        form</dd>
+
+               <dd class="dd pd">
+                  <pre class="pre codeblock">table1.column1 OP table2.column2</pre>
+
+               </dd>
+
+               <dd class="dd pd">for the current operator. This helps the optimizer by letting it figure out
+                        which of several possible join sequences is likely to take the least
+                        work.</dd>
+
+               <dd class="dd pd">You can usually just use one of the following system standard join
+                        selectivity estimator functions for many of your own
+                                operators:<p class="p">
+                     <samp class="ph codeph">eqjoinsel</samp> for =
+                                </p>
+
+                  <p class="p">
+                     <samp class="ph codeph">neqjoinsel</samp> for &lt;&gt;
+                                </p>
+
+                  <p class="p">
+                     <samp class="ph codeph">scalarltjoinsel</samp> for &lt; or &lt;=
+                                </p>
+
+                  <p class="p">
+                     <samp class="ph codeph">scalargtjoinsel</samp> for &gt; or &gt;=
+                                </p>
+
+                  <p class="p">
+                     <samp class="ph codeph">areajoinsel</samp> for 2D area-based comparisons
+                                </p>
+
+                  <p class="p">
+                     <samp class="ph codeph">positionjoinsel</samp> for 2D position-based
+                            comparisons </p>
+
+                  <p class="p">
+                     <samp class="ph codeph">contjoinsel</samp> for 2D containment-based
+                            comparisons </p>
+
+               </dd>
+
+            
+            
+               <dt class="dt pt dlterm">HASHES</dt>
+
+               <dd class="dd pd">The optional <samp class="ph codeph">HASHES</samp> clause tells the system that it is
+                        permissible to use the hash join method for a join based on this operator.
+                            <samp class="ph codeph">HASHES</samp> only makes sense for a binary operator that
+                        returns <samp class="ph codeph">boolean</samp>. The hash join operator can only return
+                        true for pairs of left and right values that hash to the same hash code. If
+                        two values get put in different hash buckets, the join will never compare
+                        them at all, implicitly assuming that the result of the join operator must
+                        be false. So it never makes sense to specify <samp class="ph codeph">HASHES</samp> for
+                        operators that do not represent equality. </dd>
+
+               <dd class="dd pd">To be marked <samp class="ph codeph">HASHES</samp>, the join operator must appear in a
+                        hash index operator class. Attempts to use the operator in hash joins will
+                        fail at run time if no such operator class exists. The system needs the
+                        operator class to find the data-type-specific hash function for the
+                        operator's input data type. You must also supply a suitable hash function
+                        before you can create the operator class. Care should be exercised when
+                        preparing a hash function, because there are machine-dependent ways in which
+                        it might fail to do the right thing.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">MERGES</dt>
+
+               <dd class="dd pd">The <samp class="ph codeph">MERGES</samp> clause, if present, tells the system that it is
+                        permissible to use the merge-join method for a join based on this operator.
+                            <samp class="ph codeph">MERGES</samp> only makes sense for a binary operator that
+                        returns <samp class="ph codeph">boolean</samp>, and in practice the operator must
+                        represent equality for some data type or pair of data types. </dd>
+
+               <dd class="dd pd">Merge join is based on the idea of sorting the left- and right-hand tables
+                        into order and then scanning them in parallel. So, both data types must be
+                        capable of being fully ordered, and the join operator must be one that can
+                        only succeed for pairs of values that fall at the same place in the sort
+                        order. In practice this means that the join operator must behave like
+                        equality. It is possible to merge-join two distinct data types so long as
+                        they are logically compatible. For example, the smallint-versus-integer
+                        equality operator is merge-joinable. We only need sorting operators that
+                        will bring both data types into a logically compatible sequence.</dd>
+
+               <dd class="dd pd">Execution of a merge join requires that the system be able to identify four
+                        operators related to the merge-join equality operator: less-than comparison
+                        for the left operand data type, less-than comparison for the right operand
+                        data type, less-than comparison between the two data types, and greater-than
+                        comparison between the two data types. It is possible to specify these
+                        operators individually by name, as the <samp class="ph codeph">SORT1</samp>,
+                            <samp class="ph codeph">SORT2</samp>, <samp class="ph codeph">LTCMP</samp>, and
+                            <samp class="ph codeph">GTCMP</samp> options respectively. The system will fill in the
+                        default names if any of these are omitted when <samp class="ph codeph">MERGES</samp> is
+                        specified.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">left_sort_op</var>
+               </dt>
+
+               <dd class="dd pd">If this operator can support a merge join, the less-than operator that sorts
+                        the left-hand data type of this operator. <samp class="ph codeph">&lt;</samp> is the
+                        default if not specified.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">right_sort_op</var>
+               </dt>
+
+               <dd class="dd pd">If this operator can support a merge join, the less-than operator that sorts
+                        the right-hand data type of this operator. <samp class="ph codeph">&lt;</samp> is the
+                        default if not specified.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">less_than_op</var>
+               </dt>
+
+               <dd class="dd pd">If this operator can support a merge join, the less-than operator that
+                        compares the input data types of this operator. <samp class="ph codeph">&lt;</samp> is the
+                        default if not specified. </dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">greater_than_op</var>
+               </dt>
+
+               <dd class="dd pd">If this operator can support a merge join, the greater-than operator that
+                        compares the input data types of this operator. <samp class="ph codeph">&gt;</samp> is the
+                        default if not specified.<p class="p">To give a schema-qualified operator name in
+                            optional arguments, use the <samp class="ph codeph">OPERATOR()</samp> syntax, for
+                            example:</p>
+
+                  <pre class="pre codeblock">COMMUTATOR = OPERATOR(myschema.===) ,</pre>
+
+               </dd>
+
+            
+         </dl>
+
+      </div>
+
+      <div class="section" id="topic1__section5"><h2 class="title sectiontitle">Notes</h2>
+         
+         <p class="p">Any functions used to implement the operator must be defined as
+                    <samp class="ph codeph">IMMUTABLE</samp>.</p>
+
+      </div>
+
+      <div class="section" id="topic1__section6"><h2 class="title sectiontitle">Examples</h2>
+         
+         <p class="p">Here is an example of creating an operator for adding two complex numbers, assuming
+                we have already created the definition of type <samp class="ph codeph">complex</samp>. First
+                define the function that does the work, then define the operator: </p>
+
+         <pre class="pre codeblock">CREATE FUNCTION complex_add(complex, complex)
+    RETURNS complex
+    AS 'filename', 'complex_add'
+    LANGUAGE C IMMUTABLE STRICT;
+CREATE OPERATOR + (
+    leftarg = complex,
+    rightarg = complex,
+    procedure = complex_add,
+    commutator = +
+);</pre>
+
+         <p class="p">To use this operator in a query: </p>
+
+         <pre class="pre codeblock">SELECT (a + b) AS c FROM test_complex;</pre>
+
+      </div>
+
+      <div class="section" id="topic1__section7"><h2 class="title sectiontitle">Compatibility</h2>
+         
+         <p class="p">
+            <samp class="ph codeph">CREATE OPERATOR</samp> is a HAWQ language extension. The SQL standard does
+                not provide for user-defined operators.</p>
+
+      </div>
+
+      <div class="section" id="topic1__section8"><h2 class="title sectiontitle">See Also</h2>
+         
+         <p class="p">
+            <samp class="ph codeph">
+               <a class="xref" href="CREATE-FUNCTION.html">CREATE FUNCTION</a>
+            </samp>, <samp class="ph codeph">
+               <a class="xref" href="CREATE-TYPE.html">CREATE TYPE</a>
+            </samp>, <samp class="ph codeph">
+               <a class="xref" href="ALTER-OPERATOR.html">ALTER OPERATOR</a>
+            </samp>, <samp class="ph codeph">
+               <a class="xref" href="DROP-OPERATOR.html">DROP OPERATOR</a>
+            </samp>
+         </p>
+
+      </div>
+
+   </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/SQLCommandReference.html" title="SQL Command Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SQL Command Reference</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

@@ -1,0 +1,171 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="You can use the  icm_client start  command to: Start all the configured services of the cluster. Start individual services configured for the cluster. Start individual roles on a specific set of ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Starting a Cluster"/><meta name="DC.Relation" scheme="URI" content="../topics/ManagingaPHDCluster.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="startingacluster"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Starting a Cluster</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="startingacluster"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/AdministeringPHDUsingtheCLI.html" title="Administering PHD Using the CLI">Administering PHD Using the CLI</a> / <a class="navheader_parent_path" href="../topics/ManagingaPHDCluster.html" title="Managing a PHD Cluster">Managing a PHD Cluster</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/ManagingaPHDCluster.html" title="Managing a PHD Cluster"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Managing a PHD Cluster</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Starting a Cluster</h1>
+
+   <div class="body">
+      <div class="p">You can use the <samp class="ph codeph">icm_client start</samp> command to:<ul class="ul" id="startingacluster__ul_adq_mdd_5p">
+            <li class="li">Start all the configured services of the cluster.</li>
+
+            <li class="li">Start individual services configured for the cluster.</li>
+
+            <li class="li">Start individual roles on a specific set of hosts.</li>
+
+         </ul>
+</div>
+
+      <p class="p">The command starts all configured cluster services in the right topological order based on
+         service dependencies.</p>
+
+      <div class="note note"><span class="notetitle">Note:</span> You cannot start GemFire XD (gfxd) using the <samp class="ph codeph">icm_client start</samp>
+            command.<p class="p">See the <a class="xref" href="http://gemfirexd.docs.pivotal.io/latest/userguide/index.html#getting_started/topics/install_platform.html" target="_blank">GemFire XD documentation</a> for information about
+            how to configure and start GemFire XD members. </p>
+</div>
+
+
+      <div class="section"><h2 class="title sectiontitle">Syntax</h2>
+         
+         <pre class="pre codeblock">icm_client start --help
+Usage: /usr/bin/icm_client start [options]
+
+Options:
+  -h, --help            show this help message and exit
+  -v, --verbose         increase output verbosity
+  -l CLUSTERNAME, --clustername=CLUSTERNAME
+                        the name of the cluster on which the operation is
+                        performed
+  -s SERVICES, --service=SERVICES
+                        service to be started
+  -f, --force           forcibly start cluster (even if install is incomplete)
+  -r ROLES, --role=ROLES
+                        The name of the role which needs to be started
+  -o HOSTFILE, --hostfile=HOSTFILE
+                        The absolute path for the file containing host names
+                        for the role which needs to be started
+</pre>
+
+      </div>
+
+      <div class="section"><h2 class="title sectiontitle">Options</h2>
+         
+         <p class="p">This section describes the <samp class="ph codeph">start</samp> options for the HDFS, MapRed,
+            ZooKeeper, HBase, and HAWQ services.</p>
+
+         <dl class="dl parml">
+            
+               <dt class="dt pt dlterm"><samp class="ph codeph">-s</samp></dt>
+
+               <dd class="dd pd">Starts the specified service and all services it depends on in the right
+                  topological order. The supported services are HDFS, Yarn, Zookeeper, Hbase,
+                  Hive, HAWQ, Pig, and Mahout.</dd>
+
+            
+            
+               <dt class="dt pt dlterm"><samp class="ph codeph">-r</samp></dt>
+
+               <dd class="dd pd">Starts only the specified role on a specific set of hosts. Hosts can be
+                  specified using the <samp class="ph codeph">-o</samp> option.</dd>
+
+            
+            
+               <dt class="dt pt dlterm"><samp class="ph codeph">-f</samp></dt>
+
+               <dd class="dd pd">Forces the cluster to start even if the installation is incomplete.</dd>
+
+            
+         </dl>
+   
+      </div>
+
+      <div class="section"><h2 class="title sectiontitle">Notes</h2>
+         
+         <p class="p">The first time the cluster is started, Pivotal HD implicitly initializes the cluster.
+            For subsequent invocations of the <samp class="ph codeph">start</samp> command, the cluster is not
+            initialized.</p>
+
+         <p class="p">Cluster initialization includes the following:</p>
+
+         <ul class="ul" id="startingacluster__ul_z5d_grw_tp">
+            <li class="li">NameNode format.</li>
+
+            <li class="li">Create directories on the local filesystem of cluster nodes and on the hdfs, with
+               the correct permission overrides. See the <a class="xref" href="PHDServicesReference.html">Overriding Directory Permissions</a> section.</li>
+
+            <li class="li">Create HDFS directories for additional services, such as HBase, if these are
+               included in the configured services.</li>
+
+         </ul>
+
+         <div class="note note"><span class="notetitle">Note:</span> Refer to the "Verifying the Cluster Nodes for Pivotal HD" section to make sure the
+            cluster services are up and running.<p class="p">Make sure you back up all the data prior to
+               installing or starting a new cluster on nodes that have pre-existing data on the
+               configured mount points. </p>
+</div>
+
+      </div>
+
+      <div class="section"><h2 class="title sectiontitle">Examples</h2>
+         
+         <p class="p">Cluster level start:</p>
+
+         <pre class="pre codeblock">[gpadmin]# icm_client start -l <var class="keyword varname">&lt;CLUSTERNAME&gt;</var></pre>
+
+         <p class="p">Service level start:</p>
+
+         <pre class="pre codeblock">[gpadmin]# icm_client start -l <var class="keyword varname">&lt;CLUSTERNAME&gt;</var> -s hdfs</pre>
+
+         <p class="p">Role level start:</p>
+
+         <pre class="pre codeblock">[gpadmin]# icm_client start -l <var class="keyword varname">&lt;CLUSTERNAME&gt;</var> -r datanode -o hostfile</pre>
+
+      </div>
+
+   </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/ManagingaPHDCluster.html" title="Managing a PHD Cluster"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Managing a PHD Cluster</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

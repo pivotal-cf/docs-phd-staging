@@ -1,0 +1,185 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="This screen shows you the basic topology of your cluster.  You can also add/remove slaves to/from the cluster via this screen. The main portion of this page displays a list of all the nodes in your ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Topology"/><meta name="DC.Relation" scheme="URI" content="../topics/UsingPCC.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="topology"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Topology</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="topology"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PCCUserGuide.html" title="PCC User Guide">PCC User Guide</a> / <a class="navheader_parent_path" href="../topics/UsingPCC.html" title="Using PCC">Using PCC</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/UsingPCC.html" title="Using PCC"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Using PCC</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Topology</h1>
+
+   <div class="body">
+      <p class="p">This screen shows you the basic topology of your cluster.  You can also add/remove slaves
+         to/from the cluster via this screen.</p>
+
+      <p class="p">The main portion of this page displays a list of all the nodes in your cluster, and the
+         roles that have been installed on each node.</p>
+
+      <p class="p">
+         <img class="image" id="topology__image_j3s_t4s_4p" src="../images/72680146.png" width="500"/>
+      </p>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="componentinformation">
+      <h2 class="title topictitle2">Component Information</h2>
+
+      <div class="body">
+         <p class="p">The Component Information pane lists all the components and versions that are part of
+            your PCC installation.</p>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="topologyactions">
+      <h2 class="title topictitle2">Topology Actions</h2>
+
+      <div class="body">
+         <p class="p">You can add or remove slaves using the Topology Actions pane.</p>
+
+         <div class="note note"><span class="notetitle">Note:</span> This functionality is restricted to administrative users.</div>
+
+         <div class="note note"><span class="notetitle">Note:</span> A node is considered a slave if it contains the following services/roles:
+               <samp class="ph codeph">datanode</samp>, <samp class="ph codeph">hbase-regionserver</samp>,
+               <samp class="ph codeph">yarn-nodemanager</samp>.<p class="p">Additionally for HAWQ and PXF, a slave node
+               contains the following services/roles: <samp class="ph codeph">hawq-segment</samp>,
+                  <samp class="ph codeph">pxf-service</samp>.</p>
+<p class="p">When you add a slave, these services/roles
+               appear on the node. When you remove a slave node; all these services/roles are
+               removed.</p>
+</div>
+
+      </div>
+
+      <div class="topic nested2" id="addingslavestothecluster">
+         <h3 class="title topictitle3">Adding Slaves to the Cluster</h3>
+
+         <div class="body">
+            <ol class="ol" id="addingslavestothecluster__ol_e3y_1ps_4p">
+               <li class="li">Click on the <strong class="ph b">Add Slaves to the Cluster</strong> option from the <strong class="ph b">Topology
+                     Actions</strong> menu. An <strong class="ph b">Add Slaves</strong> dialog appears; this dialog lists all
+                  current nodes.</li>
+
+               <li class="li">Enter the slave nodes you want to add either individually or as ranges; for
+                  example <samp class="ph codeph">Node[1-9]</samp>.</li>
+
+               <li class="li">Provide the <samp class="ph codeph">root</samp> Password.</li>
+
+               <li class="li">If you want to have services for your new slave nodes start automatically, check
+                  the <strong class="ph b">Start services automatically</strong> box.<p class="p">If you do not choose to have the
+                     services start automatically, you can start them by returning to the Dashboard,
+                     navigating to the role defined for that node, then selecting <strong class="ph b">Action &gt;
+                        Start &lt;service_name&gt;</strong>. For example: <strong class="ph b">Action &gt; Start
+                     Hive</strong>.</p>
+</li>
+
+               <li class="li">Click <strong class="ph b">Add Slaves to Cluster</strong>.</li>
+
+            </ol>
+
+            <div class="note note"><span class="notetitle">Note:</span> 
+               <ul class="ul" id="addingslavestothecluster__ul_u3y_1ps_4p">
+                  <li class="li">If you type a node name twice, that name will flash yellow until one is
+                     deleted.</li>
+
+                  <li class="li">If you type the name of a node that already exists, that name becomes
+                     highlighted and you are shown an error message warning you
+                     that:<pre class="pre msgblock">Highlighted hosts are duplicates and will not be added. </pre>
+</li>
+
+                  <li class="li">If you close the dialog before the operation is finished, it continues in the
+                     background. Refresh the Topology page to see if it has successfully
+                     completed.</li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="removingslavesfromacluster">
+         <h3 class="title topictitle3">Removing Slaves from a Cluster</h3>
+
+         <div class="body">
+            <ol class="ol" id="removingslavesfromacluster__ol_kgy_1ps_4p">
+               <li class="li">Click on the <strong class="ph b">Remove Slaves from the Cluster</strong> option from the <strong class="ph b">Topology
+                     Actions</strong> menu. A <strong class="ph b">Remove Slaves</strong> dialog appears; this dialog lists all
+                  current slave nodes.<p class="p">You are warned that prior to removal, services on slave
+                     nodes will be stopped.</p>
+</li>
+
+               <li class="li">Enter the slave nodes you want to remove either individually or as ranges; for
+                  example <samp class="ph codeph">Node[1-9]</samp>.</li>
+
+               <li class="li">Click <strong class="ph b">Remove Slaves from Cluster</strong>.</li>
+
+            </ol>
+
+            <div class="note note"><span class="notetitle">Note:</span> 
+               <ul class="ul" id="removingslavesfromacluster__ul_ugy_1ps_4p">
+                  <li class="li">You do not need to provide a password to remove slave nodes.</li>
+
+                  <li class="li">This text field auto-completes with nodes from the cluster.</li>
+
+                  <li class="li">If you try and enter a node that does not exist, the text field does not
+                     become active and you are not able to perform the remove operation.</li>
+
+                  <li class="li">If you close the dialog before the operation is finished, it continues in the
+                     background. Refresh the Topology page to see if it has successfully
+                     completed.</li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/UsingPCC.html" title="Using PCC"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Using PCC</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

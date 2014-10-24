@@ -1,0 +1,95 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="HAWQ system configuration is defined in hawq/gpinitsystem_config . You can override the HAWQ database default database port setting, 5432, using the MASTER_PORT parameter. You can also change the HAWQ ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="PHD Install 5 - Edit the HAWQ Configuration File"/><meta name="DC.Relation" scheme="URI" content="../topics/InstallingPHDUsingtheCLI.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="editingthehawqconfigurationfile"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>PHD Install 5 - Edit the HAWQ Configuration File</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="editingthehawqconfigurationfile"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration">PHD Installation and Administration</a> / <a class="navheader_parent_path" href="../topics/InstallingPHDUsingtheCLI.html" title="Installing PHD Using the CLI">Installing PHD Using the CLI</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/InstallingPHDUsingtheCLI.html" title="Installing PHD Using the CLI"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Installing PHD Using the CLI</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">PHD Install 5 - Edit the HAWQ Configuration File</h1>
+
+   <div class="body">
+      <p class="p">HAWQ system configuration is defined in <samp class="ph codeph">hawq/gpinitsystem_config</samp>.</p>
+
+      <ul class="ul">
+         <li class="li">You can override the HAWQ database default database port setting, 5432, using the
+               <samp class="ph codeph">MASTER_PORT</samp> parameter.</li>
+
+         <li class="li">You can also change the HAWQ DFS path using the <samp class="ph codeph">DFS_URL</samp>
+            parameter.</li>
+
+      </ul>
+
+      <div class="note important"><span class="importanttitle">Important:</span> 
+         <strong class="ph b">Memory/VMs Issue</strong>
+         <div class="p">If you are planning to deploy a HAWQ cluster on VMs with memory lower than the
+            optimized/recommended requirements, do the following:<ol class="ol" id="editingthehawqconfigurationfile__ol_tsn_5m3_tp">
+               <li class="li">Prior to deploying your cluster, open the
+                     <samp class="ph codeph">/usr/lib/gphd/gphdmgr/hawq_sys_config/sysctl.conf</samp>  file and
+                  change the value of the following parameter from 2 to 0:
+                     <samp class="ph codeph">vm.overcommit_memory =0</samp>.</li>
+
+               <li class="li">In <samp class="ph codeph">clusterConfig.xml</samp>, update
+                     <samp class="ph codeph">&lt;hawq.segment.directory&gt;</samp> to include only one segment
+                  directory entry (instead of the default 2 segments).</li>
+
+            </ol>
+</div>
+</div>
+
+
+      <div class="p">
+         <strong class="ph b">Next Task:</strong>
+         <ul class="ul" id="editingthehawqconfigurationfile__ul_v5k_ym3_tp">
+            <li class="li">If needed: <a class="xref" href="ForPXFwithGemFireXD.html">PHD Install 6 - PXF with GemFire XD</a></li>
+
+            <li class="li">Otherwise, skip to: <a class="xref" href="DeployingtheCluster.html">PHD Install 7 - Deploy the Cluster</a></li>
+
+         </ul>
+
+      </div>
+
+   </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/InstallingPHDUsingtheCLI.html" title="Installing PHD Using the CLI"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Installing PHD Using the CLI</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

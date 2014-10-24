@@ -1,0 +1,188 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Initializes a HAWQ system using configuration parameters specified in the gpinitsystem_config file. Synopsis gpinitsystem -c gpinitsystem_config [-h hostfile_gpinitsystem] [-B parallel_processes] [-p ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="gpinitsystem"/><meta name="DC.Relation" scheme="URI" content="../topics/ManagementUtilityReference.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="gpinitsystem"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>gpinitsystem</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="gpinitsystem"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a> / <a class="navheader_parent_path" href="../topics/ManagementUtilityReference.html" title="Management Utility Reference">Management Utility Reference</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/ManagementUtilityReference.html" title="Management Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Management Utility Reference</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">gpinitsystem</h1>
+
+   <div class="body">
+      <p class="p">Initializes a HAWQ system using configuration parameters specified in the gpinitsystem_config file.</p>
+
+      <div class="section"><h2 class="title sectiontitle">Synopsis</h2>
+         
+         <pre class="pre codeblock">gpinitsystem -c gpinitsystem_config
+	     [-h hostfile_gpinitsystem]
+	     [-B parallel_processes]
+	     [-p postgresql_conf_param_file]
+	     [-s standby_master_host]
+	     [--max_connections=number] [--shared_buffers=size]
+	     [--locale=locale] [--lc-collate=locale]
+	     [--lc-ctype=locale] [--lc-messages=locale]
+	     [--lc-monetary=locale] [--lc-numeric=locale]
+	     [--lc-time=locale] [--su_password=password]
+       	     [-a] [-q] [-l logfile_directory] [-D]
+gpinitsystem -?
+gpinitsystem -v</pre>
+
+      </div>
+
+      <div class="section"><h2 class="title sectiontitle">Description</h2>
+         
+         <p class="p">The gpinitsystem utility will create a HAWQ instance using the values defined in a configuration file. See <strong class="ph b"> <a class="xref" href="gpinitsystem.html">gpinitsystem</a> </strong>for more information about this configuration file. Before running this utility, make sure that you have installed the HAWQ software on all the hosts in the array.</p>
+
+         <p class="p">In a HAWQ DBMS, each database instance (the master and all segments) must be initialized across all of the hosts in the system in such a way that they can all work together as a unified DBMS. The gpinitsystem utility takes care of initializing the HAWQ master and each segment instance, and configuring the system as a whole.</p>
+
+         <p class="p">Before running gpinitsystem, you must set the $GPHOME environment variable to point to the location of your HAWQ installation on the master host and exchange SSH keys between all host addresses in the array using gpssh-exkeys.</p>
+
+         <p class="p">This utility performs the following tasks:</p>
+
+         <ul class="ul">
+            <li class="li">Verifies that the parameters in the configuration file are correct.</li>
+
+            <li class="li">Ensures that a connection can be established to each host address. If a host address cannot be reached, the utility will exit.</li>
+
+            <li class="li">Verifies the locale settings.</li>
+
+            <li class="li">Displays the configuration that will be used and prompts the user for confirmation.</li>
+
+            <li class="li">Initializes the master instance.</li>
+
+            <li class="li">Initializes the standby master instance (if specified).</li>
+
+            <li class="li">Initializes the primary segment instances.</li>
+
+            <li class="li">Configures the HAWQ system and checks for errors.</li>
+
+            <li class="li">Starts the HAWQ system.</li>
+
+         </ul>
+
+      </div>
+
+      <div class="section"><h2 class="title sectiontitle">Options</h2>
+         
+         <pre class="pre codeblock">-a (do not prompt)</pre>
+
+         <p class="p">Do not prompt the user for confirmation.</p>
+
+         <pre class="pre codeblock">-B parallel_processes</pre>
+
+         <p class="p">The number of segments to create in parallel. If not specified, the utility will start up to 4 parallel processes at a time.</p>
+
+         <pre class="pre codeblock">-c <strong class="ph b">gpinitsystem_config</strong>
+         </pre>
+
+         <p class="p">Required. The full path and filename of the configuration file, which contains all of the defined parameters to configure and initialize a new HAWQ system. See <strong class="ph b"> <a class="xref" href="gpinitsystem.html">gpinitsystem</a> </strong>for a description of this file.</p>
+
+         <pre class="pre codeblock">-D (debug)</pre>
+
+         <p class="p">Sets log output level to debug.</p>
+
+         <pre class="pre codeblock">-h <strong class="ph b">hostfile_gpinitsystem</strong>
+         </pre>
+
+         <p class="p">Optional. The full path and filename of a file that contains the host addresses of your segment hosts. If not specified on the command line, you can specify the host file using the MACHINE_LIST_FILE parameter in the gpinitsystem_config file.</p>
+
+         <pre class="pre codeblock">--locale=locale | -n locale</pre>
+
+         <p class="p">Sets the default locale used by HAWQ. If not specified, the LC_ALL, LC_COLLATE, or LANG environment variable of the master host determines the locale. If these are not set, the default locale is C (POSIX). A locale identifier consists of a language identifier and a region identifier, and optionally a character set encoding. For example, sv_SE is Swedish as spoken in Sweden, en_US is U.S. English, and fr_CA is French Canadian. If more than one character set can be useful for a locale, then the specifications look like this: en_US.UTF-8 (locale specification and character set encoding). On most systems, the command locale will show the locale environment settings and locale -a will show a list of all available locales.</p>
+
+         <pre class="pre codeblock">--lc-collate=locale</pre>
+
+         <p class="p">Similar to --locale, but sets the locale used for collation (sorting data). The sort order cannot be changed after HAWQ is initialized, so it is important to choose a collation locale that is compatible with the character set encodings that you plan to use for your data. There is a special collation name of C or POSIX (byte-order sorting as opposed to dictionary-order sorting). The C collation can be used with any character encoding.</p>
+
+         <pre class="pre codeblock">--lc-ctype= locale</pre>
+
+         <p class="p">Similar to --locale, but sets the locale used for character classification (what character sequences are valid and how they are interpreted). This cannot be changed after HAWQ is initialized, so it is important to choose a character classification locale that is compatible with the data you plan to store in HAWQ.</p>
+
+         <pre class="pre codeblock">--lc-messages=locale </pre>
+
+         <p class="p">Similar to --locale, but sets the locale used for messages output by HAWQ. The current version of HAWQ does not support multiple locales for output messages (all messages are in English), so changing this setting will not have any effect.</p>
+
+         <pre class="pre codeblock">--lc-monetary=locale</pre>
+
+         <p class="p">Similar to --locale, but sets the locale used for formatting currency amounts.</p>
+
+         <pre class="pre codeblock">--lc-numeric=locale</pre>
+
+         <p class="p">Similar to --locale, but sets the locale used for formatting numbers.</p>
+
+         <pre class="pre codeblock">--lc-time=locale</pre>
+
+         <p class="p">Similar to --locale, but sets the locale used for formatting dates and times.</p>
+
+         <pre class="pre codeblock">-l logfile_directory</pre>
+
+         <p class="p">The directory to write the log file. Defaults to ~/gpAdminLogs.</p>
+
+         <pre class="pre codeblock">--max_connections=number | -m <strong class="ph b">number</strong>
+         </pre>
+
+         <p class="p">Sets the maximum number of client connections allowed to the master. The default is 250.</p>
+
+         <pre class="pre codeblock">-p postgresql_conf_param_file</pre>
+
+         <p class="p">Optional. The name of a file that contains postgresql.conf parameter settings that you want to set for HAWQ. These settings will be used when the individual master and segment instances are initialized. You can also set parameters after initialization using the gpconfig utility.</p>
+
+         <pre class="pre codeblock">-q (no screen output)</pre>
+
+         <p class="p">Run in quiet mode. Command output is not displayed on the screen, but is still written to the log file.</p>
+
+         <pre class="pre codeblock">--shared_buffers= <strong class="ph b">size </strong>
+  | -b size</pre>
+
+         <p class="p">Sets the amount of memory a HAWQ server instance uses for shared memory buffers. You can specify sizing in kilobytes (kB), megabytes (MB) or gigabytes (GB). The default is 125MB.</p>
+
+         <pre class="pre codeblock">-s standby_master_host</pre>
+
+         <p class="p">Optional. If you wish to configure a backup master host, specify the host name using this option. The HAWQ software must already be installed and configured on this host.</p>
+
+      </div>
+
+   </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/ManagementUtilityReference.html" title="Management Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Management Utility Reference</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

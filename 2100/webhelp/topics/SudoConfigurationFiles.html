@@ -1,0 +1,105 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The sudo configurations in /etc/sudoers.d/gpadmin  are used for the gpadmin user to perform deployments and upgrades. This sudo configuration file is automatically created as part of the preparehosts ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="sudo Configuration Files"/><meta name="DC.Relation" scheme="URI" content="../topics/PHDInstallationPrerequisites.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="sudoconfigurationfiles"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>sudo Configuration Files</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="sudoconfigurationfiles"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration">PHD Installation and Administration</a> / <a class="navheader_parent_path" href="../topics/PHDInstallationPrerequisites.html" title="PHD Pre-Install">PHD Pre-Install</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/PHDInstallationPrerequisites.html" title="PHD Pre-Install"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">PHD Pre-Install</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">sudo Configuration Files</h1>
+
+   <div class="body">
+      <p class="p">The sudo configurations in <samp class="ph codeph">/etc/sudoers.d/gpadmin</samp> are used for the
+            <samp class="ph codeph">gpadmin</samp> user to perform deployments and upgrades. This sudo
+         configuration file is automatically created as part of the <samp class="ph codeph">preparehosts</samp>
+         command that is run during deployments and upgrades.   </p>
+
+      <p class="p">If you don't use the configuration files under <samp class="ph codeph">/etc/sudoers.d</samp> due to your
+         site security policy, you need to add the following sudo settings to your sudo
+         configuration file to allow the <samp class="ph codeph">gpadmin</samp> user to perform deployment and
+         upgrade tasks.  This needs to be done before attempting to deploy or upgrade.</p>
+
+      <pre class="pre codeblock">####
+Defaults:root,%gpadmin !requiretty
+
+
+Defaults:root,%gpadmin secure_path += /sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
+
+
+## Networking
+Cmnd_Alias PCC_SYSTEM_NETWORKING = /sbin/route, /sbin/ifconfig, /bin/ping, /sbin/dhclient, /sbin/iptables
+
+
+### Installation and management of software
+Cmnd_Alias PCC_SYSTEM_SOFTWARE = /bin/cp, /bin/mv, /bin/mkdir, /bin/grep, /usr/bin/tee, /sbin/sysctl, /bin/chmod, /bin/chown, /bin/rpm, /usr/bin/yum, /usr/bin/puppet, /usr/bin/createrepo, /usr/bin/ssh-keygen, /usr/sbin/setenforce, /usr/sbin/useradd, /usr/sbin/ntpdate, /usr/bin/test, /usr/sbin/alternatives, /usr/sbin/authconfig
+
+
+### Commands with specific params
+Cmnd_Alias PCC_COMMANDS_SPECIFIC_PARAMS = /bin/rm -rf /etc/gphd/*, /bin/rm -rf /etc/security/phd/*, /bin/rm -rf /usr/lib/gphd/*, /bin/rm -rf /var/lib/gphd/*, /bin/rm -rf /var/log/gphd/*, /bin/rm -rf /tmp/.massh-gpadmin, /bin/rm -rf ~gpadmin/*
+
+
+### Services
+Cmnd_Alias PCC_SYSTEM_SERVICES = /sbin/service, /sbin/chkconfig
+
+
+### PCC specific services
+Cmnd_Alias PCC_SERVICES = /etc/init.d/hadoop-hdfs-namenode, /etc/init.d/hadoop-hdfs-datanode, /etc/init.d/hadoop-hdfs-secondarynamenode, /etc/init.d/hadoop-yarn-resourcemanager, /etc/init.d/hadoop-yarn-nodemanager, /etc/init.d/hadoop-mapreduce-historyserver, /etc/init.d/zookeeper-server, /etc/init.d/hbase-master, /etc/init.d/hbase-regionserver, /etc/init.d/hive-server, /etc/init.d/hive-metastore, /etc/init.d/postgresql, /etc/init.d/hawq, /etc/init.d/uss-namenode, /home/gpadmin/jdk, /etc/init.d/hadoop-hdfs-journalnode, /etc/init.d/hadoop-hdfs-zkfc, /etc/init.d/nodeagent, /etc/init.d/zabbix-agent, /etc/init.d/pxf-service
+
+
+### ICM Preparehost scripts
+Cmnd_Alias PCC_PREPAREHOST_CMDS = /tmp/gphdgmr/addHawqConfigs.py
+
+
+%gpadmin ALL=(root) NOPASSWD: PCC_SYSTEM_SOFTWARE, PCC_SYSTEM_SERVICES, PCC_SYSTEM_NETWORKING, PCC_SERVICES, PCC_COMMANDS_SPECIFIC_PARAMS, PCC_PREPAREHOST_CMDS
+
+
+%gpadmin ALL=(hadoop,hdfs,mapred,yarn,hbase,hive,zookeeper,postgres) NOPASSWD:ALL
+
+
+
+#####</pre>
+
+   </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/PHDInstallationPrerequisites.html" title="PHD Pre-Install"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">PHD Pre-Install</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

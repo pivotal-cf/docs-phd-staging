@@ -1,0 +1,1064 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Make sure you are logged in as user  gpadmin  on the appropriate host before testing any of the services. Testing Hadoop Testing YARN Testing Zookeeper Testing HBase and ZooKeeper Testing HAWQ Testing ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Running PHD Sample Programs"/><meta name="DC.Relation" scheme="URI" content="../topics/PHDPostInstallation.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="runningphdsampleprograms"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Running PHD Sample Programs</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="runningphdsampleprograms"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration">PHD Installation and Administration</a> / <a class="navheader_parent_path" href="../topics/PHDPostInstallation.html" title="PHD Post-Install">PHD Post-Install</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/PHDPostInstallation.html" title="PHD Post-Install"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">PHD Post-Install</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Running PHD Sample Programs</h1>
+
+   <div class="body">
+      <p class="p">Make sure you are logged in as user <samp class="ph codeph">gpadmin</samp> on the appropriate host before
+         testing any of the services.</p>
+
+      <ul class="ul">
+         <li class="li">
+            <a class="xref" href="#testinghadoop">Testing Hadoop</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#testingyarn">Testing YARN</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#testingzookeeper">Testing Zookeeper</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#testinghbaseandzookeeper">Testing HBase and ZooKeeper</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#testinghawq">Testing HAWQ</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#testingpig">Testing Pig</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#testinghive">Testing Hive</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#testinghcatalog">Testing Hcatalog</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#usinghcatalogcommand-lineapi">Using HCatalog Command-line API</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#usinghcatalogwithrest">Using HCatalog with REST</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#usinghcatalogwithpig">Using HCatalog with Pig</a>
+               </li>
+
+            </ul>
+</li>
+
+         <li class="li">
+            <a class="xref" href="#testingoozie">Testing Oozie</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#submitoozieexampleworkflows">Submit Oozie Example Workflows</a>
+               </li>
+
+            </ul>
+</li>
+
+         <li class="li">
+            <a class="xref" href="#testingsqoop">Testing Sqoop</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#sqoopclientexample">Sqoop Client Example</a>
+               </li>
+
+            </ul>
+</li>
+
+         <li class="li">
+            <a class="xref" href="#testingflume">Testing Flume</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#flumeconfigurationexample">Flume Configuration Example</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#startingstoppingflume">Starting/Stopping Flume</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#verifyingtheinstallation">Verifying the Installation</a>
+               </li>
+
+            </ul>
+</li>
+
+         <li class="li">
+            <a class="xref" href="#testingmahout">Testing Mahout</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#testingpxf">Testing PXF</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#testingpxfonhive">Testing PXF on Hive</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#testingpxfonhbase">Testing PXF on HBase</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#testingpxfonhdfs">Testing PXF on HDFS</a>
+               </li>
+
+            </ul>
+</li>
+
+      </ul>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="testinghadoop">
+      <h2 class="title topictitle2">Testing Hadoop</h2>
+
+      <div class="body">
+         <p class="p">You can run Hadoop commands from any configured Hadoop nodes.You can run MapReduce jobs
+            from the DataNodes, resource manager, or historyserver.</p>
+
+         <pre class="pre codeblock"># clear input directory, if any |
+
+$ hadoop fs -rmr /tmp/test_input
+
+# create input directory
+$ hadoop fs -mkdir /tmp/test_input
+
+# ensure output directory does not exist
+$ hadoop fs -rmr /tmp/test_output
+
+# copy some file having text data to run word count on
+$ hadoop fs -copyFromLocal /usr/lib/gphd/hadoop/CHANGES.txt /tmp/test_input
+
+# run word count
+$ hadoop jar /usr/lib/gphd/hadoop-mapreduce/hadoop-mapreduce-examples-&lt;version&gt;.jar wordcount /tmp/test_input /tmp/test_output
+
+# dump output on console
+$ hadoop fs -cat /tmp/test_output/part*</pre>
+
+         <div class="note note"><span class="notetitle">Note:</span> When you run a MapReduce job as a custom user (i.e. not as <samp class="ph codeph">gpadmin</samp>,
+               <samp class="ph codeph">hdfs</samp>, <samp class="ph codeph">mapred</samp>, or <samp class="ph codeph">hbase</samp>), note the
+               following:<ul class="ul" id="testinghadoop__ul_xsy_yhd_4p">
+               <li class="li">Make sure the appropriate user staging directory exists.</li>
+
+               <li class="li">Set permissions on <samp class="ph codeph">yarn.nodemanager.remote-app-log-dir</samp> to 777.
+                  For example, if it is set to the default value <samp class="ph codeph">/yarn/apps</samp>, do the
+                  following:<pre class="pre codeblock">$ sudo -u hdfs hadoop fs -chmod 777 /yarn/apps</pre>
+</li>
+
+               <li class="li">Ignore the Exception trace, this is a known Apache Hadoop issue.</li>
+
+            </ul>
+</div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="testingyarn">
+      <h2 class="title topictitle2">Testing YARN</h2>
+
+      <div class="body">
+         <pre class="pre codeblock">Run a yarn job (Pi job):
+
+yarn jar /usr/lib/gphd/hadoop-mapreduce/hadoop-mapreduce-examples-2.2.0-gphd-3.1.0.0.jar pi 2 2
+
+List all jobs with their status:
+
+sudo -u hadoop yarn application -list
+14/07/25 11:05:24 INFO client.RMProxy: Connecting to ResourceManager at centos64-2.localdomain/192.168.2.202:8032
+Total number of applications (application-types: [] and states: [SUBMITTED, ACCEPTED, RUNNING]):1
+                Application-Id      Application-Name        Application-Type          User           Queue                   State             Final-State         Progress                         Tracking-URL
+application_1406286051207_0001       QuasiMonteCarlo               MAPREDUCE       gpadmin         default                 RUNNING               UNDEFINED               5%               http://centos64-2:7017
+
+
+[gpadmin@centos64-2 ~]$ sudo -u hadoop yarn application -status application_1406286051207_0001
+14/07/25 11:05:36 INFO client.RMProxy: Connecting to ResourceManager at centos64-2.localdomain/192.168.2.202:8032
+Application Report :
+        Application-Id : application_1406286051207_0001
+        Application-Name : QuasiMonteCarlo
+        Application-Type : MAPREDUCE
+        User : gpadmin
+        Queue : default
+        Start-Time : 1406286289246
+        Finish-Time : 0
+        Progress : 5%
+        State : RUNNING
+        Final-State : UNDEFINED
+        Tracking-URL : http://centos64-2:7017
+        RPC Port : 21905
+        AM Host : centos64-2
+        Diagnostics :
+[gpadmin@centos64-2 ~]$</pre>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="testingzookeeper">
+      <h2 class="title topictitle2">Testing Zookeeper</h2>
+
+      <div class="body">
+         <p class="p">To test Zookeeper, first make sure that Zookeeper is ruuning. Zookeeper responds to a
+            small set of commands. Each command is composed of four letters. You issue commands to
+            Zookeeper via telnet or nc, at the client port.</p>
+
+         <p class="p">From any client nodes, use the following commands to check zookeeper :</p>
+
+         <pre class="pre codeblock">ZooKeeper Commands: The Four Letter Words 
+
+[gpadmin@centos64-3 ~]$ echo ruok | nc localhost 2181
+imok[gpadmin@centos64-3 ~]$
+[gpadmin@centos64-3 ~]$ echo dump | nc localhost 2181
+SessionTracker dump:
+org.apache.zookeeper.server.quorum.LearnerSessionTracker@4ed78fd5
+ephemeral nodes dump:
+Sessions with Ephemerals (3):
+0x1478ff8e66e0001:
+        /hadoop-ha/test/ActiveStandbyElectorLock
+0x1478ff8e66e0002:
+        /hbase/master
+        /hbase/tokenauth/keymaster
+0x2478ff8e67c0001:
+        /hbase/rs/centos64-3.localdomain,60020,1406869842986
+[gpadmin@centos64-3 ~]$
+[gpadmin@centos64-3 ~]$
+[gpadmin@centos64-3 ~]$ echo envi | nc localhost 2181
+Environment:
+zookeeper.version=3.4.5--1, built on 07/03/2014 06:24 GMT
+host.name=centos64-3.localdomain
+java.version=1.7.0_15
+java.vendor=Oracle Corporation
+java.home=/usr/java/jdk1.7.0_15/jre
+java.class.path=/usr/lib/gphd/zookeeper/bin/../build/classes:/usr/lib/gphd/zookeeper/bin/../build/lib/*.jar:/usr/lib/gphd/zookeeper/bin/../lib/slf4j-log4j12-1.6.1.jar:/usr/lib/gphd/zookeeper/bin/../lib/slf4j-api-1.6.1.jar:/usr/lib/gphd/zookeeper/bin/../lib/netty-3.2.2.Final.jar:/usr/lib/gphd/zookeeper/bin/../lib/log4j-1.2.16.jar:/usr/lib/gphd/zookeeper/bin/../lib/jline-0.9.94.jar:/usr/lib/gphd/zookeeper/bin/../zookeeper-3.4.5-gphd-3.1.0.0.jar:/usr/lib/gphd/zookeeper/bin/../src/java/lib/*.jar:/etc/gphd/zookeeper/conf::/etc/gphd/zookeeper/conf:/usr/lib/gphd/zookeeper/zookeeper-3.4.5-gphd-3.1.0.0.jar:/usr/lib/gphd/zookeeper/zookeeper.jar:/usr/lib/gphd/zookeeper/lib/log4j-1.2.16.jar:/usr/lib/gphd/zookeeper/lib/netty-3.2.2.Final.jar:/usr/lib/gphd/zookeeper/lib/slf4j-log4j12-1.6.1.jar:/usr/lib/gphd/zookeeper/lib/jline-0.9.94.jar:/usr/lib/gphd/zookeeper/lib/slf4j-api-1.6.1.jar
+java.library.path=/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+java.io.tmpdir=/tmp
+java.compiler=&lt;NA&gt;
+os.name=Linux
+os.arch=amd64
+os.version=2.6.32-358.el6.x86_64
+user.name=zookeeper
+user.home=/home/zookeeper
+user.dir=/home/gpadmin
+[gpadmin@centos64-3 ~]$ echo stat | nc localhost 2181
+Zookeeper version: 3.4.5--1, built on 07/03/2014 06:24 GMT
+Clients:
+ /192.168.2.203:5044[1](queued=0,recved=2842,sent=2842)
+ /192.168.2.202:4723[1](queued=0,recved=1186,sent=1212)
+ /0:0:0:0:0:0:0:1:18798[0](queued=0,recved=1,sent=0)
+ /192.168.2.203:5058[1](queued=0,recved=364,sent=364)
+
+Latency min/avg/max: 0/1/1676
+Received: 4672
+Sent: 4697
+Connections: 4
+Outstanding: 0
+Zxid: 0x1800000040
+Mode: follower
+Node count: 53
+[gpadmin@centos64-3 ~]$
+[gpadmin@centos64-3 ~]$</pre>
+
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="testinghbaseandzookeeper">
+      <h2 class="title topictitle2">Testing HBase and ZooKeeper</h2>
+
+      <div class="body">
+         <p class="p">You can test HBase from the HBase master node.</p>
+
+         <p class="p">To test zookeeper, from the HBase shell, run the <samp class="ph codeph">zk_dump</samp> command:</p>
+
+         <pre class="pre codeblock">gpadmin# ./bin/hbase shell
+hbase(main):003:0&gt; create 'test', 'cf'
+0 row(s) in 1.2200 seconds
+hbase(main):003:0&gt; list 'test'
+..
+1 row(s) in 0.0550 seconds
+hbase(main):004:0&gt; put 'test', 'row1', 'cf:a', 'value1'
+0 row(s) in 0.0560 seconds
+hbase(main):005:0&gt; put 'test', 'row2', 'cf:b', 'value2'
+0 row(s) in 0.0370 seconds
+hbase(main):006:0&gt; put 'test', 'row3', 'cf:c', 'value3'
+0 row(s) in 0.0450 seconds
+
+hbase(main):007:0&gt; scan 'test'
+ROW COLUMN+CELL
+row1 column=cf:a, timestamp=1288380727188, value=value1
+row2 column=cf:b, timestamp=1288380738440, value=value2
+row3 column=cf:c, timestamp=1288380747365, value=value3
+3 row(s) in 0.0590 seconds
+
+hbase(main):012:0&gt; disable 'test'
+0 row(s) in 1.0930 seconds
+hbase(main):013:0&gt; drop 'test'
+0 row(s) in 0.0770 seconds
+
+hbase(main):002:0&gt; zk_dump
+HBase is rooted at /hbase
+Active master address: centos64-2.localdomain,60000,1406799746730
+Backup master addresses:
+Region server holding hbase:meta: centos64-3.localdomain,60020,1406799753532
+Region servers:
+ centos64-2.localdomain,60020,1406799754233
+ centos64-3.localdomain,60020,1406799753532
+ centos64-4.localdomain,60020,1406799751248
+/hbase/replication:
+/hbase/replication/peers:
+/hbase/replication/rs:
+/hbase/replication/rs/centos64-4.localdomain,60020,1406799751248:
+/hbase/replication/rs/centos64-3.localdomain,60020,1406799753532:
+/hbase/replication/rs/centos64-2.localdomain,60020,1406799754233:
+Quorum Server Statistics:
+ centos64-3.localdomain:2181
+  Zookeeper version: 3.4.5--1, built on 04/14/2014 03:32 GMT
+  Clients:
+   /192.168.2.202:24969[1](queued=0,recved=153,sent=153)
+   /192.168.2.203:61845[1](queued=0,recved=150,sent=150)
+   /192.168.2.202:24955[1](queued=0,recved=457,sent=488)
+   /192.168.2.204:40463[1](queued=0,recved=150,sent=150)
+   /192.168.2.204:40460[1](queued=0,recved=174,sent=177)
+   /192.168.2.202:24968[1](queued=0,recved=181,sent=181)
+   /192.168.2.202:25189[0](queued=0,recved=1,sent=0)
+
+  Latency min/avg/max: 0/3/2432
+  Received: 1266
+  Sent: 1299
+  Connections: 7
+  Outstanding: 0
+  Zxid: 0x10000006f
+  Mode: follower
+  Node count: 38
+ centos64-2.localdomain:2181
+  Zookeeper version: 3.4.5--1, built on 04/14/2014 03:32 GMT
+  Clients:
+   /192.168.2.202:21459[1](queued=0,recved=16,sent=16)
+   /192.168.2.202:21458[1](queued=0,recved=5,sent=5)
+   /192.168.2.203:13881[1](queued=0,recved=151,sent=151)
+   /192.168.2.202:21462[0](queued=0,recved=1,sent=0)
+
+  Latency min/avg/max: 0/6/720
+  Received: 226
+  Sent: 225
+  Connections: 4
+  Outstanding: 0
+  Zxid: 0x10000006f
+  Mode: follower
+  Node count: 38
+ centos64-4.localdomain:2181
+  Zookeeper version: 3.4.5--1, built on 04/14/2014 03:32 GMT
+  Clients:
+   /192.168.2.203:40472[1](queued=0,recved=196,sent=198)
+   /192.168.2.202:19701[1](queued=0,recved=189,sent=191)
+   /192.168.2.202:19931[0](queued=0,recved=1,sent=0)
+   /192.168.2.202:19712[1](queued=0,recved=150,sent=150)
+   /192.168.2.202:19710[1](queued=0,recved=151,sent=151)
+   /192.168.2.204:47427[1](queued=0,recved=150,sent=150)
+
+  Latency min/avg/max: 0/0/27
+  Received: 872
+  Sent: 875
+  Connections: 6
+  Outstanding: 0
+  Zxid: 0x10000006f
+  Mode: leader
+  Node count: 38
+
+hbase(main):003:0&gt;</pre>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="testinghawq">
+      <h2 class="title topictitle2">Testing HAWQ</h2>
+
+      <div class="body">
+         <div class="note note"><span class="notetitle">Note:</span> Use the HAWQ Master node to run HAWQ tests.</div>
+
+         <pre class="pre codeblock">gpadmin# source /usr/local/hawq/greenplum_path.sh
+
+gpadmin# psql -p 5432
+psql (8.2.15)
+Type "help" for help.
+
+gpadmin=# \d
+No relations found.
+gpadmin=# \l
+List of databases
+Name | Owner | Encoding | Access privileges
+---{}----+------------
+gpadmin | gpadmin | UTF8 |
+postgres | gpadmin | UTF8 |
+template0 | gpadmin | UTF8 |
+template1 | gpadmin | UTF8 |
+(4 rows)
+
+gpadmin=# \c gpadmin
+You are now connected to database "gpadmin" as user "gpadmin".
+gpadmin=# create table test (a int, b text);
+NOTICE: Table doesn't have 'DISTRIBUTED BY' clause –
+Using column named 'a' as the Greenplum Database data
+distribution key for this table.
+HINT: The 'DISTRIBUTED BY' clause determines the distribution
+of data. Make sure column(s) chosen are the optimal data
+distribution key to minimize skew.
+
+CREATE TABLE
+
+gpadmin=# insert into test values (1, '435252345');
+INSERT 0 1
+gpadmin=# select * from test;
+a | b
+-+---------
+1 | 435252345
+(1 row)
+
+gpadmin=#</pre>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="testingpig">
+      <h2 class="title topictitle2">Testing Pig</h2>
+
+      <div class="body">
+         <p class="p">You can test Pig from a client node:</p>
+
+         <pre class="pre codeblock"># Clean up input/output directories
+
+hadoop fs -rmr /tmp/test_pig_input
+hadoop fs -rmr /tmp/test_pig_output
+
+#Create input directory
+
+hadoop fs -mkdir /tmp/test_pig_input
+
+# Copy data from /etc/passwd
+
+hadoop fs -copyFromLocal /etc/passwd /tmp/test_pig_input</pre>
+
+         <p class="p">In the grunt shell, run this simple Pig job:</p>
+
+         <pre class="pre codeblock">$ pig // Enter grunt shell
+A = LOAD '/tmp/test_pig_input' using PigStorage(':');
+B = FILTER A by $2 &gt; 0;
+C = GROUP B ALL;
+D = FOREACH C GENERATE group, COUNT(B);
+STORE D into '/tmp/test_pig_output';
+
+# Displaying output
+
+hadoop fs -cat /tmp/test_pig_output/part*
+
+Cleaning up input and output'
+
+hadoop fs -rmr /tmp/test_pig_*</pre>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="testinghive">
+      <h2 class="title topictitle2">Testing Hive</h2>
+
+      <div class="body">
+         <p class="p">Test Hive from a client node:</p>
+
+         <pre class="pre codeblock">gpadmin# hive
+ 
+# Creating passwords table
+hive&gt; create table passwords (col0 string, col1 string, col2 string, col3 string, col4 string, col5 string, col6 string) ROW FORMAT DELIMITED FIELDS TERMINATED BY ":";
+hive&gt; SHOW TABLES;
+hive&gt; DESCRIBE passwords;
+
+# Loading data
+hive&gt; load data local inpath "/etc/passwd" into table passwords;
+ 
+# Running a Hive query involving grouping and counts
+hive&gt; select col3,count(*) from passwords where col2 &gt; 0 group by col3;
+
+# Cleaning up passwords table
+hive&gt; DROP TABLE passwords;
+hive&gt; quit;</pre>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="testinghcatalog">
+      <h2 class="title topictitle2">Testing Hcatalog</h2>
+
+      <div class="topic nested2" id="usinghcatalogcommand-lineapi">
+         <h3 class="title topictitle3">Using the HCatalog Command-line API</h3>
+
+         <div class="body">
+            <p class="p">You can use the following HCatalog command-line to create a table and access table
+               data:</p>
+
+            <pre class="pre codeblock"># Create a table
+$ hcat -e "CREATE TABLE test(key string, value string) ROW FORMAT DELIMITED FIELDS TERMINATED BY ','"
+OK
+ 
+# Get the scheme for a table
+$ hcat -e "DESC test"
+OK
+key   string none
+value string none</pre>
+
+            <div class="note note"><span class="notetitle">Note:</span>  Make sure the user is permitted to read the file (e.g.,
+                  <span class="ph filepath">test_data</span>) and write the table (e.g.,
+                  <span class="ph filepath">test</span>), and the YARN service is running.</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="usinghcatalogwithrest">
+         <h3 class="title topictitle3">Using HCatalog with REST</h3>
+
+         <div class="body">
+            <pre class="pre codeblock"># Get table by using webhcat, you need to change hostname and username to appropriate value
+$ curl -s 'http://&lt;hostname&gt;:50111/templeton/v1/ddl/database/default/table/test?user.name=username'
+{"columns":[{"name":"key","type":"string"},{"name":"value","type":"string"}],"database":"default","table":"test"}</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="usinghcatalogwithpig">
+         <h3 class="title topictitle3">Using HCatalog with Pig</h3>
+
+         <div class="body">
+            <pre class="pre codeblock">$ pig -useHCatalog
+#use HCatLoader to have table schema retrieved automatically
+$grunt&gt; A = LOAD 'test' USING org.apache.hcatalog.pig.HCatLoader(); 
+$grunt&gt; DESCRIBE A;
+#output
+A: {key: chararray,value: chararray}</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="testingoozie">
+      <h2 class="title topictitle2">Testing Oozie</h2>
+
+      <div class="topic nested2" id="submitoozieexampleworkflows">
+         <h3 class="title topictitle3">Submit Oozie Example Workflows</h3>
+
+         <div class="body">
+            <ol class="ol" id="submitoozieexampleworkflows__ol_bg3_h3d_4p">
+               <li class="li">Expand the examples:
+                  <pre class="pre codeblock">$ mkdir /tmp/oozie-example
+$ cd /tmp/oozie-example
+$ tar xzf /usr/lib/gphd/oozie/oozie-examples.tar.gz</pre>
+</li>
+
+               <li class="li">Change the job properties in the examples. Change the following files:
+                     <pre class="pre codeblock">/tmp/oozie-example/examples/apps/map-reduce/job.properties
+/tmp/oozie-example/examples/apps/hive/job.properties
+/tmp/oozie-example/examples/apps/pig/job.properties</pre>
+<p class="p">In
+                     each file, set the following
+                     properties:</p>
+<pre class="pre codeblock">nameNode=hdfs://&lt;namenode-host&gt;:&lt;namenode-port&gt;
+jobTracker=&lt;resource-manager-host&gt;:&lt;resource-manager-port&gt;</pre>
+<p class="p">Use
+                     the exact hostname and service port in your cluster. </p>
+</li>
+
+               <li class="li">Edit the Oozie <samp class="ph codeph">workflow.xml</samp> file as follows:<p class="p">Locate the Oozie
+                        <samp class="ph codeph">workflow.xml</samp> file in the following directory:</p>
+<p class="p">
+                     <samp class="ph codeph">/tmp/oozie-example/examples/apps/hive</samp>
+                  </p>
+<p class="p">Add the NameNode variable as a prefix to all paths. For example:
+                     </p>
+<pre class="pre codeblock">&lt;param&gt;INPUT=${nameNode}/user/${wf:user()}/${examplesRoot}/input-data/table&lt;/param&gt;
+&lt;param&gt;OUTPUT=${nameNode}/user/${wf:user()}/${examplesRoot}/output-data/hive&lt;/param&gt;</pre>
+<p class="p">Also
+                     make sure to reference <samp class="ph codeph">hive-oozie-site.xml</samp> using
+                        the <samp class="ph codeph">job-xml</samp> tag in the workflow.
+                        The <samp class="ph codeph">&lt;job-xml&gt;</samp> element needs to be put inside the
+                        <samp class="ph codeph">&lt;hive&gt;</samp> element between
+                        the <samp class="ph codeph">&lt;prepare&gt;</samp> and <samp class="ph codeph">&lt;configuration&gt;</samp> elements
+                     in the <samp class="ph codeph">examples/apps/hive/workflow.xml</samp> file, as shown
+                     below:</p>
+<pre class="pre codeblock">&lt;workflow-app xmlns="uri:oozie:workflow:0.2" name="hive-wf"&gt;
+    &lt;start to="hive-node"/&gt;
+    &lt;action name="hive-node"&gt;
+        &lt;hive xmlns="uri:oozie:hive-action:0.2"&gt;
+            &lt;job-tracker&gt;${jobTracker}&lt;/job-tracker&gt;
+            &lt;name-node&gt;${nameNode}&lt;/name-node&gt;
+            &lt;prepare&gt;
+                &lt;delete path="${nameNode}/user/${wf:user()}/${examplesRoot}/output-data/hive"/&gt;
+                &lt;mkdir path="${nameNode}/user/${wf:user()}/${examplesRoot}/output-data"/&gt;
+            &lt;/prepare&gt;
+            &lt;job-xml&gt;${nameNode}/user/oozie/hive-oozie-site.xml&lt;/job-xml&gt;
+            &lt;configuration&gt;
+                &lt;property&gt;
+                    &lt;name&gt;mapred.job.queue.name&lt;/name&gt;
+                    &lt;value&gt;${queueName}&lt;/value&gt;
+                &lt;/property&gt;
+            &lt;/configuration&gt;
+            &lt;script&gt;script.q&lt;/script&gt;
+            &lt;param&gt;INPUT=${nameNode}/user/${wf:user()}/${examplesRoot}/input-data/table&lt;/param&gt;
+            &lt;param&gt;OUTPUT=${nameNode}/user/${wf:user()}/${examplesRoot}/output-data/hive&lt;/param&gt;
+        &lt;/hive&gt;
+        &lt;ok to="end"/&gt;
+        &lt;error to="fail"/&gt;
+    &lt;/action&gt;
+    &lt;kill name="fail"&gt;
+        &lt;message&gt;Hive failed, error message[${wf:errorMessage(wf:lastErrorNode())}]&lt;/message&gt;
+    &lt;/kill&gt;
+    &lt;end name="end"/&gt;
+&lt;/workflow-app&gt;</pre>
+</li>
+
+               <li class="li">Put example code onto HDFS:
+                     <pre class="pre codeblock">$ hdfs dfs -put examples /user/&lt;username&gt;</pre>
+<p class="p">Where
+                        <samp class="ph codeph">&lt;username&gt;</samp> is the name of user who issues this
+                     command.</p>
+</li>
+
+               <li class="li">Submit a MapReduce example workflow:<ol class="ol" type="a" id="submitoozieexampleworkflows__ol_n33_h3d_4p">
+                     <li class="li">Submit the workflow:
+                        <pre class="pre codeblock">$ oozie job -oozie http://localhost:11000/oozie -config examples/apps/map-reduce/job.properties  -run
+job: &lt;oozie-job-id&gt;</pre>
+</li>
+
+                     <li class="li">Check the workflow
+                        status:<pre class="pre codeblock">$ oozie job -oozie http://localhost:11000/oozie -info &lt;oozie-job-id&gt;</pre>
+Where
+                           <samp class="ph codeph">&lt;oozie-job-id&gt;</samp> is the same id in the output of the
+                        last command. </li>
+
+                  </ol>
+</li>
+
+               <li class="li">Oozie setup for Hive: <ol class="ol" type="a" id="submitoozieexampleworkflows__ol_qj3_h3d_4p">
+                     <li class="li"><strong class="ph b">Remote Metastore Mode (recommended):</strong><ol class="ol" type="i" id="submitoozieexampleworkflows__ol_vy4_kv3_tp">
+                           <li class="li">Put the Hive jars into the Tomcat class loader path.</li>
+
+                           <li class="li">Make the following change in the
+                                 <samp class="ph codeph">/var/lib/gphd/oozie/tomcat-deployment/conf/catalina.properties</samp>
+                              file:<pre class="pre codeblock">common.loader=${catalina.home}/lib,${catalina.home}/lib/*.jar,/var/lib/gphd/oozie/*.jar,/usr/lib/gphd/oozie/libtools/*.jar,/usr/lib/gphd/oozie/oozie-core/*.jar,/usr/lib/gphd/hadoop/client/*.jar,/usr/lib/gphd/hive/lib/*.jar </pre>
+</li>
+
+                        </ol>
+<div class="note note"><span class="notetitle">Note:</span> 
+                           <strong class="ph b">common loader classpath</strong>
+                           <p class="p">Make sure
+                                 <span class="ph filepath">${catalina.home}/lib,${catalina.home}/lib/*.jar</span>
+                              are at the beginning of the classpath. Keep the jars in the classpath
+                              in the following order:</p>
+<ul class="ul" id="submitoozieexampleworkflows__ul_jkq_q3d_4p">
+                              <li class="li">Tomcat jars (under <span class="ph filepath">${catalina.home}/lib</span>)</li>
+
+                              <li class="li">Oozie jars (under <span class="ph filepath">${oozie.home}</span>,
+                                    <span class="ph filepath">${oozie.home}/libtools</span>,
+                                    <samp class="ph codeph">${oozie.home}/oozie-core</samp>) </li>
+
+                              <li class="li">Hadoop jars (under
+                                 <span class="ph filepath">${hadoop.home}/client/</span>)</li>
+
+                              <li class="li">Hive jars (under <span class="ph filepath">${hive.home}/lib</span>)  </li>
+
+                           </ul>
+</div>
+</li>
+
+                     <li class="li"><strong class="ph b">Local Metastore Mode:</strong>
+                        <p class="p">Upload the JDBC driver to Oozie sharelib.</p>
+<p class="p">To enable the local
+                           metastore mode, comment out the <samp class="ph codeph">hive.metastore.uris</samp>
+                           property and verify that Hive still works properly at the command-line.
+                           In local metastore mode, Oozie Hive actions do not connect to the Hive
+                           Metastore, but instead communicate directly with the database. In this
+                           setup, the appropriate JDBC driver (for example, for Postgres) needs to
+                           be made available to Hive jobs running within Oozie:
+                        </p>
+<pre class="pre codeblock"> sudo -u oozie hdfs dfs -put /usr/lib/gphd/hive/lib/postgresql-jdbc.jar /user/oozie/share/lib/hive</pre>
+</li>
+
+                  </ol>
+</li>
+
+               <li class="li">Submit the Hive example workflow:<ol class="ol" type="a" id="submitoozieexampleworkflows__ol_uk3_h3d_4p">
+                     <li class="li">Upload the Hive configuration file onto
+                           HDFS:<pre class="pre codeblock">$ sudo -u oozie hdfs dfs -put /etc/gphd/hive/conf/hive-site.xml /user/oozie/hive-oozie-site.xml</pre>
+<div class="note note"><span class="notetitle">Note:</span> When
+                           uploading a Hive configuration file to HDFS, do not use
+                              <span class="ph filepath">hive-site.xml</span> as the file name. This is because
+                           the Hive action in Oozie overwrites the
+                              <span class="ph filepath">hive-site.xml</span> file.<p class="p">In the Oozie workflow file,
+                              use
+                                 <samp class="ph codeph">&lt;job-xml&gt;${nameNode}/user/oozie/hive-oozie-site.xml&lt;/job-xml&gt;</samp>
+                              to refer to the Hive configuration file. </p>
+</div>
+</li>
+
+                     <li class="li">Submit the workflow:
+                        <pre class="pre codeblock">$ oozie job -oozie http://localhost:11000/oozie -config examples/apps/hive/job.properties  -run
+job: &lt;oozie-job-id&gt; </pre>
+</li>
+
+                     <li class="li">Check the workflow
+                           status.<pre class="pre codeblock">$ oozie job -oozie http://localhost:11000/oozie -info &lt;oozie-job-id&gt;</pre>
+<p class="p">Where
+                              <samp class="ph codeph">&lt;oozie-job-id&gt;</samp> is the same id in the output of
+                           last command.  </p>
+</li>
+
+                  </ol>
+</li>
+
+               <li class="li">Submit a Pig example workflow:<ol class="ol" type="a" id="submitoozieexampleworkflows__ol_zl3_h3d_4p">
+                     <li class="li">Submit the workflow:
+                        <pre class="pre codeblock">$ oozie job -oozie http://localhost:11000/oozie -config examples/apps/pig/job.properties  -run
+job: &lt;oozie-job-id&gt;</pre>
+</li>
+
+                     <li class="li">Check the workflow
+                           status.<pre class="pre codeblock">$ oozie job -oozie http://localhost:11000/oozie -info &lt;oozie-job-id&gt;</pre>
+<p class="p">Where
+                              <samp class="ph codeph">&lt;oozie-job-id&gt;</samp> is the same id in the output of
+                           the last command. </p>
+</li>
+
+                  </ol>
+</li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="testingsqoop">
+      <h2 class="title topictitle2">Testing Sqoop</h2>
+
+      <div class="topic nested2" id="sqoopclientexample">
+         <h3 class="title topictitle3">Sqoop Client Example</h3>
+
+         <div class="body">
+            <p class="p">In this example, you use Sqoop to import a MySQL database table into HDFS.</p>
+
+            <p class="p">To run this example, in addition to a correctly-installed and configured PHD, you
+               also need to perform the following tasks:</p>
+
+            <ol class="ol" id="sqoopclientexample__ol_f1n_2jd_4p">
+               <li class="li">Install and run MySQL
+                  instance:<pre class="pre codeblock">$ sudo yum -y install mysql
+$ sudo service mysqld start </pre>
+</li>
+
+               <li class="li">Install MySQL official JDBC driver and
+                     copy <span class="ph filepath">mysql-connector-java.jar</span>
+                     into <span class="ph filepath">/usr/lib/gphd/sqoop/lib</span>:<pre class="pre codeblock">$ sudo yum -y install mysql-connector-java
+$ sudo cp /usr/share/java/mysql-connector-java.jar /usr/lib/gphd/sqoop/lib</pre>
+</li>
+
+               <li class="li">Create MySQL database test and MySQL table student:</li>
+
+            </ol>
+
+            <pre class="pre codeblock">$ mysql
+mysql&gt; use test;
+mysql&gt; CREATE TABLE student (id INT PRIMARY KEY, name VARCHAR(100));
+mysql&gt; insert into student (id, name) values (1, "John");
+mysql&gt; insert into student (id, name) values (2, "Mike");
+mysql&gt; insert into student (id, name) values (3, "Tom");
+mysql&gt; exit</pre>
+
+            <p class="p">Then run Sqoop to import the table to HDFS:</p>
+
+            <pre class="pre codeblock">$ sudo -u hdfs hdfs dfs -mkdir -p /tmp
+$ sudo -u hdfs hdfs dfs -chmod 777 /tmp
+$ sqoop import --connect jdbc:mysql://&lt;mysql_server_host&gt;/test --table student --username &lt;username&gt; --target-dir hdfs://&lt;namenode_host&gt;/tmp/sqoop_output</pre>
+
+            <p class="p">Where:</p>
+
+            <p class="p"> <samp class="ph codeph">&lt;mysql_server_host&gt;</samp> is the host name on which your MySQL
+               instance is running.</p>
+
+            <p class="p">
+               <samp class="ph codeph">&lt;username&gt;</samp> is the username of the user running this
+               command.</p>
+
+            <p class="p"> <samp class="ph codeph">&lt;namenode_host&gt;</samp> is the host name on which your name node is
+               running.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="testingflume">
+      <h2 class="title topictitle2">Testing Flume</h2>
+
+      <div class="topic nested2" id="flumeconfigurationexample">
+         <h3 class="title topictitle3">Flume Configuration Example</h3>
+
+         <div class="body">
+            <pre class="pre codeblock">$ cat /etc/gphd/flume/conf/flume.conf 
+agent.sources = r1
+agent.sinks = k1
+agent.channels = c1
+
+# Describe/configure the source
+agent.sources.r1.type = netcat
+agent.sources.r1.bind = localhost
+agent.sources.r1.port = 44444
+
+# Describe the sink
+agent.sinks.k1.type = hdfs
+agent.sinks.k1.hdfs.path = hdfs://localhost/user/flume/
+agent.sinks.k1.hdfs.fileType = DataStream
+
+# Use a channel which buffers events in memory
+agent.channels.c1.type = memory
+agent.channels.c1.capacity = 1000
+agent.channels.c1.transactionCapacity = 100
+
+# Bind the source and sink to the channel
+agent.sources.r1.channels = c1
+agent.sinks.k1.channel = c1</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="startingstoppingflume">
+         <h3 class="title topictitle3">Starting/Stopping Flume</h3>
+
+         <div class="body">
+            <p class="p"><strong class="ph b">Option 1) Using the flume-ng command:</strong></p>
+
+            <pre class="pre codeblock">$ sudo flume-ng agent -c &lt;config_dir&gt; -f &lt;config_file&gt; -n &lt;agent_name&gt;</pre>
+
+            <div class="p">For
+               example:<pre class="pre codeblock">$ sudo flume-ng agent -c /etc/gphd/flume/conf -f /etc/gphd/flume/conf/flume.conf -n agent</pre>
+</div>
+
+            <p class="p"><strong class="ph b">Option 2) Using service commands:</strong></p>
+
+            <p class="p">Start/stop the Flume agent by running the following commands:</p>
+
+            <pre class="pre codeblock">$ sudo service flume-agent start
+$ sudo service flume-agent stop
+$ sudo service flume-agent status</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="verifyingtheinstallation">
+         <h3 class="title topictitle3">Verifying the Installation</h3>
+
+         <div class="body">
+            <pre class="pre codeblock">$ sudo service flume-agent stop
+$ sudo -u hdfs hdfs dfs -mkdir -p /user/flume
+$ sudo -u hdfs hdfs dfs -chmod 777 /user/flume
+$ sudo service flume-agent start
+$ echo hello | nc localhost 44444; sleep 30; sudo -u hdfs hdfs dfs -cat /user/flume/*
+OK
+hello</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="testingmahout">
+      <h2 class="title topictitle2">Testing Mahout</h2>
+
+      <div class="body">
+         <div class="p">To test if mahout job is running:<ol class="ol" id="testingmahout__ol_jjc_ww3_tp">
+               <li class="li">Create a sample text file and put it on HDFS.</li>
+
+               <li class="li">Run a Mahout cat
+                  job:<pre class="pre codeblock">hadoop fs -put test_mahout /tmp
+(test_mahout is a sample text file)
+[gpadmin@centos64-2 ~]$ /usr/bin/mahout cat test_mahout
+MAHOUT_LOCAL is not set; adding HADOOP_CONF_DIR to classpath.
+Running on hadoop, using /usr/lib/gphd/hadoop/bin/hadoop and HADOOP_CONF_DIR=/etc/gphd/hadoop/conf
+MAHOUT-JOB: /usr/lib/gphd/mahout/mahout-examples-0.7-gphd-3.1.0.0-job.jar
+Sample mahout test file
+14/07/25 11:10:41 INFO driver.MahoutDriver: Program took 6 ms (Minutes: 1.1666666666666667E-4)</pre>
+</li>
+
+            </ol>
+</div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="testingpxf">
+      <h2 class="title topictitle2">Testing PXF</h2>
+
+      <div class="topic nested2" id="testingpxfonhive">
+         <h3 class="title topictitle3">Testing PXF on Hive</h3>
+
+         <div class="body">
+            <p class="p">Make sure you created a <samp class="ph codeph">passwords</samp> table on Hive, which is described
+               in the <a class="xref" href="#testinghive">Testing Hive</a> section.</p>
+
+            <p class="p">Then, go to the HAWQ master node:</p>
+
+            <pre class="pre codeblock">su - gpadmin
+source /usr/lib/gphd/hawq/greenplum_path.sh
+psql -p 5432
+# gpadmin=# CREATE EXTERNAL TABLE passwords (username text, password text, userId text, groupId text, gecos text, home text, shell text) LOCATION('pxf://&lt;namenode_host&gt;:50070/passwords?FRAGMENTER=HiveDataFragmenter&amp;ACCESSOR=HiveAccessor&amp;RESOLVER=HiveResolver') format 'custom' (formatter='pxfwritable_import'); ## This is old format.
+gpadmin=# CREATE EXTERNAL TABLE passwords (username text, password text, userId text, groupId text, gecos text, home text, shell text) LOCATION('pxf://{nameservices}/passwords?Profile=hive') format 'custom' (formatter='pxfwritable_import');
+gpadmin=# \d
+           List of relations
+ Schema |   Name    | Type  |  Owner
+--------+-----------+-------+---------
+ public | passwords | table | gpadmin
+ public | test      | table | gpadmin
+(2 rows)
+
+gpadmin=# select * from passwords;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="testingpxfonhbase">
+         <h3 class="title topictitle3">Testing PXF on HBase</h3>
+
+         <div class="body">
+            <pre class="pre codeblock"># a text file has some data
+cat hbase-data.txt
+create 'hbasestudent', 'rollnum', 'name', 'std'
+put 'hbasestudent', 'row1', 'rollnum', '1'
+put 'hbasestudent', 'row1', 'name', 'A'
+put 'hbasestudent', 'row1', 'std', '3'
+put 'hbasestudent', 'row2', 'rollnum', '2'
+put 'hbasestudent', 'row2', 'name', 'B'
+put 'hbasestudent', 'row2', 'std', '1'
+put 'hbasestudent', 'row3', 'rollnum', '3'
+put 'hbasestudent', 'row3', 'name', 'C'
+put 'hbasestudent', 'row3', 'std', '5'
+
+# Execute it
+hbase shell &lt; hbase-data.txt
+
+# in hbase shell, make sure there is the data
+scan 'hbasestudent'
+
+su - gpadmin
+source /usr/lib/gphd/hawq/greenplum_path.sh
+psql -p 5432
+
+#CREATE EXTERNAL TABLE student (recordkey TEXT, "rollnum:" TEXT,  "name:" TEXT ,  "std:" TEXT) LOCATION ('pxf://    &lt;namenodehost&gt;:50070/hbasestudent?FRAGMENTER=HBaseDataFragmenter&amp;ACCESSOR=HBaseAccessor&amp;RESOLVER=HBaseResolver'    ) FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import');
+ 
+For HA cluster
+CREATE EXTERNAL TABLE student(recordkey TEXT, "rollnum:" TEXT,  "name:" TEXT ,  "std:" TEXT) LOCATION ('pxf://{nameservices}/hbasestudent?Profile=HBase') FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import');
+
+select * from  student;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="testingpxfonhdfs">
+         <h3 class="title topictitle3">Testing PXF on HDFS</h3>
+
+         <div class="body">
+            <pre class="pre codeblock">cat ranking.txt
+Talk Dirty,Jason Derulo,4
+All Of Me,John Legend,2
+Let It Go,Idina Menzel,5
+Happy,Pharrell Williams,1
+Dark Horse,Katy Perry,3
+ 
+hadoop fs -copyFromLocal ranking.txt /tmp
+ 
+su - gpadmin
+source /usr/lib/gphd/hawq/greenplum_path.sh
+psql -p 5432
+
+# CREATE EXTERNAL TABLE ranking (song text , artist text, rank int) LOCATION ('pxf://&lt;namenodehost&gt;:50070/tmp/ranking.txt?Fragmenter=HdfsDataFragmenter&amp;ACCESSOR=TextFileAccessor&amp;RESOLVER=TextResolver') FORMAT 'TEXT' (DELIMITER = ','); # This is an old way
+
+CREATE EXTERNAL TABLE ranking (song text , artist text, rank int) LOCATION ('pxf://&lt;nameservices&gt;/tmp/ranking.txt?PROFILE=HdfsTextSimple') FORMAT 'TEXT' (DELIMITER = ',');
+# or if you cluster is non-HA
+CREATE EXTERNAL TABLE ranking (song text , artist text, rank int) LOCATION ('pxf://&lt;namenodehost&gt;:50070/tmp/ranking.txt?PROFILE=HdfsTextSimple') FORMAT 'TEXT' (DELIMITER = ',');
+
+select * from ranking order by rank;</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/PHDPostInstallation.html" title="PHD Post-Install"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">PHD Post-Install</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

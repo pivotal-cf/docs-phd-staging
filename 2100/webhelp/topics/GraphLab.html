@@ -1,0 +1,510 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="About GraphLab Installing GraphLab Prerequisites GraphLab RPM Packages Reconfigure YARN Virtual Memory Running an Example Using GraphLab Recommended YARN Configurations for GraphLab on Hamster ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="GraphLab"/><meta name="DC.Relation" scheme="URI" content="../topics/ManuallyInstallingandUsingPivotalHD21Stack.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="graphlab"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>GraphLab</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="graphlab"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/StackandToolsReference.html" title="Stack and Tools Reference">Stack and Tools Reference</a> / <a class="navheader_parent_path" href="../topics/ManuallyInstallingandUsingPivotalHD21Stack.html" title="Manually Installing and Using Pivotal HD 2.1 Stack">Manually Installing and Using Pivotal HD 2.1 Stack</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/ManuallyInstallingandUsingPivotalHD21Stack.html" title="Manually Installing and Using Pivotal HD 2.1 Stack"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Manually Installing and Using Pivotal HD 2.1 Stack</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">GraphLab</h1>
+
+   <div class="body">
+      <ul class="ul">
+         <li class="li"><a class="xref" href="#aboutgraphlab">About GraphLab</a>
+         </li>
+
+         <li class="li"><a class="xref" href="#installinggraphlab">Installing GraphLab</a>
+            <ul class="ul">
+               <li class="li"><a class="xref" href="#prerequisites">Prerequisites</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#graphlabrpmpackages">GraphLab RPM Packages</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#re-configthehadoop">Reconfigure YARN Virtual Memory</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#runninganexample">Running an Example</a></li>
+
+               <li class="li"><a class="xref" href="#topic_lrq_j11_tp">Using GraphLab</a></li>
+
+               <li class="li"><a class="xref" href="#recommendedyarnconfigurationsgraphlabonhamster">Recommended YARN Configurations for GraphLab on Hamster</a>
+                  <ul class="ul">
+                     <li class="li"><a class="xref" href="#resourceallocationmonitoring">Resource allocation / monitoring</a>
+                     </li>
+
+                     <li class="li"><a class="xref" href="#fetchlogforhamsterjob">Fetch the log for the Hamster Job</a>
+                     </li>
+
+                  </ul>
+</li>
+
+               <li class="li"><a class="xref" href="#troubleshooting">Troubleshooting</a>
+               </li>
+
+            </ul>
+</li>
+
+      </ul>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="aboutgraphlab">
+      <h2 class="title topictitle2">About GraphLab</h2>
+
+      <div class="body">
+         <p class="p">GraphLab is a powerful new system for designing and implementing parallel algorithms in
+            machine learning. It is a graph-based, high performance, distributed computation
+            framework written in C++.  It makes use of MPI and has its own programming model.</p>
+
+         <p class="p">You can find more information about GraphLab here: <a class="xref" href="http://graphlab.org/">http://graphlab.org/</a>.</p>
+
+         <p class="p">Because GraphLab itself cannot run on YARN, we have integrated GraphLab into Hadoop
+            using Hamster.</p>
+
+         <p class="p">Following is an architecture diagram for GraphLab on Hadoop:</p>
+
+         <p class="p">
+            <img class="image" id="aboutgraphlab__image_opc_rgf_4p" src="../images/68125265.png" width="400"/>
+         </p>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="installinggraphlab">
+      <h2 class="title topictitle2">Installing GraphLab</h2>
+
+      <div class="topic nested2" id="prerequisites">
+         <h3 class="title topictitle3">Prerequisites</h3>
+
+         <div class="body">
+            <ul class="ul" id="prerequisites__ul_ilc_rgf_4p">
+               <li class="li"><samp class="ph codeph">hadoop-libhdfs*.rpm</samp> and JRE package If GraphLab algorithm's
+                  input/output are from/to HDFS, then <samp class="ph codeph">hadoop-libhdfs*.rpm</samp> and JRE
+                  package are required. When installing PHD, make sure
+                     that <samp class="ph codeph">hadoop-libhdfs*.rpm</samp> is installed and
+                      <samp class="ph codeph">$JAVA_HOME/jre/lib/amd64/server/libjvm.so</samp> is found.</li>
+
+               <li class="li">Hamster-1.1</li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="graphlabrpmpackages">
+         <h3 class="title topictitle3">GraphLab RPM Packages</h3>
+
+         <div class="body">
+            <p class="p">GraphLab consists of the following graphlab <samp class="ph codeph">rpm</samp> package:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="graphlabrpmpackages__table_ogc_rgf_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <p class="p">
+                              <strong class="ph b">graphlab-&lt;PHD_GraphLab_VERSION&gt;-1.x86_64.rpm</strong>
+                           </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">
+                              <strong class="ph b">Type</strong>
+                           </p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">GraphLab</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">
+                              <strong class="ph b">Requires</strong>
+                           </p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">Hamster, hadoop-libhdfs*.rpm, jre package </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">
+                              <strong class="ph b">Description</strong>
+                           </p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">GraphLab installation package</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">
+                              <strong class="ph b">Install on Nodes</strong>
+                           </p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">Every node in the YARN cluster and the client workstation that will
+                              access the YARN service.</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p class="p">
+               <strong class="ph b">GraphLab Setup</strong>
+            </p>
+
+            <pre class="pre codeblock">$ sudo rpm -ivh working_dir/graphlab/rpm/graphlab-&lt;PHD_GraphLab_VERSION&gt;-1.x86_64.rpm</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="re-configthehadoop">
+         <h3 class="title topictitle3">Reconfigure YARN Virtual Memory</h3>
+
+         <div class="body">
+            <p class="p">While the GraphLab process is running, it will consume a large amount of virtual
+               memory. Once the amount of virtual memory it consumes exceeds the YARN virtual memory
+               configuration, NodeManager will kill the container in which the GraphLab process is
+               located.  Therefore, we recommend that you set
+                  <samp class="ph codeph">yarn.nodemanager.vmem-pmem-ration</samp>  to a higher value (e.g.
+               100) or disable <samp class="ph codeph">yarn.nodemanager.vmem-check-enabled</samp> in
+                  <samp class="ph codeph">$HADOOP_CONF_DIR/yarn-site.xml</samp>. For example:</p>
+
+            <p class="p"><samp class="ph codeph">&lt;property&gt;   &lt;name&gt;yarn.nodemanager.vmem-pmem-ratio&lt;/name&gt;
+                    &lt;value&gt;100&lt;/value&gt; &lt;/property&gt;</samp>
+            </p>
+
+            <p class="p">or:</p>
+
+            <p class="p">
+               <samp class="ph codeph">&lt;property&gt;</samp>
+               <samp class="ph codeph">  &lt;name&gt;yarn.nodemanager.vmem-check-enabled&lt;/name&gt;</samp>
+               <samp class="ph codeph">  &lt;value&gt;false&lt;/value&gt;</samp>
+               <samp class="ph codeph">&lt;/property&gt;</samp>
+            </p>
+
+            <p class="p">After setting either of these properties, restart all NodeManagers to enable the
+               configuration.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="runninganexample">
+         <h3 class="title topictitle3">Running an Example</h3>
+
+         <div class="body">
+            <p class="p">Following is an example to test that GraphLab is working:</p>
+
+            <p class="p">Create a <samp class="ph codeph">connected_component.ini</samp> file that contains the
+               following:</p>
+
+            <p class="p">
+               <samp class="ph codeph">1 2 4.0</samp>
+               <samp class="ph codeph">2 3 1.0</samp>
+               <samp class="ph codeph">3 4 5.0</samp>
+               <samp class="ph codeph">4 5 2.0</samp>
+               <samp class="ph codeph">5 3 3.0</samp>
+            </p>
+
+            <p class="p">Run the following commands to place this file in HDFS, and create a folder in HDFS
+               for write output:</p>
+
+            <pre class="pre codeblock">sudo -u hdfs hadoop fs -mkdir /graphlab
+sudo -u hdfs hadoop fs -copyFromLocal /path/to/connected_component.ini /graphlab/connected_component.ini
+sudo -u hdfs hadoop fs -mkdir -p /graphlab/connected_component/output
+sudo -u hdfs hadoop fs -chmod 777 /graphlab/connected_component/output
+</pre>
+
+            <p class="p">Run the following command to execute a GraphLab job:</p>
+
+            <pre class="pre codeblock">mpirun -np 2 /${graphlab_installation_dir}/graph_analytics/connected_component  --saveprefix=hdfs://${hdfs_hostname}:${hdfs_port}/graphlab/connected_component/output/ --graph=hdfs://${hdfs_hostname}:${hdfs_port}/graphlab/connected_component.ini --format=tsv</pre>
+
+            <p class="p">After the job has finished,  you can check the output in HDFS.</p>
+
+            <pre class="pre codeblock">hadoop fs -ls /graphlab/connected_component/output
+ 
+Found 8 items
+-rw-r--r--   3 yarn supergroup          4 2014-07-08 01:56 /graphlab/connected_component/output/_1_of_8
+-rw-r--r--   3 yarn supergroup          4 2014-07-08 01:56 /graphlab/connected_component/output/_2_of_8
+-rw-r--r--   3 yarn supergroup          0 2014-07-08 01:56 /graphlab/connected_component/output/_3_of_8
+-rw-r--r--   3 yarn supergroup          0 2014-07-08 01:56 /graphlab/connected_component/output/_4_of_8
+-rw-r--r--   3 yarn supergroup          4 2014-07-08 01:56 /graphlab/connected_component/output/_5_of_8
+-rw-r--r--   3 yarn supergroup          0 2014-07-08 01:56 /graphlab/connected_component/output/_6_of_8
+-rw-r--r--   3 yarn supergroup          0 2014-07-08 01:56 /graphlab/connected_component/output/_7_of_8
+-rw-r--r--   3 yarn supergroup          4 2014-07-08 01:56 /graphlab/connected_component/output/_8_of_8</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="topic_lrq_j11_tp">
+         <h3 class="title topictitle3">Using GraphLab</h3>
+
+         <div class="body">
+            <p class="p">You can find Usage information for GraphLab's toolkits here: <a class="xref" href="http://docs.graphlab.org/toolkits.html">http://docs.graphlab.org/toolkits.html</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="recommendedyarnconfigurationsgraphlabonhamster">
+         <h3 class="title topictitle3">Recommended YARN Configurations for GraphLab on Hamster</h3>
+
+         <div class="topic nested3" id="resourceallocationmonitoring">
+            <h4 class="title topictitle4">Resource allocation / monitoring</h4>
+
+            <div class="body">
+               <p class="p">In YARN, both virtual and physical memory usage for processes running on node
+                  managers are checked, if your program used more memory than requested, it will be
+                  killed by node manager. You can change your memory/cpu limit for your processes by
+                  specifying -mem (--mem-per-proc) and -cpu (--cpu-per-proc). For example, if you
+                  want your program using 2G memory and 2 cores, you can use following command to
+                  execute your job.</p>
+
+               <pre class="pre codeblock">hamster -mem 2048 -cpu 2 -np N &lt;your-program and parameters&gt; </pre>
+
+               <p class="p">By default, <samp class="ph codeph">-mem</samp> is 1024 (in MB) and <samp class="ph codeph">-cpu</samp> is 1.
+                  But this is not enough, YARN itself has some properties that will take effect on
+                  resource allocation and monitoring, all in <span class="ph filepath">yarn-site.xml</span> in
+                     <samp class="ph codeph">$HADOOP_CONF_DIR</samp>.</p>
+
+               <ul class="ul" id="resourceallocationmonitoring__ul_v5b_rgf_4p">
+                  <li class="li"><strong class="ph b">yarn.scheduler.maximum-allocation-mb and
+                        yarn.scheduler.maximum-allocation-vcores</strong> The two options will limit
+                     YARN's maximum resource allocation for each launched process. By default,
+                     they're 8192 (8GB memory) and 32 (cores), if your process need more than this
+                     limit, you need increase theirs values. GraphLab will consume lots of
+                        memory, <strong class="ph b">we suggest at least, specify maximum allocation memory in YARN to
+                        16GB</strong>. Otherwise, you may find your program frequently killed by node
+                     managers, which can be found in logs of node managers.</li>
+
+                  <li class="li"><strong class="ph b">yarn.nodemanager.vmem-check-enabled and
+                        yarn.nodemanager.vmem-pmem-ratio</strong> First option indicated if we need check
+                     virtual memory. For example, some program will use a lot of virtual memory but
+                     barely use physic memory (GraphLab is an example). If you think it's
+                     unnecessary to check virtual memory, you can set it to <strong class="ph b">false</strong> to disable
+                     this checking (default is true). The second option is the ratio for physical
+                     memory to virtual memory, default is 2.1. For example, if you specified 2G
+                     memory (which can be specified by hamster -mem 2048 ...) for your processes,
+                     the limit of its physical memory is 2G, and the limit of its virtual memory is
+                     2.1 * 2G = 4.2G. This process will be killed  <strong class="ph b">either</strong> it used 2G physical
+                     memory or 4.2G virtual memory. We suggest set a higher value of this to reduce
+                     your processes killed by node manager when it used too much virtual
+                     memory.</li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="fetchlogforhamsterjob">
+            <h4 class="title topictitle4">Fetch the log for the Hamster Job</h4>
+
+            <div class="body">
+               <p class="p">A traditional OpenMPI program has a feature that allows you to get logs when jobs
+                  are running. In Hamster 1.0 we don't support this because we launch MPI processes
+                  in a different way, however you can still get all log files after the job is
+                  finished.</p>
+
+               <p class="p">We recommend that you set <samp class="ph codeph">yarn.log-aggregation-enable</samp> to
+                     <samp class="ph codeph">true</samp> in the <samp class="ph codeph">yarn-site.xml</samp> (by default this is
+                  disabled). If this is left disabled, fetching logs for Hamster jobs is more
+                  complicated, as you have to use the YARN web server to get your logs like other
+                  applications (for example, map-reduce).</p>
+
+               <p class="p">When the <samp class="ph codeph">yarn.log-aggregation-enable</samp> set to
+                  <samp class="ph codeph">true</samp>, you need to be aware that the parent directory of
+                     <samp class="ph codeph">yarn.nodemanager.remote-app-log-dir</samp> in HDFS should have write
+                  permission for the <samp class="ph codeph">yarn</samp>user. By default, the
+                     <samp class="ph codeph">yarn.nodemanager.remote-app-log-dir</samp> is set to
+                     <samp class="ph codeph">/tmp/logs</samp>.</p>
+
+               <p class="p">Once you have set the above properties, run the following command to get the log
+                  after your job has finished:</p>
+
+               <pre class="pre codeblock">yarn logs -applicationId &lt;application ID&gt; -appOwner &lt;Application Owner&gt;</pre>
+
+               <p class="p">Note that <samp class="ph codeph">-appOwner</samp> should be set to the user name used to submit
+                  Hamster job; when you used a different user name execute the <samp class="ph codeph">yarn
+                     logs</samp> command.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="troubleshooting">
+         <h3 class="title topictitle3">Troubleshooting</h3>
+
+         <div class="body">
+            <p class="p"><strong class="ph b">Q: I'm unable to see Hadoop logs.</strong>
+            </p>
+
+            <p class="p">A: You need to add the following property in <samp class="ph codeph">yarn-site.xml</samp>:</p>
+
+            <pre class="pre codeblock"> &lt;property&gt;
+    &lt;description&gt;&lt;/description&gt;
+    &lt;name&gt;yarn.nodemanager.delete.debug-delay-sec&lt;/name&gt;
+    &lt;value&gt;1800&lt;/value&gt;
+  &lt;/property&gt;</pre>
+
+            <p class="p">Then restart resource manager and nodemanager.</p>
+
+            <p class="p"><strong class="ph b">Q: When I run <samp class="ph codeph">hamster -np 3 /absolute/path/to/hello_c</samp>, the
+                  following error is thrown:</strong>
+            </p>
+
+            <pre class="pre codeblock">Caused by: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.security.AccessControlException): Permission denied: user=root, access=WRITE, inode="/user":hdfs:supergroup:drwxr-xr-x
+at org.apache.hadoop.hdfs.server.namenode.FSPermissionChecker.check(FSPermissionChecker.java:234)
+at org.apache.hadoop.hdfs.server.namenode.FSPermissionChecker.check(FSPermissionChecker.java:214)
+at org.apache.hadoop.hdfs.server.namenode.FSPermissionChecker.checkPermission(FSPermissionChecker.java:158)
+at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkPermission(FSNamesystem.java:5380)
+at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkPermission(FSNamesystem.java:5362)
+at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkAncestorAccess(FSNamesystem.java:5336)
+at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.mkdirsInternal(FSNamesystem.java:3583)
+at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.mkdirsInt(FSNamesystem.java:3553)
+at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.mkdirs(FSNamesystem.java:3525)
+at org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.mkdirs(NameNodeRpcServer.java:745)</pre>
+
+            <p class="p">A: Run the following command:</p>
+
+            <pre class="pre codeblock">sudo -u hdfs hadoop fs -chmod 777 /userhadoop fs -mkdir /user/root</pre>
+
+            <p class="p"><strong class="ph b">Q: I see the following in the YARN logs:</strong>
+            </p>
+
+            <pre class="pre codeblock">14/02/17 09:52:30 ERROR event.HamsterEventHandler: exception when launch HNP process
+java.io.IOException: Cannot run program "mpirun": error=13, Permission denied
+at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+at java.lang.Runtime.exec(Runtime.java:615)
+at java.lang.Runtime.exec(Runtime.java:526)
+at com.pivotal.hamster.appmaster.hnp.DefaultHnpLauncher$1.run(DefaultHnpLauncher.java:84)
+at java.lang.Thread.run(Thread.java:722)
+Caused by: java.io.IOException: error=13, Permission denied
+at java.lang.UNIXProcess.forkAndExec(Native Method)
+at java.lang.UNIXProcess.&lt;init&gt;(UNIXProcess.java:135)
+at java.lang.ProcessImpl.start(ProcessImpl.java:130)
+at java.lang.ProcessBuilder.start(ProcessBuilder.java:1021)
+... 4 more</pre>
+
+            <p class="p">A: Check if the node that is running the hamster application has openmpi
+               installed.</p>
+
+            <p class="p"><strong class="ph b">Q: I see the following information in logs:</strong>
+            </p>
+
+            <pre class="pre codeblock">LogType: stderr
+LogLength: 48
+Log Contents:
+/bin/bash: /bin/java: No such file or directory
+LogType: stdout
+LogLength: 0
+Log Contents:</pre>
+
+            <p class="p">A: Make sure <samp class="ph codeph">$JAVA_HOME</samp> is set:</p>
+
+            <p class="p">Run this command:</p>
+
+            <p class="p"><samp class="ph codeph">echo $JAVA_HOME</samp>
+            </p>
+
+            <p class="p">You should see something like this:</p>
+
+            <p class="p">
+               <samp class="ph codeph">/usr/java/latest </samp>
+            </p>
+
+            <p class="p"><strong class="ph b"> Q: I see the following information in logs: </strong>
+            </p>
+
+            <p class="p"><samp class="ph codeph">ERROR: fiber_control.cpp(launch:229): Check failed: b&lt;nworkers [1 &lt;
+                  1]</samp>
+            </p>
+
+            <p class="p">A: Find another machine which has more than 1 core, this is a limitation of
+               GraphLab.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/ManuallyInstallingandUsingPivotalHD21Stack.html" title="Manually Installing and Using Pivotal HD 2.1 Stack"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Manually Installing and Using Pivotal HD 2.1 Stack</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

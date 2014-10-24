@@ -1,0 +1,692 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="On the versions of Red Hat Enterprise Linux that are supported by HAWQ, you can use a Kerberos authentication system to control access to HAWQ. HAWQ supports GSSAPI with Kerberos authentication. ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Configuring Kerberos Authentication"/><meta name="DC.Relation" scheme="URI" content="../topics/HAWQAdministration.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="configuringkerberosauthentication"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Configuring Kerberos Authentication</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="configuringkerberosauthentication"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PivotalHAWQ.html" title="Pivotal HAWQ">Pivotal HAWQ</a> / <a class="navheader_parent_path" href="../topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/HAWQAdministration.html" title="HAWQ Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Administration</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Configuring Kerberos Authentication</h1>
+
+   <div class="body">
+      <p class="p">On the versions of Red Hat Enterprise Linux that are supported by HAWQ, you can use a
+         Kerberos authentication system to control access to HAWQ. HAWQ supports GSSAPI with
+         Kerberos authentication. GSSAPI provides automatic authentication (single sign-on) for
+         systems that support it. If Kerberos authentication is not available when a role attempts
+         to log into HAWQ, the login fails.</p>
+
+      <p class="p">You specify which HAWQ users require Kerberos authentication in the HAWQ configuration file
+            <span class="ph filepath">pg_hba.conf</span>. Whether you specify Kerberos authentication or another
+         type of authentication for a HAWQ user, authorization to access HAWQ databases and database
+         objects, such as schemas and tables, is controlled by the settings specified in both the
+            <span class="ph filepath">pg_hba.conf</span> file and in the the privileges given to HAWQ users and
+         roles within the database.</p>
+
+      <p class="p">This chapter describes how to configure a Kerberos authentication system and configure HAWQ
+         to authenticate a HAWQ administrator.</p>
+
+      <ul class="ul">
+         <li class="li">
+            <a class="xref" href="#enablingkerberosauthenticationforhawq">Enabling Kerberos Authentication for HAWQ</a>
+         </li>
+
+
+         <li class="li">
+            <a class="xref" href="#beforeinstallingkerberos">Before Installing Kerberos</a>
+         </li>
+
+
+         <li class="li">
+            <a class="xref" href="#installingandconfiguringakerberoskdcserver">Installing and Configuring a Kerberos KDC Server</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#installingandconfiguringthekerberosclient">Installing and Configuring the Kerberos Client</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#creatinghawqrolesinthekdcdatabase">Creating HAWQ Roles in the KDC Database</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#checkingclientoperationonthehawqmaster">Checking Client Operation on the HAWQ Master</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+
+         <li class="li">
+            <a class="xref" href="#samplekerberosconfigurationfile">Sample Kerberos Configuration File</a>
+         </li>
+
+      </ul>
+
+      <p class="p">For more information about Kerberos, see <a class="xref" href="http://web.mit.edu/kerberos/">http://web.mit.edu/kerberos/</a>.</p>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="enablingkerberosauthenticationforhawq">
+      <h2 class="title topictitle2">Enabling Kerberos Authentication for HAWQ</h2>
+
+      <div class="body">
+         <div class="note important"><span class="importanttitle">Important:</span> HAWQ has two endpoints for Kerberos configuration. One endpoint is
+            configured to allow HAWQ to talk to Kerberized HDFS; in this case HAWQ is acting as a
+               <em class="ph i">Kerberos client process</em>. The other endpoint is configured to allow HAWQ to
+            operate with a Kerberos Key Distribution Center (KDC) in order to require Kerberos
+            authentication for users of the database; in this case HAWQ is acting as a Kerberos
+            server process. It is possible to configure one endpoint without the other endpoint.
+            These instructions are for configuring HAWQ as a Kerberos server process, so that users
+            are required to authenticate via Kerberos to access the database. For instructions on
+            configuring the HAWQ to Kerberized HDFS see <a class="xref" href="http://pivotalhd.docs.pivotal.io/doc/2100/HAWQInstallationandUpgrade.html" target="_blank">HAWQ Installation and Upgrade</a>. Note that if
+            HAWQ to Kerberized HDFS has already been configured, or you have an existing KDC to use,
+            you may skip the KDC installation instructions below.</div>
+
+         <p class="p">The following tasks are required to use Kerberos with HAWQ:</p>
+
+         <ol class="ol">
+            <li class="li">Set up, or identify, a Kerberos Key Distribution Center (KDC) server to use for your
+               authentication. If you have already configured HAWQ to Kerberized HDFS, you will
+               already have a cluster KDC that you can utilize. If necessary, set up a Kerberos
+               realm and principals on the server. For HAWQ, a principal is a HAWQ role that
+               utilizes Kerberos authentication. In the Kerberos database, a realm groups together
+               the Kerberos principals that are the HAWQ roles.</li>
+
+
+            <li class="li">Create, or add to, a Kerberos keytab file for HAWQ a
+                  <samp class="ph codeph">postgres/&lt;hawq_master_fqdn&gt;@REALM</samp> principal key. <ol class="ol" type="a">
+                  <li class="li">To access HAWQ, you create a service key known only by Kerberos and HAWQ. This
+                     is of the form <samp class="ph codeph">postgres/&lt;hawq_master_fqdn&gt;@REALM</samp>, where
+                        <samp class="ph codeph">&lt;hawq_master_fqdn&gt;</samp> is the fully qualified domain name
+                     of the HAWQ master host and <samp class="ph codeph">REALM</samp> is your Kerberos realm.</li>
+
+                  <li class="li">On the HAWQ master, the service key is stored in key tables, which are files
+                     known as keytabs. For a PHD installation, the HAWQ service keys are usually
+                     stored in the keytab file called
+                        <span class="ph filepath">/etc/security/phd/keytab/hawq-&lt;hawq_master_fqdn&gt;.service.keytab</span>.
+                     This service key is the equivalent of the service's password, and must be kept
+                     secure. Data which is meant to be read only by the service is encrypted using
+                     this key. If you have already configured HAWQ to Kerberized HDFS, this keytab
+                     will already exist and you will need to add the
+                        <samp class="ph codeph">postgres/&lt;hawq_master_fqdn&gt;@REALM</samp> principal to
+                     it.</li>
+
+               </ol>
+
+            </li>
+
+
+            <li class="li">Install the Kerberos client packages and the keytab file on the HAWQ master, if they
+               are not already installed. The <span class="ph filepath">/etc/krb5.conf</span> file for your
+               Kerberos installation needs to be properly configured on the HAWQ master. Again, if
+               you have already configured HAWQ to Kerberized HDFS, this will be done.</li>
+
+
+            <li class="li">Create a Kerberos ticket for <samp class="ph codeph">gpadmin</samp> on HAWQ master node using the
+               keytab file. The ticket contains the Kerberos authentication credentials that grant
+               access to HAWQ.</li>
+
+
+            <li class="li">Create Kerberos principals for any other users of the database; unless you add
+               specific rules to allow non-Kerberos access to specific users, all users will require
+               a Kerberos principal to be able to log into the database, once these steps are
+               completed. Note that the default gpadmin is allowed to log in from the local HAWQ
+               master host without authentication; it is recommended this not be changed, as it
+               allows an admin to access the database to debug authentication issues.</li>
+
+         </ol>
+
+         <p class="p">With Kerberos authentication configured on the HAWQ, you can use Kerberos for PSQL and
+            JDBC.</p>
+
+         <ul class="ul">
+            <li class="li">Setting up HAWQ with Kerberos for PSQL</li>
+
+
+            <li class="li">Setting up HAWQ with Kerberos for JDBC</li>
+
+         </ul>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="beforeinstallingkerberos">
+      <h2 class="title topictitle2">Before Installing Kerberos</h2>
+
+      <div class="body">
+         <p class="p">Check that you can meet the following requirements before using Kerberos with HAWQ:</p>
+
+         <ul class="ul">
+            <li class="li">Kerberos Key Distribution Center (KDC) server that uses the
+                  <samp class="ph codeph">krb5-server</samp> library.</li>
+
+
+            <li class="li">Kerberos packages for version 5:<ul class="ul">
+                  <li class="li"><span class="ph filepath">krb5-libs</span></li>
+
+                  <li class="li"><span class="ph filepath">krb5-workstation</span>
+                  </li>
+
+               </ul>
+</li>
+
+
+            <li class="li">HAWQ capable of supporting Kerberos.</li>
+
+
+            <li class="li">A configuration that allows the Kerberos server and the HAWQ master to communicate
+               with each other.</li>
+
+
+            <li class="li">Red Hat Enterprise Linux 6.x (requires Java 1.7.0_17 or later).</li>
+
+
+            <li class="li">Red Hat Enterprise Linux 5.x (requires Java 1.6.0_21 or later).</li>
+
+
+            <li class="li">Red Hat Enterprise Linux 4.x (requires Java 1.6.0_21 or later).</li>
+
+         </ul>
+
+         <div class="note note"><span class="notetitle">Note:</span> 
+            <ul class="ul" id="beforeinstallingkerberos__ul_spn_lrt_4p">
+               <li class="li">The dates and times on the Kerberos server and clients must be synchronized.
+                  Authentication fails if the time difference between the Kerberos server and a
+                  client is too large. The maximum time difference is configurable; 5 minutes is the
+                  default.</li>
+
+               <li class="li">The Kerberos server and client must be configured, enabling them to ping each
+                  other using their host names.</li>
+
+               <li class="li">The Kerberos authentication itself is secure, but the data sent over the database
+                  connection is transmitted in clear text, unless SSL is used. Kerberos is for
+                  authentication only.</li>
+
+               <li class="li">These instruction consider the simplest most common configuration; it is possible
+                  to set up more complex configuration rules. Please see the appropriate
+                  documentation if more complex rules are desired.</li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="installingandconfiguringakerberoskdcserver">
+      <h2 class="title topictitle2">Installing and Configuring a Kerberos KDC Server</h2>
+
+      <div class="body">
+         <p class="p">The following steps install and configure a Kerberos Key Distribution Center (KDC)
+            server in the case where one is not already installed:</p>
+
+         <ol class="ol">
+            <li class="li">Install the Kerberos packages for the Kerberos server: <ul class="ul">
+                  <li class="li"><span class="ph filepath">krb5-libs</span></li>
+
+                  <li class="li"><span class="ph filepath">krb5-server</span></li>
+
+                  <li class="li"><span class="ph filepath">krb5-workstation</span></li>
+
+               </ul>
+</li>
+
+            <li class="li">Edit the <span class="ph filepath">/etc/krb5.conf</span> configuration file. See the section for
+               the <span class="ph filepath">krb5.conf</span>
+               <a class="xref" href="#samplekerberosconfigurationfile">Sample Configuration File</a> for
+               sample configuration file parameters. When you create a KDC database, the parameters
+               in the <span class="ph filepath">/etc/krb5.conf</span> file specify that the realm
+                  <samp class="ph codeph">KRB.GREENPLUM.COM</samp> is created. You use this realm when you create
+               the Kerberos principals that are HAWQ roles. If you have an existing Kerberos server
+               you might need to edit the kdc.conf file. See the Kerberos documentation for
+               information about the <span class="ph filepath">kdc.conf</span> file.</li>
+
+            <li class="li"> To create a Kerberos KDC database, run the <samp class="ph codeph">kdb5_util</samp>. For example:
+                  <pre class="pre codeblock">kdb5_util create -s</pre>
+<p class="p">The <samp class="ph codeph">create</samp> option
+                  creates the database to store keys for the Kerberos realms managed by this KDC
+                  server. The <samp class="ph codeph">-s</samp> option creates a stash file. Without the stash
+                  file, every time the KDC server starts, it requests a password.</p>
+</li>
+
+            <li class="li">The Kerberos utility <samp class="ph codeph">kadmin</samp> uses Kerberos to authenticate to the
+                  server.<p class="p">Before using <samp class="ph codeph">kadmin</samp>, add an administrative user to KDC
+                  database with <samp class="ph codeph">kadmin.local</samp>. <samp class="ph codeph">kadmin.local</samp> is
+                  local to the server and does not use Kerberos authentication. To add the user
+                     <samp class="ph codeph">gpadmin</samp> as an administrative user to the KDC database, run the
+                  following
+                  command:</p>
+<pre class="pre codeblock">kadmin.local -q "addprinc gpadmin/admin"</pre>
+<div class="note note"><span class="notetitle">Note:</span> Most
+                  users do not need administrative access to the Kerberos server. They can use
+                  kadmin to manage their own principals (for example, to change their own password).
+                  For information about <samp class="ph codeph">kadmin</samp>, see the Kerberos
+                  documentation.</div>
+
+            </li>
+
+            <li class="li">If needed, edit the <span class="ph filepath">/var/kerberos/krb5kdc/kadm5.acl</span> file to
+               grant the appropriate permissions to <samp class="ph codeph">gpadmin</samp>.</li>
+
+            <li class="li">Start the Kerberos daemons with the following
+                  commands:<pre class="pre codeblock">/sbin/service krb5kdc start
+/sbin/service kadmin start </pre>
+<p class="p">If
+                  you want to start Kerberos automatically upon restart, run the following commands:
+               </p>
+<pre class="pre codeblock">/sbin/chkconfig krb5kdc on
+/sbin/chkconfig kadmin on</pre>
+</li>
+
+         </ol>
+
+      </div>
+
+      <div class="topic nested2" id="installingandconfiguringthekerberosclient">
+         <h3 class="title topictitle3">Installing and Configuring the Kerberos Client</h3>
+
+         <div class="body">
+            <p class="p">If they are not already installed, install the Kerberos client libraries on the HAWQ
+               master and configure the Kerberos client:</p>
+
+            <ol class="ol" id="installingandconfiguringthekerberosclient__ol_qcl_zqt_4p">
+               <li class="li">Install the following Kerberos packages on the HAWQ master.<ul class="ul" id="installingandconfiguringthekerberosclient__ul_pdl_zqt_4p">
+                     <li class="li"><span class="ph filepath">krb5-libs</span></li>
+
+                     <li class="li"><span class="ph filepath">krb5-workstation</span></li>
+
+                  </ul>
+</li>
+
+               <li class="li">Ensure that the <span class="ph filepath">/etc/krb5.conf</span> file is the same as the one
+                  that is on the Kerberos server.</li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="creatinghawqrolesinthekdcdatabase">
+         <h3 class="title topictitle3">Creating HAWQ Roles in the KDC Database</h3>
+
+         <div class="body">
+            <p class="p">After you have set up a Kerberos KDC and have created a realm for HAWQ, you add
+               principals to the realm.</p>
+
+            <ol class="ol" id="creatinghawqrolesinthekdcdatabase__ol_ixk_zqt_4p">
+               <li class="li">Create principals in the Kerberos database with <samp class="ph codeph">kadmin.local.</samp>
+                  Note that the realm <samp class="ph codeph">REALM</samp> is an example; replace it with your
+                  actual Kerberos realm. Using <samp class="ph codeph">kadmin.local</samp> in interactive mode,
+                  the following commands add
+                     users:<pre class="pre codeblock">addprinc gpadmin@REALM
+addprinc postgres/&lt;hawq_master_fqdn&gt;@REALM</pre>
+<p class="p">The
+                     first <samp class="ph codeph">addprinc</samp> command creates the HAWQ
+                        <samp class="ph codeph">gpadmin</samp> user as a principal. See <a class="xref" href="#settinguphawqwithkerberosforpsql">Setting Up HAWQ with Kerberos for
+                        PSQL</a> for information on modifying the
+                        <span class="ph filepath">pg_hba.conf</span> file so the HAWQ user
+                        <samp class="ph codeph">gpadmin</samp> uses Kerberos authentication when accessing HAWQ
+                     from the client hosts.</p>
+<p class="p">The second <samp class="ph codeph">addprinc</samp> command
+                     creates the postgres process as principal in the Kerberos KDC. This principal
+                     is required when using Kerberos authentication with HAWQ. The syntax for the
+                     principal is <samp class="ph codeph">postgres/&lt;hawq_master_fqdn&gt;@REALM</samp> where
+                        <samp class="ph codeph">&lt;hawq_master_fqdn&gt;</samp> is the fully qualified host name
+                     of the HAWQ master.</p>
+<div class="note note"><span class="notetitle">Note:</span> 
+                     <strong class="ph b">Principal differences between HAWQ and Postgres</strong>
+                     <p class="p">Note that for a HAWQ to Kerberized HDFS configuration, HAWQ uses the
+                           <samp class="ph codeph">postgres@REALM</samp> form for a principal, as it is a Kerberos
+                        client when talking to HDFS. For the HAWQ service configuration we are
+                        concerned with here, it uses the
+                           <samp class="ph codeph">postgres/&lt;service_host_fqdn&gt;@REALM</samp> form, as it is
+                        acting a Kerberos service. If you are configuring both endpoints,
+                        understanding the difference is important. </p>
+</div>
+</li>
+
+               <li class="li">Create a Kerberos keytab file with kadmin.local and add the
+                     <samp class="ph codeph">postgres/&lt;hawq_master_fqdn&gt;@REALM</samp> principal, or if a
+                  keytab already exists add this principal to the existing HAWQ keytab file. The
+                  following example creates a keytab file <span class="ph filepath">gpdb-kerberos.keytab</span>
+                  with authentication information for the two
+                     principals.<pre class="pre codeblock">ktadd -norandkey -k hawq-&lt;hawq_master_fqdn&gt;.service.keytab postgres/&lt;hawq_master_fqdn&gt;@REALM</pre>
+<p class="p">Place
+                     the keytab file in the <span class="ph filepath">/etc/security/phd/keytab</span> directory
+                     on the HAWQ master and set ownership to <samp class="ph codeph">gpadmin:gpadmin</samp> and
+                     permissions to <samp class="ph codeph">r--------</samp>.</p>
+<p class="p">Create a link to the keytab
+                     file for clarity and ease of reference. For example: </p>
+<pre class="pre codeblock">ln -s /etc/security/phd/keytab/hawq-&lt;hawq_master_fqdn&gt;.service.keytab /etc/security/phd/keytab/hawq.service.keytab</pre>
+<div class="note note"><span class="notetitle">Note:</span> 
+                     <ul class="ul" id="creatinghawqrolesinthekdcdatabase__ul_lyk_zqt_4p">
+                        <li class="li">If necessary, create the <span class="ph filepath">/etc/security/phd/keytab</span>
+                           directory and insure that <samp class="ph codeph">gpadmin</samp> has access.</li>
+
+                        <li class="li">If you already have a HAWQ keytab file in this directory, you can use
+                              <samp class="ph codeph">kadmin</samp> from the HAWQ master to add to the
+                           keytab.</li>
+
+                        <li class="li">You may choose another location for the keytab file, but there is only
+                           one keytab setting in <span class="ph filepath">postgresql.conf</span> for both
+                           endpoints, so you must be consistent.</li>
+
+                     </ul>
+
+                  </div>
+</li>
+
+               <li class="li">Verify the contents of your keytab.The following is an example of
+                     <samp class="ph codeph">klist</samp> output for a system configured with both endpoints (HAWQ
+                  to Kerberized HDFS and HAWQ service configuration to authenticate database users)
+                  where the HAWQ master FQDN is set to <samp class="ph codeph">centos61-2.localdomain</samp> and
+                  the realm is set to
+                  <samp class="ph codeph">PHD.BIGDATA.COM</samp>:<pre class="pre codeblock"># klist -k -t /etc/security/phd/keytab/hawq-centos61-2.localdomain.service.keytab 
+Keytab name: WRFILE:/etc/security/phd/keytab/hawq-centos61-2.localdomain.service.keytab
+KVNO Timestamp         Principal
+---- ----------------- --------------------------------------------------------
+   1 04/30/14 22:45:21 postgres@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 postgres@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 postgres@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 postgres@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 postgres@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 postgres@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 HTTP/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 HTTP/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 HTTP/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 HTTP/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 HTTP/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 04/30/14 22:45:21 HTTP/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 05/01/14 19:41:39 postgres/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 05/01/14 19:41:39 postgres/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 05/01/14 19:41:39 postgres/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 05/01/14 19:41:39 postgres/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 05/01/14 19:41:39 postgres/centos61-2.localdomain@PHD.BIGDATA.COM
+   1 05/01/14 19:41:39 postgres/centos61-2.localdomain@PHD.BIGDATA.COM</pre>
+</li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="checkingclientoperationonthehawqmaster">
+         <h3 class="title topictitle3">Checking Client Operation on the HAWQ Master</h3>
+
+         <div class="body">
+            <p class="p">On the HAWQ master:</p>
+
+            <ol class="ol" id="checkingclientoperationonthehawqmaster__ol_rjn_xst_4p">
+               <li class="li">Clean up any possible existing tickets:<pre class="pre codeblock"># kdestroy</pre>
+</li>
+
+               <li class="li">Use the Kerberos utility <samp class="ph codeph">kinit</samp> to request a ticket using the
+                  keytab file on the HAWQ master for
+                  <samp class="ph codeph">gpadmin@REALM</samp>:<pre class="pre codeblock"># kinit gpadmin
+[password prompt will be displayed: enter your gpadmin principal password]</pre>
+</li>
+
+               <li class="li">Use the Kerberos utility <samp class="ph codeph">klist</samp> to display the contents of the
+                  Kerberos ticket cache on the HAWQ
+                  master:<pre class="pre codeblock"># klist
+Ticket cache: FILE:/tmp/krb5cc_108061
+Default principal: gpadmin@REALM
+Valid starting Expires Service principal
+03/28/13 14:50:26 03/29/13 14:50:26 krbtgt/REALM@REALM
+renew until 03/28/13 14:50:26</pre>
+</li>
+
+            </ol>
+
+         </div>
+
+         <div class="topic nested3" id="settinguphawqwithkerberosforpsql">
+            <h4 class="title topictitle4">Setting up HAWQ with Kerberos for PSQL</h4>
+
+            <div class="body">
+               <p class="p">After you have set up Kerberos on the HAWQ master, you can configure HAWQ to use
+                  Kerberos.</p>
+
+               <ol class="ol" id="settinguphawqwithkerberosforpsql__ol_uwh_yqt_4p">
+                  <li class="li">Check that the role <samp class="ph codeph">gpadmin</samp> exists in HAWQ (it should), if
+                     not create a HAWQ administrator role in the database <samp class="ph codeph">template1</samp>
+                     for the Kerberos principal that is used as the database
+                        administrator:<pre class="pre codeblock">psql template1 -c 'create role "gpadmin" login superuser;'</pre>
+<div class="note note"><span class="notetitle">Note:</span> The
+                        role you create in the database <samp class="ph codeph">template1</samp> will be available
+                        in any new HAWQ database that you create.<p class="p">Adding this line to the
+                              <span class="ph filepath">postgresql.conf</span> specifies the folder
+                              <span class="ph filepath">/home/gpadmin</span> as the location of the keytab file
+                              <span class="ph filepath">gpdb-kerberos.keytab</span>. </p>
+</div>
+</li>
+
+                  <li class="li">If you have not already configured HAWQ to Kerberized HDFS, you will need to
+                     modify <span class="ph filepath">postgresql.conf</span> to specify the location of the
+                     keytab file.<p class="p">For example, adding this line to the
+                           <span class="ph filepath">postgresql.conf</span> specifies the folder
+                           <span class="ph filepath">/home/gpadmin</span> as the location of the keytab file
+                           <span class="ph filepath">gpdb-kerberos.keytab</span>:</p>
+<pre class="pre codeblock">krb_server_keyfile = '/etc/security/phd/keytab/hawq.service.keytab'</pre>
+<div class="note note"><span class="notetitle">Note:</span> The
+                        single quote format is important.</div>
+</li>
+
+                  <li class="li">Modify the HAWQ file <span class="ph filepath">pg_hba.conf</span> to enable Kerberos
+                        support.<p class="p">For example, adding the following line to
+                           <span class="ph filepath">pg_hba.conf</span> adds GSSAPI and Kerberos support. The
+                        value for <samp class="ph codeph">krb_realm</samp> is the Kerberos realm that is used for
+                        authentication to HAWQ.</p>
+<p class="p">Add as the last entry in
+                        pg_hba.conf:</p>
+<pre class="pre codeblock">host all all 0.0.0.0/0 gss include_realm=0 krb_realm=REALM</pre>
+<p class="p">More
+                        complex rules are possible. For information about the
+                           <span class="ph filepath">pg_hba.conf</span> file, see "The pga_hba.conf File"
+                        section in<a class="xref" href="ConfiguringClientAuthentication.html">Configuring Client Authentication</a>.</p>
+</li>
+
+                  <li class="li">Restart
+                     HAWQ:<pre class="pre codeblock"># sudo -u gpadmin service hawq stop
+# sudo -u gpadmin service hawq start</pre>
+</li>
+
+                  <li class="li">As a test, log in into the database from a client node (not the HAWQ master
+                     host) as the <samp class="ph codeph">gpadmin</samp> role with the Kerberos credentials
+                        <samp class="ph codeph">gpadmin</samp>:<pre class="pre codeblock">[root@centos61-5 ~]# su - gpadmin
+[gpadmin@centos61-5 ~]$ kinit gpadmin
+Password for gpadmin@PHD.BIGDATA.COM: 
+[gpadmin@centos61-5 ~]$ psql -h centos61-2.localdomain
+psql (8.4.7, server 8.2.15)
+WARNING: psql version 8.4, server version 8.2.
+         Some psql features might not work.
+Type "help" for help.
+gpadmin=#</pre>
+<p class="p">You
+                        can add regular database users by creating a role for the user in the HAWQ
+                        database as superuser and creating a corresponding Kerberos
+                     principal.</p>
+</li>
+
+               </ol>
+
+               <div class="note note"><span class="notetitle">Note:</span> A username map can be defined in the <span class="ph filepath">pg_ident.conf</span> file
+                  and specified in the <span class="ph filepath">pg_hba.conf</span> file to simplify logging
+                  into HAWQ. For example, this <samp class="ph codeph">psql</samp> command logs into the default
+                  HAWQ on <samp class="ph codeph">mdw.proddb</samp> as the Kerberos principal
+                     <samp class="ph codeph">adminuser/mdw.proddb</samp>:<pre class="pre codeblock">$ psql -U "adminuser/mdw.proddb" -h mdw.proddb</pre>
+<p class="p">If
+                     the default user is <samp class="ph codeph">adminuser</samp>, the
+                        <span class="ph filepath">pg_ident.conf</span> file and the
+                        <span class="ph filepath">pg_hba.conf</span> file can be configured so that
+                        <samp class="ph codeph">adminuser</samp> can log into the database as the Kerberos
+                     principal <samp class="ph codeph">adminuser/mdw.proddb</samp> without specifying the
+                        <samp class="ph codeph">-U</samp>
+                     option:</p>
+<pre class="pre codeblock">$ psql -h mdw.proddb</pre>
+<p class="p">The following username
+                     map is defined in the HAWQ
+                     file:</p>
+<pre class="pre codeblock">$MASTER_DATA_DIRECTORY/pg_ident.conf:
+ # MAPNAME SYSTEM-USERNAME GP-USERNAME
+mymap /^(.*)mdw\.proddb$ adminuser </pre>
+<p class="p">The
+                     map can be specified in the <span class="ph filepath">pg_hba.conf</span> file as part of
+                     the line that enables Kerberos support:
+                     </p>
+<pre class="pre codeblock">host all all 0.0.0.0/0 krb5 include_realm=0 krb_realm=proddb
+map=mymap </pre>
+<p class="p">For
+                     more information on specifying username maps, see the Postgres documentation:
+                        <a class="xref" href="http://www.postgresql.org/docs/8.4/static/auth-username-maps.html">http://www.postgresql.org/docs/8.4/static/auth-username-maps.html</a>. </p>
+<p class="p">If a Kerberos principal is not a HAWQ user, a
+                     message is similar to the following is displayed from the <samp class="ph codeph">psql</samp>
+                     command line when the user attempts to log into the
+                     database:</p>
+<pre class="pre codeblock">psql: krb5_sendauth: Bad response</pre>
+<p class="p">The
+                     principal must be added as a HAWQ user. </p>
+</div>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="settinguphawqwithkerberosforjdbc">
+            <h4 class="title topictitle4">Setting up HAWQ with Kerberos for JDBC</h4>
+
+            <div class="body">
+               <p class="p">You can configure HAWQ to use Kerberos to run user-defined Java functions:</p>
+
+               <ol class="ol" id="settinguphawqwithkerberosforjdbc__ol_h5h_yqt_4p">
+                  <li class="li">Ensure that Kerberos is installed and configured on the HAWQ master. See <a class="xref" href="#installingandconfiguringthekerberosclient"> Installing and
+                        Configuring the Kerberos Client</a> for more details.</li>
+
+                  <li class="li">Create the file <span class="ph filepath">.java.login.config</span> in the folder
+                        <span class="ph filepath">/home/gpadmin</span> and add the following text to the
+                     file:<pre class="pre codeblock">pgjdbc {
+ com.sun.security.auth.module.Krb5LoginModule required
+ doNotPrompt=true
+ useTicketCache=true
+ debug=true
+ client=true;
+};</pre>
+</li>
+
+                  <li class="li">Create a Java application that connects to HAWQ using Kerberos authentication.
+                        <p class="p">This example database connection URL uses a PostgreSQL JDBC driver and
+                        specifies parameters for Kerberos
+                        authentication:</p>
+<pre class="pre codeblock">jdbc:postgresql://mdw:5432/mytest?kerberosServerName=
+postgres&amp;jaasApplicationName=pgjdbc&amp;user=
+gpadmin/kerberos-gpdb </pre>
+<p class="p">The
+                        parameter names and values specified depend on how the Java application
+                        performs Kerberos authentication. </p>
+</li>
+
+                  <li class="li">Test the Kerberos login by running a sample Java application from HAWQ.</li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="samplekerberosconfigurationfile">
+      <h2 class="title topictitle2">Sample Kerberos Configuration File</h2>
+
+      <div class="body">
+         <p class="p">This sample <span class="ph filepath">krb5.conf</span> Kerberos configuration file is used in the
+            example that configures HAWQ to use Kerberos authentication:</p>
+
+         <pre class="pre codeblock">[logging]
+ 
+  default = FILE:/var/log/krb5libs.log
+  kdc = FILE:/var/log/krb5kdc.log
+  admin_server = FILE:/var/log/kadmind.log
+[libdefaults]
+  default_realm = KRB.GREENPLUM.COM
+  dns_lookup_realm = false
+  dns_lookup_kdc = false
+  ticket_lifetime = 24h
+  renew_lifetime = 7d
+  forwardable = yes
+  default_tgs_enctypes = aes128-cts des3-hmac-sha1 des-cbc-crc
+des-cbc-md5
+default_tkt_enctypes = aes128-cts des3-hmac-sha1 des-cbc-crc
+des-cbc-md5
+permitted_enctypes = aes128-cts des3-hmac-sha1 des-cbc-crc
+des-cbc-md5
+realms]
+KRB.GREENPLUM.COM = {
+  kdc = kerberos-gpdb:88
+  admin_server = kerberos-gpdb:749
+  default_domain = kerberos-gpdb
+}
+[domain_realm]
+.kerberos-gpdb = KRB.GREENPLUM.COM
+kerberos-gpdb = KRB.GREENPLUM.COM
+[appdefaults]
+pam = {
+   debug = false
+   ticket_lifetime = 36000
+   renew_lifetime = 36000
+   forwardable = true
+   krb4_convert = false
+ }</pre>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/HAWQAdministration.html" title="HAWQ Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Administration</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

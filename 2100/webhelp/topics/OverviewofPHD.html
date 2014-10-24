@@ -1,0 +1,978 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Pivotal HD Enterprise is an enterprise-capable, commercially supported distribution of Apache Hadoop packages targeted to traditional Hadoop deployments. PHD Architecture About Supported Pivotal HD ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Overview of PHD"/><meta name="DC.Relation" scheme="URI" content="../topics/PHDInstallationandAdministration.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="overviewofphd"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Overview of PHD</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="overviewofphd"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PivotalHD.html" title="Pivotal HD">Pivotal HD</a> / <a class="navheader_parent_path" href="../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration">PHD Installation and Administration</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">PHD Installation and Administration</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Overview of PHD</h1>
+
+   <div class="body">
+      <p class="p">Pivotal HD Enterprise is an enterprise-capable, commercially supported distribution of
+         Apache Hadoop packages targeted to traditional Hadoop deployments.</p>
+
+      <ul class="ul">
+         <li class="li">
+            <a class="xref" href="#phdarchitecture">PHD Architecture</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#aboutsupportedpivotalhdservices">About Supported Pivotal HD Services</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#hdfs">HDFS</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#yarn">YARN</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#zookeeper">ZooKeeper</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hbase">HBase</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hive">Hive</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hawq">HAWQ</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#pxf">PXF</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#gemfirexd">GemFire XD</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#pig">Pig</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#mahout">Mahout</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#flume">Flume</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#sqoop">Sqoop</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#oozie">Oozie</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hamster">Hamster</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#graphlab">GraphLab</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+      </ul>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="phdarchitecture">
+      <h2 class="title topictitle2">PHD Architecture</h2>
+
+      <div class="body">
+         <p class="p">Pivotal HD Enterprise is a commercially-supported distribution of the Apache Hadoop
+            stack. The figure below displays how each Apache and Pivotal component fits into the
+            overall architecture of Pivotal HD Enterprise:</p>
+
+
+         <p class="p">
+            <img class="image" id="phdarchitecture__image_n13_qs2_sp" src="../images/69468445.png" width="500"/>
+         </p>
+
+         <p class="p">Pivotal HD Enterprise includes the following Apache and Pivotal components:</p>
+
+         <ul class="ul">
+            <li class="li">
+               <strong class="ph b">Core Apache Stack:</strong>
+               <ul class="ul">
+                  <li class="li">Hadoop<ul class="ul">
+                        <li class="li">HDFS</li>
+
+                        <li class="li">YARN</li>
+
+                     </ul>
+</li>
+
+                  <li class="li">Zookeeper</li>
+
+                  <li class="li">HBase</li>
+
+                  <li class="li">Hive</li>
+
+                  <li class="li">Pig</li>
+
+                  <li class="li">Mahout</li>
+
+                  <li class="li">Flume</li>
+
+                  <li class="li">Sqoop</li>
+
+                  <li class="li">Oozie</li>
+
+               </ul>
+
+            </li>
+
+         </ul>
+
+         <p class="p">Pivotal HD Enterprise enriches the Apache stack distribution by providing the
+            following:</p>
+
+         <ul class="ul">
+            <li class="li">
+               <strong class="ph b">Advanced Database Services (ADS)</strong>
+               <ul class="ul" id="phdarchitecture__ul_gr3_ccy_np">
+                  <li class="li"><strong class="ph b">HAWQ</strong> - HAWQ adds SQL's expressive power to Hadoop. By adding rich,
+                     proven parallel SQL processing facilities, HAWQ renders queries faster than any
+                     other Hadoop-based query interface.</li>
+
+                  <li class="li"><strong class="ph b">PXF</strong> - Extensibility layer to provide support for external data formats
+                     such as HBase and Hive.</li>
+
+               </ul>
+
+            </li>
+
+            <li class="li"><strong class="ph b">Pivotal Command Center (PCC)</strong> - PCC Is a Web-based interface for configuration
+               and deployment of clusters, and for monitoring &amp; management of a PHD environment.
+               With the help of PCC, system administrators can determine if the PHD cluster is
+               running efficiently, quickly diagnose functional or performance issues, and performs
+               cluster management tasks when required. PCC includes a CLI (command line interface)
+               and a GUI.  You can deploy and configure most of the Hadoop services, as well as
+               HAWQ, and PXF, using either the CLI or the GUI (See <a class="xref" href="DeploymentOptions.html">Deployment Options</a>). You can start and stop the clusters using either
+               the CLI or the GUI. <div class="note note"><span class="notetitle">Note:</span> This documentation covers operations performed via the CLI.
+                  For Pivotal Command Center GUI operations; including configuring and deploying
+                  clusters, see the <em class="ph i">Pivotal Command Center 2.x User Guide</em>.</div>
+
+               <p class="p">PCC stores the metadata for Hadoop cluster nodes and services, the cluster
+                  configuration and the system metrics in a PostgreSQL database.</p>
+
+            </li>
+
+            <li class="li"><strong class="ph b">Pivotal Real Time Services (PRTS)</strong>- Pivotal HD 2.x includes support for
+               GemFire XD (GFXD), an offering of PRTS.</li>
+
+            <li class="li"><strong class="ph b">Hamster</strong> - Developed by Pivotal, Hamster is a framework that enables users to
+               run MPI programs on Apache Hadoop YARN platform.  (OpenMPI is a A High Performance
+               Message Passing Library.)</li>
+
+            <li class="li"><strong class="ph b">GraphLab</strong> - GraphLab is a powerful new system for designing and implementing
+               parallel algorithms in machine learning. It is a graph-based, high performance,
+               distributed computation framework written in C++ that makes use of MPI and has its
+               own programming model.</li>
+
+         </ul>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="aboutsupportedpivotalhdservices">
+      <h2 class="title topictitle2">About Supported Pivotal HD Services</h2>
+
+      <div class="body">
+         <p class="p">The following services can be deployed and configured via the Pivotal Command Center
+            CLI, or manually.</p>
+
+         <ul class="ul">
+            <li class="li">HDFS</li>
+
+            <li class="li">YARN</li>
+
+            <li class="li">ZooKeeper</li>
+
+            <li class="li">Hbase</li>
+
+            <li class="li">Hive</li>
+
+            <li class="li">HAWQ</li>
+
+            <li class="li">PXF</li>
+
+            <li class="li">GemFire XD</li>
+
+            <li class="li">Pig</li>
+
+            <li class="li">Mahout</li>
+
+         </ul>
+
+         <p class="p">The following services can only be deployed and configured manually (see the <a class="xref" href="StackandToolsReference.html">Stack and Tools Reference</a> for details)</p>
+
+         <ul class="ul">
+            <li class="li">Flume</li>
+
+            <li class="li">Sqoop</li>
+
+            <li class="li">Oozie</li>
+
+            <li class="li">Hamster</li>
+
+            <li class="li">GraphLab</li>
+
+         </ul>
+
+      </div>
+
+      <div class="topic nested2" id="hdfs">
+         <h3 class="title topictitle3">HDFS</h3>
+
+         <div class="body">
+            <p class="p">HDFS is a fault tolerant distributed file system which is designed to run on
+               commodity hardware.</p>
+
+            <p class="p">The following table shows HDFS service roles: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hdfs__table_e1s_5cy_np" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d116260e379">Role Name </th>
+
+                        <th class="entry confluenceTh" valign="top" id="d116260e382">Description </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e379 d116260e382 ">NameNode </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e379 d116260e382 ">The NameNode serves as both directory
+                           namespace manager and "inode table" for the Hadoop File System (HDFS).
+                           Each HDFS deployment must have a running NameNode. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e379 d116260e382 ">Secondary NameNode </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e379 d116260e382 ">The Secondary NameNode periodically
+                           downloads the current NameNode image and edits log files. It joins them
+                           into a new image and uploads the new image back to the primary NameNode.
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e379 d116260e382 ">DataNodes </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e379 d116260e382 ">A DataNode stores data in the HDFS. A
+                           functional filesystem has more than one DataNode, with data replicated
+                           across all nodes. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e379 d116260e382 ">Hadoop Client </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e379 d116260e382 ">A client machine has Hadoop installed with
+                           all the cluster settings, but is not a Master or Slave. Instead, the role
+                           of the client is to load data into the cluster, submit Map Reduce jobs
+                           that describe how to process the data, and then retrieve or view the
+                           results of the finished job. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e379 d116260e382 ">Journalnodes *</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e379 d116260e382 ">A group of daemons to maintain the
+                           namenode edits information. These are used by both active and standby
+                           namenodes in a HA enabled cluster to keep their state
+                           synchronized.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e379 d116260e382 ">Standby Namenode *</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e379 d116260e382 ">Namenode running on a different host in
+                           standby mode in a HA enabled cluster. This will take over as the active
+                           namenode if the current active namenode fails.</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p class="p">*Only applicable for HA enabled clusters.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="yarn">
+         <h3 class="title topictitle3">YARN</h3>
+
+         <div class="body">
+            <p class="p">YARN is a framework that facilitates writing distributed processing frameworks and
+               applications and supports MapReduce version 2.</p>
+
+            <p class="p">The following table shows YARN service roles: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="yarn__table_wrr_5cy_np" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d116260e473">Role Name </th>
+
+                        <th class="entry confluenceTh" valign="top" id="d116260e476">Description </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e473 d116260e476 ">Resource Manager </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e473 d116260e476 ">The ResourceManager is the master that
+                           manages all the cluster resources running on the YARN system. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e473 d116260e476 ">Node Manager </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e473 d116260e476 ">The NodeManager manages resources on a
+                           particular node. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e473 d116260e476 ">History Server </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e473 d116260e476 ">The History Server stores a history of the
+                           mapreduce jobs run on the cluster. </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="zookeeper">
+         <h3 class="title topictitle3">ZooKeeper</h3>
+
+         <div class="body">
+            <p class="p">Zookeeper is a centralized service that enable distributed synchronization and
+               manages configuration across a cluster.</p>
+
+            <p class="p">The following table shows ZooKeeper service roles:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="zookeeper__table_yjr_5cy_np" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d116260e536">Role Name </th>
+
+                        <th class="entry confluenceTh" valign="top" id="d116260e539">Description </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e536 d116260e539 ">Zookeeper Server </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e536 d116260e539 ">ZooKeeper Quorum Servers </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hbase">
+         <h3 class="title topictitle3">HBase</h3>
+
+         <div class="body">
+            <p class="p">HBase is a distributed, column-oriented database that uses HDFS for storing data.</p>
+
+            <p class="p">The following table shows HBase service roles:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hbase__table_mcr_5cy_np" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d116260e582">Role Name </th>
+
+                        <th class="entry confluenceTh" valign="top" id="d116260e585">Description </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e582 d116260e585 ">HBase Master </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e582 d116260e585 ">The Master server is responsible for
+                           monitoring all RegionServer instances in the cluster, and is the
+                           interface for all metadata changes. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e582 d116260e585 ">HBase RegionServer </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e582 d116260e585 ">It is responsible for serving and managing
+                           regions which typically coexist with datanodes. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e582 d116260e585 ">HBase Client</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e582 d116260e585 ">It is responsible for accessing HBase
+                           service.</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <div class="note note"><span class="notetitle">Note:</span> 
+               <ul class="ul" id="hbase__ul_occ_jcy_np">
+                  <li class="li">HBase requires that you have installed HDFS, YARN, and Zookeeper.</li>
+
+                  <li class="li">Pivotal HD installs ZooKeeper if you have not installed it.</li>
+
+                  <li class="li">HBase does not manage the Zookeeper service.</li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hive">
+         <h3 class="title topictitle3">Hive</h3>
+
+         <div class="body">
+            <p class="p">Hive is a <a class="xref" href="http://en.wikipedia.org/wiki/Data_warehouse">data
+                  warehouse</a> infrastructure that provides an interface similar to SQL on top
+               of Hadoop. </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hive__table_jvq_5cy_np" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d116260e661">Role Name </th>
+
+                        <th class="entry confluenceTh" valign="top" id="d116260e664">Description </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e661 d116260e664 ">Hive Metastore </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e661 d116260e664 ">The metastore stores the metadata for all
+                           Hive tables and partitions. Postgres database is used as the datastore
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e661 d116260e664 ">Hive Server </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e661 d116260e664 ">Also known as thrift server, is used by
+                           clients written in Java, C++ etc to access Hive </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e661 d116260e664 ">Hive Client </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e661 d116260e664 ">This is a launcher or gateway node which
+                           is used to launch hive jobs </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <div class="note note"><span class="notetitle">Note:</span> Hive requires HDFS and YARN.</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hawq">
+         <h3 class="title topictitle3">HAWQ</h3>
+
+         <div class="body">
+            <p class="p">HAWQ is a parallel SQL query engine that marries the Pivotal Analytic Database and
+               Hadoop 2.0 and is optimized for analytics, with full transaction support. The
+               following table shows HAWQ service roles: </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hawq__table_t4q_5cy_np" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d116260e724">Role Name </th>
+
+                        <th class="entry confluenceTh" valign="top" id="d116260e727">Description </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e724 d116260e727 ">HAWQ Master </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e724 d116260e727 ">Stores the top-level metadata, as well as
+                           building the query plan </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e724 d116260e727 ">HAWQ StandbyMaster </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e724 d116260e727 ">This is a standby for the HAWQ Master
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e724 d116260e727 ">HAWQ Segments </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e724 d116260e727 ">Manages a shard of each table which
+                           typically coexist with datanodes </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <div class="note note"><span class="notetitle">Note:</span> HAWQ requires HDFS.</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="pxf">
+         <h3 class="title topictitle3">PXF</h3>
+
+         <div class="body">
+            <p class="p">PXF is an extended framework that combines the Pivotal Analytic Database engine
+               (HAWQ) with enterprise class Apache Hadoop, HBase and Hive. The PXF service runs as a
+               java agent on existing Hadoop, HBase and Hive nodes and enables HAWQ to consume data
+               created by the external services.</p>
+
+            <div class="note note"><span class="notetitle">Note:</span> PXF requires HDFS and HAWQ.</div>
+
+            <p class="p">If you do not install PXF via the CLI, and choose to install it later, refer to the
+                  <em class="ph i">HAWQ 1.2 Administrator Guide</em> for details.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="gemfirexd">
+         <h3 class="title topictitle3">GemFire XD</h3>
+
+         <div class="body">
+            <p class="p">GemFire XD is a memory-optimized, distributed data store that is designed for
+               applications that have demanding scalability and availability requirements.</p>
+
+            <p class="p">Note that you cannot start GemFire XD (<samp class="ph codeph">gfxd</samp>) using
+                  the <samp class="ph codeph">icm_client start</samp> command.  See <a class="xref" href="http://gemfirexd.docs.pivotal.io/latest/userguide/index.html#getting_started/topics/install_platform.html">http://gemfirexd.docs.pivotal.io/latest/userguide/index.html#getting_started/topics/install_platform.html</a> in the GemFire XD documentation for information about how to
+               configure and start GemFire XD members.</p>
+
+         </div>
+
+         <div class="topic nested3" id="servicerolesports">
+            <h4 class="title topictitle4">Service Roles/Ports</h4>
+
+            <div class="body">
+               <p class="p">The following table shows GemFire service roles: </p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="servicerolesports__table_izp_5cy_np" class="table" frame="border" border="1" rules="all">
+                     <thead class="thead" align="left">
+                        <tr class="row">
+                           <th class="entry confluenceTh" valign="top" id="d116260e832">Role Name </th>
+
+                           <th class="entry confluenceTh" valign="top" id="d116260e835">Description </th>
+
+                           <th class="entry confluenceTh" valign="top" id="d116260e838">Port</th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody class="tbody">
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d116260e832 d116260e835 d116260e838 ">gfxd-locator </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d116260e832 d116260e835 d116260e838 ">The GemFire XD locator process provides
+                              discovery services for all members in a GemFire XD distributed system.
+                              A locator also provides load balancing and failover for thin client
+                              connections. As a best practice, deploy a locator in its own process
+                              (LOCATOR=local_only) to support network partitioning detection. </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d116260e832 d116260e835 d116260e838 ">1527</td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d116260e832 d116260e835 d116260e838 ">gfxd-server </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d116260e832 d116260e835 d116260e838 ">A GemFire XD server hosts database
+                              schemas and provides network connectivity to other GemFire XD members
+                              and clients. You can deploy additional servers as necessary to
+                              increase the capacity for in-memory tables and/or provide redundancy
+                              for your data. </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d116260e832 d116260e835 d116260e838 ">1527</td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="pig">
+         <h3 class="title topictitle3">Pig</h3>
+
+         <div class="body">
+            <p class="p">Pig is a data flow language used in the analysis of large data sets using
+               mapreduce. </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="pig__table_wtp_5cy_np" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d116260e893">Role Name </th>
+
+                        <th class="entry confluenceTh" valign="top" id="d116260e896">Description </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e893 d116260e896 ">Pig Client </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e893 d116260e896 ">This is a launcher or gateway node which
+                           is used to launch Pig jobs </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <div class="note note"><span class="notetitle">Note:</span> Pig requires HDFS and YARN/MapReduce.</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="mahout">
+         <h3 class="title topictitle3">Mahout</h3>
+
+         <div class="body">
+            <p class="p">Mahout provides a collection of distributed <a class="xref" href="http://en.wikipedia.org/wiki/Machine_learning">machine
+                  learning</a> algorithms on <a class="xref" href="http://en.wikipedia.org/wiki/Hadoop">Hadoop</a>.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="mahout__table_t4p_5cy_np" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d116260e947">Role Name </th>
+
+                        <th class="entry confluenceTh" valign="top" id="d116260e950">Description </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e947 d116260e950 ">Mahout Client </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e947 d116260e950 ">This is a launcher or gateway node which
+                           is used to launch Mahout jobs </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <div class="note note"><span class="notetitle">Note:</span> Mahout requires HDFS and YARN/MapReduce.</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="flume">
+         <h3 class="title topictitle3">Flume</h3>
+
+         <div class="body">
+            <p class="p">Flume is a distributed, reliable, and available service for efficiently collecting,
+               aggregating, and moving large amounts of log data. It has a simple and flexible
+               architecture based on streaming data flows. It is robust and fault tolerant with
+               tunable reliability mechanisms and many failover and recovery mechanisms. It uses a
+               simple extensible data model that allows for online analytic application.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="flume__table_rjp_5cy_np" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d116260e992">Role Name </th>
+
+                        <th class="entry confluenceTh" valign="top" id="d116260e995">Description </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e992 d116260e995 ">Flume Agent</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e992 d116260e995 ">Provide Flume service for generating,
+                           processing, and delivering data</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e992 d116260e995 ">Flume Client </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e992 d116260e995 ">This is a launcher or gateway node which
+                           is used to launch Flume jobs </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <div class="note note"><span class="notetitle">Note:</span> Flume requires HDFS and YARN/MapReduce.</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="sqoop">
+         <h3 class="title topictitle3">Sqoop</h3>
+
+         <div class="body">
+            <p class="p">Sqoop is a tool designed for efficiently transferring bulk data between <a class="xref" href="http://hadoop.apache.org/">Apache Hadoop</a>and structured
+               datastores such as relational databases.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="sqoop__table_ffp_5cy_np" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d116260e1050">Role Name </th>
+
+                        <th class="entry confluenceTh" valign="top" id="d116260e1053">Description </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e1050 d116260e1053 ">Sqoop Metastore</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e1050 d116260e1053 ">Provide shared metadata repository for
+                           Sqoop</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e1050 d116260e1053 ">Sqoop Client </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e1050 d116260e1053 ">This is a launcher or gateway node which
+                           is used to launch sqoop jobs </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <div class="note note"><span class="notetitle">Note:</span> Sqoop requires HDFS, YARN/MapReduce, and HBase.</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="oozie">
+         <h3 class="title topictitle3">Oozie</h3>
+
+         <div class="body">
+            <p class="p">Oozie is a workflow scheduler system to manage Apache Hadoop jobs. </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="oozie__table_ebp_5cy_np" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d116260e1104">Role Name </th>
+
+                        <th class="entry confluenceTh" valign="top" id="d116260e1107">Description </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e1104 d116260e1107 ">Oozie Metastore</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e1104 d116260e1107 ">provide Oozie service</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d116260e1104 d116260e1107 ">Oozie Client </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d116260e1104 d116260e1107 ">This is a launcher or gateway node which
+                           is used to launch Oozie jobs </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <div class="note note"><span class="notetitle">Note:</span> Oozie requires HDFS, YARN/MapReduce , Pig (optional) and Hive (optional).</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hamster">
+         <h3 class="title topictitle3">Hamster</h3>
+
+         <div class="body">
+            <p class="p">Hamster is a framework that enables users to run MPI programs on Apache Hadoop YARN
+               platform.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="graphlab">
+         <h3 class="title topictitle3">GraphLab</h3>
+
+         <div class="body">
+            <p class="p">GraphLab is a powerful new system for designing and implementing parallel algorithms
+               in machine learning. It is a graph-based, high performance, distributed computation
+               framework written in C++ that makes use of MPI and has its own programming model.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">PHD Installation and Administration</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

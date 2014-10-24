@@ -1,0 +1,544 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="About HCatalog Installing HCatalog Prerequisites HCatalog RPM Packages HCatalog Client Setup HCatalog Server Setup Webhcat Setup Webhcat Server Setup HCatalog Configuration Using HCatalog Start/Stop ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="HCatalog"/><meta name="DC.Relation" scheme="URI" content="../topics/ManuallyInstallingandUsingPivotalHD21Stack.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="hcatalog"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>HCatalog</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="hcatalog"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/StackandToolsReference.html" title="Stack and Tools Reference">Stack and Tools Reference</a> / <a class="navheader_parent_path" href="../topics/ManuallyInstallingandUsingPivotalHD21Stack.html" title="Manually Installing and Using Pivotal HD 2.1 Stack">Manually Installing and Using Pivotal HD 2.1 Stack</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/ManuallyInstallingandUsingPivotalHD21Stack.html" title="Manually Installing and Using Pivotal HD 2.1 Stack"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Manually Installing and Using Pivotal HD 2.1 Stack</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">HCatalog</h1>
+
+   <div class="body">
+      <ul class="ul">
+         <li class="li"><a class="xref" href="#abouthcatalog">About HCatalog</a>
+         </li>
+
+         <li class="li"><a class="xref" href="#installinghcatalog">Installing HCatalog</a>
+            <ul class="ul">
+               <li class="li"><a class="xref" href="#prerequisites">Prerequisites</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#hcatalogrpmpackages">HCatalog RPM Packages</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#hcatalogclientsetup">HCatalog Client Setup</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#hcatalogserversetup">HCatalog Server Setup</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#webhcatsetup">Webhcat Setup</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#webhcatserversetup">Webhcat Server Setup</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#hcatalogconfiguration">HCatalog Configuration</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li"><a class="xref" href="#usinghcatalog">Using HCatalog</a>
+            <ul class="ul">
+               <li class="li"><a class="xref" href="#startstophcatalogserver">Start/Stop Hcatalog Server</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#startstopwebhcatserver">Start/Stop Webhcat Server</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#usinghcatalogcommand-lineapi">Using HCatalog Command-line API</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#usinghcatalogwithrest">Using HCatalog with REST</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#usinghcatalogwithpig">Using HCatalog with Pig</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+      </ul>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="abouthcatalog">
+      <h2 class="title topictitle2">About HCatalog</h2>
+
+      <div class="body">
+         <p class="p">HCatalog is a metadata and table management system layer for Hadoop.</p>
+
+         <p class="p">As HCatalog is now released with Hive, refer to the Apache Hive page for more
+            information: <a class="xref" href="http://hive.apache.org/">http://hive.apache.org/</a>
+         </p>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="installinghcatalog">
+      <h2 class="title topictitle2">Installing HCatalog</h2>
+
+      <div class="body">
+         <p class="p">This section specifies how to install HCatalog.</p>
+
+      </div>
+
+      <div class="topic nested2" id="prerequisites">
+         <h3 class="title topictitle3">Prerequisites</h3>
+
+         <div class="body">
+            <p class="p">HCatalog is built on top of Hadoop, HBase , Hive and Zookeeper, so the Hadoop, HBase,
+               Hive and Zookeeper core packages must be installed for HCatalog to operate
+               correctly.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hcatalogrpmpackages">
+         <h3 class="title topictitle3">HCatalog RPM Packages</h3>
+
+         <div class="body">
+            <p class="p">HCatalog consists of four packages:</p>
+
+            <p class="p">1. Core package.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hcatalogrpmpackages__table_fbx_l2f_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top"><strong class="ph b">hcatalog-&lt;PHD_HCATALOG_VERSION&gt;-&lt;nn&gt;.noarch.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Core
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Hadoop, HBase and Hive Core Packages.
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Hcatalog core package provides the executables, libraries,
+                              configuration files and documentation.
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Hcatalog Client workstation
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p class="p">2. Thrift server daemon package that provides catalog service.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hcatalogrpmpackages__table_pdx_l2f_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top"><strong class="ph b">hcatalog-server-&lt;PHD_HCATALOG_VERSION&gt;-&lt;nn&gt;.noarch.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon (hcatalog server)
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Hcatalog Core Package
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon scripts package to provide Hive service through thrift.
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Hcatalog server node
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p class="p">3. Library package</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hcatalogrpmpackages__table_wfx_l2f_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top"><strong class="ph b">webhcat-&lt;PHD_HCATALOG_VERSION&gt;-&lt;nn&gt;.noarch.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Libraries
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Hcatalog Core Package
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon scripts package to provide Hive metadata information through
+                              metastore server.
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Webhcat server node
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p class="p">4.Web server daemon package that provides catalog service through http.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hcatalogrpmpackages__table_e3x_l2f_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top"><strong class="ph b">webhcat-server-&lt;PHD_HCATALOG_VERSION&gt;-&lt;nn&gt;.noarch.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon(webhcata server)
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Hcatalog and Webhcat Core Package
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon scripts package to provide Webhcat Server.
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Webhcat server node
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hcatalogclientsetup">
+         <h3 class="title topictitle3">HCatalog Client Setup</h3>
+
+         <div class="body">
+            <p class="p">Hcatalog is a Hadoop client-side library. Install the Hcatalog core package on the
+               client workstation.</p>
+
+            <pre class="pre codeblock">$ sudo rpm -ivh working_dir/hcatalog/rpm/hcatalog-&lt;PHD_HCATALOG_VERSION&gt;-&lt;nn&gt;.noarch.rpm</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hcatalogserversetup">
+         <h3 class="title topictitle3">HCatalog Server Setup</h3>
+
+         <div class="body">
+            <p class="p"><strong class="ph b">[OPTIONAL]</strong>
+            </p>
+
+            <p class="p">Install the Hcatalog core package and Hcatalog thrift daemon package to provide
+               access to the Hcatalog service:</p>
+
+            <pre class="pre codeblock">$ sudo rpm -ivh working_dir/hcatalog/rpm/hcatalog-&lt;PHD_HCATALOG_VERSION&gt;-&lt;nn&gt;.noarch.rpm
+$ sudo rpm -ivh working_dir/hcatalog/rpm/hcatalog-server-&lt;PHD_HCATALOG_VERSION&gt;-&lt;nn&gt;.noarch.rpm</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="webhcatsetup">
+         <h3 class="title topictitle3">Webhcat Setup</h3>
+
+         <div class="body">
+            <p class="p"><strong class="ph b">[OPTIONAL]</strong>
+            </p>
+
+            <p class="p">Install the Hcatalog core package and Webhcat package to provide Webhcat
+               libraries:</p>
+
+            <pre class="pre codeblock">$ sudo rpm -ivh working_dir/hcatalog/rpm/hcatalog-&lt;PHD_HCATALOG_VERSION&gt;-&lt;nn&gt;.noarch.rpm
+$ sudo rpm -ivh working_dir/hcatalog/rpm/webhcat-&lt;PHD_HCATALOG_VERSION&gt;-&lt;nn&gt;.noarch.rpm</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="webhcatserversetup">
+         <h3 class="title topictitle3">Webhcat Server Setup</h3>
+
+         <div class="body">
+            <p class="p">
+               <strong class="ph b">[OPTIONAL]</strong>
+            </p>
+
+            <p class="p">Install the Hcatalog core package, Webhcat core package and Webhcat daemon package to
+               provide Webhcat service:</p>
+
+            <pre class="pre codeblock">$ sudo rpm -ivh working_dir/hcatalog/rpm/hcatalog-&lt;PHD_HCATALOG_VERSION&gt;-&lt;nn&gt;.noarch.rpm
+$ sudo rpm -ivh working_dir/hcatalog/rpm/webhcat-&lt;PHD_HCATALOG_VERSION&gt;-&lt;nn&gt;.noarch.rpm
+$ sudo rpm -ivh working_dir/hcatalog/rpm/webhcat-server-&lt;PHD_HCATALOG_VERSION&gt;-&lt;nn&gt;.noarch.rpm</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hcatalogconfiguration">
+         <h3 class="title topictitle3">HCatalog Configuration</h3>
+
+         <div class="body">
+            <p class="p">The Hcatalog configuration files are located in the following directories:</p>
+
+            <p class="p">
+               <span class="ph filepath">/etc/gphd/hive/conf/</span>
+            </p>
+
+            <p class="p">
+               <span class="ph filepath">/etc/gphd/hcatalog/conf/</span>
+            </p>
+
+            <p class="p">You can make modifications to these configuration templates or create your own.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="usinghcatalog">
+      <h2 class="title topictitle2">Using HCatalog</h2>
+
+      <div class="topic nested2" id="startstophcatalogserver">
+         <h3 class="title topictitle3">Start/Stop Hcatalog Server</h3>
+
+         <div class="body">
+            <p class="p">Start/stop Hcatalog server daemon by running the following commands:</p>
+
+            <pre class="pre codeblock">$ sudo service hcatalog-server start
+$ sudo service hcatalog-server stop</pre>
+
+            <div class="note note"><span class="notetitle">Note:</span> hcatalog-server and hive-metastore server can not run on the same node at the same
+               time. These 2 services should be put on different nodes.</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="startstopwebhcatserver">
+         <h3 class="title topictitle3">Start/Stop Webhcat Server</h3>
+
+         <div class="body">
+            <p class="p">Start/stop Webhcat server daemon by running the following commands:</p>
+
+            <pre class="pre codeblock">$ sudo service webhcat-server start
+$ sudo service webhcat-server stop</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="usinghcatalogcommand-lineapi">
+         <h3 class="title topictitle3">Using HCatalog Command-line API</h3>
+
+         <div class="body">
+            <p class="p">We can use following HCatalog command-line to create a table and access table
+               data:</p>
+
+            <pre class="pre codeblock"># Create a table
+$ hcat -e "CREATE TABLE test(key string, value string) ROW FORMAT DELIMITED FIELDS TERMINATED BY ','"
+OK
+ 
+# Get the scheme for a table
+$ hcat -e "DESC test"
+OK
+key   string none
+value string none</pre>
+
+            <div class="note note"><span class="notetitle">Note:</span> Make sure the user is permitted to read the file (e.g., 'test_data') and write the
+               table (e.g., 'test'), and the YARN service is up.</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="usinghcatalogwithrest">
+         <h3 class="title topictitle3">Using HCatalog with REST</h3>
+
+         <div class="body">
+            <pre class="pre codeblock"># Get table by using webhcat, you need to change hostname and username to appropriate value
+$ curl -s 'http://&lt;hostname&gt;:50111/templeton/v1/ddl/database/default/table/test?user.name=username'
+{"columns":[{"name":"key","type":"string"},{"name":"value","type":"string"}],"database":"default","table":"test"}</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="usinghcatalogwithpig">
+         <h3 class="title topictitle3">Using HCatalog with Pig</h3>
+
+         <div class="body">
+            <pre class="pre codeblock">$ pig -useHCatalog
+#use HCatLoader to have table schema retrieved automatically
+$grunt&gt; A = LOAD 'test' USING org.apache.hcatalog.pig.HCatLoader(); 
+$grunt&gt; DESCRIBE A;
+#output
+A: {key: chararray,value: chararray}</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/ManuallyInstallingandUsingPivotalHD21Stack.html" title="Manually Installing and Using Pivotal HD 2.1 Stack"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Manually Installing and Using Pivotal HD 2.1 Stack</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

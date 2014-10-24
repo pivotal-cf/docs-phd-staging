@@ -1,0 +1,264 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The Cluster Analysis screen provides detailed metrics about your Pivotal HD cluster. It provides cluster-wide metrics all the way down to host-level metrics. It provides Hadoop-specific metrics, as ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Cluster Analysis"/><meta name="DC.Relation" scheme="URI" content="../topics/UsingPCC.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="clusteranalysis"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Cluster Analysis</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="clusteranalysis"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PCCUserGuide.html" title="PCC User Guide">PCC User Guide</a> / <a class="navheader_parent_path" href="../topics/UsingPCC.html" title="Using PCC">Using PCC</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/UsingPCC.html" title="Using PCC"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Using PCC</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Cluster Analysis</h1>
+
+   <div class="body">
+      <p class="p Body">The Cluster Analysis screen provides detailed metrics about your Pivotal
+         HD cluster.</p>
+
+      <p class="p Body">It provides cluster-wide metrics all the way down to host-level metrics.
+         It provides Hadoop-specific metrics, as well as system metrics that you can drill down to
+         if needed.</p>
+
+      <p class="p Body"><img class="image" id="clusteranalysis__image_lwv_cns_4p" src="../images/72680141.png" width="500"/>
+      </p>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="filteringtheclusteranalysisscreen">
+      <h2 class="title topictitle2">Filtering the Cluster Analysis Screen</h2>
+
+      <div class="body">
+         <div class="p Body">By default the Cluster Analysis screen displays the metrics for all
+            services, all categories, and all nodes. The top portion of the Cluster Analysis screen
+            allows you to filter the information displayed by combinations of several filters.  You
+            can <strong class="ph b">Collapse</strong> or <strong class="ph b">Expand</strong> this portion of the screen to hide/show the filter
+               selections.<ul class="ul" id="filteringtheclusteranalysisscreen__ul_cxy_42p_tp">
+               <li class="li"><strong class="ph b">By Service</strong> -  Metrics can be filtered by services.  Select either <strong class="ph b">All
+                     services</strong> (the default), or anyone of the listed services (hawk, hbase,
+                  hdfs, and so on).  If you filter by one service, for example hawq, the subsequent
+                  categories filters are limited to those associated with the selected service
+                  (hawq).   Once you have selected the services you want to filter by, you can
+                  further filter these results to show metrics from <strong class="ph b">All nodes</strong> (the default),
+                  or by any specific node (only those nodes defined for the selected category are
+                  displayed).</li>
+
+               <li class="li"><strong class="ph b">By Category</strong> - Metrics can be filtered by categories such as:<ul class="ul" id="filteringtheclusteranalysisscreen__ul_bnw_q2p_tp">
+                     <li class="li">namenode</li>
+
+                     <li class="li">secondarynamenode</li>
+
+                     <li class="li">datanode</li>
+
+                     <li class="li">yarn-resourcemanager</li>
+
+                     <li class="li">yarn-nodemanager</li>
+
+                     <li class="li">mapreduce-historyserver</li>
+
+                     <li class="li">hawq-master</li>
+
+                     <li class="li">hawq-segment</li>
+
+                  </ul>
+<p class="p">Once you have selected the category you want to filter by, you can further
+                     filter these results to show metrics from <strong class="ph b">All nodes</strong> (the default), or by
+                     any specific node (only those nodes defined for the selected category are
+                     displayed).</p>
+</li>
+
+               <li class="li">
+                  <p class="p"><strong class="ph b">Alphabetically</strong> - Metrics can be filtered alphabetically, either for
+                        <strong class="ph b">All nodes</strong> (the default), or for a selected node.</p>
+
+               </li>
+
+            </ul>
+</div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="clustermetrics">
+      <h2 class="title topictitle2">Cluster Metrics</h2>
+
+      <div class="body">
+         <p class="p Body">The bottom half of the Cluster Analysis screen displays cluster
+            metrics based on the filters you selected.</p>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="filterbytime">
+      <h2 class="title topictitle2">Filter by Time</h2>
+
+      <div class="body">
+         <p class="p Body">You can further filter these metrics based on a time range. Use the
+               <strong class="ph b">Show</strong> dropdown menu to limit the metrics displayed here to a specifc time
+            range, either over the <strong class="ph b">past 4 hours</strong> (the default range); or any of the other
+            available time ranges, from one hour to the past 8 weeks.</p>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="performancemetrics">
+      <h2 class="title topictitle2">Performance Metrics</h2>
+
+      <div class="body">
+         <p class="p">Select the <strong class="ph b">Performance Metrics</strong> tab to display the cluster/node utilization over
+            time.</p>
+
+         <p class="p">You can see performance metrics over time for:</p>
+
+         <ul class="ul">
+            <li class="li">CPU</li>
+
+            <li class="li">Disk Bandwidth</li>
+
+            <li class="li">Network Bandwidth</li>
+
+            <li class="li">Memory</li>
+
+            <li class="li">Load</li>
+
+            <li class="li">Swap Usage</li>
+
+            <li class="li">Swap I/O</li>
+
+            <li class="li">Network Operations</li>
+
+            <li class="li">Disk Operations</li>
+
+         </ul>
+
+         <p class="p">Hover over any one of the graphs to see a snap shot of those specific performance
+            metrics at any given time.</p>
+
+         <div class="note note"><span class="notetitle">Note:</span> If your instance of Command Center is monitoring two clusters and if any of either
+            cluster's Performance Metrics graphs shows <strong class="ph b">No Data Available</strong>, restart
+               <samp class="ph codeph">nmon</samp> on the admin node to fix the
+            problem:<pre class="pre codeblock">service nmon restart</pre>
+</div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="real-timemetrics">
+      <h2 class="title topictitle2">Real-time Metrics</h2>
+
+      <div class="body">
+         <p class="p Body">Select the <strong class="ph b">Real-time Metrics</strong> tab to display the current
+            metrics in real-time.</p>
+
+         <p class="p Body">Per node, you can see the following real-time metrics:</p>
+
+         <ul class="ul">
+            <li class="li">CPU (User + System/Idle)</li>
+
+            <li class="li">Memory Used (MB)</li>
+
+            <li class="li">Disk Read Rate (MB/s)</li>
+
+            <li class="li">Disk Write Rate (MB/s)</li>
+
+            <li class="li">Net Read Rate (MB/s)</li>
+
+            <li class="li">Net Write Rate (MB/s)</li>
+
+         </ul>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="storagemetrics">
+      <h2 class="title topictitle2">Storage Metrics</h2>
+
+      <div class="body">
+         <p class="p Body">Select <strong class="ph b">Storage Metrics</strong> tab to display metrics about cluster
+            storage. </p>
+
+         <p class="p Body">Per node, you can see the following storage metrics:</p>
+
+         <ul class="ul">
+            <li class="li">HDFS Used</li>
+
+            <li class="li">System Used</li>
+
+            <li class="li">Available</li>
+
+            <li class="li">Used %</li>
+
+         </ul>
+
+         <div class="note note"><span class="notetitle">Note:</span> Storage metrics are only displayed if the nodes in your cluster are identified by
+            their FQDN.</div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="nodemetrics">
+      <h2 class="title topictitle2">Node Metrics</h2>
+
+      <div class="body">
+         <p class="p">If you have selected to display cluster metrics by individual node, an additional panel
+            of information is displayed on the right side of the cluster metrics. </p>
+
+         <p class="p">This panel displays all services and roles defined for the selected node. </p>
+
+         <p class="p">For each service, you can see the status of each role, and you can use the
+               <strong class="ph b">Actions</strong> dropdown menu to stop/start a specific role.</p>
+
+         <p class="p">  <img class="image" src="../images/72680143.png" width="200"/>
+         </p>
+
+
+         <p class="p Body"> </p>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/UsingPCC.html" title="Using PCC"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Using PCC</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Removes database objects owned by a database role. Synopsis DROP OWNED BY name [, ...] [CASCADE | RESTRICT] Description DROP OWNED drops all the objects in the current database that are owned by one ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="DROP OWNED"/><meta name="DC.Relation" scheme="URI" content="../topics/SQLCommandReference.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="topic1"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>DROP OWNED</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="topic1"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a> / <a class="navheader_parent_path" href="../topics/SQLCommandReference.html" title="SQL Command Reference">SQL Command Reference</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/SQLCommandReference.html" title="SQL Command Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SQL Command Reference</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">DROP OWNED</h1>
+
+   <div class="body">
+      <p class="p" id="topic1__sql_command_desc">Removes database objects owned by a database role.</p>
+
+      <div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2>
+         
+         <pre class="pre codeblock" id="topic1__sql_command_synopsis">DROP OWNED BY <var class="keyword varname">name</var> [, ...] [CASCADE | RESTRICT]</pre>
+
+      </div>
+
+      <div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2>
+         
+         <p class="p">
+            <samp class="ph codeph">DROP OWNED</samp> drops all the objects in the current database that are owned by
+        one of the specified roles. Any privileges granted to the given roles on objects in the
+        current database will also be revoked.</p>
+
+      </div>
+
+      <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Parameters</h2>
+         
+         <dl class="dl parml">
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">name</var>
+               </dt>
+
+               <dd class="dd pd">The name of a role whose objects will be dropped, and whose privileges will be
+            revoked.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">CASCADE</dt>
+
+               <dd class="dd pd">Automatically drop objects that depend on the affected objects.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">RESTRICT</dt>
+
+               <dd class="dd pd">Refuse to drop the objects owned by a role if any other database objects depend on one
+            of the affected objects. This is the default.</dd>
+
+            
+         </dl>
+
+      </div>
+
+      <div class="section" id="topic1__section5"><h2 class="title sectiontitle">Notes</h2>
+         
+         <p class="p">
+            <samp class="ph codeph">DROP OWNED</samp> is often used to prepare for the removal of one or more roles.
+        Because <samp class="ph codeph">DROP OWNED</samp> only affects the objects in the current database, it is
+        usually necessary to execute this command in each database that contains objects owned by a
+        role that is to be removed.</p>
+
+         <p class="p">Using the <samp class="ph codeph">CASCADE</samp> option may make the command recurse to objects owned by
+        other users.</p>
+
+         <p class="p">The <samp class="ph codeph">REASSIGN OWNED</samp> command is an alternative that reassigns the ownership
+        of all the database objects owned by one or more roles.</p>
+
+      </div>
+
+      <div class="section" id="topic1__section6"><h2 class="title sectiontitle">Examples</h2>
+         
+         <p class="p">Remove any database objects owned by the role named <samp class="ph codeph">sally</samp>:</p>
+
+         <pre class="pre codeblock">DROP OWNED BY sally;</pre>
+
+      </div>
+
+      <div class="section" id="topic1__section7"><h2 class="title sectiontitle">Compatibility</h2>
+         
+         <p class="p">The <samp class="ph codeph">DROP OWNED</samp> statement is a HAWQ extension. </p>
+
+      </div>
+
+      <div class="section" id="topic1__section8"><h2 class="title sectiontitle">See Also</h2>
+         
+         <p class="p">
+            <samp class="ph codeph">
+               <a class="xref" href="REASSIGN-OWNED.html">REASSIGN OWNED</a>
+            </samp>,
+            <samp class="ph codeph">
+               <a class="xref" href="DROP-ROLE.html">DROP ROLE</a>
+            </samp>
+         </p>
+
+      </div>
+
+   </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/SQLCommandReference.html" title="SQL Command Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SQL Command Reference</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

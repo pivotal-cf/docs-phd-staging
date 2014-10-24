@@ -1,0 +1,1162 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="About Hadoop HDFS Installing Hadoop HDFS Hadoop HDFS RPM Packages Prerequisites: Core Package Setup HDFS Namenode Setup HDFS Datanode Setup HDFS Secondary Namenode Setup HDFS NFS Gateway Setup HDFS ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Hadoop HDFS"/><meta name="DC.Relation" scheme="URI" content="../topics/ManuallyInstallingandUsingPivotalHD21Stack.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="hadoophdfs"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Hadoop HDFS</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="hadoophdfs"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/StackandToolsReference.html" title="Stack and Tools Reference">Stack and Tools Reference</a> / <a class="navheader_parent_path" href="../topics/ManuallyInstallingandUsingPivotalHD21Stack.html" title="Manually Installing and Using Pivotal HD 2.1 Stack">Manually Installing and Using Pivotal HD 2.1 Stack</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/ManuallyInstallingandUsingPivotalHD21Stack.html" title="Manually Installing and Using Pivotal HD 2.1 Stack"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Manually Installing and Using Pivotal HD 2.1 Stack</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Hadoop HDFS</h1>
+
+   <div class="body">
+      <ul class="ul">
+         <li class="li">
+            <a class="xref" href="#abouthadoophdfs">About Hadoop HDFS</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#installinghadoophdfs">Installing Hadoop HDFS</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#hadoophdfsrpmpackages">Hadoop HDFS RPM Packages</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#prerequisitescorepackagesetup">Prerequisites: Core Package Setup</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hdfsnamenodesetup">HDFS Namenode Setup</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hdfsdatanodesetup">HDFS Datanode Setup</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hdfssecondarynamenodesetup">HDFS Secondary Namenode Setup</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hdfsnfsgatewaysetup">HDFS NFS Gateway Setup</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hdfsconfiguration">HDFS Configuration</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#usinghadoophdfs">Using Hadoop HDFS</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#startinghdfs">Starting HDFS</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#startingnfsgateway">Starting NFS gateway</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#usinghdfs">Using HDFS</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#stoppinghdfs">Stopping HDFS</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+      </ul>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="abouthadoophdfs">
+      <h2 class="title topictitle2">About Hadoop HDFS</h2>
+
+      <div class="body">
+         <p class="p">The Hadoop Distributed File System (HDFS) is the primary distributed storage used by
+            Hadoop applications. It is a distributed file system designed to provide reliable,
+            scalable, self-healing, high bandwidth, clustered storage.</p>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="installinghadoophdfs">
+      <h2 class="title topictitle2">Installing Hadoop HDFS</h2>
+
+      <div class="body">
+         <p class="p">This section provides instructions for installing each of the following core Hadoop
+            RPMs:</p>
+
+         <ul class="ul">
+            <li class="li">HDFS Namenode Setup</li>
+
+            <li class="li">HDFS Datanode Setup</li>
+
+            <li class="li">HDFS Secondary Namenode Setup</li>
+
+            <li class="li">HDFS NFS Gateway Setup</li>
+
+         </ul>
+
+      </div>
+
+      <div class="topic nested2" id="hadoophdfsrpmpackages">
+         <h3 class="title topictitle3">Hadoop HDFS RPM Packages</h3>
+
+         <div class="body">
+            <p class="p">Pivotal provides the following RPMs as part of this release. The core packages
+               provide all executables, libraries, configurations, and documentation for Hadoop and
+               are required on every node in the Hadoop cluster as well as on the client workstation
+               that will access the Hadoop service. The daemon packages provide a convenient way to
+               manage Hadoop HDFS daemons as Linux services, which rely on the core package.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hadoophdfsrpmpackages__table_dlj_xz2_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <strong class="ph b">hadoop-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Core </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">bigtop-utils, zookeeper-core </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Hadoop core packages provides the common
+                           core packages for running Hadoop </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Every node in the Hadoop cluster and the
+                           client workstation that will access the Hadoop service. </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hadoophdfsrpmpackages__table_esj_xz2_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <strong class="ph b">hadoop-hdfs-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Core </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Hadoop, bigtop-jsvc </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Hadoop HDFS core packages provides the
+                           common files for running HFS. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Every node in the HDFS cluster and the
+                           client workstation that will access the HDFS. </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hadoophdfsrpmpackages__table_dzj_xz2_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <strong class="ph b">hadoop-hdfs-namenode-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">hadoop-hdfs </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon scripts package for Hadoop
+                           Namenode, which provides a convenient method to manage Namenode
+                           start/stop as a Linux service. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">HDFS Namenode server only </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hadoophdfsrpmpackages__table_igk_xz2_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <strong class="ph b">hadoop-hdfs-datanode-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">hadoop-hdfs </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon scripts package for Hadoop
+                           Datanode, which provides a convenient method to manage datanode
+                           start/stop as a Linux service. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">All HDFS Datanodes </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hadoophdfsrpmpackages__table_gnk_xz2_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <strong class="ph b">hadoop-hdfs-secondarynamenode-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">hadoop-hdfs </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon scripts package for Hadoop
+                           SecondaryNamenode, which provides a convenient method to manage
+                           SecondaryNamenode start/stop as a Linux service. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">One server that will act as the Secondary
+                           Namenode </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hadoophdfsrpmpackages__table_h5k_xz2_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <strong class="ph b">hadoop-hdfs-journalnode-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">hadoop-hdfs </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon scripts package for Hadoop
+                           JournalNode, which provides a convenient method to manage journalnode
+                           start/stop as a Linux service. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">All HDFS JournalNodes </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hadoophdfsrpmpackages__table_lbl_xz2_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <strong class="ph b">hadoop-hdfs-nfs3-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">hadoop-hdfs </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon scripts package for Hadoop NFS
+                           gateway, which provides a convenient method to manage NFS gateway
+                           start/stop as a Linux service. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Node serving as the NFS server </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hadoophdfsrpmpackages__table_l3l_xz2_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <strong class="ph b">hadoop-hdfs-portmap-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">hadoop-hdfs </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon scripts package for Hadoop portmap,
+                           which provides a convenient method to manage portmap start/stop as a
+                           Linux service. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Node serving as the NFS server </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hadoophdfsrpmpackages__table_lpl_xz2_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <strong class="ph b">hadoop-hdfs-zkfc-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">hadoop-hdfs </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Daemon scripts package for Hadoop zkfc,
+                           which provides a convenient method to manage zkfc start/stop as a Linux
+                           service. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">All HDFS zkfc nodes </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hadoophdfsrpmpackages__table_lwl_xz2_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <strong class="ph b">hadoop-hdfs-fuse-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Core </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">hadoop-libhdfs, hadoop-client </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Binaries that can be used to mount hdfs as
+                           a local directory. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">
+                              <strong class="ph b">Install on Nodes</strong>
+                           </p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Servers that mount the HDFS </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hadoophdfsrpmpackages__table_odm_xz2_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <strong class="ph b">hadoop-libhdfs-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Core </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">hadoop-hdfs </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Native implementation of the HDFS.
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Servers that run native HDFS </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hadoophdfsrpmpackages__table_nkm_xz2_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <strong class="ph b">hadoop-httpfs-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Core </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">bigtop-tomcat, Hadoop, hadoop-hdfs
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">HttpFS is a server that provides a REST
+                           HTTP gateway supporting all HDFS File System operations (read and write).
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Servers that will be serving the REST HDFS
+                           service </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hadoophdfsrpmpackages__table_prm_xz2_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <strong class="ph b">hadoop-doc-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Doc </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">N/A </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Hadoop documentation package. </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hadoophdfsrpmpackages__table_oym_xz2_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <strong class="ph b">hadoop-client-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Library </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Hadoop, hadoop-yarn, hadoop-mapreduce,
+                           hadoop-hdfs </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">A set of symbolic links which gathers the
+                           libraries for programming Hadoop and submit Hadoop jobs. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Clients nodes that will be used to submit
+                           Hadoop jobs </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="prerequisitescorepackagesetup">
+         <h3 class="title topictitle3">Prerequisites: Core Package Setup</h3>
+
+         <div class="body">
+            <p class="p">Perform the following steps on all the nodes in the Hadoop cluster and its client
+               nodes:</p>
+
+            <pre class="pre codeblock">$ sudo rpm -ivh working_dir/utility/rpm/bigtop-utils-&lt;PHD_BIGTOP_UTILS_VERSION&gt;-&lt;nn&gt;.noarch.rpm
+$ sudo rpm -ivh working_dir/zookeeper/rpm/zookeeper-&lt;PHD_ZOOKEEPER_VERSION&gt;-&lt;nn&gt;.noarch.rpm
+$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</pre>
+
+            <p class="p">Where<samp class="ph codeph"> working_dir</samp> is the directory where you want the rpms
+               expanded.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hdfsnamenodesetup">
+         <h3 class="title topictitle3">HDFS Namenode Setup</h3>
+
+         <div class="body">
+            <p class="p">Install the Hadoop Namenode package on the workstation that will serve as HDFS
+               Namenode:</p>
+
+            <pre class="pre codeblock">$ sudo rpm -ivh working_dir/utility/rpm/bigtop-jsvc-&lt;PHD_BIGTOP_JSVC_VERSION&gt;-&lt;nn&gt;.x86_64.rpm
+$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-hdfs-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm
+$ sudo rpm -ivh working_dir/hadooop/rpm/hadoop-hdfs-namenode-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hdfsdatanodesetup">
+         <h3 class="title topictitle3">HDFS Datanode Setup</h3>
+
+         <div class="body">
+            <p class="p">Install the Hadoop Datanode package on the workstation that will serve as the HDFS
+               Datanode:</p>
+
+            <pre class="pre codeblock">$ sudo rpm -ivh working_dir/utility/rpm/bigtop-jsvc-&lt;PHD_BIGTOP_JSVC_VERSION&gt;-&lt;nn&gt;.x86_64.rpm
+$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-hdfs-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm
+$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-hdfs-datanode-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hdfssecondarynamenodesetup">
+         <h3 class="title topictitle3">HDFS Secondary Namenode Setup</h3>
+
+         <div class="body">
+            <p class="p">Install the Hadoop Secondary Namenode package on the workstation that will serve as
+               the HDFS Secondary Namenode:</p>
+
+            <pre class="pre codeblock">$ sudo rpm -ivh working_dir/utility/rpm/bigtop-jsvc-&lt;PHD_BIGTOP_JSVC_VERSION&gt;-&lt;nn&gt;.x86_64.rpm
+$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-hdfs-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm
+$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-hdfs-secondarynamenode-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hdfsnfsgatewaysetup">
+         <h3 class="title topictitle3">HDFS NFS Gateway Setup</h3>
+
+         <div class="body">
+            <p class="p">Install the Hadoop NFS gateway and portmap package on the workstation that will serve
+               as the HDFS NFS gateway and portmap:</p>
+
+            <pre class="pre codeblock">$ sudo rpm -ivh working_dir/utility/rpm/bigtop-jsvc-&lt;PHD_BIGTOP_JSVC_VERSION&gt;-&lt;nn&gt;.x86_64.rpm
+$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-hdfs-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm
+$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-hdfs-nfs3-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm
+$ sudo rpm -ivh working_dir/hadoop/rpm/hadoop-hdfs-portmap-&lt;PHD_HADOOP_VERSION&gt;-&lt;nn&gt;.x86_64.rpm</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hdfsconfiguration">
+         <h3 class="title topictitle3">HDFS Configuration</h3>
+
+         <div class="body">
+            <p class="p">HDFS configuration files are located in the following directory:</p>
+
+            <p class="p">
+               <span class="ph filepath">/etc/gphd/hadoop/conf/</span>
+            </p>
+
+            <p class="p">Refer to the Apache Hadoop documentation for how to configure HDFS in distributed
+               mode. </p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="usinghadoophdfs">
+      <h2 class="title topictitle2">Using Hadoop HDFS</h2>
+
+      <div class="body">
+         <p class="p">After installing the daemon package for Hadoop, you can start the daemons, as
+            follows:</p>
+
+      </div>
+
+      <div class="topic nested2" id="startinghdfs">
+         <h3 class="title topictitle3">Starting HDFS</h3>
+
+         <div class="body">
+            <p class="p">HDFS includes three main components: Namenode, Datanode, Secondary Namenode.</p>
+
+            <p class="p">
+               <strong class="ph b">To start the Namenode daemon:</strong>
+            </p>
+
+            <p class="p">Format the Namenode before starting it, as follows:</p>
+
+            <pre class="pre codeblock">$ sudo service hadoop-hdfs-namenode init</pre>
+
+            <div class="note note"><span class="notetitle">Note:</span> Note: You only have to do this once. However, if you have changed the Hadoop
+               namenode configuration, you may need to run this again.</div>
+
+            <p class="p">Then start the Namenode by running the following commands:</p>
+
+            <pre class="pre codeblock">$ sudo service hadoop-hdfs-namenode start</pre>
+
+            <p class="p">When Namenode is started, you can visit its dashboard at:
+                  <samp class="ph codeph">http://localhost:50070/</samp>
+            </p>
+
+            <p class="p">
+               <strong class="ph b">To start the Datanode daemon:</strong>
+            </p>
+
+            <pre class="pre codeblock">$ sudo service hadoop-hdfs-datanode start</pre>
+
+            <p class="p">
+               <strong class="ph b">To start the Secondary Namenode daemon:</strong>
+            </p>
+
+            <pre class="pre codeblock">$ sudo service hadoop-hdfs-secondarynamenode start</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="startingnfsgateway">
+         <h3 class="title topictitle3">Starting NFS gateway</h3>
+
+         <div class="body">
+            <p class="p">Three daemons are required to provide NFS service:  portmap(or rpcbind), mountd and
+               nfsd. The NFS gateway has both mountd and nfsd.</p>
+
+            <p class="p">
+               <strong class="ph b">To start the portmap and NFS gateway daemon:</strong>
+            </p>
+
+            <pre class="pre codeblock">$ sudo service rpcbind stop
+$ sudo service hadoop-hdfs-portmap start
+$ sudo service hadoop-hdfs-nfs3 start</pre>
+
+            <p class="p">
+               <strong class="ph b">To mount the export "/":</strong>
+            </p>
+
+            <p class="p">Make sure nfs-utils is installed on the client:</p>
+
+            <pre class="pre codeblock">$ sudo yum install -y nfs-utils</pre>
+
+            <p class="p">Then mount:</p>
+
+            <pre class="pre codeblock">$ mount -t nfs -o vers=3,proto=tcp,nolock &lt;nfsserver&gt;:/  &lt;mount_point&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="usinghdfs">
+         <h3 class="title topictitle3">Using HDFS</h3>
+
+         <div class="body">
+            <p class="p">When the HDFS components are started, try some HDFS usage commands, for example:</p>
+
+            <pre class="pre codeblock">$ sudo -u hdfs hdfs dfs -ls /
+$ sudo -u hdfs hdfs dfs -mkdir -p /user/hadoop
+$ sudo -u hdfs hdfs dfs -chown -R hadoop:hadoop /user/hadoop
+$ sudo -u hdfs hdfs dfs -copyFromLocal /etc/passwd /user/hadoop/</pre>
+
+            <div class="note note"><span class="notetitle">Note:</span> By default, the root folder is owned by user <samp class="ph codeph">hdfs</samp>, so you have to
+               use <samp class="ph codeph">sudo -u hdfs ***</samp> to execute the first few commands.</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="stoppinghdfs">
+         <h3 class="title topictitle3">Stopping HDFS</h3>
+
+         <div class="body">
+            <p class="p">
+               <strong class="ph b">Stop the Namenode Daemon:</strong>
+            </p>
+
+            <pre class="pre codeblock">$ sudo service hadoop-hdfs-namenode stop</pre>
+
+            <p class="p">
+               <strong class="ph b">Stop the Datanode Daemon:</strong>
+            </p>
+
+            <pre class="pre codeblock">$ sudo service hadoop-hdfs-datanode stop</pre>
+
+            <p class="p">
+               <strong class="ph b">Stop the Secondary Namenode Daemon:</strong>
+            </p>
+
+            <pre class="pre codeblock">$ sudo service hadoop-hdfs-secondarynamenode stop</pre>
+
+            <p class="p">
+               <strong class="ph b">Stop the NFS gateway Daemon:</strong>
+            </p>
+
+            <pre class="pre codeblock">$ sudo service hadoop-hdfs-portmap stop
+$ sudo service hadoop-hdfs-nfs3 stop</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/ManuallyInstallingandUsingPivotalHD21Stack.html" title="Manually Installing and Using Pivotal HD 2.1 Stack"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Manually Installing and Using Pivotal HD 2.1 Stack</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

@@ -1,0 +1,211 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Verifies the baseline hardware performance of the specified hosts. Synopsis gpcheckperf -d test_directory [ -d test_directory ...]     { -f   hostfile_gpcheckperf | - h hostname [ -h hostname ...]} ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="gpcheckperf"/><meta name="DC.Relation" scheme="URI" content="../topics/ManagementUtilityReference.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="topic1"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>gpcheckperf</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="topic1"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a> / <a class="navheader_parent_path" href="../topics/ManagementUtilityReference.html" title="Management Utility Reference">Management Utility Reference</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/ManagementUtilityReference.html" title="Management Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Management Utility Reference</span></a></span>  </div></td></tr></tbody></table>
+<h1 class="title topictitle1">gpcheckperf</h1>
+<div class="body"><p class="p">Verifies the baseline hardware performance of the specified hosts.</p>
+<div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2><pre class="pre codeblock"><strong class="ph b">gpcheckperf</strong> <strong class="ph b">-d</strong> <var class="keyword varname">test_directory</var> [<strong class="ph b">-d</strong> <var class="keyword varname">test_directory</var> ...] 
+    {<strong class="ph b">-f</strong> <var class="keyword varname">hostfile_gpcheckperf</var> | <strong class="ph b">- h</strong> <var class="keyword varname">hostname</var> [<strong class="ph b">-h</strong> <var class="keyword varname">hostname</var> ...]} 
+    [<strong class="ph b">-r</strong> ds] [<strong class="ph b">-B</strong> <var class="keyword varname">block_size</var>] [<strong class="ph b">-S</strong> <var class="keyword varname">file_size</var>] [<strong class="ph b">-D</strong>] [<strong class="ph b">-v</strong>|<strong class="ph b">-V</strong>]
+
+<strong class="ph b">gpcheckperf</strong> <strong class="ph b">-d</strong> <var class="keyword varname">temp_directory</var>
+    {<strong class="ph b">-f</strong> <var class="keyword varname">hostfile_gpchecknet</var> | <strong class="ph b">- h</strong> <var class="keyword varname">hostname</var> [<strong class="ph b">-h</strong> <var class="keyword varname">hostname</var> ...]} 
+    [ <strong class="ph b">-r</strong> n|N|M [<strong class="ph b">--duration</strong> <var class="keyword varname">time</var>] [<strong class="ph b">--netperf</strong>] ] [<strong class="ph b">-D</strong>] [<strong class="ph b">-v</strong> | <strong class="ph b">-V</strong>]
+
+<strong class="ph b">gpcheckperf</strong> <strong class="ph b">-?</strong>
+
+<strong class="ph b">gpcheckperf</strong> <strong class="ph b">--version</strong></pre>
+</div>
+<div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2><p class="p">The <samp class="ph codeph">gpcheckperf</samp> utility starts a session on the specified
+hosts and runs the following performance tests:</p>
+<ul class="ul"><li class="li" id="topic1__jq141274"><strong class="ph b">Disk I/O Test (dd test)</strong> — To test the sequential throughput performance of
+          a logical disk or file system, the utility uses the <strong class="ph b">dd</strong> command, which is a standard
+          UNIX utility. It times how long it takes to write and read a large file to and from disk
+          and calculates your disk I/O performance in megabytes (MB) per second. By default, the
+          file size that is used for the test is calculated at two times the total random access
+          memory (RAM) on the host. This ensures that the test is truly testing disk I/O and not
+          using the memory cache.</li>
+<li class="li" id="topic1__jq141275"><strong class="ph b">Memory Bandwidth Test (stream)</strong> — To test memory bandwidth, the utility uses
+          the STREAM benchmark program to measure sustainable memory bandwidth (in MB/s). This tests
+          that your system is not limited in performance by the memory bandwidth of the system in
+          relation to the computational performance of the CPU. In applications where the data set
+          is large (as in HAWQ), low memory bandwidth is a major performance issue. If memory
+          bandwidth is significantly lower than the theoretical bandwidth of the CPU, then it can
+          cause the CPU to spend significant amounts of time waiting for data to arrive from system
+          memory.</li>
+<li class="li" id="topic1__jq141279"><strong class="ph b">Network Performance Test (gpnetbench*)</strong> — To test network performance
+          including the HAWQ interconnect, the utility runs a network benchmark program that
+          transfers a 5 second stream of data from the current host to each remote host included in
+          the test. The data is transferred in parallel to each remote host and the minimum,
+          maximum, average and median network transfer rates are reported in megabytes (MB) per
+          second. If the summary transfer rate is slower than expected (less than 100 MB/s), you can
+          run the network test serially using the <samp class="ph codeph">-r n</samp> option to obtain per-host
+          results. To run a full-matrix bandwidth test, you can specify <samp class="ph codeph">-r M</samp> which
+          will cause every host to send and receive data from every other host specified. This test
+          is best used to validate if the switch fabric can tolerate a full-matrix workload.</li>
+</ul>
+<p class="p">To specify the hosts to test, use the <samp class="ph codeph">-f</samp> option to specify a file
+        containing a list of host names, or use the <samp class="ph codeph">-h</samp> option to name single host
+        names on the command-line. If running the network performance test, all entries in the host
+        file must be for network interfaces within the same subnet. If your segment hosts have
+        multiple network interfaces configured on different subnets, run the network test once for
+        each subnet.</p>
+<p class="p">You must also specify at least one test directory (with <samp class="ph codeph">-d</samp>). The user who
+        runs <samp class="ph codeph">gpcheckperf</samp> must have write access to the specified test directories
+        on all remote hosts. For the disk I/O test, the test directories should correspond to your
+        segment data directories (primary and/or mirrors). For the memory bandwidth and network
+        tests, a temporary directory is required for the test program files.</p>
+<p class="p">Before using <samp class="ph codeph">gpcheckperf</samp>, you must have a trusted host setup between the hosts
+        involved in the performance test. You can use the utility <samp class="ph codeph">gpssh-exkeys</samp> to
+        update the known host files and exchange public keys between hosts if you have not done so
+        already. Note that <samp class="ph codeph">gpcheckperf</samp> calls to <samp class="ph codeph">gpssh</samp> and
+          <samp class="ph codeph">gpscp</samp>, so these HAWQ utilities must also be in your
+          <samp class="ph codeph">$PATH</samp>.</p>
+</div>
+<div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options</h2><dl class="dl parml"><dt class="dt pt dlterm">-B <var class="keyword varname">block_size</var></dt>
+<dd class="dd pd">Specifies the block size (in KB or MB) to use for disk I/O test. The default is 32KB, which is
+            the same as the HAWQ page size. The maximum block size is 1 MB.</dd>
+<dt class="dt pt dlterm">-d <var class="keyword varname">test_directory</var></dt>
+<dd class="dd pd">For the disk I/O test, specifies the file system directory locations
+to test. You must have write access to the test directory on all hosts
+involved in the performance test. You can use the <samp class="ph codeph">-d</samp>
+option multiple times to specify multiple test directories (for example,
+to test disk I/O of your primary and mirror data directories).</dd>
+<dt class="dt pt dlterm">-d <var class="keyword varname">temp_directory</var></dt>
+<dd class="dd pd">For the network and stream tests, specifies a single directory where
+the test program files will be copied for the duration of the test. You
+must have write access to this directory on all hosts involved in the
+test.</dd>
+<dt class="dt pt dlterm">-D (display per-host results)</dt>
+<dd class="dd pd">Reports performance results for each host for the disk I/O tests.
+The default is to report results for just the hosts with the minimum
+and maximum performance, as well as the total and average performance
+of all hosts.</dd>
+<dt class="dt pt dlterm">--duration <var class="keyword varname">time</var></dt>
+<dd class="dd pd">Specifies the duration of the network test in seconds (s), minutes
+(m), hours (h), or days (d). The default is 15 seconds.</dd>
+<dt class="dt pt dlterm">-f <var class="keyword varname">hostfile_gpcheckperf</var></dt>
+<dd class="dd pd">For the disk I/O and stream tests, specifies the name of a file that
+contains one host name per host that will participate in the performance
+test. The host name is required, and you can optionally specify an alternate
+user name and/or SSH port number per host. The syntax of the host file
+is one host per line as follows:</dd>
+<dd class="dd pd"><pre class="pre codeblock">[<var class="keyword varname">username</var>@]<var class="keyword varname">hostname</var>[:<var class="keyword varname">ssh_port</var>]</pre>
+</dd>
+<dt class="dt pt dlterm">-f <var class="keyword varname">hostfile_gpchecknet</var></dt>
+<dd class="dd pd">For the network performance test, all entries in the host file must
+be for host adresses within the same subnet. If your segment hosts have
+multiple network interfaces configured on different subnets, run the
+network test once for each subnet. For example (a host file containing
+segment host address names for interconnect subnet 1):</dd>
+<dd class="dd pd"><pre class="pre codeblock">sdw1-1
+sdw2-1
+sdw3-1</pre>
+</dd>
+<dt class="dt pt dlterm">-h <var class="keyword varname">hostname</var></dt>
+<dd class="dd pd">Specifies a single host name (or host address) that will participate
+in the performance test. You can use the <samp class="ph codeph">-h</samp> option multiple
+times to specify multiple host names.</dd>
+<dt class="dt pt dlterm">--netperf</dt>
+<dd class="dd pd">Specifies that the netperf binary should be used to perform the network test instead of
+            performing the HAWQ network test. To use this option, you must download
+              <samp class="ph codeph">netperf</samp> from <a class="xref" href="http://www.netperf.org" target="_blank">http://www.netperf.org</a> and install it into <samp class="ph codeph">$GPHOME/bin/lib</samp> on all HAWQ
+            hosts (master and segments).</dd>
+<dt class="dt pt dlterm">-r ds{n|N|M}</dt>
+<dd class="dd pd">Specifies which performance tests to run. The default is <samp class="ph codeph">dsn</samp>:<ul class="ul" id="topic1__ul_jjn_vvt_mo"><li class="li" id="topic1__jq141318">Disk I/O test (<samp class="ph codeph">d</samp>)</li>
+<li class="li" id="topic1__jq141319">Stream test (<samp class="ph codeph">s</samp>)</li>
+<li class="li" id="topic1__jq141320">Network performance test in sequential (<samp class="ph codeph">n</samp>), parallel
+                  (<samp class="ph codeph">N</samp>), or full-matrix (<samp class="ph codeph">M</samp>) mode. The optional
+                  <samp class="ph codeph">--duration</samp> option specifies how long (in seconds) to run the
+                network test. To use the parallel (<samp class="ph codeph">N</samp>) mode, you must run the test
+                on an <var class="keyword varname">even</var> number of hosts.<p class="p">If you would rather use
+                    <samp class="ph codeph">netperf</samp> (<a class="xref" href="http://www.netperf.org" target="_blank">http://www.netperf.org</a>) instead of the HAWQ network test, you can download it and
+                  install it into <samp class="ph codeph">$GPHOME/bin/lib</samp> on all HAWQ hosts (master and
+                  segments). You would then specify the optional <samp class="ph codeph">--netperf</samp> option
+                  to use the <samp class="ph codeph">netperf</samp> binary instead of the default
+                    <samp class="ph codeph">gpnetbench*</samp> utilities.</p>
+</li>
+</ul>
+</dd>
+<dt class="dt pt dlterm">-S <var class="keyword varname">file_size</var></dt>
+<dd class="dd pd">Specifies the total file size to be used for the disk I/O test for all directories
+            specified with <samp class="ph codeph">-d</samp>. <var class="keyword varname">file_size</var> should equal two times
+            total RAM on the host. If not specified, the default is calculated at two times the
+            total RAM on the host where <samp class="ph codeph">gpcheckperf</samp> is executed. This ensures that
+            the test is truly testing disk I/O and not using the memory cache. You can specify
+            sizing in KB, MB, or GB.</dd>
+<dt class="dt pt dlterm">-v (verbose) | -V (very verbose)</dt>
+<dd class="dd pd">Verbose mode shows progress and status messages of the performance tests as they are
+            run. Very verbose mode shows all output messages generated by this utility.</dd>
+<dt class="dt pt dlterm">--version</dt>
+<dd class="dd pd">Displays the version of this utility.</dd>
+<dt class="dt pt dlterm">-? (help)</dt>
+<dd class="dd pd">Displays the online help.</dd>
+</dl>
+</div>
+<div class="section" id="topic1__section5"><h2 class="title sectiontitle">Examples</h2><p class="p">Run the disk I/O and memory bandwidth tests on all the hosts in the
+file <var class="keyword varname">host_file</var> using the test directory of <var class="keyword varname">/data1</var> and <var class="keyword varname">/data2</var>:</p>
+<pre class="pre codeblock">$ gpcheckperf -f hostfile_gpcheckperf -d /data1 -d /data2 -r ds</pre>
+<p class="p">Run only the disk I/O test on the hosts named <var class="keyword varname">sdw1</var> and <var class="keyword varname">sdw2
+</var>using the test directory of <var class="keyword varname">/data1</var>. Show individual host results
+and run in verbose mode:</p>
+<pre class="pre codeblock">$ gpcheckperf -h sdw1 -h sdw2 -d /data1 -r d -D -v</pre>
+<p class="p">Run the parallel network test using the test directory of <var class="keyword varname">/tmp,</var> where
+          <var class="keyword varname">hostfile_gpcheck_ic*</var> specifies all network interface host address names
+        within the same interconnect subnet:</p>
+<pre class="pre codeblock">$ gpcheckperf -f hostfile_gpchecknet_ic1 -r N -d /tmp
+$ gpcheckperf -f hostfile_gpchecknet_ic2 -r N -d /tmp</pre>
+<p class="p">Run the same test as above, but use <samp class="ph codeph">netperf</samp> instead of the HAWQ network test
+        (note that <samp class="ph codeph">netperf</samp> must be installed in <samp class="ph codeph">$GPHOME/bin/lib</samp> on
+        all HAWQ hosts):</p>
+<pre class="pre codeblock">$ gpcheckperf -f hostfile_gpchecknet_ic1 -r N --netperf -d /tmp
+$ gpcheckperf -f hostfile_gpchecknet_ic2 -r N --netperf -d /tmp</pre>
+</div>
+<div class="section" id="topic1__section6"><h2 class="title sectiontitle">See Also</h2><p class="p"><samp class="ph codeph"><a class="xref" href="gpssh.html">gpssh</a></samp>, <samp class="ph codeph"><a class="xref" href="gpscp.html">gpscp</a></samp></p>
+</div>
+</div>
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/ManagementUtilityReference.html" title="Management Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Management Utility Reference</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

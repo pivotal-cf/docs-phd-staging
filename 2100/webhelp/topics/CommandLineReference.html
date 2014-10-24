@@ -1,0 +1,125 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="You can back up data on the Admin node where PCC is installed. Having the backup allows you to restore the Admin node and PCC to a given state in case of failures or data corruption. Note: Backup and ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Backing Up and Restoring the PCC Admin Node"/><meta name="DC.Relation" scheme="URI" content="../topics/PCCUserGuide.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="commandlinereference"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Backing Up and Restoring the PCC Admin Node</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="commandlinereference"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PivotalCommandCenter.html" title="Pivotal Command Center">Pivotal Command Center</a> / <a class="navheader_parent_path" href="../topics/PCCUserGuide.html" title="PCC User Guide">PCC User Guide</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/PCCUserGuide.html" title="PCC User Guide"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">PCC User Guide</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Backing Up and Restoring the PCC Admin Node</h1>
+
+   <div class="body">
+      <p class="p">You can back up data on the Admin node where PCC is installed. Having the backup allows you
+         to restore the Admin node and PCC to a given state in case of failures or data
+         corruption.</p>
+
+      <div class="note note"><span class="notetitle">Note:</span> Backup and restore operations should be performed as <samp class="ph codeph">root</samp> and must be
+         performed from the command line on the Admin node.</div>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="backup">
+      <h2 class="title topictitle2">Backup</h2>
+
+      <div class="body">
+         <p class="p">Run the backup script to copy all configuration files and all data in the PCC database
+            into a backup file on a local disk. Once the tar file is created you should copy it off
+            the admin node to a different storage to prevent it from being lost if the admin node
+            fails.</p>
+
+         <div class="note note"><span class="notetitle">Note:</span> You should backup your data each time you make a configuration or topology change for
+            your cluster or if you add or delete clusters. Trying to restore old backup on the admin
+            node when the cluster topology or configuration has been changed since the backup will
+            result in inconsistent configuration and potentially unusable cluster.</div>
+
+         <p class="p">To perform the backup run the following script:</p>
+
+         <pre class="pre codeblock"># /usr/lib/gphd/gphdmgr/bin/gphdmgr_backup.sh</pre>
+
+         <p class="p">The script does not require any input and produces the backup file
+               <span class="ph filepath">phdmgr_backup_[timestamp].tar.gz</span> in the current working
+            directory, where <samp class="ph codeph">timestamp</samp> is the number corresponding to the current
+            system time.</p>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="restore">
+      <h2 class="title topictitle2">Restore</h2>
+
+      <div class="body">
+         <p class="p">Run the restore script to replace all configuration files and all data in the PCC
+            database from a backup file on a local disk. There are two restore scenarios:</p>
+
+         <ul class="ul" id="restore__ul_ngz_1qs_4p">
+            <li class="li"><strong class="ph b">Restore data on a new node:</strong> If you had a backup from the old admin node and
+               you need to provision a new admin node, install PCC on the new admin node, then
+               restore data from the backup produced on the old admin node. Hostnames, IP addresses
+               and system configuration of the old and new nodes have to be identical.</li>
+
+            <li class="li"><strong class="ph b">Restore data on the same node:</strong> You can restore data from the backup file on
+               the same admin node where the backup was produced. Make sure the PCC version has not
+               been updated since the backup was made.</li>
+
+         </ul>
+
+         <div class="note note"><span class="notetitle">Note:</span> The restore procedure replaces all your configuration files and database data with
+            the data from the backup file, so use with caution.</div>
+
+         <p class="p">To perform the restore run the following script:</p>
+
+         <pre class="pre codeblock"># /usr/lib/gphd/gphdmgr/bin/gphdmgr_restore.sh phdmgr_backup_[timestamp].tar.gz
+ 
+Your data will be permanently removed. Do you want to continue? y</pre>
+
+         <p class="p">The script takes the name of the backup file as an argument and asks the user for the
+            confirmation before proceeding with the restore. The script takes care of stopping the
+            PCC services, performing the restore, and restarting the services.</p>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/PCCUserGuide.html" title="PCC User Guide"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">PCC User Guide</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

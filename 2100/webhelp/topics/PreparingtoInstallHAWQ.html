@@ -1,0 +1,300 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="This document describes how to install HAWQ manually. HAWQ can be installed along with Pivotal HD Enterprise using the Command-Line Interface (CLI). However, if you choose to not install HAWQ using ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Preparing to Install HAWQ"/><meta name="DC.Relation" scheme="URI" content="../topics/HAWQInstallationandUpgrade.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="preparingtoinstallhawq"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Preparing to Install HAWQ</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="preparingtoinstallhawq"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PivotalHAWQ.html" title="Pivotal HAWQ">Pivotal HAWQ</a> / <a class="navheader_parent_path" href="../topics/HAWQInstallationandUpgrade.html" title="HAWQ Installation and Upgrade">HAWQ Installation and Upgrade</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/HAWQInstallationandUpgrade.html" title="HAWQ Installation and Upgrade"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Installation and Upgrade</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Preparing to Install HAWQ</h1>
+
+   <div class="body">
+      <p class="p">This document describes how to install HAWQ manually. HAWQ can be installed along with
+         Pivotal HD Enterprise using the Command-Line Interface (CLI). However, if you choose to not
+         install HAWQ using the CLI, then you need to follow the instructions in this chapter and
+         the following chapters.</p>
+
+      <ul class="ul">
+         <li class="li"><a class="xref" href="#systemrequirements">System Requirements</a>
+         </li>
+
+         <li class="li"><a class="xref" href="#preparinghdfs">Preparing HDFS</a>
+         </li>
+
+      </ul>
+
+      <div class="note note"><span class="notetitle">Note:</span> These tasks should be performed for all hosts in your HAWQ array (master, standby master
+         and segments).</div>
+
+      <div class="note note"><span class="notetitle">Note:</span> This document does not describe how to install the Pivotal Extension Framework (PXF),
+         which enables SQL querying on data in the Hadoop components such as HBase, Hive, and any
+         other distributed data file types. To install PXF, see the <a class="xref" href="http://pivotalhd.docs.pivotal.io/doc/2100/PivotalExtensionFrameworkPXF.html" target="_blank">Pivotal Extension Framework Installation and User
+            Guide</a>.</div>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="systemrequirements">
+      <h2 class="title topictitle2">System Requirements</h2>
+
+      <div class="body">
+         <p class="p">Check that you meet the following system requirements before you install HAWQ:</p>
+
+         <div class="section"><h3 class="title sectiontitle">Operating System</h3>
+            
+            <ul class="ul" id="systemrequirements__ul_nsx_mbt_4p">
+               <li class="li">RedHat 6.4 and 6.2, 64 bit</li>
+
+               <li class="li">CentOS 6.4 and 6.2, 64 bit</li>
+
+            </ul>
+
+         </div>
+
+         <div class="section"><h3 class="title sectiontitle">Minimum CPU</h3>
+            
+            <p class="p">Intel 64 compatible (Nehalem and above). For production cluster, recommended number
+               of CPUs is 2 (with at least 8 physical cores each).</p>
+
+         </div>
+
+         <div class="section"><h3 class="title sectiontitle">Minimum Memory</h3>
+            
+            <p class="p">16 GB RAM per server. And recommended memory on production cluster is 128 GB.</p>
+
+         </div>
+
+         <div class="section"><h3 class="title sectiontitle">Disk Requirements</h3>
+            
+            <ul class="ul" id="systemrequirements__ul_kcy_pbt_4p">
+               <li class="li">2GB per host for HAWQ installation. </li>
+
+               <li class="li">Approximately 300MB per segment instance for meta data</li>
+
+               <li class="li">Appropriate free space for data: disks should have at least 30% free space (no
+                  more than 70% capacity)</li>
+
+               <li class="li">High-speed, local storage</li>
+
+            </ul>
+
+         </div>
+
+         <div class="section"><h3 class="title sectiontitle">Network Requirements</h3>
+            
+            <ul class="ul" id="systemrequirements__ul_h1l_rbt_4p">
+               <li class="li">Gigabit Ethernet within the array. For production cluster, 10 Gigabit Ethernet
+                  recommended.</li>
+
+               <li class="li">Dedicated, non-blocking switch</li>
+
+            </ul>
+
+         </div>
+
+         <div class="section"><h3 class="title sectiontitle">Software and Utilities</h3>
+            
+            <p class="p">bash shell, GNU tar, and GNU zip</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="preparinghdfs">
+      <h2 class="title topictitle2">Preparing HDFS</h2>
+
+      <div class="body">
+         <p class="p">You need to complete the following steps to configure HDFS:</p>
+
+         <ol class="ol">
+            <li class="li">Download the HDFS binaries. See <a class="xref" href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
+               for more information.</li>
+
+            <li class="li">Install the rpms. See <a class="xref" href="PHDInstallationandAdministration.html">PHD Installation and Administration</a> for more
+               information.</li>
+
+            <li class="li">To make sure HDFS block files can be read by other users, configure OS file system
+               umask to 022.</li>
+
+            <li class="li">Start up the HDFS service. See the <a class="xref" href="StackandToolsReference.html">Stack and Tools Reference</a> for
+               more information.</li>
+
+            <li class="li">Add the following line into ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
+               <pre class="pre codeblock">umask 022 </pre>
+
+            </li>
+
+            <li class="li">Add the following parameter to hdfs-site.xml
+               <pre class="pre codeblock">&lt;property&gt;   
+	&lt;name&gt;dfs.datanode.data.dir.perm&lt;/name&gt;   
+	&lt;value&gt;755&lt;/value&gt;   
+	&lt;description&gt;Permissions for the directories on on the local filesystem where the DFS data node store its blocks. The permissions can either be octal or symbolic.&lt;/description&gt; 
+&lt;/property&gt;</pre>
+
+            </li>
+
+            <li class="li">Edit the <span class="ph filepath">/hdfs-install-directory/etc/hadoop/hdfs-site.xml</span> file.
+               To do this, change the <samp class="ph codeph">dfs.block.local-path-access.user</samp> to the user
+               who starts HDFS if the short circuit feature is enabled in libhdfs3. See the <a class="xref" href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a> for more information.</li>
+
+            <li class="li">Set the <samp class="ph codeph">dfs.namenode.name.dir</samp> and
+                  <samp class="ph codeph">dfs.datanode.data.dir</samp> to your preferred path as shown in the
+               example:
+               <pre class="pre codeblock">&lt;configuration&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.support.append&lt;/name&gt;
+      &lt;value&gt;true&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+       &lt;name&gt;dfs.client.read.shortcircuit&lt;/name&gt;
+       &lt;value&gt;true&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+       &lt;name&gt;dfs.block.local-path-access.user&lt;/name&gt;
+       &lt;value&gt;gpadmin&lt;/value&gt;
+       &lt;description&gt;
+             specify the user allowed to do short circuit read
+       &lt;/description &gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
+&lt;value&gt;file:/home/gpadmin/hadoop-2.0.0-alpha/dfs/name&lt;/value&gt;
+&lt;/property&gt;
+    property&gt;
+      &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;
+      &lt;value&gt;file:/home/gpadmin/hadoop-2.0.0-alpha/dfs/data&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.replication&lt;/name&gt;
+      &lt;value&gt;3&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.datanode.max.transfer.threads&lt;/name&gt;
+      &lt;value&gt;40960&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+&lt;/property&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.client.socket-timeout&lt;/name&gt;
+      &lt;value&gt;300000000&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.datanode.handler.count&lt;/name&gt;
+      &lt;value&gt;60&lt;/value&gt;
+   &lt;/property&gt;
+&lt;property&gt; 
+&lt;name&gt;ipc.client.connection.maxidletime&lt;/name&gt;
+&lt;value&gt;3600000&lt;/value&gt; 
+
+&lt;/property&gt; 
+&lt;property&gt; 
+&lt;name&gt;ipc.server.handler.queue.size&lt;/name&gt; 
+&lt;value&gt;3300&lt;/value&gt; 
+
+&lt;/property&gt; 
+
+&lt;/property&gt;
+   &lt;property&gt;
+&lt;name&gt;ipc.client.connection&lt;/name&gt;
+      &lt;value&gt;3&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.datanode.max.transfer.threads&lt;/name&gt;
+      &lt;value&gt;40960&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+&lt;/property&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.replication&lt;/name&gt;
+      &lt;value&gt;3&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;
+      &lt;name&gt;dfs.namenode.accesstime.precision&lt;/name&gt;
+      &lt;value&gt;-1&lt;/value&gt;
+   &lt;/property&gt;
+   &lt;property&gt;</pre>
+
+            </li>
+
+            <li class="li">To configure the JVM, edit the<span class="ph filepath">
+                  /hdfs-install-directory/etc/hadoop/hadoop-env.sh</span>
+               <p class="p">This configures the memory usage of the primary and secondary namenodes and
+                  datanode. For example, on servers with 48GB memory, if HDFS and HAWQ are on two
+                  separate clusters, Pivotal recommends that the namenodes use 40GB (-Xmx40960m),
+                  while each datanode uses 6GB and with a stack size of 256KB (-Xmx6144m
+                  -Xss256k).</p>
+
+            </li>
+
+            <li class="li">To verify that HDFS has started, run the following command sequence.<ol class="ol" type="a">
+                  <li class="li">List the directory: <pre class="pre codeblock">hadoop fs -ls /</pre>
+
+                  </li>
+
+                  <li class="li">Create a test directory:  <pre class="pre codeblock">hadoop fs -mkdir /test </pre>
+
+                  </li>
+
+                  <li class="li">Put a test file <strong class="ph b">(/path/file</strong>) into the HDFS root directory:
+                     <pre class="pre codeblock">hadoop fs -put /path/file /</pre>
+
+                  </li>
+
+                  <li class="li">Perform a get on<strong class="ph b"> /file</strong> from HDFS to the current local file system
+                     directory: <pre class="pre codeblock">hadoop fs -get /file ./</pre>
+
+                  </li>
+
+               </ol>
+
+            </li>
+
+         </ol>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/HAWQInstallationandUpgrade.html" title="HAWQ Installation and Upgrade"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Installation and Upgrade</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

@@ -1,0 +1,1399 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Overriding Directory Permissions On the Local Filesystem On HDFS Pivotal HD Users and Groups Pivotal HD Ports The following table shows the list of directories that Pivotal HD overrides with specific ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="PHD Services Reference"/><meta name="DC.Relation" scheme="URI" content="../topics/AdministeringPHDUsingtheCLI.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="phdservicesreference"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>PHD Services Reference</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="phdservicesreference"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration">PHD Installation and Administration</a> / <a class="navheader_parent_path" href="../topics/AdministeringPHDUsingtheCLI.html" title="Administering PHD Using the CLI">Administering PHD Using the CLI</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/AdministeringPHDUsingtheCLI.html" title="Administering PHD Using the CLI"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Administering PHD Using the CLI</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">PHD Services Reference</h1>
+
+   <div class="body">
+      <ul class="ul">
+         <li class="li">
+            <a class="xref" href="#overridingdirectorypermissions">Overriding Directory Permissions</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#onthelocalfilesystem">On the Local Filesystem</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#onhdfs">On HDFS</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#pivotalhdusersandgroups">Pivotal HD Users and Groups</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#pivotalhdports">Pivotal HD Ports</a>
+         </li>
+
+      </ul>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="overridingdirectorypermissions">
+      <h2 class="title topictitle2">Overriding Directory Permissions</h2>
+
+      <div class="body">
+         <p class="p">The following table shows the list of directories that Pivotal HD overrides with
+            specific ownership and permissions.</p>
+
+         <p class="p">Directories not mentioned in the below list follow standard Apache ownership and
+            permission convention.</p>
+
+      </div>
+
+      <div class="topic nested2" id="onthelocalfilesystem">
+         <h3 class="title topictitle3">On the Local Filesystem</h3>
+
+         <div class="body">
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="onthelocalfilesystem__table_wng_vfj_tp" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d129807e101">Service</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d129807e104">Directory</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d129807e107">Location</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d129807e110">Owner</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d129807e113">Permissions</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">HDFS</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">hadoop.tmp.dir</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">All Hadoop nodes</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">hdfs:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">777</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">dfs.namenode.name.dir</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">NameNode</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">hdfs:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">700</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">dfs.datanode.data.dir</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">DataNodes</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">hdfs:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">770</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">dfs.namenode.checkpointdir</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">Secondary NameNode</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">hdfs:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">700</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">dfs.journalnode.edits.dir</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">Journal Node</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">hdfs:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">755</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">YARN</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">mapreduce.cluster.local.dir</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">All yarn nodes</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">mapred:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">755</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">mapreduce.cluster.temp.dir</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">All yarn nodes</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">mapred:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">755</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">yarn.nodemanager.local-dirs</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">Node Managers</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">yarn:yarn</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">755</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">yarn.nodemanager.log-dirs</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">Node Managers</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">yarn:yarn</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">755</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">ZooKeeper</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">dataDir (/var/lib/zookeeper)</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">Zookeeper Servers</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">zookeeper:zookeeper</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">775</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">dataDir/myid</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">Zookeeper Servers</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">gpadmin</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">644</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">HAWQ</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">MASTER_DIRECTORY</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">HAWQ Master &amp; Standby</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">gpadmin:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">755</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">DATA_DIRECTORY</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">HAWQ Segments</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">
+                           <strong class="ph b">gpadmin:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e101 d129807e104 d129807e107 d129807e110 d129807e113 ">755</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="onhdfs">
+         <h3 class="title topictitle3">On HDFS</h3>
+
+         <div class="body">
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="onhdfs__table_nyf_vfj_tp" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d129807e466">Service</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d129807e469">Directory</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d129807e472">Owner</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d129807e475">Permissions</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">HDFS</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">hadoop.tmp.dir</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">hdfs:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">777</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">/tmp</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">hdfs:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">777</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">mapreduce.jobtracker.system.dir</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">mapred:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">700</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">yarn.app.mapreduce.am.staging-dir (/user)</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">mapred:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">777</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">mapreduce.jobhistory.intermediate-done-dir (/user/history/done)</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">mapred:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">777</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">mapreduce.jobhistory.done-dir (/user/history/done)</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">mapred:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">777</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">yarn.nodemanager.remote-app-log-dir</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">mapred:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">755</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">HBase</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">hbase directory (/apps/hbase/data)</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">hdfs:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">775</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">HAWQ</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">hawq directory (/hawq_data)</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">
+                           <strong class="ph b">hdfs:hadoop</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d129807e466 d129807e469 d129807e472 d129807e475 ">755</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="pivotalhdusersandgroups">
+      <h2 class="title topictitle2">Pivotal HD Users and Groups</h2>
+
+      <div class="body">
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+               <thead class="thead" align="left">
+                  <tr class="row">
+                     <th class="entry confluenceTh" valign="top" id="d129807e702">Service</th>
+
+                     <th class="entry confluenceTh" valign="top" id="d129807e705">Users</th>
+
+                     <th class="entry confluenceTh" valign="top" id="d129807e708">Group</th>
+
+                     <th class="entry confluenceTh" valign="top" id="d129807e711">Login</th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody class="tbody">
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">PHD</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">gpadmin</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">gpadmin</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">Yes</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">HDFS</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">hdfs</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">hadoop</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">Yes</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">MapReduce</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">mapred</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">hadoop</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">Yes</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">Hbase</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">hbase</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">hadoop</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">No</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">Hive</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">hive</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">hadoop</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">No</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">Zookeeper</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">zookeeper</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">zookeeper</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">No</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">Yarn</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">yarn</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">yarn</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">No</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">PHD, HAWQ</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">postgres</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">postgres</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">Yes</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">Puppet</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">puppet</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">puppet</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e702 d129807e705 d129807e708 d129807e711 ">No</td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="pivotalhdports">
+      <h2 class="title topictitle2">Pivotal HD Ports</h2>
+
+      <div class="body">
+         <div class="note note"><span class="notetitle">Note:</span> If you are running a firewall, ensure all ports are open.</div>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+               <thead class="thead" align="left">
+                  <tr class="row">
+                     <th class="entry confluenceTh" valign="top" id="d129807e878">Component</th>
+
+                     <th class="entry confluenceTh" valign="top" id="d129807e881">Service</th>
+
+                     <th class="entry confluenceTh" valign="top" id="d129807e884">Port</th>
+
+                     <th class="entry confluenceTh" valign="top" id="d129807e887">Protocol</th>
+
+                     <th class="entry confluenceTh" valign="top" id="d129807e890">Access</th>
+
+                     <th class="entry confluenceTh" valign="top" id="d129807e894">Configuration Parameters</th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody class="tbody">
+                  <tr class="row">
+                     <td class="entry confluenceTd" rowspan="16" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HDFS</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">NameNode Metadata Service</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">8020</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">IPC</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">fs.defaultFS</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">NameNode Web UI</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">50070</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">dfs.namenode.http-address </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" rowspan="2" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Secondary NameNode Web
+                        UI</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">50090</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Internal</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">dfs.namenode.secondary.http-address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">50495</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTPS</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Internal</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">dfs.secondary.https.address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" rowspan="2" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">DataNode Data Transfer</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">50010 (non-secure mode)</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" rowspan="2" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">dfs.datanode.address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">1004 (secure mode)</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">DataNode Metadata Operations</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">50020</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">IPC</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">dfs.datanode.ipc.address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" rowspan="3" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">DataNode HTTP/HTTPS
+                        Address</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">50075 (non-secure mode)</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" rowspan="2" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">dfs.datanode.http.address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">1006 (secure mode)</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">50475</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTPS</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">dfs.datanode.https.address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HDFS NFS server</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">2049</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">nfs3.server.port</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HDFS NFS mount daemon</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">4242</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">nfs3.mountd.port</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HDFS Backup Node Server</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">50100</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">dfs.namenode.backup.address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HDFS Backup Node Server HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">50105</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">dfs.namenode.backup.http-address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Quorum Journal node port</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">8485</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Internal</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">dfs.journalnode.rpc-address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Quorum Journal Node Web UI</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">8480</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Internal</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">dfs.journalnode.http-address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" rowspan="9" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">YARN </td>
+
+                     <td class="entry confluenceTd" rowspan="2" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">ResourceManager Web UI</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">8088</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">yarn.resourcemanager.webapp.address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">8090</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTPS</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">yarn.resourcemanager.webapp.https.address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" rowspan="2" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">NodeManager Web UI</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">8042</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">yarn.nodemanager.webapp.address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">8044</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTPS</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">yarn.nodemanager.webapp.https.address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" rowspan="4" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">ResourceManager</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">8030</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">yarn.resourcemanager.scheduler.address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">8031</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">yarn.resourcemanager.resource-tracker.address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">8032</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">IPC</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">yarn.resourcemanager.address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">8033</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">yarn.resourcemanager.admin.address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">NodeManager Localizer</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">8040</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">IPC</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">yarn.nodemanager.localizer.address</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" rowspan="11" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HBASE</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HBase Master</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">60000</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">hbase.master.port</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HBase Master Web UI</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">60010</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">hbase.master.info.port</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HBase RegionServer</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">60020</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">hbase.regionserver.port</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HBase RegionServer Web UI</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">60030</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">hbase.regionserver.info.port</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HBase REST Server</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">8080</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">hbase.rest.port</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HBase REST Server Web UI</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">8085</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">hbase.rest.info.port</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HBase ThriftServer</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">9090</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Pass -p &lt;port&gt; on CLI</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HBase ThriftServer Web UI</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">9095</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">hbase.thrift.info.port</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HQuorumPeer</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">2181</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">hbase.zookeeper.property.clientPort</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HQuorumPeer</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">2888</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">hbase.zookeeper.peerport</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HQuorumPeer</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">3888</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">hbase.zookeeper.leaderport</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" rowspan="3" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">ZOOKEEPER  </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">ZooKeeper Server</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">2181</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">zoo.cfg - clientPort</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">ZooKeeper Peers</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">2888</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Internal</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">zoo.cfg - X in server.N=hostN:X:Y</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">ZooKeeper Leader</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">3888</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Internal</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">zoo.cfg - Y in server.N=hostN:X:Y</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" rowspan="5" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HIVE </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Hive Server</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">10000</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">hive-env.sh - HIVE_PORT</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Hive Metastore</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">9083 </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">hive.metastore.uris</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Hive Web Interface</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">9999</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">hive.hwi.listen.port</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Hive Server2 Thrift</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">10000</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">hive.server2.thrift.port</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Hive Server2 Thrift HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">10001</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">hive.server2.thrift.http.port</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" rowspan="2" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HCatalog </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HCatalog</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">9083</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Web HCatalog</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">50111</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" rowspan="3" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">OOZIE </td>
+
+                     <td class="entry confluenceTd" rowspan="2" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Oozie Server</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">11000</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">oozie-env.sh - OOZIE_HTTP_PORT</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">11443</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HTTPS</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">oozie-env.sh - OOZIE_HTTPS_PORT</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Oozie Server Admin</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">11001</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">oozie-env.sh - OOZIE_ADMIN_PORT</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">SQOOP</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Sqoop Metaserver</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">16000</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">External</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">sqoop.metastore.server.port</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" rowspan="2" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HAWQ</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HAWQ Master</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">5432</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">HAWQ Port Base</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">40000 <p class="p">This port number increases by 1 for
+                           every segment on each host.  If you have three segments per host, it
+                           would be 40000, 40001, and 40002 across all HAWQ segment servers.</p>
+
+                     </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">KDC</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">Kerberos KDC Server</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">88</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">ssh</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 ">22</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d129807e878 d129807e881 d129807e884 d129807e887 d129807e890 d129807e894 "> </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/AdministeringPHDUsingtheCLI.html" title="Administering PHD Using the CLI"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Administering PHD Using the CLI</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

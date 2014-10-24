@@ -1,0 +1,316 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Pivotal provides a default Cluster configuration file ( clusterConfig.xml ) that you need to edit for your own cluster; all the cluster nodes are configured based on this configuration file. At a ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="PHD Install 4 - Edit the Cluster Configuration Files"/><meta name="DC.Relation" scheme="URI" content="../topics/InstallingPHDUsingtheCLI.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="editingtheclusterconfigurationfiles"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>PHD Install 4 - Edit the Cluster Configuration Files</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="editingtheclusterconfigurationfiles"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration">PHD Installation and Administration</a> / <a class="navheader_parent_path" href="../topics/InstallingPHDUsingtheCLI.html" title="Installing PHD Using the CLI">Installing PHD Using the CLI</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/InstallingPHDUsingtheCLI.html" title="Installing PHD Using the CLI"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Installing PHD Using the CLI</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">PHD Install 4 - Edit the Cluster Configuration Files</h1>
+
+   <div class="body">
+      <p class="p">Pivotal provides a default Cluster configuration file (<samp class="ph codeph">clusterConfig.xml</samp>)
+         that you need to edit for your own cluster; all the cluster nodes are configured based on
+         this configuration file.</p>
+
+      <p class="p">At a minimum, you must replace all instances of your selected services with valid hostnames
+         for your deployment.</p>
+
+      <p class="p">Advanced users can further customize their cluster configuration by editing the stack
+         component configuration files such as <samp class="ph codeph">hdfs/core-site.xml</samp>.  </p>
+
+      <div class="note important"><span class="importanttitle">Important:</span> 
+         <ul class="ul" id="editingtheclusterconfigurationfiles__ul_vly_lfd_4p">
+            <li class="li">Always use fully-qualified domain names (FQDN), rather than short hostnames, in the
+                  <samp class="ph codeph">clusterConfig.xml</samp> file.</li>
+
+            <li class="li">For more information about setting a FQDN, see <a class="xref" href="FQDN.html">Fully Qualified Domain Names (FQDN)</a>.</li>
+
+         </ul>
+
+      </div>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="fetchthedefaultclusterconfigurationtemplate">
+      <h2 class="title topictitle2">Fetch the Default Cluster Configuration Template</h2>
+
+      <div class="body">
+         <p class="p">The <samp class="ph codeph">fetch-template</samp> command saves a default cluster configuration
+            template into a specified directory, such as a directory on disk. You can then manually
+            modify this template and use it as input to subsequent commands.</p>
+
+         <div class="p">As <samp class="ph codeph">gpadmin</samp>, run the <samp class="ph codeph">fetch-template</samp> command. For
+            example: <pre class="pre codeblock">$ icm_client fetch-template -o ~/ClusterConfigDir </pre>
+</div>
+
+         <p class="p">This example uses the <samp class="ph codeph">fetch-template</samp> command to place a template in a
+            directory called <samp class="ph codeph">ClusterConfigDir</samp> (automatically created by the
+            command). This directory contains files that describe the topology of the cluster and
+            the configurations for the various services installed on the cluster.</p>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="tousebulkloadinginsecuremode">
+      <h2 class="title topictitle2">Configure HBase Bulk Loading in Secure Mode</h2>
+
+      <div class="body">
+         <ol class="ol">
+            <li class="li">Assuming your clusterconfig template directory on the admin node
+                  is <samp class="ph codeph">ClusterConfigDir</samp>, change the <samp class="ph codeph">hbase-auth</samp> in
+                  <samp class="ph codeph">ClusterConfigDir/security/security-driver.xml</samp> to
+                  <samp class="ph codeph">true</samp>.</li>
+
+            <li class="li">Optionally, you may configure <samp class="ph codeph">hadoop</samp> group or a list of users such
+               as <samp class="ph codeph">gpadmin</samp> as <samp class="ph codeph">hbase.superuser</samp>. To do this, add the
+               following to your <samp class="ph codeph">ClusterConfigDir/hbase/hbase-site.xml</samp> file:
+               <pre class="pre codeblock">&lt;!-- this example adds all users under hadoop group and user 'myorgadmin' as superuser for hbase
+&lt;property&gt;
+     &lt;name&gt;hbase.superuser&lt;/name&gt;
+     &lt;value&gt;@hadoop, myorgadmin&lt;/value&gt;
+&lt;/property&gt;</pre>
+</li>
+
+            <li class="li">Continue configuring your cluster, as described below.</li>
+
+            <li class="li">If you did not perform step 2 above, once you have deployed your cluster, on the
+               Hbase master, grant user <samp class="ph codeph">gpadmin</samp> or any other user who you want to
+               bulk load with permissions to create tables.  For more details see the <em class="ph i">PHD Stack
+                  and Tool Reference</em>.<p class="p">For more details about bulk loading, see, <a class="xref" href="http://hbase.apache.org/book/arch.bulk.load.html">http://hbase.apache.org/book/arch.bulk.load.html</a>.
+               </p>
+</li>
+
+         </ol>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="edittheclusterconfig.xmlfile">
+      <h2 class="title topictitle2">Edit the clusterConfig.xml file</h2>
+
+      <div class="body">
+         <p class="p">Edit the <samp class="ph codeph">clusterConfig.xml</samp> file as follows:</p>
+
+         <ol class="ol">
+            <li class="li">Locate and edit the <samp class="ph codeph">clusterConfig.xml</samp> file based on your cluster
+               requirements. The following sections should be verified or edited:<ol class="ol" type="a">
+                  <li class="li"><strong class="ph b">Header section:</strong>  This is the metadata section and must contain the
+                     following mandatory information:<ul class="ul" id="edittheclusterconfig.xmlfile__ul_wgb_rk3_tp">
+                        <li class="li"><samp class="ph codeph">clusterName</samp>: The name of your cluster</li>
+
+                        <li class="li"><samp class="ph codeph">gphdStackVer</samp>: Pivotal HD Version. Accepted values are:
+                              <samp class="ph codeph">PHD-2.0.1.0</samp>, <samp class="ph codeph">PHD-2.0.0.0</samp>,
+                              <samp class="ph codeph">PHD-1.1.1.0</samp>, <samp class="ph codeph">PHD-1.1.0.0</samp></li>
+
+                        <li class="li"><samp class="ph codeph">services</samp>: Configure the services to be deployed. By
+                           default, every service that Pivotal HD supports is listed here.
+                           ZooKeeper, HDFS, and YARN are mandatory services. HBase and HAWQ are
+                           optional.</li>
+
+                        <li class="li"><samp class="ph codeph">client</samp>: The host that can be used as a gateway or
+                           launcher node for running the Hadoop, Hive, Pig, and Mahout jobs.</li>
+
+                     </ul>
+</li>
+
+                  <li class="li"><strong class="ph b">Topology Section</strong>
+                     <samp class="ph codeph">&lt;HostRoleMapping&gt;</samp><strong class="ph b">:</strong> This is the section where you
+                     specify the roles to be installed on the hosts. For example, you can specify
+                     where your Hadoop NameNode, DataNode, etc. should be installed. Note that all
+                     mandatory roles should have at least one host allocated. You can identify the
+                     mandatory role by looking at the comment above that role in the
+                        <samp class="ph codeph">clusterConfig.xml</samp> file.</li>
+
+                  <li class="li"><strong class="ph b">Global Service Properties</strong>
+                     <samp class="ph codeph">&lt;servicesConfigGlobals&gt;</samp><strong class="ph b">:</strong> This section defines
+                     mandatory global parameters such as Mount Points, Directories, Ports, and
+                        <samp class="ph codeph">JAVA_HOME</samp>. These configured mount points such as
+                        <samp class="ph codeph">datanode.disk.mount.points</samp>,
+                        <samp class="ph codeph">namenode.disk.mount.points</samp>, and
+                        <samp class="ph codeph">secondary.namenode.disk.mount.points</samp> are used to derive
+                     paths for other properties in the DataNode, NameNode and SecondaryNameNode
+                     configurations, respectively. These properties can be found in the individual
+                     service configuration files.<div class="p"><strong class="ph b">For Secure Clusters:</strong> If you want to
+                        deploy secure clusters, you must have first initialized security (see <a class="xref" href="ConfiguringKerberosandLDAP.html">PHD Install 2 - Configure Kerberos and LDAP</a>), then make the following changes
+                        to the <strong class="ph b">Global Services Properties</strong> section:<ol class="ol" type="i" id="edittheclusterconfig.xmlfile__ol_dy2_3l3_tp">
+                           <li class="li">Locate the following sub-section within the <strong class="ph b">Global Services
+                                 Properties</strong> section:
+                              <pre class="pre codeblock">&lt;!-- Security configurations --&gt;
+ &lt;!-- provide security realm. e.g. EXAMPLE.COM --&gt;
+ &lt;security.realm&gt;&lt;/security.realm&gt;
+ &lt;!-- provide the path of kdc conf file --&gt;
+ &lt;security.kdc.conf.location&gt;/etc/krb5.conf&lt;/security.kdc.conf.location&gt; </pre>
+</li>
+
+                           <li class="li">You need to add a valid value to the
+                                 <samp class="ph codeph">&lt;security.realm&gt;</samp> parameter.The default value
+                              for the <samp class="ph codeph">&lt;security.kdc.conf.location&gt;</samp> parameter
+                              is valid if you used the Kerberos server that was set up during <a class="xref" href="ConfiguringKerberosandLDAP.html">PHD Install 2 - Configure Kerberos and LDAP</a>; if you are using an
+                              existing Kerberos server, you need to add a value for that location.
+                           </li>
+
+                        </ol>
+</div>
+<div class="note important"><span class="importanttitle">Important:</span> 
+                        <p class="p">The following information pertains to configuring the parameters in the
+                              <strong class="ph b">Global Services Properties</strong> section:</p>
+
+                        <ul class="ul" id="edittheclusterconfig.xmlfile__ul_ax5_xfd_4p">
+                           <li class="li">
+                              <samp class="ph codeph">hawq.segment.directory </samp>and
+                                 <samp class="ph codeph">hawq.master.directory</samp> need to be configured only
+                              if HAWQ is used.</li>
+
+                           <li class="li">The values in this section are pre-filled with defaults. Check these
+                              values; they may not need to be changed.</li>
+
+                           <li class="li">The directories specified in the mount points will be automatically
+                              created by PCC while deploying PHD, if they don't already exist.</li>
+
+                           <li class="li">Pivotal recommends that you have multiple disk mount points for
+                              datanodes, but it is not a requirement.</li>
+
+                        </ul>
+
+                     </div>
+</li>
+
+                  <li class="li">
+                     <strong class="ph b">GemFire XD:</strong>
+                     <ul class="ul">
+                        <li class="li">If you want to use GemFire XD, you need to add that service to
+                              the <samp class="ph codeph">clusterConfig.xml</samp> file.  <ul class="ul">
+                              <li class="li">Add <samp class="ph codeph">gfxd</samp> to the services listed in
+                                    the <samp class="ph codeph">&lt;services&gt;&lt;/services&gt;</samp> tag.</li>
+
+                              <li class="li">Define
+                                    the <samp class="ph codeph">gfxd-server</samp> and <samp class="ph codeph">gfxd-locator</samp> roles
+                                 in the <samp class="ph codeph">clusterConfig.xml</samp> file for every cluster by
+                                 adding the following to the <samp class="ph codeph">&lt;hostrolemapping&gt;
+                                    &lt;/hostrolemapping&gt;</samp> tag:<pre class="pre codeblock">&lt;gfxd&gt;
+   &lt;gfxd-locator&gt;host.yourdomain.com&lt;/gfxd-locator&gt;
+   &lt;gfxd-server&gt;host.yourdomain.com&lt;/gfxd-server&gt;
+&lt;/gfxd&gt;  </pre>
+</li>
+
+                           </ul>
+</li>
+
+                        <li class="li">If you have PXF using GFXD as a data source,
+                              add <samp class="ph codeph">'/usr/lib/gpdb/gfxd/lib/gemfirexd.jar'</samp> on a new
+                           line to <samp class="ph codeph">ClusterConfigDir/pxf/pxf-public.classpath.</samp>
+                        </li>
+
+                     </ul>
+<p class="p">You cannot start GemFire XD (<samp class="ph codeph">gfxd</samp>) using
+                           the <samp class="ph codeph">icm_client start</samp> command. Refer to the GemFire XD
+                        documentation (<a class="xref" href="http://gemfirexd.docs.pivotal.io/latest/userguide/index.html?q=getting_started/book_intro.html">http://gemfirexd.docs.pivotal.io/latest/userguide/index.html?q=getting_started/book_intro.html</a>) for instructions about starting
+                           your <samp class="ph codeph">gfxd</samp> service. </p>
+<div class="note note"><span class="notetitle">Note:</span> HAWQ and GFXD services are
+                        both memory intensive and it is best to configure these services to be
+                        deployed on different nodes.<p class="p">GemFire XD may fail if it is not co-located
+                           with Hive. </p>
+</div>
+</li>
+
+                  <li class="li"><strong class="ph b">High Availability:</strong> As of PHD 2.1, high availability is enabled by
+                     default.  If you want to disable HA, you need to make some HA-specific changes
+                     to the <samp class="ph codeph">clusterConfig.xml</samp> file and additionally edit some other
+                     configuration files (this can be done during installation or after). Complete
+                     instructions are available in the <a class="xref" href="HighAvailability.html">High Availability</a>
+                     section.</li>
+
+                  <li class="li"><strong class="ph b">Security:</strong> Security is enabled by default and is specified by the
+                     followign configuration file parameter/value:
+                     <pre class="pre codeblock">&lt;securityEnabled&gt;true&lt;/securityEnabled&gt;</pre>
+For
+                     more information about securing clusters, see <a class="xref" href="ConfiguringKerberosandLDAP.html">PHD Install 2 - Configure Kerberos and LDAP</a>.To disable security, change this
+                     value to <samp class="ph codeph">false</samp>.</li>
+
+               </ol>
+</li>
+
+            <li class="li">Once you've made your changes, we recommend you check that your xml is well-formed
+               using the <samp class="ph codeph">xmlwf</samp> command, as follows:
+               <pre class="pre codeblock">xmlwf ~/ClusterConfigDir/clusterConfig.xml</pre>
+</li>
+
+            <li class="li">Save and close the <samp class="ph codeph">clusterConfig.xml</samp> file.</li>
+
+         </ol>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="editthehadoopservicesconfigurationfiles">
+      <h2 class="title topictitle2">Edit the Hadoop Services Configuration Files</h2>
+
+      <div class="body">
+         <p class="p">Most Hadoop services have a corresponding directory that contains their standard
+            configuration file(s). You can edit/change properties to suit your cluster requirements,
+            or consult with Pivotal HD support to decide on a configuration to suit your specific
+            cluster needs.</p>
+
+         <div class="note note"><span class="notetitle">Note:</span> If the directories specified in <samp class="ph codeph">dfs.namenode.name.dir</samp> and
+               <samp class="ph codeph">dfs.datanode.data.dir</samp> in the <samp class="ph codeph">hdfs/hdfs-site.xml</samp>
+            pre-exist, then they should be empty.</div>
+
+         <div class="note note"><span class="notetitle">Note:</span> You must not override properties derived from the global service properties,
+            especially those derived from role/hostname information.</div>
+
+         <p class="p">
+            <strong class="ph b">Next Task:</strong></p>
+
+         <p class="p"><a class="xref" href="EditingtheHAWQConfigurationFile.html">PHD Install 5 - Edit the HAWQ Configuration File</a>
+         </p>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/InstallingPHDUsingtheCLI.html" title="Installing PHD Using the CLI"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Installing PHD Using the CLI</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

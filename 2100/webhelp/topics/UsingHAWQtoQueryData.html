@@ -1,0 +1,1217 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="This chapter describes the use of the SQL language in Pivotal HAWQ Database. SQL commands are typically entered using the standard PostgreSQL interactive terminal psql , but other programs that have ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Using HAWQ to Query Data"/><meta name="DC.Relation" scheme="URI" content="../topics/HAWQAdministration.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="usinghawqtoquerydata"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Using HAWQ to Query Data</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="usinghawqtoquerydata"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PivotalHAWQ.html" title="Pivotal HAWQ">Pivotal HAWQ</a> / <a class="navheader_parent_path" href="../topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/HAWQAdministration.html" title="HAWQ Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Administration</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Using HAWQ to Query Data</h1>
+
+   <div class="body">
+      <p class="p">This chapter describes the use of the SQL language in Pivotal HAWQ Database. SQL commands
+         are typically entered using the standard PostgreSQL interactive terminal
+            <samp class="ph codeph">psql</samp>, but other programs that have similar functionality can be used as
+         well.</p>
+
+      <ul class="ul">
+         <li class="li"><a class="xref" href="#definingqueries">Defining Queries</a>
+            <ul class="ul">
+               <li class="li"><a class="xref" href="#sqllexicon">SQL Lexicon</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#sqlvalueexpressions">SQL Value Expressions</a>
+               </li>
+
+            </ul>
+</li>
+
+         <li class="li"><a class="xref" href="#usingfunctionsandoperators">Using Functions and Operators</a>
+            <ul class="ul">
+               <li class="li"><a class="xref" href="#functionsinhawq">Functions in HAWQ</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#userdefinedfunctions">User Defined Functions</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#userdefinedtypes">User Defined Types</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#userdefinedoperators">User Defined Operators</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#built-infunctionsandoperators">Built-in Functions and Operators</a>
+               </li>
+
+            </ul>
+</li>
+
+      </ul>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="definingqueries">
+      <h2 class="title topictitle2">Defining Queries</h2>
+
+      <div class="body">
+         <p class="p">A query is a SQL command that views, changes or analyzes the data in a database. This
+            section describes how to construct SQL queries in HAWQ Database.</p>
+
+         <ul class="ul">
+            <li class="li">SQL Lexicon</li>
+
+            <li class="li">SQL Value Expressions</li>
+
+         </ul>
+
+      </div>
+
+      <div class="topic nested2" id="sqllexicon">
+         <h3 class="title topictitle3">SQL Lexicon</h3>
+
+         <div class="body">
+            <p class="p">SQL (structured query language) is the language used to access the database. The SQL
+               language has a specific lexicon (words, special characters, etc.) used to construct
+               queries or commands that the database engine can understand.</p>
+
+            <p class="p">SQL input consists of a sequence of commands. A command is composed of a sequence of
+               tokens, terminated by a semicolon (;). Which tokens are valid depends on the syntax
+               of the particular command. The syntax rules for each command are described in <a class="xref" href="SQLCommandReference.html">SQL Command Reference</a>.</p>
+
+            <p class="p">HAWQ Database is based on PostgreSQL and adheres to the same SQL structure and syntax
+               (with some minor exceptions). In most cases, the syntax is identical to PostgreSQL,
+               however some commands may have additional or restricted syntax in HAWQ Database. For
+               a complete explanation of the SQL rules and concepts, as implemented in PostgreSQL,
+               refer to the section on SQL Syntax in the PostgreSQL documentation.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="sqlvalueexpressions">
+         <h3 class="title topictitle3">SQL Value Expressions</h3>
+
+         <div class="body">
+            <p class="p">Value expressions are used in a variety of contexts, such as in the target list of
+               the SELECT command, as new column values in INSERT or UPDATE, or in search conditions
+               in a number of commands. The result of a value expression is sometimes called a
+                  <em class="ph i">scalar</em>, to distinguish it from the result of a table expression (which is a
+               table). Value expressions are therefore also called scalar expressions (or even
+               simply expressions). The expression syntax allows the calculation of values from
+               primitive parts using arithmetic, logical, set, and other operations.</p>
+
+            <p class="p">Pivotal HAWQ supports the following value expressions:</p>
+
+            <ul class="ul" id="sqlvalueexpressions__ul_lvc_glt_4p">
+               <li class="li">A function call</li>
+
+               <li class="li">An aggregate expression</li>
+
+               <li class="li">A window expression</li>
+
+               <li class="li">A scalar subquery</li>
+
+               <li class="li">Another value expression in parentheses, useful to group subexpressions and
+                  override precedence.</li>
+
+            </ul>
+
+            <p class="p">In addition to this list, there are a number of constructs that can be classified as
+               expressions, but do not follow any general syntax rules. These generally have the
+               semantics of a function or operator and are explained in <a class="xref" href="#usingfunctionsandoperators">Using Functions and Operators</a>.</p>
+
+         </div>
+
+         <div class="topic nested3" id="functioncalls">
+            <h4 class="title topictitle4">Function Calls</h4>
+
+            <div class="body">
+               <p class="p">The syntax for a function call is the name of a function (possibly qualified with
+                  a schema name), followed by its argument list enclosed in parentheses:</p>
+
+               <pre class="pre codeblock">function
+([expression  [, expression  ... ]] )</pre>
+
+               <p class="p">For example, the following function call computes the square root of 2:</p>
+
+               <pre class="pre codeblock">sqrt(2)</pre>
+
+               <p class="p">The list of built-in functions is listed in <a class="xref" href="#built-infunctionsandoperators">Built-in Functions and Operators</a>.
+                  Other functions may be added by the user.</p>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="aggregateexpressions">
+            <h4 class="title topictitle4">Aggregate Expressions</h4>
+
+            <div class="body">
+               <p class="p">An aggregate expression represents the application of an aggregate function across
+                  the rows selected by a query. An aggregate function reduces multiple inputs to a
+                  single output value, such as the sum or average of the inputs. The syntax of an
+                  aggregate expression is one of the following:</p>
+
+               <pre class="pre codeblock">aggregate_name (expression [ , ... ] ) [FILTER (WHERE condition)]
+aggregate_name (ALL expression [ , ... ] ) [FILTER (WHERE condition)]
+aggregate_name (DISTINCT expression [ , ... ] ) [FILTER (WHERE condition)]
+aggregate_name ( * ) [FILTER (WHERE condition)]</pre>
+
+               <p class="p">Where <em class="ph i">aggregate_name </em> is a previously defined aggregate (possibly qualified
+                  with a schema name), and <em class="ph i">expression </em> is any value expression that does not
+                  itself contain an aggregate expression.</p>
+
+               <p class="p">The first form of aggregate expression invokes the aggregate across all input rows
+                  for which the given expression(s) yield non-null values. The second form is the
+                  same as the first, since ALL is the default. The third form invokes the aggregate
+                  for all distinct non-null values of the expressions found in the input rows. The
+                  last form invokes the aggregate once for each input row regardless of null or
+                  non-null values; since no particular input value is specified, it is generally
+                  only useful for the count(*) aggregate function.</p>
+
+               <p class="p">For example, count(*) yields the total number of input rows; count(f1) yields the
+                  number of input rows in which f1 is non-null; count(distinct f1) yields the number
+                  of distinct non-null values of f1.</p>
+
+               <p class="p">The FILTER clause allows you to specify a condition to limit the input rows to the
+                  aggregate function. For example:</p>
+
+               <pre class="pre codeblock">SELECT count(*) FILTER (WHERE gender='F') FROM employee;</pre>
+
+               <p class="p">The WHERE <em class="ph i">condition </em> of the FILTER clause cannot contain a set returning
+                  function, subquery, a window function, or an outer reference. If using a
+                  user-defined aggregate function, the state transition function must be declared as
+                  STRICT (see CREATE AGGREGATE).</p>
+
+               <p class="p">The predefined aggregate functions are described in Aggregate Functions. Other
+                  aggregate functions may be added by the user.</p>
+
+               <p class="p">An aggregate expression may only appear in the result list or HAVING clause of a
+                  SELECT command. It is forbidden in other clauses, such as WHERE, because those
+                  clauses are logically evaluated before the results of aggregates are formed.</p>
+
+               <p class="p">When an aggregate expression appears in a subquery (see <a class="xref" href="#scalarsubqueries">Scalar Subqueries</a> and Subquery
+                  Expressions in <a class="xref" href="#built-infunctionsandoperators__builtinfunctionsandoperators">Table 1</a>), the aggregate is normally evaluated over the rows of the
+                  subquery. But an exception occurs if the aggregate’s arguments contain only
+                  outer-level variables: the aggregate then belongs to the nearest such outer level,
+                  and is evaluated over the rows of that query. The aggregate expression as a whole
+                  is then an outer reference for the subquery it appears in, and acts as a constant
+                  over any one evaluation of that subquery. The restriction about appearing only in
+                  the result list or HAVING clause applies, with respect to the query level of
+                  aggregate.</p>
+
+               <p class="p">Pivotal HAWQ Database currently does not support DISTINCT with more than one input
+                  expression.</p>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="scalarsubqueries">
+            <h4 class="title topictitle4">Scalar Subqueries</h4>
+
+            <div class="body">
+               <p class="p">A scalar subquery is an ordinary SELECT query in parentheses that returns exactly
+                  one row with one column. The SELECT query is executed and the single returned
+                  value is used in the surrounding value expression. It is an error to use a query
+                  that returns more than one row or more than one column as a scalar subquery. A
+                  scalar subquery is correlated if it contains references to the outer query
+                  block.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="usingfunctionsandoperators">
+      <h2 class="title topictitle2">Using Functions and Operators</h2>
+
+      <div class="body">
+         <ul class="ul">
+            <li class="li">Functions in HAWQ</li>
+
+            <li class="li">User Defined Functions</li>
+
+            <li class="li">Built-in Functions and Operators</li>
+
+         </ul>
+
+      </div>
+
+      <div class="topic nested2" id="functionsinhawq">
+         <h3 class="title topictitle3">Functions in HAWQ</h3>
+
+         <div class="body">
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="functionsinhawq__table_lbl_hlt_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d197226e323">Function Type</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d197226e326">Pivotal Support</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d197226e329">Description</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d197226e332">Comments</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e323 d197226e326 d197226e329 d197226e332 ">IMMUTABLE</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e323 d197226e326 d197226e329 d197226e332 ">Yes</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e323 d197226e326 d197226e329 d197226e332 ">Relies only on information directly in its argument list. Given the
+                              same argument values, always returns the same result.
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e323 d197226e326 d197226e329 d197226e332 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e323 d197226e326 d197226e329 d197226e332 ">STABLE</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e323 d197226e326 d197226e329 d197226e332 ">Yes, in most cases</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e323 d197226e326 d197226e329 d197226e332 ">Within a single table scan, returns the same result for same argument
+                              values, but results change across SQL statements.
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e323 d197226e326 d197226e329 d197226e332 ">Results depend on database lookups or parameter values.
+                              current_timestamp family of functions is STABLE; values do not change
+                              within an execution.
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e323 d197226e326 d197226e329 d197226e332 ">VOLATILE</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e323 d197226e326 d197226e329 d197226e332 ">Restricted</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e323 d197226e326 d197226e329 d197226e332 ">Function values can change within a single table scan. For example:
+                              random(), currval(), timeofday().
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e323 d197226e326 d197226e329 d197226e332 ">Any function with side effects is volatile, even if its result is
+                              predictable. For example: setval()
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p class="p">Data is divided up across segments — each segment is a distinct HAWQ database. To
+               prevent inconsistent or unexpected results, do not execute functions classified as
+               VOLATILE at the segment level if they contain SQL commands or modify the database in
+               any way. For example, functions such as setval() are not allowed to execute on
+               distributed data because they can cause inconsistent data between segment instances.
+               To ensure data consistency, you can safely use VOLATILE and STABLE functions in
+               statements that are evaluated on and run from the master. For example, the following
+               statements run on the master (statements without a FROM clause):</p>
+
+            <pre class="pre codeblock">SELECT setval('myseq', 201);
+SELECT foo();</pre>
+
+            <p class="p">If a statement has a FROM clause containing a distributed table and the function in
+               the FROM clause returns a set of rows, the statement can run on the segments:</p>
+
+            <pre class="pre codeblock">SELECT * from foo();</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="userdefinedfunctions">
+         <h3 class="title topictitle3">User Defined Functions</h3>
+
+         <div class="body">
+            <p class="p">HAWQ supports user defined functions. Every kind of function can take base types,
+               composite types, or combinations of these as arguments (parameters). In addition,
+               every kind of function can return a base type or a composite type. Functions can also
+               be defined to return sets of base or composite values. Please see <a class="xref" href="CREATE-FUNCTION.html">CREATE FUNCTION</a> for more information.</p>
+
+            <p class="p">Use the CREATE FUNCTION command to register user defined functions. By default, user
+               defined functions are declared as VOLATILE, so if your user-defined function is
+               IMMUTABLE or STABLE, you must specify the correct volatility level when you register
+               your function.</p>
+
+         </div>
+
+         <div class="topic nested3" id="functionvolatility">
+            <h4 class="title topictitle4">Function Volatility</h4>
+
+            <div class="body">
+               <p class="p">Every function has a <strong class="ph b">volatility</strong> classification, with the possibilities
+                  being VOLATILE, STABLE, or IMMUTABLE. VOLATILE is the default if the <a class="xref" href="CREATE-FUNCTION.html">CREATE FUNCTION</a> command does not specify a category. The
+                  volatility category is a promise to the optimizer about the behavior of the
+                  function:</p>
+
+               <ul class="ul" id="functionvolatility__ul_vvh_dlt_4p">
+                  <li class="li">A VOLATILE function can do anything, including modifying the database. It can
+                     return different results on successive calls with the same arguments. The
+                     optimizer makes no assumptions about the behavior of such functions. A query
+                     using a volatile function will re-evaluate the function at every row where its
+                     value is needed.</li>
+
+                  <li class="li">A STABLE function cannot modify the database and is guaranteed to return the
+                     same results given the same arguments for all rows within a single statement.
+                     This category allows the optimizer to optimize multiple calls of the function
+                     to a single call. In particular, it is safe to use an expression containing
+                     such a function in an index scan condition. (Since an index scan will evaluate
+                     the comparison value only once, not once at each row, it is not valid to use
+                     a VOLATILE function in an index scan condition.)</li>
+
+                  <li class="li">An IMMUTABLE function cannot modify the database and is guaranteed to return
+                     the same results given the same arguments forever. This category allows the
+                     optimizer to pre-evaluate the function when a query calls it with constant
+                     arguments. For example, a query like SELECT ... WHERE x = 2 + 2 can be
+                     simplified on sight to SELECT ... WHERE x = 4, because the function underlying
+                     the integer addition operator is marked IMMUTABLE.</li>
+
+               </ul>
+
+               <p class="p">For best optimization results, you should label your functions with the strictest
+                  volatility category that is valid for them.</p>
+
+               <p class="p">Any function with side-effects must be labeled VOLATILE, so that calls to it
+                  cannot be optimized away. Even a function with no side-effects needs to be
+                  labeled VOLATILE if its value can change within a single query; some examples
+                  are random(), currval(), timeofday().</p>
+
+               <p class="p">Another important example is that the <samp class="ph codeph">current_timestamp</samp> family of
+                  functions qualify as STABLE, since their values do not change within a
+                  transaction.</p>
+
+               <p class="p">There is relatively little difference between STABLE and IMMUTABLE categories when
+                  considering simple interactive queries that are planned and immediately executed:
+                  it doesn't matter a lot whether a function is executed once during planning or
+                  once during query execution startup. But there is a big difference if the plan is
+                  saved and reused later. Labeling a function IMMUTABLE when it really isn't might
+                  allow it to be prematurely folded to a constant during planning, resulting in a
+                  stale value being re-used during subsequent uses of the plan. This is a hazard
+                  when using prepared statements or when using function languages that cache plans
+                  (such as PL/pgSQL).</p>
+
+               <p class="p">For functions written in SQL or in any of the standard procedural languages, there
+                  is a second important property determined by the volatility category, namely the
+                  visibility of any data changes that have been made by the SQL command that is
+                  calling the function. A VOLATILE function will see such changes,
+                  a STABLE or IMMUTABLE function will not. STABLE and IMMUTABLE functions use a
+                  snapshot established as of the start of the calling query,
+                  whereas VOLATILE functions obtain a fresh snapshot at the start of each query they
+                  execute.</p>
+
+               <p class="p">Because of this snapshotting behavior, a function containing only SELECT commands
+                  can safely be marked STABLE, even if it selects from tables that might be
+                  undergoing modifications by concurrent queries. PostgreSQL will execute all
+                  commands of a STABLE function using the snapshot established for the calling
+                  query, and so it will see a fixed view of the database throughout that query.</p>
+
+               <p class="p">The same snapshotting behavior is used for SELECT commands
+                  within IMMUTABLE functions. It is generally unwise to select from database tables
+                  within an IMMUTABLEfunction at all, since the immutability will be broken if the
+                  table contents ever change. However, PostgreSQL does not enforce that you do not
+                  do that.</p>
+
+               <p class="p">A common error is to label a function IMMUTABLE when its results depend on a
+                  configuration parameter. For example, a function that manipulates timestamps might
+                  well have results that depend on the timezone setting. For safety, such functions
+                  should be labeled STABLE instead.</p>
+
+               <p class="p">When you create user defined functions, avoid using fatal errors or destructive
+                  calls. HAWQ may respond to such errors with a sudden shutdown or restart.</p>
+
+               <p class="p">In HAWQ, the shared library files for user-created functions must reside in the
+                  same library path location on every host in the HAWQ array (masters, segments, and
+                  mirrors).</p>
+
+               <div class="note important"><span class="importanttitle">Important:</span> HAWQ does not support the following:<ul class="ul" id="functionvolatility__ul_hwh_dlt_4p">
+                     <li class="li">Enhanced table functions</li>
+
+                     <li class="li">PL/Java Type Maps </li>
+
+                  </ul>
+</div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="userdefinedtypes">
+         <h3 class="title topictitle3">User Defined Types</h3>
+
+         <div class="body">
+            <p class="p">HAWQ can be extended to support new data types. This section describes how to define
+               new base types, which are data types defined below the level of the SQL language.
+               Creating a new base type requires implementing functions to operate on the type in a
+               low-level language, usually C.</p>
+
+            <p class="p"> A user-defined type must always have input and output functions.  These functions
+               determine how the type appears in strings (for input by the user and output to the
+               user) and how the type is organized in memory. The input function takes a
+               null-terminated character string as its argument and returns the internal (in memory)
+               representation of the type. The output function takes the internal representation of
+               the type as argument and returns a null-terminated character string. If we want to do
+               anything more with the type than merely store it, we must provide additional
+               functions to implement whatever operations we'd like to have for the type.</p>
+
+            <p class="p">You should be careful to make the input and output functions inverses of each other.
+               If you do not, you will have severe problems when you need to dump your data into a
+               file and then read it back in. This is a particularly common problem when
+               floating-point numbers are involved.</p>
+
+            <p class="p">Optionally, a user-defined type can provide binary input and output routines. Binary
+               I/O is normally faster but less portable than textual I/O. As with textual I/O, it is
+               up to you to define exactly what the external binary representation is. Most of the
+               built-in data types try to provide a machine-independent binary representation. </p>
+
+            <p class="p">Once we have written the I/O functions and compiled them into a shared library, we
+               can define the complex type in SQL. First we declare it as a shell type:</p>
+
+            <pre class="pre codeblock">CREATE TYPE complex;</pre>
+
+            <p class="p">This serves as a placeholder that allows us to reference the type while defining its
+               I/O functions. Now we can define the I/O functions:</p>
+
+            <pre class="pre codeblock">CREATE FUNCTION complex_in(cstring)
+    RETURNS complex
+    AS 'filename'
+    LANGUAGE C IMMUTABLE STRICT;
+
+CREATE FUNCTION complex_out(complex)
+    RETURNS cstring
+    AS 'filename'
+    LANGUAGE C IMMUTABLE STRICT;
+
+CREATE FUNCTION complex_recv(internal)
+   RETURNS complex
+   AS 'filename'
+   LANGUAGE C IMMUTABLE STRICT;
+
+CREATE FUNCTION complex_send(complex)
+   RETURNS bytea
+   AS 'filename'
+   LANGUAGE C IMMUTABLE STRICT;</pre>
+
+            <p class="p">Finally, we can provide the full definition of the data type:</p>
+
+            <pre class="pre codeblock">CREATE TYPE complex (
+   internallength = 16, 
+   input = complex_in,
+   output = complex_out,
+   receive = complex_recv,
+   send = complex_send,
+   alignment = double
+);</pre>
+
+            <p class="p">When you define a new base type, HAWQ automatically provides support for arrays of
+               that type. For historical reasons, the array type has the same name as the base type
+               with the underscore character (_) prepended.</p>
+
+            <p class="p">Once the data type exists, we can declare additional functions to provide useful
+               operations on the data type. Operators can then be defined atop the functions, and if
+               needed, operator classes can be created to support indexing of the data type. </p>
+
+            <p class="p">For further details, see the description of the <a class="xref" href="CREATE-TYPE.html">CREATE TYPE</a>
+               command. </p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="userdefinedoperators">
+         <h3 class="title topictitle3">User Defined Operators</h3>
+
+         <div class="body">
+            <p class="p">Every operator is "syntactic sugar" for a call to an underlying function that does
+               the real work; so you must first create the underlying function before you can create
+               the operator. However, an operator is not merely syntactic sugar, because it carries
+               additional information that helps the query planner optimize queries that use the
+               operator. The next section will be devoted to explaining that additional
+               information.</p>
+
+            <p class="p">HAWQ supports left unary, right unary, and binary operators. Operators can be
+               overloaded; that is, the same operator name can be used for different operators that
+               have different numbers and types of operands. When a query is executed, the system
+               determines the operator to call from the number and types of the provided
+               operands.</p>
+
+            <p class="p">Here is an example of creating an operator for adding two complex numbers. We assume
+               we've already created the definition of type complex. First we need a function that
+               does the work, then we can define the operator:</p>
+
+            <pre class="pre codeblock">CREATE FUNCTION complex_add(complex, complex)
+    RETURNS complex
+    AS 'filename', 'complex_add'
+    LANGUAGE C IMMUTABLE STRICT;
+
+CREATE OPERATOR + (
+    leftarg = complex,
+    rightarg = complex,
+    procedure = complex_add,
+    commutator = +
+);</pre>
+
+            <p class="p">Now we could execute a query like this:</p>
+
+            <pre class="pre codeblock">SELECT (a + b) AS c FROM test_complex;
+
+        c
+-----------------
+ (5.2,6.05)
+ (133.42,144.95)</pre>
+
+            <p class="p">We've shown how to create a binary operator here. To create unary operators, just
+               omit one of leftarg (for left unary) or rightarg (for right unary).
+               The procedure clause and the argument clauses are the only required items in CREATE
+               OPERATOR. The commutator clause shown in the example is an optional hint to the query
+               optimizer. Further details aboutcommutator and other optimizer hints appear in the
+               next section.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="built-infunctionsandoperators">
+         <h3 class="title topictitle3">Built-in Functions and Operators</h3>
+
+         <div class="body">
+            <p class="p">The following table lists the categories of built-in functions and operators. All
+               functions and operators are supported in HAWQ (and PostgreSQL). STABLE and VOLATILE
+               functions are subject to the restrictions noted in <a class="xref" href="#userdefinedfunctions">User Defined Functions</a>. For more information about the built-in functions
+               and operators listed in the table, see the PostgreSQL documentation at <a class="xref" href="http://www.postgresql.org/docs/9.1/static/functions.html">http://www.postgresql.org/docs/9.1/static/functions.html</a>.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="built-infunctionsandoperators__builtinfunctionsandoperators" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. Build-In Functions and Operators</span></caption>
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d197226e612">Operator/Function</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d197226e615">Volatile</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d197226e618">Stable</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Logical operators</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Comparison operators</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Mathematical Functions and
+                           Operators</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">random<p class="p">setseed</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">String Functions and Operators</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">All built-in conversion functions</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">convert<p class="p">pg_client_encoding</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Binary String Functions and
+                           Operators</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Bit String Functions and Operators</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Pattern Matching</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Data Type Formatting Functions</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">to_char<p class="p">to_timestamp</p>
+</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Date/Time Functions and Operators</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">timeofday</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">age<p class="p">current_date</p>
+<p class="p">current_time</p>
+<p class="p">current_timestamp</p>
+<p class="p">localtime</p>
+<p class="p">localtimestamp
+                              </p>
+<p class="p">now  </p>
+</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Geometric Functions ad Operators</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Network Address Functions and
+                           Operators</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Sequence Manipulation Functions</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">currval<p class="p">lastval </p>
+<p class="p">nextval
+                              </p>
+<p class="p">setval  </p>
+</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Conditional Expressions</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Array Functions and Operators</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">All array functions </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Aggregate Functions </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" id="built-infunctionsandoperators__UsingHAWQtoQueryData-SubqueryExpressions" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Subquery
+                           Expressions</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Row and Array Comparisons</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">Set Returning Functions </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">generate_series </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">System Information Functions </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">All session information functions
+                           <p class="p">All access privilege inquiry functions</p>
+
+                           <p class="p">All schema visibility inquiry functions</p>
+
+                           <p class="p">All comment information functions </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">System Administration Functions</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">set_config
+                           <p class="p">pg_cancel_backend</p>
+
+                           <p class="p">pg_reload_conf</p>
+
+                           <p class="p">pg_rotate_logfile</p>
+
+                           <p class="p">pg_start_backup</p>
+
+                           <p class="p">pg_stop_backup</p>
+
+                           <p class="p">pg_size_pretty</p>
+
+                           <p class="p">pg_ls_dir</p>
+
+                           <p class="p">pg_read_file</p>
+
+                           <p class="p">pg_stat_file </p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">current_setting
+                           <p class="p">All database object size functions</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">XML Functions</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d197226e612 d197226e615 d197226e618 ">xmlagg(xml)
+                           <p class="p">xmlexists(text, xml)</p>
+
+                           <p class="p">xml_is_well_formed(text)</p>
+
+                           <p class="p">xml_is_well_formed_document(text)</p>
+
+                           <p class="p">xml_is_well_formed_content(text)</p>
+
+                           <p class="p">xpath(text, xml)</p>
+
+                           <p class="p">xpath(text, xml, text[])</p>
+
+                           <p class="p">xpath_exists(text, xml)</p>
+
+                           <p class="p">xpath_exists(text, xml, text[])</p>
+
+                           <p class="p">xml(text)</p>
+
+                           <p class="p">text(xml)</p>
+
+                           <p class="p">xmlcomment(xml)</p>
+
+                           <p class="p">xmlconcat2(xml, xml) </p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+         <div class="topic nested3" id="advancedanalyticfunctions">
+            <h4 class="title topictitle4">Advanced Analytic Functions</h4>
+
+            <div class="body">
+               <p class="p">HAWQ provides specialized and native built-in advanced analytic
+                  <strong class="ph b">immutable </strong>functions.  </p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="advancedanalyticfunctions__table_fwt_dlt_4p" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 2. Advanced Analytic Functions</span></caption>
+                     <thead class="thead" align="left">
+                        <tr class="row">
+                           <th class="entry confluenceTh" valign="top" id="d197226e1012">Function</th>
+
+                           <th class="entry confluenceTh" valign="top" id="d197226e1015">Return Type</th>
+
+                           <th class="entry confluenceTh" valign="top" id="d197226e1018">Full Syntax</th>
+
+                           <th class="entry confluenceTh" valign="top" id="d197226e1021">Description</th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody class="tbody">
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">matrix_add(array[],array[])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">smallint[]int[], bigint[], float[]
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">matrix_add(array[[1,1],[2,2]], array[[3,4],[5,6]])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">Adds two two-dimensional matrices. The matrices must be
+                                 conformable.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">matrix_multiply(array[], array[])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">smallint[] int[], bigint[], float[]
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">matrix_multiply(array[[2,0,0],[0,2,0],[0,0,2]],
+                                 array[[3,0,3],[0,3,0],[0,0,3]])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">Multiplies two three- dimensional arrays. The matrices must be
+                                 conformable.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">matrix_multiply(array[], <strong class="ph b">expr</strong> )
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">int[], float[]
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">matrix_multiply(array[[1,1,1], [2,2,2], [3,3,3]], 2)
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">Multiplies a two-dimensional array and a scalar numeric value.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">matrix_transpose(array[])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">Same as input array type.
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">matrix_transpose(array [[1,1,1],[2,2,2]])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">Transposes a two-dimensional array.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">pinv(array[]) 
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">smallint[]int[], bigint[], float[]
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">pinv(array[[2.5,0,0],[0,1,0],[0,0,.5]])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">Calculates the Moore-Penrose pseudoinverse of a matrix.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">unnest (array[])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">set of anyelement
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">unnest(array['one', 'row', 'per', 'item'])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1012 d197226e1015 d197226e1018 d197226e1021 ">Transforms a one dimensional array into rows. Returns a set of any
+                                 element. 
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="advancedanalyticfunctions__table_bzt_dlt_4p" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 3. Advanced Aggregate Functions</span></caption>
+                     <thead class="thead" align="left">
+                        <tr class="row">
+                           <th class="entry confluenceTh" valign="top" id="d197226e1136">Function</th>
+
+                           <th class="entry confluenceTh" valign="top" id="d197226e1139">Return Type</th>
+
+                           <th class="entry confluenceTh" valign="top" id="d197226e1142">Full Syntax</th>
+
+                           <th class="entry confluenceTh" valign="top" id="d197226e1145">Description</th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody class="tbody">
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">sum(array[])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">smallint[]int[], bigint[], float[]
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">sum(array[[1,2],[3,4]])<p class="p">Example:</p>
+<pre class="pre codeblock">CREATE TABLE mymatrix (myvalue int[]);
+INSERT INTO mymatrix VALUES ( array[[1,2],[3,4]]);
+INSERT INTO mymatrix VALUES ( array[[0,1],[1,0]]);
+SELECT sum(myvalue) FROM mymatrix;
+sum
+---------------
+{{1,3},{4,4}} </pre>
+</td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">Performs matrix summation. Can take as input a two-dimensional
+                                 array that is treated as a matrix.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">pivot_sum(label[], label, <strong class="ph b">expr</strong> )
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">int[], bigint[], float[]
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">pivot_sum(array['A1','A2'], attr, value)
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">A pivot aggregation using sum to resolve duplicate entries.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">mregr_coef( <strong class="ph b">expr</strong>, array[])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">float[]
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">mregr_coef(y, array[1, x1, x2])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">The four mregr_* aggregates perform linear regressions using the
+                                 ordinary-least-squares method. mregr_coef calculates the regression
+                                 coefficients. The size of the return array for mregr_coef is the
+                                 same as the size of the input array of independent variables, since
+                                 the return array contains the coefficient for each independent
+                                 variable.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">mregr_r2( <strong class="ph b">expr</strong>, array[])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">float </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">mregr_r2(y, array[1, x1, x2])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">The four mregr_* aggregates perform linear regressions using the
+                                 ordinary-least-squares method. mregr_r2 calculates the r-squared
+                                 error value for the regression.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">mregr_pvalues( <strong class="ph b">expr</strong>, array[])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">float[] </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">mregr_pvalues(y, array[1, x1, x2])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">The four mregr_* aggregates perform linear regressions using the
+                                 ordinary-least-squares method. mregr_pvalues calculates the
+                                 p-values for the regression.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">mregr_tstats( <strong class="ph b">expr</strong>, array[])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">float[]
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">mregr_tstats(y, array[1, x1, x2])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">The four mregr_* aggregates perform linear regressions using the
+                                 ordinary-least-squares method. mregr_tstats calculates the
+                                 t-statistics for the regression.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">nb_classify(text[], bigint, bigint[], bigint[])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">text </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">nb_classify(classes, attr_count, class_count, class_total)
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">Classify rows using a Naive Bayes Classifier. This aggregate uses a
+                                 baseline of training data to predict the classification of new rows
+                                 and returns the class with the largest likelihood of appearing in
+                                 the new rows.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">nb_probabilities(text[], bigint, bigint[], bigint[]) 
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">text </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">nb_probabilities(classes, attr_count, class_count, class_total)
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d197226e1136 d197226e1139 d197226e1142 d197226e1145 ">Determine probability for each class using a Naive Bayes
+                                 Classifier. This aggregate uses a baseline of training data to
+                                 predict the classification of new rows and returns the
+                                 probabilities that each class will appear in new rows.
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/HAWQAdministration.html" title="HAWQ Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Administration</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

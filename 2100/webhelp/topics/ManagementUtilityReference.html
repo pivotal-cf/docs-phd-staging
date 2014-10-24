@@ -1,0 +1,226 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="This section provides references for the command-line management utilities provided with HAWQ. HAWQ provides the standard client and server programs, and additional management utilities to administer ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Management Utility Reference"/><meta name="DC.Relation" scheme="URI" content="../topics/HAWQAdministration.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gpactivatestandby.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gpcheckperf.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gpconfig.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gpexpand.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gpextract.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gpfdist.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gpfilespace.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gpinitstandby.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gpinitsystem.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gpload.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gplogfilter.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gprecoverseg.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gpscp.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gpstart.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gpssh.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gpssh-exkeys.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gpstate.html"/><meta name="DC.Relation" scheme="URI" content="../topics/gpstop.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="managementutilityreference"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Management Utility Reference</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="managementutilityreference"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PivotalHAWQ.html" title="Pivotal HAWQ">Pivotal HAWQ</a> / <a class="navheader_parent_path" href="../topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/HAWQAdministration.html" title="HAWQ Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Administration</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Management Utility Reference</h1>
+
+   <div class="body">
+      <p class="p">This section provides references for the command-line management utilities provided with
+         HAWQ. HAWQ provides the standard client and server programs, and additional management
+         utilities to administer a distributed HAWQ system.</p>
+
+      <p class="p">The HAWQ management utilities are located in <samp class="ph codeph">$GPHOME/bin</samp>.</p>
+
+      <div class="section"><h2 class="title sectiontitle">Backend Server Programs</h2>
+         
+         <p class="p">The following server programs handle the parallelism and distribution of a HAWQ system.
+            Users and administrators do not access these programs directly, but do so through the
+            HAWQ management tools and utilities.</p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+               <thead class="thead" align="left">
+                  <tr class="row">
+                     <th class="entry confluenceTh" valign="top" id="d109779e47">Program Name</th>
+
+                     <th class="entry confluenceTh" valign="top" id="d109779e50">Description</th>
+
+                     <th class="entry confluenceTh" valign="top" id="d109779e53">Alternative</th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody class="tbody">
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">initdb</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">This program is called by gpinitsystem when initializing a HAWQ array. It
+                           is used internally to create the individual segment instances and the
+                           master instance.
+                     </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">gpinitsystem</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">ipclean</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">Cleans up shared memory and semaphores from aborted backend servers.
+                     </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">N/A</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">gypsyncmaster</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">This is the HAWQ program that starts the gpsyncagent process on the
+                           standby master host. Administrators do not call this program directly,
+                           but do so through the management scripts that initialize and/or activate
+                           a standby master for a HAWQ system. This process is responsible for
+                           keeping the standby master up to date with the primary master via a
+                           transactionlog replication process. 
+                     </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">gpinitstandby<p class="p">gpactivatestandby</p>
+</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">pg_controldata</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">Displays control information of the database cluster.
+                     </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">gpstate</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">pg_ctl</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">This program is called by gpstart and gpstop when starting or stopping a
+                           HAWQ array. It is used internally to stop and start the individual
+                           segment instances and the master instance in parallel and with the
+                           correct options.
+                     </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">gpstartgpstop</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">pg_resetxlog</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 "> Resets the transaction log.</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">N/A </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">postgres </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">The postgres executable is the actual PostgreSQL server process that
+                           processes queries.
+                     </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">The main postgres process (postmaster)
+                        creates other postgres subprocesses and postgres sessions, as needed to
+                        handle client connections.</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">postmaster</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">postmaster starts the postgres database server listener process that
+                           accepts client connections. In HAWQ, a postgres database listener process
+                           runs on the HAWQ Master Instance and on each Segment Instance.
+                     </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d109779e47 d109779e50 d109779e53 ">In HAWQ, you use gpstart and gpstop to start all postmasters (postgres
+                           processes) in the system at once, in the correct order and with the
+                           correct options.
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+      </div>
+
+   </div>
+
+<div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink"><strong><a href="../topics/gpactivatestandby.html">gpactivatestandby</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gpcheckperf.html">gpcheckperf</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gpconfig.html">gpconfig</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gpexpand.html">gpexpand</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gpextract.html">gpextract</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gpfdist.html">gpfdist</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gpfilespace.html">gpfilespace</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gpinitstandby.html">gpinitstandby</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gpinitsystem.html">gpinitsystem</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gpload.html">gpload</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gplogfilter.html">gplogfilter</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gprecoverseg.html">gprecoverseg</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gpscp.html">gpscp</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gpstart.html">gpstart</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gpssh.html">gpssh</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gpssh-exkeys.html">gpssh-exkeys</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gpstate.html">gpstate</a></strong><br/>
+</li>
+<li class="link ulchildlink"><strong><a href="../topics/gpstop.html">gpstop</a></strong><br/>
+</li>
+</ul>
+</div>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/HAWQAdministration.html" title="HAWQ Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Administration</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Prepare a statement for execution. Synopsis PREPARE name [ ( datatype [, ...] ) ] AS statement Description PREPARE creates a prepared statement, possibly with unbound parameters. A prepared statement ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="PREPARE"/><meta name="DC.Relation" scheme="URI" content="../topics/SQLCommandReference.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="topic1"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>PREPARE</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="topic1"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a> / <a class="navheader_parent_path" href="../topics/SQLCommandReference.html" title="SQL Command Reference">SQL Command Reference</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/SQLCommandReference.html" title="SQL Command Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SQL Command Reference</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">PREPARE</h1>
+
+   <div class="body">
+      <p class="p" id="topic1__sql_command_desc">Prepare a statement for execution.</p>
+
+      <div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2>
+         
+         <pre class="pre codeblock" id="topic1__sql_command_synopsis">PREPARE <var class="keyword varname">name</var> [ (<var class="keyword varname">datatype</var> [, ...] ) ] AS <var class="keyword varname">statement</var>
+         </pre>
+
+      </div>
+
+      <div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2>
+         
+         <p class="p">
+            <samp class="ph codeph">PREPARE</samp> creates a prepared statement, possibly with unbound parameters. A
+        prepared statement is a server-side object that can be used to optimize performance. A
+        prepared statement may be subsequently executed with a binding for its parameters. HAWQ may
+        choose to replan the query for different executions of the same prepared statement. </p>
+
+         <p class="p">Prepared statements can take parameters: values that are substituted into the statement
+        when it is executed. When creating the prepared statement, refer to parameters by position,
+        using <samp class="ph codeph">$1</samp>, <samp class="ph codeph">$2</samp>, etc. A corresponding list of parameter data
+        types can optionally be specified. When a parameter's data type is not specified or is
+        declared as unknown, the type is inferred from the context in which the parameter is used
+        (if possible). When executing the statement, specify the actual values for these parameters
+        in the <samp class="ph codeph">EXECUTE</samp> statement.</p>
+
+         <p class="p">Prepared statements only last for the duration of the current database session. When the
+        session ends, the prepared statement is forgotten, so it must be recreated before being used
+        again. This also means that a single prepared statement cannot be used by multiple
+        simultaneous database clients; however, each client can create their own prepared statement
+        to use. The prepared statement can be manually cleaned up using the <samp class="ph codeph">
+               <a class="xref" href="DEALLOCATE.html">DEALLOCATE</a>
+            </samp> command. </p>
+
+         <p class="p">Prepared statements have the largest performance advantage when a single session is being
+        used to execute a large number of similar statements. The performance difference will be
+        particularly significant if the statements are complex to plan or rewrite, for example, if
+        the query involves a join of many tables or requires the application of several rules. If
+        the statement is relatively simple to plan and rewrite but relatively expensive to execute,
+        the performance advantage of prepared statements will be less noticeable.</p>
+
+      </div>
+
+      <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Parameters</h2>
+         
+         <dl class="dl parml">
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">name</var>
+               </dt>
+
+               <dd class="dd pd">An arbitrary name given to this particular prepared statement. It must be unique
+            within a single session and is subsequently used to execute or deallocate a previously
+            prepared statement.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">datatype</var>
+               </dt>
+
+               <dd class="dd pd">The data type of a parameter to the prepared statement. If the data type of a
+            particular parameter is unspecified or is specified as unknown, it will be inferred from
+            the context in which the parameter is used. To refer to the parameters in the prepared
+            statement itself, use <samp class="ph codeph">$1</samp>, <samp class="ph codeph">$2</samp>, etc. </dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">statement</var>
+               </dt>
+
+               <dd class="dd pd">Any <samp class="ph codeph">SELECT</samp>, <samp class="ph codeph">INSERT</samp>, <samp class="ph codeph">UPDATE</samp>,
+              <samp class="ph codeph">DELETE</samp>, or <samp class="ph codeph">VALUES</samp> statement.</dd>
+
+            
+         </dl>
+
+      </div>
+
+      <div class="section" id="topic1__section5"><h2 class="title sectiontitle">Notes</h2>
+         
+         <p class="p">In some situations, the query plan produced for a prepared statement will be inferior to
+        the query plan that would have been chosen if the statement had been submitted and executed
+        normally. This is because when the statement is planned and the planner attempts to
+        determine the optimal query plan, the actual values of any parameters specified in the
+        statement are unavailable. HAWQ collects statistics on the distribution of data in the
+        table, and can use constant values in a statement to make guesses about the likely result of
+        executing the statement. Since this data is unavailable when planning prepared statements
+        with parameters, the chosen plan may be suboptimal. To examine the query plan HAWQ has
+        chosen for a prepared statement, use <samp class="ph codeph">EXPLAIN</samp>. </p>
+
+         <p class="p">For more information on query planning and the statistics collected by HAWQ for that
+        purpose, see the <samp class="ph codeph">ANALYZE</samp> documentation. </p>
+
+         <p class="p">You can see all available prepared statements of a session by querying the
+          <samp class="ph codeph">pg_prepared_statements</samp> system view.</p>
+
+      </div>
+
+      <div class="section" id="topic1__section6"><h2 class="title sectiontitle">Examples</h2>
+         
+         <p class="p">Create a prepared statement for an <samp class="ph codeph">INSERT</samp> statement, and then execute
+        it:</p>
+
+         <pre class="pre codeblock">PREPARE fooplan (int, text, bool, numeric) AS INSERT INTO 
+foo VALUES($1, $2, $3, $4);
+EXECUTE fooplan(1, 'Hunter Valley', 't', 200.00);</pre>
+
+         <p class="p">Create a prepared statement for a <samp class="ph codeph">SELECT</samp> statement, and then execute it.
+        Note that the data type of the second parameter is not specified, so it is inferred from the
+        context in which <samp class="ph codeph">$2</samp> is used:</p>
+
+         <pre class="pre codeblock">PREPARE usrrptplan (int) AS SELECT * FROM users u, logs l 
+WHERE u.usrid=$1 AND u.usrid=l.usrid AND l.date = $2;
+EXECUTE usrrptplan(1, current_date);</pre>
+
+      </div>
+
+      <div class="section" id="topic1__section7"><h2 class="title sectiontitle">Compatibility</h2>
+         
+         <p class="p">The SQL standard includes a <samp class="ph codeph">PREPARE</samp> statement, but it is only for use in
+        embedded SQL. This version of the <samp class="ph codeph">PREPARE</samp> statement also uses a somewhat
+        different syntax.</p>
+
+      </div>
+
+      <div class="section" id="topic1__section8"><h2 class="title sectiontitle">See Also</h2>
+         
+         <p class="p">
+            <samp class="ph codeph">
+               <a class="xref" href="EXECUTE.html">EXECUTE</a>
+            </samp>,
+            <samp class="ph codeph">
+               <a class="xref" href="DEALLOCATE.html">DEALLOCATE</a>
+            </samp>
+         </p>
+
+      </div>
+
+   </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/SQLCommandReference.html" title="SQL Command Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SQL Command Reference</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

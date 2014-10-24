@@ -1,0 +1,614 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Defines a new external table. Synopsis CREATE [READABLE] EXTERNAL TABLE table_name       ( column_name data_type [, ...] | LIKE other_table )       LOCATION ('file:// seghost [: port ]/ path / file ' ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="CREATE EXTERNAL TABLE"/><meta name="DC.Relation" scheme="URI" content="../topics/SQLCommandReference.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="topic1"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>CREATE EXTERNAL TABLE</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="topic1"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a> / <a class="navheader_parent_path" href="../topics/SQLCommandReference.html" title="SQL Command Reference">SQL Command Reference</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/SQLCommandReference.html" title="SQL Command Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SQL Command Reference</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">CREATE EXTERNAL TABLE</h1>
+
+   <div class="body">
+      <p class="p" id="topic1__sql_command_desc">Defines a new external table.</p>
+
+      <div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2>
+         
+         <pre class="pre codeblock" id="topic1__sql_command_synopsis">CREATE [READABLE] EXTERNAL TABLE <var class="keyword varname">table_name</var>     
+    ( <var class="keyword varname">column_name</var>
+            <var class="keyword varname">data_type</var> [, ...] | LIKE <var class="keyword varname">other_table </var>)
+      LOCATION ('file://<var class="keyword varname">seghost</var>[:<var class="keyword varname">port</var>]/<var class="keyword varname">path</var>/<var class="keyword varname">file</var>' [, ...])
+        | ('gpfdist://<var class="keyword varname">filehost</var>[:<var class="keyword varname">port</var>]/<var class="keyword varname">file_pattern[#transform]</var>'
+        | ('gpfdists://<var class="keyword varname">filehost</var>[:<var class="keyword varname">port</var>]/<var class="keyword varname">file_pattern[#transform]</var>'
+            [, ...])
+        | ('gphdfs://<var class="keyword varname">hdfs_host</var>[:port]/<var class="keyword varname">path</var>/<var class="keyword varname">file</var>')
+      FORMAT 'TEXT' 
+            [( [HEADER]
+               [DELIMITER [AS] '<var class="keyword varname">delimiter</var>' | 'OFF']
+               [NULL [AS] '<var class="keyword varname">null string</var>']
+               [ESCAPE [AS] '<var class="keyword varname">escape</var>' | 'OFF']
+               [NEWLINE [ AS ] 'LF' | 'CR' | 'CRLF']
+               [FILL MISSING FIELDS] )]
+           | 'CSV'
+            [( [HEADER]
+               [QUOTE [AS] '<var class="keyword varname">quote</var>'] 
+               [DELIMITER [AS] '<var class="keyword varname">delimiter</var>']
+               [NULL [AS] '<var class="keyword varname">null string</var>']
+               [FORCE NOT NULL <var class="keyword varname">column</var> [, ...]]
+               [ESCAPE [AS] '<var class="keyword varname">escape</var>']
+               [NEWLINE [ AS ] 'LF' | 'CR' | 'CRLF']
+               [FILL MISSING FIELDS] )]
+           | 'CUSTOM' (Formatter=<var class="keyword varname">&lt;formatter specifications&gt;</var>)
+     [ ENCODING '<var class="keyword varname">encoding</var>' ]
+     [ [LOG ERRORS [INTO <var class="keyword varname">error_table</var>]] SEGMENT REJECT LIMIT <var class="keyword varname">count</var>
+       [ROWS | PERCENT] ]
+
+CREATE [READABLE] EXTERNAL WEB TABLE <var class="keyword varname">table_name</var>     
+   ( <var class="keyword varname">column_name</var>
+            <var class="keyword varname">data_type</var> [, ...] | LIKE <var class="keyword varname">other_table </var>)
+      LOCATION ('http://<var class="keyword varname">webhost</var>[:<var class="keyword varname">port</var>]/<var class="keyword varname">path</var>/<var class="keyword varname">file</var>' [, ...])
+    | EXECUTE '<var class="keyword varname">command</var>' [ON ALL 
+                          | MASTER
+                          | <var class="keyword varname">number_of_segments</var>
+                          | HOST ['<var class="keyword varname">segment_hostname</var>'] 
+                          | SEGMENT <var class="keyword varname">segment_id</var> ]
+      FORMAT 'TEXT' 
+            [( [HEADER]
+               [DELIMITER [AS] '<var class="keyword varname">delimiter</var>' | 'OFF']
+               [NULL [AS] '<var class="keyword varname">null string</var>']
+               [ESCAPE [AS] '<var class="keyword varname">escape</var>' | 'OFF']
+               [NEWLINE [ AS ] 'LF' | 'CR' | 'CRLF']
+               [FILL MISSING FIELDS] )]
+           | 'CSV'
+            [( [HEADER]
+               [QUOTE [AS] '<var class="keyword varname">quote</var>'] 
+               [DELIMITER [AS] '<var class="keyword varname">delimiter</var>']
+               [NULL [AS] '<var class="keyword varname">null string</var>']
+               [FORCE NOT NULL <var class="keyword varname">column</var> [, ...]]
+               [ESCAPE [AS] '<var class="keyword varname">escape</var>']
+               [NEWLINE [ AS ] 'LF' | 'CR' | 'CRLF']
+               [FILL MISSING FIELDS] )]
+           | 'CUSTOM' (Formatter=<var class="keyword varname">&lt;formatter specifications&gt;</var>)
+     [ ENCODING '<var class="keyword varname">encoding</var>' ]
+     [ [LOG ERRORS [INTO <var class="keyword varname">error_table</var>]] SEGMENT REJECT LIMIT <var class="keyword varname">count</var>
+       [ROWS | PERCENT] ]
+
+CREATE WRITABLE EXTERNAL TABLE <var class="keyword varname">table_name</var>
+    ( <var class="keyword varname">column_name</var>
+            <var class="keyword varname">data_type</var> [, ...] | LIKE <var class="keyword varname">other_table </var>)
+     LOCATION('gpfdist://<var class="keyword varname">outputhost</var>[:<var class="keyword varname">port</var>]/<var class="keyword varname">filename[#transform]</var>'
+      | ('gpfdists://<var class="keyword varname">outputhost</var>[:<var class="keyword varname">port</var>]/<var class="keyword varname">file_pattern[#transform]</var>'
+          [, ...])
+      | ('gphdfs://<var class="keyword varname">hdfs_host</var>[:port]/<var class="keyword varname">path</var>')
+      FORMAT 'TEXT' 
+               [( [DELIMITER [AS] '<var class="keyword varname">delimiter</var>']
+               [NULL [AS] '<var class="keyword varname">null string</var>']
+               [ESCAPE [AS] '<var class="keyword varname">escape</var>' | 'OFF'] )]
+          | 'CSV'
+               [([QUOTE [AS] '<var class="keyword varname">quote</var>'] 
+               [DELIMITER [AS] '<var class="keyword varname">delimiter</var>']
+               [NULL [AS] '<var class="keyword varname">null string</var>']
+               [FORCE QUOTE <var class="keyword varname">column</var> [, ...]] ]
+               [ESCAPE [AS] '<var class="keyword varname">escape</var>'] )]
+           | 'CUSTOM' (Formatter=<var class="keyword varname">&lt;formatter specifications&gt;</var>)
+    [ ENCODING '<var class="keyword varname">write_encoding</var>' ]
+    [ DISTRIBUTED BY (<var class="keyword varname">column</var>, [ ... ] ) | DISTRIBUTED RANDOMLY ]
+
+CREATE WRITABLE EXTERNAL WEB TABLE <var class="keyword varname">table_name</var>
+    ( <var class="keyword varname">column_name</var>
+            <var class="keyword varname">data_type</var> [, ...] | LIKE <var class="keyword varname">other_table</var> )
+    EXECUTE '<var class="keyword varname">command</var>' [ON ALL]
+    FORMAT 'TEXT' 
+               [( [DELIMITER [AS] '<var class="keyword varname">delimiter</var>']
+               [NULL [AS] '<var class="keyword varname">null string</var>']
+               [ESCAPE [AS] '<var class="keyword varname">escape</var>' | 'OFF'] )]
+          | 'CSV'
+               [([QUOTE [AS] '<var class="keyword varname">quote</var>'] 
+               [DELIMITER [AS] '<var class="keyword varname">delimiter</var>']
+               [NULL [AS] '<var class="keyword varname">null string</var>']
+               [FORCE QUOTE <var class="keyword varname">column</var> [, ...]] ]
+               [ESCAPE [AS] '<var class="keyword varname">escape</var>'] )]
+           | 'CUSTOM' (Formatter=<var class="keyword varname">&lt;formatter specifications&gt;</var>)
+    [ ENCODING '<var class="keyword varname">write_encoding</var>' ]
+    [ DISTRIBUTED BY (<var class="keyword varname">column</var>, [ ... ] ) | DISTRIBUTED RANDOMLY ]</pre>
+
+      </div>
+
+      <div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2>
+         
+         <p class="p">
+            <samp class="ph codeph">CREATE EXTERNAL TABLE</samp> or <samp class="ph codeph">CREATE EXTERNAL WEB TABLE</samp>
+        creates a new readable external table definition in HAWQ. Readable external tables are
+        typically used for fast, parallel data loading. Once an external table is defined, you can
+        query its data directly (and in parallel) using SQL commands. For example, you can select,
+        join, or sort external table data. You can also create views for external tables. DML
+        operations (<samp class="ph codeph">UPDATE</samp>, <samp class="ph codeph">INSERT</samp>, <samp class="ph codeph">DELETE</samp>,
+          or<samp class="ph codeph"> TRUNCATE</samp>) are not allowed on readable external tables.</p>
+
+         <p class="p">
+            <samp class="ph codeph">CREATE WRITABLE EXTERNAL TABLE</samp> or <samp class="ph codeph">CREATE WRITABLE EXTERNAL WEB
+          TABLE</samp> creates a new writable external table definition in HAWQ. Writable external
+        tables are typically used for unloading data from the database into a set of files or named
+        pipes.</p>
+
+         <p class="p">Writable external web tables can also be used to output data to an executable program. Once
+        a writable external table is defined, data can be selected from database tables and inserted
+        into the writable external table. Writable external tables only allow
+          <samp class="ph codeph">INSERT</samp> operations – <samp class="ph codeph">SELECT</samp>, <samp class="ph codeph">UPDATE</samp>,
+          <samp class="ph codeph">DELETE</samp> or <samp class="ph codeph">TRUNCATE</samp> are not allowed.</p>
+
+         <p class="p">The main difference between regular external tables and web external tables is their data
+        sources. Regular readable external tables access static flat files, whereas web external
+        tables access dynamic data sources – either on a web server or by executing OS commands or
+        scripts. </p>
+
+         <p class="p">The <samp class="ph codeph">FORMAT</samp> clause is used to describe how the external table files are
+        formatted. Valid file formats are delimited text (<samp class="ph codeph">TEXT</samp>) for all protocols
+        and comma separated values (<samp class="ph codeph">CSV</samp>) format for <samp class="ph codeph">gpfdist</samp> and
+        file protocols. If the data in the file does not use the default column delimiter, escape
+        character, null string and so on, you must specify the additional formatting options so that
+        the data in the external file is read correctly by HAWQ.</p>
+
+      </div>
+
+      <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Parameters</h2>
+         
+         <dl class="dl parml">
+            
+               <dt class="dt pt dlterm">READABLE | WRITABLE</dt>
+
+               <dd class="dd pd">Specifiies the type of external table, readable being the default. Readable external
+            tables are used for loading data into HAWQ. Writable external tables are used for
+            unloading data. </dd>
+
+            
+            
+               <dt class="dt pt dlterm">WEB</dt>
+
+               <dd class="dd pd">Creates a readable or wrtiable web external table definition in HAWQ. There are two
+            forms of readable web external tables – those that access files via the
+              <samp class="ph codeph">http://</samp> protocol or those that access data by executing OS commands.
+            Writable web external tables output data to an executable program that can accept an
+            input stream of data. Web external tables are not rescannable during query
+            execution.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">table_name</var>
+               </dt>
+
+               <dd class="dd pd">The name of the new external table.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">column_name</var>
+               </dt>
+
+               <dd class="dd pd">The name of a column to create in the external table definition. Unlike regular
+            tables, external tables do not have column constraints or default values, so do not
+            specify those.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">LIKE <var class="keyword varname">other_table</var>
+               </dt>
+
+               <dd class="dd pd">The <samp class="ph codeph">LIKE</samp> clause specifies a table from which the new external table
+            automatically copies all column names, data types and HAWQ distribution policy. If the
+            original table specifies any column constraints or default column values, those will not
+            be copied over to the new external table definition.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">data_type</var>
+               </dt>
+
+               <dd class="dd pd">The data type of the column.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">LOCATION <var class="keyword varname">('protocol://host[:port]/path/file' [, ...])</var>
+               </dt>
+
+               <dd class="dd pd">For readable external tables, specifies the URI of the external data source(s) to be
+            used to populate the external table or web table. Regular readable external tables allow
+            the <samp class="ph codeph">gpfdist</samp> or <samp class="ph codeph">file</samp> protocols. Web external tables
+            allow the <samp class="ph codeph">http</samp> protocol. If <samp class="ph codeph">port</samp> is omitted, port
+              <samp class="ph codeph">8080</samp> is assumed for <samp class="ph codeph">http</samp> and
+              <samp class="ph codeph">gpfdist</samp>protocols, and port 9000 for the
+            <samp class="ph codeph">gphdfs</samp>protocol. If using the <samp class="ph codeph">gpfdist</samp> protocol, the
+              <samp class="ph codeph">path</samp> is relative to the directory from which <samp class="ph codeph">gpfdist</samp>
+            is serving files (the directory specified when you started the <samp class="ph codeph">gpfdist</samp>
+            program). Also, <samp class="ph codeph">gpfdist</samp> can use wildcards (or other C-style pattern
+            matching) to denote multiple files in a directory. For example:</dd>
+
+               <dd class="dd pd">
+                  <pre class="pre codeblock">'gpfdist://filehost:8081/*'
+'gpfdist://masterhost/my_load_file'
+'file://seghost1/dbfast1/external/myfile.txt'
+'http://intranet.mycompany.com/finance/expenses.csv'</pre>
+
+               </dd>
+
+               <dd class="dd pd">For writable external tables, specifies the URI location of the
+              <samp class="ph codeph">gpfdist</samp> process that will collect data output from the HAWQ segments
+            and write it to the named file. The <samp class="ph codeph">path</samp> is relative to the directory
+            from which <samp class="ph codeph">gpfdist</samp> is serving files (the directory specified when you
+            started the <samp class="ph codeph">gpfdist</samp> program). If multiple <samp class="ph codeph">gpfdist</samp>
+            locations are listed, the segments sending data will be evenly divided across the
+            available output locations. For example:</dd>
+
+               <dd class="dd pd">
+                  <pre class="pre codeblock">'gpfdist://outputhost:8081/data1.out',
+'gpfdist://outputhost:8081/data2.out'</pre>
+
+               </dd>
+
+               <dd class="dd pd">With two <samp class="ph codeph">gpfdist</samp> locations listed as in the above example, half of
+            the segments would send their output data to the <samp class="ph codeph">data1.out</samp> file and the
+            other half to the <samp class="ph codeph">data2.out</samp> file.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">EXECUTE <var class="keyword varname">'command'</var> [ON ...]</dt>
+
+               <dd class="dd pd">Allowed for readable web external tables or writable external tables only. For
+            readable web external tables, specifies the OS command to be executed by the segment
+            instances. The <var class="keyword varname">command</var> can be a single OS command or a script. The
+              <samp class="ph codeph">ON</samp> clause is used to specify which segment instances will execute the
+            given command.<ul class="ul" id="topic1__ul_xd1_wq2_m4">
+                     <li class="li" id="topic1__br150831">
+                        <samp class="ph codeph">ON ALL</samp> is the default. The command will be executed by every
+                active (primary) segment instance on all segment hosts in the HAWQ system. If the
+                command executes a script, that script must reside in the same location on all of
+                the segment hosts and be executable by the HAWQ superuser
+                (<samp class="ph codeph">gpadmin</samp>).</li>
+
+                     <li class="li" id="topic1__br153076">
+                        <samp class="ph codeph">ON MASTER</samp> runs the command on the master host only.</li>
+
+                     <li class="li" id="topic1__br150832">
+                        <samp class="ph codeph">ON <var class="keyword varname">number</var>
+                        </samp> means the command will be executed
+                by the specified number of segments. The particular segments are chosen randomly at
+                runtime by the HAWQ system. If the command executes a script, that script must
+                reside in the same location on all of the segment hosts and be executable by the
+                HAWQ superuser (<samp class="ph codeph">gpadmin</samp>). </li>
+
+                     <li class="li" id="topic1__br150833">
+                        <samp class="ph codeph">HOST</samp> means the command will be executed by one segment on each
+                segment host (once per segment host), regardless of the number of active segment
+                instances per host. </li>
+
+                     <li class="li" id="topic1__br153082">
+                        <samp class="ph codeph">HOST <var class="keyword varname">segment_hostname</var>
+                        </samp> means the command will
+                be executed by all active (primary) segment instances on the specified segment host. </li>
+
+                     <li class="li" id="topic1__br153092">
+                <samp class="ph codeph">SEGMENT <var class="keyword varname">segment_id</var>
+                </samp> means the command will be executed only once by the specified segment. You
+                can determine a segment instance's ID by looking at the <var class="keyword varname">content</var>
+                number in the system catalog table. The <var class="keyword varname">content</var> ID of the HAWQ
+                master is always <samp class="ph codeph">-1</samp>.</li>
+
+                  </ul>
+
+                  <p class="p">For writable external tables, the
+                <var class="keyword varname">command</var> specified in the <samp class="ph codeph">EXECUTE</samp> clause must be
+              prepared to have data piped into it. Since all segments that have data to send will
+              write their output to the specified command or program, the only available option for
+              the <samp class="ph codeph">ON</samp> clause is <samp class="ph codeph">ON ALL</samp>.</p>
+
+               </dd>
+
+            
+         </dl>
+
+         <dl class="dl parml">
+            
+               <dt class="dt pt dlterm">FORMAT 'TEXT | CSV' <var class="keyword varname">(options)</var>
+               </dt>
+
+               <dd class="dd pd">Specifies the format of the external or web table data - either plain text
+              (<samp class="ph codeph">TEXT</samp>) or comma separated values (<samp class="ph codeph">CSV</samp>) format.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">DELIMITER</dt>
+
+               <dd class="dd pd">Specifies a single ASCII character that separates columns within each row (line) of
+            data. The default is a tab character in <samp class="ph codeph">TEXT</samp> mode, a comma in
+              <samp class="ph codeph">CSV</samp> mode. In <samp class="ph codeph">TEXT</samp> mode for readable external tables,
+            the delimiter can be set to <samp class="ph codeph">OFF</samp> for special use cases in which
+            unstructured data is loaded into a single-column table. </dd>
+
+            
+            
+               <dt class="dt pt dlterm">NULL</dt>
+
+               <dd class="dd pd">Specifies the string that represents a <samp class="ph codeph">NULL</samp> value. The default is
+              <samp class="ph codeph">\N</samp> (backslash-N) in <samp class="ph codeph">TEXT</samp> mode, and an empty value
+            with no quotations in <samp class="ph codeph">CSV</samp> mode. You might prefer an empty string even
+            in <samp class="ph codeph">TEXT</samp> mode for cases where you do not want to distinguish
+              <samp class="ph codeph">NULL</samp> values from empty strings. When using external and web tables,
+            any data item that matches this string will be considered a <samp class="ph codeph">NULL</samp> value.
+          </dd>
+
+            
+            
+               <dt class="dt pt dlterm">ESCAPE</dt>
+
+               <dd class="dd pd">Specifies the single character that is used for C escape sequences (such as
+              <samp class="ph codeph">\n</samp>,<samp class="ph codeph">\t</samp>,<samp class="ph codeph">\100</samp>, and so on) and for
+            escaping data characters that might otherwise be taken as row or column delimiters. Make
+            sure to choose an escape character that is not used anywhere in your actual column data.
+            The default escape character is a \ (backslash) for text-formatted files and a
+              <samp class="ph codeph">"</samp> (double quote) for csv-formatted files, however it is possible to
+            specify another character to represent an escape. It is also possible to disable
+            escaping in text-formatted files by specifying the value <samp class="ph codeph">'OFF'</samp> as the
+            escape value. This is very useful for data such as text-formatted web log data that has
+            many embedded backslashes that are not intended to be escapes.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">NEWLINE</dt>
+
+               <dd class="dd pd">Specifies the newline used in your data files – <samp class="ph codeph">LF</samp> (Line feed, 0x0A),
+              <samp class="ph codeph">CR</samp> (Carriage return, 0x0D), or <samp class="ph codeph">CRLF</samp> (Carriage return
+            plus line feed, 0x0D 0x0A). If not specified, a HAWQ segment will detect the newline
+            type by looking at the first row of data it receives and using the first newline type
+            encountered.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">HEADER</dt>
+
+               <dd class="dd pd">For readable external tables, specifies that the first line in the data file(s) is a
+            header row (contains the names of the table columns) and should not be included as data
+            for the table. If using multiple data source files, all files must have a header
+            row.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">QUOTE</dt>
+
+               <dd class="dd pd">Specifies the quotation character for <samp class="ph codeph">CSV</samp> mode. The default is
+            double-quote (<samp class="ph codeph">"</samp>).</dd>
+
+            
+            
+               <dt class="dt pt dlterm">FORCE NOT NULL</dt>
+
+               <dd class="dd pd">In <samp class="ph codeph">CSV</samp> mode, processes each specified column as though it were quoted
+            and hence not a <samp class="ph codeph">NULL</samp> value. For the default null string in
+              <samp class="ph codeph">CSV</samp> mode (nothing between two delimiters), this causes missing values
+            to be evaluated as zero-length strings.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">FORCE QUOTE</dt>
+
+               <dd class="dd pd">In <samp class="ph codeph">CSV</samp> mode for writable external tables, forces quoting to be used
+            for all non-<samp class="ph codeph">NULL</samp> values in each specified column. <samp class="ph codeph">NULL</samp>
+            output is never quoted.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">FILL MISSING FIELDS</dt>
+
+               <dd class="dd pd">In both <samp class="ph codeph">TEXT</samp> and <samp class="ph codeph">CSV</samp> mode for readable external
+            tables, specifying <samp class="ph codeph">FILL MISSING FIELDS</samp> will set missing trailing field
+            values to <samp class="ph codeph">NULL</samp> (instead of reporting an error) when a row of data has
+            missing data fields at the end of a line or row. Blank rows, fields with a <samp class="ph codeph">NOT
+              NULL</samp> constraint, and trailing delimiters on a line will still report an
+            error.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">ENCODING <var class="keyword varname">'encoding'</var>
+               </dt>
+
+               <dd class="dd pd">Character set encoding to use for the external table. Specify a string constant (such
+            as <samp class="ph codeph">'SQL_ASCII'</samp>), an integer encoding number, or
+              <samp class="ph codeph">DEFAULT</samp> to use the default client encoding.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">LOG ERRORS [INTO <var class="keyword varname">error_table</var>]</dt>
+
+               <dd class="dd pd">This is an optional clause that can precede a <samp class="ph codeph">SEGMENT REJECT LIMIT</samp>
+            clause to log information about rows with formatting errors. It specifies an error table
+            where rows with formatting errors will be logged when running in single row error
+            isolation mode. You can then examine this error table to see error rows that were not
+            loaded (if any). If the error_table specified already exists, it will be used. If it
+            does not exist, it will be automatically generated.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">SEGMENT REJECT LIMIT <var class="keyword varname">count</var> [ROWS | PERCENT]</dt>
+
+               <dd class="dd pd">Runs a <samp class="ph codeph">COPY FROM</samp> operation in single row error isolation mode. If the
+            input rows have format errors they will be discarded provided that the reject limit
+            count is not reached on any HAWQ segment instance during the load operation. The reject
+            limit count can be specified as number of rows (the default) or percentage of total rows
+            (1-100). If <samp class="ph codeph">PERCENT</samp> is used, each segment starts calculating the bad
+            row percentage only after the number of rows specified by the parameter
+              <samp class="ph codeph">gp_reject_percent_threshold</samp> has been processed. The default for
+              <samp class="ph codeph">gp_reject_percent_threshold</samp> is 300 rows. Constraint errors such as
+            violation of a <samp class="ph codeph">NOT NULL</samp>, <samp class="ph codeph">CHECK</samp>, or
+              <samp class="ph codeph">UNIQUE</samp> constraint will still be handled in "all-or-nothing" input
+            mode. If the limit is not reached, all good rows will be loaded and any error rows
+            discarded.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">DISTRIBUTED BY (<var class="keyword varname">column</var>, [ ... ] )</dt>
+
+               <dt class="dt pt dlterm">DISTRIBUTED RANDOMLY</dt>
+
+               <dd class="dd pd">Used to declare the HAWQ distribution policy for a writable external table. By
+            default, writable external tables are distributed randomly. If the source table you are
+            exporting data from has a hash distribution policy, defining the same distribution key
+            column(s) for the writable external table will improve unload performance by eliminating
+            the need to move rows over the interconnect. When you issue an unload command such as
+              <samp class="ph codeph">INSERT INTO <var class="keyword varname">wex_table</var> SELECT * FROM
+                <var class="keyword varname">source_table</var>
+                  </samp>, the rows that are unloaded can be sent
+            directly from the segments to the output location if the two tables have the same hash
+            distribution policy.</dd>
+
+            
+         </dl>
+
+      </div>
+
+      <div class="section" id="topic1__section5"><h2 class="title sectiontitle">Examples</h2>
+         
+         <p class="p">Start the <samp class="ph codeph">gpfdist</samp> file server program in the background on port
+          <samp class="ph codeph">8081</samp> serving files from directory <samp class="ph codeph">/var/data/staging</samp>: </p>
+
+         <pre class="pre codeblock">gpfdist -p 8081 -d /var/data/staging -l /home/<var class="keyword varname">gpadmin</var>/log &amp;</pre>
+
+         <p class="p">Create a readable external table named <samp class="ph codeph">ext_customer</samp> using the
+          <samp class="ph codeph">gpfdist</samp> protocol and any text formatted files (<samp class="ph codeph">*.txt</samp>)
+        found in the <samp class="ph codeph">gpfdist</samp> directory. The files are formatted with a pipe
+          (<samp class="ph codeph">|</samp>) as the column delimiter and an empty space as <samp class="ph codeph">NULL</samp>.
+        Also access the external table in single row error isolation mode:</p>
+
+         <pre class="pre codeblock">CREATE EXTERNAL TABLE ext_customer
+   (id int, name text, sponsor text) 
+   LOCATION ( 'gpfdist://filehost:8081/*.txt' ) 
+   FORMAT 'TEXT' ( DELIMITER '|' NULL ' ')
+   LOG ERRORS INTO err_customer SEGMENT REJECT LIMIT 5;</pre>
+
+         <p class="p">Create the same readable external table definition as above, but with CSV formatted
+        files:</p>
+
+         <pre class="pre codeblock">CREATE EXTERNAL TABLE ext_customer 
+   (id int, name text, sponsor text) 
+   LOCATION ( 'gpfdist://filehost:8081/*.csv' ) 
+   FORMAT 'CSV' ( DELIMITER ',' );</pre>
+
+         <p class="p">Create a readable external table named <samp class="ph codeph">ext_expenses</samp> using the
+          <samp class="ph codeph">file</samp> protocol and several CSV formatted files that have a header row:</p>
+
+         <pre class="pre codeblock">CREATE EXTERNAL TABLE ext_expenses (name text, date date, 
+amount float4, category text, description text) 
+LOCATION ( 
+'file://seghost1/dbfast/external/expenses1.csv',
+'file://seghost1/dbfast/external/expenses2.csv',
+'file://seghost2/dbfast/external/expenses3.csv',
+'file://seghost2/dbfast/external/expenses4.csv',
+'file://seghost3/dbfast/external/expenses5.csv',
+'file://seghost3/dbfast/external/expenses6.csv' 
+)
+FORMAT 'CSV' ( HEADER );</pre>
+
+         <p class="p">Create a readable web external table that executes a script once per segment host:</p>
+
+         <pre class="pre codeblock">CREATE EXTERNAL WEB TABLE log_output (linenum int, message 
+text)  EXECUTE '/var/load_scripts/get_log_data.sh' ON HOST 
+ FORMAT 'TEXT' (DELIMITER '|');</pre>
+
+         <p class="p">Create a writable external table named <samp class="ph codeph">sales_out</samp> that uses
+          <samp class="ph codeph">gpfdist</samp> to write output data to a file named <samp class="ph codeph">sales.out</samp>.
+        The files are formatted with a pipe (<samp class="ph codeph">|</samp>) as the column delimiter and an
+        empty space as <samp class="ph codeph">NULL</samp>.</p>
+
+         <pre class="pre codeblock">CREATE WRITABLE EXTERNAL TABLE sales_out (LIKE sales) 
+   LOCATION ('gpfdist://etl1:8081/sales.out')
+   FORMAT 'TEXT' ( DELIMITER '|' NULL ' ')
+   DISTRIBUTED BY (txn_id);</pre>
+
+         <p class="p">Create a writable external web table that pipes output data received by the segments to an
+        executable script named <samp class="ph codeph">to_adreport_etl.sh</samp>:</p>
+
+         <pre class="pre codeblock">CREATE WRITABLE EXTERNAL WEB TABLE campaign_out 
+(LIKE campaign) 
+ EXECUTE '/var/unload_scripts/to_adreport_etl.sh'
+ FORMAT 'TEXT' (DELIMITER '|');</pre>
+
+         <p class="p">Use the writable external table defined above to unload selected data:</p>
+
+         <pre class="pre codeblock">INSERT INTO campaign_out SELECT * FROM campaign WHERE 
+customer_id=123;</pre>
+
+      </div>
+
+      <div class="section" id="topic1__section6"><h2 class="title sectiontitle">Compatibility</h2>
+         
+         <p class="p">
+            <samp class="ph codeph">CREATE EXTERNAL TABLE</samp> is a HAWQ extension. The SQL standard makes no
+        provisions for external tables.</p>
+
+      </div>
+
+      <div class="section" id="topic1__section7"><h2 class="title sectiontitle">See Also</h2>
+         
+         <p class="p">
+            <samp class="ph codeph">
+               <a class="xref" href="CREATE-TABLE.html">CREATE TABLE</a>
+            </samp>,
+            <samp class="ph codeph">
+               <a class="xref" href="CREATE-TABLE-AS.html">CREATE TABLE AS</a>
+            </samp>,
+            <samp class="ph codeph">
+               <a class="xref" href="COPY.html">COPY</a>
+            </samp>,
+            <samp class="ph codeph">
+               <a class="xref" href="INSERT.html">INSERT</a>
+            </samp>,
+            <samp class="ph codeph">
+               <a class="xref" href="SELECT-INTO.html">SELECT INTO</a>
+            </samp>
+         </p>
+
+      </div>
+
+   </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/SQLCommandReference.html" title="SQL Command Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SQL Command Reference</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

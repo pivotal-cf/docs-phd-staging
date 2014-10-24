@@ -1,0 +1,667 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="If you are running secure HBase, you should also also run a secure Zookeeper (see  Configuring Secure Zookeeper ). You can, however, set up the HBase master and region servers to use Kerberos and test ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Configuring Secure HBase"/><meta name="DC.Relation" scheme="URI" content="../topics/Security.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="configuringsecurehbase"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Configuring Secure HBase</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="configuringsecurehbase"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/StackandToolsReference.html" title="Stack and Tools Reference">Stack and Tools Reference</a> / <a class="navheader_parent_path" href="../topics/Security.html" title="Security">Security</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/Security.html" title="Security"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Security</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Configuring Secure HBase</h1>
+
+   <div class="body">
+      <p class="p">If you are running secure HBase, you should also also run a secure Zookeeper (see <a class="xref" href="ConfiguringSecureZookeeper.html">Configuring Secure Zookeeper</a>). You can, however, set up the HBase master and
+         region servers to use Kerberos and test that they start without a secure Zookeeper.</p>
+
+      <p class="p">This section covers the basics of how to get HBase up and running in secure mode; for
+         further information see the HBase documentation (<a class="xref" href="http://hbase.apache.org/book/security.html">http://hbase.apache.org/book/security.html</a>).</p>
+
+      <ul class="ul">
+         <li class="li">
+            <a class="xref" href="#hbasemasterandregionservers">HBase Master and Regionservers</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#createthehbaseprincipals">Create the HBase Principals</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#createthehbasekeytabfiles">Create the HBase Keytab files</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#distributethehbasekeytabfiles">Distribute the HBase Keytab Files</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#editthehbasesitexml">Edit the HBase Site XML</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#testhbasestart-up">Test HBase Startup</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#hbaseclients">HBase Clients</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#enableencryptedcommunication">Enable Encrypted Communication</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#restgateway">REST Gateway</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#thriftclientconfiguration">Thrift Client Configuration</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#configuringhbasewithsecurezookeeper">Configuring HBase with Secure Zookeeper</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#accesscontrolandpxfexternaltables">Access Control and PXF External Tables</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#topic_lsg_bn1_vp">Scope of Permissions</a></li>
+
+               <li class="li"><a class="xref" href="#pxfaccess">PXF Access</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+      </ul>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="hbasemasterandregionservers">
+      <h2 class="title topictitle2">HBase Master and Regionservers</h2>
+
+      <div class="topic nested2" id="createthehbaseprincipals">
+         <h3 class="title topictitle3">Create the HBase Principals</h3>
+
+         <div class="body">
+            <p class="p">For the HBase master and each region server host, run:</p>
+
+            <pre class="pre codeblock">kadmin.local: addprinc -randkey hbase/host_fqdn@REALM</pre>
+
+            <p class="p">Where <samp class="ph codeph">host_fqdn</samp> refers to the service principal (master, region
+               server) host.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="createthehbasekeytabfiles">
+         <h3 class="title topictitle3">Create the HBase Keytab files</h3>
+
+         <div class="body">
+            <p class="p">For the HBase master and each region server host, run:</p>
+
+            <pre class="pre codeblock">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/hbase-hostid.service.keytab hbase/host_fqdn@REALM</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="distributethehbasekeytabfiles">
+         <h3 class="title topictitle3">Distribute the HBase Keytab Files</h3>
+
+         <div class="body">
+            <div class="p">For each host:<ol class="ol" id="distributethehbasekeytabfiles__ol_amp_hm1_vp">
+                  <li class="li">Move the appropriate keytab file for each host to that hosts'
+                        <span class="ph filepath">/etc/security/phd/keytab</span> directory.</li>
+
+                  <li class="li">Run:<pre class="pre codeblock">chown hbase:hadoop hbase-hostid.service.keytab
+
+chmod 400 hbase-hostid.service.keytab
+
+ln -s hbase-hostid.service.keytab hbase.service.keytab</pre>
+</li>
+
+               </ol>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="editthehbasesitexml">
+         <h3 class="title topictitle3">Edit the HBase Site XML</h3>
+
+         <div class="body">
+            <p class="p">For each master and region server host, add the following properties to
+                  <span class="ph filepath">/etc/gphd/hbase/conf/hbase-site.xml</span>:</p>
+
+            <pre class="pre codeblock">&lt;property&gt;
+  &lt;name&gt;hbase.security.authentication&lt;/name&gt;
+  &lt;value&gt;kerberos&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hbase.security.authorization&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hbase.coprocessor.region.classes&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.hbase.security.token.TokenProvider&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- HBase secure region server configuration --&gt;
+&lt;property&gt;
+  &lt;name&gt;hbase.regionserver.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;hbase/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hbase.regionserver.keytab.file&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hbase.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- HBase secure master configuration --&gt;
+&lt;property&gt;
+  &lt;name&gt;hbase.master.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;hbase/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hbase.master.keytab.file&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hbase.service.keytab&lt;/value&gt;
+&lt;/property&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="testhbasestart-up">
+         <h3 class="title topictitle3">Test HBase Startup</h3>
+
+         <div class="body">
+            <p class="p">You can now test HBase startup. Start the cluster services and check that the HBase
+               Master and Region servers start properly. If they do not, look at the
+                  <span class="ph filepath">.log</span> file in the <span class="ph filepath">/var/log/gphd/hbase/</span>
+               directory for hints as to why. Also make sure HDFS came up properly.</p>
+
+            <p class="p">As you fix issues, you can run <samp class="ph codeph">/etc/init.d/hbase-master start</samp> or
+                  <samp class="ph codeph">/etc/init.d/hbase-regionserver start</samp> to check that the issue is
+               resolved.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="hbaseclients">
+      <h2 class="title topictitle2">HBase Clients</h2>
+
+      <div class="body">
+         <p class="p">Add the following property to the <span class="ph filepath">hbase-site.xml</span> file on every
+            client host:</p>
+
+         <pre class="pre codeblock">&lt;property&gt;
+  &lt;name&gt;hbase.security.authentication&lt;/name&gt;
+  &lt;value&gt;kerberos&lt;/value&gt;
+&lt;/property&gt;</pre>
+
+      </div>
+
+      <div class="topic nested2" id="enableencryptedcommunication">
+         <h3 class="title topictitle3">Enable Encrypted Communication</h3>
+
+         <div class="body">
+            <p class="p"><strong class="ph b">[Optional]</strong></p>
+
+            <p class="p">If you are running secure HBase, you can enable encryption from clients to the
+               server. To do so, add the following property to <span class="ph filepath">hbase-site.xml</span>
+               on all clients:</p>
+
+            <pre class="pre codeblock">&lt;property&gt;
+  &lt;name&gt;hbase.rpc.protection&lt;/name&gt;
+  &lt;value&gt;privacy&lt;/value&gt;
+&lt;/property&gt;</pre>
+
+            <p class="p">This can also be set on a per-connection basis. Set it in the configuration supplied
+               to HTable:</p>
+
+            <pre class="pre codeblock">Configuration conf = HBaseConfiguration.create();
+conf.set("hbase.rpc.protection", "privacy");
+HTable table = new HTable(conf, tablename);</pre>
+
+            <p class="p">The Apache HBase documentation indicates you should expect a ~10% performance penalty
+               when encryption is enabled.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="restgateway">
+         <h3 class="title topictitle3">REST Gateway</h3>
+
+         <div class="body">
+            <p class="p">You can set up the REST Gateway to use Kerberos to authenticate itself as a principal
+               to HBase. Note that all client access will use the REST Gateway's credentials set
+               below, and these will have this user's privileges.</p>
+
+            <p class="p">For every REST Gateway, add the following to the <span class="ph filepath">hbase-site.xml</span>
+               file:</p>
+
+            <pre class="pre codeblock">&lt;property&gt;
+  &lt;name&gt;hbase.rest.keytab.file&lt;/name&gt;
+  &lt;value&gt;path-to-rest-users-keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hbase.rest.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;rest-users-principal-name&lt;/value&gt;
+&lt;/property&gt;</pre>
+
+            <p class="p">You must also give the REST principal access privileges. Do this by adding the
+               rest-principal-name to the <samp class="ph codeph">acl</samp> table in HBase. Adding the
+               permissions below are sufficient, according to the HBase documentation:</p>
+
+            <pre class="pre codeblock">grant 'rest-principal-name', 'RWCA'</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="thriftclientconfiguration">
+         <h3 class="title topictitle3">Thrift Client Configuration</h3>
+
+         <div class="body">
+            <p class="p">See the HBase documentation (<a class="xref" href="http://hbase.apache.org/book/security.html">http://hbase.apache.org/book/security.html</a>) for instructions on configuring Thrift clients.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="configuringhbasewithsecurezookeeper">
+      <h2 class="title topictitle2">Configuring HBase with Secure Zookeeper</h2>
+
+      <div class="body">
+         <div class="p">For secure HBase, you should also run a secure Zookeeper (see <a class="xref" href="ConfiguringSecureZookeeper.html">Configuring Secure Zookeeper</a>). If you do so, you will need to execute the
+            steps in this section.<div class="note note"><span class="notetitle">Note:</span> These steps <em class="ph i">must</em> be done on the HBase master and all
+               region servers.</div>
+</div>
+
+         <ol class="ol">
+            <li class="li">Create a file called <span class="ph filepath">/etc/gphd/hbase/conf/jaas.conf</span> and add the
+               following entry:
+                  <pre class="pre codeblock">Client {
+  com.sun.security.auth.module.Krb5LoginModule required
+  useKeyTab=true
+  useTicketCache=false
+  keyTab="/etc/security/phd/keytab/hbase.service.keytab"
+  principal="hbase/host_fqdn@REALM";
+};</pre>
+<div class="note important"><span class="importanttitle">Important:</span> Make sure to replace
+                     <samp class="ph codeph">host_fqdn@REALM</samp> with the <samp class="ph codeph">host_fqdn</samp> of the
+                  server and the correct <samp class="ph codeph">REALM</samp>. </div>
+</li>
+
+            <li class="li">Add the following at the bottom of
+                  <span class="ph filepath">/etc/gphd/hbase/conf/hbase-env.sh</span>:
+               <pre class="pre codeblock">export HBASE_OPTS="$HBASE_OPTS -Djava.security.auth.login.config=/etc/gphd/hbase/conf/jaas.conf"
+export HBASE_MANAGES_ZK=false</pre>
+</li>
+
+            <li class="li">Edit the site XML and add the following properties:
+               <pre class="pre codeblock">&lt;property&gt;
+  &lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt;
+  &lt;value&gt;comma-separated-list-of-zookeeper-hosts&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hbase.cluster.distributed&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;</pre>
+</li>
+
+            <li class="li">Edit <span class="ph filepath">/etc/gphd/zookeeper/conf/zoo.cfg</span> and add: the following
+               lines
+               <pre class="pre codeblock">kerberos.removeHostFromPrincipal=true
+kerberos.removeRealmFromPrincipal=true</pre>
+</li>
+
+         </ol>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="accesscontrolandpxfexternaltables">
+      <h2 class="title topictitle2">Access Control and PXF External Tables</h2>
+
+      <div class="body">
+         <p class="p">The version of HBase distributed with PHD supports access control. Basic mappings of
+            permissions (RWCA) to operations allowed are as follows:</p>
+
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+               <thead class="thead" align="left">
+                  <tr class="row">
+                     <th class="entry confluenceTh" valign="top" id="d37304e445">Permission</th>
+
+                     <th class="entry confluenceTh" valign="top" id="d37304e448">Operations</th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody class="tbody">
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Read</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Get</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Exists</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Scan</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Write</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Put</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Delete</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Lock/UnlockRow</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">IncrementColumnValue</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">CheckAndDelete/Put</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Flush</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Compact</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Create</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Admin</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Alter</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Drop</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Admin</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Enable/Disable</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">&gt;Snapshot/Restore/Clone</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Split</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Major Compact</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Grant</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Revoke</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 "> </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d37304e445 d37304e448 ">Shutdown </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+      </div>
+
+      <div class="topic nested2" id="topic_lsg_bn1_vp">
+         <h3 class="title topictitle3">Scope of Permissions</h3>
+
+         <div class="body">
+            <div class="p">Table permissions:<ul class="ul" id="topic_lsg_bn1_vp__ul_t3d_fn1_vp">
+                  <li class="li">Read: User can read from any column family in a table</li>
+
+                  <li class="li">Write: User can write to any column family in a table</li>
+
+                  <li class="li">Create: User can alter table attributes; add, alter, or drop column families;
+                     and drop the table.</li>
+
+                  <li class="li">Admin: User can alter table attributes; add, alter, or drop column families;
+                     and enable, disable, or drop the table. User can also trigger region
+                     (re)assignments or relocation.</li>
+
+               </ul>
+</div>
+
+         <div class="p">Column Family:<ul class="ul" id="topic_lsg_bn1_vp__ul_ipn_3n1_vp">
+                  <li class="li">Read: User can read from the column family</li>
+
+                  <li class="li">Write: User can write to the column family</li>
+
+               </ul>
+</div>
+
+         <p class="p">For PHD, the Hbase superuser is the "hbase" user/principal. There is an implicit global
+            scope for permissions granted by the superuser.</p>
+
+         <p class="p">Tables have an <samp class="ph codeph">OWNER</samp> attribute that defaults to the table creator, but
+               may be changed with an <samp class="ph codeph">ALTER</samp> operation.</p>
+
+         <p class="p">See the HBase documentation (<a class="xref" href="http://hbase.apache.org/book/hbase.accesscontrol.configuration.html">http://hbase.apache.org/book/hbase.accesscontrol.configuration.html</a>) for further details on configuring and using access controls.</p>
+
+         <p class="p">Set the properties shown below to enable access control:</p>
+
+         <pre class="pre codeblock">&lt;property&gt;
+  &lt;name&gt;hbase.security.authorization&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;hbase.coprocessor.master.classes&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.hbase.security.access.AccessController&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;hbase.coprocessor.region.classes&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.hbase.security.access.AccessController, org.apache.hadoop.hbase.security.token.TokenProvider&lt;/value&gt;
+&lt;/property&gt;</pre>
+
+         <p class="p">When access control is enabled, you will need to explicitly grant users permissions to
+               the database as shown below (example assumes it is being run on an HBase service
+               host). You may also choose to create a specific hbase principal (hbase@REALM) for
+               HBase administration rather than using the service keytab as shown below; this would
+               allow administration from any client host:</p>
+
+         <pre class="pre codeblock"># sudo -u hbase kinit -kt /etc/security/phd/keytab/hbase.service.keytab hbase/&lt;host_fqdn&gt;
+# sudo -u hbase hbase shell
+hbase&gt; grant 'myuser', 'RWCA'
+# kdestroy</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="pxfaccess">
+         <h3 class="title topictitle3">PXF Access</h3>
+
+         <div class="body">
+            <p class="p">If you are using PXF external HBase tables, you will need to grant user
+                  <samp class="ph codeph">hdfs</samp> permissions as follows:</p>
+
+            <pre class="pre codeblock"># sudo -u hbase kinit -kt /etc/security/phd/keytab/hbase.service.keytab hbase/&lt;host_fqdn&gt;
+# sudo -u hbase hbase shell
+hbase&gt; grant 'hdfs', 'RWCA'
+# kdestroy</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/Security.html" title="Security"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Security</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

@@ -1,0 +1,712 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="About Hamster Installing Hamster Prerequisites Hamster RPM Packages Hamster-core Setup OpenMPI Setup Hamster-rte Setup Reconfig &amp; Restart NodeManager Set PATH in your env Hamster Usage Hamster Service ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Hamster"/><meta name="DC.Relation" scheme="URI" content="../topics/ManuallyInstallingandUsingPivotalHD21Stack.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="hamster"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Hamster</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="hamster"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/StackandToolsReference.html" title="Stack and Tools Reference">Stack and Tools Reference</a> / <a class="navheader_parent_path" href="../topics/ManuallyInstallingandUsingPivotalHD21Stack.html" title="Manually Installing and Using Pivotal HD 2.1 Stack">Manually Installing and Using Pivotal HD 2.1 Stack</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/ManuallyInstallingandUsingPivotalHD21Stack.html" title="Manually Installing and Using Pivotal HD 2.1 Stack"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Manually Installing and Using Pivotal HD 2.1 Stack</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Hamster</h1>
+
+   <div class="body">
+      <ul class="ul">
+         <li class="li"><a class="xref" href="#abouthamster">About Hamster</a>
+         </li>
+
+         <li class="li"><a class="xref" href="#installinghamster">Installing Hamster</a>
+            <ul class="ul">
+               <li class="li"><a class="xref" href="#prerequisites">Prerequisites</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#hamsterrpmpackages">Hamster RPM Packages</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#hamster-coresetup">Hamster-core Setup</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#openmpisetup">OpenMPI Setup</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#hamster-rtesetup">Hamster-rte Setup</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#reconfigrestartnodemanager">Reconfig &amp; Restart NodeManager</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#setpathinyourenv">Set PATH in your env</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#hamsterusage">Hamster Usage</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#hamsterservice">Hamster Service</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#runjobwithmpirunmpiexecsubmittingjobwithmpirunmpiexecdirectly">Run job with mpirun/mpiexec (submitting job with mpirun/mpiexec directly)</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#runjobwithhamsterqsubsubmittingjobdescribedasascriptfilewithqsub">Run job with hamster qsub (submitting job described as a script file with qsub)</a>
+               </li>
+
+               <li class="li"><a class="xref" href="#runjobwithhamstercompatiblewithhamster10commandlineoptions">Run job with hamster (compatible with Hamster-1.0 command line options):</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+      </ul>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="abouthamster">
+      <h2 class="title topictitle2">About Hamster</h2>
+
+      <div class="body">
+         <p class="p">Hamster is a framework that enables users running MPI programs on Apache Hadoop YARN
+            platform. </p>
+
+         <p class="p">This section specifies how to install, configure, and use Hamster.</p>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="installinghamster">
+      <h2 class="title topictitle2">Installing Hamster</h2>
+
+      <div class="topic nested2" id="prerequisites">
+         <h3 class="title topictitle3">Prerequisites</h3>
+
+         <div class="body">
+            <p class="p">Hamster is dependent upon PHD-2.0/2.1 (Apache Hadoop 2.0.5 / 2.2.0).</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hamsterrpmpackages">
+         <h3 class="title topictitle3">Hamster RPM Packages</h3>
+
+         <div class="body">
+            <p class="p">Hamster contains three packages: <samp class="ph codeph">hamster-core</samp>,
+                  <samp class="ph codeph">hamster-rte</samp>, and <samp class="ph codeph">openmpi</samp>. </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hamsterrpmpackages__table_o1d_xgf_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top"><strong class="ph b">hamster-core-&lt;PHD_HAMSTER-CORE_VERSION&gt;-1.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Client and application master library
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top"> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Hamster-core installation package.
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Every node in the YARN cluster and the client workstation that will
+                              access the YARN service
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hamsterrpmpackages__table_bdd_xgf_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top"><strong class="ph b">hamster-rte-&lt;PHD_HAMSTER-RTE_VERSION&gt;-1.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Plugins for OpenMPI
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top"> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Hamster runtime environment installation package.
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Every node in the YARN cluster and the client workstation that will
+                              access the YARN service
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hamsterrpmpackages__table_ofd_xgf_4p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top"><strong class="ph b">openmpi-&lt;PHD_OPENMPI_VERSION&gt;-1.x86_64.rpm</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Type</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">OpenMPI
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Requires</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top"> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Description</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">OpenMPI installation package.
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"><strong class="ph b">Install on Nodes</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">Every node in the YARN cluster and the client workstation that will
+                              access the YARN service
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hamster-coresetup">
+         <h3 class="title topictitle3">Hamster-core Setup</h3>
+
+         <div class="body">
+            <p class="p">Install the hamster-core package on the nodes in the YARN cluster and the client
+               workstation that will access the YARN service:</p>
+
+            <pre class="pre codeblock">$ sudo rpm -ivh working_dir/hamster/rpm/hamster-core-&lt;PHD_HAMSTER-CORE_VERSION&gt;-1.x86_64.rpm</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="openmpisetup">
+         <h3 class="title topictitle3">OpenMPI Setup</h3>
+
+         <div class="body">
+            <p class="p">Install the OpenMPI package on the nodes in the YARN cluster and the client
+               workstation that will access the YARN service:</p>
+
+            <pre class="pre codeblock">$ sudo rpm -ivh working_dir/hamster/rpm/openmpi-&lt;PHD_OPENMPI_VERSION&gt;-1.x86_64.rpm</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hamster-rtesetup">
+         <h3 class="title topictitle3">Hamster-rte Setup</h3>
+
+         <div class="body">
+            <p class="p">Install the hamster-rte package on the nodes in the YARN cluster and the client
+               workstation that will access the YARN service:</p>
+
+            <pre class="pre codeblock">$ sudo rpm -ivh working_dir/hamster/rpm/hamster-rte-&lt;PHD_HAMSTER-RTE_VERSION&gt;-1.x86_64.rpm</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="reconfigrestartnodemanager">
+         <h3 class="title topictitle3">Reconfig &amp; Restart NodeManager</h3>
+
+         <div class="body">
+            <p class="p">In Hamster-1.1, we have implemented an auxiliary in each NodeManager to launch
+                  <samp class="ph codeph">orted</samp> (ORTE Daemon).  Therefore,you need to  deploy and configure
+               the auxiliary service in the <samp class="ph codeph">yarn-site.xml</samp> filoe for each
+               NodeManager.</p>
+
+            <ol class="ol" id="reconfigrestartnodemanager__ol_i3c_xgf_4p">
+               <li class="li">Copy<samp class="ph codeph"> hamster-core-&lt;VERSION&gt;.jar</samp>  (by default,<samp class="ph codeph">
+                     /usr/local/hamster/lib/hamster/hamster-core-1.1.0-SNAPSHOT.jar</samp> )  to
+                     <samp class="ph codeph">/usr/lib/gphd/hadoop-yarn/</samp>
+               </li>
+
+               <li class="li">Specify the auxiliary service in <samp class="ph codeph">yarn-site.xml</samp>, as follows:
+                  <pre class="pre codeblock">&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+  &lt;value&gt;mapreduce_shuffle,hamster_aux&lt;/value&gt;
+  &lt;description&gt;shuffle service that needs to be set for Map Reduce to run &lt;/description&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.aux-services.hamster_aux.class&lt;/name&gt;
+  &lt;value&gt;com.pivotal.hamster.aux.HamsterAuxService&lt;/value&gt;
+&lt;/property&gt;</pre>
+</li>
+
+               <li class="li">Restart NodeManager.</li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="setpathinyourenv">
+         <h3 class="title topictitle3">Set PATH in your env</h3>
+
+         <div class="body">
+            <p class="p">After installing Hamster, set the <samp class="ph codeph">PATH</samp> in your env.  </p>
+
+            <ol class="ol" id="setpathinyourenv__ol_ndc_xgf_4p">
+               <li class="li">Put <samp class="ph codeph"> 'export PATH=/usr/local/hamster/bin:$PATH'</samp>  in your<samp class="ph codeph">
+                     ~/.bashrc</samp>  (only for you) or  in <samp class="ph codeph">/etc/bashrc</samp> (for all
+                  users in this node.)</li>
+
+               <li class="li">
+                  <samp class="ph codeph">source ~/.bashrc</samp>  (or <samp class="ph codeph">source /etc/bashrc</samp>)</li>
+
+               <li class="li">Check the hamster by running:</li>
+
+            </ol>
+
+            <p class="p">
+               <samp class="ph codeph">$ which hamster</samp>
+            </p>
+
+            <p class="p">
+               <samp class="ph codeph">/usr/local/hamster/bin/hamster</samp>
+            </p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hamsterusage">
+         <h3 class="title topictitle3">Hamster Usage</h3>
+
+         <div class="body">
+            <p class="p">Hamster command usage can be shown by running:</p>
+
+            <p class="p">
+               <samp class="ph codeph">$hamster --help</samp>
+            </p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hamsterusage__table_dyb_xgf_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d98042e539"> </th>
+
+                        <th class="entry confluenceTh" valign="top" id="d98042e542">cmd</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d98042e545">option</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d98042e548">description</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d98042e551">example</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" rowspan="3" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">
+                           <p class="p">service</p>
+
+                           <p class="p">mgmt</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">start</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">start the
+                           server(AppService/JobService)</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">hamster start</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">stop</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">stop the
+                           service(AppService/JobService)</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">hamster stop</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">status</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">check the status of
+                           server(AppService/JobService)</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">hamster status</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" rowspan="9" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">
+                           <p class="p">job</p>
+
+                           <p class="p">mgmt</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" rowspan="7" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">qsub</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">
+                           <p class="p">submit the job</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" rowspan="7" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">
+                           <p class="p">hamster qsub /path/to/scripts \</p>
+
+                           <p class="p">-preload-files /path/to/file1,/path/to/file2</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">-preload-files, --preload-files</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">Preload the comma separated list of files
+                           to HDFS for job execution</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">-unmanaged, --unmanaged</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">
+                           <p class="p">Only register the job to JobService, Hamster server will not launch
+                              the job for the user.</p>
+
+                           <p class="p">User needs to start their applications by their own.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">-p, --policy</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">
+                           <p class="p">Policy for scheduling. Valid value: <samp class="ph codeph">{ simple,
+                                 compute-locality/cl }</samp>
+                           </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">-cpu, --cpu-per-proc</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">Specify how many v-cores allocated to each
+                           container</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">-mem, --mem-per-proc</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">Specify how many memory (in MB) allocated
+                           to each container</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">-parent-jobid, --parent-jobid</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">the new job will be associated with parent
+                           job as its child jobs, if parent job id is provided</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">qstat</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">
+                           <p class="p">-jobid, --jobid</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">
+                           <p class="p">query the job state.</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">hamster qstat --jobid 888</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">qdel</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">
+                           <p class="p">-jobid, --jobid</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">
+                           <p class="p">cancel jobs</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">hamster qdel --jobid 888</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" rowspan="3" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">other</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">-h, --help</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">print all options and descriptions</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">hamster --help</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">-V, --version</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">Print version and exit</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">
+                           <p class="p">hamster -V</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">-v, --verbose</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 ">Be verbose</td>
+
+                        <td class="entry" valign="top" headers="d98042e539 d98042e542 d98042e545 d98042e548 d98042e551 "> </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hamsterservice">
+         <h3 class="title topictitle3">Hamster Service</h3>
+
+         <div class="body">
+            <p class="p">Before running any jobs, start the Hamster Service
+               (JobService/AppMasterService). </p>
+
+            <p class="p">To start the Hamster Service:</p>
+
+            <div class="p">
+               <pre class="pre codeblock">$ hamster start </pre>
+
+            </div>
+
+            <p class="p">To check the current status of the Hamster Service:</p>
+
+            <div class="p">
+               <pre class="pre codeblock">$ hamster status</pre>
+
+            </div>
+
+            <div class="p">To stop the Hamster Service:<pre class="pre codeblock">$ hamster stop </pre>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="runjobwithmpirunmpiexecsubmittingjobwithmpirunmpiexecdirectly">
+         <h3 class="title topictitle3">Run job with mpirun/mpiexec (submitting job with mpirun/mpiexec directly)</h3>
+
+         <div class="body">
+            <p class="p">Make sure Hamster Service's status is running.  </p>
+
+            <pre class="pre codeblock">$ mpirun -np 3 /path/to/mpi/executable</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="runjobwithhamsterqsubsubmittingjobdescribedasascriptfilewithqsub">
+         <h3 class="title topictitle3">Run job with hamster qsub (submitting job described as a script file with
+            qsub)</h3>
+
+         <div class="body">
+            <p class="p">Suppose there are two mpirun job as batch job or pipeline in your scripts named
+                  <samp class="ph codeph">myjob.sh</samp> as following:</p>
+
+            <pre class="pre codeblock">vi myjob.sh
+mpirun -np 2  /path/to/mpi/executable1
+mpirun -np 4  /path/to/mpi/executable2</pre>
+
+            <p class="p">Submit the job script:</p>
+
+            <pre class="pre codeblock">$ hamster qsub /path/to/myjob.sh</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="runjobwithhamstercompatiblewithhamster10commandlineoptions">
+         <h3 class="title topictitle3">Run job with hamster (compatible with Hamster-1.0 command line options):</h3>
+
+         <div class="body">
+            <pre class="pre codeblock">$ hamster -np 2 /path/to/mpi/executable</pre>
+
+            <p class="p">Currently, MPI processes in Hamster will redirect their output to files in the Hadoop
+               log folder, you can access them
+                  in <samp class="ph codeph">yarn.nodemanager.log-dirs</samp> in <samp class="ph codeph">yarn-site.xml</samp> under <samp class="ph codeph">$HADOOP_CONF_DIR</samp>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/ManuallyInstallingandUsingPivotalHD21Stack.html" title="Manually Installing and Using Pivotal HD 2.1 Stack"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Manually Installing and Using Pivotal HD 2.1 Stack</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

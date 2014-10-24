@@ -1,0 +1,189 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Initializing HAWQ performs the following tasks: Initializes the HAWQ master and the segment hosts. Starts the HAWQ master, segments, and the underlying postgres database. You need to initialize HAWQ ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Initializing HAWQ"/><meta name="DC.Relation" scheme="URI" content="../topics/ManagingHAWQ.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="initializinghawq"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Initializing HAWQ</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="initializinghawq"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/AdministeringPHDUsingtheCLI.html" title="Administering PHD Using the CLI">Administering PHD Using the CLI</a> / <a class="navheader_parent_path" href="../topics/ManagingHAWQ.html" title="Managing HAWQ">Managing HAWQ</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/ManagingHAWQ.html" title="Managing HAWQ"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Managing HAWQ</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Initializing HAWQ</h1>
+
+   <div class="body">
+      <p class="p">Initializing HAWQ performs the following tasks: </p>
+
+      <ul class="ul">
+         <li class="li">Initializes the HAWQ master and the segment hosts.</li>
+
+         <li class="li">Starts the HAWQ master, segments, and the underlying postgres database.</li>
+
+      </ul>
+
+      <p class="p">You need to initialize HAWQ only once, after the cluster has started and after HDFS is up
+         and running.</p>
+
+      <div class="p">
+         <div class="note note"><span class="notetitle">Note:</span> Verify that the <samp class="ph codeph">postgres</samp> user exists. If it does not, you may have
+            to create it and add it into the <samp class="ph codeph">hadoop</samp> group. </div>
+
+      </div>
+
+      <p class="p">To initialize HAWQ:</p>
+
+      <ol class="ol" id="initializinghawq__ol_atk_w2z_5p">
+         <li class="li"><strong class="ph b">Security: </strong>If you have deployed a secure cluster with Kerberos authentication,
+            you must create a Kerberos principal for <samp class="ph codeph">gpadmin</samp> and run
+               <samp class="ph codeph">kinit</samp> before running the next command. <div class="note note"><span class="notetitle">Note:</span> If you have not
+               deployed a secure cluster, skip this task. </div>
+<p class="p">To add a principal for
+                  <samp class="ph codeph">gpadmin</samp>: </p>
+<ol class="ol" type="a" id="initializinghawq__ol_dzk_mxy_5p">
+               <li class="li">On the PCC Admin node,
+                     run:<pre class="pre codeblock">$ sudo kadmin.local
+$ add princ gpadmin
+$ exit </pre>
+<div class="note note"><span class="notetitle">Note:</span> Provide
+                     a password for the <samp class="ph codeph">gpadmin</samp> principal when
+                  prompted.</div>
+</li>
+
+               <li class="li">Run:<pre class="pre codeblock">$ kinit</pre>
+</li>
+
+            </ol>
+</li>
+
+         <li class="li">Verify HDFS is running.<p class="p">To verify HDFS is running, log in to the client node,
+               NameNode or DataNode as <samp class="ph codeph">gpadmin</samp> and run:
+                  </p>
+<pre class="pre codeblock">$ hdfs dfs -ls / </pre>
+<p class="p"> <strong class="ph b">Sample
+            Output:</strong></p>
+<pre class="pre codeblock">  Found 4 items 
+  drwxr-xr-x   - mapred hadoop          0 2013-06-15 15:49 /mapred 
+  drwxrwxrwx   - hdfs   hadoop          0 2013-06-15 15:49 /tmp 
+  drwxrwxrwx   - hdfs   hadoop          0 2013-06-15 15:50 /user 
+  drwxr-xr-x   - hdfs   hadoop          0 2013-06-15 15:50 /yarn</pre>
+</li>
+
+         <li class="li"><strong class="ph b">Security: </strong>If you have deployed a secure cluster with Kerberos authentication:
+               <div class="note note"><span class="notetitle">Note:</span> If you have not deployed a secure cluster, skip this task.</div>
+<ol class="ol" type="a" id="initializinghawq__ol_dt2_syy_5p">
+               <li class="li">Locate the HAWQ data directory: <ol class="ol" type="i" id="initializinghawq__ol_ktk_41z_5p">
+                     <li class="li">On the HAWQ master, open
+                           <samp class="ph codeph">/etc/gphd/hawq/conf/gpinitsystem_config</samp>.</li>
+
+                     <li class="li">Locate <samp class="ph codeph">DFS_URL</samp> and obtain the directory after
+                           <samp class="ph codeph">nameservice</samp> or <samp class="ph codeph">namenode</samp>. By default the
+                        value of this is <samp class="ph codeph">hawq_data</samp>. We will refer to it as
+                           <var class="keyword varname">&lt;HAWQ_DATA_DIR&gt;</var> for the purpose of this
+                        document.</li>
+
+                  </ol>
+</li>
+
+               <li class="li">Create <var class="keyword varname">&lt;HAWQ_DATA_DIR&gt;</var> on HDFS: <ol class="ol" type="i" id="initializinghawq__ol_jzk_w2z_5p">
+                     <li class="li">Start the cluster using <samp class="ph codeph">icm_client</samp>.</li>
+
+                     <li class="li">Make sure HDFS service is up and running.</li>
+
+                     <li class="li">As <samp class="ph codeph">gpadmin</samp>, on the namenode or client machine,
+                        run:<pre class="pre codeblock">kinit
+hadoop fs -mkdir /<var class="keyword varname">&lt;HAWQ_DATA_DIR&gt;</var> 
+hadoop fs -chown -R postgres:gpadmin /<var class="keyword varname">&lt;HAWQ_DATA_DIR&gt;</var>
+hadoop fs -mkdir /user/gpadmin
+hadoop fs -chown gpadmin:gpadmin /user/gpadmin
+hadoop fs -chmod 777 /user/gpadmin
+kdestroy</pre>
+</li>
+
+                  </ol>
+</li>
+
+            </ol>
+</li>
+
+         <li class="li">As <samp class="ph codeph">gpadmin</samp>, exchange keys, then initialize HAWQ from the HAWQ
+                  master.<div class="note note"><span class="notetitle">Note:</span> <samp class="ph codeph">ssh</samp> to the HAWQ Master before you initialize
+               HAWQ.</div>
+<p class="p">For example:
+               </p>
+<pre class="pre codeblock">$ su - gpadmin
+$ source /usr/local/hawq/greenplum_path.sh
+$ gpssh-exkeys -f HAWQ_HOSTS.txt # where HAWQ_HOSTS.txt has a set of hawq nodes
+$ /etc/init.d/hawq init</pre>
+<div class="note note"><span class="notetitle">Note:</span> 
+               You do not need to start HAWQ. It is implicitly started as part of the
+               initialization.</div>
+</li>
+
+         <li class="li">If you have a HAWQ Standby master in your cluster configuration, initialize it using
+               <samp class="ph codeph">gpinitstandby</samp>: <ol class="ol" type="a" id="initializinghawq__ol_a3n_gyc_5p">
+               <li class="li"><samp class="ph codeph">gpinitstandby</samp> reads the master data directory location from the
+                     <samp class="ph codeph">$MASTER_DATA_DIRECTORY</samp> environment variable, so before running
+                     <samp class="ph codeph">gpinitstandby</samp>, run the
+                     following:<pre class="pre codeblock">$ export MASTER_DATA_DIRECTORY=<var class="keyword varname">&lt;MASTER_DIRECTORY&gt;</var>/gpseg-1</pre>
+<p class="p">For
+                     example:</p>
+<pre class="pre codeblock">$ export MASTER_DATA_DIRECTORY=/data0/master/gpseg-1/gpseg-1</pre>
+</li>
+
+               <li class="li">Then, still as <samp class="ph codeph">gpadmin</samp>, initialize the Standby
+                  master:<pre class="pre codeblock">$ gpinitstandby -s <var class="keyword varname">&lt;HAWQ_STANDBY_MASTER_FQDN&gt;</var>  </pre>
+</li>
+
+            </ol>
+</li>
+
+      </ol>
+
+      <div class="note note"><span class="notetitle">Note:</span> <strong class="ph b">Hive with HAWQ/PXF</strong><p class="p">If you are planning to configure Hive with HAWQ/PXF, check
+            that the Hive Metastore service is available and running (anywhere on the cluster) and
+            that you have set the property <samp class="ph codeph">hive.metastore.uri</samp> in the
+               <span class="ph filepath">hive-site.xml</span> file on the NameNode to point to that
+            location.</p>
+</div>
+
+   </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/ManagingHAWQ.html" title="Managing HAWQ"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Managing HAWQ</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

@@ -1,0 +1,864 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="This section provides common errors you may receive and how to troubleshoot or workaround those errors. Debugging Errors Pivotal HD Installation Cluster Deployment Cluster Nodes Installation Services ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="PHD Troubleshooting"/><meta name="DC.Relation" scheme="URI" content="../topics/PHDInstallationandAdministration.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="phdtroubleshooting"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>PHD Troubleshooting</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="phdtroubleshooting"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PivotalHD.html" title="Pivotal HD">Pivotal HD</a> / <a class="navheader_parent_path" href="../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration">PHD Installation and Administration</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">PHD Installation and Administration</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">PHD Troubleshooting</h1>
+
+   <div class="body">
+      <p class="p">This section provides common errors you may receive and how to troubleshoot or workaround
+         those errors.</p>
+
+      <ul class="ul">
+         <li class="li">
+            <a class="xref" href="#debuggingerrors">Debugging Errors</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#pivotalhdinstallation">Pivotal HD Installation</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#clusterdeployment">Cluster Deployment</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#clusternodesinstallation">Cluster Nodes Installation</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#servicesstart">Services Start</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#puppetsslerrors">Puppet SSL Errors</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#upgradereconfigureerrors">Upgrade/Reconfigure Errors</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#followinganupgradeofcommandcenterunabletostartstopclusterwithinvalidhostnames">Following an upgrade of Command Center, unable to Start/Stop cluster with invalid hostnames</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#otherupgradereconfigureerrors">Other Upgrade/Reconfigure Errors</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#ha-relatederrors">HA-related Errors</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#othererrors">Other Errors</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#commandcenterinstallationfailsduetofaileddependencies">Command Center Installation fails due to failed dependencies</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#clusterdeploymentfailsduetorpmdependencies">Cluster Deployment fails due toRPM Dependencies</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#unabletoaccessthenamenodestatuswebpage">Unable to access the Namenode Status Web page</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#installationfailsduetodirectorypermissions">Installation Fails due to Directory Permissions</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#deploymentfailsduetoproblemswithyumrepository">Deployment Fails due to Problems with YUM Repository</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#installationfailsduetoproblemswiththesslcertificate">Installation Fails due to Problems with the SSL certificate</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#clusternodeinstallationfailurewithoutgeneratingalogfile">Cluster Node Installation Failurewithout Generating aLog File</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#puppetcertificatefailure">Puppet certificate failure</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#packagebundlenotfound">Package Bundle Not Found</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#clusterdeploymentfailsduetomissingpackages">Cluster Deployment Fails due to Missing Packages</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#workingwithproxyservers">Working with Proxy Servers</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#capitallettersinhostname">Capital Letters in Hostname</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#resolvingpostgresportconflictissue">Resolving postgres port Conflict Issue</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#resolvinghttpportconflict">Resolving HTTP Port Conflict</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#errorslikeambitpushfailed">Errors like Ambit: Push Failed</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#preparehostserrorsoutwhilecreatinggpadminuser">Preparehosts Errors Out While Creating gpadmin User</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hawqinitializationfailing">HAWQ Initialization Failing</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#installinghawqondirtyclusternodespreviouslyconfiguredwithhawq">Installing HAWQ on Dirty Cluster Nodes Previously Configured with HAWQ</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#errorsrelatedtovmmemory">Errors Related to VM Memory</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+      </ul>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="debuggingerrors">
+      <h2 class="title topictitle2">Debugging Errors</h2>
+
+      <div class="body">
+         <p class="p">Pivotal Command Center has many different log files. Finding the exact log may initially
+            be challenging at the beginning.</p>
+
+         <p class="p">Here is a quick guide on how to identify the issues:</p>
+
+      </div>
+
+      <div class="topic nested2" id="pivotalhdinstallation">
+         <h3 class="title topictitle3">Pivotal HD Installation</h3>
+
+         <div class="body">
+            <p class="p">All installation errors will be logged under:
+                  <samp class="ph codeph">/var/log/gphd/gphdmgr/installer.log</samp>
+            </p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="clusterdeployment">
+         <h3 class="title topictitle3">Cluster Deployment</h3>
+
+         <div class="body">
+            <p class="p">If you see a 500 Internal Server Error, check the following logs for details:
+                  <span class="ph filepath">/var/log/gphd/gphdmgr/gphdmgr-webservices.log</span>
+            </p>
+
+            <p class="p">If you see Puppet cert generation errors, check <span class="ph filepath">
+                  <span class="keyword wintitle">/var/log/gphd/gphdmgr/gphdmgr-webservices.log</span>
+               </span>
+            </p>
+
+            <p class="p">If config properties are not making it into the cluster nodes, check
+                  <span class="ph filepath">/var/log/gphd/gphdmgr/gphdmgr-webservices.log</span>
+            </p>
+
+            <p class="p">If you see <samp class="ph codeph">GPHDClusterInstaller.py</samp> script execution error, check
+                  <span class="ph filepath">/var/log/gphd/gphdmgr/GPHDClusterInstaller_XXX.log</span>
+            </p>
+
+            <p class="p">Sometimes <samp class="ph codeph">/var/log/messages</samp> can also have good information,
+               especially if the deployment fails during the puppet deploy stage.</p>
+
+            <p class="p">In general if something fails on the server side, look at the logs in this order: </p>
+
+            <ul class="ul" id="clusterdeployment__ul_qdw_mw2_4p">
+               <li class="li">/var/log/gphd/gphdmgr/gphdmgr-webservices.log </li>
+
+               <li class="li">/var/log/gphd/gphdmgr/GPHDClusterInstaller_XXX.log </li>
+
+               <li class="li">/var/log/messages</li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="clusternodesinstallation">
+         <h3 class="title topictitle3">Cluster Nodes Installation</h3>
+
+         <div class="body">
+            <p class="p">If there are no errors on the admin side, but the installation failed on the cluster
+               nodes, check the latest log file: <span class="ph filepath">/tmp/GPHDNodeInstaller_XXX.log</span>
+            </p>
+
+            <p class="p">Search for the first occurrence of the word <samp class="ph codeph">merr;</samp> that will point to
+               the most probable issue.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="servicesstart">
+         <h3 class="title topictitle3">Services Start</h3>
+
+         <div class="body">
+            <p class="p">Check for the corresponding log file under<samp class="ph codeph"> /var/log/gphd/</samp>
+               directory.</p>
+
+            <p class="p">For example, if the namenode doesn't start, look at the
+                  <span class="ph filepath">/var/log/gphd/hadoop-hdfs/hadoop-hdfs-namenode-hostname.log</span>
+               file for details.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="puppetsslerrors">
+      <h2 class="title topictitle2">Puppet SSL Errors</h2>
+
+      <div class="body">
+         <p class="p">For errors like: <samp class="ph codeph">"Unable to generate certificates" </samp>
+            <samp class="ph codeph"> "SSLv3 authentication issues on the client"</samp>
+         </p>
+
+         <p class="p">As <samp class="ph codeph">root</samp>, do the following:</p>
+
+         <p class="p">Ensure the hostname on all machines is a fully qualified domain name. (see the
+               <samp class="ph codeph">HOSTNAME</samp> field in <samp class="ph codeph">/etc/sysconfig/network.</samp>)</p>
+
+         <p class="p">Run:</p>
+
+         <pre class="pre codeblock">service commander stop</pre>
+
+         <p class="p">On <strong class="ph b">all machines including cluster nodes</strong>, run:</p>
+
+         <pre class="pre codeblock">rm -rf /var/lib/puppet/ssl-icm/*</pre>
+
+         <p class="p">
+            <strong class="ph b">On the admin node</strong>, ensure there is no puppet master process running by
+            running:</p>
+
+         <pre class="pre codeblock">ps ef | grep puppet</pre>
+
+         <p class="p">If there is, <samp class="ph codeph">kill -9 </samp>any running puppet process:</p>
+
+         <pre class="pre codeblock">ps -ef|grep puppet|awk '{print $2}'|xargs kill -9</pre>
+
+         <p class="p">Make sure there are no certificates listed by running:</p>
+
+         <pre class="pre codeblock">puppetca list --all </pre>
+
+         <p class="p">You can run <samp class="ph codeph">puppetca clean --all </samp>to clean any certificates</p>
+
+         <p class="p">Restart the puppet master:</p>
+
+         <pre class="pre codeblock">service puppetmaster start </pre>
+
+         <p class="p">Verify there is just one certificate:</p>
+
+         <pre class="pre codeblock">puppetca list --all</pre>
+
+         <p class="p">Stop the puppet master and start nmon:</p>
+
+         <pre class="pre codeblock">service puppetmaster stop
+service commander start</pre>
+
+         <p class="p">Now retry your deployment.</p>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="upgradereconfigureerrors">
+      <h2 class="title topictitle2">Upgrade/Reconfigure Errors</h2>
+
+      <div class="topic nested2" id="followinganupgradeofcommandcenterunabletostartstopclusterwithinvalidhostnames">
+         <h3 class="title topictitle3">Following an upgrade of Command Center, unable to Start/Stop cluster with invalid
+            hostnames</h3>
+
+         <div class="body">
+            <p class="p">This is because there is now a check for invalid characters in cluster names.</p>
+
+            <p class="p">
+               <strong class="ph b">Workaround</strong>: First reconfigure the cluster to a different name:</p>
+
+            <pre class="pre codeblock">icm_client reconfigure -l &lt;old_cluster_name&gt; -c &lt;config directory with new clustername&gt;</pre>
+
+            <p class="p">Then try starting/stopping the cluster:</p>
+
+            <pre class="pre codeblock">icm_client start -l &lt;cluster_name&gt;
+icm_client stop -l &lt;cluster_name&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="otherupgradereconfigureerrors">
+         <h3 class="title topictitle3">Other Upgrade/Reconfigure Errors</h3>
+
+         <div class="body">
+            <p class="p">After upgrading PHD stack from 1.0.2 to 1.0.3 release, hbase master fails to start if
+               hbase-master is not co-located with either namenode or datanode.</p>
+
+            <p class="p">
+               <strong class="ph b">Workaround</strong>: On hbase-master node, run: <samp class="ph codeph">yum upgrade
+                  hadoop-hdfs</samp>. Go to the <samp class="ph codeph">/usr/lib/gphd</samp> directory. Point
+               the <samp class="ph codeph">hadoop-hdfs</samp> symlink to the newer <samp class="ph codeph">hadoop-hdfs</samp>
+               version.</p>
+
+            <p class="p">If you see a <samp class="ph codeph">hostRoleMapping should not be changed for other
+                  services</samp> error, make sure the <samp class="ph codeph">clusterConfig.xml</samp> file has
+               not been changed for any of the already existing services. Even if it is the same set
+               of hosts, but in a different order, make sure you maintain the order in the comma
+               separated list.</p>
+
+            <p class="p">If you see <samp class="ph codeph">ERROR:Fetching hadoop rpm name on namenode:
+                  &lt;<strong class="ph b">host</strong>&gt; failed</samp> error, it is most likely a case where the
+               cluster was being upgraded from 1.0.0 to 1.0.2 and there was an error during
+               upgrade.</p>
+
+            <p class="p">
+               <strong class="ph b">Workaround</strong>: Run <samp class="ph codeph">yum install
+                  hadoop-2.0.2_alpha_gphd_2_0_1_0-14.x86_64</samp> on the namenode and retry
+               upgrade.</p>
+
+            <p class="p">If you are upgrading a cluster with HBase, Hive, or PFX configured as a service, you
+               must manually reinstall those services. See <a class="xref" href="UpgradingPHD20xto210.html">Upgrading PHD 2.0.x to 2.1.0</a>
+               for details.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="ha-relatederrors">
+      <h2 class="title topictitle2">HA-related Errors</h2>
+
+      <div class="body">
+         <p class="p">If the cluster fails to start with HA enabled:</p>
+
+         <ul class="ul">
+            <li class="li">Check the status of the journal node
+                  (<samp class="ph codeph">/etc/init.d/hadoop-hdfs-journalnode</samp> status) on all hosts and
+               ensure they are running. </li>
+
+            <li class="li">Check if the "namenode" (configured as <samp class="ph codeph">namenodeid1</samp> in
+                  <span class="ph filepath">clusterconfig.xml</span>) is formatted and successfully started. Be
+               sure to check <span class="ph filepath">/var/log/gphd/gphdmgr/gphdmgr-webservices.log</span> and,
+               if needed, the namenode logs on the namenode host:
+                  <span class="ph filepath">/usr/lib/gphd/hadoop/logs/hadoop-hdfs-namenode*log </span>
+            </li>
+
+            <li class="li">Check if the "standbynamenode" (configured as <samp class="ph codeph">namenodeid2</samp> in
+                  <span class="ph filepath">clusterconfig.xml</span>) is formatted and successfully started. The
+               namenode logs should have details on any errors, if the standbynamenode failed to
+               format or start.</li>
+
+            <li class="li">If standbynamenode fails to start because it is not formatted and restarting the
+               cluster does not format the name node, please contact support team for help.</li>
+
+            <li class="li">If you are converting a non-HA cluster to HA, please follow the documented steps. It
+               is important to start the journal nodes and initialize the edit logs from the
+               namenode of the existing cluster before starting the cluster.</li>
+
+         </ul>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="othererrors">
+      <h2 class="title topictitle2">Other Errors</h2>
+
+      <div class="topic nested2" id="commandcenterinstallationfailsduetofaileddependencies">
+         <h3 class="title topictitle3">Command Center Installation fails due to failed dependencies</h3>
+
+         <div class="body">
+            <p class="p">If, during the installation of PCC, you receive a facter mismatch error like the
+               following:</p>
+
+            <pre class="pre codeblock">PCC-2.2.0-175]# rpm -ev facter 
+error: Failed dependencies:
+facter &gt;= 1.5 is needed by (installed) puppet-2.7.9-1.el6.noarch</pre>
+
+            <p class="p">Remove facter using the command:</p>
+
+            <div class="p">
+               <pre class="pre codeblock">yum erase facter </pre>
+
+            </div>
+
+            <p class="p">Then run the PCC installation again.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="clusterdeploymentfailsduetorpmdependencies">
+         <h3 class="title topictitle3">Cluster Deployment fails due toRPM Dependencies</h3>
+
+         <div class="body">
+            <p class="p">Ensure that the base OS repo is available. You might have to mount the CD that comes
+               with the OS installation or point yum to the correct location, such as the NFS mount
+               point on all the cluster nodes.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="unabletoaccessthenamenodestatuswebpage">
+         <h3 class="title topictitle3">Unable to access the Namenode Status Web page</h3>
+
+         <div class="body">
+            <p class="p">If the host returns a short hostname instead of FQDN for <samp class="ph codeph">hostname()</samp>,
+               it is possible that the namenode status link cannot be accessed from external
+               networks.</p>
+
+            <p class="p">The solution is to either ensure that the <samp class="ph codeph">hostname()</samp> returns FQDN on
+               the namenode host, or change the <samp class="ph codeph">dfs.http.address</samp> value to
+                  <samp class="ph codeph">0.0.0.0</samp> in the<samp class="ph codeph"> hdfs-site.xml</samp> and restart
+               namenode.</p>
+
+            <pre class="pre codeblock">&lt;property&gt;
+&lt;name&gt;dfs.http.address&lt;/name&gt;
+&lt;value&gt;0.0.0.0:50070&lt;/value&gt;
+&lt;/property&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="installationfailsduetodirectorypermissions">
+         <h3 class="title topictitle3">Installation Fails due to Directory Permissions</h3>
+
+         <div class="body">
+            <p class="p">Check if the umask is set to 0022. If not, set the umask in the
+                  <samp class="ph codeph">.bashrc</samp> as "umask 0022", then retry the PCC installation.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="deploymentfailsduetoproblemswithyumrepository">
+         <h3 class="title topictitle3">Deployment Fails due to Problems with YUM Repository</h3>
+
+         <div class="body">
+            <p class="p">Verify that the admin node is reachable from the agent node.</p>
+
+            <p class="p">If you have configured proxy servers, refer to the section titled <a class="xref" href="#workingwithproxyservers">Working with Proxy Servers</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="installationfailsduetoproblemswiththesslcertificate">
+         <h3 class="title topictitle3">Installation Fails due to Problems with the SSL certificate</h3>
+
+         <div class="body">
+            <p class="p">Check if <samp class="ph codeph">dnsdomainname</samp> returns an empty value. If yes, you need to
+               ensure that the <samp class="ph codeph">dnsdomainname</samp> returns the correct domain.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="clusternodeinstallationfailurewithoutgeneratingalogfile">
+         <h3 class="title topictitle3">Cluster Node Installation Failurewithout Generating aLog File</h3>
+
+         <div class="body">
+            <p class="p">Ensure that passwordless ssh is setup between the admin node and the cluster
+               nodes.</p>
+
+            <p class="p">Ensure that the puppet, facter and ruby rpms are the same as that on the admin
+               node</p>
+
+            <p class="p">Ensure that the user <samp class="ph codeph">gpadmin</samp> has sudo and no requiretty access on
+               the cluster node (check for the existence of file:
+                  <samp class="ph codeph">/etc/sudoers.d/gpadmin</samp>)</p>
+
+            <p class="p">Then, retry the deployment.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="puppetcertificatefailure">
+         <h3 class="title topictitle3">Puppet certificate failure</h3>
+
+         <div class="body">
+            <p class="p">Follow the instructions in the <a class="xref" href="#puppetsslerrors">Puppet SSL Errors</a>
+               section.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="packagebundlenotfound">
+         <h3 class="title topictitle3">Package Bundle Not Found</h3>
+
+         <div class="body">
+            <p class="p">If you sudo into the system as root, ensure that you sudo with the environment. That
+                  is:<samp class="ph codeph"> sudo su -</samp>  Do not forget the hyphen at the end.</p>
+
+            <p class="p">If you directly login as root with the password and you still see the above issue,
+               check if the <samp class="ph codeph">/usr/local/bin/bundle</samp> exists.  If not, build it:</p>
+
+            <div class="p">
+               <pre class="pre codeblock">gem install bundler </pre>
+
+            </div>
+
+            <div class="p">Add <samp class="ph codeph">/usr/local/bin</samp> to <samp class="ph codeph">PATH</samp>,
+               regardless:<pre class="pre codeblock">[]# vi ~/.bashrc </pre>
+
+            </div>
+
+            <p class="p">Append <samp class="ph codeph">export PATH=$PATH:/usr/local/bin</samp>, then save</p>
+
+            <div class="p">
+               <pre class="pre codeblock">[]# source ~/.bashrc </pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="clusterdeploymentfailsduetomissingpackages">
+         <h3 class="title topictitle3">Cluster Deployment Fails due to Missing Packages</h3>
+
+         <div class="body">
+            <p class="p">The above error can be identified by following the instructions on <a class="xref" href="#clusternodesinstallation">Cluster Nodes Installation</a> errors section
+               above.</p>
+
+            <p class="p">Install <strong class="ph b">nc</strong> and <strong class="ph b">postgres-devel</strong> packages on all the cluster nodes or
+               point them to a repo that contains the rpms.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="workingwithproxyservers">
+         <h3 class="title topictitle3">Working with Proxy Servers</h3>
+
+         <div class="body">
+            <p class="p">It is sometimes required that all outgoing http traffic use a HTTP proxy. PCC
+               installer sometimes pulls rpms from an external repos such as an EPEL6 repo if the
+               external repos are configured and if any packages are missing on the host.</p>
+
+            <p class="p">If you configure the proxy settings in <samp class="ph codeph">/etc/yum.conf</samp> for the cluster
+               node, cluster deployments might fail because yum will send all
+                  <samp class="ph codeph">gphd.repo</samp> requests to the proxy, which in turn will fail to
+               connect to the admin node's local repo.</p>
+
+            <p class="p">Here are a few workarounds:</p>
+
+            <p class="p">
+               <strong class="ph b">Workaround 1:</strong>
+            </p>
+
+            <ul class="ul" id="workingwithproxyservers__ul_jhr_fw2_4p">
+               <li class="li">Remove the proxy settings from <samp class="ph codeph">yum.conf</samp> and</li>
+
+               <li class="li">Make sure following params are set in <samp class="ph codeph">~root/.bashr</samp>c<p class="p">For
+                     example: <samp class="ph codeph">export http_proxy=http://proxy:3333 </samp>
+                     <samp class="ph codeph"> export no_proxy=local.domain ## this is the local domain for hadoop
+                        cluster</samp>
+                  </p>
+</li>
+
+               <li class="li">Modify these files so <samp class="ph codeph">gphd.repo</samp> gets pushed out with a FQDN name
+                  instead of shortname:
+                     <samp class="ph codeph">/etc/puppet/modules/yumrepo/templates/yumrepo.erb</samp>
+                  <p class="p">Change
+                     from:</p>
+<pre class="pre codeblock">baseurl=http://&lt;%= scope.lookupvar("params::config::admin_host")  %&gt;/&lt;%= scope.lookupvar("params::config::repopath") %&gt;</pre>
+<p class="p">Change
+                     to:
+                  </p>
+<pre class="pre codeblock">&lt;replace node.full.domain.com&gt; with the FQDN of the admin node
+baseurl=http://node.full.domain.com/&lt;%= scope.lookupvar("params::config::repopath") %&gt;</pre>
+</li>
+
+            </ul>
+
+            <p class="p">
+               <strong class="ph b">Workaround 2:</strong>
+            </p>
+
+            <ul class="ul" id="workingwithproxyservers__ul_wjr_fw2_4p">
+               <li class="li">Enable NFS and export <samp class="ph codeph">/usr/lib/gphd/rpms</samp> to all cluster
+                  nodes.</li>
+
+               <li class="li">Mount the nfs repo on all cluster nodes:
+                  <pre class="pre codeblock">mount gpcc:/usr/lib/gphd/rpms /local_repo</pre>
+</li>
+
+            </ul>
+
+            <ul class="ul" id="workingwithproxyservers__ul_dlr_fw2_4p">
+               <li class="li">Modify these files:
+                     <samp class="ph codeph">/etc/puppet/modules/yumrepo/templates/yumrepo.erb</samp>
+                  <p class="p">Change
+                     from:</p>
+<pre class="pre codeblock">baseurl=http://&lt;%= scope.lookupvar("params::config::admin_host")  %&gt;/&lt;%= scope.lookupvar("params::config::repopath") %&gt;</pre>
+<p class="p">Change
+                     to:</p>
+<pre class="pre codeblock">baseurl={nolink:file:///local_repo/}</pre>
+</li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="capitallettersinhostname">
+         <h3 class="title topictitle3">Capital Letters in Hostname</h3>
+
+         <div class="body">
+            <p class="p">PCC fails to deploy if the hostnames contain uppercase letters. For example:
+                  <samp class="ph codeph">Node0781.domain.com</samp>.</p>
+
+            <p class="p">Rename the hostname with only lowercase letters before proceeding with the
+               deployment.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="resolvingpostgresportconflictissue">
+         <h3 class="title topictitle3">Resolving postgres port Conflict Issue</h3>
+
+         <div class="body">
+            <p class="p">If you face a postgres port conflict or wish to change the default postgres port,
+               follow the steps below:</p>
+
+            <ol class="ol" id="resolvingpostgresportconflictissue__ol_fyq_fw2_4p">
+               <li class="li">Stop PCC service: <pre class="pre codeblock">root# service commander stop</pre>
+</li>
+
+               <li class="li">Add the new port <samp class="ph codeph">&lt;hostname&gt;:5435</samp> in the Pivotal HD
+                  properties file:
+                  <pre class="pre codeblock">vim /etc/gphd/gphdmgr/conf/gphdmgr.properties
+gphdmgr.db.url=jdbc:postgresql://localhost:5435/gp</pre>
+</li>
+
+               <li class="li">Change the port number in
+                  <samp class="ph codeph">postgresql.conf</samp>:<pre class="pre codeblock">vim /var/lib/pgsql/data/postgresql.conf "port = 5435"  </pre>
+</li>
+
+               <li class="li">Edit the <samp class="ph codeph">init.d/postgresql</samp>
+                  file:<pre class="pre codeblock">vim /etc/init.d/postgresql
+#Change the PGPORT to 5435 "PGPORT=5435"  
+root# service commander start</pre>
+</li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="resolvinghttpportconflict">
+         <h3 class="title topictitle3">Resolving HTTP Port Conflict</h3>
+
+         <div class="body">
+            <p class="p">Check the FAQ section: How do I change the port used by Pivotal HD?</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="errorslikeambitpushfailed">
+         <h3 class="title topictitle3">Errors like Ambit: Push Failed</h3>
+
+         <div class="body">
+            <p class="p">If you see errors like the following:</p>
+
+            <pre class="pre codeblock">root# icm_client add-user-gpadmin -f hosts
+Ambit : Push Failed
+Had : Push Failed
+Issues : Push Failed
+Generating : Push Failed
+A : Push Failed
+List : Push Failed
+</pre>
+
+            <p class="p">This is an ambit bug. If there are hostnames (only the name part, not the domain)
+               that are substrings of other hostnames, then this issue can occur.</p>
+
+            <p class="p">For example: <samp class="ph codeph">host1.emc.com</samp>, <samp class="ph codeph">host11.emc.com</samp>
+            </p>
+
+            <p class="p">This error can be ignored for now as the actual deployment still goes through.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="preparehostserrorsoutwhilecreatinggpadminuser">
+         <h3 class="title topictitle3">Preparehosts Errors Out While Creating gpadmin User</h3>
+
+         <div class="body">
+            <p class="p">Make sure SELinux needs to be either disabled or in permissive mode for the
+               hosts. </p>
+
+            <p class="p">(See the <a class="xref" href="PCCUserGuide.html">PCC User Guide</a> for instructions to disable SELinux.)</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hawqinitializationfailing">
+         <h3 class="title topictitle3">HAWQ Initialization Failing</h3>
+
+         <div class="body">
+            <p class="p">Make sure your cluster is up and running with the Hadoop services, prior to
+               initializing HAWQ (<samp class="ph codeph">hawq init</samp>). If the failure still persists, make
+               sure the HAWQ nodes have been prepared (<a class="xref" href="DeployingtheCluster.html">PHD Install 7 - Deploy the Cluster</a>,
+                  <samp class="ph codeph">icm_client deploy</samp> syntax) to reflect the kernel configurations
+               required for HAWQ. If you still have a problem, you might be running short of the
+               memory required to run HAWQ at scale. Refer to <a class="xref" href="HAWQAdministration.html">HAWQ Administration</a>
+               to configure/modify the system memory requirements.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="installinghawqondirtyclusternodespreviouslyconfiguredwithhawq">
+         <h3 class="title topictitle3">Installing HAWQ on Dirty Cluster Nodes Previously Configured with HAWQ</h3>
+
+         <div class="body">
+            <p class="p">If you wish to deploy or initialize HAWQ on:</p>
+
+            <p class="p">a) A cluster that had an older uninstalled HAWQ cluster, or</p>
+
+            <p class="p">b) A cluster that failed in its attempts to initialize HAWQ</p>
+
+            <p class="p">You will need to perform the following steps before initializing HAWQ with the new
+               cluster nodes:</p>
+
+            <ol class="ol" id="installinghawqondirtyclusternodespreviouslyconfiguredwithhawq__ol_fgq_fw2_4p">
+               <li class="li">Ensure that <samp class="ph codeph">HAWQ_Hosts.txt</samp> contains all the HAWQ hosts that you
+                  want to clean up.</li>
+
+               <li class="li">Run the following command against each DIRECTORY configured in
+                     <samp class="ph codeph">&lt;hawq.segment.directory&gt;</samp> and in
+                     <samp class="ph codeph">&lt;hawq.master.directory&gt;</samp> in the cluster configuration
+                     (<samp class="ph codeph">clusterConfig.xml</samp>)</li>
+
+            </ol>
+
+            <div class="p">
+               <pre class="pre codeblock"> gpadmin# massh HAWQ_Hosts.txt verbose 'sudo rm -rf DIRECTORY/*' </pre>
+
+            </div>
+
+            <p class="p">The above command cleans up the stale HAWQ master and segment data directory
+               contents.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="errorsrelatedtovmmemory">
+         <h3 class="title topictitle3">Errors Related to VM Memory</h3>
+
+         <div class="body">
+            <p class="p">If you are planning to deploy a HAWQ cluster on VMs that have memory limits lower
+               than the optimized/recommended requirements, you might encounter <samp class="ph codeph">Could not
+                  create the Java virtual machine</samp> type errors.  In these cases, you can
+               reconfigure memory usage, as follows:</p>
+
+            <ul class="ul" id="errorsrelatedtovmmemory__ul_lcq_fw2_4p">
+               <li class="li">Prior to running the prepare HAWQ utility, open the
+                     <samp class="ph codeph">/usr/lib/gphd/gphdmgr/hawq_sys_config/sysctl.conf</samp>  file and
+                  change the value of the following parameter from 2 to 0:<div class="p">
+                     <pre class="pre codeblock">vm.overcommit_memory =2 </pre>
+
+                  </div>
+</li>
+
+               <li class="li">In the <samp class="ph codeph">clusterConfig.xml</samp>, update
+                     <samp class="ph codeph">&lt;hawq.segment.directory&gt;</samp> to include only one segment
+                  directory entry (instead of the default 2 segments).</li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">PHD Installation and Administration</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

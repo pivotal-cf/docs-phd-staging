@@ -1,0 +1,1525 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Pivotal HD is a full Apache Hadoop distribution with Pivotal add-ons and a native integration with the Pivotal Greenplum database. HDFS Off-Cluster Client Rack Awareness Overview of Rack Awareness ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Pivotal Hadoop Enhancements"/><meta name="DC.Relation" scheme="URI" content="../topics/StackandToolsReference.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="pivotalhadoopenhancements"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Pivotal Hadoop Enhancements</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="pivotalhadoopenhancements"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PivotalHD.html" title="Pivotal HD">Pivotal HD</a> / <a class="navheader_parent_path" href="../topics/StackandToolsReference.html" title="Stack and Tools Reference">Stack and Tools Reference</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/StackandToolsReference.html" title="Stack and Tools Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Stack and Tools Reference</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Pivotal Hadoop Enhancements</h1>
+
+   <div class="body">
+      <p class="p">Pivotal HD is a full Apache Hadoop distribution with Pivotal add-ons and a native
+         integration with the Pivotal Greenplum database.</p>
+
+      <ul class="ul">
+         <li class="li">
+            <a class="xref" href="#hdfsoff-clusterclientrackawareness">HDFS Off-Cluster Client Rack Awareness</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#topic_afx_yzc_5p">Overview of Rack Awareness</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#topic_nl2_p1d_5p">Problem: Ignored Off-cluster Clients</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#topic_r3s_41d_5p">Solution: Design</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#usage">Enabling Off-Client Rack Awareness</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#vaidya">Vaidya</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#overview1">Overview</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#installingvaidyafiles">Installing Vaidya Files</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#enablingvaidya">Enabling Vaidya</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#disablingvaidya">Disabling Vaidya</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#usingvaidyatoanalyzejobs">Using Vaidya to Analyze Jobs</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#vaidyaconfigurationrules">Vaidya Configuration Rules</a>
+                  <ul class="ul">
+                     <li class="li">
+                        <a class="xref" href="#disablingarule">Disabling a Rule</a>
+                     </li>
+
+                     <li class="li">
+                        <a class="xref" href="#changingtheimportanceofarule">Changing the Importance of a Rule</a>
+                     </li>
+
+                     <li class="li">
+                        <a class="xref" href="#changingsuccessthreshold">Changing Success Threshold</a>
+                     </li>
+
+                     <li class="li">
+                        <a class="xref" href="#changinginputparameters">Changing Input Parameters</a>
+                     </li>
+
+                     <li class="li">
+                        <a class="xref" href="#other">Other Elements</a>
+                     </li>
+
+                     <li class="li">
+                        <a class="xref" href="#addinganewrule">Adding a New Rule</a>
+                     </li>
+
+                     <li class="li">
+                        <a class="xref" href="#creatingajavabinaryforanewrule">Creating a Java Binary for a New Rule</a>
+                     </li>
+
+                     <li class="li">
+                        <a class="xref" href="#creatingxmlconfigurationforanewrule">Creating XML Configuration for a New Rule</a>
+                     </li>
+
+                     <li class="li">
+                        <a class="xref" href="#deployingfiles">Deploying Files</a>
+                     </li>
+
+                  </ul>
+
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#hvetopologyawareness">HVE Topology Awareness</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#topologyawarenessconfigurationandverification">Topology Awareness Configuration and Verification</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#hveelasticity">HVE Elasticity</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#overview2">Overview</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#functionlist">Function List</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#configuration">Configuration</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#commandlineinterfaceforyarncluster">Command-Line Interface for YARN Cluster</a>
+                  <ul class="ul">
+                     <li class="li">
+                        <a class="xref" href="#listallclis">List all CLIs</a>
+                     </li>
+
+                     <li class="li">
+                        <a class="xref" href="#listnodes">List Nodes</a>
+                     </li>
+
+                     <li class="li">
+                        <a class="xref" href="#getnodestatus">Get Node Status</a>
+                     </li>
+
+                     <li class="li">
+                        <a class="xref" href="#setnoderesourcecapacity">Set Node Resource Capacity</a>
+                     </li>
+
+                  </ul>
+
+               </li>
+
+            </ul>
+
+         </li>
+
+      </ul>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="hdfsoff-clusterclientrackawareness">
+      <h2 class="title topictitle2">HDFS Off-Cluster Client Rack Awareness</h2>
+
+      <div class="body">
+         <p class="p">HDFS rack awareness is a key feature to achieve localized I/O (locality).</p>
+
+      </div>
+
+      <div class="topic nested2" id="topic_afx_yzc_5p">
+         <h3 class="title topictitle3">Overview of Rack Awareness</h3>
+
+         <div class="body">
+            <p class="p">With respect to read and write separately, HDFS has:</p>
+
+            <ul class="ul" id="topic_afx_yzc_5p__ul_rs1_d1d_5p">
+               <li class="li">BlockPlacementPolicy for write locality: namenode will look up network topology
+                  and construct a list of chosen nodes (pipeline) for requesting a block to locate,
+                  based on algorithms provided by a BlockPlacementPolicy.</li>
+
+               <li class="li">Block pseudo distance sort for read locality: when reading a block, after
+                  obtaining all the located blocks, namenode sorts these located blocks based on
+                  their topological distance from the client. The closer nodes get higher priority
+                  for read.</li>
+
+            </ul>
+
+            <p class="p">Both operations need to reference network topology, which is managed by the rack
+               awareness feature. The rack awareness feature includes:</p>
+
+            <ul class="ul" id="topic_afx_yzc_5p__ul_j5z_c1d_5p">
+               <li class="li">A topology resolving framework: when datanodes register themselves on a namenode,
+                  that namenode will resolve their network location using their host name or ip,
+                  using DNSToSwitchMapping. This is a pluggable component that allows users to
+                  define their own topology based on their network layout. The most commonly used
+                  DNSToSwitchMapping is ScriptBasedMapping, which calls a shell script.</li>
+
+               <li class="li">An in-memory topology tree: all registered datanodes' network locations are kept
+                  in a topology tree. </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="topic_nl2_p1d_5p">
+         <h3 class="title topictitle3">Problem: Ignored Off-cluster Clients</h3>
+
+         <div class="body">
+            <p class="p">The problem of the current implementation is that it does not support off-cluster
+               clients. The figure below is an example of off-cluster clients:</p>
+
+            <p class="p">
+               <img class="image" id="topic_nl2_p1d_5p__image_h2z_c1d_5p" src="../images/69468516.png"/>
+            </p>
+
+            <p class="p">In this figure, node <strong class="ph b">dn1</strong> is a datanode and its network location is
+                  <strong class="ph b">/d1/r1</strong>, and so on for <strong class="ph b">dn2</strong> and <strong class="ph b">dn3</strong>. Node <strong class="ph b">client0</strong> is an
+               off-cluster node, which means there is no datanode deployed on <strong class="ph b">client0</strong>. In
+               this case, <strong class="ph b">client0</strong> has no chance to register itself in the topology tree of
+               the namenode. Therefore, both read and write operations select random nodes even
+               though <strong class="ph b">dn1</strong> is closer (more preferable) than either <strong class="ph b">dn2</strong> or <strong class="ph b">dn3</strong>.
+               This problem will cause performance issues in the following cases:</p>
+
+            <ul class="ul" id="topic_nl2_p1d_5p__ul_wgy_c1d_5p">
+               <li class="li"><strong class="ph b">When a mapreduce cluster is not exactly co-located:</strong> some mapreduce
+                  clusters share the same hdfs cluster with other mapreduce clusters, or in some
+                  cases a mapreduce cluster will cover several hdfs clusters. In those cases, a
+                  large portion of I/O will be off-cluster client operations, which cannot benefit
+                  from localized I/O.</li>
+
+               <li class="li"><strong class="ph b">When a physical cluster is not dedicated to Hadoop:</strong> a physical cluster
+                  might not be dedicated to Hadoop and other supporting systems, such as data
+                  loading tools, might share the same cluster. In that case, the data loading tool
+                  can not benefit from localized I/O, even if the tool and hdfs shares the same
+                  rack/data center. The problem could be even more common in virtualized
+                  environments.</li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="topic_r3s_41d_5p">
+         <h3 class="title topictitle3">Solution: Design</h3>
+
+         <div class="body">
+            <p class="p">To tackle this problem, we changed the logic in the block placement policy and the
+               block pseudo distance sort. We also resolved the network location of the client.</p>
+
+            <p class="p">
+               <strong class="ph b">Resolving client location</strong>
+            </p>
+
+            <p class="p">Resolving the client location: we reused the framework that resolves datanodes.
+               However, since we did not add client network locations into the topology tree (as
+               explained below), we have to cache client locations to avoid unnecessary resolve
+               operations.</p>
+
+            <p class="p">As a result, we introduced two LRU caches:</p>
+
+            <ul class="ul" id="topic_r3s_41d_5p__ul_ntw_c1d_5p">
+               <li class="li">A black list for those clients that have no valid location or whose locations do
+                  not share the same rack with any datanode.</li>
+
+               <li class="li">A white list, opposite to the black list, for those clients that are not
+                  datanodes but share the same rack with at least one datanode.</li>
+
+            </ul>
+
+            <p class="p">Referring to the diagram of ignored off-cluster clients, the table below lists some
+               examples of location cache.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="topic_r3s_41d_5p__table_qxv_c1d_5p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="3" valign="top">
+                           <p class="p">Location Cache Examples</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">
+                              <strong class="ph b">HostName</strong>
+                           </p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">
+                              <strong class="ph b">Location</strong>
+                           </p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">
+                              <strong class="ph b">Cache</strong>
+                           </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">client1</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">d1/r1</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">white list</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">client2</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">d2/r1</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">black list</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">client3</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">null</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">black list</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p class="p"> The size of the LRU cache is configurable, so you can limit the memory usage of
+               namenode.</p>
+
+            <p class="p">
+               <strong class="ph b">Block placement policy</strong>
+            </p>
+
+            <p class="p">The tables below demonstrate how the BlockPlacementPolicy has been changed to support
+               non-datanode clients.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="topic_r3s_41d_5p__table_vw5_c1d_5p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <p class="p">Former block placement algorithm</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">
+                              <strong class="ph b">Replica</strong>
+                           </p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">
+                              <strong class="ph b">Rule</strong>
+                           </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">1</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">Client Local</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">2</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">Random node whose rack is different from replica 1</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">3</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">Random node who share the same rack with replica 2</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">&gt;=4</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">Random node</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="topic_r3s_41d_5p__table_zg5_c1d_5p" class="table" frame="border" border="1" rules="all">
+                  
+                  
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" colspan="2" valign="top">
+                           <p class="p">Changed block placement algorithm</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">
+                              <strong class="ph b">Replica</strong>
+                           </p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">
+                              <strong class="ph b">Rule</strong>
+                           </p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">1</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">Client Local if client is datanode, or a random node that shares the
+                              same rack with client, if client is not a datanode</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">2</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">Random node whose rack is different from replica 1</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">3</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">Random node who shares the same rack with replica 2</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">&gt;=4</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <p class="p">Random node</p>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="usage">
+         <h3 class="title topictitle3">Enabling Off-Client Rack Awareness</h3>
+
+         <div class="body">
+            <p class="p">The client rack aware feature is disabled by default. To enable, add the following to
+               the <samp class="ph codeph">hdfs-site.xml</samp> file:</p>
+
+            <pre class="pre codeblock">&lt;properties&gt;
+ &lt;property&gt;
+   &lt;name&gt;dfs.rackawareness.with.client&lt;/name&gt;
+   &lt;value&gt;true&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;/properties&gt;
+ &lt;properties&gt;
+ &lt;property&gt;
+   &lt;name&gt;dfs.rackawareness.with.client.blacklist.size&lt;/name&gt;
+   &lt;description&gt;Black list size of client cache, 5000 by default.&lt;/description&gt;
+   &lt;value&gt;5000&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;/properties&gt;
+ &lt;properties&gt;
+ &lt;property&gt;
+   &lt;name&gt;dfs.rackawareness.with.client.cache.size&lt;/name&gt;
+  &lt;description&gt;White list size of client cache, best set it equals 
+   the size of cluster. 2000 by default.&lt;/description&gt;
+   &lt;value&gt;2000&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;/properties&gt;</pre>
+
+            <div class="note note"><span class="notetitle">Note:</span>  You need to restart DFS after changing the configuration.</div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="vaidya">
+      <h2 class="title topictitle2">Vaidya</h2>
+
+      <div class="topic nested2" id="overview1">
+         <h3 class="title topictitle3">Overview</h3>
+
+         <div class="body">
+            <p class="p">Vaidya is a diagnostic tool installed with PHD for Map/Reduce jobs. After a job is
+               executed successfully, it uses a job history log and the job configuration
+               information to identify any performance or scalability problems with the job. Upon
+               execution, it provides a job analysis report indicating specific problems with the
+               job, along with the remedy to correct them. The report element includes, "rule
+               title", "rule description",  "rule importance", "rule severity", "reference details"
+               and "remedy/prescription" to rectify the problem. The "rule severity", is a product
+               of rule impact and the rule importance.</p>
+
+            <p class="p">
+               <strong class="ph b">Note: </strong>The Vaidya tool does <strong class="ph b">not</strong> analyze failed jobs, either for
+               performance or scalability problems, nor for the reason for failures.</p>
+
+            <p class="p">The Vaidya tool includes diagnostic rules (also referred to as "tests") where each
+               rule analyzes a specific problem with the M/R job. A diagnostic rule is written as a
+               Java class and captures the logic of how to detect a specific problem condition with
+               the M/R job. Each diagnostic rule uses the job history log and job configuration
+               information provided to it using a standard structured interface. The standard
+               interface allows administrators and developers to independently add more diagnostic
+               rules in the Vaidya tool.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="installingvaidyafiles">
+         <h3 class="title topictitle3">Installing Vaidya Files</h3>
+
+         <div class="body">
+            <p class="p">By default, Vaidya files are installed at:</p>
+
+            <ul class="ul" id="installingvaidyafiles__ul_cfg_3vw_np">
+               <li class="li">The Vaidya JAR library is installed into
+                     <samp class="ph codeph">/usr/lib/gphd/hadoop-mapreduce/</samp>.</li>
+
+               <li class="li">The Vaidya default configuration file is installed into
+                     <samp class="ph codeph">/etc/gphd/hadoop/conf/</samp>.</li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="enablingvaidya">
+         <h3 class="title topictitle3">Enabling Vaidya</h3>
+
+         <div class="body">
+            <p class="p">On the history server  node, go to the PHD configuration folder (by default,
+                  <samp class="ph codeph">/etc/gphd/hadoop/conf</samp>), and add the following lines into the
+                  <samp class="ph codeph">mapred-site.xml</samp> file.</p>
+
+            <p class="p">Restart the job history server service to ensure the change takes effect.</p>
+
+            <p class="p">
+               <strong class="ph b">mapred-site.xml Structure</strong>
+            </p>
+
+            <pre class="pre codeblock">&lt;property&gt;
+  &lt;name&gt;mapreduce.vaidya.enabled&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+ &lt;name&gt;mapreduce.vaidya.jarfiles&lt;/name&gt;
+ &lt;value&gt;/usr/lib/gphd/hadoop-mapreduce/hadoop-vaidya.jar&lt;/value&gt;
+ &lt;/property&gt;
+ &lt;property&gt;
+ &lt;name&gt;mapreduce.vaidya.testconf.file&lt;/name&gt;
+ &lt;value&gt;/etc/gphd/hadoop/conf/postex_diagnosis_tests.xml&lt;/value&gt;
+ &lt;/property&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="disablingvaidya">
+         <h3 class="title topictitle3">Disabling Vaidya</h3>
+
+         <div class="body">
+            <p class="p">To disable Vaidya:</p>
+
+            <p class="p">Set the <samp class="ph codeph">mapreduce.vaidya.enabled</samp> property value to
+                  <samp class="ph codeph">false</samp>, or remove these lines from
+                  <samp class="ph codeph">mapred-site.xml</samp>:</p>
+
+            <ul class="ul" id="disablingvaidya__ul_zgg_3vw_np">
+               <li class="li">The value of property <samp class="ph codeph">mapreduce.vaidya.enabled</samp> should be changed
+                  to point to the correct jar file you installed. By default, this is
+                     <samp class="ph codeph">/usr/lib/gphd/hadoop-mapreduce/hadoop-vaidya-&lt;HADOOP_PHD_VERSION&gt;.jar</samp>.</li>
+
+               <li class="li">Restart the job history server service to ensure the change takes effect.</li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="usingvaidyatoanalyzejobs">
+         <h3 class="title topictitle3">Using Vaidya to Analyze Jobs</h3>
+
+         <div class="body">
+            <ol class="ol" id="usingvaidyatoanalyzejobs__ol_bjg_3vw_np">
+               <li class="li">Ensure your job history server service is running.</li>
+
+               <li class="li">Successfully run a MapReduce job for Vaidya to analyze.</li>
+
+               <li class="li">Open the following URL in a web
+                        browser:<p class="p"><samp class="ph codeph">http://&lt;historyserver_host&gt;:&lt;historyserver_port&gt;/jobhistory</samp></p>
+<p class="p">Where:</p>
+<ul class="ul" id="usingvaidyatoanalyzejobs__ul_njg_3vw_np">
+                     <li class="li"><samp class="ph codeph">&lt;historyserver_host&gt;</samp> refers to the host name or IP
+                        address of the machine where you run job history server service.</li>
+
+                     <li class="li"><samp class="ph codeph">&lt;historyserver_port&gt;</samp> refers to the HTTP port job
+                        history server web where the UI listens. By default, this value is 19888.
+                        Your browser should show you the job history server UI page.</li>
+
+                  </ul>
+</li>
+
+               <li class="li">You will see a list of jobs that have run, including the most recent job. Click
+                  the job id of any job in this list, and you should see the detailed information
+                  for the job.</li>
+
+               <li class="li">On the left side of the navigation area, there should be a link called <strong class="ph b">Vaidya
+                     report</strong> under the navigation item <strong class="ph b">Job</strong>. Click the <strong class="ph b">Vaidya report</strong>
+                  link and Vaidya will analyze the job for you and show a report.</li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="vaidyaconfigurationrules">
+         <h3 class="title topictitle3">Vaidya Configuration Rules</h3>
+
+         <div class="body">
+            <p class="p">After you installed Vaidya with PHD, rules configuration is installed as a
+                  <samp class="ph codeph">postex_diagnosis_tests.xml</samp> file in
+                  <samp class="ph codeph">/etc/gphd/hadoop/conf</samp>.</p>
+
+            <p class="p">You can find all rules to be run on a selected job in this file, where each rule is
+               defined as an XML <samp class="ph codeph">PostExPerformanceDiagnosisTests/DiagnosticTest</samp>
+               element.</p>
+
+            <p class="p">For example, a rule in <samp class="ph codeph">postex_diagnosis_tests.xml</samp>:</p>
+
+            <pre class="pre codeblock">&lt;DiagnosticTest&gt;
+ &lt;Title&gt;&lt;![CDATA[Balanced Reduce Partitioning]]&gt;&lt;/Title&gt;
+ &lt;ClassName&gt;
+ &lt;![CDATA[org.apache.hadoop.vaidya.postexdiagnosis.tests.BalancedReducePartitioning]]&gt;&lt;/ClassName&gt;
+ &lt;Description&gt;&lt;![CDATA[This rule tests as to how well the input to reduce tasks is balanced]]&gt;&lt;/Description&gt;
+ &lt;Importance&gt;&lt;![CDATA[High]]&gt;&lt;/Importance&gt;
+ &lt;SuccessThreshold&gt;&lt;![CDATA[0.40]]&gt;&lt;/SuccessThreshold&gt;
+ &lt;Prescription&gt;&lt;![CDATA[advice]]&gt;&lt;/Prescription&gt;
+ &lt;InputElement&gt;
+ &lt;PercentReduceRecords&gt;&lt;![CDATA[85]]&gt;&lt;/PercentReduceRecords&gt;
+ &lt;/InputElement&gt;
+ &lt;/DiagnosticTest&gt;</pre>
+
+            <p class="p"> The <samp class="ph codeph">Title</samp> and <samp class="ph codeph">Description</samp> elements provide a brief
+               summary about what this rule is doing.</p>
+
+            <p class="p">By editing <samp class="ph codeph">postex_diagnosis_tests.xml</samp>, you can configure the
+               rules.</p>
+
+            <div class="note note"><span class="notetitle">Note:</span> 
+               <ul class="ul" id="vaidyaconfigurationrules__ul_umt_q1j_tp">
+                  <li class="li">Remember to back up the original configuration file before editing the
+                     configuration file. An invalid XML config file may cause Vaidya to behave
+                     incorrectly.</li>
+
+                  <li class="li">Before you start editing rules, you should have background knowledge about XML
+                     syntax and how XML represents data (for example, what the CDATA element
+                     represents).</li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="disablingarule">
+            <h4 class="title topictitle4">Disabling a Rule</h4>
+
+            <div class="body">
+               <p class="p">Comment out or remove the entire <samp class="ph codeph">&lt;DiagnosticTest&gt;</samp>
+                  element.</p>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="changingtheimportanceofarule">
+            <h4 class="title topictitle4">Changing the Importance of a Rule</h4>
+
+            <div class="body">
+               <p class="p">Importance indicates how relatively important a rule is, relative to other rules
+                  in the same set. You can change the importance value by editing the
+                     <samp class="ph codeph">&lt;Importance&gt;</samp> element in the XML file. A level serves as
+                  a factor, which is multiplied to impact the value returned by each rule.</p>
+
+               <p class="p">There are three values valid for this attribute: Low (value of 0.33), Medium
+                  (value of 0.66), and High (value of 0.99).</p>
+
+               <p class="p">In the displayed Vaidya report, there is a value named <strong class="ph b">Severity</strong> for each
+                  rule. A severity level is the result of multiplying the impact value (returned by
+                  rule) and the importance factor (defined in the XML file).</p>
+
+               <p class="p">For example, a rule returns an impact of 0.5, its importance is marked as Medium,
+                  then its severity is 0.5 * 0.66 = 0.33.</p>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="changingsuccessthreshold">
+            <h4 class="title topictitle4">Changing Success Threshold</h4>
+
+            <div class="body">
+               <p class="p">Each rule calculates a value between 0 and 1 (inclusively) to indicate how healthy
+                  a job is according to the specified rule; this value is called impact. The smaller
+                  the impact is (that is, closer to 0), the healthier the job is.</p>
+
+               <p class="p">To give a more straightforward result, you can set a threshold for each rule.
+                  Therefore, a rule whose impact value is larger than the threshold will be marked
+                  as "failed"; otherwise, it is marked as "passed".</p>
+
+               <p class="p">Note that the threshold is compared with the impact value, rather than severity
+                  (which means making a rule less important will not make a failed rule
+                  succeed).</p>
+
+               <p class="p">You can change the threshold value by editing the
+                     <samp class="ph codeph">&lt;SuccessThreshold&gt;</samp> element in the XML file.</p>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="changinginputparameters">
+            <h4 class="title topictitle4">Changing Input Parameters</h4>
+
+            <div class="body">
+               <p class="p">Some rules might need additional input parameters to complete their logic. You can
+                  specify additional parameters by editing/adding elements under the
+                     <samp class="ph codeph">&lt;InputElement&gt;</samp> element of each rule.</p>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="other">
+            <h4 class="title topictitle4">Other Elements</h4>
+
+            <div class="body">
+               <p class="p">For a full explanation and instructions about the meaning of each XML element, as
+                  well as how to change them, see Apache's documentation (<a class="xref" href="https://hadoop.apache.org/docs/stable1/vaidya.html">https://hadoop.apache.org/docs/stable1/vaidya.html</a>) for
+                  more information.</p>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="addinganewrule">
+            <h4 class="title topictitle4">Adding a New Rule</h4>
+
+            <div class="body">
+               <p class="p">A Vaidya rule consists of the following two parts:</p>
+
+               <ul class="ul" id="addinganewrule__ul_zlg_3vw_np">
+                  <li class="li">A java class that consists of the logic of the rule</li>
+
+                  <li class="li">A paragraph of XML in the configuration file</li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="creatingajavabinaryforanewrule">
+            <h4 class="title topictitle4">Creating a Java Binary for a New Rule</h4>
+
+            <div class="body">
+               <div class="note important"><span class="importanttitle">Important:</span>  This section assumes a working knowledge of how to write,
+                  compile, and package Java code.</div>
+
+               <ol class="ol" id="creatingajavabinaryforanewrule__ol_nng_3vw_np">
+                  <li class="li">From where you installed PHD, download the correct
+                        <samp class="ph codeph">hadoop-vaidya-&lt;HADOOP_PHD_VERSION&gt;.jar</samp> file (which
+                     you specified in <samp class="ph codeph">mapred-site.xml</samp>) to your development machine,
+                     if you plan on writing Java code on another machine than the one where you
+                     installed PHD. (This is a typical use case.)</li>
+
+                  <li class="li">Create a java file with an IDE or editor, which defines a class that extends
+                     the <samp class="ph codeph">org.apache.hadoop.vaidya.DiagnosticTest</samp>
+                           class:<p class="p"><strong class="ph b">myrule.java</strong>
+                     </p>
+<pre class="pre codeblock">package com.greenplum.vaidya.rules;
+ import org.apache.hadoop.vaidya.DiagnosticTest;
+ import org.apache.hadoop.vaidya.statistics.job.JobStatistics;
+ public class MyRule extends DiagnosticTest {
+ @Override
+ public String getReferenceDetails() {
+ return "";
+ }
+ @Override
+ public String getPrescription() {
+ return "";
+ }
+ @Override
+ public double evaluate(JobStatistics jobStatistics) {
+ return 0.5;
+ }
+ }</pre>
+</li>
+
+                  <li class="li">Edit the three methods <samp class="ph codeph">getReferenceDetails</samp>,
+                        <samp class="ph codeph">getPrescription</samp> and evaluate to construct the
+                     logic.evaluate method should return a <strong class="ph b">double</strong> value between 0.0 and 1.0
+                     and represents the impact as the analysis result.<ul class="ul" id="creatingajavabinaryforanewrule__ul_gpg_3vw_np">
+                        <li class="li"><samp class="ph codeph">getPrescription</samp> method should return some text
+                           providing user suggestions/remedies about how to optimize your Map/Reduce
+                           configuration accordingly.</li>
+
+                        <li class="li"><samp class="ph codeph">getReferenceDetails</samp> method should return some text
+                           indicating the meaningful counters and their values which can help you to
+                           diagnose your MapReduce configuration accordingly.</li>
+
+                     </ul>
+</li>
+
+                  <li class="li">Compile the java class and package compiled class to a jar file, for example
+                        <samp class="ph codeph">myrule.jar</samp>. Note that you need to put the Vaidya jar file
+                     you just downloaded into your classpath to make your code compile.</li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="creatingxmlconfigurationforanewrule">
+            <h4 class="title topictitle4">Creating XML Configuration for a New Rule</h4>
+
+            <div class="body">
+               <p class="p">Add a <samp class="ph codeph">DiagnosticTest</samp> element into the
+                     <samp class="ph codeph">postex_diagnosis_tests.xml</samp> file (the file you set in the
+                     <samp class="ph codeph">mapred-site.xml</samp> file), according to the sample given in the
+                  configuration part. Ensure the value of the <samp class="ph codeph">&lt;ClassName&gt;</samp>
+                  element is set to be the full class name of the java rule class you just
+                  created.</p>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="deployingfiles">
+         <h3 class="title topictitle3">Deploying Files</h3>
+
+         <div class="body">
+            <ol class="ol" id="deployingfiles__ol_spg_3vw_np">
+               <li class="li">Upload the packaged jar file (<samp class="ph codeph">myrule.jar</samp> for example) to the
+                  node where you installed PHD job tracker, and store it in a folder where hadoop
+                  service has the permission to read and load it. We recommend you place it under
+                     <samp class="ph codeph">/usr/lib/gphd/hadoop-mapreduce/lib/</samp>.</li>
+
+               <li class="li">Edit <samp class="ph codeph">mapred-site.xml</samp>, append the jar file you just uploaded to
+                  the <samp class="ph codeph">mapred.vaidya.jar</samp> file or
+                     <samp class="ph codeph">mapreduce.vaidya.jar</samp> files property value. For example:
+                  <pre class="pre codeblock">mapred-site.xml
+ &lt;property&gt;
+ &lt;name&gt;mapreduce.vaidya.jarfiles&lt;/name&gt;
+ &lt;value&gt;/usr/lib/gphd/hadoop-mapreduce/hadoop-vaidya.jar:/usr/lib/gphd/hadoop-mapreduce/lib/myrule.jar&lt;/value&gt;
+ &lt;/property&gt;</pre>
+</li>
+
+            </ol>
+
+            <div class="note important"><span class="importanttitle">Important:</span> 
+               <ul class="ul" id="deployingfiles__ul_udq_m1j_tp">
+                  <li class="li">Do not remove the default Vaidya jar file from this property, Vaidya needs
+                     this property to load basic Vaidya classes to make it run.</li>
+
+                  <li class="li">Multiple jar files are separated by different separator characters on
+                     different platforms. On the Linux/Unix platform, the ":" character should be
+                     used. You can look at the <samp class="ph codeph">theFile.pathSeparator</samp> attribute of
+                     your java platform to verify it.</li>
+
+                  <li class="li">To make your settings take effect, restart the job history server
+                     service.</li>
+
+               </ul>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="hvetopologyawareness">
+      <h2 class="title topictitle2">HVE Topology Awareness</h2>
+
+      <div class="body">
+         <p class="p">Hadoop Virtualization Extensions (HVE) allow Hadoop clusters implemented on virtualized
+            infrastructure full awareness of the topology on which they are running, thus enhancing
+            the reliability and performance of these clusters.</p>
+
+         <p class="p">HVE should be enabled in the following situations:</p>
+
+         <ul class="ul">
+            <li class="li">When there is more than one Hadoop VM per physical host in virtualized
+               environments.</li>
+
+            <li class="li">When Datanodes and NodeManagers/TaskTrackers exist in separate virtual machines in
+               virtualized environments, in order to achieve graceful scaling of the compute
+               component of the Hadoop cluster.</li>
+
+            <li class="li">When there is a topology layer between host and rack (e.g. chassis), which can
+               affect the failure/locality group between hosts, in non-virtualized
+               environments.</li>
+
+         </ul>
+
+      </div>
+
+      <div class="topic nested2" id="topologyawarenessconfigurationandverification">
+         <h3 class="title topictitle3">Topology Awareness Configuration and Verification</h3>
+
+         <div class="body">
+            <p class="p">
+               <strong class="ph b">Sample Setup:</strong>
+            </p>
+
+            <p class="p">This setup has 2 logical racks, 2 physical hosts (installed by ESXi and managed by
+               vCenter) per rack, and 2 DN/NM (VM in ESXi) nodes per host. There is also one
+               NameNode/ResourceManager and a client node that can be used to start jobs.</p>
+
+            <p class="p">In this setup, each DN/NM node has 4 vCPUs, 16G memory, and 200G (Non-SSD) disks.</p>
+
+            <p class="p">The NameNode and ResourceManager are installed on another dedicated VM with 4vCPU, 4G
+               Memory and 100G disks.</p>
+
+            <p class="p">Node Distribution on Hosts:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="topologyawarenessconfigurationandverification__table_yg2_lvw_np" class="table" frame="border" border="1" rules="all">
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Rack 1</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Host 1</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">NameNode and ResourceManager</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">DN1</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"> </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Host 2</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">DN2</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">DN3</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Rack 2</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Host 3</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">DN4</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">DN5</strong>
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top"> </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">Host 4</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">DN6</strong>
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top">
+                           <strong class="ph b">DN7</strong>
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <p class="p">
+               <strong class="ph b">Enable topology awareness (Hadoop V2):</strong>
+            </p>
+
+            <ol class="ol" id="topologyawarenessconfigurationandverification__ol_y32_lvw_np">
+               <li class="li">Add the following line to <samp class="ph codeph">core-site.xml</samp>:
+                  <pre class="pre codeblock">&lt;property&gt;
+  &lt;name&gt;topology.script.file.name&lt;/name&gt;
+  &lt;value&gt;/hadoop/hadoop-smoke/etc/hadoop/topology.sh&lt;/value&lt;!-- point to topology.sh location.--&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;net.topology.impl&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.net.NetworkTopologyWithNodeGroup&lt;/value&gt;
+  &lt;description&gt; The default implementation of NetworkTopology which is classic three layer one.
+  &lt;/description&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;net.topology.nodegroup.aware&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+  &lt;description&gt; By default, network topology is not aware of nodegroup layer.
+  &lt;/description&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;dfs.block.replicator.classname&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.hdfs.server.blockmanagement.BlockPlacementPolicyWithNodeGroup&lt;/value&gt;
+  &lt;description&gt; The default implementation of ReplicationTargetChooser.
+  &lt;/description&gt;
+&lt;/property&gt;</pre>
+
+               </li>
+
+               <li class="li">Add the following line to <samp class="ph codeph">yarn-site.xml</samp>: <pre class="pre codeblock">&lt;property&gt;
+  &lt;description&gt;The class to use as scheduled requests.&lt;/description&gt;
+  &lt;name&gt;yarn.resourcemanager.scheduled.requests.class&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.mapreduce.v2.app.rm.ScheduledRequestsWithNodeGroup&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;description&gt; The boolean value to identify if the cluster is deployed
+   on an environment which needs an additional layer (node group) between node 
+   and rack for network topology.
+  &lt;/description&gt;
+  &lt;name&gt;net.topology.with.nodegroup&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;description&gt;The class to use as AbstractSchedulerElementsFactory in RM scheduler.
+  &lt;/description&gt;
+  &lt;name&gt;yarn.resourcemanager.scheduler.elements.factory.impl&lt;/name&gt;
+&lt;value&gt;org.apache.hadoop.yarn.server.resourcemanager.scheduler.
+       SchedulerElementsFactoryWithNodeGroup&lt;/value&gt;
+&lt;/property&gt;</pre>
+<p class="p">
+                     <strong class="ph b">Topology.data sample:</strong>
+                  </p>
+<pre class="pre codeblock">[root@namenode enable]# cat topology.data
+10.111.57.223(VM IP)   /Rack1/NodeGroup1
+10.111.57.224   /Rack1/NodeGroup1
+10.111.57.225   /Rack1/NodeGroup2
+10.111.57.226   /Rack2/NodeGroup1
+10.111.57.227   /Rack2/NodeGroup1
+10.111.57.228   /Rack2/NodeGroup2
+10.111.57.229   /Rack2/NodeGroup2</pre>
+<p class="p">
+                     <strong class="ph b">Topology.sh sample:</strong>
+                  </p>
+<pre class="pre codeblock">[root@namenode enable]# cat topology.sh
+#! /bin/bash
+HADOOP_CONF=/hadoop/hadoop-smoke/etc/hadoop  
+# this is the location of topology.data
+while [ $# -gt 0 ] ; do
+  nodeArg=$1
+  exec&lt; ${HADOOP_CONF}/topology.data
+  result=""
+  while read line ; do
+    ar=( $line )
+    if [ "${ar[0]}" = "$nodeArg" ] ; then
+      result="${ar[1]}"
+    fi
+  done
+  shift
+  if [ -z "$result" ] ; then
+    echo -n "/default/rack "
+  else
+    echo -n "$result "
+  fi
+done</pre>
+</li>
+
+               <li class="li">Verify HVE is enabled:<p class="p">Run the TestDFSIO script. The output is as
+                  follows:</p>
+</li>
+
+            </ol>
+
+            <pre class="pre codeblock">1)HVE enabled:
+Job Counters
+Launched map tasks=100
+Launched reduce tasks=1
+Data-local map tasks=26
+NODEGROUP_LOCAL_MAPS=49
+Rack-local map tasks=25
+2)HVE disabled:
+ Job Counters
+Launched map tasks=100
+Launched reduce tasks=1
+Data-local map tasks=20
+Rack-local map tasks=80</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="hveelasticity">
+      <h2 class="title topictitle2">HVE Elasticity</h2>
+
+      <div class="body">
+         <p class="p">HVE Elastic Resource Extension enables the adaption of MapReduce tasks to changing
+            resources on nodes/clusters where Hadoop clusters are deployed to virtualized
+            environments, by sharing resources with VMs from other clusters or applications.</p>
+
+      </div>
+
+      <div class="topic nested2" id="overview2">
+         <h3 class="title topictitle3">Overview</h3>
+
+         <div class="body">
+            <p class="p">Currently, the Hadoop resource model is static at the node level, assuming the node
+               resources are not changed while the cluster is running. This design and
+               implementation are based on an assumption that all cluster resources are dedicated
+               for Hadoop MapReduce jobs, so they are fully available at all times. This assumption
+               does not hold when users want to deploy multiple applications on the same cluster,
+               e.g. deploying HBase and MapReduce on the same HDFS cluster. In particular, in an era
+               of cloud computing, it is common for Hadoop clusters to be deployed on virtualized
+               environments by sharing resource with VMs from other clusters or applications.</p>
+
+            <p class="p">The HVE elastic resource feature addresses scenarios in which nodes' resources are
+               possibly changed, so that scheduling of MapReduce tasks on these nodes can adapted to
+               changing resources.</p>
+
+            <p class="p">With this feature, APIs (CLI and JMX interface) and script tools are provided to
+               get/set resources (memory, v-cores) on Hadoop cluster nodes for MR jobs.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="functionlist">
+         <h3 class="title topictitle3">Function List</h3>
+
+         <div class="body">
+            <p class="p">Below are functionalities included in this elastic feature:</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="functionlist__table_tw1_4vw_np" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d143679e1552">Function</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d143679e1555">Description</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d143679e1552 d143679e1555 ">
+                           <p class="p">Configuration</p>
+
+                        </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d143679e1552 d143679e1555 ">Enable/disable elastic resource feature on
+                           Hadoop cluster by specifying a configuration property when starting MR
+                           cluster.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d143679e1552 d143679e1555 ">List nodes' status</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d143679e1552 d143679e1555 ">
+                           <p class="p">List the status of all the nodes or nodes specified by user.</p>
+
+                           <p class="p">The node status including its memory resource, v-core resource,
+                              hostname, health status, etc.</p>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d143679e1552 d143679e1555 ">Set resource capacity in Node Manager
+                           node</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d143679e1552 d143679e1555 ">Set resource capacity (memory, v-cores) of
+                           Node Manager to a node specified by user via CLI or JMX
+                           interface.</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="configuration">
+         <h3 class="title topictitle3">Configuration</h3>
+
+         <div class="body">
+            <p class="p">To enable elastic resources, make the following changes to the Hadoop
+               configuration.</p>
+
+            <p class="p">In <samp class="ph codeph">yarn-site.xml</samp>, add the following property to enable the elastic
+               resource feature:</p>
+
+            <pre class="pre codeblock">&lt;property&gt;
+  &lt;name&gt;yarn.dynamic.resource.enable&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="commandlineinterfaceforyarncluster">
+         <h3 class="title topictitle3">Command-Line Interface for YARN Cluster</h3>
+
+         <div class="topic nested3" id="listallclis">
+            <h4 class="title topictitle4">List all CLIs</h4>
+
+            <div class="body">
+               <pre class="pre codeblock">yarn rmadmin
+           [-refreshQueues]
+           [-refreshNodes]
+           [-refreshUserToGroupsMappings]
+           [-refreshSuperUserGroupsConfiguration]
+           [-refreshAdminAcls]
+           [-refreshServiceAcl]
+           [-getGroups [username]]
+           [-updateNodeResource [NodeID][MemSize][Cores]]
+           [-help [cmd]]
+ 
+yarn node
+ -all               Works with -list to list all nodes.
+ -list              List all running nodes. Supports optional use of
+                    -states to filter nodes based on node state, all -all
+                    to list all nodes.
+ -states &lt;States&gt;   Works with -list to filter nodes based on input
+                    comma-separated list of node states.
+ -status &lt;NodeId&gt;   Prints the status report of the node.</pre>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="listnodes">
+            <h4 class="title topictitle4">List Nodes</h4>
+
+            <div class="body">
+               <pre class="pre codeblock">yarn node -list -all</pre>
+
+               <div class="section"><h5 class="title sectiontitle">Example</h5>
+                  
+                  <p class="p">List all nodes:</p>
+
+                  <pre class="pre codeblock">yarn node -list -all
+
+Total Nodes:8
+         Node-Id	     Node-State	Node-Http-Address	Number-of-Running-Containers
+hdsh2-a172.lss.emc.com:37804	        RUNNING	hdsh2-a172.lss.emc.com:8042	                           0
+hdsh2-a173.lss.emc.com:45310	        RUNNING	hdsh2-a173.lss.emc.com:8042	                           0
+hdsh2-a159.lss.emc.com:60596	        RUNNING	hdsh2-a159.lss.emc.com:8042	                           0
+hdsh2-a158.lss.emc.com:51694	        RUNNING	hdsh2-a158.lss.emc.com:8042	                           0
+hdsh2-a157.lss.emc.com:37348	        RUNNING	hdsh2-a157.lss.emc.com:8042	                           0
+hdsh2-a174.lss.emc.com:33263	        RUNNING	hdsh2-a174.lss.emc.com:8042	                           0
+hdsh2-a160.lss.emc.com:34460	        RUNNING	hdsh2-a160.lss.emc.com:8042	                           0
+hdsh2-a171.lss.emc.com:49469	        RUNNING	hdsh2-a171.lss.emc.com:8042	                           0</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="getnodestatus">
+            <h4 class="title topictitle4">Get Node Status</h4>
+
+            <div class="body">
+               <pre class="pre codeblock">yarn node -status &lt;NodeId&gt;</pre>
+
+               <div class="section"><h5 class="title sectiontitle">Example</h5>
+                  
+                  <p class="p">Get node status:</p>
+
+                  <pre class="pre codeblock">yarn node -status hdsh2-a172.lss.emc.com:37804
+
+Node Report : 
+	Node-Id : hdsh2-a172.lss.emc.com:37804
+	Rack : /dc/rc2
+	Node-State : RUNNING
+	Node-Http-Address : hdsh2-a172.lss.emc.com:8042
+	Last-Health-Update : Wed 15/Jan/14 03:38:08:402CST
+	Health-Report : 
+	Containers : 0
+	Memory-Used : 0MB
+	Memory-Capacity : 2048MB
+	CPU-Used : 0 vcores
+	CPU-Capacity : 2 vcores</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="setnoderesourcecapacity">
+            <h4 class="title topictitle4">Set Node Resource Capacity</h4>
+
+            <div class="body">
+               <pre class="pre codeblock">yarn rmadmin -updateNodeResource [NodeID][MemSize][Cores]</pre>
+
+               <div class="section"><h5 class="title sectiontitle">Example</h5>
+                  
+                  <p class="p">Set node resource capacity:</p>
+
+                  <pre class="pre codeblock">yarn rmadmin -updateNodeResource hdsh2-a172.lss.emc.com:37804 2048 2</pre>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/StackandToolsReference.html" title="Stack and Tools Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Stack and Tools Reference</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

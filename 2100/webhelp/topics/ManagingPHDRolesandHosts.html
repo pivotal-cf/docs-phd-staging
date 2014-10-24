@@ -1,0 +1,240 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Pivotal HD supports starting or stopping entire clusters or individual roles on a selected hosts. If you want to start and stop the roles manually, follow these steps: You have two options when ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Managing PHD Roles and Hosts"/><meta name="DC.Relation" scheme="URI" content="../topics/AdministeringPHDUsingtheCLI.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="managingphdrolesandhosts"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Managing PHD Roles and Hosts</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="managingphdrolesandhosts"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration">PHD Installation and Administration</a> / <a class="navheader_parent_path" href="../topics/AdministeringPHDUsingtheCLI.html" title="Administering PHD Using the CLI">Administering PHD Using the CLI</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/AdministeringPHDUsingtheCLI.html" title="Administering PHD Using the CLI"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Administering PHD Using the CLI</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Managing PHD Roles and Hosts</h1>
+
+   <div class="body">
+      <p class="p">Pivotal HD supports starting or stopping entire clusters or individual roles on a selected
+         hosts. If you want to start and stop the roles manually, follow these steps:</p>
+
+      <p class="p">You have two options when managing cluster and individual roles.</p>
+
+      <ul class="ul">
+         <li class="li">
+            <a class="xref" href="#managinglocally">Managing Locally</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#managingremotely">Managing Remotely</a>
+         </li>
+
+      </ul>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="managinglocally">
+      <h2 class="title topictitle2">Managing Locally</h2>
+
+      <div class="body">
+         <p class="p">You can manage the service role on the target host locally. For example, to restart the
+            DataNode:</p>
+
+         <pre class="pre codeblock">node100:gpadmin# ssh gpadmin@node100
+gpadmin# sudo service hadoop-hdfs-namenode restart</pre>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="managingremotely">
+      <h2 class="title topictitle2">Managing Remotely</h2>
+
+      <div class="body">
+         <p class="p">You can manage the service role remotely across one of the target hosts. For example, to
+            restart the DataNode:</p>
+
+         <pre class="pre codeblock">node100.gpadmin# massh node100 verbose 'sudo service hadoop-hdfs-datanode restart'</pre>
+
+         <p class="p">To restart all the DataNodes remotely, create a newline-separated file
+               named <samp class="ph codeph">hostfile</samp> that contains all the DataNodes
+               to <strong class="ph b">start</strong>, <strong class="ph b">stop</strong>, <strong class="ph b">restart</strong>, or <strong class="ph b">check</strong> status.</p>
+
+         <pre class="pre codeblock">gpadmin# massh hostfile verbose 'sudo service hadoop-hdfs-datanode restart'</pre>
+
+         <div class="section"><h3 class="title sectiontitle">Pivotal HD Services Scripts</h3>
+            
+            <p class="p">The following table shows the service commands
+                  to <strong class="ph b">start</strong>, <strong class="ph b">stop</strong>, <strong class="ph b">restart</strong>, or <strong class="ph b">check</strong> status for each
+               service role,.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="managingremotely__table_s53_s52_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d110506e131">Role Name </th>
+
+                        <th class="entry confluenceTh" valign="top" id="d110506e134">Service Command </th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">NameNode </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">
+                           <pre class="pre codeblock">sudo service hadoop-hdfs-namenode {starts|stop|status|restart}</pre>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">Secondary NameNode </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">
+                           <pre class="pre codeblock">sudo service hadoop-hdfs-secondarynamenode {starts|stop|status|restart}</pre>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">DataNode </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">
+                           <pre class="pre codeblock">sudo service hadoop-hdfs-datanode {starts|stop|status|restart}</pre>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">Resource Manager </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">
+                           <pre class="pre codeblock">sudo service hadoop-yarn-resourcemanager {starts|stop|status|restart}</pre>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">Node Manager </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">
+                           <pre class="pre codeblock">sudo service hadoop-yarn-nodemanager {starts|stop|status|restart}</pre>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">History Server </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">
+                           <pre class="pre codeblock">sudo service hadoop-mapreduce-historyserver {starts|stop|status|restart}</pre>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">Zookeeper Server </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">
+                           <pre class="pre codeblock">sudo service zookeeper-server {starts|stop|status|restart}</pre>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">HBase Master </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">
+                           <pre class="pre codeblock">sudo service hbase-master {starts|stop|status|restart}</pre>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">HBase Region Server </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">
+                           <pre class="pre codeblock">sudo service hbase-regionserver {starts|stop|status|restart}</pre>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">HAWQ Master </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">
+                           <pre class="pre codeblock">sudo /etc/init.d/hawq {starts|stop|status|restart}</pre>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">Quorum Journal node</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d110506e131 d110506e134 ">
+                           <pre class="pre codeblock">sudo /etc/init.d/hadoop-hdfs-journalnode {start|stop|status|restart}</pre>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/AdministeringPHDUsingtheCLI.html" title="Administering PHD Using the CLI"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Administering PHD Using the CLI</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

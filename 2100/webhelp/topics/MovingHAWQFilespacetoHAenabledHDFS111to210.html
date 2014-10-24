@@ -1,0 +1,239 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="For HAWQ in an HA environment, you need to perform the following to complete your upgrade. As HAWQ was initialized, post-upgrade, on a non-HA HDFS, you now need to move the HAWQ filespace to ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="1.1.1 to 2.1.0 - Move HAWQ Filespace to HA-enabled HDFS"/><meta name="DC.Relation" scheme="URI" content="../topics/UpgradingPHDfrom111to210.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="movinghawqfilespacetoha-enabledhdfs-1.1.1to2.1.0"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>1.1.1 to 2.1.0 - Move HAWQ Filespace to HA-enabled HDFS</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="movinghawqfilespacetoha-enabledhdfs-1.1.1to2.1.0"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration">PHD Installation and Administration</a> / <a class="navheader_parent_path" href="../topics/UpgradingPHDfrom111to210.html" title="Upgrading PHD 1.1.1 to 2.1.0">Upgrading PHD 1.1.1 to 2.1.0</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/UpgradingPHDfrom111to210.html" title="Upgrading PHD 1.1.1 to 2.1.0"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Upgrading PHD 1.1.1 to 2.1.0</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">1.1.1 to 2.1.0 - Move HAWQ Filespace to HA-enabled HDFS</h1>
+
+   <div class="body">
+      <p class="p">For HAWQ in an HA environment, you need to perform the following to complete your
+         upgrade.</p>
+
+      <p class="p">As HAWQ was initialized, post-upgrade, on a non-HA HDFS, you now need to move the HAWQ
+         filespace to HA-enabled HDFS, as follows:</p>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="collectinginformationaboutthetargetfilespace">
+      <h2 class="title topictitle2">Collecting Information about the Target Filespace</h2>
+
+      <div class="body">
+         <p class="p">A default filespace named <samp class="ph codeph">dfs_system</samp> exists in the
+               <samp class="ph codeph">pg_filespace</samp> catalog and the parameter
+               <samp class="ph codeph">pg_filespace_entry</samp> contains detailed information for each
+            filespace. </p>
+
+         <ol class="ol">
+            <li class="li">Use the following SQL query to gather information about the filespace located on
+               HDFS:
+                  <pre class="pre codeblock">SELECT
+    fsname, fsedbid, fselocation
+FROM
+    pg_filespace as sp, pg_filespace_entry as entry, pg_filesystem as fs
+WHERE
+    sp.fsfsys = fs.oid and fs.fsysname = 'hdfs' and sp.oid = entry.fsefsoid
+ORDER BY
+    entry.fsedbid;</pre>
+<p class="p">The
+                  sample output is as follows:
+                  </p>
+<pre class="pre codeblock">fsname   | fsedbid |             fselocation
+------------+---------+--------------------------------------
+ dfs_system |       1 | /data/hawq-kerberos/dfs/gpseg-1
+ dfs_system |       2 | hdfs://mdw:9000/hawq-security/gpseg0
+ dfs_system |       3 | hdfs://mdw:9000/hawq-security/gpseg1
+ dfs_system |       4 | hdfs://mdw:9000/hawq-security/gpseg2
+ dfs_system |       5 | hdfs://mdw:9000/hawq-security/gpseg3
+ dfs_system |       6 | hdfs://mdw:9000/hawq-security/gpseg4
+ dfs_system |       7 | hdfs://mdw:9000/hawq-security/gpseg5
+(7 rows)</pre>
+<p class="p">The
+                  output can contain the following:</p>
+<ul class="ul" id="collectinginformationaboutthetargetfilespace__ul_vsp_hzd_4p">
+                  <li class="li">Master instance path information.</li>
+
+                  <li class="li">Standby master instance path information, if the standby master is configured
+                     (not in this example).</li>
+
+                  <li class="li">HDFS paths that share the same prefix for segment instances.</li>
+
+               </ul>
+</li>
+
+            <li class="li">To enable HA HDFS, you need the segment location comprising the filespace name and
+               the common prefix of segment HDFS paths. The segment location is formatted like a
+               URL. The sample output displays the segment
+                  location, <samp class="ph codeph">hdfs://mdw:9000/hawq-security.</samp> Where
+                  <samp class="ph codeph">mdw:9000</samp> is the Namenode host and RPC port, you must replace it
+               with your HA HDFS cluster service ID to get the new segment location. For
+                  example:<pre class="pre codeblock">hdfs://phdcluster/hawq-security
+Filespace Name: dfs_system
+New segment location: hdfs://phdcluster/hawq-security</pre>
+<div class="note note"><span class="notetitle">Note:</span> To
+                  move the filespace location to a segment location that is different from the old
+                  segment location, you must move the data to new path on HDFS.<p class="p">For example, move
+                     the filespace from <samp class="ph codeph">hdfs://phdcluster/hawq-security</samp> to
+                        <samp class="ph codeph">hdfs://phdcluster/hawq/another/path</samp>.</p>
+</div>
+</li>
+
+         </ol>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="stoppinghawqclusterandbackupcatalog">
+      <h2 class="title topictitle2">Stop the HAWQ Cluster and Back Up the Catalog</h2>
+
+      <div class="body">
+         <p class="p">To enable HA HDFS, you are changing the HAWQ catalog and persistent tables. You cannot
+            preform transactions while persistent tables are being updated. Therefore, before you
+            stop the HAWQ Cluster, Pivotal recommends that you back up the catalog. This is to
+            ensure that you do not lose data due to a hardware failure or during an operation (such
+            as killing the HAWQ process).</p>
+
+         <ol class="ol">
+            <li class="li">Disconnect all workload connections.</li>
+
+            <li class="li">Issue a checkpoint.</li>
+
+            <li class="li">Shutdown the HAWQ cluster.</li>
+
+            <li class="li">Define <samp class="ph codeph">$MASTER_DATA_DIRECTORY</samp> to point to the
+                  <samp class="ph codeph">MASTER_DATA_DIRECTORY</samp> path:
+                  <pre class="pre codeblock">export MASTER_DATA_DIRECTORY=<var class="keyword varname">&lt;MASTER_DIRECTORY&gt;</var>/gpseg-1</pre>
+<p class="p">
+                  For example:
+               </p>
+<pre class="pre codeblock">export MASTER_DATA_DIRECTORY=/data0/master/gpseg-1/gps</pre>
+</li>
+
+            <li class="li">Copy the master data directory:
+               <pre class="pre codeblock">cp -r $MASTER_DATA_DIRECTORY /catalog/backup/location</pre>
+</li>
+
+         </ol>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="movingthefilespacelocation">
+      <h2 class="title topictitle2">Move the Filespace Location</h2>
+
+      <div class="body">
+         <p class="p">HAWQ provides the command line tool, <samp class="ph codeph">gpfilespace</samp>, to move the location
+            of the filespace.</p>
+
+         <ol class="ol">
+            <li class="li">Run the following command line to move a filespace location: <pre class="pre codeblock">gpfilespace --movefilespace default --location=hdfs://phdcluster/hawq-security</pre>
+<div class="note note"><span class="notetitle">Note:</span> 
+                  <ol class="ol" type="a" id="movingthefilespacelocation__ol_ucd_qzd_4p">
+                     <li class="li">If the target filespace is not the default filespace, replace the default
+                        in the command line with the actual filespace name.</li>
+
+                     <li class="li">Replace <samp class="ph codeph">hdfs://phdcluster/hawq-security</samp> with the new
+                        segment location.</li>
+
+                  </ol>
+
+               </div>
+<div class="note important"><span class="importanttitle">Important:</span> Errors while moving the location of the filespace:<p class="p">A
+                     non-fatal error can occur if you provide invalid input or if you have not
+                     stopped HAWQ before attempting a filespace location change. Check that you have
+                     followed the instructions from the beginning, or correct the input error before
+                     you re-run <samp class="ph codeph">gpfilespace</samp>.</p>
+<p class="p">Fatal errors can occur due to
+                     hardware failure or if you fail to kill a HAWQ process before attempting a
+                     filespace location change. When a fatal error occurs, you will see the message,
+                        <samp class="ph msgph">"PLEASE RESTORE MASTER DATA DIRECTORY"</samp> in the output. If this
+                     occurs, shut down the database and restore the
+                        <samp class="ph codeph">$MASTER_DATA_DIRECTORY</samp>.</p>
+</div>
+</li>
+
+         </ol>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="configuregphomeetchdfsclientxml">
+      <h2 class="title topictitle2">Configure ${GPHOME}/etc/hdfs-client.xml</h2>
+
+      <div class="body">
+         <p class="p">Configure the <samp class="ph codeph">hdfs-client.xml</samp> file. See the <em class="ph i">HAWQ Installation and
+               Upgrade Guide</em> for information.</p>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="reinitializethestandbymaster">
+      <h2 class="title topictitle2">Reinitialize the Standby Master</h2>
+
+      <div class="body">
+         <p class="p">The standby master catalog is rendered invalid during the move, and needs to be
+            reinitialized. If you did not have a standby master configured, you can skip this
+            task.</p>
+
+         <pre class="pre codeblock">gpstart -a                              #start HAWQ cluster
+gpinitstandby -r                        #remove standby master
+gpinitstandby -s &lt;standby host name&gt;    #initialize a standby master</pre>
+
+         <p class="p"><strong class="ph b">Next Task:</strong></p>
+
+
+         <p class="p">None. Your upgrade is now complete. At this point, you should check to see if all your
+            services are running and your data is intact. <a class="xref" href="RunningPHDSamplePrograms.html">Running PHD Sample Programs</a> provides instructions for testing the various services.</p>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/UpgradingPHDfrom111to210.html" title="Upgrading PHD 1.1.1 to 2.1.0"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Upgrading PHD 1.1.1 to 2.1.0</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

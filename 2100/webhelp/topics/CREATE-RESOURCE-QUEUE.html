@@ -1,0 +1,376 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Defines a new resource queue. Synopsis CREATE RESOURCE QUEUE name WITH ( queue_attribute = value [, ... ]) where queue_attribute is:    ACTIVE_STATEMENTS= integer         [ MAX_COST= float ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="CREATE RESOURCE QUEUE"/><meta name="DC.Relation" scheme="URI" content="../topics/SQLCommandReference.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="topic1"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>CREATE RESOURCE QUEUE</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="topic1"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a> / <a class="navheader_parent_path" href="../topics/SQLCommandReference.html" title="SQL Command Reference">SQL Command Reference</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/SQLCommandReference.html" title="SQL Command Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SQL Command Reference</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">CREATE RESOURCE QUEUE</h1>
+
+   <div class="body">
+      <p class="p" id="topic1__sql_command_desc">Defines a new resource queue.</p>
+
+      <div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2>
+         
+         <pre class="pre codeblock" id="topic1__sql_command_synopsis">CREATE RESOURCE QUEUE <var class="keyword varname">name</var> WITH (<var class="keyword varname">queue_attribute</var>=<var class="keyword varname">value</var> [, ... ])</pre>
+
+         <p class="p">where <var class="keyword varname">queue_attribute</var> is:</p>
+
+         <pre class="pre codeblock">   ACTIVE_STATEMENTS=<var class="keyword varname">integer</var>
+        [ MAX_COST=<var class="keyword varname">float</var> [COST_OVERCOMMIT={TRUE|FALSE}] ]
+        [ MIN_COST=<var class="keyword varname">float</var> ]
+        [ PRIORITY={MIN|LOW|MEDIUM|HIGH|MAX} ]
+        [ MEMORY_LIMIT='<var class="keyword varname">memory_units</var>' ]
+ | MAX_COST=float [ COST_OVERCOMMIT={TRUE|FALSE} ]
+        [ ACTIVE_STATEMENTS=<var class="keyword varname">integer</var> ]
+        [ MIN_COST=<var class="keyword varname">float</var> ]
+        [ PRIORITY={MIN|LOW|MEDIUM|HIGH|MAX} ]
+        [ MEMORY_LIMIT='<var class="keyword varname">memory_units</var>' ]</pre>
+
+      </div>
+
+      <div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2>
+         
+         <p class="p">Creates a new resource queue for HAWQ workload management. A resource queue must have
+        either an <samp class="ph codeph">ACTIVE_STATEMENTS</samp> or a <samp class="ph codeph">MAX_COST</samp> value (or it can
+        have both). Only a superuser can create a resource queue.</p>
+
+         <p class="p">Resource queues with an <samp class="ph codeph">ACTIVE_STATEMENTS</samp> threshold set a maximum limit on
+        the number of queries that can be executed by roles assigned to that queue. It controls the
+        number of active queries that are allowed to run at the same time. The value for
+          <samp class="ph codeph">ACTIVE_STATEMENTS</samp> should be an integer greater than 0. </p>
+
+         <p class="p">Resource queues with a <samp class="ph codeph">MAX_COST</samp> threshold set a maximum limit on the total
+        cost of queries that can be executed by roles assigned to that queue. Cost is measured in
+        the <em class="ph i">estimated total cost</em> for the query as determined by the HAWQ query planner (as
+        shown in the <samp class="ph codeph">EXPLAIN</samp> output for a query). Therefore, an administrator must
+        be familiar with the queries typically executed on the system in order to set an appropriate
+        cost threshold for a queue. Cost is measured in units of disk page fetches; 1.0 equals one
+        sequential disk page read. The value for <samp class="ph codeph">MAX_COST</samp> is specified as a
+        floating point number (for example 100.0) or can also be specified as an exponent (for
+        example 1e+2). If a resource queue is limited based on a cost threshold, then the
+        administrator can allow <samp class="ph codeph">COST_OVERCOMMIT=TRUE</samp> (the default). This means that
+        a query that exceeds the allowed cost threshold will be allowed to run but only when the
+        system is idle. If <samp class="ph codeph">COST_OVERCOMMIT=FALSE</samp> is specified, queries that exceed
+        the cost limit will always be rejected and never allowed to run. Specifying a value for
+          <samp class="ph codeph">MIN_COST</samp> allows the administrator to define a cost for small queries that
+        will be exempt from resource queueing.</p>
+
+         <p class="p">If a value is not defined for <samp class="ph codeph">ACTIVE_STATEMENTS</samp> or
+          <samp class="ph codeph">MAX_COST</samp>, it is set to <samp class="ph codeph">-1</samp> by default (meaning no limit).
+        After defining a resource queue, you must assign roles to the queue using the <samp class="ph codeph">
+               <a class="xref" href="ALTER-ROLE.html">ALTER ROLE</a>
+            </samp> or <samp class="ph codeph">
+               <a class="xref" href="CREATE-ROLE.html">CREATE ROLE</a>
+            </samp> command.</p>
+
+         <p class="p">You can optionally assign a <samp class="ph codeph">PRIORITY</samp> to a resource queue to control the
+        relative share of available CPU resources used by queries associated with the queue in
+        relation to other resource queues. If a value is not defined for <samp class="ph codeph">PRIORITY</samp>,
+        queries associated with the queue have a default priority of <samp class="ph codeph">MEDIUM</samp>.</p>
+
+         <p class="p">Resource queues with an optional <samp class="ph codeph">MEMORY_LIMIT</samp> threshold set a maximum
+        limit on the amount of memory that all queries submitted through a resource queue can
+        consume on a segment host. This determines the total amount of memory that all worker
+        processes of a query can consume on a segment host during query execution. Pivotal
+        recommends that <samp class="ph codeph">MEMORY_LIMIT</samp> be used in conjunction with
+          <samp class="ph codeph">ACTIVE_STATEMENTS</samp> rather than with <samp class="ph codeph">MAX_COST</samp>. The default
+        amount of memory allotted per query on statement-based queues is: <samp class="ph codeph">MEMORY_LIMIT /
+          ACTIVE_STATEMENTS</samp>. The default amount of memory allotted per query on cost-based
+        queues is: <samp class="ph codeph">MEMORY_LIMIT * (query_cost / MAX_COST)</samp>.</p>
+
+         <p class="p">The default memory allotment can be overridden on a per-query basis using the
+          <samp class="ph codeph">statement_mem</samp> server configuration parameter, provided that
+          <samp class="ph codeph">MEMORY_LIMIT</samp> or <samp class="ph codeph">max_statement_mem</samp> is not exceeded. For
+        example, to allocate more memory to a particular query:</p>
+
+         <pre class="pre codeblock">=&gt; SET statement_mem='2GB';
+=&gt; SELECT * FROM my_big_table WHERE column='value' ORDER BY id;
+=&gt; RESET statement_mem;</pre>
+
+         <p class="p">As a general guideline, the <samp class="ph codeph">MEMORY_LIMIT</samp> value for all of your resource
+        queues should not exceed the amount of physical memory of a segment host. If workloads are
+        staggered over multiple queues, memory allocations can be oversubscribed. However, queries
+        can be cancelled during execution if the segment host memory limit specified in
+          <samp class="ph codeph">gp_vmem_protect_limit</samp> is exceeded.</p>
+
+      </div>
+
+      <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Parameters</h2>
+         
+         <dl class="dl parml">
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">name</var>
+               </dt>
+
+               <dd class="dd pd">The name of the resource queue.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">ACTIVE_STATEMENTS <var class="keyword varname">integer</var>
+               </dt>
+
+               <dd class="dd pd">Resource queues with an <samp class="ph codeph">ACTIVE_STATEMENTS</samp> threshold limit the number
+            of queries that can be executed by roles assigned to that queue. It controls the number
+            of active queries that are allowed to run at the same time. The value for
+              <samp class="ph codeph">ACTIVE_STATEMENTS</samp> should be an integer greater than 0.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">MEMORY_LIMIT '<var class="keyword varname">memory_units</var>'</dt>
+
+               <dd class="dd pd">Sets the total memory quota for all statements submitted from users in this resource
+            queue. Memory units can be specified in kB, MB or GB. The minimum memory quota for a
+            resource queue is 10MB. There is no maximum, however the upper boundary at query
+            execution time is limited by the physical memory of a segment host. The default is no
+            limit (<samp class="ph codeph">-1</samp>).</dd>
+
+            
+            
+               <dt class="dt pt dlterm">MAX_COST <var class="keyword varname">float</var>
+               </dt>
+
+               <dd class="dd pd">Resource queues with a <samp class="ph codeph">MAX_COST</samp> threshold set a maximum limit on the
+            total cost of queries that can be executed by roles assigned to that queue. Cost is
+            measured in the <em class="ph i">estimated total cost</em> for the query as determined by the HAWQ
+            query planner (as shown in the <samp class="ph codeph">EXPLAIN</samp> output for a query). Therefore,
+            an administrator must be familiar with the queries typically executed on the system in
+            order to set an appropriate cost threshold for a queue. Cost is measured in units of
+            disk page fetches; 1.0 equals one sequential disk page read. The value for
+              <samp class="ph codeph">MAX_COST</samp> is specified as a floating point number (for example 100.0)
+            or can also be specified as an exponent (for example 1e+2).</dd>
+
+            
+            
+               <dt class="dt pt dlterm">COST_OVERCOMMIT <var class="keyword varname">boolean</var>
+               </dt>
+
+               <dd class="dd pd">If a resource queue is limited based on <samp class="ph codeph">MAX_COST</samp>, then the
+            administrator can allow <samp class="ph codeph">COST_OVERCOMMIT</samp> (the default). This means that
+            a query that exceeds the allowed cost threshold will be allowed to run but only when the
+            system is idle. If <samp class="ph codeph">COST_OVERCOMMIT=FALSE</samp> is specified, queries that
+            exceed the cost limit will always be rejected and never allowed to run.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">MIN_COST <var class="keyword varname">float</var>
+               </dt>
+
+               <dd class="dd pd">The minimum query cost limit of what is considered a small query. Queries with a cost
+            under this limit will not be queued and run immediately. Cost is measured in the
+              <em class="ph i">estimated total cost</em> for the query as determined by the HAWQ query planner (as
+            shown in the <samp class="ph codeph">EXPLAIN</samp> output for a query). Therefore, an administrator
+            must be familiar with the queries typically executed on the system in order to set an
+            appropriate cost for what is considered a small query. Cost is measured in units of disk
+            page fetches; 1.0 equals one sequential disk page read. The value for
+              <samp class="ph codeph">MIN_COST</samp> is specified as a floating point number (for example 100.0)
+            or can also be specified as an exponent (for example 1e+2).</dd>
+
+            
+            
+               <dt class="dt pt dlterm">PRIORITY={MIN|LOW|MEDIUM|HIGH|MAX}</dt>
+
+               <dd class="dd pd">Sets the priority of queries associated with a resource queue. Queries or statements
+            in queues with higher priority levels will receive a larger share of available CPU
+            resources in case of contention. Queries in low-priority queues may be delayed while
+            higher priority queries are executed. If no priority is specified, queries associated
+            with the queue have a priority of <samp class="ph codeph">MEDIUM</samp>.</dd>
+
+            
+         </dl>
+
+      </div>
+
+      <div class="section" id="topic1__section5"><h2 class="title sectiontitle">Notes</h2>
+         
+         <p class="p">There is also another system view named <samp class="ph codeph">pg_stat_resqueues</samp> which shows
+        statistical metrics for a resource queue over time. To use this view, however, you must
+        enable the <samp class="ph codeph">stats_queue_level</samp> server configuration parameter. See "Managing
+        Workload and Resources" in the <em class="ph i">HAWQ Administrator Guide</em> for more information about
+        using resource queues.</p>
+
+         <p class="p">
+            <samp class="ph codeph">CREATE RESOURCE QUEUE</samp> cannot be run within a transaction.</p>
+
+      </div>
+
+      <div class="section" id="topic1__section6"><h2 class="title sectiontitle">Examples</h2>
+         
+         <p class="p">Create a resource queue with an active query limit of 20: </p>
+
+         <pre class="pre codeblock">CREATE RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=20);</pre>
+
+         <p class="p">Create a resource queue with an active query limit of 20 and a total memory limit of 2000MB
+        (each query will be allocated 100MB of segment host memory at execution time): </p>
+
+         <pre class="pre codeblock">CREATE RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=20, 
+MEMORY_LIMIT='2000MB');</pre>
+
+         <p class="p">Create a resource queue with a query cost limit of 3000.0: </p>
+
+         <pre class="pre codeblock">CREATE RESOURCE QUEUE myqueue WITH (MAX_COST=3000.0);</pre>
+
+         <p class="p">Create a resource queue with a query cost limit of 3<sup class="ph sup">10</sup> (or 30000000000.0) and do
+        not allow overcommit. Allow small queries with a cost under 500 to run immediately:</p>
+
+         <pre class="pre codeblock">CREATE RESOURCE QUEUE myqueue WITH (MAX_COST=3e+10, 
+COST_OVERCOMMIT=FALSE, MIN_COST=500.0);</pre>
+
+         <p class="p">Create a resource queue with both an active query limit and a query cost limit:</p>
+
+         <pre class="pre codeblock">CREATE RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=30, 
+MAX_COST=5000.00);</pre>
+
+         <p class="p">Create a resource queue with an active query limit of 5 and a maximum priority setting: </p>
+
+         <pre class="pre codeblock">CREATE RESOURCE QUEUE myqueue WITH (ACTIVE_STATEMENTS=5, 
+PRIORITY=MAX);</pre>
+
+      </div>
+
+      <p class="p">View the status of all resource queues:</p>
+
+      <pre class="pre codeblock">SELECT q.oid as queueid, q.rsqname as rsqname,
+	t1.value::int as rsqcountlimit, 
+	t2.value::int as rsqcountvalue, 
+	t3.value::real as rsqcostlimit, 
+	t4.value::real as rsqcostvalue, 
+	t5.value::real as rsqmemorylimit, 
+	t6.value::real as rsqmemoryvalue,
+	t7.value::int as rsqwaiters, 
+	t8.value::int as rsqholders
+FROM pg_resqueue q,
+	pg_resqueue_status_kv() t1 (queueid oid, key text, value text),
+	pg_resqueue_status_kv() t2 (queueid oid, key text, value text),
+	pg_resqueue_status_kv() t3 (queueid oid, key text, value text),
+	pg_resqueue_status_kv() t4 (queueid oid, key text, value text),
+	pg_resqueue_status_kv() t5 (queueid oid, key text, value text),
+	pg_resqueue_status_kv() t6 (queueid oid, key text, value text),
+	pg_resqueue_status_kv() t7 (queueid oid, key text, value text),
+	pg_resqueue_status_kv() t8 (queueid oid, key text, value text)
+WHERE 
+	q.oid = t1.queueid 
+	AND t1.queueid = t2.queueid 
+	AND t2.queueid = t3.queueid 
+	AND t3.queueid = t4.queueid 
+	AND t4.queueid = t5.queueid 
+	AND t5.queueid = t6.queueid 
+	AND t6.queueid = t7.queueid 
+	AND t7.queueid = t8.queueid
+	AND t1.key = 'rsqcountlimit'
+	AND t2.key = 'rsqcountvalue'
+	AND t3.key = 'rsqcostlimit'
+	AND t4.key = 'rsqcostvalue'
+	AND t5.key = 'rsqmemorylimit'
+	AND t6.key = 'rsqmemoryvalue'
+	AND t7.key = 'rsqwaiters'
+	AND t8.key = 'rsqholders'
+;</pre>
+
+      <p class="p">View the status of a specific status queue:</p>
+
+      <pre class="pre codeblock">SELECT q.oid as queueid, q.rsqname as rsqname,
+	t1.value::int as rsqcountlimit, 
+	t2.value::int as rsqcountvalue, 
+	t3.value::real as rsqcostlimit, 
+	t4.value::real as rsqcostvalue, 
+	t5.value::real as rsqmemorylimit, 
+	t6.value::real as rsqmemoryvalue,
+	t7.value::int as rsqwaiters, 
+	t8.value::int as rsqholders
+FROM pg_resqueue q,
+	pg_resqueue_status_kv() t1 (queueid oid, key text, value text),
+	pg_resqueue_status_kv() t2 (queueid oid, key text, value text),
+	pg_resqueue_status_kv() t3 (queueid oid, key text, value text),
+	pg_resqueue_status_kv() t4 (queueid oid, key text, value text),
+	pg_resqueue_status_kv() t5 (queueid oid, key text, value text),
+	pg_resqueue_status_kv() t6 (queueid oid, key text, value text),
+	pg_resqueue_status_kv() t7 (queueid oid, key text, value text),
+	pg_resqueue_status_kv() t8 (queueid oid, key text, value text)
+WHERE q.oid = t1.queueid 
+	AND t1.queueid = t2.queueid 
+	AND t2.queueid = t3.queueid 
+	AND t3.queueid = t4.queueid 
+	AND t4.queueid = t5.queueid 
+	AND t5.queueid = t6.queueid 
+	AND t6.queueid = t7.queueid 
+	AND t7.queueid = t8.queueid
+	AND t1.key = 'rsqcountlimit'
+	AND t2.key = 'rsqcountvalue'
+	AND t3.key = 'rsqcostlimit'
+	AND t4.key = 'rsqcostvalue'
+	AND t5.key = 'rsqmemorylimit'
+	AND t6.key = 'rsqmemoryvalue'
+	AND t7.key = 'rsqwaiters'
+	AND t8.key = 'rsqholders'
+	AND q.rsqname = 'queue_name'
+;</pre>
+
+      <div class="section" id="topic1__section7"><h2 class="title sectiontitle">Compatibility</h2>
+         
+         <p class="p">
+            <samp class="ph codeph">CREATE RESOURCE QUEUE</samp> is a HAWQ extension. There is no provision for
+        resource queues or workload management in the SQL standard.</p>
+
+      </div>
+
+      <div class="section" id="topic1__section8"><h2 class="title sectiontitle">See Also</h2>
+         
+         <p class="p">
+            <samp class="ph codeph">
+               <a class="xref" href="ALTER-ROLE.html">ALTER ROLE</a>
+            </samp>, <samp class="ph codeph">
+               <a class="xref" href="CREATE-ROLE.html">CREATE ROLE</a>
+            </samp>, <samp class="ph codeph">
+               <a class="xref" href="DROP-RESOURCE-QUEUE.html">DROP RESOURCE QUEUE</a>
+            </samp>
+         </p>
+
+      </div>
+
+   </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/SQLCommandReference.html" title="SQL Command Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SQL Command Reference</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

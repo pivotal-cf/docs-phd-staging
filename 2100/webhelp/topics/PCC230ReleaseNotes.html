@@ -1,0 +1,592 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Rev: A02 Published: September 15, 2014 Updated: October 24, 2014 Contents What’s New Installation Dashboard Cluster Analysis Improved Logging Functionality Topology PXF GFXD Online Documentation LDAP ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Pivotal Command Center 2.3.0 Release Notes"/><meta name="DC.Relation" scheme="URI" content="../topics/PivotalCommandCenter.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="pcc2.3.0releasenotes"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Pivotal Command Center 2.3.0 Release Notes</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="pcc2.3.0releasenotes"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/PivotalCommandCenter.html" title="Pivotal Command Center">Pivotal Command Center</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/PivotalCommandCenter.html" title="Pivotal Command Center"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Pivotal Command Center</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Pivotal Command Center 2.3.0 Release Notes</h1>
+
+   <div class="body">
+      <p class="p">Rev: A02</p>
+
+      <p class="p">Published: September 15, 2014</p>
+
+      <p class="p">Updated: October 24, 2014</p>
+
+      <div class="section"><h2 class="title sectiontitle">Contents</h2>
+         
+         <ul class="ul" id="pcc2.3.0releasenotes__ul_fzx_qz4_rp">
+            <li class="li">
+               <a class="xref" href="#whatsnew">What’s New</a>
+               <ul class="ul" id="pcc2.3.0releasenotes__ul_f2y_qz4_rp">
+                  <li class="li">
+                     <a class="xref" href="#installation">Installation</a>
+                  </li>
+
+                  <li class="li">
+                     <a class="xref" href="#dashboard">Dashboard</a>
+                  </li>
+
+                  <li class="li">
+                     <a class="xref" href="#clusteranalysis">Cluster Analysis</a>
+                  </li>
+
+                  <li class="li">
+                     <a class="xref" href="#improvedloggingfunctionality">Improved Logging
+                        Functionality</a>
+                  </li>
+
+                  <li class="li">
+                     <a class="xref" href="#topology">Topology</a>
+                  </li>
+
+                  <li class="li">
+                     <a class="xref" href="#pxf">PXF</a>
+                  </li>
+
+                  <li class="li">
+                     <a class="xref" href="#gfxd">GFXD</a>
+                  </li>
+
+                  <li class="li">
+                     <a class="xref" href="#onlinedocumentation">Online Documentation</a>
+                  </li>
+
+                  <li class="li">
+                     <a class="xref" href="#ldap">LDAP</a>
+                  </li>
+
+               </ul>
+
+            </li>
+
+            <li class="li">
+               <a class="xref" href="#resolvedissues">Resolved Issues</a>
+            </li>
+
+            <li class="li">
+               <a class="xref" href="#knownissues">Known Issues</a>
+            </li>
+
+            <li class="li">
+               <a class="xref" href="#versioningandcompatibility">Versioning and Compatibility</a>
+            </li>
+
+            <li class="li">
+               <a class="xref" href="#documentation">Documentation</a>
+            </li>
+
+         </ul>
+
+         <div class="note note"><span class="notetitle">Note:</span> This document only provides information about issues and features related to Pivotal
+            Command Center's UI functionality.<p class="p">For release information for other PHD Enterprise
+               components, see the <em class="ph i">PHD 2.1.0 Release Notes</em>.</p>
+</div>
+
+      </div>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="whatsnew">
+      <h2 class="title topictitle2">What’s New</h2>
+
+      <div class="body">
+         <p class="p">As well as general performance enhancements and bug fixes, this release includes the
+            following new features and functionality:</p>
+
+      </div>
+
+      <div class="topic nested2" id="installation">
+         <h3 class="title topictitle3">Installation</h3>
+
+         <div class="body">
+            <p class="p">During installation, you are now prompted to optionally specify a customer home
+               directory for <samp class="ph codeph">gpadmin</samp>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="dashboard">
+         <h3 class="title topictitle3">Dashboard</h3>
+
+         <div class="body">
+            <p class="p Body">You can now hover over roles on the Dashboard and view a list of
+               relevant nodes, along with their status. (CC-3580)</p>
+
+            <p class="p Body">For example in this cluster there are two datanodes,
+                  <strong class="ph b">centos64-4</strong> and <strong class="ph b">centos64-5</strong>, both have a status of <strong class="ph b">up</strong>
+               (running).</p>
+
+            <p class="p Body">
+               <img class="image" id="dashboard__image_wsj_xrf_4p" src="../images/72680144.png" width="400"/>
+            </p>
+
+            <p class="p Body">The right status pane now also displays what the host name for
+               each role, appearing in parenthesis after the role name.  For example, in the above
+               screenshot, the hostname for YARN role is <strong class="ph b">centos64-3</strong>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="clusteranalysis">
+         <h3 class="title topictitle3">Cluster Analysis</h3>
+
+         <div class="body">
+            <p class="p">The Cluster Analysis screen now displays a new panel that for each service displays
+               the status of each role. (CC-3741)</p>
+
+            <p class="p">This panel displays all services and roles defined for the selected node. </p>
+
+            <p class="p">For each service, you can see the status of each role, and you can use the
+                  <strong class="ph b">Actions</strong> dropdown menu to stop/start a specific role.</p>
+
+            <p class="p">
+               <img class="image" id="clusteranalysis__image_lqj_xrf_4p" src="../images/72680143.png" width="200"/>
+            </p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="improvedloggingfunctionality">
+         <h3 class="title topictitle3">Improved Logging Functionality</h3>
+
+         <div class="body">
+            <p class="p">You can now view logs on the Administration Node. To filter for these log files,
+               either select the Admin Node's hostname when filtering by host, or select
+                  <samp class="ph codeph">gphdmgr-webservices</samp> when filtering by role. (CC-3753)</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="topology">
+         <h3 class="title topictitle3">Topology</h3>
+
+         <div class="body">
+            <p class="p">
+               <strong class="ph b">Adding / Removing Slaves:</strong>
+            </p>
+
+            <ul class="ul" id="topology__ul_glj_xrf_4p">
+               <li class="li">When adding slaves via the Topology screen, you have the option to start services
+                  automatically.</li>
+
+               <li class="li">When removing slaves via the Topology screen, services will automatically be
+                  stopped prior to removal.</li>
+
+            </ul>
+
+            <p class="p">
+               <strong class="ph b">Component Information:</strong>
+            </p>
+
+            <p class="p">A new Component Information panel on the Topology screen displays names and versions
+               of all the components of your PHD installation: </p>
+
+            <p class="p">
+               <img class="image" id="topology__image_plj_xrf_4p" src="../images/72680168.png" width="200"/>
+            </p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="pxf">
+         <h3 class="title topictitle3">PXF</h3>
+
+         <div class="body">
+            <p class="p">When deploying a cluster via PCC, you can now specify a host for PXF</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="gfxd">
+         <h3 class="title topictitle3">GFXD</h3>
+
+         <div class="body">
+            <p class="p">When deploying a cluster via PCC, you can now specify a host for GFXD (Gemfire
+               XD).</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="onlinedocumentation">
+         <h3 class="title topictitle3">Online Documentation</h3>
+
+         <div class="body">
+            <p class="p">You can now access PCC documentation, as well as that of all Pivotal products, via
+               the <strong class="ph b">Settings</strong> menu.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="ldap">
+         <h3 class="title topictitle3">LDAP</h3>
+
+         <div class="body">
+            <p class="p">You can now configure PCC to use and existing LDAP server for user authentication. 
+               Once configured, LDAP users can use their LDAP credentials to log in to PCC.</p>
+
+            <p class="p">Further details are provided in the <em class="ph i">Pivotal Command Center 2.3 User Guide</em>.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="resolvedissues">
+      <h2 class="title topictitle2">Resolved Issues</h2>
+
+      <div class="body">
+         <p class="p">This section lists issues that have been resolved in Pivotal Command Center 2.3.0.</p>
+
+         <div class="note note"><span class="notetitle">Note:</span> For resolved issues relating to the installation and any non-UI functionality of
+            Command Center, see the <em class="ph i">Pivotal HD 2.1.0 Release Notes</em>.</div>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+               
+               
+               
+               <thead class="thead" align="left">
+                  <tr class="row">
+                     <th class="entry confluenceTh" valign="top" width="13.793103448275861%" id="d117932e388">Issue</th>
+
+                     <th class="entry confluenceTh" valign="top" width="17.24137931034483%" id="d117932e391">Fixed in</th>
+
+                     <th class="entry confluenceTh" valign="top" width="68.96551724137932%" id="d117932e394">Description</th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody class="tbody">
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d117932e388 ">HD-9474 / HD-9410 </td>
+
+                     <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d117932e391 ">PCC 2.3</td>
+
+                     <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d117932e394 ">PCC had the following known limitations when
+                        monitoring a secure cluster (where kerberos authentication is enabled):
+                           <p class="p">HD-9474: Unable to display Hive Metastore status</p>
+
+                        <p class="p">HD-9410: Unable to perform HDFS re-balancing</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d117932e388 ">CC-3420</td>
+
+                     <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d117932e391 ">PCC 2.3</td>
+
+                     <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d117932e394 ">If the user did not define a secondary
+                        namenode during installation, an empty xml tag was added to the
+                        configuration file. </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d117932e388 ">CC-3553</td>
+
+                     <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d117932e391 ">PCC 2.3</td>
+
+                     <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d117932e394 ">As the <samp class="ph codeph">gpadmin</samp> user; you
+                        were able to remove admin privileges for yourself. </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d117932e388 ">HD-9912</td>
+
+                     <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d117932e391 ">PCC 2.3</td>
+
+                     <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d117932e394 ">Apache issue: Write pipeline recover for the
+                        last packet in the block may cause rejection of valid replicas.Fixed by
+                        Apache patch <a class="xref" href="https://issues.apache.org/jira/browse/HDFS-5557">https://issues.apache.org/jira/browse/HDFS-5557</a>
+                     </td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="knownissues">
+      <h2 class="title topictitle2">Known Issues</h2>
+
+      <div class="body">
+         <p class="p">This section lists the known issues in Pivotal Command Center 2.3.0. A work-around is
+            provided where applicable.</p>
+
+         <div class="note note"><span class="notetitle">Note:</span> For known issues relating to the installation and any non-UI functionality of Command
+            Center, see the <em class="ph i">Pivotal HD Release Notes</em>.</div>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+               
+               
+               <thead class="thead" align="left">
+                  <tr class="row">
+                     <th class="entry confluenceTh" valign="top" width="12.5%" id="d117932e496">Issue</th>
+
+                     <th class="entry confluenceTh" valign="top" width="87.5%" id="d117932e499">Description</th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody class="tbody">
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" width="12.5%" headers="d117932e496 ">CC-3945</td>
+
+                     <td class="entry confluenceTd" valign="top" width="87.5%" headers="d117932e499 ">On heavily-loaded, large clusters with
+                        multiple jobs running over an extended period of time, PCC UI and PHDMgr
+                        service may become unresponsive. <p class="p"><strong class="ph b">Workaround:</strong> As
+                              <samp class="ph codeph">root</samp> on PCC admin node, restart the commander service
+                           by running <samp class="ph codeph">service commander restart</samp>. The cluster
+                           services (hadoop, HAWQ etc) doc not need to be stopped or restarted.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" width="12.5%" headers="d117932e496 ">CC-3494</td>
+
+                     <td class="entry confluenceTd" valign="top" width="87.5%" headers="d117932e499 ">Install/Upgrades: If the RHEL ssl certificate
+                        for subscription-manager plugin has expired, yum will fail.
+                              <p class="p"><strong class="ph b">Workaround</strong>: If <samp class="ph codeph">yum -list</samp> reports an error
+                           on any of the cluster nodes then check the yum configurations files,
+                              <samp class="ph codeph">/etc/yum.repos.d/</samp> and make sure all remote
+                           repositories are DNS resolvable.</p>
+</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" width="12.5%" headers="d117932e496 ">CC-3339</td>
+
+                     <td class="entry confluenceTd" valign="top" width="87.5%" headers="d117932e499 ">The ability to start/stop HAWQ via the PCC UI
+                        is non-functional. <p class="p"><strong class="ph b">Workaround:</strong> Use the PCC CLI to start / stop
+                           HAWQ. See the <em class="ph i">Pivotal HD Installation and Administrator Guide</em> for
+                           specific commands.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" width="12.5%" headers="d117932e496 ">HD-8493</td>
+
+                     <td class="entry confluenceTd" valign="top" width="87.5%" headers="d117932e499 ">Unable to configure cluster if the root
+                        password contains certain special characters, for example: $ </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" width="12.5%" headers="d117932e496 ">CC-3305</td>
+
+                     <td class="entry confluenceTd" valign="top" width="87.5%" headers="d117932e499 ">If a running job is killed, the PCC UI
+                        MapReduce Slot Utilization Graph shows incorrect information. </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" width="12.5%" headers="d117932e496 ">CC-3083</td>
+
+                     <td class="entry confluenceTd" valign="top" width="87.5%" headers="d117932e499 ">Command Center does not show any data for
+                        graphs related to DataNode due to hostname mismatch. <p class="p"><strong class="ph b">Workaround:</strong>
+                           Change <samp class="ph codeph">/etc/sysconfig/network</samp> on all cluster nodes to
+                           use Fully Qualified Domain Names (FQDN).</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" width="12.5%" headers="d117932e496 ">HD-6715</td>
+
+                     <td class="entry confluenceTd" valign="top" width="87.5%" headers="d117932e499 ">After you upgrading PCC, you are unable to
+                        start/stop clusters with invalid hostnames. This is because there is now a
+                        check for invalid characters in cluster names. <p class="p"><strong class="ph b">Workaround</strong>:
+                           Reconfigure the cluster with a different, valid name, then restart the
+                           cluster. </p>
+</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" width="12.5%" headers="d117932e496 ">CC-3564</td>
+
+                     <td class="entry confluenceTd" valign="top" width="87.5%" headers="d117932e499 ">Pivotal Command Center and Pivotal HD must
+                        have the same OS.</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" width="12.5%" headers="d117932e496 ">CC-3501</td>
+
+                     <td class="entry confluenceTd" valign="top" width="87.5%" headers="d117932e499 ">Pivotal Command Center hostnames can only
+                        contain lower case letters.</td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="versioningandcompatibility">
+      <h2 class="title topictitle2">Versioning and Compatibility</h2>
+
+      <div class="body">
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+               <thead class="thead" align="left">
+                  <tr class="row">
+                     <th class="entry confluenceTh" valign="top" id="d117932e649">Product</th>
+
+                     <th class="entry confluenceTh" valign="top" id="d117932e652">Version</th>
+
+                     <th class="entry confluenceTh" valign="top" id="d117932e655">OS/Browser</th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody class="tbody">
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d117932e649 d117932e652 d117932e655 ">Pivotal HD</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d117932e649 d117932e652 d117932e655 ">2.1.0</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d117932e649 d117932e652 d117932e655 ">RedHat 64-bit: 6.4, 6.5 <p class="p">CentOS 64-bit:
+                           6.4, 6.5</p>
+</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d117932e649 d117932e652 d117932e655 ">Pivotal Command Center</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d117932e649 d117932e652 d117932e655 ">2.3.0</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d117932e649 d117932e652 d117932e655 ">RedHat 64-bit: 6.4, 6.5 <p class="p">CentOS 64-bit:
+                           6.4, 6.5</p>
+<p class="p">Firefox 21, 22</p>
+<p class="p">Chrome Version 28.0.1500.95</p>
+<p class="p">IE
+                           9, 10</p>
+</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d117932e649 d117932e652 d117932e655 ">HAWQ *</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d117932e649 d117932e652 d117932e655 ">1.2.1</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d117932e649 d117932e652 d117932e655 ">RedHat 64-bit: 6.4, 6.5 <p class="p">CentOS 64-bit:
+                           6.4, 6.5</p>
+</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d117932e649 d117932e652 d117932e655 ">PXF *</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d117932e649 d117932e652 d117932e655 ">2.3 </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d117932e649 d117932e652 d117932e655 ">RedHat 64-bit: 6.4, 6.5 <p class="p">CentOS 64-bit:
+                           6.4, 6.5</p>
+</td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+         <p class="p">* Distributed with Pivotal ADS 1.2.1</p>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="documentation">
+      <h2 class="title topictitle2">Documentation</h2>
+
+      <div class="body">
+         <p class="p">Documentation for all releases of Pivotal Command Center and related products is
+            available in PDF and HTML format on our website at <a class="xref" href="http://pivotalhd.docs.pivotal.io/">http://pivotalhd.docs.pivotal.io/</a>.</p>
+
+         <p class="p">In addition, you can still access previous versions of Pivotal Command Center product
+            documentation from the EMC support site at <a class="xref" href="https://support.emc.com/">https://support.emc.com/</a>.</p>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/PivotalCommandCenter.html" title="Pivotal Command Center"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Pivotal Command Center</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

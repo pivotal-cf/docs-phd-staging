@@ -1,0 +1,83 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Hadoop is extremely resilient in terms of hardware failure, but disk failure is one type of failure scenario that relies on the administrator to put some thought into as the system is configured. In ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Replacing the Slave Node Disk"/><meta name="DC.Relation" scheme="URI" content="../topics/DecommissioningSlaveNodes.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="replacingtheslavenodedisk"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Replacing the Slave Node Disk</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="replacingtheslavenodedisk"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/ManagingaPHDCluster.html" title="Managing a PHD Cluster">Managing a PHD Cluster</a> / <a class="navheader_parent_path" href="../topics/DecommissioningSlaveNodes.html" title="Decommissioning Slave Nodes">Decommissioning Slave Nodes</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/DecommissioningSlaveNodes.html" title="Decommissioning Slave Nodes"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Decommissioning Slave Nodes</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Replacing the Slave Node Disk</h1>
+
+   <div class="body">
+      <p class="p">Hadoop is extremely resilient in terms of hardware failure, but disk failure is one type of
+         failure scenario that relies on the administrator to put some thought into as the system is
+         configured. In the default configuration, Hadoop will blacklist the slave node if a single
+         disk fails. In most cases, this response is an extreme reaction to a relatively
+         inconsequential failure that is relatively common in large Hadoop clusters. The parameter
+         to control this response is <samp class="ph codeph">dfs.datanode.failed.volumes.tolerated</samp> and can
+         be found in the <span class="ph filepath">hdfs-site.xml</span> file. The value given to this parameter
+         represents the number of HDFS DataNode directories can fail before the node is
+         blacklisted. A good rule of thumb for this setting would be to tolerate 1 disk failure for
+         every 6 data disks you have in the system.  For example, a 12 disk server would have
+            <samp class="ph codeph">dfs.datanode.failed.volumes.tolerated = 2</samp>.  </p>
+
+      <p class="p">In the majority of scenarios with the proper failure tolerance configured, the disk will
+         fail, but the DataNode will remain operational. </p>
+
+      <p class="p">To replace the disk drive:</p>
+
+      <ol class="ol">
+         <li class="li">Stop DataNode, NodeManager, GemfireXD, and/or HAWQ processes using methods described in
+               <a class="xref" href="ShuttingDowntheSlaveNode.html#shuttingdowntheslavenode">Shutting Down the Slave Node</a>.</li>
+
+         <li class="li">Replace the failed disk drive(s).</li>
+
+         <li class="li">Follow the Slave Node Replacement procedures
+               (<samp class="ph codeph">add-slaves</samp>/<samp class="ph codeph">remove-slaves</samp>) described in <a class="xref" href="ReplacingtheSlaveNode.html#replacingtheslavenode">Replacing the Slave Node</a>.</li>
+
+      </ol>
+
+   </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/DecommissioningSlaveNodes.html" title="Decommissioning Slave Nodes"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Decommissioning Slave Nodes</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

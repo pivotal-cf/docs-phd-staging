@@ -1,0 +1,1059 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="At a minimum, Kerberos provides protection against user and service spoofing attacks, and allows for enforcement of user HDFS access permissions. The installation is not difficult, but requires very ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Configuring Kerberos for HDFS and YARN (MapReduce)"/><meta name="DC.Relation" scheme="URI" content="../topics/Security.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="configuringkerberosforhdfsandyarnmapreduce"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Configuring Kerberos for HDFS and YARN (MapReduce)</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="configuringkerberosforhdfsandyarnmapreduce"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/StackandToolsReference.html" title="Stack and Tools Reference">Stack and Tools Reference</a> / <a class="navheader_parent_path" href="../topics/Security.html" title="Security">Security</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/Security.html" title="Security"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Security</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Configuring Kerberos for HDFS and YARN (MapReduce)</h1>
+
+   <div class="body">
+      <p class="p">At a minimum, Kerberos provides protection against user and service spoofing attacks, and
+         allows for enforcement of user HDFS access permissions. The installation is not difficult,
+         but requires very specific instructions with many steps, and suffers from the same
+         difficulties as any system requiring distributed configuration. Pivotal is working to
+         automate the process to make it simple for users to enable/disable secure PHD clusters.
+         Until then, these instructions are intended to provide a step-by-step process for getting a
+         cluster up and running in secure mode.</p>
+
+      <ul class="ul">
+         <li class="li">
+            <a class="xref" href="#creatingtheprincipalsandkeytabs">Creating the Principals and Keytabs</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#createtheprincipals">Create the Principals</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#createthekeytabfiles">Create the Keytab Files</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#distributethekeytabfiles">Distribute the Keytab Files</a>
+               </li>
+
+            </ul>
+</li>
+
+         <li class="li">
+            <a class="xref" href="#installingjavasupportitems">Installing Java Support Items</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#installjceonallclusterhosts">Install JCE on all Cluster Hosts</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#checkjsvconalldatanodes">Check JSVC on all Datanodes</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#modifyingcontainerandscript">Modifying the Container and Script</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#configurethelinuxcontainer">Configure the Linux Container</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#edittheenvironmentonthedatanodes">Edit the Environment on the Datanodes</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#editingthesitexml">Editing the Site XML</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#using_hostinsitexml">Use _HOST in Site XML</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#editthesitexml">Edit the Site XML</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#completingthehdfsyarnsecureconfiguration">Completing the HDFS/YARN Secure Configuration</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#turningsecuremodeoff">Turning Secure Mode Off</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#buildingandinstallingjsvc">Building and Installing JSVC</a>
+         </li>
+
+      </ul>
+
+      <p class="p">Note that after the initial HDFS/YARN configuration, other services that need to be set up
+         to run on secure HDFS (for example, HBase), or that you want to also secure (for example,
+         Zookeeper), need to configured.</p>
+
+      <div class="note important"><span class="importanttitle">Important:</span> Save your command history; it will help in checking for errors when
+         troubleshooting.</div>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="creatingtheprincipalsandkeytabs">
+      <h2 class="title topictitle2">Creating the Principals and Keytabs</h2>
+
+      <div class="body">
+         <p class="p">These instructions are for MIT Kerberos 5; command syntax for other Kerberos versions
+            may be different.</p>
+
+         <p class="p">Principals (Kerberos users) are of the form: <samp class="ph codeph">name/role@REALM</samp>. For our
+            purposes, the name will be a PHD service name (for example, <samp class="ph codeph">hdfs</samp>), and
+            the role will be a DNS-resolvable fully-qualified hostname
+            (<samp class="ph codeph">host_fqdn</samp>); one you could use to connect to the host in question.</p>
+
+         <div class="note important"><span class="importanttitle">Important:</span> 
+            <ul class="ul" id="creatingtheprincipalsandkeytabs__ul_b55_sd1_vp">
+               <li class="li">Replace <samp class="ph codeph">REALM</samp> with the KDC realm you are using for your PHD
+                  cluster, where it appears.</li>
+
+               <li class="li">The host names used <em class="ph i">must</em> be resolvable to an address on all the cluster
+                  hosts and <em class="ph i">must</em> be of the form <samp class="ph codeph">host.domain</samp>, as some Hadoop
+                  components require at least one period ('.') part in the host names used for
+                  principals.</li>
+
+               <li class="li">The names of the principals seem to matter, as some processes may throw
+                  exceptions if you change them. Hence, it is safest to use the specified Hadoop
+                  principal names.</li>
+
+               <li class="li">Hadoop supports an <samp class="ph codeph">_HOST</samp> tag in the site XML that is interpreted
+                  as the <samp class="ph codeph">host_fqdn</samp>, but this must be used properly. See <a class="xref" href="#using_hostinsitexml">Using _HOST in Site XML</a>.</li>
+
+            </ul>
+
+         </div>
+
+         <p class="p">For the HDFS services, you will need to create an
+            <samp class="ph codeph">hdfs/host_fqdn</samp> principal for each host running an HDFS service (name
+            node, secondary name node, data node).</p>
+
+         <p class="p">For YARN services, you will need to create a <samp class="ph codeph">yarn/host_fqdn</samp> principal
+            for each host running a YARN service (resource manager, node manager, proxy server).</p>
+
+         <p class="p">For MapReduce services, you need to create a principal,
+               <samp class="ph codeph">mapred/host_fqdn</samp> for the Job History Server.</p>
+
+      </div>
+
+      <div class="topic nested2" id="createtheprincipals">
+         <h3 class="title topictitle3">Create the Principals</h3>
+
+         <div class="body">
+            <p class="p">To create the required secure HD principals (running
+               <samp class="ph codeph">kadmin.local</samp>):</p>
+
+            <ul class="ul" id="createtheprincipals__ul_u1n_hc1_vp">
+               <li class="li"><strong class="ph b">Cluster Hosts</strong><p class="p">For each cluster host (except client-only hosts),
+                  run:</p>
+<pre class="pre codeblock">addprinc -randkey HTTP/&lt;host_fqdn&gt;@&lt;REALM&gt;  </pre>
+</li>
+
+               <li class="li"><strong class="ph b">HDFS (name node, secondary name node, data nodes)</strong><div class="p">For each HDFS service
+                     host,
+                     run:<pre class="pre codeblock">addprinc -randkey hdfs/&lt;host_fqdn&gt;@&lt;REALM&gt;</pre>
+</div>
+</li>
+
+               <li class="li"><strong class="ph b">YARN (resource manager, node managers, proxy server)</strong><div class="p">For each YARN
+                     service host,
+                     run:<pre class="pre codeblock">addprinc -randkey yarn/&lt;host_fqdn&gt;@&lt;REALM&gt;</pre>
+</div>
+</li>
+
+               <li class="li"><strong class="ph b">MapReduce (job history server)</strong><div class="p">For each JHS service host,
+                     run:<pre class="pre codeblock">addprinc -randkey  mapred/&lt;host_fqdn&gt;@&lt;REALM&gt;</pre>
+</div>
+</li>
+
+            </ul>
+
+            <div class="note note"><span class="notetitle">Note:</span> If you have 1000 cluster hosts running HDFS and YARN, you will need 2000 HDFS and
+               YARN principals, and need to distribute their keytab files. It is recommended that
+               you use a cluster-local KDC for this purpose and configure cross-realm trust to your
+               organizational Active Directory or other Kerberos KDC. For more information, see
+                  <a class="xref" href="KerberosSetup.html#kerberossetup">Kerberos Setup</a>.</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="createthekeytabfiles">
+         <h3 class="title topictitle3">Create the Keytab Files</h3>
+
+         <div class="body">
+            <div class="note important"><span class="importanttitle">Important:</span>  You <em class="ph i">must</em> use <samp class="ph codeph">kadmin.local</samp> (or the
+               equivalent in your KDC) for this step on the KDC, as <samp class="ph codeph">kadmin</samp> does not
+               support <samp class="ph codeph">-norandkey</samp>.<p class="p">Also, you can put the keytab files anywhere
+                  during this step. In this document, we created a directory
+                     <span class="ph filepath">/etc/security/phd/keytab/</span> and are using this directory on
+                  cluster hosts, and so, for consistency, are placing them in a similarly-named
+                  directory on the KDC. If the node you are using already has files
+                     in <span class="ph filepath">/etc/security/phd/keytab/</span>, it may be advisable to
+                  create a separate, empty directory for this step.</p>
+</div>
+
+            <p class="p">Each service's keytab file for a given host will have the service principal for that
+               host and the HTTP principal for that host in the file.</p>
+
+               <ul class="ul" id="createthekeytabfiles__ul_k4r_s21_vp">
+                  <li class="li"><strong class="ph b">HDFS key tabs</strong>
+                  <div class="p">For each host having an HDFS process (name node, secondary name node, data
+                     nodes),
+                        run:<pre class="pre codeblock">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/hdfs-hostid.service.keytab  hdfs/&lt;host_fqdn&gt;@&lt;REALM&gt; HTTP/&lt;host_fqdn@&lt;REALM&gt;</pre>
+Where <samp class="ph codeph">hostid</samp>
+                     is the short name for the host, for example, <samp class="ph codeph">vm1</samp>,
+                        <samp class="ph codeph">vm2</samp>, etc. This is to differentiate the files by host. You
+                     can use the hostname if desired.</div>
+<p class="p">For example, for a three node cluster
+                     (one name node, two data
+                  nodes):</p>
+<pre class="pre codeblock">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/hdfs-vm2.service.keytab hdfs/centos62-2.localdomain@BIGDATA.COM HTTP/centos62-2.localdomain@BIGDATA.COM
+kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/hdfs-vm3.service.keytab hdfs/centos62-3.localdomain@BIGDATA.COM HTTP/centos62-3.localdomain@BIGDATA.COM
+kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/hdfs-vm4.service.keytab hdfs/centos62-4.localdomain@BIGDATA.COM HTTP/centos62-4.localdomain@BIGDATA.COM</pre>
+</li>
+
+            <li class="li"><strong class="ph b">YARN keytabs</strong>
+                  <p class="p">For each host having a YARN process (resource manager, node manager or proxy
+                     server),
+                     run:</p>
+<pre class="pre codeblock">kadmin.local:  ktadd -norandkey -k /etc/security/phd/keytab/yarn-hostid.service.keytab yarn/&lt;host_fqdn&gt;@&lt;REALM&gt;   HTTP/&lt;host_fqdn&gt;@&lt;REALM&gt;</pre>
+<p class="p">For
+                     example, for a three node cluster (one node resource manager, two node
+                     managers):</p>
+<pre class="pre codeblock">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/yarn-vm2.service.keytab yarn/centos62-2.localdomain@BIGDATA.COM HTTP/centos62-2.localdomain@BIGDATA.COM
+kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/yarn-vm3.service.keytab yarn/centos62-3.localdomain@BIGDATA.COM HTTP/centos62-3.localdomain@BIGDATA.COM
+kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/yarn-vm4.service.keytab yarn/centos62-4.localdomain@BIGDATA.COM HTTP/centos62-4.localdomain@BIGDATA.COM</pre>
+</li>
+
+            <li class="li">
+                  <strong class="ph b">MapReduce keytabs</strong>
+                  <p class="p">For each host having a MapReduce job history server,
+                     run:</p>
+<pre class="pre codeblock">kadmin.local:  ktadd -norandkey -k /etc/security/phd/keytab/mapred-hostid.service.keytab  mapred/host_fqdn@REALM  HTTP/host_fqdn@REALM</pre>
+<p class="p">For
+                     example:</p>
+<pre class="pre codeblock">kadmin.local: ktadd -norandkey -k /etc/security/phd/keytab/mapred-vm2.service.keytab mapred/centos62-2.localdomain@BIGDATA.COM HTTP/centos62-2.localdomain@BIGDATA.COM</pre>
+</li>
+
+               </ul>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="distributethekeytabfiles">
+         <h3 class="title topictitle3">Distribute the Keytab Files</h3>
+
+         <div class="body">
+            <ol class="ol" id="distributethekeytabfiles__ol_qbn_fc1_vp">
+               <li class="li">On each cluster node, create the directory for the keytab files; here, we are
+                  using <samp class="ph codeph">/etc/security/phd/keytab</samp>.</li>
+
+               <li class="li">Move all the keytab files for a given host to the keytab directory on that host.
+                  For example: <samp class="ph codeph">hdfs-vm2.service.keytab</samp>,
+                     <samp class="ph codeph">yarn-vm2.service.keytab</samp> and
+                     <samp class="ph codeph">mapred-vm2.service.keytab</samp> go to host vm2</li>
+
+               <li class="li">On each host:<ol class="ol" type="a" id="distributethekeytabfiles__ol_zvg_4f1_vp">
+                     <li class="li">Change the permissions on all key tabs to read by owner
+                        only:<pre class="pre codeblock">chmod 400 *.keytab</pre>
+</li>
+
+                     <li class="li">Change the group on all keytab files to
+                        hadoop:<pre class="pre codeblock">chgrp hadoop *</pre>
+</li>
+
+                     <li class="li">Change the owner of each keytab to the relevant principal name. For
+                        example, for <samp class="ph codeph">yarn-vm2.service.keytab</samp>,
+                        run:<pre class="pre codeblock">chown yarn yarn-vm2.service.keytab</pre>
+</li>
+
+                     <li class="li">Create links to the files of the form
+                           <samp class="ph codeph">principalname.service.keytab</samp>. For example, for
+                           <samp class="ph codeph">yarn-vm2.service.keytab</samp>,
+                        run:<pre class="pre codeblock">ln -s yarn-vm2.service.keytab yarn.service.keytab</pre>
+</li>
+
+                  </ol>
+</li>
+
+            </ol>
+
+            <div class="note important"><span class="importanttitle">Important:</span> The last step above allows you to maintain clear identification
+               of each keytab file while also allowing you to have common site xml files across
+               cluster hosts.</div>
+
+            <p class="p"><strong class="ph b">Cluster Control Node Example:</strong></p>
+
+            <p class="p">This is an example keytab directory for a cluster control node (namenode, resource
+               manager, JHS):</p>
+
+            <pre class="pre codeblock">lrwxrwxrwx 1 root      root    23 Jun 10 23:50 hdfs.service.keytab -&gt; hdfs-vm2.service.keytab
+-r-------- 1 hdfs      hadoop 954 Jun 10 23:44 hdfs-vm2.service.keytab
+lrwxrwxrwx 1 root      root    25 Jun 10 23:51 mapred.service.keytab -&gt; mapred-vm2.service.keytab
+-r-------- 1 mapred    hadoop 966 Jun 10 23:44 mapred-vm2.service.keytab
+lrwxrwxrwx 1 root      root    23 Jun 10 23:51 yarn.service.keytab -&gt; yarn-vm2.service.keytab
+-r-------- 1 yarn      hadoop 954 Jun 10 23:44 yarn-vm2.service.keytab</pre>
+
+            <p class="p"><strong class="ph b">Cluster Node Example:</strong></p>
+
+            <p class="p">This is an example keytab directory for a cluster node (datanode, node manager, proxy
+               server):</p>
+
+            <pre class="pre codeblock">lrwxrwxrwx 1 root root    23 Jun 11 01:58 hdfs.service.keytab -&gt; hdfs-vm3.service.keytab
+-r-------- 1 hdfs hadoop 954 Jun 10 23:45 hdfs-vm3.service.keytab
+lrwxrwxrwx 1 root root    23 Jun 11 01:58 yarn.service.keytab -&gt; yarn-vm3.service.keytab
+-r-------- 1 yarn hadoop 954 Jun 10 23:45 yarn-vm3.service.keytab</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="installingjavasupportitems">
+      <h2 class="title topictitle2">Installing Java Support Items</h2>
+
+      <div class="topic nested2" id="installjceonallclusterhosts">
+         <h3 class="title topictitle3">Install JCE on all Cluster Hosts</h3>
+
+         <div class="body">
+            <div class="note important"><span class="importanttitle">Important:</span>  This step is only if you are using AES-256.</div>
+
+            <p class="p emoticon emoticon-warning">These files will already exist in your
+               environment and look the same, but are the <strong class="ph b">limited strength</strong> encryption files;
+               you must replace them with the unlimited strength files to use AES-256:</p>
+
+            <ol class="ol" id="installjceonallclusterhosts__ol_ncl_fc1_vp">
+               <li class="li">Download and unzip the JCE file for your JDK version: Java Cryptography Extension
+                  (JCE) Unlimited Strength Jurisdiction Policy Files 7 for JDK 7).</li>
+
+               <li class="li">Place the <span class="ph filepath">local_policy.jar</span>
+                     and <span class="ph filepath">US_export_policy.jar</span> files in
+                     the <span class="ph filepath">/usr/java/default/jre/lib/security/</span> directory on all
+                  cluster hosts.</li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="checkjsvconalldatanodes">
+         <h3 class="title topictitle3">Check JSVC on all Datanodes</h3>
+
+         <div class="body">
+            <p class="p">JSVC allows a Java process to start as root and then switch to a less privileged
+               user, and is required for the datanode process to start in secure mode. Your
+               distribution comes with a pre-built JSVC; you need to verify it can find a JVM as
+               follows:</p>
+
+            <ol class="ol" id="checkjsvconalldatanodes__ol_g4d_bg1_vp">
+               <li class="li">Run:<pre class="pre codeblock">/usr/libexec/bigtop-utils/jsvc  -help</pre>
+</li>
+
+               <li class="li">Look under the printed <samp class="ph codeph">-jvm</samp> item in the output and you should
+                  see something
+                  like:<pre class="pre codeblock">use a specific Java Virtual Machine. Available JVMs:
+'server'</pre>
+</li>
+
+               <li class="li">If you do not see the <samp class="ph codeph">server</samp> line, this JSVC will not work for
+                  your platform; try the following actions:<ol class="ol" type="a" id="checkjsvconalldatanodes__ol_xpg_4g1_vp">
+                     <li class="li">Install JSVC using yum and run the check again; if it fails, try the next
+                        step. </li>
+
+                     <li class="li">Build from source and install manually (see <a class="xref" href="#buildingandinstallingjsvc">Building and Installing JSVC</a>).
+                     </li>
+
+                  </ol>
+</li>
+
+            </ol>
+
+            <p class="p">If you have datanode start-up problems and no other errors are obvious, it might be a
+               JSVC problem and you may need to perform step 2, above, another time. JSVC is very
+               picky about platform and JDK matching, so use the <a class="xref" href="#buildingandinstallingjsvc">Building and Installing JSVC</a> instructions
+               for your system OS and JDK.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="modifyingcontainerandscript">
+      <h2 class="title topictitle2">Modifying the Container and Script</h2>
+
+      <div class="topic nested2" id="configurethelinuxcontainer">
+         <h3 class="title topictitle3">Configure the Linux Container</h3>
+
+         <div class="body">
+            <ol class="ol" id="configurethelinuxcontainer__ol_shm_rg1_vp">
+               <li class="li">Edit the
+                     <span class="ph filepath">/usr/lib/gphd/hadoop-yarn/etc/hadoop/container-executor.cfg</span>
+                  file as follows:
+                     <pre class="pre codeblock"># NOTE: these next two should be set to the same values they have in yarn-site.xml
+yarn.nodemanager.local-dirs=/data/1/yarn/nm-local-dir
+yarn.nodemanager.log-dirs=/data/1/yarn/userlogs
+# configured value of yarn.nodemanager.linux-container-executor.group
+yarn.nodemanager.linux-container-executor.group=yarn
+# comma separated list of users who can not run applications
+banned.users=hdfs,yarn,mapred,bin
+# Prevent other super-users
+min.user.id=500</pre>
+<div class="note note"><span class="notetitle">Note:</span> The
+                        <samp class="ph codeph">min.user.id</samp> varies by Linux distribution; for CentOS it is
+                     500, RedHat is 1000. </div>
+</li>
+
+               <li class="li">Check the permissions on
+                     <span class="ph filepath">/usr/lib/gphd/hadoop-yarn/bin/container-executor</span>. They
+                  should look like:
+                     <pre class="pre codeblock">---Sr-s--- 1 root yarn   364 Jun 11 00:08 container-executor</pre>
+<p class="p">If
+                     they do not, then set the owner, group and permissions
+                  as:</p>
+<pre class="pre codeblock">chown root:yarn container-executor
+chmod 050 container-executor
+chmod u+s container-executor
+chmod g+s container-executor</pre>
+</li>
+
+               <li class="li">Check the permissions on
+                     <span class="ph filepath">/usr/lib/gphd/hadoop-yarn/etc/hadoop/container-executor.cfg</span>.
+                  They should look
+                  like:<pre class="pre codeblock">-rw-r--r-- 1 root root 363 Jul  4 00:29 /usr/lib/gphd/hadoop-yarn/etc/hadoop/container-executor.cfg</pre>
+If
+                  they do not, then set them as
+                  follows:<pre class="pre codeblock">chown root:root container-executor.cfg
+chmod 644 container-executor.cfg</pre>
+</li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="edittheenvironmentonthedatanodes">
+         <h3 class="title topictitle3">Edit the Environment on the Datanodes</h3>
+
+         <div class="body">
+            <div class="note important"><span class="importanttitle">Important:</span> 
+               <ul class="ul" id="edittheenvironmentonthedatanodes__ul_dk2_bh1_vp">
+                  <li class="li">At this point you should STOP the cluster, if it is running.</li>
+
+                  <li class="li">You only need to perform the steps below on the data nodes.</li>
+
+               </ul>
+
+            </div>
+
+            <ol class="ol" id="edittheenvironmentonthedatanodes__ol_r5l_rg1_vp">
+               <li class="li">Uncomment the lines at the bottom
+                     of <samp class="ph codeph">/etc/default/hadoop-hdfs-datanode</samp>:
+                  <pre class="pre codeblock"># secure operation stuff
+export HADOOP_SECURE_DN_USER=hdfs
+export HADOOP_SECURE_DN_LOG_DIR=${HADOOP_LOG_DIR}/hdfs
+export HADOOP_PID_DIR=/var/run/gphd/hadoop-hdfs/
+export HADOOP_SECURE_DN_PID_DIR=${HADOOP_PID_DIR} </pre>
+</li>
+
+               <li class="li">Set the JSVC variable:
+                  <pre class="pre codeblock">export JSVC_HOME=/usr/libexec/bigtop-utils</pre>
+If you are using
+                  the included <samp class="ph codeph">jsvc</samp>, the <samp class="ph codeph">JSVC_HOME</samp> variable in
+                     <samp class="ph codeph">/etc/default/hadoop</samp> should already be properly set.<p class="p">If,
+                     however, you built or hand-installed JSVC, your <samp class="ph codeph">JSVC_HOME</samp> will
+                     be <samp class="ph codeph">/usr/bin</samp> , so you must set it appropriately. Modify
+                        <samp class="ph codeph">/etc/default/hadoop</samp> and set the proper
+                        <samp class="ph codeph">JSVC_HOME</samp>:</p>
+<pre class="pre codeblock">export JSVC_HOME=/usr/bin</pre>
+<div class="note important"><span class="importanttitle">Important:</span>  Make sure <samp class="ph codeph">JSVC_HOME</samp> points to the correct
+                        <samp class="ph codeph">jsvc</samp> binary.</div>
+</li>
+
+            </ol>
+
+            <div class="note attention"><span class="attentiontitle">Attention:</span> As long as <samp class="ph codeph">HADOOP_SECURE_DN_USER</samp> is set, the
+               datanode will try to start in secure mode.</div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="editingthesitexml">
+      <h2 class="title topictitle2">Editing the Site XML</h2>
+
+      <div class="topic nested2" id="using_hostinsitexml">
+         <h3 class="title topictitle3">Use _HOST in Site XML</h3>
+
+         <div class="body">
+            <p class="p">You can maintain consistent site XML by using the <samp class="ph codeph">_HOST</samp> keyword for
+               the <samp class="ph codeph">host_fqdn</samp> part in the site XML if:</p>
+
+            <ul class="ul" id="using_hostinsitexml__ul_stf_nh1_vp">
+               <li class="li">Your cluster nodes were identified with fully-qualified domain names when
+                  configuring the cluster.</li>
+
+               <li class="li">
+                  <samp class="ph codeph">hostname -f</samp> on all nodes yields the proper fully-qualified
+                  hostname (same as the one used when creating the principals).</li>
+
+            </ul>
+
+            <p class="p">You cannot use constructs like <samp class="ph codeph">_HOST.domain</samp>; these will be
+               interpreted literally.</p>
+
+            <p class="p">You can only use <samp class="ph codeph">_HOST</samp> in the site XML; files such as
+                  <span class="ph filepath">jaas.conf</span>, needed for Zookeeper and HBase, must use actual
+               FQDN's for hosts.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="editthesitexml">
+         <h3 class="title topictitle3">Edit the Site XML</h3>
+
+         <div class="body">
+            <p class="p">Finally, you are ready to edit the site XML to turn on secure mode. Before starting
+               this task, it is good to understand who needs to talk to whom. By "talk", we mean
+               using authenticated Kerberos to initiate establishment of a communication channel.
+               Doing this requires you to know your own principal, to identify yourself, and know
+               the principal of the service you want to talk to. To be able to use its principal, a
+               service needs to be able to log in to Kerberos without a password, using a keytab
+               file:</p>
+
+            <ul class="ul" id="editthesitexml__ul_xqd_nh1_vp">
+               <li class="li">Each service needs to know its own principal name.</li>
+
+               <li class="li">Each running service on a node needs a service/host specific keytab file to start
+                  up.</li>
+
+               <li class="li">Each data node needs to talk to the name node.</li>
+
+               <li class="li">Each node manager needs to talk to the resource manager and the job history
+                  server.</li>
+
+               <li class="li">Each client/gateway node needs to talk to the name node, resource manager and job
+                  history server.</li>
+
+            </ul>
+
+            <div class="note important"><span class="importanttitle">Important:</span> 
+               <ul class="ul" id="editthesitexml__ul_wnm_yh1_vp">
+                  <li class="li">Redundant keytab files on some hosts do no harm and it makes management easier
+                     to have constant files. Remember, though, that the
+                        <samp class="ph codeph">host_fqdn</samp> <em class="ph i">must</em> be correct for each entry.
+                     Remembering this helps when setting up and troubleshooting the site xml
+                     files.</li>
+
+                  <li class="li">Before making changes, back up the current site xml files so that you can
+                     return to non-secure operation, if needed.</li>
+
+               </ul>
+
+            </div>
+
+            <p class="p">Most of the changes can be consistent throughout the cluster site XML. Unfortunately,
+               since data node and node manager principals are hostname-dependent (or more correctly
+               the role for the YARN principal is set to the <samp class="ph codeph">host_fqdn</samp>), the
+                  <span class="ph filepath">yarn-site.xml</span> for data node and node manager principals will
+               differ across the cluster:</p>
+
+            <ol class="ol" id="editthesitexml__ol_x42_nh1_vp">
+               <li class="li"><strong class="ph b">Core Site</strong><p class="p">Edit
+                        <span class="ph filepath">/usr/lib/gphd/hadoop/etc/hadoop/core-site.xml</span> as
+                     follows:
+                  </p>
+<pre class="pre codeblock">&lt;property&gt;
+  &lt;name&gt;hadoop.security.authentication&lt;/name&gt;
+  &lt;value&gt;kerberos&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hadoop.security.authorization&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- THE PROPERTY BELOW IS OPTIONAL: IT ENABLES ON WIRE RPC ENCRYPTION --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;hadoop.rpc.protection&lt;/name&gt;
+  &lt;value&gt;privacy&lt;/value&gt;
+&lt;/property&gt;</pre>
+</li>
+
+               <li class="li"><strong class="ph b">HDFS Site</strong><p class="p">Edit
+                        <span class="ph filepath">/usr/lib/gphd/hadoop/etc/hadoop/hdfs-site.xml</span> as
+                     follows:
+                  </p>
+<pre class="pre codeblock">&lt;!-- WARNING: do not create duplicate entries: check for existing entries and modify if they exist! --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.block.access.token.enable&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;!-- short circuit reads do not work when security is enabled for PHD VERSION LOWER THAN 2.0 so disable ONLY for them --&gt;
+&lt;!-- For PHD greater than or equal to 2.0, set this to true --&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.client.read.shortcircuit&lt;/name&gt;
+  &lt;value&gt;false&lt;/value&gt;
+&lt;/property&gt;
+&lt;!-- name node secure configuration info --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.namenode.keytab.file&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hdfs.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.namenode.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;hdfs/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.namenode.kerberos.http.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.namenode.kerberos.internal.spnego.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- (optional) secondary name node secure configuration info --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.secondary.namenode.keytab.file&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hdfs.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.secondary.namenode.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;hdfs/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.secondary.namenode.kerberos.http.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.secondary.namenode.kerberos.internal.spnego.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- data node secure configuration info --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.data.dir.perm&lt;/name&gt;
+  &lt;value&gt;700&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- these ports must be set &lt; 1024 for secure operation --&gt;
+&lt;!-- conversely they must be set back to &gt; 1024 for non-secure operation --&gt;
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.address&lt;/name&gt;
+  &lt;value&gt;0.0.0.0:1004&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.http.address&lt;/name&gt;
+  &lt;value&gt;0.0.0.0:1006&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- remember the principal for the datanode is the principal this hdfs-site.xml file is on --&gt;
+
+&lt;!-- these (next three) need only be set on data nodes --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;hdfs/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.kerberos.http.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;dfs.datanode.keytab.file&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hdfs.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- OPTIONAL - set these to enable secure WebHDSF --&gt;
+ 
+&lt;!-- on all HDFS cluster nodes (namenode, secondary namenode, datanode's) --&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.webhdfs.enabled&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.web.authentication.kerberos.principal&lt;/name&gt;
+  &lt;value&gt;HTTP/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;!-- since we included the HTTP principal all keytabs we can use it here --&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.web.authentication.kerberos.keytab&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/hdfs.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;!-- THE PROPERTIES BELOW ARE OPTIONAL AND REQUIRE RPC PRIVACY (core-site): THEY ENABLE ON WIRE HDFS BLOCK ENCRYPTION --&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.encrypt.data.transfer&lt;/name&gt;
+  &lt;value&gt;true&lt;/value&gt;
+&lt;/property&gt;
+ 
+&lt;property&gt;
+  &lt;name&gt;dfs.encrypt.data.transfer.algorithm&lt;/name&gt;
+  &lt;value&gt;rc4&lt;/value&gt;
+  &lt;description&gt;may be "rc4" or "3des" - 3des has a significant performance impact&lt;/description&gt;
+&lt;/property&gt; </pre>
+</li>
+
+               <li class="li"><strong class="ph b">YARN Site</strong><p class="p">Edit
+                        <span class="ph filepath">/usr/lib/gphd/hadoop/etc/hadoop/yarn-site.xml</span> as
+                     follows:
+                  </p>
+<pre class="pre codeblock">&lt;!-- resource manager secure configuration info --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.resourcemanager.principal&lt;/name&gt;
+  &lt;value&gt;yarn/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.resourcemanager.keytab&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/yarn.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- remember the principal for the node manager is the principal for the host this yarn-site.xml file is on --&gt;
+
+&lt;!-- these (next four) need only be set on node manager nodes --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.principal&lt;/name&gt;
+  &lt;value&gt;yarn/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.keytab&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/yarn.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.container-executor.class&lt;/name&gt;
+  &lt;value&gt;org.apache.hadoop.yarn.server.nodemanager.LinuxContainerExecutor&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.linux-container-executor.group&lt;/name&gt;
+  &lt;value&gt;yarn&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;!-- OPTIONAL - set these to enable secure proxy server node --&gt; 
+
+&lt;property&gt;
+  &lt;name&gt;yarn.web-proxy.keytab&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/yarn.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;yarn.web-proxy.principal&lt;/name&gt;
+  &lt;value&gt;yarn/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;</pre>
+
+               </li>
+
+               <li class="li"><strong class="ph b">MapReduce Site</strong><p class="p">Edit
+                        <samp class="ph codeph">/usr/lib/gphd/hadoop/etc/hadoop/mapred-site.xml</samp> as follows:
+                  </p>
+<pre class="pre codeblock">&lt;!-- job history server secure configuration info --&gt;
+
+&lt;property&gt;
+  &lt;name&gt;mapreduce.jobhistory.keytab&lt;/name&gt;
+  &lt;value&gt;/etc/security/phd/keytab/mapred.service.keytab&lt;/value&gt;
+&lt;/property&gt;
+
+&lt;property&gt;
+  &lt;name&gt;mapreduce.jobhistory.principal&lt;/name&gt;
+  &lt;value&gt;mapred/_HOST@REALM&lt;/value&gt;
+&lt;/property&gt;</pre>
+</li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="completingthehdfsyarnsecureconfiguration">
+      <h2 class="title topictitle2">Completing the HDFS/YARN Secure Configuration</h2>
+
+      <div class="body">
+         <ol class="ol">
+            <li class="li">Start the cluster: <pre class="pre codeblock">$ icm_client start</pre>
+</li>
+
+            <li class="li">Check that all the processes listed below start up:<ul class="ul">
+                  <li class="li">Control processes: namenode, resourcemanager, historyserver should all be
+                     running.</li>
+
+                  <li class="li">Cluster worker processes: datanode and namenode should be running.<div class="note note"><span class="notetitle">Note:</span> Until
+                        you do HBase security configuration, HBase will not start up on a secure
+                        cluster.</div>
+</li>
+
+               </ul>
+If the process do not start up, see the <a class="xref" href="SecurityTroubleshooting.html">Security - Troubleshooting</a> section.</li>
+
+            <li class="li">Create a principal for a standard user (the user must exist as a Linux user on all
+               cluster hosts): <pre class="pre codeblock">kadmin: addprinc testuser</pre>
+<p class="p">Set the password
+                  when prompted.</p>
+</li>
+
+            <li class="li">Log in as that user on a client box (or any cluster box, if you do not have specific
+               client purposed systems).</li>
+
+            <li class="li">Get your Kerberos TGT by running <samp class="ph codeph">kinit</samp> for the user and entering
+               the user's password: <pre class="pre codeblock">kinit testuser</pre>
+</li>
+
+            <li class="li">Test simple HDFS file list and directory create:
+                  <pre class="pre codeblock">hadoop fs -ls
+hadoop fs -mkdir testdir</pre>
+<p class="p">If these do not
+                  work, see the <a class="xref" href="SecurityTroubleshooting.html">Security - Troubleshooting</a> section.</p>
+</li>
+
+            <li class="li"><strong class="ph b">[Optional]</strong> Set the sticky bit on the <span class="ph filepath">/tmp</span> directory
+               (prevents non-super-users from moving or deleting other users' files in
+                  <span class="ph filepath">/tmp</span>):<ol class="ol" type="a">
+                  <li class="li">Log in as <samp class="ph codeph">gpadmin</samp> on any HDFS service node (namenode,
+                     datanode).</li>
+
+                  <li class="li">Execute the following:
+                     <pre class="pre codeblock">sudo -u hdfs kinit -k -t /etc/security/phd/keytab/hdfs.service.keytab hdfs/this-host_fqdn@REALM</pre>
+</li>
+
+                  <li class="li">Execute the following:
+                     <pre class="pre codeblock">sudo -u hdfs hadoop fs -chmod 1777 /tmp</pre>
+</li>
+
+                  <li class="li">Run a simple MapReduce job such as the Pi example:
+                     <pre class="pre codeblock">hadoop jar /usr/lib/gphd/hadoop-mapreduce/hadoop-mapreduce-examples-2.0.2-alpha-gphd-2.0.1.0.jar pi 10 100</pre>
+</li>
+
+               </ol>
+</li>
+
+         </ol>
+
+         <p class="p">If everything works, then you are ready to configure other services. If not, see the
+               <a class="xref" href="SecurityTroubleshooting.html">Security - Troubleshooting</a> section.</p>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="turningsecuremodeoff">
+      <h2 class="title topictitle2">Turning Secure Mode Off</h2>
+
+      <div class="body">
+         <p class="p">To turn off secure mode:</p>
+
+         <ol class="ol">
+            <li class="li">Stop the cluster: <pre class="pre codeblock">icm_client stop</pre>
+</li>
+
+            <li class="li">Comment out <samp class="ph codeph">HADOOP_SECURE_DN_USER</samp> in
+                  <span class="ph filepath">hadoop-env.sh</span> and
+                  <span class="ph filepath">/etc/init.d/hadoop-hdfs-datanode</span> on all data nodes.</li>
+
+            <li class="li">Either:<ol class="ol" type="a" id="turningsecuremodeoff__ol_pxq_bj1_vp">
+                  <li class="li">If you made backups as suggested above, restore the original site xml files,
+                     or:</li>
+
+                  <li class="li">If you do not have backups, then edit the site xml as follows:<ol class="ol" type="i" id="turningsecuremodeoff__ol_tnq_y31_vp">
+                        <li class="li">Set the Linux container executable to
+                              <samp class="ph codeph">org.apache.hadoop.yarn.server.nodemanager.DefaultContainerExecutor</samp>
+                           on all data nodes.</li>
+
+                        <li class="li">Set <samp class="ph codeph">dfs.block.access.token.enable</samp> to
+                              <samp class="ph codeph">false</samp> on all data nodes.</li>
+
+                        <li class="li">Return the datanode ports modified above so they are &gt; 1024
+                           again.</li>
+
+                        <li class="li">Set <samp class="ph codeph">hadoop.security.authentication</samp> to
+                              <samp class="ph codeph">simple</samp> and
+                              <samp class="ph codeph">hadoop.security.authorization</samp> to
+                              <samp class="ph codeph">false </samp>in <samp class="ph codeph">core-site.xml</samp> on all
+                           cluster nodes.</li>
+
+                        <li class="li">Undo the changes to the Zookeeper site xml and configuration files.</li>
+
+                        <li class="li">If applicable, revert the changes to the
+                              <samp class="ph codeph">hdfs-client.xml</samp> and
+                              <samp class="ph codeph">gpinisystem_config</samp> for HAWQ.</li>
+
+                        <li class="li">If applicable, undo the changes to the Hive and HBase site xml,
+                           configuration, and environments.</li>
+
+                     </ol>
+</li>
+
+               </ol>
+</li>
+
+            <li class="li">Start the cluster.</li>
+
+         </ol>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="buildingandinstallingjsvc">
+      <h2 class="title topictitle2">Building and Installing JSVC</h2>
+
+      <div class="body">
+         <p class="p">In order for the data nodes to start as root to get secure ports,  then switch back to
+            the HDFS user, JSVC must be installed (<a class="xref" href="http://commons.apache.org/proper/commons-daemon/download_daemon.cgi">http://commons.apache.org/proper/commons-daemon/download_daemon.cgi</a>). If the packaged JSVC binary is not working, we recommend building
+            JSVC from source for your platform.</p>
+
+         <p class="p">You only need to perform the <samp class="ph codeph">make</samp> on one node, then the binary can be
+            distributed to the other nodes (assuming all systems are using the same basic
+            image):</p>
+
+         <ol class="ol">
+            <li class="li">Install <samp class="ph codeph">gcc</samp> and <samp class="ph codeph">make</samp> (you can remove them after
+               this process if desired): <pre class="pre codeblock">yum install gcc make</pre>
+</li>
+
+            <li class="li">Download the Apache commons daemon. For example,
+                  <samp class="ph codeph">commons-daemon-</samp>1.0<samp class="ph codeph">.15-src.zip</samp> was tested.<p class="p">The
+                  daemon is available here: <a class="xref" href="http://commons.apache.org/proper/commons-daemon/download_daemon.cgi">http://commons.apache.org/proper/commons-daemon/download_daemon.cgi</a>
+               </p>
+</li>
+
+            <li class="li">
+               <samp class="ph codeph">scp</samp> the file to one of your data node cluster systems.</li>
+
+            <li class="li">Uncompress it.</li>
+
+            <li class="li">Change to the install directory:
+               <pre class="pre codeblock">cd commons-daemon-1.0.15-src/src/native/unix</pre>
+</li>
+
+            <li class="li">If you are on a 64-bit machine and using a 64 bit JVM, run these exports before
+               configure/make: <pre class="pre codeblock">export CFLAGS=-m64
+export LDFLAGS=-m64</pre>
+</li>
+
+            <li class="li">Configure and make it:
+               <pre class="pre codeblock">./configure --with-java=/usr/java/default
+make</pre>
+</li>
+
+            <li class="li">Manually install it to the following location:
+               <pre class="pre codeblock">mv ./jsvc  /usr/bin/jsvc</pre>
+</li>
+
+            <li class="li">Check that the correct JSVC was found by running:
+                  <pre class="pre codeblock">which jsvc</pre>
+<p class="p">The correct output
+               is:</p>
+<pre class="pre codeblock">/usr/bin/jsvc</pre>
+</li>
+
+            <li class="li">Run: <pre class="pre codeblock">jsvc -help  </pre>
+<p class="p">Look under the printed
+                     <samp class="ph codeph">-jvm</samp> item and you should see something
+                  like:</p>
+<pre class="pre codeblock">use a specific Java Virtual Machine. Available JVMs:
+'server'</pre>
+<p class="p">If
+                  the line under <samp class="ph codeph">Available JVMs</samp> (where <samp class="ph codeph">server</samp> is
+                  above) is blank, there is a problem, as it cannot find the JVM. Check that the JDK
+                  is installed properly in <samp class="ph codeph">/usr/java/default</samp>.</p>
+</li>
+
+         </ol>
+
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/Security.html" title="Security"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Security</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

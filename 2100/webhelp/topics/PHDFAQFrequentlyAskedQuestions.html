@@ -1,0 +1,174 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Can I deploy multiple clusters from the same admin? Yes, you can deploy any number of Pivotal HD clusters from the same admin. You must deploy them in succession, not simultaneously. Can I modify the ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="PHD Frequently Asked Questions (FAQ)"/><meta name="DC.Relation" scheme="URI" content="../topics/PHDInstallationandAdministration.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="phdfaq-frequentlyaskedquestions"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>PHD Frequently Asked Questions (FAQ)</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="phdfaq-frequentlyaskedquestions"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PivotalHD.html" title="Pivotal HD">Pivotal HD</a> / <a class="navheader_parent_path" href="../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration">PHD Installation and Administration</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">PHD Installation and Administration</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">PHD Frequently Asked Questions (FAQ)</h1>
+
+   <div class="body">
+   <div class="section" id="phdfaq-frequentlyaskedquestions__phdfaq1"><h2 class="title sectiontitle">Can I deploy multiple clusters from the same admin?</h2><p class="p">Yes, you
+         can deploy any number of Pivotal HD clusters from the same admin. You must deploy them in
+         succession, not simultaneously.</p>
+</div>
+
+   <div class="section" id="phdfaq-frequentlyaskedquestions__phdfaq2"><h2 class="title sectiontitle">Can I modify the topology (host to role mapping) of the cluster after the
+         initial install?</h2><p class="p">Yes, you can change slaves' roles using the CLI, but the master
+         role must be changed manually. If you want to change the master role, contact
+         Support.</p>
+</div>
+
+   <div class="section" id="phdfaq-frequentlyaskedquestions__phdfaq3"><h2 class="title sectiontitle">How do I reformat the namenode?</h2>
+         
+         
+         <div class="note important"><span class="importanttitle">Important:</span> These steps will erase all data on HDFS.</div>
+
+         <p class="p">As user <samp class="ph codeph">hdfs</samp>:</p>
+
+         <ol class="ol" id="phdfaq-frequentlyaskedquestions__ol_glh_gv2_4p">
+            <li class="li">On the namenode, clean up the data in the directories specified for
+                  <samp class="ph codeph">dfs.datanode.name.dir</samp>.</li>
+
+            <li class="li">On all the datanodes, clean up the data in the directories specified for
+                  <samp class="ph codeph">dfs.datanode.data.dir</samp>. </li>
+
+            <li class="li">On the namenode, run:<pre class="pre codeblock">hadoop namenode format -force</pre>
+</li>
+
+         </ol>
+
+         
+      </div>
+
+   <div class="section" id="phdfaq-frequentlyaskedquestions__phdfaq4"><h2 class="title sectiontitle">Certain services such as hadoop-hdfs-namenode or hadoop-hdfs-datanode do not
+         come up when I run "start cluster"?</h2>
+         <p class="p">Refer to Debugging tips in the
+         Troubleshooting section. It may be that the ports being used by the specific service are
+         already in use. Verify whether the port is already being used using <samp class="ph codeph">-netstat
+            -na</samp>. Kill the existing process if necessary</p>
+</div>
+
+   <div class="section" id="phdfaq-frequentlyaskedquestions__phdfaq5"><h2 class="title sectiontitle">What group and users are created by Pivotal HD?</h2><p class="p">Please refer to the
+         Troubleshooting section for details about the users and directories created by
+         PCC.</p>
+</div>
+
+   <div class="section" id="phdfaq-frequentlyaskedquestions__phdfaq6"><h2 class="title sectiontitle">What is the allowed time difference amongst the cluster nodes versus the admin
+         node?</h2><p class="p">The allowed time difference between the cluster nodes is +/-60 secs of
+         admin node time. If the time difference is more, the SSL authentication might fail, leading
+         to cluster deployment failures.</p>
+</div>
+
+   <div class="section" id="phdfaq-frequentlyaskedquestions__phdfaq7"><h2 class="title sectiontitle">Does PCC support simultaneous deployment of multiple clusters?</h2><p class="p">No.
+         Concurrent deployment is not allowed. Please wait till the first deployment is complete
+         before starting another.</p>
+</div>
+
+   <div class="section" id="phdfaq-frequentlyaskedquestions__phdfaq8"><h2 class="title sectiontitle">Does PCC support hostname both in IP address and FQDN format?</h2><p class="p">No, only
+         FQDN format is currently supported.</p>
+</div>
+
+   <div class="section" id="phdfaq-frequentlyaskedquestions__phdfaq9"><h2 class="title sectiontitle">Can a node be shared between different clusters?</h2><p class="p">No, nodes cannot be
+         shared between clusters.</p>
+</div>
+
+   <div class="section" id="phdfaq-frequentlyaskedquestions__phdfaq10"><h2 class="title sectiontitle">I installed puppet-2.7.20 from the Puppet Labs repository, but Pivotal HD does
+         not work?</h2><p class="p">Pivotal HD requires the version of puppet shipped with the product and
+         not the downloadable version from the Puppet Labs repository. Uninstall Puppet and install
+         the one shipped with the product using the <samp class="ph codeph">icm_client preparehosts</samp>
+         command.</p>
+</div>
+
+   <div class="section" id="phdfaq-frequentlyaskedquestions__phdfaq11"><h2 class="title sectiontitle">How do I clean up the nodes if a cluster deployment fails?</h2><p class="p">Uninstall
+         the cluster using the <samp class="ph codeph">icm_client uninstall</samp> command, then follow the
+         instructions for deploying the cluster again.</p>
+</div>
+
+   <div class="section" id="phdfaq-frequentlyaskedquestions__phdfaq12"><h2 class="title sectiontitle">Will I lose my data if I uninstall the cluster?</h2><p class="p">Uninstalling the
+         cluster will not wipe out any data. But a subsequent installation would wipe out the
+         configured mount points upon confirmation. Make sure you back out the data.</p>
+</div>
+
+   <div class="section" id="phdfaq-frequentlyaskedquestions__phdfaq13"><h2 class="title sectiontitle">Will I lose my data if I upgrade the PHD/ADS stack through the stack import
+         utility?</h2><p class="p">Upgrading any stack using the import utility will not affect your
+         cluster/data as long as the upgrade is compatible with the existing data layout.</p>
+</div>
+
+   <div class="section" id="phdfaq-frequentlyaskedquestions__phdfaq14"><h2 class="title sectiontitle">Can I upgrade Pivotal Command Center while the clusters are
+         functioning?</h2><p class="p">Yes you can. Upgrading the Admin node will not interfere with any of
+         the clusters.</p>
+</div>
+
+   <div class="section" id="phdfaq-frequentlyaskedquestions__phdfaq15"><h2 class="title sectiontitle">How do I change the port used by Pivotal HD?</h2>
+         <div class="p">
+         <ol class="ol" id="phdfaq-frequentlyaskedquestions__ol_hkk_tv2_4p">
+            <li class="li">Log onto the machine as <samp class="ph codeph">root</samp>. 2. Stop Pivotal Command
+               Center:<pre class="pre codeblock">service commander stop </pre>
+</li>
+
+            <li class="li">Change the port in the jetty file, say from 8080 to
+               8085:<pre class="pre codeblock">Update the JETTY_PORT property to 8085 in: /usr/lib/gphd/gphdmgr/bin/setenv.sh
+Update ICM_URL property to 8085 in /etc/gphd/gphdmgr/conf/gphdmgr.properties
+Update the gphdmgr_port to 8085 in /usr/local/greenplum-cc/config/app.yml
+
+\#Replace 8080 with 8085 in the following files
+sed \-i 's/8080/8085/g'  /usr/lib/gphd/gphdmgr/lib/client/InputReaders.py
+sed \-i 's/8080/8085/g' /usr/lib/gphd/gphdmgr/lib/client/GPHDSync.py
+sed \-i 's/8080/8085/g' /usr/lib/gphd/gphdmgr/lib/client/WSHelper.py </pre>
+</li>
+
+            <li class="li">Start Pivotal Command Center
+               again:<pre class="pre codeblock">service commander start </pre>
+</li>
+
+         </ol>
+
+      </div>
+</div>
+
+   </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">PHD Installation and Administration</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

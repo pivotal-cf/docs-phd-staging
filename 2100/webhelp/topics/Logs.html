@@ -1,0 +1,129 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="This screen displays all system logs.  The log files are grouped by date, the most recent first.  Use the Prev / Next buttons to jump to more pages of logs. Use the upper left dropdown menus to filter ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Logs"/><meta name="DC.Relation" scheme="URI" content="../topics/UsingPCC.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="logs"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Logs</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="logs"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PCCUserGuide.html" title="PCC User Guide">PCC User Guide</a> / <a class="navheader_parent_path" href="../topics/UsingPCC.html" title="Using PCC">Using PCC</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/UsingPCC.html" title="Using PCC"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Using PCC</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Logs</h1>
+
+   <div class="body">
+      <p class="p">This screen displays all system logs.  The log files are grouped by date, the most recent
+         first.  Use the <strong class="ph b">Prev</strong> /<strong class="ph b"> Next</strong> buttons to jump to more pages of logs.</p>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="filteringlogs">
+      <h2 class="title topictitle2">Filtering Logs</h2>
+
+      <div class="body">
+         <p class="p">Use the upper left dropdown menus to filter the logs displayed based on:</p>
+
+         <ul class="ul">
+            <li class="li"><strong class="ph b">Logs Levels</strong>:  You can select to display all logs (the default), or filter by
+               one of the following log levels: debug, errors, fatal, info, trace, warnings.</li>
+
+            <li class="li"><strong class="ph b">Hosts</strong>: You can select to display logs for all hosts (the default), including
+               the Admin Host, or can filter by hostname.</li>
+
+            <li class="li"><strong class="ph b">Roles</strong>: You can select to display logs for all roles (the default), or can
+               filter by role name.  Note that since the <samp class="ph codeph">gphdmgr-webservices</samp> role
+               is always on the Admin Host, if you select that role, you can no longer filter by
+               host (in this case the Admin Host is automatically selected).</li>
+
+         </ul>
+
+         <p class="p">Use the upper right dropdown menu to filter the logs displayed based on:</p>
+
+         <ul class="ul">
+            <li class="li"><strong class="ph b">Time</strong>: You can select the time period over which you want to view logs; either
+               for the <strong class="ph b">Past 1 hour</strong>, or for one of the other time periods available (up to
+                  <strong class="ph b">Past 8 weeks</strong>).</li>
+
+         </ul>
+
+         <div class="section"><h3 class="title sectiontitle">Search by Keyword</h3>
+            
+            <p class="p">You can also further filter the logs displayed by searching the logs by keyword. </p>
+
+            <p class="p">Enter any single keyword (any single string, including numbers) in the search box,
+               then click <strong class="ph b">Search</strong>.</p>
+
+            <p class="p">Note that your keyword search is only applied to the set of logs displayed based on
+               any filters you chose from the dropdown menus, described above.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="viewinglogs">
+      <h2 class="title topictitle2">Viewing Logs</h2>
+
+      <div class="body">
+         <p class="p">The results of your filters, if any, are displayed on the screen. Often there will be
+            too many to display on one page, use the <strong class="ph b">Prev</strong>/<strong class="ph b">Next</strong>/Page numbers at the top
+            of the screen to navigate through them.</p>
+
+         <p class="p">Each entry displays the time stamp, a log message, a time stamp, the host and the role.
+            For example:  <img class="image" id="viewinglogs__image_ty5_mps_4p" src="../images/68747426.png" height="213" width="500"/></p>
+
+         <p class="p">If the log message is too long to display on the screen it is truncated and a <strong class="ph b">Show
+               Details</strong> link appears below the message; click to display the entire message.</p>
+
+         <p class="p">Click <strong class="ph b">Show Logs</strong> to display all contents of that log file based on the time
+            stamp.  You can see more log messages from before and after that time stamp by clicking
+            the <strong class="ph b">Scroll Up To Fetch More Logs</strong> / <strong class="ph b">Scroll Down to Fetch More Logs</strong> links at
+            the top and bottom of the page, respectively.</p>
+
+
+
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/UsingPCC.html" title="Using PCC"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Using PCC</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

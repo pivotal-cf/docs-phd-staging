@@ -1,0 +1,141 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="[Optional] Kerberos is a network authentication protocol that provides strong authentication for client/server applications using secret-key cryptography. You can configure PHD clusters to use ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="PHD Install 2 - Configure Kerberos and LDAP"/><meta name="DC.Relation" scheme="URI" content="../topics/InstallingPHDUsingtheCLI.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="configuringkerberosandldap"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>PHD Install 2 - Configure Kerberos and LDAP</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="configuringkerberosandldap"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PHDInstallationandAdministration.html" title="PHD Installation and Administration">PHD Installation and Administration</a> / <a class="navheader_parent_path" href="../topics/InstallingPHDUsingtheCLI.html" title="Installing PHD Using the CLI">Installing PHD Using the CLI</a></td><td><div class="navheader">
+<span class="navparent"><a class="link" href="../topics/InstallingPHDUsingtheCLI.html" title="Installing PHD Using the CLI"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Installing PHD Using the CLI</span></a></span>  </div></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">PHD Install 2 - Configure Kerberos and LDAP</h1>
+
+   <div class="body">
+      <p class="p">
+         <strong class="ph b">[Optional]</strong>
+      </p>
+
+      <p class="p">Kerberos is a network authentication protocol that provides strong authentication for
+         client/server applications using secret-key cryptography.</p>
+
+      <p class="p">You can configure PHD clusters to use Kerberos authentication.</p>
+
+      <p class="p">Initializing security includes setting up a Kerberos server.</p>
+
+      <div class="note note"><span class="notetitle">Note:</span> If you already have a Kerberos server set up, you do not need to run the following
+         command to initiate security, but you need to make security-specific edits to the cluster
+         configuration file. SeeEditing the Cluster Configuration Files for details.</div>
+
+      <p class="p">To initialize security:</p>
+
+      <ol class="ol">
+         <li class="li">On the Admin node, as <samp class="ph codeph">gpadmin</samp>,
+            run:<pre class="pre codeblock">$ icm_client security -i</pre>
+The installer will configure an
+            internal LDAP/Kerberos server that will be used for the cluster-wide user management
+            feature.</li>
+
+         <li class="li">You will be prompted to specify whether to configure the built-in Kerberos
+               server:<pre class="pre codeblock">Do you wish to configure Kerberos Server? (y/n) [Yes]? yes</pre>
+<p class="p">Enter
+                  <samp class="ph codeph">no</samp> if you do not wish to use the built-in Kerberos server. The
+               remaining instructions assume you chose to configure the built-in Kerberos
+               server.</p>
+</li>
+
+         <li class="li">Choose a realm for your Kerberos server; usually this will be your domain name. For
+            example:<pre class="pre codeblock">Enter REALM for Kerberos (ex PIVOTAL.IO): PIVOTAL.IO</pre>
+</li>
+
+         <li class="li">Choose a login and password for your Kerberos server. You will need these if you ever
+            need to manage the Kerberos server directly via the command line tool
+               (<samp class="ph codeph">kadmin</samp>). We recommend using
+            <samp class="ph codeph">gpadmin</samp>:<pre class="pre codeblock">Enter username for Kerberos Server ADMIN [admin]: gpadmin
+Enter new password for Kerberos Server ADMIN:
+Re-enter the new password for Kerberos Server Admin:
+Enter new MASTER password for KDC:
+Re-enter new MASTER password for KDC:</pre>
+</li>
+
+         <li class="li">You are now prompted to set up the built-in LDAP server:
+            <pre class="pre codeblock">[WARNING] Attempt to re-configure previously configure LDAP server may result in data or functionality loss
+Do you wish to configure LDAP Server? (y/n) [Yes]? yes</pre>
+</li>
+
+         <li class="li">Select a suitable base domain name (DN); usually this will be your domain name. For
+            example:<pre class="pre codeblock">Enter Domain name for LDAP base DN (ex pivotal.io): pivotal.io</pre>
+</li>
+
+         <li class="li">Choose a login and password for the LDAP administrator. You will need these to add new
+            users into the system, and also it will be needed if you ever need to manage the
+            built-in LDAP server directly. We recommend using
+            <samp class="ph codeph">gpadmin</samp>:<pre class="pre codeblock">Enter username for LDAP Administrator [Manager]: gpadmin
+Enter new password for LDAP administrator:
+Re-enter new password for LDAP administrator:</pre>
+</li>
+
+         <li class="li">The installer will now install and configure the built-in Kerberos and LDAP server,
+            based on the information you
+            provided:<pre class="pre codeblock">[INFO] Attempting to configure KDC and/or LDAP. It may take few minutes...
+[DONE] Security components initialized successfully</pre>
+</li>
+
+      </ol>
+
+      <p class="p">
+         <strong class="ph b">Next Task:</strong>
+      </p>
+
+      <p class="p">
+         <a class="xref" href="PHDImportingthePackages.html">PHD Install 3 - Import the PHD Service Packages</a>
+      </p>
+
+      <div class="note note"><span class="notetitle">Note:</span> If you chose to configure security, you need to made security-specific changes to the
+         cluster configuration file. For more information, see <a class="xref" href="EditingtheClusterConfigurationFiles.html">PHD Install 4 - Edit the Cluster Configuration Files</a>.<p class="p">In addition, if you are also
+            planning to install HAWQ, you need to make some post-installation changes to HAWQ. See
+               <a class="xref" href="InitializingandStartingHAWQ.html">PHD Install 9 - Initialize and Start HAWQ</a> for details.</p>
+</div>
+
+
+   </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../topics/InstallingPHDUsingtheCLI.html" title="Installing PHD Using the CLI"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Installing PHD Using the CLI</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>
