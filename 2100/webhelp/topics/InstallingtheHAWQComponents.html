@@ -634,10 +634,11 @@ $ ldconfig</pre>
          <p class="p">The MADlib library adds statistical and machine learning functionality to HAWQ. This
             topic describes how to install MADlib for HAWQ. </p>
 
-         <p class="p">The HAWQ installation script installs the MADlib files, but does not register MADlib
-            functions with HAWQ databases. Therefore you must use the
-            <samp class="ph codeph">madpack</samp> utility program to install, reinstall, or upgrade the MADlib
-            database objects.</p>
+         <p class="p">Download the package from the Pivotal Download Center and then install it with the
+            Pivotal Package Manager (<samp class="ph codeph">gppkg</samp>). The <samp class="ph codeph">gppkg</samp>
+            installation script installs the MADlib files, but does not register MADlib functions
+            with HAWQ databases. Therefore you must use the <samp class="ph codeph">madpack</samp> utility program
+            to install, reinstall, or upgrade the MADlib database objects.</p>
 
          <div class="note note"><span class="notetitle">Note:</span> 
             <strong class="ph b">Upgrading HAWQ from 1.1 to 1.2</strong>
@@ -688,13 +689,8 @@ tar xzvf madlib_1.6_1.2.0.1.tgz --strip-components=1</pre>
                         <samp class="ph codeph">HAWQ 1.2</samp> directory when extracting the archive.</div>
 </li>
 
-               <li class="li">Make the HAWQ installation script executable:
-                  <pre class="pre codeblock">chmod +x hawq_install.sh</pre>
-</li>
-
-               <li class="li">Run the HAWQ installation script, <samp class="ph codeph">hawq_install.sh</samp>. The command
-                  must be run as root. For example:
-                        <pre class="pre codeblock">sudo ./hawq_install.sh -r /home/gpadmin/madlib/madlib-1.6-Linux.rpm -f /usr/local/greenplum-db/hostfile</pre>
+               <li class="li">Run <samp class="ph codeph">gppkg</samp>. The command must be run as root. For example:
+                        <pre class="pre codeblock">gppkg -i /home/gpadmin/madlib/madlib-1.6-Linux.rpm -f /usr/local/greenplum-db/hostfile</pre>
 <p class="p">See <a class="xref" href="#madlibinstallationscriptreference">MADlib Installation Script
                         Reference</a> for a description of the command line options. </p>
 </li>

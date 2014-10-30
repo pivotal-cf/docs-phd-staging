@@ -46,14 +46,13 @@
       <div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2>
          
          <p class="p">
-            <samp class="ph codeph">BEGIN</samp> initiates a transaction block, that is, all statements
-after a <samp class="ph codeph">BEGIN</samp> command will be executed in a single transaction
-until an explicit <samp class="ph codeph">COMMIT</samp> or <samp class="ph codeph">ROLLBACK</samp>
-is given. By default (without <samp class="ph codeph">BEGIN</samp>), HAWQ
-executes transactions in autocommit mode, that is, each statement is
-executed in its own transaction and a commit is implicitly performed
-at the end of the statement (if execution was successful, otherwise a
-rollback is done). </p>
+            <samp class="ph codeph">BEGIN</samp> initiates a transaction block, that is, all statements after a
+               <samp class="ph codeph">BEGIN</samp> command will be executed in a single transaction until an
+            explicit <samp class="ph codeph">COMMIT</samp> or <samp class="ph codeph">ROLLBACK</samp> is given. By default
+            (without <samp class="ph codeph">BEGIN</samp>), HAWQ executes transactions in autocommit mode, that
+            is, each statement is executed in its own transaction and a commit is implicitly
+            performed at the end of the statement (if execution was successful, otherwise a rollback
+            is done). </p>
 
          <p class="p">Statements are executed more quickly in a transaction block, because transaction
             start/commit requires significant CPU and disk activity. Execution of multiple
@@ -84,18 +83,18 @@ rollback is done). </p>
                <dt class="dt pt dlterm">READ UNCOMMITTED</dt>
 
                <dd class="dd pd" id="topic1__be137522">The SQL standard defines four transaction isolation levels:
-<samp class="ph codeph">READ COMMITTED</samp>, <samp class="ph codeph">READ UNCOMMITTED</samp>, <samp class="ph codeph">SERIALIZABLE</samp>,
-and <samp class="ph codeph">REPEATABLE READ</samp>. The default behavior is that a
-statement can only see rows committed before it began (<samp class="ph codeph">READ COMMITTED</samp>).
-In HAWQ <samp class="ph codeph">READ UNCOMMITTED</samp> is treated the
-same as <samp class="ph codeph">READ COMMITTED</samp>. <samp class="ph codeph">SERIALIZABLE</samp>
-is supported the same as <samp class="ph codeph">REPEATABLE READ</samp> wherein all
-statements of the current transaction can only see rows committed before
-the first statement was executed in the transaction. <samp class="ph codeph">SERIALIZABLE</samp>
-is the strictest transaction isolation. This level emulates serial transaction
-execution, as if transactions had been executed one after another, serially,
-rather than concurrently. Applications using this level must be prepared
-to retry transactions due to serialization failures.</dd>
+                     <samp class="ph codeph">READ COMMITTED</samp>, <samp class="ph codeph">READ UNCOMMITTED</samp>,
+                     <samp class="ph codeph">SERIALIZABLE</samp>, and <samp class="ph codeph">REPEATABLE READ</samp>. The
+                  default behavior is that a statement can only see rows committed before it began
+                     (<samp class="ph codeph">READ COMMITTED</samp>). In HAWQ, <samp class="ph codeph">READ UNCOMMITTED</samp>
+                  is treated the same as <samp class="ph codeph">READ COMMITTED</samp>.
+                     <samp class="ph codeph">SERIALIZABLE</samp> is supported the same as <samp class="ph codeph">REPEATABLE
+                     READ</samp> wherein all statements of the current transaction can only see
+                  rows committed before the first statement was executed in the transaction.
+                     <samp class="ph codeph">SERIALIZABLE</samp> is the strictest transaction isolation. This
+                  level emulates serial transaction execution, as if transactions had been executed
+                  one after another, serially, rather than concurrently. Applications using this
+                  level must be prepared to retry transactions due to serialization failures.</dd>
 
             
             
@@ -103,14 +102,15 @@ to retry transactions due to serialization failures.</dd>
 
                <dt class="dt pt dlterm">READ ONLY</dt>
 
-               <dd class="dd pd">Determines whether the transaction is read/write or read-only. Read/write
-is the default. When a transaction is read-only, the following SQL commands
-are disallowed: <samp class="ph codeph">INSERT</samp>, <samp class="ph codeph">UPDATE</samp>, <samp class="ph codeph">DELETE</samp>,
-and <samp class="ph codeph">COPY FROM</samp> if the table they would write to is not
-a temporary table; all <samp class="ph codeph">CREATE</samp>, <samp class="ph codeph">ALTER</samp>,
-and <samp class="ph codeph">DROP</samp> commands; <samp class="ph codeph">GRANT</samp>, <samp class="ph codeph">REVOKE</samp>,
-<samp class="ph codeph">TRUNCATE</samp>; and <samp class="ph codeph">EXPLAIN ANALYZE</samp> and <samp class="ph codeph">EXECUTE</samp>
-if the command they would execute is among those listed.</dd>
+               <dd class="dd pd">Determines whether the transaction is read/write or read-only. Read/write is the
+                  default. When a transaction is read-only, the following SQL commands are
+                  disallowed: <samp class="ph codeph">INSERT</samp>, <samp class="ph codeph">UPDATE</samp>,
+                     <samp class="ph codeph">DELETE</samp>, and <samp class="ph codeph">COPY FROM</samp> if the table they would
+                  write to is not a temporary table; all <samp class="ph codeph">CREATE</samp>,
+                     <samp class="ph codeph">ALTER</samp>, and <samp class="ph codeph">DROP</samp> commands;
+                     <samp class="ph codeph">GRANT</samp>, <samp class="ph codeph">REVOKE</samp>, <samp class="ph codeph">TRUNCATE</samp>; and
+                     <samp class="ph codeph">EXPLAIN ANALYZE</samp> and <samp class="ph codeph">EXECUTE</samp> if the command
+                  they would execute is among those listed.</dd>
 
             
          </dl>
@@ -119,18 +119,11 @@ if the command they would execute is among those listed.</dd>
 
       <div class="section" id="topic1__section5"><h2 class="title sectiontitle">Notes</h2>
          
-         <p class="p">Use <samp class="ph codeph">
-               <a class="xref" href="COMMIT.html">COMMIT</a>
-            </samp> or
-            <samp class="ph codeph">
-               <a class="xref" href="ROLLBACK.html">ROLLBACK</a>
-            </samp> to
-        terminate a transaction block. </p>
+         <p class="p">Use <samp class="ph codeph"><a class="xref" href="COMMIT.html">COMMIT</a></samp> or <samp class="ph codeph"><a class="xref" href="ROLLBACK.html">ROLLBACK</a></samp> to terminate a transaction block. </p>
 
-         <p class="p">Issuing <samp class="ph codeph">BEGIN</samp> when already inside a transaction block
-will provoke a warning message. The state of the transaction is not affected.
-To nest transactions within a transaction block, use savepoints (see
-<samp class="ph codeph">SAVEPOINT</samp>).</p>
+         <p class="p">Issuing <samp class="ph codeph">BEGIN</samp> when already inside a transaction block will provoke a
+            warning message. The state of the transaction is not affected. To nest transactions
+            within a transaction block, use savepoints (see <samp class="ph codeph"><a class="xref" href="SAVEPOINT.html">SAVEPOINT</a></samp>).</p>
 
       </div>
 
@@ -145,26 +138,18 @@ To nest transactions within a transaction block, use savepoints (see
       <div class="section" id="topic1__section7"><h2 class="title sectiontitle">Compatibility</h2>
          
          <p class="p">
-            <samp class="ph codeph">BEGIN</samp> is a HAWQ language extension. It is equivalent to the SQL-standard command
-                    <samp class="ph codeph">START TRANSACTION  lang="EN"&gt;</samp>.</p>
+            <samp class="ph codeph">BEGIN</samp> is a HAWQ language extension. It is equivalent to the
+            SQL-standard command <samp class="ph codeph">START TRANSACTION lang="EN"</samp>.</p>
 
-         <p class="p">Incidentally, the <samp class="ph codeph">BEGIN</samp> key word is used for a different
-purpose in embedded SQL. You are advised to be careful about the transaction
-semantics when porting database applications.</p>
+         <p class="p">Incidentally, the <samp class="ph codeph">BEGIN</samp> key word is used for a different purpose in
+            embedded SQL. You are advised to be careful about the transaction semantics when porting
+            database applications.</p>
 
       </div>
 
       <div class="section" id="topic1__section8"><h2 class="title sectiontitle">See Also</h2>
          
-         <p class="p">
-            <samp class="ph codeph">
-               <a class="xref" href="COMMIT.html">COMMIT</a>
-            </samp>, <samp class="ph codeph">
-               <a class="xref" href="ROLLBACK.html">ROLLBACK</a>
-            </samp>,
-                        <samp class="ph codeph">
-               <a class="xref" href="SAVEPOINT.html">SAVEPOINT</a>
-            </samp>
+         <p class="p"><samp class="ph codeph"><a class="xref" href="COMMIT.html">COMMIT</a></samp>, <samp class="ph codeph"><a class="xref" href="ROLLBACK.html">ROLLBACK</a></samp>, <samp class="ph codeph"><a class="xref" href="SAVEPOINT.html">SAVEPOINT</a></samp>
          </p>
 
       </div>

@@ -35,40 +35,55 @@
 
    <div class="body">
       <ul class="ul">
-         <li class="li"><a class="xref" href="#aboutgraphlab">About GraphLab</a>
+         <li class="li">
+            <a class="xref" href="#aboutgraphlab">About GraphLab</a>
          </li>
 
-         <li class="li"><a class="xref" href="#installinggraphlab">Installing GraphLab</a>
+         <li class="li">
+            <a class="xref" href="#installinggraphlab">Installing GraphLab</a>
             <ul class="ul">
-               <li class="li"><a class="xref" href="#prerequisites">Prerequisites</a>
+               <li class="li">
+                  <a class="xref" href="#prerequisites">Prerequisites</a>
                </li>
 
-               <li class="li"><a class="xref" href="#graphlabrpmpackages">GraphLab RPM Packages</a>
+               <li class="li">
+                  <a class="xref" href="#graphlabrpmpackages">GraphLab RPM Packages</a>
                </li>
 
-               <li class="li"><a class="xref" href="#re-configthehadoop">Reconfigure YARN Virtual Memory</a>
+               <li class="li">
+                  <a class="xref" href="#re-configthehadoop">Reconfigure YARN Virtual Memory</a>
                </li>
 
-               <li class="li"><a class="xref" href="#runninganexample">Running an Example</a></li>
+               <li class="li">
+                  <a class="xref" href="#runninganexample">Running an Example</a>
+               </li>
 
-               <li class="li"><a class="xref" href="#topic_lrq_j11_tp">Using GraphLab</a></li>
+               <li class="li">
+                  <a class="xref" href="#topic_lrq_j11_tp">Using GraphLab</a>
+               </li>
 
-               <li class="li"><a class="xref" href="#recommendedyarnconfigurationsgraphlabonhamster">Recommended YARN Configurations for GraphLab on Hamster</a>
+               <li class="li">
+                  <a class="xref" href="#recommendedyarnconfigurationsgraphlabonhamster">Recommended YARN Configurations for GraphLab on Hamster</a>
                   <ul class="ul">
-                     <li class="li"><a class="xref" href="#resourceallocationmonitoring">Resource allocation / monitoring</a>
+                     <li class="li">
+                        <a class="xref" href="#resourceallocationmonitoring">Resource allocation / monitoring</a>
                      </li>
 
-                     <li class="li"><a class="xref" href="#fetchlogforhamsterjob">Fetch the log for the Hamster Job</a>
+                     <li class="li">
+                        <a class="xref" href="#fetchlogforhamsterjob">Fetch the log for the Hamster Job</a>
                      </li>
 
                   </ul>
-</li>
 
-               <li class="li"><a class="xref" href="#troubleshooting">Troubleshooting</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#troubleshooting">Troubleshooting</a>
                </li>
 
             </ul>
-</li>
+
+         </li>
 
       </ul>
 
@@ -229,7 +244,8 @@
                100) or disable <samp class="ph codeph">yarn.nodemanager.vmem-check-enabled</samp> in
                   <samp class="ph codeph">$HADOOP_CONF_DIR/yarn-site.xml</samp>. For example:</p>
 
-            <p class="p"><samp class="ph codeph">&lt;property&gt;   &lt;name&gt;yarn.nodemanager.vmem-pmem-ratio&lt;/name&gt;
+            <p class="p">
+               <samp class="ph codeph">&lt;property&gt;   &lt;name&gt;yarn.nodemanager.vmem-pmem-ratio&lt;/name&gt;
                     &lt;value&gt;100&lt;/value&gt; &lt;/property&gt;</samp>
             </p>
 
@@ -399,7 +415,8 @@ Found 8 items
          <h3 class="title topictitle3">Troubleshooting</h3>
 
          <div class="body">
-            <p class="p"><strong class="ph b">Q: I'm unable to see Hadoop logs.</strong>
+            <p class="p">
+               <strong class="ph b">Q: I'm unable to see Hadoop logs.</strong>
             </p>
 
             <p class="p">A: You need to add the following property in <samp class="ph codeph">yarn-site.xml</samp>:</p>
@@ -412,7 +429,8 @@ Found 8 items
 
             <p class="p">Then restart resource manager and nodemanager.</p>
 
-            <p class="p"><strong class="ph b">Q: When I run <samp class="ph codeph">hamster -np 3 /absolute/path/to/hello_c</samp>, the
+            <p class="p">
+               <strong class="ph b">Q: When I run <samp class="ph codeph">hamster -np 3 /absolute/path/to/hello_c</samp>, the
                   following error is thrown:</strong>
             </p>
 
@@ -432,7 +450,8 @@ at org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.mkdirs(NameNodeRpcSe
 
             <pre class="pre codeblock">sudo -u hdfs hadoop fs -chmod 777 /userhadoop fs -mkdir /user/root</pre>
 
-            <p class="p"><strong class="ph b">Q: I see the following in the YARN logs:</strong>
+            <p class="p">
+               <strong class="ph b">Q: I see the following in the YARN logs:</strong>
             </p>
 
             <pre class="pre codeblock">14/02/17 09:52:30 ERROR event.HamsterEventHandler: exception when launch HNP process
@@ -452,7 +471,8 @@ at java.lang.ProcessBuilder.start(ProcessBuilder.java:1021)
             <p class="p">A: Check if the node that is running the hamster application has openmpi
                installed.</p>
 
-            <p class="p"><strong class="ph b">Q: I see the following information in logs:</strong>
+            <p class="p">
+               <strong class="ph b">Q: I see the following information in logs:</strong>
             </p>
 
             <pre class="pre codeblock">LogType: stderr
@@ -467,7 +487,8 @@ Log Contents:</pre>
 
             <p class="p">Run this command:</p>
 
-            <p class="p"><samp class="ph codeph">echo $JAVA_HOME</samp>
+            <p class="p">
+               <samp class="ph codeph">echo $JAVA_HOME</samp>
             </p>
 
             <p class="p">You should see something like this:</p>
@@ -476,10 +497,12 @@ Log Contents:</pre>
                <samp class="ph codeph">/usr/java/latest </samp>
             </p>
 
-            <p class="p"><strong class="ph b"> Q: I see the following information in logs: </strong>
+            <p class="p">
+               <strong class="ph b"> Q: I see the following information in logs: </strong>
             </p>
 
-            <p class="p"><samp class="ph codeph">ERROR: fiber_control.cpp(launch:229): Check failed: b&lt;nworkers [1 &lt;
+            <p class="p">
+               <samp class="ph codeph">ERROR: fiber_control.cpp(launch:229): Check failed: b&lt;nworkers [1 &lt;
                   1]</samp>
             </p>
 
