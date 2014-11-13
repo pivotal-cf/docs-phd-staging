@@ -30,70 +30,126 @@
 		  </script>
 <table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a> / <a class="navheader_parent_path" href="../topics/ClientUtilityReference.html" title="Client Utility Reference">Client Utility Reference</a></td><td><div class="navheader">
 <span class="navparent"><a class="link" href="../topics/ClientUtilityReference.html" title="Client Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Client Utility Reference</span></a></span>  </div></td></tr></tbody></table>
-<h1 class="title topictitle1">createlang</h1>
-<div class="body"><p class="p" id="topic1__client_util_desc">Defines a new procedural language for a database.</p>
-<div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2><pre class="pre codeblock" id="topic1__client_util_synopsis"><strong class="ph b">createlang</strong> [<var class="keyword varname">connection_option</var> ...] [<strong class="ph b">-e</strong>] <var class="keyword varname">langname</var> [[<strong class="ph b">-d</strong>] <var class="keyword varname">dbname</var>]
+
+  <h1 class="title topictitle1">createlang</h1>
+
+  <div class="body">
+    <p class="p" id="topic1__client_util_desc">Defines a new procedural language for a database.</p>
+
+    <div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2>
+      
+      <pre class="pre codeblock" id="topic1__client_util_synopsis"><strong class="ph b">createlang</strong> [<var class="keyword varname">connection_option</var> ...] [<strong class="ph b">-e</strong>] <var class="keyword varname">langname</var> [[<strong class="ph b">-d</strong>] <var class="keyword varname">dbname</var>]
 
 <strong class="ph b">createlang</strong> [<var class="keyword varname">connection-option</var> ...] <strong class="ph b">-l</strong> <var class="keyword varname">dbname</var>
 
 <strong class="ph b">createlang</strong> <strong class="ph b">--help</strong> 
 
 <strong class="ph b">createlang</strong> <strong class="ph b">--version</strong></pre>
-</div>
-<div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2><p class="p">The <samp class="ph codeph">createlang</samp> utility adds a
-        new programming language to a database. <samp class="ph codeph">createlang</samp> is a wrapper around the
-          <samp class="ph codeph">SQL</samp> command <samp class="ph codeph">CREATE LANGUAGE</samp>.</p>
-The procedural language
-      packages currently included in the standard HAWQ Database distribution are:
+
+    </div>
+
+    <div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2><p class="p">The <samp class="ph codeph">createlang</samp> utility adds
+        a new programming language to a database. <samp class="ph codeph">createlang</samp> is a wrapper around
+        the <samp class="ph codeph">SQL</samp> command <samp class="ph codeph">CREATE LANGUAGE</samp>.</p>
+The procedural
+      language packages currently included in the standard HAWQ Database distribution are:
         <samp class="ph codeph">PL/pgSQL</samp>, <samp class="ph codeph">PL/R</samp>, and <samp class="ph codeph">PL/Java</samp>. The
         <samp class="ph codeph">PL/pgSQL</samp> language is already registered in all databases by default.<p class="p">A
         language handler has also been added for <samp class="ph codeph">PL/R</samp>, but the
           <samp class="ph codeph">PL/R</samp> language package is not pre-installed with the HAWQ Database.
           See <a class="xref" href="UsingProceduralLanguages.html">Using Procedural
-      Languages</a> .</p>
+      Languages</a>.</p>
 </div>
-<div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options</h2><dl class="dl parml"><dt class="dt pt dlterm">langname</dt>
-<dd class="dd pd">Specifies the name of the procedural programming language to be defined.
-</dd>
-<dt class="dt pt dlterm">[-d] <var class="keyword varname">dbname</var> | [--dbname] <var class="keyword varname">dbname</var></dt>
-<dd class="dd pd">Specifies to which database the language should be added. The default
-is to use the <samp class="ph codeph">PGDATABASE</samp> environment variable setting,
-or the same name as the current system user.</dd>
-<dt class="dt pt dlterm">-e | --echo</dt>
-<dd class="dd pd">Echo the commands that <samp class="ph codeph">createlang</samp> generates and
-sends to the server.</dd>
-<dt class="dt pt dlterm">-l <var class="keyword varname">dbname</var> | --list <var class="keyword varname">dbname</var></dt>
-<dd class="dd pd">Show a list of already installed languages in the target database.
-</dd>
-</dl>
-<div class="sectiondiv"><strong class="ph b">Connection Options</strong><dl class="dl parml"><dt class="dt pt dlterm">-h <var class="keyword varname">host</var> | --host <var class="keyword varname">host</var></dt>
-<dd class="dd pd">The host name of the machine on which the HAWQ master database server is running. If not
-              specified, reads from the environment variable <samp class="ph codeph">PGHOST</samp> or defaults to
-                <samp class="ph codeph">localhost</samp>.</dd>
-<dt class="dt pt dlterm">-p <var class="keyword varname">port</var> | --port <var class="keyword varname">port</var></dt>
-<dd class="dd pd">The TCP port on which the HAWQ master database server is listening for connections. If not
-              specified, reads from the environment variable <samp class="ph codeph">PGPORT</samp> or defaults to
-                <samp class="ph codeph">5432</samp>.</dd>
-<dt class="dt pt dlterm">-U <var class="keyword varname">username</var> | --username <var class="keyword varname">username</var></dt>
-<dd class="dd pd">The database role name to connect as. If not specified, reads from
-the environment variable <samp class="ph codeph">PGUSER</samp> or defaults to the current
-system role name.</dd>
-<dt class="dt pt dlterm">-w | --no-password</dt>
-<dd class="dd pd">Never issue a password prompt. If the server requires password authentication
-and a password is not available by other means such as a <samp class="ph codeph">.pgpass</samp>
-file, the connection attempt will fail. This option can be useful in
-batch jobs and scripts where no user is present to enter a password.</dd>
-<dt class="dt pt dlterm">-W | --password</dt>
-<dd class="dd pd">Force a password prompt.</dd>
-</dl>
+
+    <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options </h2><dl class="dl parml">
+        
+          <dt class="dt pt dlterm">langname</dt>
+
+          <dd class="dd pd">Specifies the name of the procedural programming language to be defined. </dd>
+
+        
+        
+          <dt class="dt pt dlterm">[-d] <var class="keyword varname">dbname</var> | [--dbname] <var class="keyword varname">dbname</var></dt>
+
+          <dd class="dd pd">Specifies to which database the language should be added. The default is to use the
+              <samp class="ph codeph">PGDATABASE</samp> environment variable setting, or the same name as the
+            current system user.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-e | --echo</dt>
+
+          <dd class="dd pd">Echo the commands that <samp class="ph codeph">createlang</samp> generates and sends to the
+            server.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-l <var class="keyword varname">dbname</var> | --list <var class="keyword varname">dbname</var></dt>
+
+          <dd class="dd pd">Show a list of already installed languages in the target database. </dd>
+
+        
+      </dl>
+<div class="sectiondiv"><strong class="ph b">Connection Options</strong>
+        <dl class="dl parml">
+          
+            <dt class="dt pt dlterm">-h <var class="keyword varname">host</var> | --host <var class="keyword varname">host</var></dt>
+
+            <dd class="dd pd">The host name of the machine on which the HAWQ master database server is running. If
+              not specified, reads from the environment variable <samp class="ph codeph">PGHOST</samp> or defaults
+              to <samp class="ph codeph">localhost</samp>.</dd>
+
+          
+          
+            <dt class="dt pt dlterm">-p <var class="keyword varname">port</var> | --port <var class="keyword varname">port</var></dt>
+
+            <dd class="dd pd">The TCP port on which the HAWQ master database server is listening for connections.
+              If not specified, reads from the environment variable <samp class="ph codeph">PGPORT</samp> or
+              defaults to <samp class="ph codeph">5432</samp>.</dd>
+
+          
+          
+            <dt class="dt pt dlterm">-U <var class="keyword varname">username</var> | --username <var class="keyword varname">username</var></dt>
+
+            <dd class="dd pd">The database role name to connect as. If not specified, reads from the environment
+              variable <samp class="ph codeph">PGUSER</samp> or defaults to the current system role name.</dd>
+
+          
+          
+            <dt class="dt pt dlterm">-w | --no-password</dt>
+
+            <dd class="dd pd">Never issue a password prompt. If the server requires password authentication and a
+              password is not available by other means such as a <samp class="ph codeph">.pgpass</samp> file, the
+              connection attempt will fail. This option can be useful in batch jobs and scripts
+              where no user is present to enter a password.</dd>
+
+          
+          
+            <dt class="dt pt dlterm">-W | --password</dt>
+
+            <dd class="dd pd">Force a password prompt.</dd>
+
+          
+        </dl>
 </div></div>
-<div class="section" id="topic1__section6"><h2 class="title sectiontitle">Examples</h2><p class="p">To install the language <samp class="ph codeph">plperl</samp> into the database <samp class="ph codeph">template1</samp>:</p>
-<pre class="pre codeblock">createlang plperl template1</pre>
-</div>
-<div class="section" id="topic1__section7"><h2 class="title sectiontitle">See Also</h2><p class="p"><span class="ph"><samp class="ph codeph">CREATE LANGUAGE</samp> and <samp class="ph codeph">DROP LANGUAGE</samp>
-        </span><span class="ph"><samp class="ph codeph"><a class="xref" href="CREATE-LANGUAGE.html">CREATE LANGUAGE</a></samp></span></p>
-</div>
-</div>
+
+    <div class="section" id="topic1__section6"><h2 class="title sectiontitle">Examples</h2>
+      
+      <p class="p">To install the language <samp class="ph codeph">plperl</samp> into the database
+          <samp class="ph codeph">template1</samp>:</p>
+
+      <pre class="pre codeblock">createlang plperl template1</pre>
+
+    </div>
+
+    <div class="section" id="topic1__section7"><h2 class="title sectiontitle">See Also</h2>
+      
+      <p class="p"><samp class="ph codeph"><a class="xref" href="CREATE-LANGUAGE.html">CREATE LANGUAGE</a></samp></p>
+
+    </div>
+
+  </div>
+
 <div class="related-links"/>
 <div class="navfooter"><!---->
 <span class="navparent"><a class="link" href="../topics/ClientUtilityReference.html" title="Client Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Client Utility Reference</span></a></span>  </div><div>

@@ -39,6 +39,7 @@
       <div class="section"><h2 class="title sectiontitle">Synopsis</h2>
          
          <pre class="pre codeblock"><strong class="ph b">createuser</strong> [<var class="keyword varname">connection_option</var> ...] [<var class="keyword varname">role_attribute</var> ...] [<strong class="ph b">-e</strong>] <var class="keyword varname">role_name</var>
+
 <strong class="ph b">createuser</strong> --help | --version</pre>
 
       </div>
@@ -49,8 +50,8 @@
             with <samp class="ph codeph">CREATE-ROLE</samp> privileges. To create a new superuser, you must be a
             superuser.</p>
 
-         <p class="p">
-            <strong class="ph b">Note</strong>: Making someone a superuser grants privileges such as bypassing access permission checks within the database.</p>
+         <div class="note note"><span class="notetitle">Note:</span> Making someone a superuser grants privileges such as bypassing access permission
+            checks within the database.</div>
 
          <p class="p"><samp class="ph codeph">createuser</samp> is a wrapper around the SQL command <samp class="ph codeph">CREATE
                ROLE</samp>.</p>
@@ -59,140 +60,189 @@
 
       <div class="section"><h2 class="title sectiontitle">Options</h2>
          
-         <pre class="pre codeblock">role_name</pre>
+         <dl class="dl parml">
+            
+               <dt class="dt pt dlterm"><var class="keyword varname">role_name</var></dt>
 
-         <p class="p">Select a unique name for the role to be created. This name must be different from all existing roles in this HAWQ installation.</p>
+               <dd class="dd pd">Select a unique name for the role to be created. This name must be different from
+                  all existing roles in this HAWQ installation.</dd>
 
-         <pre class="pre codeblock">-c number  | --connection-limit <var class="keyword varname">number</var></pre>
+            
+            
+               <dt class="dt pt dlterm">-c number  | --connection-limit <var class="keyword varname">number</var></dt>
 
-         <p class="p">Set a maximum number of connections for the new role. The default is no limit.</p>
+               <dd class="dd pd">Set a maximum number of connections for the new role. The default is no limit.</dd>
 
-         <pre class="pre codeblock">-D | --no-createdb</pre>
+            
+         
+            <dt class="dt pt dlterm">-D | --no-createdb</dt>
 
-         <p class="p">By default, the new role cannot create databases.</p>
+            <dd class="dd pd">By default, the new role cannot create databases.</dd>
 
-         <pre class="pre codeblock">-d | --createdb</pre>
+         
+               
+                  <dt class="dt pt dlterm">-d | --createdb</dt>
 
-         <p class="p">The new role can create databases.</p>
+                  <dd class="dd pd">The new role can create databases.</dd>
 
-         <pre class="pre codeblock">-e | --echo</pre>
+               
+               
+                  <dt class="dt pt dlterm">-e | --echo</dt>
 
-         <p class="p">Echo the commands that createuser generates and sends to the server.</p>
+                  <dd class="dd pd">Echo the commands that createuser generates and sends to the server.</dd>
 
-         <pre class="pre codeblock">-E | --encrypted</pre>
+               
+               
+                  <dt class="dt pt dlterm">-E | --encrypted</dt>
 
-         <p class="p">Encrypts and stores the password for the role. If not specified, uses the default password.</p>
+                  <dd class="dd pd">Encrypts and stores the password for the role. If not specified, uses the default password.</dd>
 
-         <pre class="pre codeblock">-i | --inherit</pre>
+               
+               
+                  <dt class="dt pt dlterm">-i | --inherit</dt>
 
-         <p class="p">By default, the new role inherits the privileges of the groups to which it belongs.</p>
+                  <dd class="dd pd">By default, the new role inherits the privileges of the groups to which it belongs.</dd>
 
-         <pre class="pre codeblock">-I | --no-inherit</pre>
+               
+               
+                  <dt class="dt pt dlterm">-I | --no-inherit</dt>
 
-         <p class="p">The new role will not inherit the privileges of the groups to which it belongs.</p>
+                  <dd class="dd pd">The new role will not inherit the privileges of the groups to which it belongs.</dd>
 
-         <pre class="pre codeblock">-l | --login</pre>
+               
+               
+                  <dt class="dt pt dlterm">-l | --login</dt>
 
-         <p class="p">By default, the new role can log in to HAWQ.</p>
+                  <dd class="dd pd">By default, the new role can log in to HAWQ.</dd>
 
-         <pre class="pre codeblock">-L | --no-login</pre>
+               
+               
+                  <dt class="dt pt dlterm">-L | --no-login</dt>
 
-         <p class="p">The new role cannot log in to HAWQ (a group-level role).</p>
+                  <dd class="dd pd">The new role cannot log in to HAWQ (a group-level role).</dd>
 
-         <pre class="pre codeblock">-N | --unencrypted</pre>
+               
+               
+                  <dt class="dt pt dlterm">-N | --unencrypted</dt>
 
-         <p class="p">Does not encrypt the stored password for the role. If not specified, the default password behavior is used.</p>
+                  <dd class="dd pd">Does not encrypt the stored password for the role. If not specified, the default password behavior is used.</dd>
 
-         <pre class="pre codeblock">-P | --pwprompt</pre>
+               
+               
+                  <dt class="dt pt dlterm">-P | --pwprompt</dt>
 
-         <p class="p">If given, createuser prompts you for the password for the new role. Use this only if you want to enforce password authentication.</p>
+                  <dd class="dd pd">If given, createuser prompts you for the password for the new role. Use this only if you
+                     want to enforce password authentication.</dd>
 
-         <pre class="pre codeblock">-r | --createrole</pre>
+               
+               
+                  <dt class="dt pt dlterm">-r | --createrole</dt>
 
-         <p class="p">The new role can create new roles (<samp class="ph codeph">CREATE-ROLE</samp> privilege).</p>
+                  <dd class="dd pd">The new role can create new roles (<samp class="ph codeph">CREATE-ROLE</samp> privilege).</dd>
 
-         <pre class="pre codeblock">-R | --no-createrole</pre>
+               
+               
+                  <dt class="dt pt dlterm">-R | --no-createrole</dt>
 
-         <p class="p">The new role cannot create new roles. This is the default.</p>
+                  <dd class="dd pd">The new role cannot create new roles. This is the default.</dd>
 
-         <pre class="pre codeblock">-s | --superuser</pre>
+               
+               
+                  <dt class="dt pt dlterm">-s | --superuser</dt>
 
-         <p class="p">Create the new role as superuser.</p>
+                  <dd class="dd pd">Create the new role as superuser.</dd>
 
-         <pre class="pre codeblock">-S | --no-superuser</pre>
+               
+               
+                  <dt class="dt pt dlterm">-S | --no-superuser</dt>
 
-         <p class="p">Do not create the new role to be a superuser. This is the default.</p>
+                  <dd class="dd pd">Do not create the new role to be a superuser. This is the default.</dd>
+
+               
+         </dl>
 
       </div>
 
       <div class="section"><h2 class="title sectiontitle">Connection Options</h2>
          
-         <pre class="pre codeblock">-h <var class="keyword varname">host</var>  | --host <var class="keyword varname">host</var></pre>
+         <dl class="dl parml">
+            
+               <dt class="dt pt dlterm">-h <var class="keyword varname">host</var>  | --host <var class="keyword varname">host</var></dt>
 
-         <p class="p">The host name of the HAWQ master database server. If not specified, reads the name from
-            the environment variable <samp class="ph codeph">PGHOST</samp> or defaults to
-               <samp class="ph codeph">localhost</samp>.</p>
+               <dd class="dd pd">The host name of the HAWQ master database server. If not specified, reads the
+                  name from the environment variable <samp class="ph codeph">PGHOST</samp> or defaults to
+                     <samp class="ph codeph">localhost</samp>.</dd>
 
-         <pre class="pre codeblock">-p <var class="keyword varname">port</var>  | --port <var class="keyword varname">port</var></pre>
+            
+            
+               <dt class="dt pt dlterm">-p <var class="keyword varname">port</var>  | --port <var class="keyword varname">port</var></dt>
 
-         <p class="p">The TCP port where the HAWQ master database server listens for connections. If not
-            specified, reads the environment variable <samp class="ph codeph">PGPORT</samp>, or defaults to
-               <samp class="ph codeph">5432</samp>.</p>
+               <dd class="dd pd">The TCP port where the HAWQ master database server listens for connections. If
+                  not specified, reads the environment variable <samp class="ph codeph">PGPORT</samp>, or defaults
+                  to <samp class="ph codeph">5432</samp>.</dd>
 
-         <pre class="pre codeblock">- U username | --username <strong class="ph b">username</strong>
-         </pre>
+            
+            
+               <dt class="dt pt dlterm">- U <var class="keyword varname">username</var> | --username <var class="keyword varname">username</var></dt>
 
-         <p class="p">Specifies the database role name used to connect. If not specified, reads the
-            environment variable <samp class="ph codeph">PGUSER</samp> or defaults to the current system role
-            name.</p>
+               <dd class="dd pd">
+                  <p class="p">Specifies the database role name used to connect. If not specified, reads the
+                     environment variable <samp class="ph codeph">PGUSER</samp> or defaults to the current system
+                     role name.</p>
 
-         <pre class="pre codeblock">-w | --no-password</pre>
+               </dd>
 
-         <p class="p">Use this to run automated batch jobs and scripts. In general, if the server requires
-            password authentication, ensure that it can be accessed through a
-               <samp class="ph codeph">.pgpass</samp> file. Otherwise the connection attempt will fail.</p>
+            
+            
+               <dt class="dt pt dlterm">-w | --no-password</dt>
 
-         <pre class="pre codeblock">-W | --password</pre>
+               <dd class="dd pd">Use this to run automated batch jobs and scripts. In general, if the server
+                  requires password authentication, ensure that it can be accessed through a
+                     <samp class="ph codeph">.pgpass</samp> file. Otherwise the connection attempt will fail.</dd>
 
-         <p class="p">Force a password prompt.</p>
+            
+            
+               <dt class="dt pt dlterm">-W | --password</dt>
+
+               <dd class="dd pd">Force a password prompt.</dd>
+
+            
+         </dl>
 
       </div>
 
-      <div class="section"><h2 class="title sectiontitle">Examples</h2>
-         
-         <p class="p">To create the role, <samp class="ph codeph">joe</samp>, with default options:</p>
-
-         <pre class="pre codeblock">createuser joe
+      <div class="section"><h2 class="title sectiontitle">Examples</h2>Create the role, <samp class="ph codeph">joe</samp>, with default
+            options:<pre class="pre codeblock">createuser joe
 Shall the new role be a superuser? (y/n) n
 Shall the new role be allowed to create databases? (y/n) n
 Shall the new role be allowed to create more new roles? (y/n) n
 CREATE ROLE</pre>
-
-         <p class="p">To create the role, <samp class="ph codeph">joe</samp>,  with default connection options:</p>
-
-         <pre class="pre codeblock">createuser -h masterhost -p 54321 -S -D -R -e joe
+<p class="p">Create
+            the role, <samp class="ph codeph">joe</samp>,  with default connection
+            options:</p>
+<pre class="pre codeblock">createuser -h masterhost -p 54321 -S -D -R -e joe
 CREATE ROLE joe NOSUPERUSER NOCREATEDB NOCREATE-ROLE INHERIT
 LOGIN;
 CREATE ROLE</pre>
-
-         <p class="p">To create the role, <samp class="ph codeph">joe</samp>  as a superuser, and provide password
+<p class="p">Create
+            the role, <samp class="ph codeph">joe</samp>  as a superuser, and provide password
             prompts:</p>
-
-         <pre class="pre codeblock">createuser -P -s -e joe
+<pre class="pre codeblock">createuser -P -s -e joe
 Enter password for new role: admin123
 Enter it again: admin123
 CREATE ROLE joe PASSWORD 'admin123' SUPERUSER CREATEDB
 CREATE-ROLE INHERIT LOGIN;
 CREATE ROLE</pre>
-
-         <p class="p">Note: The example shows how the new password is echoed if the <samp class="ph codeph">-e</samp> option
-            is used.</p>
-
-      </div>
+<div class="note note"><span class="notetitle">Note:</span> The
+            example shows how the new password is echoed if the <samp class="ph codeph">-e</samp> option is
+            used.</div>
+</div>
 
       <div class="section"><h2 class="title sectiontitle">See Also</h2>
          
-         <p class="p"><samp class="ph codeph">CREATE ROLE</samp></p>
+         <p class="p">
+            <samp class="ph codeph">CREATE ROLE</samp>
+         </p>
 
       </div>
 

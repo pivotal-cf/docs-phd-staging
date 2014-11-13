@@ -159,7 +159,7 @@ The filesystem under path '/' is HEALTHY</pre>
 -c "UPDATE cluster_properties SET property_value='false' 
 WHERE cluster_id=<var class="keyword varname">&lt;cluster_id&gt;</var> AND property_name='cluster.nn.isHAEnabled';"</pre>
 
-            <p class="p">Where: <samp class="ph codeph">&lt;cluster_id&gt;</samp> is the id of your cluster.</p>
+            <p class="p">Where: <samp class="ph codeph">&lt;cluster_id&gt;&gt;</samp> is the id of your cluster.</p>
 
          </li>
 
@@ -222,7 +222,7 @@ WHERE cluster_id=<var class="keyword varname">&lt;cluster_id&gt;</var> AND prope
          <li class="li">
             <strong class="ph b">Import and upgrade PCC:</strong>
             <ol class="ol" type="a">
-               <li class="li">Download the new PCC file from <a class="xref" href="https://network.pivotal.io/">Pivotal Network</a>.</li>
+               <li class="li">Download the new PCC file from <a class="xref" href="https://network.pivotal.io/" target="_blank">Pivotal Network</a>.</li>
 
                <li class="li">Copy the new PCC tarball file to your installation directory on the admin node.
                   For example: 
@@ -262,7 +262,7 @@ $ tar --no-same-owner -zxvf PCC-2.3.x.<strong class="ph b">version.build.os</str
          <li class="li">
             <strong class="ph b">Import new HAWQ package:</strong>
             <ol class="ol" type="a">
-               <li class="li">Download and extract the new PADS (HAWQ) package from <a class="xref" href="https://network.pivotal.io/">Pivotal Network</a>.</li>
+               <li class="li">Download and extract the new PADS (HAWQ) package from <a class="xref" href="https://network.pivotal.io/" target="_blank">Pivotal Network</a>.</li>
 
                <li class="li">Run:<div class="p">
                      <pre class="pre codeblock">$ icm_client import -s &lt;PATH_TO_EXTRACTED_PADS_TARBALL&gt; </pre>
@@ -298,7 +298,7 @@ $ tar --no-same-owner -zxvf PCC-2.3.x.<strong class="ph b">version.build.os</str
          <li class="li">
             <strong class="ph b">Import new PRTS (for GemFire XD) package:</strong>
             <ol class="ol" type="a">
-               <li class="li">Download and extract the new PRTS  package from <a class="xref" href="https://network.pivotal.io/">Pivotal Network</a>.</li>
+               <li class="li">Download and extract the new PRTS  package from <a class="xref" href="https://network.pivotal.io/" target="_blank">Pivotal Network</a>.</li>
 
                <li class="li">Run:<div class="p">
                      <pre class="pre codeblock">$ icm_client import -s <var class="keyword varname">&lt;PATH_TO_EXTRACTED_PRTS_TARBALL&gt;</var>  </pre>
@@ -321,7 +321,7 @@ $ tar --no-same-owner -zxvf PCC-2.3.x.<strong class="ph b">version.build.os</str
          <li class="li">
             <strong class="ph b">Import new PHD package:</strong>
             <ol class="ol" type="a">
-               <li class="li">Download and extract the new PHD package from <a class="xref" href="https://network.pivotal.io/">Pivotal Network</a>.</li>
+               <li class="li">Download and extract the new PHD package from <a class="xref" href="https://network.pivotal.io/" target="_blank">Pivotal Network</a>.</li>
 
                <li class="li">Run:
                   <pre class="pre codeblock">$ icm_client import -s <var class="keyword varname">&lt;PATH_TO_EXTRACTED_PHD_TARBALL&gt;</var>   </pre>
@@ -344,7 +344,7 @@ $ tar --no-same-owner -zxvf PCC-2.3.x.<strong class="ph b">version.build.os</str
                <li class="li">Import JDK: <p class="p">JDK 1.7 running on the Admin node is a prerequisite.  This step is
                      to import a downloaded JDK package that will be deployed across the cluster. </p>
 <ol class="ol" type="i">
-                     <li class="li">Download a supported JDK package from <a class="xref" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>. PHD expects an RPM package; for example:
+                     <li class="li">Download a supported JDK package from <a class="xref" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>. PHD expects an RPM package; for example:
                            <span class="ph filepath">jdk-7u45-linux-x64.rpm</span>.</li>
 
                      <li class="li">Import the downloaded JDK package to the cluster nodes. As
@@ -563,10 +563,11 @@ For
             <strong class="ph b"> Finalize the HDFS upgrade:</strong>
             <p class="p">Before you continue, you should run a few tests to make sure your data upgrade was
                successful, and then you can run <samp class="ph codeph">finalizeUpgrade</samp>. </p>
-<p class="p">Once you
-               have confirmed your cluster is working as expected, run the following command to
-               finalize the upgrade process: </p>
-<pre class="pre codeblock">/usr/bin/python /usr/lib/gphd/gphdmgr/lib/client/HdfsUpgrader.py -l <var class="keyword varname">&lt;CLUSTERNAME&gt;</var> -o finalizeUpgrade -s 2.0.5_alpha_gphd_2_1_1_0 -t 2.2.0_gphd_3_1_0_0</pre>
+
+            <p class="p">Once you have confirmed your cluster is working as expected, run the following
+               command to finalize the upgrade process: </p>
+
+            <pre class="pre codeblock">/usr/bin/python /usr/lib/gphd/gphdmgr/lib/client/HdfsUpgrader.py -l <var class="keyword varname">&lt;CLUSTERNAME&gt;</var> -o finalizeUpgrade -s 2.0.5_alpha_gphd_2_1_1_0 -t 2.2.0_gphd_3_1_0_0</pre>
 
             <div class="note note"><span class="notetitle">Note:</span> HBase master will not start unless the HBase upgrade is finalized. Please ensure
                HDFS upgrade is finalized before finalizing HBase upgrade.</div>

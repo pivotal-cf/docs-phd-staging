@@ -40,21 +40,22 @@
          the following chapters.</p>
 
       <ul class="ul">
-         <li class="li"><a class="xref" href="#systemrequirements">System Requirements</a>
+         <li class="li">
+            <a class="xref" href="#systemrequirements">System Requirements</a>
          </li>
 
-         <li class="li"><a class="xref" href="#preparinghdfs">Preparing HDFS</a>
+         <li class="li">
+            <a class="xref" href="#preparinghdfs">Preparing HDFS</a>
          </li>
 
       </ul>
 
-      <div class="note note"><span class="notetitle">Note:</span> These tasks should be performed for all hosts in your HAWQ array (master, standby master
-         and segments).</div>
+      <div class="note note"><span class="notetitle">Note:</span> These tasks should be performed for all hosts in your HAWQ array (master, standby
+         master, and segments).</div>
 
       <div class="note note"><span class="notetitle">Note:</span> This document does not describe how to install the Pivotal Extension Framework (PXF),
          which enables SQL querying on data in the Hadoop components such as HBase, Hive, and any
-         other distributed data file types. To install PXF, see the <a class="xref" href="http://pivotalhd.docs.pivotal.io/doc/2100/PivotalExtensionFrameworkPXF.html" target="_blank">Pivotal Extension Framework Installation and User
-            Guide</a>.</div>
+         other distributed data file types. To install PXF, see <a class="xref" href="PivotalExtensionFrameworkPXF.html">Pivotal Extension Framework (PXF)</a>.</div>
 
    </div>
 
@@ -85,7 +86,7 @@
 
          <div class="section"><h3 class="title sectiontitle">Minimum Memory</h3>
             
-            <p class="p">16 GB RAM per server. And recommended memory on production cluster is 128 GB.</p>
+            <p class="p">16 GB RAM per server. Recommended memory on a production cluster is 128 GB.</p>
 
          </div>
 
@@ -94,10 +95,10 @@
             <ul class="ul" id="systemrequirements__ul_kcy_pbt_4p">
                <li class="li">2GB per host for HAWQ installation. </li>
 
-               <li class="li">Approximately 300MB per segment instance for meta data</li>
+               <li class="li">Approximately 300MB per segment instance for meta data.</li>
 
                <li class="li">Appropriate free space for data: disks should have at least 30% free space (no
-                  more than 70% capacity)</li>
+                  more than 70% capacity).</li>
 
                <li class="li">High-speed, local storage</li>
 
@@ -108,10 +109,10 @@
          <div class="section"><h3 class="title sectiontitle">Network Requirements</h3>
             
             <ul class="ul" id="systemrequirements__ul_h1l_rbt_4p">
-               <li class="li">Gigabit Ethernet within the array. For production cluster, 10 Gigabit Ethernet
+               <li class="li">Gigabit Ethernet within the array. For a production cluster, 10 Gigabit Ethernet
                   recommended.</li>
 
-               <li class="li">Dedicated, non-blocking switch</li>
+               <li class="li">Dedicated, non-blocking switch.</li>
 
             </ul>
 
@@ -119,7 +120,14 @@
 
          <div class="section"><h3 class="title sectiontitle">Software and Utilities</h3>
             
-            <p class="p">bash shell, GNU tar, and GNU zip</p>
+            <ul class="ul">
+               <li class="li">bash shell</li>
+
+               <li class="li">GNU tar</li>
+
+               <li class="li">GNU zip</li>
+
+            </ul>
 
          </div>
 
@@ -137,37 +145,38 @@
             <li class="li">Download the HDFS binaries. See <a class="xref" href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>
                for more information.</li>
 
-            <li class="li">Install the rpms. See <a class="xref" href="PHDInstallationandAdministration.html">PHD Installation and Administration</a> for more
+            <li class="li">Install the RPMs. See <a class="xref" href="PHDInstallationandAdministration.html">PHD Installation and Administration</a> for more
                information.</li>
 
             <li class="li">To make sure HDFS block files can be read by other users, configure OS file system
-               umask to 022.</li>
+                  <samp class="ph codeph">umask</samp> to 022.</li>
 
             <li class="li">Start up the HDFS service. See the <a class="xref" href="StackandToolsReference.html">Stack and Tools Reference</a> for
                more information.</li>
 
-            <li class="li">Add the following line into ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
-               <pre class="pre codeblock">umask 022 </pre>
+            <li class="li">Add the following line into
+                  <span class="ph filepath">${HADOOP_HOME}/etc/hadoop/hadoop-env.sh</span>:<pre class="pre codeblock">umask 022 </pre>
+</li>
 
-            </li>
-
-            <li class="li">Add the following parameter to hdfs-site.xml
-               <pre class="pre codeblock">&lt;property&gt;   
+            <li class="li">Edit the <span class="ph filepath">/hdfs-install-directory/etc/hadoop/hdfs-site.xml</span> file
+               as follows:<ul class="ul" id="preparinghdfs__ul_ab4_gnc_bq">
+                  <li class="li">Add the following
+                     parameter:<pre class="pre codeblock">&lt;property&gt;   
 	&lt;name&gt;dfs.datanode.data.dir.perm&lt;/name&gt;   
 	&lt;value&gt;755&lt;/value&gt;   
 	&lt;description&gt;Permissions for the directories on on the local filesystem where the DFS data node store its blocks. The permissions can either be octal or symbolic.&lt;/description&gt; 
 &lt;/property&gt;</pre>
+</li>
 
-            </li>
+                  <li class="li">Change the <samp class="ph codeph">dfs.block.local-path-access.user</samp> parameter to the
+                     user who starts HDFS if the short circuit feature is enabled in libhdfs3. See
+                     the <a class="xref" href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a> for more
+                     information.</li>
 
-            <li class="li">Edit the <span class="ph filepath">/hdfs-install-directory/etc/hadoop/hdfs-site.xml</span> file.
-               To do this, change the <samp class="ph codeph">dfs.block.local-path-access.user</samp> to the user
-               who starts HDFS if the short circuit feature is enabled in libhdfs3. See the <a class="xref" href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a> for more information.</li>
-
-            <li class="li">Set the <samp class="ph codeph">dfs.namenode.name.dir</samp> and
-                  <samp class="ph codeph">dfs.datanode.data.dir</samp> to your preferred path as shown in the
-               example:
-               <pre class="pre codeblock">&lt;configuration&gt;
+                  <li class="li">Set the <samp class="ph codeph">dfs.namenode.name.dir</samp> and
+                        <samp class="ph codeph">dfs.datanode.data.dir</samp> parameters to your preferred path as
+                     shown in the
+                     example:<pre class="pre codeblock">&lt;configuration&gt;
    &lt;property&gt;
       &lt;name&gt;dfs.support.append&lt;/name&gt;
       &lt;value&gt;true&lt;/value&gt;
@@ -241,34 +250,33 @@
    &lt;/property&gt;
    &lt;property&gt;</pre>
 
-            </li>
+                  </li>
 
-            <li class="li">To configure the JVM, edit the<span class="ph filepath">
-                  /hdfs-install-directory/etc/hadoop/hadoop-env.sh</span>
-               <p class="p">This configures the memory usage of the primary and secondary namenodes and
+               </ul>
+</li>
+
+            <li class="li">To configure the JVM, edit the
+                  <span class="ph filepath">/hdfs-install-directory/etc/hadoop/hadoop-env.sh</span> file.<p class="p">This
+                  configures the memory usage of the primary and secondary namenodes and
                   datanode. For example, on servers with 48GB memory, if HDFS and HAWQ are on two
                   separate clusters, Pivotal recommends that the namenodes use 40GB (-Xmx40960m),
                   while each datanode uses 6GB and with a stack size of 256KB (-Xmx6144m
                   -Xss256k).</p>
+</li>
 
-            </li>
-
-            <li class="li">To verify that HDFS has started, run the following command sequence.<ol class="ol" type="a">
+            <li class="li">To verify that HDFS has started, run the following command sequence:<ol class="ol" type="a">
                   <li class="li">List the directory: <pre class="pre codeblock">hadoop fs -ls /</pre>
-
-                  </li>
+</li>
 
                   <li class="li">Create a test directory:  <pre class="pre codeblock">hadoop fs -mkdir /test </pre>
+</li>
 
-                  </li>
+                  <li class="li">Put a test file (e.g. <span class="ph filepath">/path/file</span>) into the HDFS root
+                     directory: <pre class="pre codeblock">hadoop fs -put /path/file /</pre>
+</li>
 
-                  <li class="li">Put a test file <strong class="ph b">(/path/file</strong>) into the HDFS root directory:
-                     <pre class="pre codeblock">hadoop fs -put /path/file /</pre>
-
-                  </li>
-
-                  <li class="li">Perform a get on<strong class="ph b"> /file</strong> from HDFS to the current local file system
-                     directory: <pre class="pre codeblock">hadoop fs -get /file ./</pre>
+                  <li class="li">Perform a get on <span class="ph filepath">/file</span> from HDFS to the current local
+                     file system directory: <pre class="pre codeblock">hadoop fs -get /file ./</pre>
 
                   </li>
 

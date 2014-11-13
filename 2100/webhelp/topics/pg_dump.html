@@ -90,25 +90,21 @@
         reorder all the archived items, and compress the archive by default. </p>
 
       <p class="p">The tar format (<samp class="ph codeph">-Ft</samp>) is not compressed and does not reorder data when
-        loading. It can be manipulated with standard UNIX tools such as  <samp class="ph codeph">tar</samp>.</p>
+        loading. It can be manipulated with standard UNIX tools such as <samp class="ph codeph">tar</samp>.</p>
 
     </div>
 
-    <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options</h2>
-      
-      <dl class="dl parml">
+    <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options</h2><dl class="dl parml">
         
-          <dt class="dt pt dlterm">dbname</dt>
+          <dt class="dt pt dlterm"><var class="keyword varname">dbname</var></dt>
 
           <dd class="dd pd">Specifies the name of the database to be dumped. If the database is not specified, the
             environment variable <samp class="ph codeph">PGDATABASE</samp> is used. If <samp class="ph codeph">PGDATABASE</samp>
-            is not set, the user name specified for the connection is used.</dd>
+            is not set, the user name specified for the connection is used. </dd>
 
         
       </dl>
-
-      <div class="sectiondiv">
-        <strong class="ph b">Dump Options</strong>
+<div class="sectiondiv"><strong class="ph b">Dump Options</strong>
         <dl class="dl parml">
           
             <dt class="dt pt dlterm">-a | --data-only</dt>
@@ -192,17 +188,18 @@
 
             <dd class="dd pd">Selects the format of the output. format can be one of the following: </dd>
 
-            <dd class="dd pd">p | plain — Output a plain-text SQL script file. This is the default. </dd>
+            <dd class="dd pd"><samp class="ph codeph">p</samp> | <samp class="ph codeph">plain</samp> — Output a plain-text SQL script file.
+              This is the default. </dd>
 
-            <dd class="dd pd">c | custom — Output a custom archive suitable for input into
-                <samp class="ph codeph">pg_restore</samp>. This is the most flexible format in that it allows
-              reordering of loading data as well as object definitions. This format is also
+            <dd class="dd pd"><samp class="ph codeph">c</samp> | <samp class="ph codeph">custom</samp> — Output a custom archive suitable for
+              input into <samp class="ph codeph">pg_restore</samp>. This is the most flexible format in that it
+              allows reordering of loading data as well as object definitions. This format is also
               compressed by default. </dd>
 
-            <dd class="dd pd">t | tar — Output a tar archive suitable for input into <samp class="ph codeph">pg_restore</samp>.
-              Using this archive format allows reordering and/or exclusion of database objects at
-              the time the database is restored. It is also possible to limit which data is reloaded
-              at restore time. </dd>
+            <dd class="dd pd"><samp class="ph codeph">t</samp> | <samp class="ph codeph">tar</samp> — Output a tar archive suitable for input
+              into <samp class="ph codeph">pg_restore</samp>. Using this archive format allows reordering and/or
+              exclusion of database objects at the time the database is restored. It is also
+              possible to limit which data is reloaded at restore time. </dd>
 
           
           
@@ -259,12 +256,12 @@
 
           
           
-              <dt class="dt pt dlterm">-O | --no-owner</dt>
+            <dt class="dt pt dlterm">-O | --no-owner</dt>
 
-              <dd class="dd pd">Do not output commands to set ownership of objects to match the original
-                database.</dd>
+            <dd class="dd pd">Do not output commands to set ownership of objects to match the original
+              database.</dd>
 
-              <dd class="dd pd">By default, <samp class="ph codeph">pg_dump</samp> issues <samp class="ph codeph">ALTER OWNER</samp> or
+            <dd class="dd pd">By default, <samp class="ph codeph">pg_dump</samp> issues <samp class="ph codeph">ALTER OWNER</samp> or
                 <samp class="ph codeph">SET SESSION AUTHORIZATION</samp> statements to set ownership of created
               database objects. To successfully run this script, you must be a superuser or own the
               objects in the script. Specify <samp class="ph codeph">-O</samp> to make a script that can be
@@ -272,7 +269,7 @@
               meaningful for the plain-text format. For the archive formats, you may specify the
               option when you call <samp class="ph codeph">pg_restore</samp>.</dd>
 
-            
+          
           
             <dt class="dt pt dlterm">-s | --schema-only</dt>
 
@@ -386,10 +383,8 @@
 
           
         </dl>
-
-      </div>
-      <div class="sectiondiv">
-        <strong class="ph b">Connection Options</strong>
+</div>
+      <div class="sectiondiv"><strong class="ph b">Connection Options</strong>
         <dl class="dl parml">
           
             <dt class="dt pt dlterm">-h <var class="keyword varname">host</var>| --host <var class="keyword varname">host</var></dt>
@@ -420,9 +415,7 @@
 
           
         </dl>
-
-      </div>
-    </div>
+</div></div>
 
     <div class="section" id="topic1__section7"><h2 class="title sectiontitle">Notes</h2>
       
@@ -449,7 +442,7 @@
 
       <pre class="pre codeblock">pg_dump mydb &gt; db.sql</pre>
 
-      <p class="p">To reload a SQL-script into a new database, <samp class="ph codeph">newdb</samp>: </p>
+      <p class="p">Reload a SQL-script into a new database named <samp class="ph codeph">newdb</samp>: </p>
 
       <pre class="pre codeblock">psql -d newdb -f db.sql</pre>
 
@@ -457,15 +450,15 @@
 
       <pre class="pre codeblock">pg_dump -Ft --gp-syntax mydb &gt; db.tar</pre>
 
-      <p class="p">To dump a database into a custom-format archive file: </p>
+      <p class="p">Dump a database into a custom-format archive file: </p>
 
       <pre class="pre codeblock">pg_dump -Fc mydb &gt; db.dump</pre>
 
-      <p class="p">To reload an archive file into a new database named <samp class="ph codeph">newdb</samp>: </p>
+      <p class="p">Reload an archive file into a new database named <samp class="ph codeph">newdb</samp>: </p>
 
       <pre class="pre codeblock">pg_restore -d newdb db.dump</pre>
 
-      <p class="p">To dump a single table named <samp class="ph codeph">mytab</samp>: </p>
+      <p class="p">Dump a single table named <samp class="ph codeph">mytab</samp>: </p>
 
       <pre class="pre codeblock">pg_dump -t mytab mydb &gt; db.sql</pre>
 
@@ -479,8 +472,7 @@
 
     <div class="section" id="topic1__section9"><h2 class="title sectiontitle">See Also</h2>
       
-      <p class="p"><samp class="ph codeph">pg_dumpall</samp>, <samp class="ph codeph">pg_restore</samp>,
-            <samp class="ph codeph">psql</samp><samp class="ph codeph"><a class="xref" href="pg_dumpall.html">pg_dumpall</a></samp>, <samp class="ph codeph"><a class="xref" href="pg_restore.html">pg_restore</a></samp>, <samp class="ph codeph"><a class="xref" href="psql.html">psql</a></samp></p>
+      <p class="p"><samp class="ph codeph"><a class="xref" href="pg_dumpall.html">pg_dumpall</a></samp>, <samp class="ph codeph"><a class="xref" href="pg_restore.html">pg_restore</a></samp>, <samp class="ph codeph"><a class="xref" href="psql.html">psql</a></samp></p>
 
     </div>
 

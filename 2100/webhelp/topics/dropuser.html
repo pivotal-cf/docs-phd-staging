@@ -30,62 +30,125 @@
 		  </script>
 <table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a> / <a class="navheader_parent_path" href="../topics/ClientUtilityReference.html" title="Client Utility Reference">Client Utility Reference</a></td><td><div class="navheader">
 <span class="navparent"><a class="link" href="../topics/ClientUtilityReference.html" title="Client Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Client Utility Reference</span></a></span>  </div></td></tr></tbody></table>
-<h1 class="title topictitle1">dropuser</h1>
-<div class="body"><p class="p" id="topic1__client_util_desc">Removes a database role.</p>
-<div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2><pre class="pre codeblock" id="topic1__client_util_synopsis"><strong class="ph b">dropuser</strong> [<var class="keyword varname">connection_option</var> ...] [<strong class="ph b">-e</strong>] [<strong class="ph b">-i</strong>] <var class="keyword varname">role_name</var>
+
+  <h1 class="title topictitle1">dropuser</h1>
+
+  <div class="body">
+    <p class="p" id="topic1__client_util_desc">Removes a database role.</p>
+
+    <div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2>
+      
+      <pre class="pre codeblock" id="topic1__client_util_synopsis"><strong class="ph b">dropuser</strong> [<var class="keyword varname">connection_option</var> ...] [<strong class="ph b">-e</strong>] [<strong class="ph b">-i</strong>] <var class="keyword varname">role_name</var>
 
 <strong class="ph b">dropuser</strong> <strong class="ph b">--help</strong> 
 
 <strong class="ph b">dropuser</strong> <strong class="ph b">--version</strong></pre>
-</div>
-<div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2><p class="p"><samp class="ph codeph">dropuser</samp> removes an existing role from HAWQ.. Only superusers and users with the
-          <samp class="ph codeph">CREATE-ROLE</samp> privilege can remove roles. To remove a superuser role, you
-        must yourself be a superuser.</p>
-<p class="p"><samp class="ph codeph">dropuser</samp> is a wrapper around the SQL command <samp class="ph codeph">DROP
-ROLE</samp>.</p>
-</div>
-<div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options</h2><dl class="dl parml"><dt class="dt pt dlterm"><var class="keyword varname">role_name</var></dt>
-<dd class="dd pd">The name of the role to be removed. If you do not specify the name, you will be prompted on the
-            command line.</dd>
-<dt class="dt pt dlterm">-e | --echo</dt>
-<dd class="dd pd">Echo the commands that <samp class="ph codeph">dropuser</samp> generates and sends
-to the server. </dd>
-<dt class="dt pt dlterm">-i | --interactive</dt>
-<dd class="dd pd">Prompt for confirmation before actually removing the role.</dd>
-</dl>
-<div class="sectiondiv"><strong class="ph b">Connection Options</strong><dl class="dl parml"><dt class="dt pt dlterm">-h <var class="keyword varname">host</var> | --host <var class="keyword varname">host</var></dt>
-<dd class="dd pd">The host name of the HAWQ master database server. If not specified, reads from the environment
-              variable <samp class="ph codeph">PGHOST</samp> or defaults to localhost.</dd>
-<dt class="dt pt dlterm">-p <var class="keyword varname">port</var> | --port <var class="keyword varname">port</var></dt>
-<dd class="dd pd">The TCP port where the HAWQ master database server listens for connections.  If not specified,
-              reads from the environment variable <samp class="ph codeph">PGPORT</samp> or defaults to 5432.</dd>
-<dt class="dt pt dlterm">-U <var class="keyword varname">username</var> | --username <var class="keyword varname">username</var></dt>
-<dd class="dd pd">The database role name to connect as. If not specified, reads from
-the environment variable <samp class="ph codeph">PGUSER</samp> or defaults to the current
-system role name.</dd>
-<dt class="dt pt dlterm">-w | --no-password</dt>
-<dd class="dd pd">Use this to run automated batch jobs and scripts. In general, if the server requires password
-              authentication ensure that it can be accessed through a <samp class="ph codeph">.pgpass</samp> file.
-              Otherwise the connection attempt will fail.</dd>
-<dt class="dt pt dlterm">-W | --password</dt>
-<dd class="dd pd">Force a password prompt.</dd>
-</dl>
+
+    </div>
+
+    <div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2>
+      
+      <p class="p"><samp class="ph codeph">dropuser</samp> removes an existing role from HAWQ.. Only superusers and users
+        with the <samp class="ph codeph">CREATE-ROLE</samp> privilege can remove roles. To remove a superuser
+        role, you must yourself be a superuser.</p>
+
+      <p class="p"><samp class="ph codeph">dropuser</samp> is a wrapper around the SQL command <samp class="ph codeph">DROP
+        ROLE</samp>.</p>
+
+    </div>
+
+    <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options </h2><dl class="dl parml">
+        
+          <dt class="dt pt dlterm">
+            <var class="keyword varname">role_name</var>
+          </dt>
+
+          <dd class="dd pd">The name of the role to be removed. If you do not specify the name, you will be
+            prompted on the command line.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-e | --echo</dt>
+
+          <dd class="dd pd">Echo the commands that <samp class="ph codeph">dropuser</samp> generates and sends to the server.
+          </dd>
+
+        
+        
+          <dt class="dt pt dlterm">-i | --interactive</dt>
+
+          <dd class="dd pd">Prompt for confirmation before actually removing the role.</dd>
+
+        
+      </dl>
+<div class="sectiondiv"><strong class="ph b">Connection Options</strong>
+        <dl class="dl parml">
+          
+            <dt class="dt pt dlterm">-h <var class="keyword varname">host</var> | --host <var class="keyword varname">host</var></dt>
+
+            <dd class="dd pd">The host name of the HAWQ master database server. If not specified, reads from the
+              environment variable <samp class="ph codeph">PGHOST</samp> or defaults to localhost.</dd>
+
+          
+          
+            <dt class="dt pt dlterm">-p <var class="keyword varname">port</var> | --port <var class="keyword varname">port</var></dt>
+
+            <dd class="dd pd">The TCP port where the HAWQ master database server listens for connections. If not
+              specified, reads from the environment variable <samp class="ph codeph">PGPORT</samp> or defaults to
+              5432.</dd>
+
+          
+          
+            <dt class="dt pt dlterm">-U <var class="keyword varname">username</var> | --username <var class="keyword varname">username</var></dt>
+
+            <dd class="dd pd">The database role name to connect as. If not specified, reads from the environment
+              variable <samp class="ph codeph">PGUSER</samp> or defaults to the current system role name.</dd>
+
+          
+          
+            <dt class="dt pt dlterm">-w | --no-password</dt>
+
+            <dd class="dd pd">Use this to run automated batch jobs and scripts. In general, if the server requires
+              password authentication ensure that it can be accessed through a
+                <samp class="ph codeph">.pgpass</samp> file. Otherwise the connection attempt will fail.</dd>
+
+          
+          
+            <dt class="dt pt dlterm">-W | --password</dt>
+
+            <dd class="dd pd">Force a password prompt.</dd>
+
+          
+        </dl>
 </div></div>
-<div class="section" id="topic1__section6"><h2 class="title sectiontitle">Examples</h2><p class="p">To remove the role <samp class="ph codeph">joe</samp> using default connection options:</p>
-<pre class="pre codeblock">dropuser joe
+
+    <div class="section" id="topic1__section6"><h2 class="title sectiontitle">Examples</h2>
+      
+      <p class="p">Remove the role <samp class="ph codeph">joe</samp> using default connection options:</p>
+
+      <pre class="pre codeblock">dropuser joe
 DROP ROLE</pre>
-<p class="p">To remove the role <var class="keyword varname">joe</var> using connection options, with verification,
-and a peek at the underlying command:</p>
-<pre class="pre codeblock"><strong class="ph b">dropuser -p 54321 -h masterhost -i -e joe</strong>
+
+      <p class="p">Remove the role <var class="keyword varname">joe</var> using connection options, with verification, and a
+        peek at the underlying command:</p>
+
+      <pre class="pre codeblock"><strong class="ph b">dropuser -p 54321 -h masterhost -i -e joe</strong>
 Role "joe" will be permanently removed.
 Are you sure? (y/n) <strong class="ph b">y</strong>
 DROP ROLE "joe"
 DROP ROLE</pre>
-</div>
-<div class="section" id="topic1__section7"><h2 class="title sectiontitle">See Also</h2><p class="p"><span class="ph"><samp class="ph codeph">DROP ROLE</samp>
-        </span><span class="ph"><samp class="ph codeph"><a class="xref" href="DROP-ROLE.html">DROP ROLE</a></samp></span></p>
-</div>
-</div>
+
+    </div>
+
+    <div class="section" id="topic1__section7"><h2 class="title sectiontitle">See Also</h2>
+      
+      <p class="p">
+        <samp class="ph codeph"><a class="xref" href="DROP-ROLE.html">DROP ROLE</a></samp></p>
+
+    </div>
+
+  </div>
+
 <div class="related-links"/>
 <div class="navfooter"><!---->
 <span class="navparent"><a class="link" href="../topics/ClientUtilityReference.html" title="Client Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Client Utility Reference</span></a></span>  </div><div>

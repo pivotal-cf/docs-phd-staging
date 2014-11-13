@@ -59,11 +59,11 @@
                     required Python libraries are included with the HAWQ server installation, so if
                     you have HAWQ installed on the machine where <samp class="ph codeph">gpload</samp> is running,
                     you do not need a separate Python installation.<div class="note note"><span class="notetitle">Note:</span> HAWQ Loaders for Windows
-                        supports only Python 2.5 (available from <a class="xref" href="http://python.org" target="_blank">www.python.org</a>).</div>
+                        support only Python 2.5 (available from <a class="xref" href="http://python.org" target="_blank">www.python.org</a>).</div>
 </li>
 
-                <li class="li" id="topic1__ke147925">The <samp class="ph codeph"><a class="xref" href="gpfdist.html">gpfdist</a></samp> parallel file distribution program installed
-                    and in your <samp class="ph codeph">$PATH</samp>. This program is located in
+                <li class="li" id="topic1__ke147925">The <samp class="ph codeph"><a class="xref" href="gpfdist.html">gpfdist</a></samp> parallel file distribution program must be installed and in your
+                        <samp class="ph codeph">$PATH</samp>. This program is located in
                         <samp class="ph codeph">$GPHOME/bin</samp> of your HAWQ server installation.</li>
 
                 <li class="li" id="topic1__ke144650">Network access to and from all hosts in your HAWQ array (master
@@ -82,15 +82,15 @@
                 external table parallel loading feature. Using a load specification defined in a
                 YAML formatted control file, gpload executes a load by invoking the HAWQ parallel
                 file server (gpfdist), creating an external table definition based on the source
-                data defined, and executing an INSERT operation to load the source data into the
-                target table in the database.</p>
+                data defined, and executing an <samp class="ph codeph">INSERT</samp> operation to load the source
+                data into the target table in the database.</p>
 
-            <div class="note note"><span class="notetitle">Note:</span> UPDATE or MERGE operations are not supported at this time. </div>
+            <div class="note note"><span class="notetitle">Note:</span> <samp class="ph codeph">UPDATE</samp> or <samp class="ph codeph">MERGE</samp> operations are not supported at
+                this time. </div>
 
         </div>
 
-        <div class="section" id="topic1__section5"><h2 class="title sectiontitle">Options</h2>
-            <dl class="dl parml">
+        <div class="section" id="topic1__section5"><h2 class="title sectiontitle">Options </h2><dl class="dl parml">
                 
                     <dt class="dt pt dlterm">-f <var class="keyword varname">control_file</var></dt>
 
@@ -198,7 +198,7 @@
                         <dd class="dd pd">Force a password prompt. If not specified, reads the password from the
                             environment variable <samp class="ph codeph">$PGPASSWORD</samp> or from a password
                             file specified by <samp class="ph codeph">$PGPASSFILE</samp> or in
-                                <samp class="ph codeph">~/.pgpass</samp>. If these are not set, then
+                                <span class="ph filepath">~/.pgpass</span>. If these are not set, then
                                 <samp class="ph codeph">gpload</samp> will prompt for a password even if
                                 <samp class="ph codeph">-W</samp> is not supplied.</dd>
 
@@ -316,13 +316,14 @@
                     <dd class="dd pd">Required. Begins the load specification section. A <samp class="ph codeph">GPLOAD</samp>
                         specification must have an <samp class="ph codeph">INPUT</samp> and an
                             <samp class="ph codeph">OUTPUT</samp> section defined. <dl class="dl parml"><dt class="dt pt dlterm" id="topic1__cfinput">INPUT</dt>
-<dd class="dd pd">Required. Defines the location and the format of the input data to be loaded.
+<dd class="dd pd">Required. Defines the location and
+                                    the format of the input data to be loaded.
                                         <samp class="ph codeph">gpload</samp> will start one or more instances of
-                                    the <samp class="ph codeph"><a class="xref" href="gpfdist.html">gpfdist</a></samp> file distribution program on
-                                    the current host and create the required external table
-                                    definition(s) in HAWQ that point to the source data. Note that
-                                    the host from which you run <samp class="ph codeph">gpload</samp> must be
-                                    accessible over the network by all HAWQ hosts (master and segments).<dl class="dl parml">
+                                    the <samp class="ph codeph"><a class="xref" href="gpfdist.html">gpfdist</a></samp> file distribution program on the current host
+                                    and create the required external table definition(s) in HAWQ
+                                    that point to the source data. Note that the host from which you
+                                    run <samp class="ph codeph">gpload</samp> must be accessible over the network
+                                    by all HAWQ hosts (master and segments).<dl class="dl parml">
                                         
                                             <dt class="dt pt dlterm" id="topic1__cfsource">SOURCE</dt>
 
@@ -332,8 +333,8 @@
                                                 section can have more than one
                                                   <samp class="ph codeph">SOURCE</samp> block defined. Each
                                                   <samp class="ph codeph">SOURCE</samp> block defined corresponds
-                                                to one instance of the <samp class="ph codeph"><a class="xref" href="gpfdist.html">gpfdist</a></samp> file distribution program
-                                                that will be started on the local machine. Each
+                                                to one instance of the <samp class="ph codeph"><a class="xref" href="gpfdist.html">gpfdist</a></samp> file distribution program that will be
+                                                started on the local machine. Each
                                                   <samp class="ph codeph">SOURCE</samp> block defined must have a
                                                   <samp class="ph codeph">FILE</samp> specification.<div class="p">
                                                   <dl class="dl parml">
@@ -381,8 +382,8 @@
                                                   <samp class="ph codeph">PORT</samp> to supply a range of port
                                                   numbers from which <samp class="ph codeph">gpload</samp> can
                                                   choose an available port for this instance of the
-                                                  <samp class="ph codeph"><a class="xref" href="gpfdist.html">gpfdist</a></samp> file
-                                                  distribution program.</dd>
+                                                  <samp class="ph codeph"><a class="xref" href="gpfdist.html">gpfdist</a></samp> file distribution
+                                                  program.</dd>
 
                                                   
                                                   
@@ -648,7 +649,8 @@
 <dd class="dd pd">Required. The name of the target
                                                 table to load into.</dd>
 <dt class="dt pt dlterm" id="topic1__cfmode">MODE</dt>
-<dd class="dd pd">Optional. Currently, the only mode is INSERT.</dd>
+<dd class="dd pd">Optional. Currently, the
+                                                only mode is INSERT.</dd>
 
                                             <dd class="dd pd"><span class="keyword option">INSERT</span> - Loads data into the target
                                                 table using the following method:
@@ -665,9 +667,10 @@
                                                 mapping is specified as
                                                   either:</dd>
 <dd class="dd pd"><samp class="ph codeph"><var class="keyword varname">target_column_name</var>:
-                                                <var class="keyword varname">source_column_name</var></samp></dd>
+                                                  <var class="keyword varname">source_column_name</var></samp></dd>
 <dd class="dd pd">or</dd>
-<dd class="dd pd"><samp class="ph codeph"><var class="keyword varname">target_column_name</var>: '<var class="keyword varname">expression</var>'</samp></dd>
+<dd class="dd pd"><samp class="ph codeph"><var class="keyword varname">target_column_name</var>:
+                                                  '<var class="keyword varname">expression</var>'</samp></dd>
 <dd class="dd pd">Where
                                                   <var class="keyword varname">expression</var> is any expression
                                                 that you would specify in the
@@ -811,8 +814,7 @@ GPLOAD:
 
         <div class="section" id="topic1__section11"><h2 class="title sectiontitle">See Also</h2>
             
-            <p class="p"><samp class="ph codeph"><a class="xref" href="gpfdist.html">gpfdist</a></samp>, <a class="xref" href="CREATE-EXTERNAL-TABLE.html">CREATE EXTERNAL
-                TABLE</a></p>
+            <p class="p"><samp class="ph codeph"><a class="xref" href="gpfdist.html">gpfdist</a></samp>, <samp class="ph codeph"><a class="xref" href="CREATE-EXTERNAL-TABLE.html">CREATE EXTERNAL TABLE</a></samp></p>
 
         </div>
 

@@ -30,84 +30,165 @@
 		  </script>
 <table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a> / <a class="navheader_parent_path" href="../topics/ManagementUtilityReference.html" title="Management Utility Reference">Management Utility Reference</a></td><td><div class="navheader">
 <span class="navparent"><a class="link" href="../topics/ManagementUtilityReference.html" title="Management Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Management Utility Reference</span></a></span>  </div></td></tr></tbody></table>
-<h1 class="title topictitle1">gpstart</h1>
-<div class="body"><p class="p">Starts a HAWQ system.</p>
-<div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2><pre class="pre codeblock"><strong class="ph b">gpstart</strong> [<strong class="ph b">-d</strong> <var class="keyword varname">master_data_directory</var>] [<strong class="ph b">-B</strong> <var class="keyword varname">parallel_processes</var>] [<strong class="ph b">-R</strong>] 
+
+  <h1 class="title topictitle1">gpstart</h1>
+
+  <div class="body">
+    <p class="p">Starts a HAWQ system.</p>
+
+    <div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2>
+      
+      <pre class="pre codeblock"><strong class="ph b">gpstart</strong> [<strong class="ph b">-d</strong> <var class="keyword varname">master_data_directory</var>] [<strong class="ph b">-B</strong> <var class="keyword varname">parallel_processes</var>] [<strong class="ph b">-R</strong>] 
         [<strong class="ph b">-m</strong>] [<strong class="ph b">-y</strong>] [<strong class="ph b">-a</strong>] [<strong class="ph b">-t</strong> <var class="keyword varname">timeout_seconds</var>] [<strong class="ph b">-l</strong> <var class="keyword varname">logfile_directory</var>] 
         [<strong class="ph b">-v</strong> | <strong class="ph b">-q</strong>]
 
 <strong class="ph b">gpstart</strong> <strong class="ph b">-?</strong> | <strong class="ph b">-h</strong> | <strong class="ph b">--help</strong> 
 
 <strong class="ph b">gpstart</strong> <strong class="ph b">--version</strong></pre>
-</div>
-<div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2><p class="p">The <samp class="ph codeph">gpstart</samp> utility is used to start the HAWQ server processes. When you start a
-        HAWQ system, you are actually starting several <samp class="ph codeph">postgres</samp> database server
-        listener processes at once (the master and all of the segment instances). The
+
+    </div>
+
+    <div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2>
+      
+      <p class="p">The <samp class="ph codeph">gpstart</samp> utility is used to start the HAWQ server processes. When you
+        start a HAWQ system, you are actually starting several <samp class="ph codeph">postgres</samp> database
+        server listener processes at once (the master and all of the segment instances). The
           <samp class="ph codeph">gpstart</samp> utility handles the startup of the individual instances. Each
         instance is started in parallel.</p>
-<p class="p">The first time an administrator runs <samp class="ph codeph">gpstart</samp>, the
-utility creates a hosts cache file named <samp class="ph codeph">.gphostcache</samp>
-in the user's home directory. Subsequently, the utility uses this list
-of hosts to start the system more efficiently. If new hosts are added
-to the system, you must manually remove this file from the <samp class="ph codeph">gpadmin</samp>
-user's home directory. The utility will create a new hosts cache file
-at the next startup.</p>
-<p class="p">Before you can start a HAWQ system, you must have initialized the system using
+
+      <p class="p">The first time an administrator runs <samp class="ph codeph">gpstart</samp>, the utility creates a hosts
+        cache file named <samp class="ph codeph">.gphostcache</samp> in the user's home directory. Subsequently,
+        the utility uses this list of hosts to start the system more efficiently. If new hosts are
+        added to the system, you must manually remove this file from the <samp class="ph codeph">gpadmin</samp>
+        user's home directory. The utility will create a new hosts cache file at the next
+        startup.</p>
+
+      <p class="p">Before you can start a HAWQ system, you must have initialized the system using
           <samp class="ph codeph">gpinitsystem</samp> first.</p>
-</div>
-<div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options</h2><dl class="dl parml"><dt class="dt pt dlterm">-a (do not prompt)</dt>
-<dd class="dd pd">Do not prompt the user for confirmation.</dd>
-<dt class="dt pt dlterm">-B <var class="keyword varname">parallel_processes</var></dt>
-<dd class="dd pd">The number of segments to start in parallel. If not specified, the utility will start up to 60
-            parallel processes, depending on how many segment instances are needed.</dd>
-<dt class="dt pt dlterm">-d <var class="keyword varname">master_data_directory</var></dt>
-<dd class="dd pd">Optional. The master host data directory. If not specified, the value
-set for <samp class="ph codeph">$MASTER_DATA_DIRECTORY</samp> will be used.</dd>
-<dt class="dt pt dlterm">-l <var class="keyword varname">logfile_directory</var></dt>
-<dd class="dd pd">The directory to write the log file. Defaults to <samp class="ph codeph">~/gpAdminLogs</samp>.</dd>
-<dt class="dt pt dlterm">-m (master only)</dt>
-<dd class="dd pd">Optional. Starts the master instance only, which may be useful for
-maintenance tasks. This mode only allows connections to the master in
-utility mode. For example:</dd>
-<dd class="dd pd"><pre class="pre codeblock">PGOPTIONS='-c gp_session_role=utility' psql</pre>
-</dd>
-<dt class="dt pt dlterm">-q (no screen output)</dt>
-<dd class="dd pd">Run in quiet mode. Command output is not displayed on the screen,
-but is still written to the log file.</dd>
-<dt class="dt pt dlterm">-R (restricted mode)</dt>
-<dd class="dd pd">Starts HAWQ in restricted mode (only database superusers are allowed to connect).</dd>
-<dt class="dt pt dlterm">-t <var class="keyword varname">timeout_seconds</var></dt>
-<dd class="dd pd">Specifies a timeout in seconds to wait for a segment instance to
-start up. If a segment instance was shutdown abnormally (due to power
-failure or killing its <samp class="ph codeph">postgres</samp> database listener process,
-for example), it may take longer to start up due to the database recovery
-and validation process. If not specified, the default timeout is 60 seconds.</dd>
-<dt class="dt pt dlterm">-v (verbose output)</dt>
-<dd class="dd pd">Displays detailed status, progress and error messages output by the
-utility.</dd>
-<dt class="dt pt dlterm">-y (do not start standby master)</dt>
-<dd class="dd pd">Optional. Do not start the standby master host. The default is to
-start the standby master host and synchronization process.</dd>
-<dt class="dt pt dlterm">-? | -h | --help (help)</dt>
-<dd class="dd pd">Displays the online help.</dd>
-<dt class="dt pt dlterm">--version (show utility version)</dt>
-<dd class="dd pd">Displays the version of this utility.</dd>
-</dl>
-</div>
-<div class="section" id="topic1__section5"><h2 class="title sectiontitle">Examples</h2><p class="p">Start a HAWQ system:</p>
-<pre class="pre codeblock">gpstart</pre>
-<p class="p">Start a HAWQ system in restricted mode (only allow superuser connections):</p>
-<pre class="pre codeblock">gpstart -R</pre>
-<p class="p">Start the HAWQ master instance only and connect in utility mode:</p>
-<pre class="pre codeblock">gpstart -m PGOPTIONS='-c gp_session_role=utility' psql</pre>
+
+    </div>
+
+    <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options</h2>
+      
+      <dl class="dl parml">
+        
+          <dt class="dt pt dlterm">-a (do not prompt)</dt>
+
+          <dd class="dd pd">Do not prompt the user for confirmation.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-B <var class="keyword varname">parallel_processes</var></dt>
+
+          <dd class="dd pd">The number of segments to start in parallel. If not specified, the utility will start
+            up to 60 parallel processes, depending on how many segment instances are needed.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-d <var class="keyword varname">master_data_directory</var></dt>
+
+          <dd class="dd pd">Optional. The master host data directory. If not specified, the value set for
+              <samp class="ph codeph">$MASTER_DATA_DIRECTORY</samp> will be used.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-l <var class="keyword varname">logfile_directory</var></dt>
+
+          <dd class="dd pd">The directory to write the log file. Defaults to <samp class="ph codeph">~/gpAdminLogs</samp>.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-m (master only)</dt>
+
+          <dd class="dd pd">Optional. Starts the master instance only, which may be useful for maintenance tasks.
+            This mode only allows connections to the master in utility mode. For example:</dd>
+
+          <dd class="dd pd">
+            <pre class="pre codeblock">PGOPTIONS='-c gp_session_role=utility' psql</pre>
+
+          </dd>
+
+        
+        
+          <dt class="dt pt dlterm">-q (no screen output)</dt>
+
+          <dd class="dd pd">Run in quiet mode. Command output is not displayed on the screen, but is still written
+            to the log file.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-R (restricted mode)</dt>
+
+          <dd class="dd pd">Starts HAWQ in restricted mode (only database superusers are allowed to connect).</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-t <var class="keyword varname">timeout_seconds</var></dt>
+
+          <dd class="dd pd">Specifies a timeout in seconds to wait for a segment instance to start up. If a
+            segment instance was shutdown abnormally (due to power failure or killing its
+              <samp class="ph codeph">postgres</samp> database listener process, for example), it may take longer
+            to start up due to the database recovery and validation process. If not specified, the
+            default timeout is 60 seconds.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-v (verbose output)</dt>
+
+          <dd class="dd pd">Displays detailed status, progress and error messages output by the utility.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-y (do not start standby master)</dt>
+
+          <dd class="dd pd">Optional. Do not start the standby master host. The default is to start the standby
+            master host and synchronization process.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-? | -h | --help (help)</dt>
+
+          <dd class="dd pd">Displays the online help.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">--version (show utility version)</dt>
+
+          <dd class="dd pd">Displays the version of this utility.</dd>
+
+        
+      </dl>
+
+    </div>
+
+    <div class="section" id="topic1__section5"><h2 class="title sectiontitle">Examples</h2>
+      
+      <p class="p">Start a HAWQ system:</p>
+
+      <pre class="pre codeblock">gpstart</pre>
+
+      <p class="p">Start a HAWQ system in restricted mode (only allow superuser connections):</p>
+
+      <pre class="pre codeblock">gpstart -R</pre>
+
+      <p class="p">Start the HAWQ master instance only and connect in utility mode:</p>
+
+      <pre class="pre codeblock">gpstart -m PGOPTIONS='-c gp_session_role=utility' psql</pre>
 
       <p class="p">Display the online help for the gpstart utility:</p>
 
       <pre class="pre codeblock">gpstart -?</pre>
-</div>
-<div class="section" id="topic1__section6"><h2 class="title sectiontitle">See Also</h2><p class="p"><samp class="ph codeph"><a class="xref" href="gpstop.html">gpstop</a></samp></p>
-</div>
-</div>
+
+    </div>
+
+    <div class="section" id="topic1__section6"><h2 class="title sectiontitle">See Also</h2>
+      
+      <p class="p"><samp class="ph codeph"><a class="xref" href="gpstop.html">gpstop</a></samp></p>
+
+    </div>
+
+  </div>
+
 <div class="related-links"/>
 <div class="navfooter"><!---->
 <span class="navparent"><a class="link" href="../topics/ManagementUtilityReference.html" title="Management Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Management Utility Reference</span></a></span>  </div><div>

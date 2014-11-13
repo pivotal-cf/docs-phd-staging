@@ -87,7 +87,7 @@
 
       </ul>
 
-      <p class="p">For more information about Kerberos, see <a class="xref" href="http://web.mit.edu/kerberos/">http://web.mit.edu/kerberos/</a>.</p>
+      <p class="p">For more information about Kerberos, see <a class="xref" href="http://web.mit.edu/kerberos/" target="_blank">http://web.mit.edu/kerberos/</a>.</p>
 
    </div>
 
@@ -104,7 +104,7 @@
             server process. It is possible to configure one endpoint without the other endpoint.
             These instructions are for configuring HAWQ as a Kerberos server process, so that users
             are required to authenticate via Kerberos to access the database. For instructions on
-            configuring the HAWQ to Kerberized HDFS see <a class="xref" href="http://pivotalhd.docs.pivotal.io/doc/2100/HAWQInstallationandUpgrade.html" target="_blank">HAWQ Installation and Upgrade</a>. Note that if
+            configuring the HAWQ to Kerberized HDFS see <a class="xref" href="ConfiguringHAWQonSecureHDFS.html#configuringhawqonsecurehdfs">Configuring HAWQ on Secure HDFS</a>. Note that if
             HAWQ to Kerberized HDFS has already been configured, or you have an existing KDC to use,
             you may skip the KDC installation instructions below.</div>
 
@@ -119,8 +119,9 @@
                the Kerberos principals that are the HAWQ roles.</li>
 
 
-            <li class="li">Create, or add to, a Kerberos keytab file for HAWQ a
-                  <samp class="ph codeph">postgres/&lt;hawq_master_fqdn&gt;@REALM</samp> principal key. <ol class="ol" type="a">
+            <li class="li">Create a Kerberos keytab file for HAWQ (if one does not already exist) and add a
+                  <samp class="ph codeph">postgres/&lt;hawq_master_fqdn&gt;@REALM</samp> principal key to the
+               file: <ol class="ol" type="a">
                   <li class="li">To access HAWQ, you create a service key known only by Kerberos and HAWQ. This
                      is of the form <samp class="ph codeph">postgres/&lt;hawq_master_fqdn&gt;@REALM</samp>, where
                         <samp class="ph codeph">&lt;hawq_master_fqdn&gt;</samp> is the fully qualified domain name
@@ -132,10 +133,11 @@
                         <span class="ph filepath">/etc/security/phd/keytab/hawq-&lt;hawq_master_fqdn&gt;.service.keytab</span>.
                      This service key is the equivalent of the service's password, and must be kept
                      secure. Data which is meant to be read only by the service is encrypted using
-                     this key. If you have already configured HAWQ to Kerberized HDFS, this keytab
-                     will already exist and you will need to add the
-                        <samp class="ph codeph">postgres/&lt;hawq_master_fqdn&gt;@REALM</samp> principal to
-                     it.</li>
+                     this key.<div class="note note"><span class="notetitle">Note:</span> If you have already configured HAWQ to Kerberized HDFS, this
+                        keytab will already exist and you will need to add the
+                           <samp class="ph codeph">postgres/&lt;hawq_master_fqdn&gt;@REALM</samp> principal to
+                        it.</div>
+</li>
 
                </ol>
 
@@ -163,13 +165,13 @@
          </ol>
 
          <p class="p">With Kerberos authentication configured on the HAWQ, you can use Kerberos for PSQL and
-            JDBC.</p>
+            JDBC. For more information, see:</p>
 
          <ul class="ul">
-            <li class="li">Setting up HAWQ with Kerberos for PSQL</li>
+            <li class="li"><a class="xref" href="#settinguphawqwithkerberosforpsql">Setting up HAWQ with Kerberos for PSQL</a></li>
 
 
-            <li class="li">Setting up HAWQ with Kerberos for JDBC</li>
+            <li class="li"><a class="xref" href="#settinguphawqwithkerberosforjdbc">Setting up HAWQ with Kerberos for JDBC</a></li>
 
          </ul>
 
@@ -205,7 +207,7 @@
                with each other.</li>
 
 
-            <li class="li">Red Hat Enterprise Linux 6.x (requires Java 1.7.0_17 or later).</li>
+            <li class="li">Red Hat Enterprise Linux 6.x (requires Java 1.7.0_45 or later).</li>
 
 
             <li class="li">Red Hat Enterprise Linux 5.x (requires Java 1.6.0_21 or later).</li>
@@ -364,19 +366,19 @@ addprinc postgres/&lt;hawq_master_fqdn&gt;@REALM</pre>
                      of the HAWQ master.</p>
 <div class="note note"><span class="notetitle">Note:</span> 
                      <strong class="ph b">Principal differences between HAWQ and Postgres</strong>
-                     <p class="p">Note that for a HAWQ to Kerberized HDFS configuration, HAWQ uses the
+                     <p class="p">For a HAWQ to Kerberized HDFS configuration, HAWQ uses the
                            <samp class="ph codeph">postgres@REALM</samp> form for a principal, as it is a Kerberos
                         client when talking to HDFS. For the HAWQ service configuration we are
                         concerned with here, it uses the
                            <samp class="ph codeph">postgres/&lt;service_host_fqdn&gt;@REALM</samp> form, as it is
-                        acting a Kerberos service. If you are configuring both endpoints,
+                        acting as a Kerberos service. If you are configuring both endpoints,
                         understanding the difference is important. </p>
 </div>
 </li>
 
-               <li class="li">Create a Kerberos keytab file with kadmin.local and add the
+               <li class="li">Create a Kerberos keytab file with <samp class="ph codeph">kadmin.local</samp> and add the
                      <samp class="ph codeph">postgres/&lt;hawq_master_fqdn&gt;@REALM</samp> principal, or if a
-                  keytab already exists add this principal to the existing HAWQ keytab file. The
+                  keytab already exists, add this principal to the existing HAWQ keytab file. The
                   following example creates a keytab file <span class="ph filepath">gpdb-kerberos.keytab</span>
                   with authentication information for the two
                      principals.<pre class="pre codeblock">ktadd -norandkey -k hawq-&lt;hawq_master_fqdn&gt;.service.keytab postgres/&lt;hawq_master_fqdn&gt;@REALM</pre>
@@ -405,7 +407,7 @@ addprinc postgres/&lt;hawq_master_fqdn&gt;@REALM</pre>
                   </div>
 </li>
 
-               <li class="li">Verify the contents of your keytab.The following is an example of
+               <li class="li">Verify the contents of your keytab.The following is an example
                      <samp class="ph codeph">klist</samp> output for a system configured with both endpoints (HAWQ
                   to Kerberized HDFS and HAWQ service configuration to authenticate database users)
                   where the HAWQ master FQDN is set to <samp class="ph codeph">centos61-2.localdomain</samp> and
@@ -450,13 +452,13 @@ KVNO Timestamp         Principal
                <li class="li">Clean up any possible existing tickets:<pre class="pre codeblock"># kdestroy</pre>
 </li>
 
-               <li class="li">Use the Kerberos utility <samp class="ph codeph">kinit</samp> to request a ticket using the
+               <li class="li">Use the Kerberos <samp class="ph codeph">kinit</samp> utility to request a ticket using the
                   keytab file on the HAWQ master for
                   <samp class="ph codeph">gpadmin@REALM</samp>:<pre class="pre codeblock"># kinit gpadmin
 [password prompt will be displayed: enter your gpadmin principal password]</pre>
 </li>
 
-               <li class="li">Use the Kerberos utility <samp class="ph codeph">klist</samp> to display the contents of the
+               <li class="li">Use the Kerberos <samp class="ph codeph">klist</samp> utility to display the contents of the
                   Kerberos ticket cache on the HAWQ
                   master:<pre class="pre codeblock"># klist
 Ticket cache: FILE:/tmp/krb5cc_108061
@@ -478,7 +480,7 @@ renew until 03/28/13 14:50:26</pre>
                   Kerberos.</p>
 
                <ol class="ol" id="settinguphawqwithkerberosforpsql__ol_uwh_yqt_4p">
-                  <li class="li">Check that the role <samp class="ph codeph">gpadmin</samp> exists in HAWQ (it should), if
+                  <li class="li">Check that the <samp class="ph codeph">gpadmin</samp> role exists in HAWQ (it should). If
                      not create a HAWQ administrator role in the database <samp class="ph codeph">template1</samp>
                      for the Kerberos principal that is used as the database
                         administrator:<pre class="pre codeblock">psql template1 -c 'create role "gpadmin" login superuser;'</pre>
@@ -568,10 +570,10 @@ mymap /^(.*)mdw\.proddb$ adminuser </pre>
 map=mymap </pre>
 <p class="p">For
                      more information on specifying username maps, see the Postgres documentation:
-                        <a class="xref" href="http://www.postgresql.org/docs/8.4/static/auth-username-maps.html">http://www.postgresql.org/docs/8.4/static/auth-username-maps.html</a>. </p>
-<p class="p">If a Kerberos principal is not a HAWQ user, a
-                     message is similar to the following is displayed from the <samp class="ph codeph">psql</samp>
-                     command line when the user attempts to log into the
+                        <a class="xref" href="http://www.postgresql.org/docs/8.4/static/auth-username-maps.html" target="_blank">http://www.postgresql.org/docs/8.4/static/auth-username-maps.html</a>. </p>
+<p class="p">If a Kerberos principal is not a
+                     HAWQ user, a message is similar to the following is displayed from the
+                        <samp class="ph codeph">psql</samp> command line when the user attempts to log into the
                      database:</p>
 <pre class="pre codeblock">psql: krb5_sendauth: Bad response</pre>
 <p class="p">The

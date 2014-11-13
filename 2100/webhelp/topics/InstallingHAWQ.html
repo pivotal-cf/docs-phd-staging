@@ -37,44 +37,66 @@
       <p class="p">This section contains procedures to help you install HAWQ.</p>
 
       <ul class="ul">
-         <li class="li"><a class="xref" href="#installthehawqbinaries">Install the HAWQ Binaries</a>
+         <li class="li">
+            <a class="xref" href="#installthehawqbinaries">Install the HAWQ Binaries</a>
             <ul class="ul">
-               <li class="li"><a class="xref" href="#topic_srl_vth_tp">Installing from the RPM Release</a></li>
+               <li class="li">
+                  <a class="xref" href="#topic_srl_vth_tp">Installing from the RPM Release</a>
+               </li>
 
-               <li class="li"><a class="xref" href="#topic_lqs_vth_tp">Installing from the Binary Tarball</a></li>
+               <li class="li">
+                  <a class="xref" href="#topic_lqs_vth_tp">Installing from the Binary Tarball</a>
+               </li>
 
             </ul>
-</li>
 
-         <li class="li"><a class="xref" href="#creatingthegpadminuser">Create the gpadmin User</a>
          </li>
 
-         <li class="li"><a class="xref" href="#settingtheosparameters">Set the OS Parameters</a>
+         <li class="li">
+            <a class="xref" href="#creatingthegpadminuser">Create the gpadmin User</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#settingtheosparameters">Set the OS Parameters</a>
             <ul class="ul">
-               <li class="li"><a class="xref" href="#linux">Linux</a></li>
+               <li class="li">
+                  <a class="xref" href="#linux">Linux</a>
+               </li>
 
-               <li class="li"><a class="xref" href="#rhel">RHEL</a></li>
+               <li class="li">
+                  <a class="xref" href="#rhel">RHEL</a>
+               </li>
 
-               <li class="li"><a class="xref" href="#securityconfiguration">Security Configuration</a></li>
+               <li class="li">
+                  <a class="xref" href="#securityconfiguration">Security Configuration</a>
+               </li>
 
-               <li class="li"><a class="xref" href="#xfs">XFS</a></li>
+               <li class="li">
+                  <a class="xref" href="#xfs">XFS</a>
+               </li>
 
             </ul>
-</li>
 
-         <li class="li"><a class="xref" href="#editingtheconfigurationfiles">Edit the Configuration Files</a>
          </li>
 
-         <li class="li"><a class="xref" href="#ensuringthathdfsworks">Ensure that HDFS Works</a>
+         <li class="li">
+            <a class="xref" href="#editingtheconfigurationfiles">Edit the Configuration Files</a>
          </li>
 
-         <li class="li"><a class="xref" href="#creatingahawqinstanceonhdfswithnamenodehighavailabilityha">Create a HAWQ Instance on HDFS with Namenode High Availability (HA)</a>
+         <li class="li">
+            <a class="xref" href="#ensuringthathdfsworks">Ensure that HDFS Works</a>
          </li>
 
-         <li class="li"><a class="xref" href="#runningabasicquery">Run a Basic Query</a>
+         <li class="li">
+            <a class="xref" href="#creatingahawqinstanceonhdfswithnamenodehighavailabilityha">Create a HAWQ Instance on HDFS with Namenode High Availability (HA)</a>
          </li>
 
-         <li class="li"><a class="xref" href="#troubleshooting">Troubleshooting a HAWQ Install</a>
+         <li class="li">
+            <a class="xref" href="#runningabasicquery">Run a Basic Query</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#troubleshooting">Troubleshooting a HAWQ Install</a>
          </li>
 
       </ul>
@@ -121,18 +143,17 @@ sdw2
 sdw3</pre>
 </li>
 
-               <li class="li">Perform the ssh key exchange by running the following command. This allows you to
-                  log in to all hosts as root user without a password prompt. Use the
-                     <span class="ph filepath">hostfile</span> file you used for installation.
-                  <pre class="pre codeblock"># gpssh-exkeys -f hostfile</pre>
+               <li class="li">Perform the <samp class="ph codeph">ssh</samp> key exchange by running the following command.
+                  This allows you to log in to all hosts as the <samp class="ph codeph">root</samp> user without a
+                  password prompt. Use the <span class="ph filepath">hostfile</span> file you used for
+                  installation. <pre class="pre codeblock"># gpssh-exkeys -f hostfile</pre>
 
                </li>
 
-               <li class="li">Run the following command to reference the <span class="ph filepath">hostfile </span>file you
-                  just created and copy the HAWQ rpm file
+               <li class="li">Run the following command to reference the <span class="ph filepath">hostfile</span> file you
+                  just created and copy the HAWQ RPM file
                      (<span class="ph filepath">hawq-dev-dev.x86_64.rpm</span>) to all hosts:
-                  <pre class="pre codeblock">gpscp -f hostfile 
-hawq-dev-dev.x86_64.rpm =:~/</pre>
+                  <pre class="pre codeblock"># gpscp -f hostfile hawq-dev-dev.x86_64.rpm =:~/</pre>
 </li>
 
                <li class="li">Run the following command to install HAWQ on all hosts:
@@ -152,7 +173,8 @@ hawq-dev-dev.x86_64.rpm =:~/</pre>
             <p class="p">To install using the binary tarball: </p>
 
             <ol class="ol" id="topic_lqs_vth_tp__ol_krp_d5h_tp">
-               <li class="li">Log in to the master host as root. <pre class="pre codeblock"> # su - root </pre>
+               <li class="li">Log in to the master host as <samp class="ph codeph">root</samp>.
+                  <pre class="pre codeblock"># su - root </pre>
 </li>
 
                <li class="li">Copy the HAWQ tarball to the binary directory you want to install HAWQ, go to the
@@ -166,11 +188,11 @@ A
                <li class="li">Open the file <span class="ph filepath">/usr/local/greenplum_path.sh</span> and edit the
                      <samp class="ph codeph">GPHOME</samp> parameter to set it to
                      <span class="ph filepath">/usr/local/hawq</span>.
-                  <pre class="pre codeblock"> GPHOME=/usr/local/hawq</pre>
+                  <pre class="pre codeblock">GPHOME=/usr/local/hawq</pre>
 </li>
 
                <li class="li">Source the path file from your master host’s HAWQ installation directory:
-                  <pre class="pre codeblock"> # source /usr/local/hawq/greenplum_path.sh </pre>
+                  <pre class="pre codeblock"># source /usr/local/hawq/greenplum_path.sh </pre>
 </li>
 
                <li class="li">Create a file called <span class="ph filepath">hostfile</span> that includes host names used
@@ -184,9 +206,9 @@ sdw3</pre>
 </li>
 
                <li class="li">Perform the <samp class="ph codeph">ssh</samp> key exchange by running the following command.
-                  This allows you to log in to all_hosts as root user without a password prompt. Use
-                  the <span class="ph filepath">all_hosts</span> file you used for installation:
-                  <pre class="pre codeblock"># gpssh-exkeys -f all_hosts</pre>
+                  This allows you to log in to all hosts as the root <samp class="ph codeph">user</samp> without a
+                  password prompt. Use the <span class="ph filepath">all_hosts</span> file you used for
+                  installation: <pre class="pre codeblock"># gpssh-exkeys -f all_hosts</pre>
 </li>
 
                <li class="li">Run the following commands to reference the hostfile file you just created and
@@ -223,7 +245,7 @@ sdw3</pre>
 </li>
 
             <li class="li">Run the following command to perform the <samp class="ph codeph">ssh</samp> key exchange to enable
-               you to log in to all hosts without a password prompt as <samp class="ph codeph">gpadmin</samp>
+               you to log in to all hosts without a password prompt as the <samp class="ph codeph">gpadmin</samp>
                user. Use the <span class="ph filepath">all_hosts</span> file you used for installation:
                <pre class="pre codeblock">$ gpssh-exkeys -f all_hosts</pre>
 </li>
@@ -239,7 +261,7 @@ sdw3</pre>
                   <pre class="pre codeblock">$ gpssh -f all_hosts -e "ls -l $GPHOME" </pre>
 <div class="note note title"><span class="notetitle">Note:</span> You may want to change the default configuration parameters in
                      <span class="ph filepath">/usr/local/ hawq/etc/hdfs-client.xml</span> for
-                     <samp class="ph codeph">libhdfs3</samp>. See the topic, <a class="xref" href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a> . </div>
+                     <samp class="ph codeph">libhdfs3</samp>. For more information, see <a class="xref" href="HAWQConfigurationParameterReference.html">HAWQ Configuration Parameter Reference</a>.</div>
 </li>
 
             <li class="li">Log in to the master host as <samp class="ph codeph">root</samp>:
@@ -373,15 +395,17 @@ hard nproc 131072</pre>
 
          <div class="body">
             <p class="p">XFS is the preferred file system for data storage on Linux platforms. Pivotal
-               recommends the following xfs mount options:</p>
+               recommends the following XFS mount options:</p>
 
             <pre class="pre codeblock">rw,noatime,inode64,allocsize=16m</pre>
 
             <p class="p">You need to change the allocsize to 64k, only in the case of the master and the
                standby. To do so, change the allocsize to 64k in the <span class="ph filepath">/etc/fstab</span>
-               file. Run the following commands:</p>
+               file.</p>
 
-            <pre class="pre codeblock">&#x2028;sudo umount -l /path/to/filesystem&#x2028;
+            <p class="p">Run the following commands:</p>
+
+            <pre class="pre codeblock">sudo umount -l /path/to/filesystem
 sudo mount /path/to/filesystem</pre>
 
             <p class="p">See the Linux manual (man) page for more information about the mount command:</p>
@@ -406,15 +430,15 @@ sudo mount /path/to/filesystem</pre>
 
             <p class="p">For example:</p>
 
-            <pre class="pre codeblock"> # /sbin/blockdev --getra /dev/sdb</pre>
+            <pre class="pre codeblock"># /sbin/blockdev --getra /dev/sdb</pre>
 
             <p class="p">To set blockdev (read-ahead) on a device:</p>
 
-            <pre class="pre codeblock"> # /sbin/blockdev --setra bytes devname</pre>
+            <pre class="pre codeblock"># /sbin/blockdev --setra bytes devname</pre>
 
             <p class="p">For example:</p>
 
-            <pre class="pre codeblock"> # /sbin/blockdev --setra 16385 /dev/sdb</pre>
+            <pre class="pre codeblock"># /sbin/blockdev --setra 16385 /dev/sdb</pre>
 
             <p class="p">Refer to the Linux manual (man) page for more information about using the
                   <span class="keyword cmdname">blockdev</span> command.</p>
@@ -429,8 +453,9 @@ sudo mount /path/to/filesystem</pre>
       <h2 class="title topictitle2">Edit the Configuration Files</h2>
 
       <div class="body">
-         <p class="p">Edit the /etc/hosts file and make sure that it includes the host names and all interface
-            address names for every machine participating in your HAWQ system. </p>
+         <p class="p">Edit the <span class="ph filepath">/etc/hosts</span> file and make sure that it includes the host
+            names and all interface address names for every machine participating in your HAWQ
+            system. </p>
 
          <ol class="ol" id="editingtheconfigurationfiles__ol_h2b_fct_4p">
             <li class="li">Run the following command to copy the <span class="ph filepath">/etc/sysctl.conf</span> file and
@@ -447,15 +472,15 @@ sudo mount /path/to/filesystem</pre>
             <li class="li">Create or choose a directory that will serve as your master data storage area. This
                directory should have sufficient disk space for your data and be owned by the
                   <samp class="ph codeph">gpadmin</samp> user and group. For example, run the following commands
-               as root:  <pre class="pre codeblock"># mkdir /data/master</pre>
+               as <samp class="ph codeph">root</samp>:  <pre class="pre codeblock"># mkdir /data/master</pre>
 </li>
 
             <li class="li">Change ownership of this directory to the <samp class="ph codeph">gpadmin</samp> user. For
                example: <pre class="pre codeblock"># chown -R gpadmin /data/master</pre>
 </li>
 
-            <li class="li">Using gpssh, create the master data directory location on your standby master as
-               well. For example:
+            <li class="li">Using <samp class="ph codeph">gpssh</samp>, create the master data directory location on your
+               standby master as well. For example:
                <pre class="pre codeblock"># gpssh -h smdw -e 'mkdir /data/master'
 # gpssh -h smdw -e 'chown -R gpadmin /data/master' </pre>
 </li>
@@ -476,8 +501,8 @@ sdw3</pre>
 
             <li class="li">To use JBOD, create temporary directory locations for the master, standby, and all
                the segments. The following example uses two disks with the workfile names
-                  <span class="ph filepath">/data1/tmp</span> and <span class="ph filepath">/data2/tmp</span>.
-               <pre class="pre codeblock"># dirs="/data1/tmp /data2/tmp"
+                  <samp class="ph codeph">/data1/tmp</samp> and
+               <samp class="ph codeph">/data2/tmp</samp>:<pre class="pre codeblock"># dirs="/data1/tmp /data2/tmp"
 # mkdir $dirs# chown -R gpadmin $dirs.
 # gpssh -h smdw -e "mkdir $dirs"
 # gpssh -h smdw -e "chown -R gpadmin $dirs"
@@ -485,11 +510,11 @@ sdw3</pre>
 # gpssh -f seg_hosts -e "chown -R gpadmin $dirs"</pre>
 </li>
 
-            <li class="li">Log in to the master host as gpadmin. Make a copy of the
+            <li class="li">Log in to the master host as <samp class="ph codeph">gpadmin</samp>. Make a copy of the
                   <span class="ph filepath">gpinitsystem_config</span> file to use as a starting point. For
                example:
-               <pre class="pre codeblock">$ su - gpadmin$ cp 
-$GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config /home/gpadmin/gpconfigs/gpinitsystem_config </pre>
+               <pre class="pre codeblock">$ su - gpadmin
+$ cp $GPHOME/docs/cli_help/gpconfigs/gpinitsystem_config /home/gpadmin/gpconfigs/gpinitsystem_config </pre>
 </li>
 
             <li class="li">Open the file you just copied in a text editor. Set all of the required parameters
@@ -532,9 +557,9 @@ DFS_URL=namenode-host-name:8020/hawq</pre>
 
             <li class="li">Save and close the file.</li>
 
-            <li class="li">Run the following command referencing the path and file name of your initialization
-               configuration file (<span class="ph filepath">gpinitsystem_config</span>) and host file
-                  (<span class="ph filepath">seg_hosts</span>). For example:
+            <li class="li">Run the <samp class="ph codeph">gpinitsystem</samp> utility and reference the path and file name
+               of your initialization configuration file (<span class="ph filepath">gpinitsystem_config</span>)
+               and host file (<span class="ph filepath">seg_hosts</span>). For example:
                   <pre class="pre codeblock">$ cd ~
 $ gpinitsystem -c gpconfigs/gpinitsystem_config -h seg_hosts</pre>
 <p class="p">For
@@ -627,9 +652,10 @@ Press y to start the initialization.</pre>
 
                      <li class="li">To best handle failovers, the active namenode should be
                            <samp class="ph codeph">nn1</samp>. If you suspect <samp class="ph codeph">nn2</samp> is the active
-                        namenode, check "dfs.ha.namenodes.phdcluster " and verify that the active
-                        namenode is <samp class="ph codeph">nn1</samp> and not <samp class="ph codeph">nn2</samp>. If it is not,
-                        reorder the values in "dfs.ha.namenodes.phdcluster ".<p class="p">If this parameter is
+                        namenode, check <samp class="ph codeph">dfs.ha.namenodes.phdcluster</samp> and verify that
+                        the active namenode is <samp class="ph codeph">nn1</samp> and not <samp class="ph codeph">nn2</samp>. If
+                        it is not, reorder the values in
+                           <samp class="ph codeph">dfs.ha.namenodes.phdcluster</samp>.<p class="p">If this parameter is
                            changed, please make sure it is changed on the HAWQ master and all
                            segments. </p>
 </li>
@@ -649,9 +675,9 @@ DFS_URL=phdcluster/path/to/hawq/data  </pre>
                      <li class="li">Replace <samp class="ph codeph">phdcluster</samp> with the real service ID configured in
                         HDFS.</li>
 
-                     <li class="li">Replace <span class="ph filepath">/path/to/hawq/data</span> with the the directory
-                        where the user want to store the data on HDFS, and make sure it exists and
-                        is writable.</li>
+                     <li class="li">Replace <samp class="ph codeph">/path/to/hawq/data</samp> with the the directory where
+                        the user want to store the data on HDFS, and make sure it exists and is
+                        writable.</li>
 
                   </ul>
 
@@ -707,7 +733,7 @@ Time: 7.266 ms</pre>
             configuration file) before re-initialization. See <a class="xref" href="#ensuringthathdfsworks">Ensure that HDFS Works</a>
             for details. </p>
 
-         <p class="p">If other issues occur, go to the <a class="xref" href="http://support.pivotal.io">Pivotal Customer Support</a> page.</p>
+         <p class="p">If other issues occur, go to the <a class="xref" href="http://support.pivotal.io" target="_blank">Pivotal Customer Support</a> page.</p>
 
 
       </div>

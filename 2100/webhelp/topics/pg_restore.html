@@ -46,11 +46,11 @@
     <div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2>
       
       <p class="p"><samp class="ph codeph">pg_restore</samp> is a utility for restoring a database from an archive created
-        by <samp class="ph codeph"><a class="xref" href="pg_dump.html">pg_dump</a></samp> in one of
-        the non-plain-text formats. <samp class="ph codeph">pg_restore</samp> reconstructs the database to the
-        state it was in at the time it was saved. The archive files also allow<samp class="ph codeph">
-          pg_restore</samp> to be selective about what is restored, or even to reorder the items
-        prior to being restored.</p>
+        by <samp class="ph codeph"><a class="xref" href="pg_dump.html">pg_dump</a></samp> in one of the
+        non-plain-text formats. <samp class="ph codeph">pg_restore</samp> reconstructs the database to the state
+        it was in at the time it was saved. The archive files also allow<samp class="ph codeph"> pg_restore</samp>
+        to be selective about what is restored, or even to reorder the items prior to being
+        restored.</p>
 
       <p class="p"><samp class="ph codeph">pg_restore</samp> can operate in two modes. If a database name is specified, the
         archive is restored directly into the database. Otherwise, a script containing the SQL
@@ -66,22 +66,18 @@
 
     </div>
 
-    <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options</h2>
-      
-      <dl class="dl parml">
+    <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options</h2><dl class="dl parml">
         
           <dt class="dt pt dlterm">
             <var class="keyword varname">filename</var>
           </dt>
 
           <dd class="dd pd">Specifies the location of the archive file to be restored. If not specified, the
-            standard input is used.</dd>
+            standard input is used. </dd>
 
         
       </dl>
-
-      <div class="sectiondiv">
-        <strong class="ph b">Restore Options</strong>
+<div class="sectiondiv"><strong class="ph b">Restore Options</strong>
         <dl class="dl parml">
           
             <dt class="dt pt dlterm">-a | --data-only</dt>
@@ -130,9 +126,9 @@
           
             <dt class="dt pt dlterm">-F t |c | --format=tar | custom</dt>
 
-            <dd class="dd pd">The format of the archive produced by <samp class="ph codeph"><a class="xref" href="pg_dump.html">pg_dump</a></samp>. It is not necessary to specify the format,
-              since <samp class="ph codeph">pg_restore</samp> will determine the format automatically. Format can
-              be either <samp class="ph codeph">tar</samp> or <samp class="ph codeph">custom</samp>.</dd>
+            <dd class="dd pd">The format of the archive produced by <samp class="ph codeph"><a class="xref" href="pg_dump.html">pg_dump</a></samp>. It is not necessary to specify the format, since
+                <samp class="ph codeph">pg_restore</samp> will determine the format automatically. Format can be
+              either <samp class="ph codeph">tar</samp> or <samp class="ph codeph">custom</samp>.</dd>
 
           
           
@@ -166,7 +162,7 @@
             <dt class="dt pt dlterm">-n <var class="keyword varname">schema</var> | --schema=<var class="keyword varname">schema</var></dt>
 
             <dd class="dd pd">Restore only objects that are in the named schema. This can be combined with the
-                <samp class="ph codeph">-t</samp> option to restore  a specific table. </dd>
+                <samp class="ph codeph">-t</samp> option to restore a specific table. </dd>
 
           
           
@@ -177,7 +173,7 @@
             <dd class="dd pd">By default, <samp class="ph codeph">pg_restore</samp> issues <samp class="ph codeph">ALTER OWNER</samp> or
                 <samp class="ph codeph">SET SESSION AUTHORIZATION</samp> statements to set ownership of created
               schema elements. These statements will fail unless you connect to the database as a
-              superuser, or own the objects in the script.  With <samp class="ph codeph">-O</samp>, any user name
+              superuser, or own the objects in the script. With <samp class="ph codeph">-O</samp>, any user name
               can be used for the initial connection, and this user will own all the created
               objects.</dd>
 
@@ -258,10 +254,7 @@
 
           
         </dl>
-
-      </div>
-      <div class="sectiondiv">
-        <strong class="ph b">Connection Options</strong>
+</div><div class="sectiondiv"><strong class="ph b">Connection Options</strong>
         <dl class="dl parml">
           
             <dt class="dt pt dlterm">-h <var class="keyword varname">host</var> | --host <var class="keyword varname">host</var></dt>
@@ -299,17 +292,15 @@
 
           
         </dl>
-
-      </div>
-    </div>
+</div></div>
 
     <div class="section" id="topic1__section6"><h2 class="title sectiontitle">Notes</h2>
       
       <p class="p">If your installation has any local additions to the <samp class="ph codeph">template1</samp> database,
         load the output of <samp class="ph codeph">pg_restore</samp> into an empty database; otherwise you will
-        see errors for duplicate definitions of the added objects.  To make an empty database
-        without any local additions, copy from <samp class="ph codeph">template0</samp> not
-          <samp class="ph codeph">template1</samp>, for example:</p>
+        see errors for duplicate definitions of the added objects. To make an empty database without
+        any local additions, copy from <samp class="ph codeph">template0</samp> not <samp class="ph codeph">template1</samp>.
+        For example:</p>
 
       <pre class="pre codeblock">CREATE DATABASE foo WITH TEMPLATE template0;</pre>
 
@@ -337,12 +328,12 @@
 
       <pre class="pre codeblock">pg_dump -Fc mydb &gt; db.dump</pre>
 
-      <p class="p">To drop the database and recreate it from the dump: </p>
+      <p class="p">Drop the database and recreate it from the dump: </p>
 
       <pre class="pre codeblock">dropdb mydb
 pg_restore -C -d template1 db.dump</pre>
 
-      <p class="p">To reload the dump into a new database called <samp class="ph codeph">newdb</samp>. Notice there is no
+      <p class="p">Reload the dump into a new database called <samp class="ph codeph">newdb</samp>. Notice there is no
           <samp class="ph codeph">-C</samp>, we instead connect directly to the database to be restored into. Also
         note that we clone the new database from <samp class="ph codeph">template0</samp> not
           <samp class="ph codeph">template1</samp>, to ensure it is initially empty: </p>
@@ -350,12 +341,12 @@ pg_restore -C -d template1 db.dump</pre>
       <pre class="pre codeblock">createdb -T template0 newdb
 pg_restore -d newdb db.dump</pre>
 
-      <p class="p">To reorder database items, it is first necessary to dump the table of contents of the
+      <p class="p">Reorder database items, it is first necessary to dump the table of contents of the
         archive:</p>
 
       <pre class="pre codeblock">pg_restore -l db.dump &gt; db.list</pre>
 
-      <p class="p">The listing file consists of a header and one line for each item, for example,</p>
+      <p class="p">The listing file consists of a header and one line for each item. For example,</p>
 
       <pre class="pre codeblock">; Archive created at Fri Jul 28 22:28:36 2006
 ;     dbname: mydb
@@ -381,7 +372,7 @@ pg_restore -d newdb db.dump</pre>
 
       <p class="p">Semicolons start a comment, and the numbers at the start of lines refer to the internal
         archive ID assigned to each item. Lines in the file can be commented out, deleted, and
-        reordered. For example,</p>
+        reordered. For example:</p>
 
       <pre class="pre codeblock">10; 145433 TABLE map_resolutions postgres
 ;2; 145344 TABLE species postgres
@@ -392,7 +383,7 @@ pg_restore -d newdb db.dump</pre>
       <p class="p">Could be used as input to <samp class="ph codeph">pg_restore</samp> and would only restore items 10 and
         6, in that order:</p>
 
-      <p class="p">pg_restore -L db.list db.dump</p>
+      <pre class="pre codeblock">pg_restore -L db.list db.dump</pre>
 
     </div>
 

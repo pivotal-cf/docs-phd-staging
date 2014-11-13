@@ -49,9 +49,9 @@
                 or HAWQ instances. It creates a single (non-parallel) dump file.</p>
 
             <p class="p"><samp class="ph codeph">pg_dumpall</samp> creates a single script file that contains SQL commands.
-                These commands can be used as input to <samp class="ph codeph"><a class="xref" href="psql.html">psql</a></samp> to restore the databases. It does this
-                by calling <samp class="ph codeph"><a class="xref" href="pg_dump.html">pg_dump</a></samp> for each database. It also dumps all the common global database
-                objects.</p>
+                These commands can be used as input to <samp class="ph codeph"><a class="xref" href="psql.html">psql</a></samp> to restore the databases. It does this by calling
+                        <samp class="ph codeph"><a class="xref" href="pg_dump.html">pg_dump</a></samp> for
+                each database. It also dumps all the common global database objects.</p>
 
             <p class="p">This script also includes information about database users and groups, and access
                 permissions that apply to databases as a whole.</p>
@@ -68,9 +68,7 @@
 
         </div>
 
-        <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options</h2>
-            
-            <div class="sectiondiv">
+        <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options </h2><div class="sectiondiv">
                 <strong class="ph b">Dump Options</strong>
                 <dl class="dl parml">
                     
@@ -86,7 +84,8 @@
 
                         <dd class="dd pd">Output commands to drop database objects before creating them. This
                             option only works for the plain-text format. For the archive formats,
-                            you can specify the option when you call <samp class="ph codeph">pg_restore</samp>. </dd>
+                            you can specify the option when you call <samp class="ph codeph">pg_restore</samp>.
+                        </dd>
 
                     
                     
@@ -130,7 +129,7 @@
                         <dt class="dt pt dlterm">-i | --ignore-version</dt>
 
                         <dd class="dd pd">Ignore version mismatch between <samp class="ph codeph"><a class="xref" href="pg_dump.html">pg_dump</a></samp> and the database server.
-                                <samp class="ph codeph">pg_dump</samp>.  <samp class="ph codeph">pg_dump</samp> can dump from
+                                <samp class="ph codeph">pg_dump</samp>. <samp class="ph codeph">pg_dump</samp> can dump from
                             servers running previous releases of HAWQ, but very old versions may not
                             be supported. Use this option if you need to override the version
                             check.</dd>
@@ -215,7 +214,7 @@
                             disable triggers on the target tables while the data is reloaded. Use
                             this if you have triggers on the tables that you do not want to invoke
                             during data reload. The commands emitted for
-                                <samp class="ph codeph">--disable-triggers</samp> must be performed  as superuser.
+                                <samp class="ph codeph">--disable-triggers</samp> must be performed as superuser.
                             Specify a superuser name with <samp class="ph codeph">-S</samp>, and be careful when
                             starting the script as a superuser.</dd>
 
@@ -242,15 +241,12 @@
 
                     
                 </dl>
-
-            </div>
-            <div class="sectiondiv">
-                <strong class="ph b">Connection Options</strong>
+</div><div class="sectiondiv"><strong class="ph b">Connection Options</strong>
                 <dl class="dl parml">
                     
                         <dt class="dt pt dlterm">-h <var class="keyword varname">host</var> | --host <var class="keyword varname">host</var></dt>
 
-                        <dd class="dd pd">The host name of the HAWQ master database server.  If not specified,
+                        <dd class="dd pd">The host name of the HAWQ master database server. If not specified,
                             reads from the environment variable <samp class="ph codeph">PGHOST</samp> or defaults
                             to <samp class="ph codeph">localhost</samp>.</dd>
 
@@ -279,14 +275,12 @@
 
                     
                 </dl>
-
-            </div>
-        </div>
+</div></div>
 
         <div class="section" id="topic1__section7"><h2 class="title sectiontitle">Notes</h2>
             
-            <p class="p">Since <samp class="ph codeph">pg_dumpall</samp> calls <samp class="ph codeph"><a class="xref" href="pg_dump.html">pg_dump</a></samp> internally, some diagnostic messages
-                will refer to <samp class="ph codeph">pg_dump</samp>. </p>
+            <p class="p">Since <samp class="ph codeph">pg_dumpall</samp> calls <samp class="ph codeph"><a class="xref" href="pg_dump.html">pg_dump</a></samp> internally, some diagnostic messages will refer to
+                    <samp class="ph codeph">pg_dump</samp>. </p>
 
             <p class="p">Once a database is restored, it is wise to run <samp class="ph codeph">ANALYZE</samp> on each
                 database so the query planner has useful statistics. You can also run
@@ -300,15 +294,15 @@
 
         <div class="section" id="topic1__section8"><h2 class="title sectiontitle">Examples</h2>
             
-            <p class="p">To dump all databases: </p>
+            <p class="p">Dump all databases: </p>
 
             <pre class="pre codeblock">pg_dumpall &gt; db.out</pre>
 
-            <p class="p">To reload this file:</p>
+            <p class="p">Reload the specified file:</p>
 
             <pre class="pre codeblock">psql template1 -f db.out</pre>
 
-            <p class="p">To dump only global objects (including filespaces and resource queues):</p>
+            <p class="p">Dump only global objects (including filespaces and resource queues):</p>
 
             <pre class="pre codeblock">pg_dumpall -g -f -r</pre>
 
@@ -316,11 +310,7 @@
 
         <div class="section" id="topic1__section9"><h2 class="title sectiontitle">See Also</h2>
             
-            <p class="p">
-                <samp class="ph codeph">
-                    <a class="xref" href="pg_dump.html">pg_dump</a>
-                </samp>
-            </p>
+            <p class="p"><samp class="ph codeph"><a class="xref" href="pg_dump.html">pg_dump</a></samp></p>
 
         </div>
 

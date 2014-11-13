@@ -2,7 +2,7 @@
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xml:lang="en-us" lang="en-us">
-<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="This section describes how to upgrade HAWQ and its components. Upgrading HAWQ Preparing to Upgrade HAWQ Upgrading to HAWQ 1.2.0.0 Upgrading the Components  Prerequisites for Upgrading MADlib Upgrading ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Upgrading HAWQ and Components"/><meta name="DC.Relation" scheme="URI" content="../topics/HAWQInstallationandUpgrade.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="upgradinghawqandcomponents"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Upgrading HAWQ and Components</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="This section describes how to upgrade HAWQ and its components if installed manually. Note: Follow these instructions if you installed HAWQ manually. If you installed HAWQ using the PHD Manager ( ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Upgrading HAWQ and the HAWQ Components"/><meta name="DC.Relation" scheme="URI" content="../topics/HAWQInstallationandUpgrade.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="upgradinghawqandcomponents"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Upgrading HAWQ and the HAWQ Components</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
           
           var prefix = "../index.html";
           
@@ -31,10 +31,13 @@
 <table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/PivotalHAWQ.html" title="Pivotal HAWQ">Pivotal HAWQ</a> / <a class="navheader_parent_path" href="../topics/HAWQInstallationandUpgrade.html" title="HAWQ Installation and Upgrade">HAWQ Installation and Upgrade</a></td><td><div class="navheader">
 <span class="navparent"><a class="link" href="../topics/HAWQInstallationandUpgrade.html" title="HAWQ Installation and Upgrade"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Installation and Upgrade</span></a></span>  </div></td></tr></tbody></table>
 
-   <h1 class="title topictitle1">Upgrading HAWQ and Components</h1>
+   <h1 class="title topictitle1">Upgrading HAWQ and the HAWQ Components</h1>
 
    <div class="body">
-      <p class="p">This section describes how to upgrade HAWQ and its components.</p>
+      <p class="p">This section describes how to upgrade HAWQ and its components if installed manually.</p>
+
+      <div class="note note"><span class="notetitle">Note:</span> Follow these instructions if you installed HAWQ manually. If you installed HAWQ using
+         the PHD Manager (<samp class="ph codeph">icm_client</samp>), use the instructions in <a class="xref" href="PHDInstallationandAdministration.html">PHD Installation and Administration</a> to upgrade.</div>
 
       <ul class="ul">
          <li class="li">
@@ -45,7 +48,15 @@
                </li>
 
                <li class="li">
-                  <a class="xref" href="#upgradingtohawq1200">Upgrading to HAWQ 1.2.0.0</a>
+                  <a class="xref" href="#upgradingtohawq1200">Upgrade from HAWQ 1.1.x to HAWQ 1.2.1</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#topic_xbf_fp1_1q">Upgrade from HAWQ 1.2.0.x to HAWQ 1.2.1</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#topic_hfm_f41_1q">HAWQ Post-Upgrade</a>
                </li>
 
             </ul>
@@ -53,20 +64,18 @@
          </li>
 
          <li class="li">
-            <a class="xref" href="#upgradingthecomponents">Upgrading the Components </a>
+            <a class="xref" href="#upgradingthecomponents">Upgrading the HAWQ Components</a>
             <ul class="ul">
                <li class="li">
-                  <a class="xref" href="#prerequisitesforupgradingmadlib">Prerequisites for Upgrading
-                     MADlib</a>
+                  <a class="xref" href="#prerequisitesforupgradingmadlib">Upgrading PL/R and pgcrytpo</a>
                </li>
 
                <li class="li">
-                  <a class="xref" href="#upgradingmadlibonhawq1200">Upgrading MADlib on HAWQ 1.2.0.0</a>
+                  <a class="xref" href="#topic_f3h_rsw_1q">Upgrading PL/Java</a>
                </li>
 
                <li class="li">
-                  <a class="xref" href="#manualresizeofinputlocalreaddefaultbuffersize">Manual Resize of
-                     input.localread.default.buffersize</a>
+                  <a class="xref" href="#upgradingmadlibonhawq1200">Upgrading MADlib 1.6 on HAWQ 1.2.1 </a>
                </li>
 
             </ul>
@@ -86,20 +95,16 @@
       <h2 class="title topictitle2">Upgrading HAWQ</h2>
 
       <div class="body">
-         <p class="p">The upgrade path supported for this release is HAWQ 1.1.x to HAWQ 1.2.0.0. Pivotal
-            recommends that you use the ICM to upgrade your HAWQ system from 1.1.x to 1.2.0.0.</p>
+         <div class="p">The upgrade paths supported for this release are:<ul class="ul" id="upgradinghawq__ul_emk_ssr_zp">
+               <li class="li">HAWQ 1.1.x to HAWQ 1.2.1</li>
 
-         <div class="note note"><span class="notetitle">Note:</span> 
-            <ul class="ul" id="upgradinghawq__ul_ipn_4ht_4p">
-               <li class="li">Pivotal recommends that you back up any existing data before upgrading to
-                  HAWQ1.2.0.0</li>
-
-               <li class="li">Follow these instructions if you installed HAWQ manually. To upgrade the PHD
-                  Manager, see <a class="xref" href="PHDInstallationandAdministration.html">PHD Installation and Administration</a>.</li>
+               <li class="li">HAWQ 1.2.0.x to HAWQ 1.2.1</li>
 
             </ul>
+</div>
 
-         </div>
+         <div class="note note"><span class="notetitle">Note:</span> Pivotal recommends that you back up any existing data before upgrading to HAWQ
+            1.2.1.</div>
 
       </div>
 
@@ -108,28 +113,28 @@
 
          <div class="body">
             <p class="p">Perform these steps on your current HAWQ system. This procedure is performed from
-               your HAWQ master host and should be executed by the HAWQ superuser (gpadmin).</p>
+               your HAWQ master host and should be executed by the HAWQ superuser
+                  (<samp class="ph codeph">gpadmin</samp>).</p>
 
             <ol class="ol" id="preparingtoupgradehawq__ol_wml_mht_4p">
-               <li class="li">Log in to the HAWQ master as the <samp class="ph codeph">gpadmin</samp> user</li>
+               <li class="li">Log in to the HAWQ master as the <samp class="ph codeph">gpadmin</samp> user.</li>
 
-               <li class="li">(<em class="ph i">optional</em> ) Vacuum all databases prior to upgrade. </li>
+               <li class="li">(<em class="ph i">Optional</em>) Vacuum all databases prior to upgrade. </li>
 
-               <li class="li">(<em class="ph i">optional</em> ) Clean out old server log files from your master and segment
-                  data directories.<div class="note note"><span class="notetitle">Note:</span> Running Vacuum and cleaning out old logs files is not
-                     required, but it will reduce the size of HAWQ files to be backed up and
-                     migrated.</div>
-
-               </li>
+               <li class="li">(<em class="ph i">Optional</em>) Clean out old server log files from your master and segment
+                  data directories.<div class="note note"><span class="notetitle">Note:</span> Running <samp class="ph codeph">vacuum</samp> and cleaning out old logs
+                     files is not required, but it will reduce the size of HAWQ files to be backed
+                     up and migrated.</div>
+</li>
 
                <li class="li">Run <span class="keyword cmdname">gpstate</span> to check for failed segments. If you have failed
                   segments, you must recover them using <span class="keyword cmdname">gprecoverseg</span> before you
                   can upgrade.</li>
 
                <li class="li">Copy or preserve any additional folders or files (such as backup folders) that
-                  you have added in the HAWQ data directories or <span class="ph filepath">$GPHOME</span>
-                  directory. Only files or folders strictly related to HAWQ operations are preserved
-                  by the migration utility.</li>
+                  you have added in the HAWQ data directories or <samp class="ph codeph">$GPHOME</samp> directory.
+                  Only files or folders strictly related to HAWQ operations are preserved by the
+                  migration utility.</li>
 
             </ol>
 
@@ -138,43 +143,157 @@
       </div>
 
       <div class="topic nested2" id="upgradingtohawq1200">
-         <h3 class="title topictitle3">Upgrade to HAWQ 1.2.1.0</h3>
+         <h3 class="title topictitle3">Upgrade from HAWQ 1.1.x to HAWQ 1.2.1</h3>
 
          <div class="body">
-            <p class="p">An upgrade from HAWQ 1.1.x or HAWQ 1.2.0 to HAWQ 1.2.1.0 involves stopping HAWQ,
-               updating the HAWQ software binaries, and restarting HAWQ.</p>
+            <p class="p">An upgrade from HAWQ 1.1.x to HAWQ 1.2.1 involves stopping HAWQ, updating the HAWQ
+               software binaries, migrating your system catalog, and restarting HAWQ.</p>
 
             <ol class="ol" id="upgradingtohawq1200__ol_kjl_mht_4p">
-               <li class="li">Log in to your HAWQ master host as the HAWQ administrative user:
-                  <pre class="pre codeblock">$ su - gpadmin</pre>
-
-               </li>
+               <li class="li">Log in to your HAWQ master host as the HAWQ administrative user
+                     (<samp class="ph codeph">gpadmin</samp>): <pre class="pre codeblock">$ su - gpadmin</pre>
+</li>
 
                <li class="li">Perform a smart shutdown of your current HAWQ system (shut down all active
                   connections to the database): <pre class="pre codeblock">$ gpstop</pre>
+</li>
 
-               </li>
-
-               <li class="li">Run the installer for 1.2.1 on the HAWQ master host using rpm. This installs HAWQ
-                  to /usr/local/hawq-1.2.1.0 alongside any older versions, and it will point a soft
-                  link from /usr/local/hawq to /usr/local/hawq-1.2.1.0
-                  <pre class="pre codeblock">$ su - root # rpm -ivh hawq-1.2.1.0.x86_64.rpm --force</pre>
-
-               </li>
+               <li class="li">Run the installer for 1.2.1 on the HAWQ master host using <samp class="ph codeph">rpm</samp>.
+                  This installs HAWQ to <span class="ph filepath">/usr/local/hawq-1.2.1.0</span> alongside any
+                  older versions, and it will point a soft link from
+                     <span class="ph filepath">/usr/local/hawq</span> to
+                     <span class="ph filepath">/usr/local/hawq-1.2.1.0</span>:<pre class="pre codeblock">$ su - root
+# rpm -ivh hawq-1.2.1.0.x86_64.rpm --force</pre>
+</li>
 
                <li class="li">Run the following command to install the HAWQ 1.2.1.0 binaries on all the hosts
-                  specified in the <span class="ph filepath">hostfile</span> :
+                  specified in the <span class="ph filepath">hostfile</span> file:
                   <pre class="pre codeblock"># gpssh -f hostfile -e "rpm -ivh hawq-1.2.1.0.x86_64.rpm --force"</pre>
+</li>
 
-               </li>
+               <li class="li">Migrate the system catalog using the <samp class="ph codeph">gpmigrator</samp> utility.<p class="p">If
+                     MADlib is installed, the <samp class="ph codeph">gpmigrator</samp> utility drops the built-in
+                     MADlib objects (functions, aggregates, and types). If you have user-defined
+                     objects, such as UDFs, that depend on these MADlib objects, then the
+                        <samp class="ph codeph">gpmigrator</samp> utility detects direct or indirect dependencies
+                     in all the databases and creates a log.</p>
+<p class="p">To check for MADlib
+                     dependencies:</p>
+<ol class="ol" type="a" id="upgradingtohawq1200__ol_jc1_sqw_1q">
+                     <li class="li">Set the following environment variables: <ul class="ul" id="upgradingtohawq1200__ul_yc1_sqw_1q">
+                           <li class="li"><samp class="ph codeph">PGPORT</samp> (default=5432)</li>
 
-               <li class="li">After all segment hosts have been upgraded, you can log in as gpadmin user and
-                  restart your HAWQ system: <pre class="pre codeblock">$ su - gpadmin
+                           <li class="li"><samp class="ph codeph">PGUSER</samp> (default=current logged on user)</li>
+
+                           <li class="li"><samp class="ph codeph">PGHOST</samp> (default=localhost)</li>
+
+                           <li class="li"><samp class="ph codeph">PGPASSWORD</samp> (If empty, the script will prompt for a
+                              password)</li>
+
+                        </ul>
+</li>
+
+                     <li class="li">Run
+                           <samp class="ph codeph">gpmigrator</samp>:<pre class="pre codeblock">gpmigrator <var class="keyword varname">SOURCE_VERSION_GPHOME</var> <var class="keyword varname">TARGET_VERSION_GPHOME</var></pre>
+<p class="p">If
+                           there are user-defined objects that depend on MADlib functionality, then
+                           the script will detect these and halt.</p>
+</li>
+
+                     <li class="li">Back up your data and drop all user-defined objects before resuming the
+                        migration process.</li>
+
+                  </ol>
+</li>
+
+               <li class="li">Run <samp class="ph codeph">gpmigrator</samp> again once you've removed the MADlib
+                  dependencies. When <samp class="ph codeph">gpmigrator</samp> reports success, the new HAWQ
+                  database will be up and running. The <samp class="ph codeph">gpmigrator</samp> utility backs up
+                  the original catalog and restores it in case of failures. This leaves the database
+                  in a usable state.</li>
+
+               <li class="li">After all segment hosts have been upgraded, you can log in as the
+                     <samp class="ph codeph">gpadmin</samp> user and restart your HAWQ system:
+                  <pre class="pre codeblock">$ su - gpadmin
 $ gpstart</pre>
-
-               </li>
+</li>
 
             </ol>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="topic_xbf_fp1_1q">
+         <h3 class="title topictitle3">Upgrade from HAWQ 1.2.0.x to HAWQ 1.2.1</h3>
+
+         <div class="body">
+            <p class="p">An upgrade from HAWQ 1.2.0.x to HAWQ 1.2.1 involves stopping HAWQ, updating the HAWQ
+               software binaries, and restarting HAWQ.</p>
+
+            <ol class="ol" id="topic_xbf_fp1_1q__ol_rgf_fp1_1q">
+               <li class="li">Log in to your HAWQ master host as the HAWQ administrative user
+                     (<samp class="ph codeph">gpadmin</samp>): <pre class="pre codeblock">$ su - gpadmin</pre>
+</li>
+
+               <li class="li">Perform a smart shutdown of your current HAWQ system (shut down all active
+                  connections to the database): <pre class="pre codeblock">$ gpstop</pre>
+</li>
+
+               <li class="li">Run the installer for 1.2.1 on the HAWQ master host using <samp class="ph codeph">rpm</samp>.
+                  This installs HAWQ to <span class="ph filepath">/usr/local/hawq-1.2.1.0</span> alongside any
+                  older versions, and it will point a soft link from
+                     <span class="ph filepath">/usr/local/hawq</span> to
+                     <span class="ph filepath">/usr/local/hawq-1.2.1.0</span>:<pre class="pre codeblock">$ su - root
+# rpm -ivh hawq-1.2.1.0.x86_64.rpm --force</pre>
+</li>
+
+               <li class="li">Run the following command to install the HAWQ 1.2.1.0 binaries on all the hosts
+                  specified in the <span class="ph filepath">hostfile</span> file:
+                  <pre class="pre codeblock"># gpssh -f hostfile -e "rpm -ivh hawq-1.2.1.0.x86_64.rpm --force"</pre>
+</li>
+
+               <li class="li">After all segment hosts have been upgraded, you can log in as the
+                     <samp class="ph codeph">gpadmin</samp> user and restart your HAWQ system:
+                  <pre class="pre codeblock">$ su - gpadmin
+$ gpstart</pre>
+</li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="topic_hfm_f41_1q">
+         <h3 class="title topictitle3">HAWQ Post-Upgrade</h3>
+
+         <div class="body">
+            <p class="p">After completing your HAWQ upgrade, perform the following task(s) as needed.</p>
+
+         </div>
+
+         <div class="topic nested3" id="manualresizeofinputlocalreaddefaultbuffersize">
+            <h4 class="title topictitle4">Manual Resize of input.localread.default.buffersize</h4>
+
+            <div class="body">
+               <p class="p">An older version of <samp class="ph codeph">hdfs-client.xml</samp> with a smaller buffer size
+                  might be retained during upgrade to HAWQ 1.2.1, resulting in performance
+                  degradation if you are planning to use Parquet storage format. This issue does not
+                  occur with new installations. To avoid this issue, Pivotal recommends manually
+                     setting the <samp class="ph codeph">input.localread.default.buffersize</samp> parameter to
+                  2097152 in the <span class="ph filepath">hdfs-climate.xml</span> file, as follows:</p>
+
+               <pre class="pre codeblock">&lt;property&gt;
+&lt;name&gt;input.localread.default.buffersize&lt;/name&gt;
+&lt;value&gt;2097152&lt;/value&gt;
+&lt;description&gt;
+number of bytes of the buffer which is used to hold the data from block file and verify checksum.
+it is only used when "dfs.client.read.shortcircuit" is set to true. default is 1048576.
+&lt;/description&gt;
+&lt;/property&gt;</pre>
+
+            </div>
 
          </div>
 
@@ -183,101 +302,78 @@ $ gpstart</pre>
    </div>
 
    <div class="topic nested1" id="upgradingthecomponents">
-      <h2 class="title topictitle2">Upgrading the Components</h2>
+      <h2 class="title topictitle2">Upgrading the HAWQ Components</h2>
 
       <div class="body">
-         <p class="p">This section describes how you can upgrade components such as MADlib, PL/R, pgcrypto,
-            and PL/Java.</p>
-
-         <div class="note note"><span class="notetitle">Note:</span> If you havepreviously installed versions of PL/R,and pgcrypto packages, then you must
-            download newer binary compatible version of these packages from Pivotal. You will then
-            need to re-install the newer binaries. See <a class="xref" href="http://pivotalhd.docs.pivotal.io/doc/2100/InstallingtheHAWQComponents.html" target="_blank">Installing Cryptographic Functions for
-               PostgreSQL</a> for instructions.</div>
-
-         <p class="p"> PL/Java is a new component, therefore if you are installing PL/Java as a part of the
-            upgrade or expansion process, then make sure you have carried out steps as described
-               in <a class="xref" href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a>, in the <a class="xref" href="HAWQAdministration.html">HAWQ Administration</a>documentation.</p>
+         <p class="p">This section describes how you can upgrade components such as PL/R, pgcrypto, PL/Java,
+            and MADlib.</p>
 
       </div>
 
       <div class="topic nested2" id="prerequisitesforupgradingmadlib">
-         <h3 class="title topictitle3">Prerequisites for Upgrading MADlib</h3>
+         <h3 class="title topictitle3">Upgrading PL/R and pgcrytpo</h3>
 
          <div class="body">
-            <ol class="ol" id="prerequisitesforupgradingmadlib__ol_gpc_nht_4p">
-               <li class="li">Ensure that you have upgraded PHD 1.1 or PHD 2.0 to PHD 2.1.</li>
+            <p class="p">If you have previously installed versions of the PL/R and pgcrypto packages, then you
+               must download newer binary compatible version of these packages from Pivotal. You
+               will then need to re-install the newer binaries. See <a class="xref" href="InstallingtheHAWQComponents.html#installingthehawqcomponents">Installing the HAWQ Components</a> for
+               instructions.</p>
 
-               <li class="li">Ensure that HAWQ 1.2.1.0 is installed on all nodes.<p class="p">During a HAWQ upgrade to
-                     1.2, the <samp class="ph codeph">gpmigrator</samp> script drops the built-in MADlib objects
-                     (functions, aggregates, and types). If you have user-defined objects, such as
-                     UDFs, that depend on these MADlib objects, then the <samp class="ph codeph">gpmigrator</samp>
-                     script detects direct or indirect dependencies in all the databases and creates
-                     a log. To proceed with the migration:</p>
-</li>
+         </div>
 
-            </ol>
+      </div>
 
-            <ol class="ol" id="prerequisitesforupgradingmadlib__ol_qpc_nht_4p">
-               <li class="li">Back up the data.</li>
+      <div class="topic nested2" id="topic_f3h_rsw_1q">
+         <h3 class="title topictitle3">Upgrading PL/Java</h3>
 
-               <li class="li">Drop all user-defined objects before resuming the migration process.</li>
-
-            </ol>
+         <div class="body">
+            <p class="p">PL/Java is a new component, therefore if you are installing PL/Java as a part of the
+               upgrade or expansion process, then make sure you have carried out steps as described
+                  in <a class="xref" href="ExpandingtheHAWQSystem.html">Expanding the HAWQ System</a> in the <a class="xref" href="HAWQAdministration.html">HAWQ Administration</a> documentation.</p>
 
          </div>
 
       </div>
 
       <div class="topic nested2" id="upgradingmadlibonhawq1200">
-         <h3 class="title topictitle3">Upgrading MADlib on HAWQ 1.2.1.0</h3>
+         <h3 class="title topictitle3">Upgrading MADlib 1.6 on HAWQ 1.2.1 </h3>
 
          <div class="body">
-            <ol class="ol" id="upgradingmadlibonhawq1200__ol_vnc_nht_4p">
-               <li class="li">Log in to your HAWQ master host as the HAWQ administrative user: </li>
+            <div class="note note"><span class="notetitle">Note:</span> Before upgrading MADlib, ensure that you have completed the upgrades for PHD 2.1
+               and HAWQ 1.2.1.</div>
 
-               <li class="li">To check for Madlib dependencies, set the environment variables:
-                     <samp class="ph codeph">PGPORT</samp>(<samp class="ph codeph">default=5432</samp>),
-                  <samp class="ph codeph">PGUSER</samp>(default=current logged on user),<samp class="ph codeph">
-                     PGHOST(default=localhost)</samp> and <samp class="ph codeph">PGPASSWORD</samp> (If empty,
-                  the script will prompt for a password)</li>
+            <p class="p">The instructions for upgrading MADlib 1.6 are different depending on the version of
+               MADlib from which you are upgrading:</p>
 
-               <li class="li">Run <samp class="ph codeph">gpmigrator SOURCE_VERSION_GPHOME TARGET_VERSION_GPHOME</samp>
-               </li>
+            <ul class="ul">
+               <li class="li">If you are upgrading from MADlib 0.5: <ol class="ol" id="upgradingmadlibonhawq1200__ol_pjy_j4c_bq">
+                     <li class="li">Ensure you've removed any MADlib dependencies as described in <a class="xref" href="#upgradingtohawq1200">Upgrade from HAWQ 1.1.x to HAWQ 1.2.1</a>.</li>
 
-               <li class="li">If there are user defined objects that depend on Madlib functionality, then the
-                  script will detect these and halt. Take appropriate action to remove these
-                     dependencies.<p class="p">When the gpmigrator reports success, the new HAWQ database will
-                     be up and running. The gpmigrator script backs up the original catalog and
-                     restores it in case of failures. This leaves the database in a usable
-                     state.</p>
+                     <li class="li">Use the MADlib install script (<span class="ph filepath">hawq_install.sh</span>) to
+                        install MADlib 1.6.</li>
 
-               </li>
+                     <li class="li">Use the MADlib <samp class="ph codeph">madpack</samp> utility with the
+                           <samp class="ph codeph">install</samp> option to register the MADLib objects in
+                        HAWQ.</li>
 
-            </ol>
+                  </ol>
+</li>
 
-         </div>
+               <li class="li">If you are upgrading from MADlib 1.5: <ol class="ol" id="upgradingmadlibonhawq1200__ol_o1r_4pc_bq">
+                     <li class="li">Use the MADlib install script (<span class="ph filepath">hawq_install.sh</span>) to
+                        install MADlib 1.6.</li>
 
-      </div>
+                     <li class="li">Use the MADlib <samp class="ph codeph">madpack</samp> utility with the
+                           <samp class="ph codeph">upgrade</samp> option to register the MADLib objects in
+                        HAWQ.</li>
 
-      <div class="topic nested2" id="manualresizeofinputlocalreaddefaultbuffersize">
-         <h3 class="title topictitle3">Manual Resize of input.localread.default.buffersize</h3>
+                  </ol>
+</li>
 
-         <div class="body">
-            <p class="p">An older version of <samp class="ph codeph">hdfs-client.xml</samp> with a smaller buffer size might
-               be retained during upgrade to HAWQ 1.2.1.0, resulting in performance degradation for
-               those using Parquet storage format. This issue does not occur with new installations.
-               To avoid this issue, Pivotal recommends manually
-                  setting the <samp class="ph codeph">input.localread.default.buffersize</samp> parameter to
-               2097152 in the <span class="ph filepath">hdfs-climate.xml</span> file, as follows:</p>
+            </ul>
 
-            <pre class="pre codeblock">&lt;property&gt;
-&lt;name&gt;input.localread.default.buffersize&lt;/name&gt;
-&lt;value&gt;2097152&lt;/value&gt;
-&lt;description&gt;
-number of bytes of the buffer which is used to hold the data from block file and verify checksum.
-it is only used when "dfs.client.read.shortcircuit" is set to true. default is 1048576.
-&lt;/description&gt;
-&lt;/property&gt;</pre>
+            <p class="p">For more information about the MADlib install script and <samp class="ph codeph">madpack</samp>
+               utility, see <a class="xref" href="InstallingtheHAWQComponents.html#installingmadlibonhawq1">Installing MADlib on HAWQ</a>.</p>
 
          </div>
 

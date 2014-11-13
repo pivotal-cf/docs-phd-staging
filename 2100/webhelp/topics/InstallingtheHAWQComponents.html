@@ -2,7 +2,7 @@
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xml:lang="en-us" lang="en-us">
-<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="This chapter describes how to install additional HAWQ components. Installing Cryptographic Functions for PostgreSQL Install pgcrypto Enabling PostGIS Support Uninstalling pgcrypto Installing PL/R ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Installing the HAWQ Components"/><meta name="DC.Relation" scheme="URI" content="../topics/HAWQInstallationandUpgrade.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="installingthehawqcomponents"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Installing the HAWQ Components</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="This chapter describes how to install additional HAWQ components. Installing Cryptographic Functions for PostgreSQL Install pgcrypto Enable PostGIS Support Uninstalling pgcrypto Installing PL/R ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Installing the HAWQ Components"/><meta name="DC.Relation" scheme="URI" content="../topics/HAWQInstallationandUpgrade.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="installingthehawqcomponents"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Installing the HAWQ Components</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
           
           var prefix = "../index.html";
           
@@ -38,15 +38,14 @@
 
       <ul class="ul">
          <li class="li">
-            <a class="xref" href="#installingcryptographicfunctionsforpostgresql">Installing Cryptographic
-               Functions for PostgreSQL</a>
+            <a class="xref" href="#installingcryptographicfunctionsforpostgresql">Installing Cryptographic Functions for PostgreSQL</a>
             <ul class="ul">
                <li class="li">
                   <a class="xref" href="#installpgcrypto">Install pgcrypto</a>
                </li>
 
                <li class="li">
-                  <a class="xref" href="#enablingpostgissupport">Enabling PostGIS Support</a>
+                  <a class="xref" href="#enablingpostgissupport">Enable PostGIS Support</a>
                </li>
 
                <li class="li">
@@ -54,7 +53,8 @@
                </li>
 
             </ul>
-</li>
+
+         </li>
 
          <li class="li">
             <a class="xref" href="#installingplr">Installing PL/R</a>
@@ -64,7 +64,7 @@
                </li>
 
                <li class="li">
-                  <a class="xref" href="#enablingplrlanguagesupport">Enabling PL/R Language Support</a>
+                  <a class="xref" href="#enablingplrlanguagesupport">Enable PL/R Language Support</a>
                </li>
 
                <li class="li">
@@ -72,19 +72,18 @@
                </li>
 
             </ul>
-</li>
+
+         </li>
 
          <li class="li">
             <a class="xref" href="#installingpljava">Installing PL/Java</a>
             <ul class="ul">
                <li class="li">
-                  <a class="xref" href="#installingthehawqpljavaextension">Installing the HAWQ PL/Java
-                     Extension</a>
+                  <a class="xref" href="#installingthehawqpljavaextension">Install the HAWQ PL/Java Extension</a>
                </li>
 
                <li class="li">
-                  <a class="xref" href="#enablingpljavaandinstallingjarfiles">Enabling PL/Java and Installing
-                     JAR Files</a>
+                  <a class="xref" href="#enablingpljavaandinstallingjarfiles">Enable PL/Java and Install JAR Files</a>
                </li>
 
                <li class="li">
@@ -92,27 +91,27 @@
                </li>
 
             </ul>
-</li>
+
+         </li>
 
          <li class="li">
             <a class="xref" href="#installingmadlibonhawq1">Installing MADlib on HAWQ</a>
             <ul class="ul">
                <li class="li">
-                  <a class="xref" href="#pre-requisitesforinstallingmadlibonhawq">Pre-requisites for
-                     Installing MADlib on HAWQ</a>
+                  <a class="xref" href="#pre-requisitesforinstallingmadlibonhawq">Pre-requisites for Installing MADlib on HAWQ</a>
                </li>
 
                <li class="li">
-                  <a class="xref" href="#installingmadlibonhawq2">Installing MADlib on HAWQ</a>
+                  <a class="xref" href="#installingmadlibonhawq2">Install MADlib on HAWQ</a>
                </li>
 
                <li class="li">
-                  <a class="xref" href="#madlibinstallationscriptreference">MADlib Installation Script
-                     Reference</a>
+                  <a class="xref" href="#madlibinstallationscriptreference">MADlib Installation Script Reference</a>
                </li>
 
             </ul>
-</li>
+
+         </li>
 
       </ul>
 
@@ -123,17 +122,16 @@
       <h2 class="title topictitle2">Installing Cryptographic Functions for PostgreSQL</h2>
 
       <div class="body">
-         <p class="p">For For HAWQ running Greenplum Database version 4.2 and higher, pgcrypto is available as
-            a package that you can download from the Pivotal Download Center and install using the
-            Greenplum Package Manager (gppkg). The Greenplum Package Manager (gppkg) utility
-            installs pgcrypto and other Greenplum Database extensions, along with any dependencies,
-            on all hosts across a cluster. It will also automatically install extensions on new
-            hosts in the case of system expansion and segment recovery.</p>
+         <p class="p">pgcrypto is available as a package that you can download from the Pivotal Download
+            Center and install using the Package Manager utility (<samp class="ph codeph">gppkg</samp>).
+               <samp class="ph codeph">gppkg</samp> installs pgcrypto and other HAWQ extensions, along with any
+            dependencies, on all hosts across a cluster. It will also automatically install
+            extensions on new hosts in the case of system expansion and segment recovery.</p>
 
-         <p class="p">Before you install the <samp class="ph codeph">pgcrypto</samp> software package, make sure that your
-            Greenplum database is running, you have sourced <span class="ph filepath">greenplum_path.sh</span>,
-            and that the <samp class="ph codeph">$MASTER_DATA_DIRECTORY</samp> and <samp class="ph codeph">$GPHOME</samp>
-            variables are set.</p>
+         <div class="note note"><span class="notetitle">Note:</span> Before you install the pgcrypto software package, make sure that your HAWQ database
+            is running, you have sourced <span class="ph filepath">greenplum_path.sh</span>, and that the
+               <samp class="ph codeph">$MASTER_DATA_DIRECTORY</samp> and <samp class="ph codeph">$GPHOME</samp> variables are
+            set.</div>
 
       </div>
 
@@ -164,10 +162,9 @@
 
          <div class="body">
             <p class="p">You must enable <samp class="ph codeph">pgcrypto</samp> support for each database that requires its
-               usage. This is done by running the following:</p>
-
-            <p class="p"><span class="keyword cmdname">pgcrypto.sql</span>. This command is required.
-                  <span class="ph filepath">pgcrypto.sql</span> contains all the pgcrypto functions.</p>
+               usage. This is done by running the <span class="ph filepath">pgcrypto.sql</span> script. This
+               command is required. <span class="ph filepath">pgcrypto.sql</span> contains all the pgcrypto
+               functions.</p>
 
             <pre class="pre codeblock">psql -d dbname -f $GPHOME/share/postgresql/contrib/pgcrypto.sql</pre>
 
@@ -189,7 +186,7 @@
 
                <pre class="pre codeblock">psql -d dbname -f $GPHOME/share/postgresql/contrib/uninstall_pgcrypto.sql</pre>
 
-               <div class="note note"><span class="notetitle">Note:</span> This script does not remove dependent user created objects. </div>
+               <div class="note note"><span class="notetitle">Note:</span> This script does not remove dependent user-created objects. </div>
 
             </div>
 
@@ -212,16 +209,17 @@
       <h2 class="title topictitle2">Installing PL/R</h2>
 
       <div class="body">
-         <p class="p">For For HAWQ running Greenplum Database version 4.2 and higher, PL/R is available as a
-            package that you can download from the Pivotal Download Center and install using the
-            Greenplum Package Manager (gppkg). The Greenplum Package Manager (gppkg) utility
-            installs PL/Rand other Greenplum Database extensions, along with any dependencies, on
-            all hosts across a cluster. It will also automatically install extensions on new hosts
-            in the case of system expansion and segment recovery.</p>
+         <p class="p">PL/R is available as a package that you can download from the Pivotal Download Center
+            and install using the Package Manager utility
+               (<samp class="ph codeph">gppkg</samp>). <samp class="ph codeph">gppkg</samp> installs PL/R and other Greenplum
+            Database extensions, along with any dependencies, on all hosts across a cluster. It will
+            also automatically install extensions on new hosts in the case of system expansion and
+            segment recovery.</p>
 
-         <p class="p">Before you install the pgcrypto software package, make sure that your Greenplum database
-            is running, you have sourced greenplum_path.sh, and that the $MASTER_DATA_DIRECTORY and
-            $GPHOME variables are set.</p>
+         <div class="note note"><span class="notetitle">Note:</span> Before you install the PL/R software package, make sure that your HAWQ database is
+            running, you have sourced <span class="ph filepath">greenplum_path.sh</span>, and that the
+               <samp class="ph codeph">$MASTER_DATA_DIRECTORY</samp> and <samp class="ph codeph">$GPHOME</samp> variables are
+            set.</div>
 
       </div>
 
@@ -229,21 +227,23 @@
          <h3 class="title topictitle3">Install PL/R</h3>
 
          <div class="body">
-            <p class="p">Download the PL/R package from the Pivotal Download Center, then copy it to the
-               master host. Install the software package by running the following command:</p>
+            <div class="p">
+               <ol class="ol" id="installplr__ol_jgp_hps_zp">
+                  <li class="li">Download the PL/R package from the Pivotal Download Center, then copy it to
+                     the master host. Install the software package by running the following
+                     command:<pre class="pre codeblock">$ gppkg -i plr-1.0-rhel5-x86_64.gppkg</pre>
+</li>
 
-            <pre class="pre codeblock">$ gppkg -i plr-1.0-rhel5-x86_64.gppkg</pre>
+                  <li class="li">Restart the database:<pre class="pre codeblock">$ gpstop -r</pre>
+</li>
 
-            <p class="p">Restart the database.</p>
+                  <li class="li">Source the <span class="ph filepath">$GPHOME/greenplum_path.sh</span> file. The extension
+                     and the R environment are installed in the
+                        <span class="ph filepath">$GPHOME/ext/R-2.13.0/</span> directory.</li>
 
-            <pre class="pre codeblock">$ gpstop -r</pre>
+               </ol>
 
-            <p class="p">Source the file <span class="ph filepath">$GPHOME/greenplum_path.sh</span>.The extension and the
-               R environment is installed in this directory:</p>
-
-            <p class="p">
-               <span class="ph filepath">$GPHOME/ext/R-2.13.0/</span>
-            </p>
+            </div>
 
          </div>
 
@@ -254,9 +254,9 @@
 
          <div class="body">
             <p class="p">For each database that requires its use, register the PL/R language with the
-                  <samp class="ph codeph">CREATE LANGUAGE</samp> SQL command or the createlang utility. For
-               example, this command registers the language for the database
-               <samp class="ph codeph">testdb</samp>:</p>
+                  <samp class="ph codeph">CREATE LANGUAGE</samp> SQL command or the <samp class="ph codeph">createlang</samp>
+               utility. For example, running the following command as the <samp class="ph codeph">gpadmin</samp>
+               user registers the language for a database named <samp class="ph codeph">testdb</samp>:</p>
 
             <pre class="pre codeblock">$ createlang plr -d testdb</pre>
 
@@ -288,8 +288,8 @@
             <div class="body">
                <p class="p">For a database that no long requires the PL/R language, remove support for PL/R
                   with the SQL command <samp class="ph codeph">DROP LANGUAGE</samp>or the
-                     <samp class="ph codeph">droplang</samp> utility. For example, running this command run as the
-                     <samp class="ph codeph">gpadmin</samp> user removes support for PL/R from the database
+                     <samp class="ph codeph">droplang</samp> utility. For example, running the following command
+                  as the <samp class="ph codeph">gpadmin</samp> user removes support for PL/R from the database
                      <samp class="ph codeph">testdb</samp>:</p>
 
                <pre class="pre codeblock">$ droplang plr -d testdb</pre>
@@ -304,14 +304,14 @@
             <div class="body">
                <p class="p">If no databases have PL/R as a registered language, uninstall the Greenplum PL/R
                   extension with the <samp class="ph codeph">gppkg</samp> utility. This example uninstalls PL/R
-                  package version 1.0.</p>
+                  package version 1.0:</p>
 
                <pre class="pre codeblock">$ gppkg -r plr-1.0</pre>
 
                <p class="p">You can run the <samp class="ph codeph">gppkg</samp> utility with the options <samp class="ph codeph">-q
                      --all</samp> to list the installed extensions and their versions.</p>
 
-               <p class="p">Restart the database.</p>
+               <p class="p">Then, restart the database.</p>
 
                <pre class="pre codeblock">$ gpstop -r</pre>
 
@@ -319,7 +319,7 @@
                   
                   <p class="p">For a given R library, identify all dependent R libraries and each library's
                      web URL.This can be found by selecting the specific package from the following
-                     navigation page: <a class="xref" href="http://cran.r-project.org/web/packages/available_packages_by_name.html">http://cran.r-project.org/web/packages/available_packages_by_name.html</a>
+                     page: <a class="xref" href="http://cran.r-project.org/web/packages/available_packages_by_name.html" target="_blank">http://cran.r-project.org/web/packages/available_packages_by_name.html</a>
                   </p>
 
                   <div class="p">From the page for the arm library, you can see that this library requires the
@@ -344,8 +344,8 @@
 </div>
 
                   <p class="p">From the command line, use <samp class="ph codeph">wget</samp> to download the
-                     <span class="ph filepath">tar.gz</span> files for the required libraries to the
-                     master node:</p>
+                        <span class="ph filepath">tar.gz</span> files for the required libraries to the master
+                     node:</p>
 
                   <pre class="pre codeblock">$ wget http://cran.r-project.org/src/contrib/arm_1.5-03.tar.gz
 $ wget http://cran.r-project.org/src/contrib/Archive/Matrix/Matrix_1.0-1.tar.gz
@@ -389,22 +389,19 @@ $ gpscp -f /home/gpadmin/hosts_all arm_1.5-03.tar.gz =:/home/gpadmin</pre>
       <h2 class="title topictitle2">Installing PL/Java</h2>
 
       <div class="body">
-         <p class="p">The PL/Java extension is available as a package. Download the package from the Pivotal
-            Download Center and then install it with the Pivotal Package Manager
+         <p class="p">The PL/Java extension is available as a package that you can download from the Pivotal
+            Download Center and then install with the Package Manager utility
                (<samp class="ph codeph">gppkg</samp>).</p>
 
          <div class="note note"><span class="notetitle">Note:</span> Before you install PL/Java:<ul class="ul" id="installingpljava__ul_p5k_nft_4p">
                <li class="li">Ensure that the <samp class="ph codeph">$JAVA_HOME</samp> variable is set to the same path on
                   the master and all the segments.</li>
 
-               <li class="li">
-                  <div class="note note"><span class="notetitle">Note:</span> Perform the following step on all machines to set up
-                        <samp class="ph codeph">ldconfig</samp> for JDK:</div>
-
-                  <pre class="pre codeblock">$ echo "$JAVA_HOME/jre/lib/amd64/server" &gt; /etc/ld.so.conf.d/libjdk.conf
+               <li class="li">Perform the following step on all machines to set up <samp class="ph codeph">ldconfig</samp>
+                  for
+                  JDK:<pre class="pre codeblock">$ echo "$JAVA_HOME/jre/lib/amd64/server" &gt; /etc/ld.so.conf.d/libjdk.conf
 $ ldconfig</pre>
-
-               </li>
+</li>
 
                <li class="li">If you are upgrading to the latest version of Java or installing it as part of
                   the expansion process, follow the instructions in the chapter, <em class="ph i">Expanding the
@@ -413,28 +410,31 @@ $ ldconfig</pre>
                <li class="li">PL/Java is compatible with JDK 1.6 and 1.7.</li>
 
             </ul>
+</div>
 
-         </div>
 
-
-         <p class="p">The gppkg utility installs Greenplum Database extensions, along with any dependencies,
-            on all hosts across a cluster. It also automatically installs extensions on new hosts in
-            the case of system expansion and segment recovery.</p>
+         <p class="p">The <samp class="ph codeph">gppkg</samp> utility installs HAWQ extensions, along with any
+            dependencies, on all hosts across a cluster. It also automatically installs extensions
+            on new hosts in the case of system expansion and segment recovery.</p>
 
          <p class="p">To install and use PL/Java:</p>
 
          <ol class="ol">
-            <li class="li">Install the Greenplum Database PL/Java extension.</li>
+            <li class="li">Install the PL/Java extension.</li>
 
             <li class="li">Enable the language for each database.</li>
 
-            <li class="li">Install user-created JAR files containing Java methods on all Greenplum Database
-               hosts.</li>
+            <li class="li">Install user-created JAR files containing Java methods on all HAWQ hosts.</li>
 
-            <li class="li">Add the name of the JAR file to the Greenplum Database pljava_classpath environment
-               variable. The variable lists the installed JAR files.</li>
+            <li class="li">Add the name of the JAR file to the HAWQ <samp class="ph codeph">pljava_classpath</samp>
+               environment variable. The variable lists the installed JAR files.</li>
 
          </ol>
+
+         <div class="note note"><span class="notetitle">Note:</span> Before you install the PL/Java extension, make sure that your Greenplum database is
+            running, you have sourced <span class="ph filepath">greenplum_path.sh</span>, and that the
+               <samp class="ph codeph">$MASTER_DATA_DIRECTORY</samp> and <samp class="ph codeph">$GPHOME</samp> variables are
+            set.</div>
 
       </div>
 
@@ -442,23 +442,24 @@ $ ldconfig</pre>
          <h3 class="title topictitle3">Install the HAWQ PL/Java Extension</h3>
 
          <div class="body">
-            <p class="p">Before you install the PL/Java extension, make sure that your Greenplum database is
-               running, you have sourced <span class="ph filepath">greenplum_path.sh</span>, and that the
-                  <samp class="ph codeph">$MASTER_DATA_DIRECTORY</samp> and <samp class="ph codeph">$GPHOME</samp> variables are
-               set.</p>
+            <div class="p">
+               <ol class="ol" id="installingthehawqpljavaextension__ol_tk1_4qs_zp">
+                  <li class="li">Download the PL/Java extension package from the Pivotal Download Center and
+                     copy it to the master host.</li>
 
-            <p class="p">Download the PL/Java extension package from the Pivotal Download Center then copy it
-               to the master host. Install the software extension package by running the
-                  <samp class="ph codeph">gppkg</samp> command. This example installs the PL/Java extension
-               package on a Linux system:</p>
+                  <li class="li">Install the software extension package by running the <samp class="ph codeph">gppkg</samp>
+                     command. This example installs the PL/Java extension package on a Linux
+                     system:<pre class="pre codeblock">$ gppkg -i pljava-1.1-rhel5-x86_64.gppkg</pre>
+</li>
 
-            <pre class="pre codeblock">$ gppkg -i pljava-1.1-rhel5-x86_64.gppkg</pre>
+                  <li class="li">Restart the database:<pre class="pre codeblock">$ gpstop -r</pre>
+</li>
 
-            <p class="p">Restart the database.</p>
+                  <li class="li">Source the <span class="ph filepath">$GPHOME/greenplum_path.sh</span> file.</li>
 
-            <pre class="pre codeblock">$ gpstop -r</pre>
+               </ol>
 
-            <p class="p">Source the file <span class="ph filepath">$GPHOME/greenplum_path.sh</span>.</p>
+            </div>
 
          </div>
 
@@ -468,49 +469,48 @@ $ ldconfig</pre>
          <h3 class="title topictitle3">Enable PL/Java and Install JAR Files</h3>
 
          <div class="body">
-            <p class="p">Perform the following steps as the Greenplum Database administrator gpadmin.Enable
-               PL/Java by running the SQL script
-                  <span class="ph filepath">$GPHOME/share/postgresql/pljava/install.sql</span> in the databases
-               that use PL/Java. For example, this example enables PL/Java on the database
-                  <samp class="ph codeph">mytestdb</samp>:</p>
+            <div class="p">Perform the following steps as the HAWQ administrator <samp class="ph codeph">gpadmin</samp>:<ol class="ol" id="enablingpljavaandinstallingjarfiles__ol_hw1_tqs_zp">
+                  <li class="li">Enable PL/Java by running the
+                        <span class="ph filepath">$GPHOME/share/postgresql/pljava/install.sql</span> SQL script
+                     in the databases that use PL/Java. For example, this example enables PL/Java on
+                     a database named
+                     <samp class="ph codeph">mytestdb</samp>:<pre class="pre codeblock">$ psql -d mytestdb -f $GPHOME/share/postgresql/pljava/install.sql</pre>
+The
+                        <span class="ph filepath">install.sql</span> script registers both the trusted and
+                     untrusted PL/Java.</li>
 
-            <pre class="pre codeblock">$ psql -d mytestdb 
--f $GPHOME/share/postgresql/pljava/install.sql</pre>
+                  <li class="li">Copy your Java archives (JAR files) to
+                        <span class="ph filepath">$GPHOME/lib/postgresql/java/</span> on all the HAWQ hosts.
+                     This example uses the <span class="keyword cmdname">gpscp</span> utility to copy the
+                        <span class="ph filepath">myclasses.jar</span>
+                     file:<pre class="pre codeblock">$ gpscp -f gphosts_file myclasses.jar =:/usr/local/greenplum-db/lib/postgresql/java/</pre>
+The
+                        <span class="ph filepath">gphosts_file</span> file contains a list of the Greenplum
+                     Database hosts.</li>
 
-            <p class="p">The script install.sql registers both the trusted and untrusted PL/Java.</p>
+                  <li class="li">Set the <samp class="ph codeph">pljava_classpath</samp> server configuration parameter in
+                     the master <span class="ph filepath">postgresql.conf</span> file. The parameter value is a
+                     colon (<samp class="ph codeph">:</samp>) separated list of the JAR files containing the Java
+                     classes used in any PL/Java functions. For
+                     example:<pre class="pre codeblock">$ gpconfig -c pljava_classpath -v \'examples.jar:myclasses.jar\' --masteronly</pre>
+</li>
 
-            <p class="p">Copy your Java archives (JAR files) to
-                  <span class="ph filepath">$GPHOME/lib/postgresql/java/</span> on to all Greenplum Database
-               hosts. This example uses the Greenplum Database <span class="keyword cmdname">gpscp</span> utility to
-               copy the file myclasses.jar:</p>
+                  <li class="li">Restart the database:<pre class="pre codeblock">$ gpstop -r</pre>
+</li>
 
-            <pre class="pre codeblock">$ gpscp -f gphosts_file myclasses.jar =:/usr/local/greenplum-db/lib/postgresql/java/</pre>
+                  <li class="li"><strong class="ph b">(Optional)</strong> Pivotal provides an <span class="ph filepath">examples.sql</span> file
+                     containing sample PL/Java functions that you can use for testing. Run the
+                     commands in this file to create the test functions (which use the Java classes
+                     in
+                     examples.jar):<pre class="pre codeblock">$ psql -f $GPHOME/share/postgresql/pljava/examples.sql</pre>
+Enabling
+                     the PL/Java extension in the <samp class="ph codeph">template1</samp> database enables
+                     PL/Java in any new Greenplum
+                     databases:<pre class="pre codeblock">$ psql template1 -f $GPHOME/share/postgresql/pljava/install.sql</pre>
+</li>
 
-            <p class="p">The file <span class="ph filepath">gphosts_file</span> contains a list of the Greenplum Database
-               hosts.Set the <samp class="ph codeph">pljava_classpath</samp> server configuration parameter in the
-               master postgresql.conf file. The parameter value is a colon (:) separated list of the
-               JAR files containing the Java classes used in any PL/Java functions. For example:</p>
-
-            <pre class="pre codeblock">$ gpconfig -c pljava_classpath -v \'examples.jar:myclasses.jar\' --masteronly</pre>
-
-            <p class="p">Restart the database:</p>
-
-            <pre class="pre codeblock">$ gpstop -r</pre>
-
-            <p class="p"><strong class="ph b">(Optional)</strong> Pivotal provides an <span class="ph filepath">examples.sql</span> file
-               containing sample PL/Java functions that you can use for testing. Run the commands in
-               this file to create the test functions (which use the Java classes in
-               examples.jar):</p>
-
-            <pre class="pre codeblock">$ psql -f $GPHOME/share/postgresql/pljava/examples.sql</pre>
-
-            <p class="p">Enabling the PL/Java extension in the template1 database enables PL/Java in any new
-               Greenplum databases.</p>
-
-            <div class="p">
-               <pre class="pre codeblock">$ psql template1 -f $GPHOME/share/postgresql/pljava/install.sql</pre>
-
-            </div>
+               </ol>
+</div>
 
          </div>
 
@@ -519,7 +519,7 @@ $ ldconfig</pre>
 
             <div class="body">
                <p class="p">PL/Java JVM options can be configured via the <samp class="ph codeph">pljava_vmoptions</samp>
-                  parameter in <span class="ph filepath">postgresql.conf</span> file. For example,
+                  parameter in the <span class="ph filepath">postgresql.conf</span> file. For example,
                      <samp class="ph codeph">pljava_vmoptions=-Xmx512M</samp> sets the maximum heap size of the
                   JVM. The default <samp class="ph codeph">Xmx</samp> value is set
                   to <samp class="ph codeph">-Xmx64M</samp>.</p>
@@ -550,11 +550,11 @@ $ ldconfig</pre>
 
             <div class="body">
                <p class="p">For a database that no long requires the PL/Java language, remove support for
-                  PL/Java. Run the <span class="ph filepath">uninstall.sql</span> file as the gpadmin user. For
-                  example, this command disables the PL/Java language in the specified database.</p>
+                  PL/Java by running the <span class="ph filepath">uninstall.sql</span> file as the
+                     <samp class="ph codeph">gpadmin</samp> user. For example, the following command disables the
+                  PL/Java language in the specified database:</p>
 
-               <pre class="pre codeblock">$ psql -d mydatabase
--f $GPHOME/share/postgresql/pljava/uninstall.sql</pre>
+               <pre class="pre codeblock">$ psql -d mydatabase -f $GPHOME/share/postgresql/pljava/uninstall.sql</pre>
 
             </div>
 
@@ -564,27 +564,30 @@ $ ldconfig</pre>
             <h4 class="title topictitle4">Uninstall the Java JAR files and Software Package</h4>
 
             <div class="body">
-               <p class="p">If no databases have PL/Java as a registered language, remove the Java JAR files
-                  and uninstall the Greenplum PL/Java extension with the gppkg utility.</p>
+               <div class="p">If no databases have PL/Java as a registered language, remove the Java JAR files
+                  and uninstall the Greenplum PL/Java extension with the <samp class="ph codeph">gppkg</samp>
+                     utility:<ol class="ol" id="uninstallthejavajarfilesandsoftwarepackage__ol_crt_mrs_zp">
+                     <li class="li">Remove the <samp class="ph codeph">pljava_classpath</samp> server configuration parameter
+                        in the master <span class="ph filepath">postgresql.conf</span> file.</li>
 
-               <p class="p">Remove the <samp class="ph codeph">pljava_classpath</samp> server configuration parameter in the
-                  master postgresql.conf file.</p>
+                     <li class="li">Remove the JAR files from the
+                           <span class="ph filepath">$GPHOME/lib/postgresql/java/</span> directory of the HAWQ
+                        hosts.</li>
 
-               <p class="p">Remove the JAR files from the <span class="ph filepath">$GPHOME/lib/postgresql/java/</span>
-                  directory of the Greenplum Database hosts.</p>
+                     <li class="li">Use the <samp class="ph codeph">gppkg</samp> utility with the <samp class="ph codeph">-r</samp> option
+                        to uninstall the PL/Java extension. The following example uninstalls the
+                        PL/Java extension on a Linux
+                        system:<pre class="pre codeblock">$ gppkg -r pljava-1.1</pre>
+You can run the
+                           <samp class="ph codeph">gppkg</samp> utility with the options <samp class="ph codeph">-q --all</samp>
+                        to list the installed extensions and their versions.</li>
 
-               <p class="p">Use the Greenplum <samp class="ph codeph">gppkg</samp> utility with the <samp class="ph codeph">-r</samp>
-                  option to uninstall the PL/Java extension. This example uninstalls the PL/Java
-                  extension on a Linux system:</p>
+                     <li class="li">After you uninstall the extension, restart the
+                        database:<pre class="pre codeblock">$ gpstop -r</pre>
+</li>
 
-               <pre class="pre codeblock">$ gppkg -r pljava-1.1</pre>
-
-               <p class="p">You can run the gppkg utility with the options -q --all to list the installed
-                  extensions and their versions.</p>
-
-               <p class="p">After you uninstall the extension, restart the database.</p>
-
-               <pre class="pre codeblock">$ gpstop -r</pre>
+                  </ol>
+</div>
 
             </div>
 
@@ -599,22 +602,23 @@ $ ldconfig</pre>
                         <span class="ph filepath">$GPHOME/lib/postgresql/java</span>.</li>
 
                   <li class="li">Copy the jar file on all segments in the same location using
-                        <samp class="ph codeph">gpscp</samp> from master.
-                     <pre class="pre codeblock">cd $GPHOME/lib/postgresql/java gpscp -f ~/hosts.txt myfunc.jar =:$GPHOME/lib/postgresql/java/</pre>
+                        <samp class="ph codeph">gpscp</samp> from
+                     master:<pre class="pre codeblock">$ cd $GPHOME/lib/postgresql/java
+$ gpscp -f ~/hosts.txt myfunc.jar =:$GPHOME/lib/postgresql/java/</pre>
 </li>
 
-                  <li class="li">Set the <samp class="ph codeph">pljava_classpath</samp> to include the newly copied jar
-                     file.  <ol class="ol" type="a" id="installingcustomjars__ol_vkr_xdt_4p">
+                  <li class="li">Set <samp class="ph codeph">pljava_classpath</samp> to include the newly-copied jar file:
+                         <ul class="ul" id="installingcustomjars__ol_vkr_xdt_4p">
                         <li class="li">From the <samp class="ph codeph">psql</samp> session, execute set to affect the
-                           current psql session.
-                           <pre class="pre codeblock">pljava_classpath='myfunc.jar'; </pre>
+                           current
+                           session:<pre class="pre codeblock">set pljava_classpath='myfunc.jar'; </pre>
 </li>
 
-                        <li class="li">To affect all sessions: 
+                        <li class="li">To affect all sessions, use <samp class="ph codeph">gpconfig</samp>: 
                            <pre class="pre codeblock">gpconfig -c pljava_classpath -v \'myfunc.jar\' </pre>
 </li>
 
-                     </ol>
+                     </ul>
 </li>
 
                </ol>
@@ -632,19 +636,20 @@ $ ldconfig</pre>
 
       <div class="body">
          <p class="p">The MADlib library adds statistical and machine learning functionality to HAWQ. This
-            topic describes how to install MADlib for HAWQ. </p>
+            topic describes how to install MADlib on HAWQ. </p>
 
          <p class="p">Download the package from the Pivotal Download Center and then install it with the
-            Pivotal Package Manager (<samp class="ph codeph">gppkg</samp>). The <samp class="ph codeph">gppkg</samp>
-            installation script installs the MADlib files, but does not register MADlib functions
-            with HAWQ databases. Therefore you must use the <samp class="ph codeph">madpack</samp> utility program
-            to install, reinstall, or upgrade the MADlib database objects.</p>
+            script (<span class="ph filepath">hawq_install.sh</span>) provided in the package. The script
+            installs the MADlib files, but does not register MADlib functions with HAWQ databases.
+            Therefore you must use the <samp class="ph codeph">madpack</samp> utility program to install,
+            reinstall, or upgrade the MADlib database objects.</p>
 
          <div class="note note"><span class="notetitle">Note:</span> 
             <strong class="ph b">Upgrading HAWQ from 1.1 to 1.2</strong>
             <p class="p">If you have upgraded your system from HAWQ 1.1.x to HAWQ 1.2, you must install MADlib
-               1.5 or higher and then run the madpack utility program. </p>
-</div>
+               1.5 or higher and then run the <samp class="ph codeph">madpack</samp> utility. </p>
+
+         </div>
 
       </div>
 
@@ -653,16 +658,16 @@ $ ldconfig</pre>
 
          <div class="body">
             <p class="p">Check that you have completed the following tasks before running the installation
-               script:</p>
+               script (<span class="ph filepath">hawq_install.sh</span>):</p>
 
             <ul class="ul" id="pre-requisitesforinstallingmadlibonhawq__ul_jxy_zdt_4p">
-               <li class="li">Make sure you have <samp class="ph codeph">rpm</samp>, <samp class="ph codeph">gpssh</samp> and
-                     <samp class="ph codeph">gpscp</samp> in your <samp class="ph codeph">PATH</samp>.</li>
+               <li class="li"><samp class="ph codeph">rpm</samp>, <samp class="ph codeph">gpssh</samp> and <samp class="ph codeph">gpscp</samp> are in
+                  your <samp class="ph codeph">PATH</samp>.</li>
 
-               <li class="li">Make sure that you have HAWQ binaries installed properly on all master and
-                  segment nodes in your cluster (also new segment nodes when adding new nodes).</li>
+               <li class="li">The HAWQ binaries are installed properly on all master and segment nodes in your
+                  cluster (also new segment nodes when adding new nodes).</li>
 
-               <li class="li">Make sure the <samp class="ph codeph">HOSTFILE</samp> lists all the new segment nodes.</li>
+               <li class="li"><samp class="ph codeph">HOSTFILE</samp> lists all the new segment nodes.</li>
 
             </ul>
 
@@ -676,7 +681,8 @@ $ ldconfig</pre>
          <div class="body">
             <ol class="ol" id="installingmadlibonhawq2__ol_wty_zdt_4p">
                <li class="li">Once HAWQ installation is complete, download the new version of MADlib for
-                  Pivotal HAWQ from the <a class="xref" href="http://network.pivotal.io/">Pivotal Network</a>.</li>
+                  Pivotal HAWQ from <a class="xref" href="http://network.pivotal.io/" target="_blank">Pivotal
+                     Network</a>.</li>
 
                <li class="li">Create a <samp class="ph codeph">madlib</samp> directory and extract the MADlib distribution
                   into it. For example:
@@ -689,10 +695,13 @@ tar xzvf madlib_1.6_1.2.0.1.tgz --strip-components=1</pre>
                         <samp class="ph codeph">HAWQ 1.2</samp> directory when extracting the archive.</div>
 </li>
 
-               <li class="li">Run <samp class="ph codeph">gppkg</samp>. The command must be run as root. For example:
-                        <pre class="pre codeblock">gppkg -i /home/gpadmin/madlib/madlib-1.6-Linux.rpm -f /usr/local/greenplum-db/hostfile</pre>
-<p class="p">See <a class="xref" href="#madlibinstallationscriptreference">MADlib Installation Script
-                        Reference</a> for a description of the command line options. </p>
+               <li class="li">Navigate to the directory where the MADlib distribution archive was extracted and
+                  make the HAWQ installation script (<span class="ph filepath">hawq_install.sh</span>)
+                  executable. For example:<pre class="pre codeblock">chmod +x hawq_install.sh</pre>
+</li>
+
+               <li class="li">Run <span class="ph filepath">hawq_install.sh</span>:
+                  <pre class="pre codeblock">hawq_install.sh -r /home/gpadmin/madlib/madlib-1.6-Linux.rpm -f /usr/local/greenplum-db/hostfile</pre>
 </li>
 
                <li class="li">Run the following command to register MADlib in your database:
@@ -713,8 +722,8 @@ tar xzvf madlib_1.6_1.2.0.1.tgz --strip-components=1</pre>
          <h3 class="title topictitle3">MADlib Installation Script Reference</h3>
 
          <div class="body">
-            <p class="p">The <samp class="ph codeph">hawq_install.sh</samp> script is the MADlib installation script for
-               HAWQ. The script is included in the MADlib distribution you download from <a class="xref" href="http://network.pivotal.io">Pivotal Network</a>.</p>
+            <p class="p">The <samp class="ph codeph">hawq_install.sh</samp> script is included in the MADlib
+               distribution.</p>
 
             <p class="p">
                <strong class="ph b">Syntax</strong>
@@ -730,13 +739,13 @@ hawq_install.sh -h</pre>
                   
                      <dt class="dt pt dlterm">-r | --rpm-path &lt;RPM_FILEPATH&gt;</dt>
 
-                     <dd class="dd pd">The file containing the host names of all new segments.</dd>
+                     <dd class="dd pd">The path to the MADlib RPM file.</dd>
 
                   
                   
                      <dt class="dt pt dlterm">-f | --host-file &lt;HOSTFILE&gt;</dt>
 
-                     <dd class="dd pd">The path to the MADlib RPM file.</dd>
+                     <dd class="dd pd">The file containing the host names of all new segments.</dd>
 
                   
                </dl>
@@ -781,11 +790,7 @@ hawq_install.sh -h</pre>
 
             <div class="section"><h4 class="title sectiontitle">Example</h4>
                
-               <p class="p">The <span class="ph filepath">hawq_install.sh</span> script must be run as
-                     <samp class="ph codeph">root</samp>. The script is in the directory where the MADlib
-                  distribution archive was extracted. </p>
-
-               <pre class="pre codeblock">sudo ./hawq_install.sh -r /home/gpadmin/madlib/madlib-1.6-Linux.rpm -f /usr/local/greenplum-db/hostfile</pre>
+               <pre class="pre codeblock">hawq_install.sh -r /home/gpadmin/madlib/madlib-1.6-Linux.rpm -f /usr/local/greenplum-db/hostfile</pre>
 
             </div>
 

@@ -30,70 +30,105 @@
 		  </script>
 <table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#" title="Link to this page"/></div><div id="printlink"><a href="javascript:window.print();" title="Print this page"/></div></td></tr><tr><td width="75%"><a class="navheader_parent_path" href="../topics/../topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a> / <a class="navheader_parent_path" href="../topics/ManagementUtilityReference.html" title="Management Utility Reference">Management Utility Reference</a></td><td><div class="navheader">
 <span class="navparent"><a class="link" href="../topics/ManagementUtilityReference.html" title="Management Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Management Utility Reference</span></a></span>  </div></td></tr></tbody></table>
-<h1 class="title topictitle1">gprecoverseg</h1>
-<div class="body"><p class="p">Recovers a primary or mirror segment instance that has been marked as down.</p>
-<div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2><pre class="pre codeblock"><strong class="ph b">gprecoverseg</strong> [<strong class="ph b">-p</strong> <var class="keyword varname">new_recover_host</var>[,...]] [<strong class="ph b">-d</strong> <var class="keyword varname">master_data_directory</var>] 
+
+  <h1 class="title topictitle1">gprecoverseg</h1>
+
+  <div class="body">
+    <p class="p">Recovers a primary or mirror segment instance that has been marked as down.</p>
+
+    <div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2>
+      
+      <pre class="pre codeblock"><strong class="ph b">gprecoverseg</strong> [<strong class="ph b">-p</strong> <var class="keyword varname">new_recover_host</var>[,...]] [<strong class="ph b">-d</strong> <var class="keyword varname">master_data_directory</var>] 
              [<strong class="ph b">-B</strong> <var class="keyword varname">parallel_processes</var>]
 
 <strong class="ph b">gprecoverseg</strong> <strong class="ph b">-?</strong> 
 
 <strong class="ph b">gprecoverseg</strong> <strong class="ph b">--version</strong></pre>
-</div>
-<div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2><p class="p">The <samp class="ph codeph">gprecoverseg</samp> utility reactivates failed segment instances.Once gprecoverseg
-        completes this process, the system will be recovered.</p>
-<p class="p">A segment instance can fail for several reasons, such as a host failure, network failure, or disk
-        failure. When a segment instance fails, its status is marked as <em class="ph i">down</em> in the HAWQ
-        database system catalog, and its mirror is activated in <em class="ph i">change tracking</em> mode. In
+
+    </div>
+
+    <div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2>
+      
+      <p class="p">The <samp class="ph codeph">gprecoverseg</samp> utility reactivates failed segment instances.Once
+        gprecoverseg completes this process, the system will be recovered.</p>
+
+      <p class="p">A segment instance can fail for several reasons, such as a host failure, network failure,
+        or disk failure. When a segment instance fails, its status is marked as <em class="ph i">down</em> in the
+        HAWQ database system catalog, and its mirror is activated in <em class="ph i">change tracking</em> mode. In
         order to bring the failed segment instance back into operation again, you must first correct
         the problem that made it fail in the first place, and then recover the segment instance in
         HAWQ database using <samp class="ph codeph">gprecoverseg</samp>.</p>
-<p class="p">Segment recovery using <samp class="ph codeph">gprecoverseg</samp> requires that
-you have an active mirror to recover from. For systems that do not have
-mirroring enabled, or in the event of a double fault (a primary and mirror
-pair both down at the same time) — do a system restart to bring the
-segments back online (<samp class="ph codeph">gpstop -r</samp>).</p>
-<p class="p">By default, a failed segment is recovered in place, meaning that the system brings the segment
-        back online on the same host and data directory location on which it was originally
+
+      <p class="p">Segment recovery using <samp class="ph codeph">gprecoverseg</samp> requires that you have an active
+        mirror to recover from. For systems that do not have mirroring enabled, or in the event of a
+        double fault (a primary and mirror pair both down at the same time) — do a system restart to
+        bring the segments back online (<samp class="ph codeph">gpstop -r</samp>).</p>
+
+      <p class="p">By default, a failed segment is recovered in place, meaning that the system brings the
+        segment back online on the same host and data directory location on which it was originally
         configured. </p>
 
       <p class="p">If the data directory was removed or damaged, gprecoverseg can recover the data directory
         (using <samp class="ph codeph">-F</samp>). This requires that you have at least one alive segment to
         recover from.</p>
-<p class="p">In some cases, this may not be possible (for example, if a host was physically damaged and cannot
-        be recovered). In this situation, <samp class="ph codeph">gprecoverseg</samp> allows you to recover failed
-        segments to a completely new host (using <samp class="ph codeph">-p</samp>). In this scenario, to prevent
-        HAWQ having an unbalanced workload, all the the segments on the failed host should be moved
-        to the new host. You must manually kill the other alive segments left on the failed host
-        before you try to run <samp class="ph codeph">gprecoverseg</samp>.</p>
-<p class="p">The new recovery segment host must be pre-installed with the HAWQ software and configured exactly
-        the same as the existing segment hosts. A spare data directory location must exist on all
-        currently configured segment hosts and have enough disk space to accommodate the failed
-        segments.</p>
-<p class="p">If you do not have mirroring enabled or if you have both a primary and
-its mirror down, you must take manual steps to recover the failed segment
-instances and then restart the system, for example:</p>
-<pre class="pre codeblock">gpstop -r</pre>
-</div>
-<div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options</h2><dl class="dl parml"><dt class="dt pt dlterm">-a (do not prompt)</dt>
-<dd class="dd pd">Do not prompt the user for confirmation. If <samp class="ph codeph">gprecovery</samp>
+
+      <p class="p">In some cases, this may not be possible (for example, if a host was physically damaged and
+        cannot be recovered). In this situation, <samp class="ph codeph">gprecoverseg</samp> allows you to recover
+        failed segments to a completely new host (using <samp class="ph codeph">-p</samp>). In this scenario, to
+        prevent HAWQ having an unbalanced workload, all the the segments on the failed host should
+        be moved to the new host. You must manually kill the other alive segments left on the failed
+        host before you try to run <samp class="ph codeph">gprecoverseg</samp>.</p>
+
+      <p class="p">The new recovery segment host must be pre-installed with the HAWQ software and configured
+        exactly the same as the existing segment hosts. A spare data directory location must exist
+        on all currently configured segment hosts and have enough disk space to accommodate the
+        failed segments.</p>
+
+      <p class="p">If you do not have mirroring enabled or if you have both a primary and its mirror down, you
+        must take manual steps to recover the failed segment instances and then restart the system,
+        for example:</p>
+
+      <pre class="pre codeblock">gpstop -r</pre>
+
+    </div>
+
+    <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options</h2>
+      
+      <dl class="dl parml">
+        
+          <dt class="dt pt dlterm">-a (do not prompt)</dt>
+
+          <dd class="dd pd">Do not prompt the user for confirmation. If <samp class="ph codeph">gprecovery</samp>
             <strong class="ph b">-a</strong> cannot recover successfully, HAWQ will raise an exception and tell user to use
             the <strong class="ph b">-F</strong> or <strong class="ph b">-p</strong> option.</dd>
-<dt class="dt pt dlterm">-B <var class="keyword varname">parallel_processes</var></dt>
-<dd class="dd pd">The number of segments to recover in parallel. If not specified,
-the utility will start up to four parallel processes depending on how
-many segment instances it needs to recover.</dd>
-<dt class="dt pt dlterm">-d <var class="keyword varname">master_data_directory</var></dt>
-<dd class="dd pd">Optional. The master host data directory. If not specified, the value
-set for <samp class="ph codeph">$MASTER_DATA_DIRECTORY</samp> will be used.</dd>
-<dt class="dt pt dlterm">-F (full recovery)</dt>
-<dd class="dd pd">Optional. Perform a full copy of the active segment instance in order to recover the failed
-            segment. The default is to only restart the failed segment
-              in-place.<p class="p"><strong class="ph b">Comments</strong></p>
-<p class="p">Lines beginning with <samp class="ph codeph">#</samp> are treated
-              as comments and ignored.</p>
+
+        
+        
+          <dt class="dt pt dlterm">-B <var class="keyword varname">parallel_processes</var></dt>
+
+          <dd class="dd pd">The number of segments to recover in parallel. If not specified, the utility will
+            start up to four parallel processes depending on how many segment instances it needs to
+            recover.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-d <var class="keyword varname">master_data_directory</var></dt>
+
+          <dd class="dd pd">Optional. The master host data directory. If not specified, the value set for
+              <samp class="ph codeph">$MASTER_DATA_DIRECTORY</samp> will be used.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-F (full recovery)</dt>
+
+          <dd class="dd pd">Optional. Perform a full copy of the active segment instance in order to recover the
+            failed segment. The default is to only restart the failed segment
+                in-place.<p class="p"><strong class="ph b">Comments</strong></p>
+<p class="p">Lines beginning with <samp class="ph codeph">#</samp> are
+              treated as comments and ignored.</p>
 <p class="p"><strong class="ph b">Filespace Order</strong></p>
-<p class="p">The first comment line
-              that is not a comment specifies filespace ordering. This line starts with
+<p class="p">The first comment
+              line that is not a comment specifies filespace ordering. This line starts with
                 <samp class="ph codeph">filespaceOrder=</samp> and is followed by list of filespace names
               delimited by a colon. For example:</p>
 <div class="p">
@@ -119,14 +154,22 @@ sdw1-1:50001:/data1/mirror/gpseg16<strong class="ph b">SPACE</strong>sdw4-1:
 <p class="p">You can use the <samp class="ph codeph">-o</samp> option to output a
               sample recovery configuration file to use as a starting point.</p>
 </dd>
-<dt class="dt pt dlterm">-l <var class="keyword varname">logfile_directory</var></dt>
-<dd class="dd pd">The directory to write the log file. Defaults to <samp class="ph codeph">~/gpAdminLogs</samp>.</dd>
-<dt class="dt pt dlterm">-p <var class="keyword varname">new_recover_host</var>[,...]</dt>
-<dd class="dd pd">Specifies a spare host outside of the currently configured HAWQ array on which to recover
-            invalid segments. In the case of multiple failed segment hosts, you can specify a
-            comma-separated list. The spare host must have the HAWQ Database software installed and
-            configured, and have the same hardware and OS configuration as the current segment hosts
-            (same OS version, locales, <samp class="ph codeph">gpadmin</samp> user account, data directory
+
+        
+        
+          <dt class="dt pt dlterm">-l <var class="keyword varname">logfile_directory</var></dt>
+
+          <dd class="dd pd">The directory to write the log file. Defaults to <samp class="ph codeph">~/gpAdminLogs</samp>.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-p <var class="keyword varname">new_recover_host</var>[,...]</dt>
+
+          <dd class="dd pd">Specifies a spare host outside of the currently configured HAWQ array on which to
+            recover invalid segments. In the case of multiple failed segment hosts, you can specify
+            a comma-separated list. The spare host must have the HAWQ Database software installed
+            and configured, and have the same hardware and OS configuration as the current segment
+            hosts (same OS version, locales, <samp class="ph codeph">gpadmin</samp> user account, data directory
             locations created, ssh keys exchanged, number of network interfaces, network interface
             naming convention, and so on.).<p class="p">Before using this option:</p>
 <ul class="ul" id="topic1__ul_zx4_nxv_pp">
@@ -139,27 +182,61 @@ sdw1-1:50001:/data1/mirror/gpseg16<strong class="ph b">SPACE</strong>sdw4-1:
 
             </ul>
 </dd>
-<dt class="dt pt dlterm">-q (no screen output)</dt>
-<dd class="dd pd">Run in quiet mode. Command output is not displayed on the screen,
-but is still written to the log file.</dd>
-<dt class="dt pt dlterm">-v (verbose)</dt>
-<dd class="dd pd">Sets logging output to verbose.</dd>
-<dt class="dt pt dlterm">--version (version)</dt>
-<dd class="dd pd">Displays the version of this utility.</dd>
-<dt class="dt pt dlterm">-? (help)</dt>
-<dd class="dd pd">Displays the online help.</dd>
-</dl>
-</div>
-<div class="section" id="topic1__section5"><h2 class="title sectiontitle">Examples</h2><p class="p">Recover any failed segment instances in place:</p>
-<pre class="pre codeblock">$ gprecoverseg</pre>
-<p class="p">Recreate any failed segment instances in place</p>
-<pre class="pre codeblock">$ gprecoverseg -f</pre>
-<p class="p">Replace any failed host to a set of new hosts:</p>
-<pre class="pre codeblock">$ gprecoverseg -p new1, new2</pre>
-</div>
-<div class="section" id="topic1__section6"><h2 class="title sectiontitle">See Also</h2><p class="p"><samp class="ph codeph"><a class="xref" href="gpstart.html">gpstart</a></samp>, <samp class="ph codeph"><a class="xref" href="gpstop.html">gpstop</a></samp></p>
-</div>
-</div>
+
+        
+        
+          <dt class="dt pt dlterm">-q (no screen output)</dt>
+
+          <dd class="dd pd">Run in quiet mode. Command output is not displayed on the screen, but is still written
+            to the log file.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-v (verbose)</dt>
+
+          <dd class="dd pd">Sets logging output to verbose.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">--version (version)</dt>
+
+          <dd class="dd pd">Displays the version of this utility.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-? (help)</dt>
+
+          <dd class="dd pd">Displays the online help.</dd>
+
+        
+      </dl>
+
+    </div>
+
+    <div class="section" id="topic1__section5"><h2 class="title sectiontitle">Examples</h2>
+      
+      <p class="p">Recover any failed segment instances in place:</p>
+
+      <pre class="pre codeblock">$ gprecoverseg</pre>
+
+      <p class="p">Recreate any failed segment instances in place</p>
+
+      <pre class="pre codeblock">$ gprecoverseg -f</pre>
+
+      <p class="p">Replace any failed host to a set of new hosts:</p>
+
+      <pre class="pre codeblock">$ gprecoverseg -p new1, new2</pre>
+
+    </div>
+
+    <div class="section" id="topic1__section6"><h2 class="title sectiontitle">See Also</h2>
+      
+      <p class="p"><samp class="ph codeph"><a class="xref" href="gpstart.html">gpstart</a></samp>, <samp class="ph codeph"><a class="xref" href="gpstop.html">gpstop</a></samp></p>
+
+    </div>
+
+  </div>
+
 <div class="related-links"/>
 <div class="navfooter"><!---->
 <span class="navparent"><a class="link" href="../topics/ManagementUtilityReference.html" title="Management Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Management Utility Reference</span></a></span>  </div><div>
