@@ -50,13 +50,13 @@
             
             <thead class="thead" align="left">
                <tr class="row">
-                  <th class="entry confluenceTh" valign="top" width="6.25%" id="d139373e55">Step</th>
+                  <th class="entry confluenceTh" valign="top" width="6.25%" id="d139389e55">Step</th>
 
-                  <th class="entry confluenceTh" valign="top" width="12.5%" id="d139373e58">Task</th>
+                  <th class="entry confluenceTh" valign="top" width="12.5%" id="d139389e58">Task</th>
 
-                  <th class="entry confluenceTh" valign="top" width="68.75%" id="d139373e61">Details</th>
+                  <th class="entry confluenceTh" valign="top" width="68.75%" id="d139389e61">Details</th>
 
-                  <th class="entry confluenceTh" valign="top" width="12.5%" id="d139373e64">Completed</th>
+                  <th class="entry confluenceTh" valign="top" width="12.5%" id="d139389e64">Completed</th>
 
                </tr>
 
@@ -64,11 +64,11 @@
 
             <tbody class="tbody">
                <tr class="row">
-                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139373e55 ">1</td>
+                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139389e55 ">1</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e58 ">Verify the state of your cluster </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e58 ">Verify the state of your cluster </td>
 
-                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139373e61 ">Make sure your cluster is healthy and in a
+                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139389e61 ">Make sure your cluster is healthy and in a
                      consistent state:<ol class="ol" id="phdupgradechecklist20xto210__ol_hbc_kqc_5p">
                         <li class="li">Use the PCC UI to make sure there are no services down or running with
                               errors.<p class="p">On one of the HDFS nodes, as <samp class="ph codeph">gpadmin</samp>, run: </p>
@@ -86,16 +86,16 @@
                      </ol>
 </td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e64 "> </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e64 "> </td>
 
                </tr>
 
                <tr class="row">
-                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139373e55 ">2</td>
+                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139389e55 ">2</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e58 ">Stop Services</td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e58 ">Stop Services</td>
 
-                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139373e61 "><strong class="ph b">Stop HAWQ</strong> (if applicable):<div class="p">
+                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139389e61 "><strong class="ph b">Stop HAWQ</strong> (if applicable):<div class="p">
                         <pre class="pre codeblock">$ /etc/init.d/hawq stop  </pre>
 
                      </div>
@@ -124,73 +124,73 @@
 <pre class="pre codeblock">$ gfxd server stop -dir=<var class="keyword varname">&lt;PATH_TO_SERVER_DIR&gt;</var>  </pre>
 </td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e64 "> </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e64 "> </td>
 
                </tr>
 
                <tr class="row">
-                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139373e55 ">3</td>
+                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139389e55 ">3</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e58 ">Import and Upgrade PCC </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e58 ">Import and Upgrade PCC </td>
 
-                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139373e61 ">Untar the new PCC package, then run (as
+                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139389e61 ">Untar the new PCC package, then run (as
                         <samp class="ph codeph">root</samp>): <pre class="pre codeblock">$ ./install </pre>
 <p class="p">Change the
                         user to <samp class="ph codeph">gpadmin</samp> for the rest of the upgrade. </p>
 </td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e64 "> </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e64 "> </td>
 
                </tr>
 
                <tr class="row">
-                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139373e55 ">4</td>
+                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139389e55 ">4</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e58 ">Import HAWQ (PADS) </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e58 ">Import HAWQ (PADS) </td>
 
-                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139373e61 ">
+                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139389e61 ">
                      <pre class="pre codeblock">$ icm_client import -s <var class="keyword varname">&lt;PATH_TO_EXTRACTED_PADS_TARBALL&gt;</var></pre>
 
                   </td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e64 "> </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e64 "> </td>
 
                </tr>
 
                <tr class="row">
-                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139373e55 ">5</td>
+                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139389e55 ">5</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e58 ">Import PRTS </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e58 ">Import PRTS </td>
 
-                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139373e61 ">
+                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139389e61 ">
                      <pre class="pre codeblock">$ icm_client import -s <var class="keyword varname">&lt;PATH_TO_EXTRACTED_PRTS_TARBALL&gt;</var></pre>
 
                   </td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e64 "> </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e64 "> </td>
 
                </tr>
 
                <tr class="row">
-                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139373e55 "> 6</td>
+                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139389e55 "> 6</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e58 ">Import PHD </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e58 ">Import PHD </td>
 
-                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139373e61 ">
+                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139389e61 ">
                      <pre class="pre codeblock">$ icm_client import -s <var class="keyword varname">PATH_TO_EXTRACTED_PHD_TARBALL&gt;</var></pre>
 
                   </td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e64 "> </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e64 "> </td>
 
                </tr>
 
                <tr class="row">
-                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139373e55 ">7</td>
+                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139389e55 ">7</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e58 ">Edit the Configuration File </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e58 ">Edit the Configuration File </td>
 
-                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139373e61 ">Fetch the existing configuration file to a user
+                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139389e61 ">Fetch the existing configuration file to a user
                      specified directory (<samp class="ph codeph">~/upgraded_conf</samp> in this example):
                         <pre class="pre codeblock">$ icm_client fetch-upgrade-configuration -v PHD-2.1.0.0 -l test -o ~/upgraded_conf</pre>
 <p class="p">For
@@ -198,131 +198,131 @@
                         File</a>.</p>
 </td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e64 "> </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e64 "> </td>
 
                </tr>
 
                <tr class="row">
-                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139373e55 ">8</td>
+                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139389e55 ">8</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e58 ">Upgrade HAWQ (PADS) </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e58 ">Upgrade HAWQ (PADS) </td>
 
-                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139373e61 ">
+                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139389e61 ">
                      <pre class="pre codeblock">$ icm_client upgrade -l <var class="keyword varname">&lt;CLUSTERNAME&gt;</var> -s pads -o <var class="keyword varname">&lt;PATH_TO_EXTRACTED_OLD_PADS_TARBALL&gt;</var>
  -n <var class="keyword varname">&lt;PATH_TO_EXTRACTED_NEW_PADS_TARBALL&gt;</var></pre>
 
                   </td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e64 "> </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e64 "> </td>
 
                </tr>
 
                <tr class="row">
-                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139373e55 ">9</td>
+                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139389e55 ">9</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e58 ">Upgrade PRTS </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e58 ">Upgrade PRTS </td>
 
-                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139373e61 ">
+                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139389e61 ">
                      <pre class="pre codeblock">$ icm_client upgrade -l <var class="keyword varname">&lt;CLUSTERNAME&gt;</var> -s prts </pre>
 
                   </td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e64 "> </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e64 "> </td>
 
                </tr>
 
                <tr class="row">
-                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139373e55 ">10</td>
+                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139389e55 ">10</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e58 ">Upgrade PHD </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e58 ">Upgrade PHD </td>
 
-                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139373e61 ">
+                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139389e61 ">
                      <pre class="pre codeblock">$ icm_client upgrade -l <var class="keyword varname">&lt;CLUSTERNAME&gt;</var> -s phd </pre>
 
                   </td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e64 "> </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e64 "> </td>
 
                </tr>
 
                <tr class="row">
-                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139373e55 ">11</td>
+                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139389e55 ">11</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e58 ">PXF with GemFire XD </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e58 ">PXF with GemFire XD </td>
 
-                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139373e61 ">Add <samp class="ph codeph">'/usr/lib/gphd/gfxd/lib/gemfirexd.jar'</samp> on a new line
+                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139389e61 ">Add <samp class="ph codeph">'/usr/lib/gphd/gfxd/lib/gemfirexd.jar'</samp> on a new line
                      to the <samp class="ph codeph">ClusterConfigDir/pxf/pxf-public.classpath</samp> file.</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e64 "> </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e64 "> </td>
 
                </tr>
 
                <tr class="row">
-                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139373e55 ">12</td>
+                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139389e55 ">12</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e58 ">Reconfigure the Cluster </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e58 ">Reconfigure the Cluster </td>
 
-                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139373e61 ">
+                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139389e61 ">
                      <pre class="pre codeblock">$ icm_client reconfigure -l test -c ~/upgraded_conf </pre>
 
                   </td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e64 "> </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e64 "> </td>
 
                </tr>
 
                <tr class="row">
-                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139373e55 ">13</td>
+                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139389e55 ">13</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e58 ">Restart the Cluster </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e58 ">Restart the Cluster </td>
 
-                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139373e61 ">
+                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139389e61 ">
                      <pre class="pre codeblock">$ icm_client restart -l <var class="keyword varname">&lt;CLUSTERNAME&gt;</var></pre>
 
                   </td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e64 "> </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e64 "> </td>
 
                </tr>
 
                <tr class="row">
-                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139373e55 ">14</td>
+                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139389e55 ">14</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e58 ">Restart HAWQ </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e58 ">Restart HAWQ </td>
 
-                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139373e61 ">
+                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139389e61 ">
                      <pre class="pre codeblock">$ <samp class="ph codeph">/etc/init.d/hawq start</samp></pre>
 
                   </td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e64 "> </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e64 "> </td>
 
                </tr>
 
                <tr class="row">
-                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139373e55 ">15</td>
+                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139389e55 ">15</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e58 ">Reconfigure Manually-Installed Services </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e58 ">Reconfigure Manually-Installed Services </td>
 
-                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139373e61 ">Services that were installed manually on an
+                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139389e61 ">Services that were installed manually on an
                      existing cluster are not upgraded by a CLI upgrade. After upgrade, you need to
                      manually reconfigure these services to work with the upgraded PHD. </td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e64 "> </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e64 "> </td>
 
                </tr>
 
                <tr class="row">
-                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139373e55 ">16</td>
+                  <td class="entry confluenceTd" valign="top" width="6.25%" headers="d139389e55 ">16</td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e58 ">Move HAWQ Filespace to HA-enabled HDFS </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e58 ">Move HAWQ Filespace to HA-enabled HDFS </td>
 
-                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139373e61 ">For HA clusters: If you are using HAWQ, you need
+                  <td class="entry confluenceTd" valign="top" width="68.75%" headers="d139389e61 ">For HA clusters: If you are using HAWQ, you need
                      to move the HAWQ filespace to HA-enabled HDFS. <p class="p">See <a class="xref" href="MovingHAWQFilespacetoHAenabledHDFS20xto210.html">2.0.x to 2.1.0 - Move HAWQ Filespace to HA-enabled HDFS</a> for
                      details.</p>
 </td>
 
-                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139373e64 "> </td>
+                  <td class="entry confluenceTd" valign="top" width="12.5%" headers="d139389e64 "> </td>
 
                </tr>
 

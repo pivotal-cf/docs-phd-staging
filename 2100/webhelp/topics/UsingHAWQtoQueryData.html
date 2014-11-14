@@ -275,13 +275,13 @@ aggregate_name ( * ) [FILTER (WHERE condition)]</pre>
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="functionsinhawq__table_lbl_hlt_4p" class="table" frame="border" border="1" rules="all">
                   <thead class="thead" align="left">
                      <tr class="row">
-                        <th class="entry confluenceTh" valign="top" id="d201977e323">Function Type</th>
+                        <th class="entry confluenceTh" valign="top" id="d201993e323">Function Type</th>
 
-                        <th class="entry confluenceTh" valign="top" id="d201977e326">Pivotal Support</th>
+                        <th class="entry confluenceTh" valign="top" id="d201993e326">Pivotal Support</th>
 
-                        <th class="entry confluenceTh" valign="top" id="d201977e329">Description</th>
+                        <th class="entry confluenceTh" valign="top" id="d201993e329">Description</th>
 
-                        <th class="entry confluenceTh" valign="top" id="d201977e332">Comments</th>
+                        <th class="entry confluenceTh" valign="top" id="d201993e332">Comments</th>
 
                      </tr>
 
@@ -289,28 +289,28 @@ aggregate_name ( * ) [FILTER (WHERE condition)]</pre>
 
                   <tbody class="tbody">
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e323 d201977e326 d201977e329 d201977e332 ">IMMUTABLE</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e323 d201993e326 d201993e329 d201993e332 ">IMMUTABLE</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e323 d201977e326 d201977e329 d201977e332 ">Yes</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e323 d201993e326 d201993e329 d201993e332 ">Yes</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e323 d201977e326 d201977e329 d201977e332 ">Relies only on information directly in its argument list. Given the
+                        <td class="entry confluenceTd" valign="top" headers="d201993e323 d201993e326 d201993e329 d201993e332 ">Relies only on information directly in its argument list. Given the
                               same argument values, always returns the same result.
                         </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e323 d201977e326 d201977e329 d201977e332 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e323 d201993e326 d201993e329 d201993e332 "> </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e323 d201977e326 d201977e329 d201977e332 ">STABLE</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e323 d201993e326 d201993e329 d201993e332 ">STABLE</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e323 d201977e326 d201977e329 d201977e332 ">Yes, in most cases</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e323 d201993e326 d201993e329 d201993e332 ">Yes, in most cases</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e323 d201977e326 d201977e329 d201977e332 ">Within a single table scan, returns the same result for same argument
+                        <td class="entry confluenceTd" valign="top" headers="d201993e323 d201993e326 d201993e329 d201993e332 ">Within a single table scan, returns the same result for same argument
                               values, but results change across SQL statements.
                         </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e323 d201977e326 d201977e329 d201977e332 ">Results depend on database lookups or parameter values.
+                        <td class="entry confluenceTd" valign="top" headers="d201993e323 d201993e326 d201993e329 d201993e332 ">Results depend on database lookups or parameter values.
                               current_timestamp family of functions is STABLE; values do not change
                               within an execution.
                         </td>
@@ -318,15 +318,15 @@ aggregate_name ( * ) [FILTER (WHERE condition)]</pre>
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e323 d201977e326 d201977e329 d201977e332 ">VOLATILE</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e323 d201993e326 d201993e329 d201993e332 ">VOLATILE</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e323 d201977e326 d201977e329 d201977e332 ">Restricted</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e323 d201993e326 d201993e329 d201993e332 ">Restricted</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e323 d201977e326 d201977e329 d201977e332 ">Function values can change within a single table scan. For example:
+                        <td class="entry confluenceTd" valign="top" headers="d201993e323 d201993e326 d201993e329 d201993e332 ">Function values can change within a single table scan. For example:
                               random(), currval(), timeofday().
                         </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e323 d201977e326 d201977e329 d201977e332 ">Any function with side effects is volatile, even if its result is
+                        <td class="entry confluenceTd" valign="top" headers="d201993e323 d201993e326 d201993e329 d201993e332 ">Any function with side effects is volatile, even if its result is
                               predictable. For example: setval()
                         </td>
 
@@ -624,11 +624,11 @@ CREATE OPERATOR + (
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="built-infunctionsandoperators__builtinfunctionsandoperators" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. Build-In Functions and Operators</span></caption>
                   <thead class="thead" align="left">
                      <tr class="row">
-                        <th class="entry confluenceTh" valign="top" id="d201977e612">Operator/Function</th>
+                        <th class="entry confluenceTh" valign="top" id="d201993e612">Operator/Function</th>
 
-                        <th class="entry confluenceTh" valign="top" id="d201977e615">Volatile</th>
+                        <th class="entry confluenceTh" valign="top" id="d201993e615">Volatile</th>
 
-                        <th class="entry confluenceTh" valign="top" id="d201977e618">Stable</th>
+                        <th class="entry confluenceTh" valign="top" id="d201993e618">Stable</th>
 
                      </tr>
 
@@ -636,90 +636,90 @@ CREATE OPERATOR + (
 
                   <tbody class="tbody">
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Logical operators</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Logical operators</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
-
-                     </tr>
-
-                     <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Comparison operators</td>
-
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
-
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Mathematical Functions and
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Comparison operators</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Mathematical Functions and
                            Operators</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">random<p class="p">setseed</p>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">random<p class="p">setseed</p>
 
                         </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">String Functions and Operators</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">String Functions and Operators</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">All built-in conversion functions</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">All built-in conversion functions</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">convert<p class="p">pg_client_encoding</p>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">convert<p class="p">pg_client_encoding</p>
 
                         </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Binary String Functions and
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Binary String Functions and
                            Operators</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
-
-                     </tr>
-
-                     <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Bit String Functions and Operators</td>
-
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
-
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Pattern Matching</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Bit String Functions and Operators</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Data Type Formatting Functions</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Pattern Matching</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">to_char<p class="p">to_timestamp</p>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Data Type Formatting Functions</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">to_char<p class="p">to_timestamp</p>
 </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Date/Time Functions and Operators</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Date/Time Functions and Operators</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">timeofday</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">timeofday</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">age<p class="p">current_date</p>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">age<p class="p">current_date</p>
 <p class="p">current_time</p>
 <p class="p">current_timestamp</p>
 <p class="p">localtime</p>
@@ -731,98 +731,98 @@ CREATE OPERATOR + (
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Geometric Functions ad Operators</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Geometric Functions ad Operators</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Network Address Functions and
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Network Address Functions and
                            Operators</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Sequence Manipulation Functions</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Sequence Manipulation Functions</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">currval<p class="p">lastval </p>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">currval<p class="p">lastval </p>
 <p class="p">nextval
                               </p>
 <p class="p">setval  </p>
 </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Conditional Expressions</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Conditional Expressions</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
-
-                     </tr>
-
-                     <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Array Functions and Operators</td>
-
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
-
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">All array functions </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Aggregate Functions </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Array Functions and Operators</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">All array functions </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" id="built-infunctionsandoperators__UsingHAWQtoQueryData-SubqueryExpressions" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Subquery
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Aggregate Functions </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" id="built-infunctionsandoperators__UsingHAWQtoQueryData-SubqueryExpressions" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Subquery
                            Expressions</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
-
-                     </tr>
-
-                     <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Row and Array Comparisons</td>
-
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
-
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">Set Returning Functions </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Row and Array Comparisons</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">generate_series </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">System Information Functions </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">Set Returning Functions </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">generate_series </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">All session information functions
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">System Information Functions </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">All session information functions
                            <p class="p">All access privilege inquiry functions</p>
 
                            <p class="p">All schema visibility inquiry functions</p>
@@ -834,9 +834,9 @@ CREATE OPERATOR + (
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">System Administration Functions</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">System Administration Functions</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">set_config
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">set_config
                            <p class="p">pg_cancel_backend</p>
 
                            <p class="p">pg_reload_conf</p>
@@ -857,7 +857,7 @@ CREATE OPERATOR + (
 
                         </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">current_setting
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">current_setting
                            <p class="p">All database object size functions</p>
 
                         </td>
@@ -865,11 +865,11 @@ CREATE OPERATOR + (
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">XML Functions</td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">XML Functions</td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 "> </td>
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 "> </td>
 
-                        <td class="entry confluenceTd" valign="top" headers="d201977e612 d201977e615 d201977e618 ">xmlagg(xml)
+                        <td class="entry confluenceTd" valign="top" headers="d201993e612 d201993e615 d201993e618 ">xmlagg(xml)
                            <p class="p">xmlexists(text, xml)</p>
 
                            <p class="p">xml_is_well_formed(text)</p>
@@ -916,13 +916,13 @@ CREATE OPERATOR + (
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="advancedanalyticfunctions__table_fwt_dlt_4p" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 2. Advanced Analytic Functions</span></caption>
                      <thead class="thead" align="left">
                         <tr class="row">
-                           <th class="entry confluenceTh" valign="top" id="d201977e1012">Function</th>
+                           <th class="entry confluenceTh" valign="top" id="d201993e1012">Function</th>
 
-                           <th class="entry confluenceTh" valign="top" id="d201977e1015">Return Type</th>
+                           <th class="entry confluenceTh" valign="top" id="d201993e1015">Return Type</th>
 
-                           <th class="entry confluenceTh" valign="top" id="d201977e1018">Full Syntax</th>
+                           <th class="entry confluenceTh" valign="top" id="d201993e1018">Full Syntax</th>
 
-                           <th class="entry confluenceTh" valign="top" id="d201977e1021">Description</th>
+                           <th class="entry confluenceTh" valign="top" id="d201993e1021">Description</th>
 
                         </tr>
 
@@ -930,94 +930,94 @@ CREATE OPERATOR + (
 
                      <tbody class="tbody">
                         <tr class="row">
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">matrix_add(array[],array[])
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">matrix_add(array[],array[])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">smallint[]int[], bigint[], float[]
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">smallint[]int[], bigint[], float[]
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">matrix_add(array[[1,1],[2,2]], array[[3,4],[5,6]])
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">matrix_add(array[[1,1],[2,2]], array[[3,4],[5,6]])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">Adds two two-dimensional matrices. The matrices must be
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">Adds two two-dimensional matrices. The matrices must be
                                  conformable.
                            </td>
 
                         </tr>
 
                         <tr class="row">
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">matrix_multiply(array[], array[])
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">matrix_multiply(array[], array[])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">smallint[] int[], bigint[], float[]
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">smallint[] int[], bigint[], float[]
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">matrix_multiply(array[[2,0,0],[0,2,0],[0,0,2]],
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">matrix_multiply(array[[2,0,0],[0,2,0],[0,0,2]],
                                  array[[3,0,3],[0,3,0],[0,0,3]])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">Multiplies two three- dimensional arrays. The matrices must be
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">Multiplies two three- dimensional arrays. The matrices must be
                                  conformable.
                            </td>
 
                         </tr>
 
                         <tr class="row">
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">matrix_multiply(array[], <strong class="ph b">expr</strong> )
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">matrix_multiply(array[], <strong class="ph b">expr</strong> )
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">int[], float[]
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">int[], float[]
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">matrix_multiply(array[[1,1,1], [2,2,2], [3,3,3]], 2)
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">matrix_multiply(array[[1,1,1], [2,2,2], [3,3,3]], 2)
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">Multiplies a two-dimensional array and a scalar numeric value.
-                           </td>
-
-                        </tr>
-
-                        <tr class="row">
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">matrix_transpose(array[])
-                           </td>
-
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">Same as input array type.
-                           </td>
-
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">matrix_transpose(array [[1,1,1],[2,2,2]])
-                           </td>
-
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">Transposes a two-dimensional array.
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">Multiplies a two-dimensional array and a scalar numeric value.
                            </td>
 
                         </tr>
 
                         <tr class="row">
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">pinv(array[]) 
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">matrix_transpose(array[])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">smallint[]int[], bigint[], float[]
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">Same as input array type.
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">pinv(array[[2.5,0,0],[0,1,0],[0,0,.5]])
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">matrix_transpose(array [[1,1,1],[2,2,2]])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">Calculates the Moore-Penrose pseudoinverse of a matrix.
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">Transposes a two-dimensional array.
                            </td>
 
                         </tr>
 
                         <tr class="row">
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">unnest (array[])
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">pinv(array[]) 
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">set of anyelement
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">smallint[]int[], bigint[], float[]
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">unnest(array['one', 'row', 'per', 'item'])
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">pinv(array[[2.5,0,0],[0,1,0],[0,0,.5]])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1012 d201977e1015 d201977e1018 d201977e1021 ">Transforms a one dimensional array into rows. Returns a set of any
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">Calculates the Moore-Penrose pseudoinverse of a matrix.
+                           </td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">unnest (array[])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">set of anyelement
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">unnest(array['one', 'row', 'per', 'item'])
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1012 d201993e1015 d201993e1018 d201993e1021 ">Transforms a one dimensional array into rows. Returns a set of any
                                  element. 
                            </td>
 
@@ -1032,13 +1032,13 @@ CREATE OPERATOR + (
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="advancedanalyticfunctions__table_bzt_dlt_4p" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 3. Advanced Aggregate Functions</span></caption>
                      <thead class="thead" align="left">
                         <tr class="row">
-                           <th class="entry confluenceTh" valign="top" id="d201977e1136">Function</th>
+                           <th class="entry confluenceTh" valign="top" id="d201993e1136">Function</th>
 
-                           <th class="entry confluenceTh" valign="top" id="d201977e1139">Return Type</th>
+                           <th class="entry confluenceTh" valign="top" id="d201993e1139">Return Type</th>
 
-                           <th class="entry confluenceTh" valign="top" id="d201977e1142">Full Syntax</th>
+                           <th class="entry confluenceTh" valign="top" id="d201993e1142">Full Syntax</th>
 
-                           <th class="entry confluenceTh" valign="top" id="d201977e1145">Description</th>
+                           <th class="entry confluenceTh" valign="top" id="d201993e1145">Description</th>
 
                         </tr>
 
@@ -1046,13 +1046,13 @@ CREATE OPERATOR + (
 
                      <tbody class="tbody">
                         <tr class="row">
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">sum(array[])
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">sum(array[])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">smallint[]int[], bigint[], float[]
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">smallint[]int[], bigint[], float[]
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">sum(array[[1,2],[3,4]])<p class="p">Example:</p>
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">sum(array[[1,2],[3,4]])<p class="p">Example:</p>
 <pre class="pre codeblock">CREATE TABLE mymatrix (myvalue int[]);
 INSERT INTO mymatrix VALUES ( array[[1,2],[3,4]]);
 INSERT INTO mymatrix VALUES ( array[[0,1],[1,0]]);
@@ -1062,38 +1062,38 @@ sum
 {{1,3},{4,4}} </pre>
 </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">Performs matrix summation. Can take as input a two-dimensional
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">Performs matrix summation. Can take as input a two-dimensional
                                  array that is treated as a matrix.
                            </td>
 
                         </tr>
 
                         <tr class="row">
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">pivot_sum(label[], label, <strong class="ph b">expr</strong> )
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">pivot_sum(label[], label, <strong class="ph b">expr</strong> )
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">int[], bigint[], float[]
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">int[], bigint[], float[]
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">pivot_sum(array['A1','A2'], attr, value)
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">pivot_sum(array['A1','A2'], attr, value)
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">A pivot aggregation using sum to resolve duplicate entries.
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">A pivot aggregation using sum to resolve duplicate entries.
                            </td>
 
                         </tr>
 
                         <tr class="row">
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">mregr_coef( <strong class="ph b">expr</strong>, array[])
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">mregr_coef( <strong class="ph b">expr</strong>, array[])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">float[]
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">float[]
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">mregr_coef(y, array[1, x1, x2])
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">mregr_coef(y, array[1, x1, x2])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">The four mregr_* aggregates perform linear regressions using the
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">The four mregr_* aggregates perform linear regressions using the
                                  ordinary-least-squares method. mregr_coef calculates the regression
                                  coefficients. The size of the return array for mregr_coef is the
                                  same as the size of the input array of independent variables, since
@@ -1104,15 +1104,15 @@ sum
                         </tr>
 
                         <tr class="row">
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">mregr_r2( <strong class="ph b">expr</strong>, array[])
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">mregr_r2( <strong class="ph b">expr</strong>, array[])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">float </td>
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">float </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">mregr_r2(y, array[1, x1, x2])
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">mregr_r2(y, array[1, x1, x2])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">The four mregr_* aggregates perform linear regressions using the
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">The four mregr_* aggregates perform linear regressions using the
                                  ordinary-least-squares method. mregr_r2 calculates the r-squared
                                  error value for the regression.
                            </td>
@@ -1120,15 +1120,15 @@ sum
                         </tr>
 
                         <tr class="row">
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">mregr_pvalues( <strong class="ph b">expr</strong>, array[])
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">mregr_pvalues( <strong class="ph b">expr</strong>, array[])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">float[] </td>
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">float[] </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">mregr_pvalues(y, array[1, x1, x2])
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">mregr_pvalues(y, array[1, x1, x2])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">The four mregr_* aggregates perform linear regressions using the
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">The four mregr_* aggregates perform linear regressions using the
                                  ordinary-least-squares method. mregr_pvalues calculates the
                                  p-values for the regression.
                            </td>
@@ -1136,16 +1136,16 @@ sum
                         </tr>
 
                         <tr class="row">
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">mregr_tstats( <strong class="ph b">expr</strong>, array[])
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">mregr_tstats( <strong class="ph b">expr</strong>, array[])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">float[]
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">float[]
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">mregr_tstats(y, array[1, x1, x2])
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">mregr_tstats(y, array[1, x1, x2])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">The four mregr_* aggregates perform linear regressions using the
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">The four mregr_* aggregates perform linear regressions using the
                                  ordinary-least-squares method. mregr_tstats calculates the
                                  t-statistics for the regression.
                            </td>
@@ -1153,15 +1153,15 @@ sum
                         </tr>
 
                         <tr class="row">
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">nb_classify(text[], bigint, bigint[], bigint[])
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">nb_classify(text[], bigint, bigint[], bigint[])
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">text </td>
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">text </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">nb_classify(classes, attr_count, class_count, class_total)
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">nb_classify(classes, attr_count, class_count, class_total)
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">Classify rows using a Naive Bayes Classifier. This aggregate uses a
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">Classify rows using a Naive Bayes Classifier. This aggregate uses a
                                  baseline of training data to predict the classification of new rows
                                  and returns the class with the largest likelihood of appearing in
                                  the new rows.
@@ -1170,15 +1170,15 @@ sum
                         </tr>
 
                         <tr class="row">
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">nb_probabilities(text[], bigint, bigint[], bigint[]) 
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">nb_probabilities(text[], bigint, bigint[], bigint[]) 
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">text </td>
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">text </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">nb_probabilities(classes, attr_count, class_count, class_total)
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">nb_probabilities(classes, attr_count, class_count, class_total)
                            </td>
 
-                           <td class="entry confluenceTd" valign="top" headers="d201977e1136 d201977e1139 d201977e1142 d201977e1145 ">Determine probability for each class using a Naive Bayes
+                           <td class="entry confluenceTd" valign="top" headers="d201993e1136 d201993e1139 d201993e1142 d201993e1145 ">Determine probability for each class using a Naive Bayes
                                  Classifier. This aggregate uses a baseline of training data to
                                  predict the classification of new rows and returns the
                                  probabilities that each class will appear in new rows.

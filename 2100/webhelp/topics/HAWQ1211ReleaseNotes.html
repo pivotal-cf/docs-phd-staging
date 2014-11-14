@@ -2,7 +2,7 @@
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xml:lang="en-us" lang="en-us">
-<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Rev: A01 Published: November 12, 2014 Contents About the Pivotal HAWQ Components What's New in the Release Supported Platforms Installation Options Upgrade Paths Resolved Issues Known Issues HAWQ and ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Pivotal HAWQ 1.2.1.1 Release Notes"/><meta name="DC.Relation" scheme="URI" content="../topics/PivotalHAWQ.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="hawq1.2.1releasenotes"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Pivotal HAWQ 1.2.1.1 Release Notes</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Rev: A01 Published: November 12, 2014 Contents About the Pivotal HAWQ Components What's New in the Release Supported Platforms Installation Options Isilon-Specific Configuration Upgrade Paths ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Pivotal HAWQ 1.2.1.1 Release Notes"/><meta name="DC.Relation" scheme="URI" content="../topics/PivotalHAWQ.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="hawq1.2.1releasenotes"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Pivotal HAWQ 1.2.1.1 Release Notes</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
           
           var prefix = "../index.html";
           
@@ -57,9 +57,13 @@
                <a class="xref" href="#installationoptions">Installation Options</a>
             </li>
 
+            <li class="li"><a class="xref" href="#id_izv_1rw_yp">Isilon-Specific Configuration</a></li>
+
             <li class="li">
                <a class="xref" href="#upgradinghawq">Upgrade Paths</a>
             </li>
+
+            <li class="li"><a class="xref" href="#topic_ugs_h1d_bq">Isilon/PXF Usage Notes</a></li>
 
             <li class="li">
                <a class="xref" href="#resolvedissues">Resolved Issues</a>
@@ -376,11 +380,11 @@ gpadmin=# show pxf_isilon
                   
                   <thead class="thead" align="left">
                      <tr class="row">
-                        <th class="entry confluenceTh" valign="top" width="13.793103448275861%" id="d59783e522">Issue</th>
+                        <th class="entry confluenceTh" valign="top" width="13.793103448275861%" id="d59783e532">Issue</th>
 
-                        <th class="entry confluenceTh" valign="top" width="17.24137931034483%" id="d59783e525">Category</th>
+                        <th class="entry confluenceTh" valign="top" width="17.24137931034483%" id="d59783e535">Category</th>
 
-                        <th class="entry confluenceTh" valign="top" width="68.96551724137932%" id="d59783e528">Description</th>
+                        <th class="entry confluenceTh" valign="top" width="68.96551724137932%" id="d59783e538">Description</th>
 
                      </tr>
 
@@ -388,11 +392,11 @@ gpadmin=# show pxf_isilon
 
                   <tbody class="tbody">
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HAWQ-2648</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HAWQ-2648</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">Data Loading, PXF</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">Data Loading, PXF</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">PXF does not work with euc-js and sjis
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">PXF does not work with euc-js and sjis
                            encoding but gpfdist does. <p class="p">This issue has been resolved.</p>
 
                         </td>
@@ -400,11 +404,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HAWQ-2418</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HAWQ-2418</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">Catalog and Metadata </td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">Catalog and Metadata </td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">System panicked at@
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">System panicked at@
                            "GetQueryContextDipsatchingFileLocation" <p class="p">This issue has been
                               resolved.</p>
 
@@ -413,11 +417,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HAWQ-2368</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HAWQ-2368</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">PXF</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">PXF</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">PXF not able to fetch more then 353
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">PXF not able to fetch more then 353
                            partitions from hive table. <p class="p">This issue has been resolved.</p>
 
                         </td>
@@ -425,11 +429,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HAWQ-2346</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HAWQ-2346</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">DML</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">DML</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">COPY on some particular data causes a
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">COPY on some particular data causes a
                            postmaster reset. <p class="p">This issue has been resolved.</p>
 
                         </td>
@@ -437,11 +441,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HAWQ-2345</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HAWQ-2345</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">PXF</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">PXF</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">PXF/HAWQ issue when inserting data into
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">PXF/HAWQ issue when inserting data into
                            writable external table. <p class="p">This issue has been resolved.</p>
 
                         </td>
@@ -449,11 +453,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HAWQ-2262</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HAWQ-2262</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">Utility Commands</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">Utility Commands</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">gprecoverseg fails because of stale fifo
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">gprecoverseg fails because of stale fifo
                            pgsql_tmp_gpcdb2.sisc_0_114951_564_0_read. <p class="p">This issue has been
                               resolved.</p>
 
@@ -462,11 +466,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HAWQ-2170</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HAWQ-2170</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">Query Optimizer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">Query Optimizer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">Optimizer query crashing for logical
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">Optimizer query crashing for logical
                            window with no window functions. <p class="p">This issue has been resolved.</p>
 
                         </td>
@@ -474,11 +478,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HAWQ-2143</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HAWQ-2143</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">Management Tools</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">Management Tools</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">You may encounter this issue after
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">You may encounter this issue after
                            performing the following tasks: <ol class="ol" id="hawq121resolvedissues__ol_f3f_4zs_4p">
                               <li class="li">Upgrading the HAWQ cluster from 1.1.x to 1.2.x. </li>
 
@@ -493,11 +497,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HAWQ-2008</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HAWQ-2008</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">HDFS Access Layer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">HDFS Access Layer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">query failed with "ERROR: Append-Only
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">query failed with "ERROR: Append-Only
                            Storage Read could not open segment file". <p class="p">This issue has been
                               resolved.</p>
 
@@ -506,11 +510,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HAWQ-1859</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HAWQ-1859</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">Build and Installer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">Build and Installer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">Run plr_install.sh to copy the pgcrypto.so
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">Run plr_install.sh to copy the pgcrypto.so
                            on the master and segments. To import these pgcrypto functions for
                            another database, run the following: <p class="p">psql -d&lt;TARGET_DATABASE&gt; -f
                               $GPHOME/share/postgresql/contrib/pgcrypto.sql</p>
@@ -522,11 +526,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HAWQ-1834</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HAWQ-1834</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">Build and Installer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">Build and Installer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">plr_install.sh failed with "Platform not
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">plr_install.sh failed with "Platform not
                            supported" <p class="p">This issue has been resolved.</p>
 
                         </td>
@@ -534,11 +538,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HAWQ-1809</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HAWQ-1809</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">Query  Optimizer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">Query  Optimizer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">Hawq Master SIGSEGV when mapreduce job is
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">Hawq Master SIGSEGV when mapreduce job is
                            inserting data into Hawq table. <p class="p">This issue has been resolved.</p>
 
                         </td>
@@ -546,11 +550,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HAWQ-1741</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HAWQ-1741</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">Query Execution</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">Query Execution</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">gpsd / pg_dump operation causes PANIC at
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">gpsd / pg_dump operation causes PANIC at
                            HAWQ <p class="p">This issue has been resolved.</p>
 
                         </td>
@@ -558,11 +562,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HAWQ-1728</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HAWQ-1728</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">Query Optimizer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">Query Optimizer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">If the Pivotal Query Optimizer is on, the
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">If the Pivotal Query Optimizer is on, the
                            INSERT command fails, but works fine with the Pivotal Query Optimizer
                            off. <p class="p">This issue has been resolved.</p>
 </td>
@@ -570,11 +574,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HAWQ-1225</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HAWQ-1225</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">Query  Execution</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">Query  Execution</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">Need a mechanism to abort query before
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">Need a mechanism to abort query before
                            gp_vmem_protect_limit is hit. <p class="p">This issue has been
                            resolved.</p>
 </td>
@@ -582,11 +586,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HAWQ-1219</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HAWQ-1219</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">Query  Optimizer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">Query  Optimizer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">Query (with SELECT clause) fails with
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">Query (with SELECT clause) fails with
                            SIGSEV generating core files. <p class="p">This issue has been
                            resolved.</p>
 </td>
@@ -594,11 +598,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e522 ">HD-11130</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e532 ">HD-11130</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e525 ">ICM</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e535 ">ICM</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e528 ">In a secure cluster, if yarn nodes are not
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e538 ">In a secure cluster, if yarn nodes are not
                            colocated with namenode, querying for external tables with HAWQ will not
                               work.<p class="p">This issue has been resolved.</p>
 </td>
@@ -625,11 +629,11 @@ gpadmin=# show pxf_isilon
                   
                   <thead class="thead" align="left">
                      <tr class="row">
-                        <th class="entry confluenceTh" valign="top" width="13.793103448275861%" id="d59783e826">Issue</th>
+                        <th class="entry confluenceTh" valign="top" width="13.793103448275861%" id="d59783e836">Issue</th>
 
-                        <th class="entry confluenceTh" valign="top" width="17.24137931034483%" id="d59783e829">Category</th>
+                        <th class="entry confluenceTh" valign="top" width="17.24137931034483%" id="d59783e839">Category</th>
 
-                        <th class="entry confluenceTh" valign="top" width="68.96551724137932%" id="d59783e832">Description</th>
+                        <th class="entry confluenceTh" valign="top" width="68.96551724137932%" id="d59783e842">Description</th>
 
                      </tr>
 
@@ -637,11 +641,11 @@ gpadmin=# show pxf_isilon
 
                   <tbody class="tbody">
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e826 ">HAWQ-1453</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e836 ">HAWQ-1453</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e829 ">Transaction</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e839 ">Transaction</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e832 ">Executing concurrent INSERT and ALTER
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e842 ">Executing concurrent INSERT and ALTER
                            TABLE statements generates the following error: <p class="p"><samp class="ph codeph">ERROR:  read
                                  beyond eof in table "tbl_isolation" in file
                                  "hdfs://smdw:9000/hawq/gpdb20131226t190718-885441423/releng4/16385/16523/58847.1"
@@ -673,11 +677,11 @@ gpadmin=# show pxf_isilon
                   
                   <thead class="thead" align="left">
                      <tr class="row">
-                        <th class="entry confluenceTh" valign="top" width="13.793103448275861%" id="d59783e882">Issue</th>
+                        <th class="entry confluenceTh" valign="top" width="13.793103448275861%" id="d59783e892">Issue</th>
 
-                        <th class="entry confluenceTh" valign="top" width="17.24137931034483%" id="d59783e885">Category</th>
+                        <th class="entry confluenceTh" valign="top" width="17.24137931034483%" id="d59783e895">Category</th>
 
-                        <th class="entry confluenceTh" valign="top" width="68.96551724137932%" id="d59783e888">Description</th>
+                        <th class="entry confluenceTh" valign="top" width="68.96551724137932%" id="d59783e898">Description</th>
 
                      </tr>
 
@@ -685,11 +689,11 @@ gpadmin=# show pxf_isilon
 
                   <tbody class="tbody">
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1834</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1834</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">Build and Installer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">Build and Installer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">The <span class="ph filepath">plr_install.sh</span>
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">The <span class="ph filepath">plr_install.sh</span>
                            script failed with the error <samp class="ph codeph">Platform not
                               supported</samp>.<p class="p">This issue has been resolved. </p>
 </td>
@@ -697,11 +701,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1721</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1721</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">Query Optimizer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">Query Optimizer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">The optimizer failed to process a query
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">The optimizer failed to process a query
                            with join aliases. <p class="p">This issue has been resolved in the
                            optimizer.</p>
 </td>
@@ -709,11 +713,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1706</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1706</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">Query Optimizer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">Query Optimizer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">For certain queries that have inner and
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">For certain queries that have inner and
                            outer joins, the optimizer failed while exploring alternative plans
                            leading to a crash.<p class="p">This issue has been resolved in the
                            optimizer.</p>
@@ -722,11 +726,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1702</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1702</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">Query Optimizer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">Query Optimizer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">For some queries containing built-in
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">For some queries containing built-in
                            functions such
                            as: pg_stat_get_backend_pid, pg_stat_get_backend_activity_start,
                            or pg_stat_get_backend_userid; the optimizer might generate incorrect
@@ -736,11 +740,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1694</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1694</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">HDFS Access Layer, Query Execution</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">HDFS Access Layer, Query Execution</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">In a kerberized cluster with a race
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">In a kerberized cluster with a race
                            condition, the master released the file system credentials before the
                            segments reached the HDFS name node. This caused the entire query to
                            fail.     <p class="p">This issue has been resolved.</p>
@@ -749,11 +753,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1692</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1692</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">Query Optimizer, PXF</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">Query Optimizer, PXF</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">PXF Predicate Push-down did not work if
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">PXF Predicate Push-down did not work if
                            the Pivotal Query Optimizer was enabled. <p class="p">This issue has been
                               resolved.</p>
 </td>
@@ -761,22 +765,22 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1618</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1618</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">Infrastructure</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">Infrastructure</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">YARN failed to load in SingleCluster   
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">YARN failed to load in SingleCluster   
                               <p class="p">This issue has been resolved.</p>
 </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1610</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1610</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">Build and Installer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">Build and Installer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">PL/R package changes. <p class="p">Check the name
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">PL/R package changes. <p class="p">Check the name
                               of your plr package. If it is
                                  <span class="ph filepath">plr-1.1.4.0-5152.x86_64.tgz</span>, download the
                               latest <span class="ph filepath">version plr-1.1.4.0-5664.x86_64.tgz</span> for
@@ -789,21 +793,21 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1527</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1527</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">Build and Installer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">Build and Installer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">HAWQ and PXF version strings are now 4
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">HAWQ and PXF version strings are now 4
                            digits.</td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1491</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1491</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">AO tables Column Store</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">AO tables Column Store</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">After truncating a table, the HAWQ input
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">After truncating a table, the HAWQ input
                            format did not work with the truncated table.   <p class="p">This issue has been
                               resolved.</p>
 </td>
@@ -811,11 +815,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1490</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1490</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">AO tables Column Store</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">AO tables Column Store</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">The function
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">The function
                            HAWQConvertUtil.bytesToDecimal was not thread safe. This is because
                            decimalCharArray is a public static variable. <p class="p">This issue has been
                               resolved.</p>
@@ -824,22 +828,22 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1489</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1489</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">AO tables Column Store</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">AO tables Column Store</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">After truncating a table, gpextract did
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">After truncating a table, gpextract did
                            not work.  <p class="p">This issue has been resolved.</p>
 </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1488</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1488</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">AO tables Column Store</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">AO tables Column Store</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">If the HAWQAORecord.getBoolean
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">If the HAWQAORecord.getBoolean
                            function encountered a column with boolean data type, it returned
                            the incorrect result, false. <p class="p">This issue has been resolved.</p>
 </td>
@@ -847,44 +851,44 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1455</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1455</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">Dispatch</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">Dispatch</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">Signal re-entrant during session idle. QD
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">Signal re-entrant during session idle. QD
                            crashes.  <p class="p">This issue has been resolved.</p>
 </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1451</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1451</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">Query Exexcution</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">Query Exexcution</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">Explain analyze statistics are not correct
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">Explain analyze statistics are not correct
                            for work files . <p class="p">This issue has been resolved.</p>
 </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1450</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1450</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">Infrastructure</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">Infrastructure</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">SingleCluster hdfs tool was not working
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">SingleCluster hdfs tool was not working
                            with Hadoop 2.2 <p class="p">This issue has been resolved.</p>
 </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1429</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1429</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">Default</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">Default</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">Unable to start HAWQ master because
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">Unable to start HAWQ master because
                            recovery failed. The master failed to start during recovery mode because
                            some files existed locally and were missing on the HDFS layer. <p class="p">This
                               issue has been resolved.</p>
@@ -893,22 +897,22 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1418</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1418</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">Catalog and Metadata</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">Catalog and Metadata</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">HAWQ 1.1.4.0 did not support aggregate
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">HAWQ 1.1.4.0 did not support aggregate
                            derived functions.  <p class="p">This issue has been resolved.</p>
 </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1379</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1379</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">Management Tools</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">Management Tools</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">hawq_toolkit cannot be used directly after
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">hawq_toolkit cannot be used directly after
                            upgrading from an old version. This is because toolkit related objects
                            are not created in the old version.<p class="p">This issue has been resolved.
                            </p>
@@ -917,11 +921,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1358 </td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1358 </td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">DDL Object</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">DDL Object</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">Received a confusing error when creating a
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">Received a confusing error when creating a
                            table that distributes by text data type. <p class="p">This issue has been
                               resolved.</p>
 </td>
@@ -929,11 +933,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1260</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1260</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">Query Execution</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">Query Execution</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">A certain class of uncorrelated subqueries
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">A certain class of uncorrelated subqueries
                            are known to fail. The subquery should have a user defined object and a
                            distributed table. For example: <p class="p"><samp class="ph codeph">SELECT * FROM t1 WHERE t1.a
                                  &lt; (SELECT foo(t2.b) FROM t2 LIMIT 1);</samp></p>
@@ -944,11 +948,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1184</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1184</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">DDL Object</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">DDL Object</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">ALTER TABLE ADD COLUMN with default NULL
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">ALTER TABLE ADD COLUMN with default NULL
                            was not supported for append-only tables. <p class="p">This syntax is now
                               supported. </p>
 </td>
@@ -956,11 +960,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-1078</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-1078</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">Query Execution</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">Query Execution</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">Continuously issued deepslice queries
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">Continuously issued deepslice queries
                            cause error in HDFS with kerberos. <p class="p">This issue has been resolved.
                            </p>
 </td>
@@ -968,11 +972,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e882 ">HAWQ-872</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e892 ">HAWQ-872</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e885 ">DDL Object</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e895 ">DDL Object</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e888 ">In certain cases, INSERT INTO SELECT from
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e898 ">In certain cases, INSERT INTO SELECT from
                            the same table might insert an incorrect number of tuples. This
                            happens if the table is altered prior to the insert. <p class="p">This issue has
                               been resolved.</p>
@@ -1000,11 +1004,11 @@ gpadmin=# show pxf_isilon
                   
                   <thead class="thead" align="left">
                      <tr class="row">
-                        <th class="entry confluenceTh" valign="top" width="13.793103448275861%" id="d59783e1275">Issue</th>
+                        <th class="entry confluenceTh" valign="top" width="13.793103448275861%" id="d59783e1285">Issue</th>
 
-                        <th class="entry confluenceTh" valign="top" width="17.24137931034483%" id="d59783e1278">Category</th>
+                        <th class="entry confluenceTh" valign="top" width="17.24137931034483%" id="d59783e1288">Category</th>
 
-                        <th class="entry confluenceTh" valign="top" width="68.96551724137932%" id="d59783e1281">Description</th>
+                        <th class="entry confluenceTh" valign="top" width="68.96551724137932%" id="d59783e1291">Description</th>
 
                      </tr>
 
@@ -1012,22 +1016,22 @@ gpadmin=# show pxf_isilon
 
                   <tbody class="tbody">
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1275 ">HAWQ-1482</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1285 ">HAWQ-1482</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1278 ">PXF</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1288 ">PXF</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1281 ">gphdfilters created a filter in
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1291 ">gphdfilters created a filter in
                            the reverse order.<p class="p">This issue has been resolved.  </p>
 </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1275 ">HAWQ-1364</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1285 ">HAWQ-1364</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1278 ">PXF</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1288 ">PXF</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1281 ">While copying data to a writable interface
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1291 ">While copying data to a writable interface
                            HDFS  table, showed remote component error 500. <p class="p">This issue has been
                               resolved.</p>
 </td>
@@ -1058,9 +1062,9 @@ gpadmin=# show pxf_isilon
                   
                   <thead class="thead" align="left">
                      <tr class="row">
-                        <th class="entry confluenceTh" valign="top" width="15.151515151515152%" id="d59783e1346">Issue</th>
+                        <th class="entry confluenceTh" valign="top" width="15.151515151515152%" id="d59783e1356">Issue</th>
 
-                        <th class="entry confluenceTh" valign="top" width="84.84848484848484%" id="d59783e1349">Description</th>
+                        <th class="entry confluenceTh" valign="top" width="84.84848484848484%" id="d59783e1359">Description</th>
 
                      </tr>
 
@@ -1068,17 +1072,17 @@ gpadmin=# show pxf_isilon
 
                   <tbody class="tbody">
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1346 ">HAWQ-2938</td>
+                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1356 ">HAWQ-2938</td>
 
-                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1349 ">HAWQ 1.2.1.1 does not include the latest
+                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1359 ">HAWQ 1.2.1.1 does not include the latest
                            Open SSL patch. For more information on this patch, see: <a class="xref" href="https://www.openssl.org/news/secadv_20141015.txt" target="_blank">https://www.openssl.org/news/secadv_20141015.txt</a></td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1346 ">HAWQ-2931</td>
+                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1356 ">HAWQ-2931</td>
 
-                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1349 "> ICM upgrade of PXF from 2.3.0 to 2.3.1
+                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1359 "> ICM upgrade of PXF from 2.3.0 to 2.3.1
                            fails. The workaround is to manually upgrade the PXF rpm
                            packages:<pre class="pre codeblock">rpm -U pxf-service pxf-hive pxf-hbase pxf-hdfs</pre>
 </td>
@@ -1086,9 +1090,9 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1346 ">HAWQ-2816</td>
+                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1356 ">HAWQ-2816</td>
 
-                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1349 ">When HAWQ runs on Isilon, HAWQ may fail to
+                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1359 ">When HAWQ runs on Isilon, HAWQ may fail to
                            insert data into the database, especially when inserting data into
                            column-oriented tables and under high workload. After the failure, the
                            table may be temporarily unaccessible until the Isilon system finishes
@@ -1106,9 +1110,9 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1346 ">HAWQ-2698</td>
+                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1356 ">HAWQ-2698</td>
 
-                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1349 ">Secure HDFS with HAWQ is not supported
+                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1359 ">Secure HDFS with HAWQ is not supported
                            with Isilon as the HDFS layer.</td>
 
                      </tr>
@@ -1133,11 +1137,11 @@ gpadmin=# show pxf_isilon
                   
                   <thead class="thead" align="left">
                      <tr class="row">
-                        <th class="entry confluenceTh" valign="top" width="13.793103448275861%" id="d59783e1429">Issue</th>
+                        <th class="entry confluenceTh" valign="top" width="13.793103448275861%" id="d59783e1439">Issue</th>
 
-                        <th class="entry confluenceTh" valign="top" width="17.24137931034483%" id="d59783e1432">Category</th>
+                        <th class="entry confluenceTh" valign="top" width="17.24137931034483%" id="d59783e1442">Category</th>
 
-                        <th class="entry confluenceTh" valign="top" width="68.96551724137932%" id="d59783e1435">Description</th>
+                        <th class="entry confluenceTh" valign="top" width="68.96551724137932%" id="d59783e1445">Description</th>
 
                      </tr>
 
@@ -1145,11 +1149,11 @@ gpadmin=# show pxf_isilon
 
                   <tbody class="tbody">
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1429 ">HAWQ-2730</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1439 ">HAWQ-2730</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1432 ">Data Loading</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1442 ">Data Loading</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1435 ">An insert command that inserts a very
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1445 ">An insert command that inserts a very
                            large number of tuples might show an excessive amount of memory used on
                            the segments. In some circumstances, this can cause the insert query to
                            error out. <p class="p"><strong class="ph b">Workaround:</strong> Split the insert into several smaller
@@ -1159,31 +1163,31 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1429 ">HAWQ-2655</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1439 ">HAWQ-2655</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1432 ">DLL-Object</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1442 ">DLL-Object</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1435 ">Can't cancel create/drop/truncate table
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1445 ">Can't cancel create/drop/truncate table
                            when hdfs is stopped.</td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1429 ">HAWQ-2613</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1439 ">HAWQ-2613</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1432 ">Query Execution</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1442 ">Query Execution</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1435 ">EXPLAIN of a query inside a cursor could
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1445 ">EXPLAIN of a query inside a cursor could
                            crash HAWQ.</td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1429 ">HAWQ-2530</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1439 ">HAWQ-2530</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1432 ">Query Execution</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1442 ">Query Execution</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1435 ">The Result node in optimizer consumes much
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1445 ">The Result node in optimizer consumes much
                            higher memory than the planner. <p class="p">In HAWQ, set returning functions
                               maintain their state during the execution of the query. In some cases
                               this could result in larger memory utilization. </p>
@@ -1192,11 +1196,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1429 ">HAWQ-2447</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1439 ">HAWQ-2447</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1432 ">Query Execution</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1442 ">Query Execution</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1435 ">Select operations with a subquery on
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1445 ">Select operations with a subquery on
                            external web tables results in an out of memory error. <p class="p">Currently, HAWQ
                               does not collect stats from external tables and thus could produce
                               wrong plans of queries involving external tables. You should avoid
@@ -1208,11 +1212,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1429 ">HAWQ-2370</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1439 ">HAWQ-2370</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1432 ">DML</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1442 ">DML</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1435 ">For sub-partitioned parquet tables,
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1445 ">For sub-partitioned parquet tables,
                            inserting data to the last sub-partition (level-2) of each level-1
                            partition can consume more memory than inserting data to non-last
                            sub-partition(level-2) of each level-1 partition. </td>
@@ -1220,11 +1224,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1429 ">HAWQ-2267</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1439 ">HAWQ-2267</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1432 ">Catalog and Metadata</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1442 ">Catalog and Metadata</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1435 ">A known issue exists in operators of type
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1445 ">A known issue exists in operators of type
                            &lt;madlib.svec&gt;. Users are warned that any queries that rely on
                            operators of &lt;madlib.svec&gt; could give incorrect results, such as
                            using &lt;madlib.svec&gt; for GROUP BY, ORDER BY, PRIMARY KEY and INDEX.
@@ -1236,32 +1240,32 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1429 ">HAWQ-1903</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1439 ">HAWQ-1903</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1432 ">DDL-object, Query Optimizer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1442 ">DDL-object, Query Optimizer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1435 ">User defined equality operators with
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1445 ">User defined equality operators with
                            Non-SQL underlying function are not currently used by the optimizer in
                            hash join plans.</td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1429 ">HAWQ-1038</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1439 ">HAWQ-1038</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1432 ">Catalog and Metadata</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1442 ">Catalog and Metadata</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1435 ">Possible CAQL memory leak can
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1445 ">Possible CAQL memory leak can
                            occur.</td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1429 ">HD-10233</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1439 ">HD-10233</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1432 ">ICM</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1442 ">ICM</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1435 ">Initialization of HAWQ in HA mode is not
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1445 ">Initialization of HAWQ in HA mode is not
                            currently supported</td>
 
                      </tr>
@@ -1286,11 +1290,11 @@ gpadmin=# show pxf_isilon
                   
                   <thead class="thead" align="left">
                      <tr class="row">
-                        <th class="entry confluenceTh" valign="top" width="13.793103448275861%" id="d59783e1597">Issue</th>
+                        <th class="entry confluenceTh" valign="top" width="13.793103448275861%" id="d59783e1607">Issue</th>
 
-                        <th class="entry confluenceTh" valign="top" width="17.24137931034483%" id="d59783e1600">Category</th>
+                        <th class="entry confluenceTh" valign="top" width="17.24137931034483%" id="d59783e1610">Category</th>
 
-                        <th class="entry confluenceTh" valign="top" width="68.96551724137932%" id="d59783e1603">Description</th>
+                        <th class="entry confluenceTh" valign="top" width="68.96551724137932%" id="d59783e1613">Description</th>
 
                      </tr>
 
@@ -1298,11 +1302,11 @@ gpadmin=# show pxf_isilon
 
                   <tbody class="tbody">
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1597 ">HAWQ-1980</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1607 ">HAWQ-1980</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1600 ">Query Optimizer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1610 ">Query Optimizer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1603 ">With the Pivotal Query Optimizer enabled,
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1613 ">With the Pivotal Query Optimizer enabled,
                            queries that contain multiple join predicates with statistical
                            correlations can cause an "Out of Memory" error. <p class="p">The work-around is to
                               set the <samp class="ph codeph">optimizer_damping_factor_join</samp> configuration
@@ -1319,11 +1323,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1597 ">HAWQ-1920</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1607 ">HAWQ-1920</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1600 ">Query Optimizer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1610 ">Query Optimizer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1603 ">In some cases, the system was getting
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1613 ">In some cases, the system was getting
                            stuck in recovery mode because segments continued to run plans with
                            motion nodes during the recovery process. Such plans are now invalid
                            during recovery, and are no longer being generated. </td>
@@ -1331,21 +1335,21 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1597 ">HAWQ-1918</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1607 ">HAWQ-1918</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1600 ">Catalog and Metadata</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1610 ">Catalog and Metadata</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1603 ">Nested functions in any language are not
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1613 ">Nested functions in any language are not
                            supported in HAWQ 1.2.</td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1597 ">HAWQ-1868</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1607 ">HAWQ-1868</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1600 ">DML</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1610 ">DML</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1603 ">If a query does not have a FROM clause,
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1613 ">If a query does not have a FROM clause,
                            and contains the random() function in the SELECT clause along
                            with another function that returns multiple rows, then the results
                            generate the same random number rather than generating different random
@@ -1354,11 +1358,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1597 ">HAWQ-1543</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1607 ">HAWQ-1543</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1600 ">Upgrade</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1610 ">Upgrade</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1603 ">In a single node setting, gpmigrator tries
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1613 ">In a single node setting, gpmigrator tries
                            to create temporary directories twice using the same name under
                            DATA_DIRECTORY and MASTER_DIRECTORY, set during gpinitsystem. The second
                            time will fail. </td>
@@ -1366,11 +1370,11 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1597 ">HAWQ-1456</td>
+                        <td class="entry confluenceTd" valign="top" width="13.793103448275861%" headers="d59783e1607 ">HAWQ-1456</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1600 ">Transaction</td>
+                        <td class="entry confluenceTd" valign="top" width="17.24137931034483%" headers="d59783e1610 ">Transaction</td>
 
-                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1603 ">Running DROP SCHEMA and CREATE TABLE on
+                        <td class="entry confluenceTd" valign="top" width="68.96551724137932%" headers="d59783e1613 ">Running DROP SCHEMA and CREATE TABLE on
                            the same table makes the newly created table inaccessible.      </td>
 
                      </tr>
@@ -1399,13 +1403,13 @@ gpadmin=# show pxf_isilon
                   
                   <thead class="thead" align="left">
                      <tr class="row">
-                        <th class="entry confluenceTh" valign="top" width="14.285714285714285%" id="d59783e1726">Issue</th>
+                        <th class="entry confluenceTh" valign="top" width="14.285714285714285%" id="d59783e1736">Issue</th>
 
-                        <th class="entry confluenceTh" valign="top" width="17.857142857142858%" id="d59783e1729">Category</th>
+                        <th class="entry confluenceTh" valign="top" width="17.857142857142858%" id="d59783e1739">Category</th>
 
-                        <th class="entry confluenceTh" valign="top" width="10.714285714285714%" id="d59783e1732">Reported in</th>
+                        <th class="entry confluenceTh" valign="top" width="10.714285714285714%" id="d59783e1742">Reported in</th>
 
-                        <th class="entry confluenceTh" valign="top" width="57.14285714285714%" id="d59783e1735">Description</th>
+                        <th class="entry confluenceTh" valign="top" width="57.14285714285714%" id="d59783e1745">Description</th>
 
                      </tr>
 
@@ -1413,13 +1417,13 @@ gpadmin=# show pxf_isilon
 
                   <tbody class="tbody">
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1726 ">HAWQ-1369</td>
+                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1736 ">HAWQ-1369</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1729 ">Management Tool</td>
+                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1739 ">Management Tool</td>
 
-                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1732 ">1.1.4.0</td>
+                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1742 ">1.1.4.0</td>
 
-                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1735 ">When the underlying HDFS is online,
+                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1745 ">When the underlying HDFS is online,
                            hawq_size_of_database includes the data size on both HDFS and local
                            storage of the master; when the HDFS is offline, that view only has the
                            data size on local storage of the master.</td>
@@ -1427,74 +1431,74 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1726 ">HAWQ-1368</td>
+                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1736 ">HAWQ-1368</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1729 ">Management Tool</td>
+                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1739 ">Management Tool</td>
 
-                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1732 ">1.1.4.0</td>
+                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1742 ">1.1.4.0</td>
 
-                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1735 ">The view, hawq_size_of_database, does not
+                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1745 ">The view, hawq_size_of_database, does not
                            check user permission of those databases and only reports sizes of all
                            user databases.</td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1726 ">HAWQ-1270</td>
+                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1736 ">HAWQ-1270</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1729 ">Management Tool</td>
+                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1739 ">Management Tool</td>
 
-                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1732 ">1.1.4.0</td>
+                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1742 ">1.1.4.0</td>
 
-                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1735 ">The user must have access permission to
+                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1745 ">The user must have access permission to
                            the view, hawq_size_of_schema_disk.</td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1726 ">HAWQ-1167</td>
+                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1736 ">HAWQ-1167</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1729 ">Performance</td>
+                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1739 ">Performance</td>
 
-                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1732 ">1.1.3.0</td>
+                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1742 ">1.1.3.0</td>
 
-                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1735 ">Enabling Kerberos shows a 10% downgrade in
+                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1745 ">Enabling Kerberos shows a 10% downgrade in
                            HAWQ performance.</td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1726 ">HAWQ-1099</td>
+                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1736 ">HAWQ-1099</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1729 ">Connectivity</td>
+                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1739 ">Connectivity</td>
 
-                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1732 ">1.1.3.0</td>
+                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1742 ">1.1.3.0</td>
 
-                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1735 ">If you enable kerberos authentication, the
+                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1745 ">If you enable kerberos authentication, the
                            ODBC function SQL GetInfo returns an incorrect version of HAWQ.</td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1726 ">HAWQ-1056</td>
+                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1736 ">HAWQ-1056</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1729 ">DML</td>
+                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1739 ">DML</td>
 
-                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1732 ">1.1.3.0</td>
+                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1742 ">1.1.3.0</td>
 
-                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1735 ">Inserting data into a temp table generates
+                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1745 ">Inserting data into a temp table generates
                            an Append-only Storage Write error.</td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1726 ">HAWQ-859</td>
+                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1736 ">HAWQ-859</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1729 ">Query Optimizer</td>
+                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1739 ">Query Optimizer</td>
 
-                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1732 ">1.1.0.3</td>
+                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1742 ">1.1.0.3</td>
 
-                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1735 ">pg_dumpall test suite runs slowly. <p class="p">The
+                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1745 ">pg_dumpall test suite runs slowly. <p class="p">The
                               overhead is due to the command pg_dumpall. pg_dumpall generates
                               multiple queries over the catalog tables. Since the Pivotal Query
                               Optimizer optimizes these queries, it adds the overhead even though
@@ -1506,25 +1510,25 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1726 ">HAWQ-255</td>
+                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1736 ">HAWQ-255</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1729 ">Network</td>
+                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1739 ">Network</td>
 
-                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1732 ">1.1.0.1</td>
+                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1742 ">1.1.0.1</td>
 
-                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1735 ">HAWQ does not support the IPv6 protocol.
+                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1745 ">HAWQ does not support the IPv6 protocol.
                         </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1726 ">HAWQ-225</td>
+                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1736 ">HAWQ-225</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1729 ">Storage</td>
+                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1739 ">Storage</td>
 
-                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1732 ">1.1.0.1</td>
+                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1742 ">1.1.0.1</td>
 
-                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1735 ">When the number of partitions or columns
+                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1745 ">When the number of partitions or columns
                            of a column oriented table is large or write concurrency is high, HAWQ
                            encounters an HDFS concurrency write limitation. Data loading performance
                            may degrade and fail. <p class="p"><strong class="ph b">Workaround:</strong> For partitioned tables, load
@@ -1535,26 +1539,26 @@ gpadmin=# show pxf_isilon
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1726 ">HAWQ-224</td>
+                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1736 ">HAWQ-224</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1729 ">Backup and Restore</td>
+                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1739 ">Backup and Restore</td>
 
-                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1732 ">1.1.0.1</td>
+                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1742 ">1.1.0.1</td>
 
-                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1735 ">Only non-parallel logical backup and
+                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1745 ">Only non-parallel logical backup and
                            restore is supported. Pivotal recommends that you use physical backup and
                            restore. </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1726 ">HAWQ-26</td>
+                        <td class="entry confluenceTd" valign="top" width="14.285714285714285%" headers="d59783e1736 ">HAWQ-26</td>
 
-                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1729 ">DDL</td>
+                        <td class="entry confluenceTd" valign="top" width="17.857142857142858%" headers="d59783e1739 ">DDL</td>
 
-                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1732 ">1.1.0.1</td>
+                        <td class="entry confluenceTd" valign="top" width="10.714285714285714%" headers="d59783e1742 ">1.1.0.1</td>
 
-                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1735 ">Duplicate key violates unique constraint
+                        <td class="entry confluenceTd" valign="top" width="57.14285714285714%" headers="d59783e1745 ">Duplicate key violates unique constraint
                               pg_type_typname_nsp_index.<p class="p">When two sessions attempt to create a
                               table with the same name and in the same namespace, one of the
                               sessions will error out with a less user-friendly error message of the
@@ -1582,9 +1586,9 @@ gpadmin=# show pxf_isilon
                   
                   <thead class="thead" align="left">
                      <tr class="row">
-                        <th class="entry confluenceTh" valign="top" width="15.151515151515152%" id="d59783e1946">Issue</th>
+                        <th class="entry confluenceTh" valign="top" width="15.151515151515152%" id="d59783e1956">Issue</th>
 
-                        <th class="entry confluenceTh" valign="top" width="84.84848484848484%" id="d59783e1949">Description</th>
+                        <th class="entry confluenceTh" valign="top" width="84.84848484848484%" id="d59783e1959">Description</th>
 
                      </tr>
 
@@ -1592,9 +1596,9 @@ gpadmin=# show pxf_isilon
 
                   <tbody class="tbody">
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1946 ">HAWQ-2124</td>
+                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1956 ">HAWQ-2124</td>
 
-                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1949 ">PXF breaks in Namenode High-availability
+                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1959 ">PXF breaks in Namenode High-availability
                            (HA) setups. This occurs in the following setup:<ul class="ul" id="pxf2xxknownissues__ul_mg4_qpz_sp">
                               <li class="li">The first Namenode (by alphabet order) is the standby.</li>
 
@@ -1616,41 +1620,41 @@ Switch
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1946 ">HAWQ-1739</td>
+                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1956 ">HAWQ-1739</td>
 
-                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1949 ">PXF does not filter UTF8 encoded
+                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1959 ">PXF does not filter UTF8 encoded
                            parameters correctly.</td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1946 ">HAWQ-1720</td>
+                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1956 ">HAWQ-1720</td>
 
-                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1949 ">Error table has one extra error reported
+                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1959 ">Error table has one extra error reported
                            if the last row has an error. </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1946 ">HAWQ-1649</td>
+                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1956 ">HAWQ-1649</td>
 
-                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1949 ">Intermittent failures when using
+                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1959 ">Intermittent failures when using
                            pxf_profile. </td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1946 ">HAWQ-1481</td>
+                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1956 ">HAWQ-1481</td>
 
-                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1949 ">PXF Filter pushdown handles badly
+                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1959 ">PXF Filter pushdown handles badly
                            constants values with embedded quotes.</td>
 
                      </tr>
 
                      <tr class="row">
-                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1946 ">HAWQ-1394</td>
+                        <td class="entry confluenceTd" valign="top" width="15.151515151515152%" headers="d59783e1956 ">HAWQ-1394</td>
 
-                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1949 ">When using PXF to communicate with a
+                        <td class="entry confluenceTd" valign="top" width="84.84848484848484%" headers="d59783e1959 ">When using PXF to communicate with a
                            kerberized Pivotal Hadoop, PXF assumes that P-HD is using port 8020. If
                            that is not the case, PXF will fail to communicate and transfer data. You
                            will see the following message: <p class="p"><samp class="ph codeph">ERROR:  fail to get filesystem
@@ -1689,15 +1693,15 @@ Switch
 <div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
                <thead class="thead" align="left">
                   <tr class="row">
-                     <th class="entry confluenceTh" valign="top" id="d59783e2072">Client package</th>
+                     <th class="entry confluenceTh" valign="top" id="d59783e2082">Client package</th>
 
-                     <th class="entry confluenceTh" valign="top" id="d59783e2075">Description</th>
+                     <th class="entry confluenceTh" valign="top" id="d59783e2085">Description</th>
 
-                     <th class="entry confluenceTh" valign="top" id="d59783e2078">Operating System</th>
+                     <th class="entry confluenceTh" valign="top" id="d59783e2088">Operating System</th>
 
-                     <th class="entry confluenceTh" valign="top" id="d59783e2081">Client Version</th>
+                     <th class="entry confluenceTh" valign="top" id="d59783e2091">Client Version</th>
 
-                     <th class="entry confluenceTh" valign="top" id="d59783e2084">HAWQ Version</th>
+                     <th class="entry confluenceTh" valign="top" id="d59783e2094">HAWQ Version</th>
 
                   </tr>
 
@@ -1705,181 +1709,181 @@ Switch
 
                <tbody class="tbody">
                   <tr class="row">
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Connectivity</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Connectivity</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Standard PostgreSQL Database Drivers (ODBC,
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Standard PostgreSQL Database Drivers (ODBC,
                         JDBC). The HAWQ drivers are available for download from the location under
                         Pivotal HD called " HAWQ ODBC and JDBC Drivers" at the <a class="xref" href="https://network.pivotal.io/products/pivotal-hd" target="_blank">Pivotal HD download site</a></td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Windows XP 32 bit <p class="p">RedHat 5, 64
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Windows XP 32 bit <p class="p">RedHat 5, 64
                         bit</p>
 </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">HAWQ: 7.1.4 <p class="p">GPDB: 4.3.2.0 </p>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">HAWQ: 7.1.4 <p class="p">GPDB: 4.3.2.0 </p>
 
                      </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">1.2.1.1</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">1.2.1.1</td>
 
                   </tr>
 
                   <tr class="row">
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">HAWQ Client </td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">HAWQ Client </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Command Line Interface</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Command Line Interface</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Windows XP 32 bit <p class="p">RedHat 5, 64
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Windows XP 32 bit <p class="p">RedHat 5, 64
                         bit</p>
 </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">GPDB: 4.3.2.0</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">GPDB: 4.3.2.0</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">1.2.1.1</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">1.2.1.1</td>
 
                   </tr>
 
                   <tr class="row">
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Pivotal Command Center</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Pivotal Command Center</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">A web-based tool for managing and monitoring
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">A web-based tool for managing and monitoring
                         your Pivotal HD cluster. <div class="note note"><span class="notetitle">Note:</span> Pivotal Command Center 2.0.x does not support
                            DCA V1, DCA V2 or Greenplum Database.</div>
 
                      </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Windows 2008 <p class="p">RedHat 6.5 and 6.4, 64
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Windows 2008 <p class="p">RedHat 6.5 and 6.4, 64
                            bit</p>
 <p class="p">CentOS 6.5 and 6.4, 64 bit</p>
 </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">2.3</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">2.3</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">1.2.1.1</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">1.2.1.1</td>
 
                   </tr>
 
                   <tr class="row">
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">PXF</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">PXF</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Extensibility layer to provide support for
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Extensibility layer to provide support for
                         external data formats such as HBase and Hive. </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Windows 2008 <p class="p">RedHat 6.5 and 6.4, 64
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Windows 2008 <p class="p">RedHat 6.5 and 6.4, 64
                            bit</p>
 <p class="p">CentOS 6.5 and 6.4, 64 bit</p>
 </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">2.3.1</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">2.3.1</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">1.2.1.1</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">1.2.1.1</td>
 
                   </tr>
 
                   <tr class="row">
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Pivotal HD</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Pivotal HD</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 "> Pivotal Hadoop</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 "> Pivotal Hadoop</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">RedHat 6.5 and 6.4, 64 bit  <p class="p">CentOS 6.5 and
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">RedHat 6.5 and 6.4, 64 bit  <p class="p">CentOS 6.5 and
                            6.4, 64 bit</p>
 </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">2.1.0</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">2.1.0</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">1.2.1.1</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">1.2.1.1</td>
 
                   </tr>
 
                   <tr class="row">
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">pgcrypto</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">pgcrypto</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">A library of cryptographic functions </td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">A library of cryptographic functions </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Windows 2008 <p class="p">RedHat 6.5 and 6.4, 64
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Windows 2008 <p class="p">RedHat 6.5 and 6.4, 64
                            bit</p>
 <p class="p">CentOS 6.4 and 6.2, 64 bit</p>
 </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">1.2.1.0, 1.2.0.0 <p class="p">1.1.3.0-4609</p>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">1.2.1.0, 1.2.0.0 <p class="p">1.1.3.0-4609</p>
 
                      </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">1.2.1.1 <p class="p">1.1.3.x and 1.1.4.x</p>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">1.2.1.1 <p class="p">1.1.3.x and 1.1.4.x</p>
 
                      </td>
 
                   </tr>
 
                   <tr class="row">
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">PL/R</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">PL/R</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Ability to create and invoke user defined
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Ability to create and invoke user defined
                         functions in R</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Windows 2008 <p class="p">RedHat 6.5 and 6.4, 64
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Windows 2008 <p class="p">RedHat 6.5 and 6.4, 64
                            bit</p>
 <p class="p">CentOS 6.4 and 6.2, 64 bit</p>
 </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">1.2.1.0, 1.2.0.0 <p class="p">1.1.4.0-5664</p>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">1.2.1.0, 1.2.0.0 <p class="p">1.1.4.0-5664</p>
 
                      </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">1.2.1.1 <p class="p">1.1.4.x</p>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">1.2.1.1 <p class="p">1.1.4.x</p>
 
                      </td>
 
                   </tr>
 
                   <tr class="row">
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 "> PL/Java</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 "> PL/Java</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Ability to create and invoke user defined
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Ability to create and invoke user defined
                         functions in Java</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Windows 2008 <p class="p">RedHat 6.5 and 6.4, 64 bit
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Windows 2008 <p class="p">RedHat 6.5 and 6.4, 64 bit
                            </p>
 <p class="p">CentOS 6.5 and 6.4, 64 bit</p>
 </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">1.2.1.0, 1.2.0.1</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">1.2.1.0, 1.2.0.1</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">1.2.1.1</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">1.2.1.1</td>
 
                   </tr>
 
                   <tr class="row">
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Isilon OneFS</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Isilon OneFS</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Management Utility for Network Attached
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Management Utility for Network Attached
                         Storage used with Pivotal Hadoop</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Windows 2008 <p class="p">RedHat 6.5 and 6.4, 64 bit
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Windows 2008 <p class="p">RedHat 6.5 and 6.4, 64 bit
                            CentOS 6.5 and 6.4, 64 bit</p>
 </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">7.2</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">7.2</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">1.2.1.1</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">1.2.1.1</td>
 
                   </tr>
 
                   <tr class="row">
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Gemfire XD</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Gemfire XD</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">Distributed database for use with Pivotal
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">Distributed database for use with Pivotal
                         Hadoop</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">
                         <p class="p">Windows 2008 RedHat 6.5 and 6.4, 64 bit </p>
 
                         <p class="p">CentOS 6.5 and 6.4, 64 bit</p>
 
                      </td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">1.3.2</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">1.3.2</td>
 
-                     <td class="entry confluenceTd" valign="top" headers="d59783e2072 d59783e2075 d59783e2078 d59783e2081 d59783e2084 ">1.2.1.1</td>
+                     <td class="entry confluenceTd" valign="top" headers="d59783e2082 d59783e2085 d59783e2088 d59783e2091 d59783e2094 ">1.2.1.1</td>
 
                   </tr>
 
