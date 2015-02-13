@@ -1,0 +1,1699 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="This chapter describes the hawq_toolkit administrative schema views and their usage. What is hawq_toolkit? Viewing HAWQ Database Server Log Files hawq_log_command_timings hawq_log_database ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="hawq_toolkit Reference"/><meta name="DC.Relation" scheme="URI" content="../hawq-topics/HAWQAdministration.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="hawq_toolkitreference"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>hawq_toolkit Reference</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="hawq_toolkitreference"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">linkToThis</a></div><div id="printlink"><a href="javascript:window.print();">printThisPage</a></div></td></tr><tr><td><div class="navheader">
+<span class="navparent"><a class="link" href="../hawq-topics/HAWQAdministration.html" title="HAWQ Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Administration</span></a></span>  </div></td><td width="75%"><a class="navheader_parent_path" href="../hawq-topics/../hawq-topics/PivotalHAWQ.html" title="Pivotal HAWQ">Pivotal HAWQ</a> / <a class="navheader_parent_path" href="../hawq-topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">hawq_toolkit Reference</h1>
+
+   <div class="body">
+      <p class="p">This chapter describes the <samp class="ph codeph">hawq_toolkit</samp> administrative schema views and
+         their usage.</p>
+
+      <ul class="ul">
+         <li class="li">
+            <a class="xref" href="#whatishawqtoolkit">What is hawq_toolkit?</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#viewinghawqdatabaseserverlogfiles">Viewing HAWQ Database Server Log Files</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#hawq_log_command_timings">hawq_log_command_timings</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hawq_log_database">hawq_log_database</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hawq_log_master_concise">hawq_log_master_concise</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hawq_log_system">hawq_log_system</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#checkingfortablesthatrequireroutinemaintenance">Checking for Tables that Require Routine Maintenance</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#hawq_stats_missing">hawq_stats_missing</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#checkingquerydiskspillspaceusage">Checking Query Disk Spill Space Usage</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#hawq_workfile_entries">hawq_workfile_entries</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hawq_workfile_usage_per_query">hawq_workfile_usage_per_query</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hawq_workfile_usage_per_segment">hawq_workfile_usage_per_segment</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#checkingdatabaseobjectsizesanddiskspace">Checking Database Object Sizes and Disk Space</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#hawq_size_of_table_disk">hawq_size_of_table_disk</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hawq_size_of_table_uncompressed">hawq_size_of_table_uncompressed</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hawq_size_of_table_and_indexes_disk">hawq_size_of_table_and_indexes_disk</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hawq_size_of_schema_disk">hawq_size_of_schema_disk</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hawq_size_of_table_and_indexes_licensing">hawq_size_of_table_and_indexes_licensing</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#hawq_size_of_database">hawq_size_of_database</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+      </ul>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="whatishawqtoolkit">
+      <h2 class="title topictitle2">What is hawq_toolkit?</h2>
+
+      <div class="body">
+         <p class="p">Pivotal provides an administrative schema called <samp class="ph codeph">hawq_toolkit</samp> that you
+            can use to query the system catalogs, log files, and operating environment for system
+            status information. The <samp class="ph codeph">hawq_toolkit</samp> schema contains a number of views
+            that you can access using SQL commands. The <samp class="ph codeph">hawq_toolkit</samp> schema is
+            accessible to all database users, although some objects may require superuser
+            permissions. For convenience, you may want to add the <samp class="ph codeph">hawq_toolkit</samp>
+            schema to your schema search path. For example:</p>
+
+         <pre class="pre codeblock">=&gt; ALTER ROLE myrole SET search_path TO my schema,hawq_toolkit;</pre>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="viewinghawqdatabaseserverlogfiles">
+      <h2 class="title topictitle2">Viewing HAWQ Database Server Log Files</h2>
+
+      <div class="body">
+         <p class="p">Each component of a HAWQ Database system (master, standby master and primary segments)
+            keeps its own server log files, The <samp class="ph codeph">hawq_log_*</samp> family of views allows
+            you to issue SQL queries against the server log files to find particular entries of
+            interest. The user of these views require superuser permissions.</p>
+
+      </div>
+
+      <div class="topic nested2" id="hawq_log_command_timings">
+         <h3 class="title topictitle3">hawq_log_command_timings</h3>
+
+         <div class="body">
+            <p class="p">This view uses an external table to read the log files on the master and report the
+               execution time of SQL commands executed in a database session. The user of this view
+               requires superuser permissions.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hawq_log_command_timings__table_hly_cnz_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d144044e245">Column</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e248">Description</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e245 d144044e248 ">logsession</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e245 d144044e248 ">The session identifier (prefixed with
+                           "con").</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e245 d144044e248 ">logcmdcount</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e245 d144044e248 ">The command number within a session
+                           (prefixed with "cmd").</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e245 d144044e248 ">logdatabase</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e245 d144044e248 ">The name of the database.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e245 d144044e248 ">loguser</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e245 d144044e248 ">The name of the database user.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e245 d144044e248 ">logpid</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e245 d144044e248 ">The process id (prefixed with
+                           "p").</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e245 d144044e248 ">logtimemin</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e245 d144044e248 ">The time of the first log message for this
+                           command.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e245 d144044e248 ">logtimemax</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e245 d144044e248 ">The time of the last log message for this
+                           command.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e245 d144044e248 ">logduration</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e245 d144044e248 ">Statement duration from start to end
+                           time.</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hawq_log_database">
+         <h3 class="title topictitle3">hawq_log_database</h3>
+
+         <div class="body">
+            <p class="p">This view uses an external table to read log files of the entire HAWQ system (master
+               and segments) and lists log entries associated with the current database. Associated
+               log entries can be identified by the session id (<samp class="ph codeph">logsession</samp>) and
+               command id (<samp class="ph codeph">logcmdcount</samp>). The use of this view requires superuser
+               permissions.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hawq_log_database__table_rcy_cnz_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d144044e357">Column</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e360">Description</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logtime</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The timestamp of the log message.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">loguser</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The name of the database user.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logdatabase</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The name of the database.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logpid</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The associated process id (prefixed with
+                           "p").</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logthread</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The associated thread count (prefixed with
+                           "th").</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">loghost</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The segment or master host name.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logport</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The segment or master port.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logsessiontime</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">Time session connection was
+                           opened.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logtransaction</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">Global transaction id.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logsession</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The session identifier (prefixed with
+                           "con").</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logcmdcount</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The command number within a session
+                           (prefixed with "cmd").</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logsegment</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The segment content identifier (prefixed
+                           with "seg". The master always has a content id of -1).</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logslice</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The slice id (portion of the query plan
+                           being executed).</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logdistxact</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">Distributed transaction id.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">loglocalxact</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">Local transaction id.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logsubxact</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">Subtransaction id.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logseverity</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">LOG, ERROR, FATAL, PANIC, DEBUG1 or
+                           DEBUG2.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logstate</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">SQL state code associated with the log
+                           message.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logmessage</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">Log or error message text.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logdetail</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">Detailed message test associated with an
+                           error message.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">loghint</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">Hint message test associated with an error
+                           message.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logquery</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The internally-generated query
+                           text.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logquerypos</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The cursor index into the
+                           internally-generated query text.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logcontext</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The context in which this message gets
+                           generated.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logdebug</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">Query string with full detail for
+                           debugging.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logcursorpos</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The cursor index into the query
+                           string.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logfunction</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The function in which this message is
+                           generated.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logfile</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The log file in which this message is
+                           generated.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logline</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">The line in the log file in which this
+                           message is generated.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">logstack</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e357 d144044e360 ">Full text of the stack trace associated
+                           with this message.</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hawq_log_master_concise">
+         <h3 class="title topictitle3">hawq_log_master_concise</h3>
+
+         <div class="body">
+            <p class="p">This view uses an external table to read a subset of the log fields from the master
+               log files. The use of this view requires superuser permissions.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hawq_log_master_concise__table_avx_cnz_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d144044e665">Column</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e668">Description</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e665 d144044e668 ">logtime</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e665 d144044e668 ">The timestamp of the log message.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e665 d144044e668 ">logdatabase</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e665 d144044e668 ">The name of the database.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e665 d144044e668 ">logsession</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e665 d144044e668 ">The session identifier (prefixed with
+                           "con").</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e665 d144044e668 ">logcmdcount</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e665 d144044e668 ">The command number within a session
+                           (prefixed with "cmd").</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e665 d144044e668 ">logseverity</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e665 d144044e668 ">LOG, ERROR, FATAL, PANIC, DEBUG1,
+                           DEBUG2.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e665 d144044e668 ">logmessage</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e665 d144044e668 ">Log or error message text.</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hawq_log_system">
+         <h3 class="title topictitle3">hawq_log_system</h3>
+
+         <div class="body">
+            <p class="p">This view uses an external table to read the server log files of the entire HAWQ
+               system (master and segments) and lists all log entries. Associated log entries can be
+               identified by session id (<samp class="ph codeph">logsession</samp>) and command id
+                  (<samp class="ph codeph">logcmdcount</samp>). The use of this view requires superuser
+               permissions.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hawq_log_system__table_l4x_cnz_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d144044e760">Column</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e763">Description</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logtime</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The timestamp of the log message.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">loguser</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The name of the database user.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logdatabase</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The name of the database.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logpid</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The associated process id (prefixed with
+                           "p").</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logthread</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The associated thread count (prefixed with
+                           "th").</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">loghost</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The segment or master host name.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logport</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The segment or master port.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logsessiontime</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">Time session connection was
+                           opened.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logtransaction</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">Global transaction id.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logsession</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The session identifier (prefixed with
+                           "con").</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logcmdcount</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The command number within a session
+                           (prefixed with "cmd").</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logsegment</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The segment content identifier (prefixed
+                           with "seg"). The master always has a content id of -1.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logslice</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The slice id (portion of the query plan
+                           being executed).</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logdistxact</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">Distributed transaction id.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">loglocalxact</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">Local transaction id.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logsubxact</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">Subtransaction id.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logseverity</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">LOG, ERROR, FATAL, PANIC, DEBUG1 or
+                           DEBUG2.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logstate</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">SQL state code associated with the log
+                           message.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logmessage</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">Log or error message text.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logdetail</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">Detailed message test associated with an
+                           error message.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">loghint</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">Hint message test associated with an error
+                           message.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logquery</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The internally-generated query
+                           text.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logquerypos</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The cursor index into the
+                           internally-generated query text.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logcontext</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The context in which this message gets
+                           generated.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logdebug</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">Query string with full details for
+                           debugging.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logcursorpos</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The cursor index into the query
+                           string.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logfunction</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The function in which this message is
+                           generated.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logfile</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The log file in which this message is
+                           generated.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logline</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">The line in the log file in which this
+                           message is generated.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">logstack</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e760 d144044e763 ">Full text of the stack trace associated
+                           with this message.</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="checkingfortablesthatrequireroutinemaintenance">
+      <h2 class="title topictitle2">Checking for Tables that Require Routine Maintenance</h2>
+
+      <div class="topic nested2" id="hawq_stats_missing">
+         <h3 class="title topictitle3">hawq_stats_missing</h3>
+
+         <div class="body">
+            <p class="p">This view shows tables that do not have statistics and therefore may require an
+               ANALYZE to be run on the table.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hawq_stats_missing__table_k2k_dnz_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d144044e1075">Column</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e1078">Description</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1075 d144044e1078 ">smischema</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1075 d144044e1078 ">The schema name.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1075 d144044e1078 ">smitable</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1075 d144044e1078 ">The table name.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1075 d144044e1078 ">smisize</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1075 d144044e1078 ">Does this table have statistics? False if
+                           the table does not have row count and row sizing statistics recorded in
+                           the system catalog, which may indicate that the table needs to be
+                           analyzed. This will also be false if the table does not contain any rows.
+                           For example, parent tables of partitioned tables are always empty and
+                           will always return a false result. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1075 d144044e1078 ">smicols</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1075 d144044e1078 ">The number of columns in the
+                           table.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1075 d144044e1078 ">smirecs</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1075 d144044e1078 ">The number of rows in the table.</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="checkingquerydiskspillspaceusage">
+      <h2 class="title topictitle2">Checking Query Disk Spill Space Usage</h2>
+
+      <div class="body">
+         <p class="p">The <samp class="ph codeph">hawq_workfile_* </samp> views show information about all the queries that
+            are currently using disk spill space. HAWQ creates work files on disk if it does not
+            have sufficient memory to execute the query in memory. This information can be used for
+            troubleshooting and tuning queries. The information in the views can also be used to
+            specify the values for the HAWQ Database configuration parameters
+               <samp class="ph codeph">hawq_workfile_limit_per_query</samp> and
+               <samp class="ph codeph">hawq_workfile_limit_per_segment</samp>.</p>
+
+      </div>
+
+      <div class="topic nested2" id="hawq_workfile_entries">
+         <h3 class="title topictitle3">hawq_workfile_entries</h3>
+
+         <div class="body">
+            <p class="p">This view contains one row for each operator using disk space for workfiles on a
+               segment at the current time. The view is accessible to all users, however
+               non-superusers only to see information for the databases that they have permission to
+               access.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hawq_workfile_entries__table_ill_2nz_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d144044e1174">Column</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e1177">Type</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e1180">Description</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">command_cnt</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">integer </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">Command ID of the query. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">content </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">smallint </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">The content identifier for a segment
+                           instance. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">current_query </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">text </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">Current query that the process is
+                           running. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">datname </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">name </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">HAWQ database name. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">directory </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">text </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">Path to the work file .</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">optype </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">text </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">The query operator type that created the
+                           work file. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">procpid </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">integer </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">Process ID of the server process. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">sess_id </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">integer </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">Session ID. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">size </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">bigint </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">The size of the work file in
+                           bytes. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">numfiles </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">bigint </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">The number of files created. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">slice </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">smallint </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">The query plan slice. The portion of the
+                           query plan that is being executed. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">state </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">text </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">The state of the query that created
+                           the work file. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">usename </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">name </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">Role name. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">workmem </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">integer </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1174 d144044e1177 d144044e1180 ">The amount of memory allocated to the
+                           operator in KB. </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hawq_workfile_usage_per_query">
+         <h3 class="title topictitle3">hawq_workfile_usage_per_query</h3>
+
+         <div class="body">
+            <p class="p">This view contains one row for each operator using disk space for workfiles on a
+               segment at the current time. The view is accessible to all users, however
+               non-superusers only to see information for the databases that they have permission to
+               access.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hawq_workfile_usage_per_query__table_jfl_2nz_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d144044e1380">Column</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e1383">Type</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e1386">Description</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">command_cnt</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">integer</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">Command ID of the query.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">content</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">smallint</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">The content identifier for a segment
+                           instance.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">current_query</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">text</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">Current query that the process is
+                           running.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">datname</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">name</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">HAWQ database name.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">procpid</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">integer</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">Process ID of the server process.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">sess_id</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">integer</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">Session ID.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">size</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">bigint</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">The size of the work file in
+                           bytes.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">numflies</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">bigint</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">The number of files created.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">state</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">text</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">The state of the query that created the
+                           work file</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">usename </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 ">name </td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1380 d144044e1383 d144044e1386 "> Role name. </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hawq_workfile_usage_per_segment">
+         <h3 class="title topictitle3">hawq_workfile_usage_per_segment</h3>
+
+         <div class="body">
+            <p class="p">This view contains one row for each segment. Each row displays the total amount of
+               disk space used for workfiles on the segment at the current time. The view is
+               accessible to all users, however non-superusers only to see information for the
+               databases that they have permission to access.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hawq_workfile_usage_per_segment__table_n1l_2nz_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d144044e1537">Column</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e1540">Type</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e1543">Description</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1537 d144044e1540 d144044e1543 ">content</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1537 d144044e1540 d144044e1543 ">smallint</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1537 d144044e1540 d144044e1543 ">The content identifier for a segment
+                           instance.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1537 d144044e1540 d144044e1543 ">size</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1537 d144044e1540 d144044e1543 ">bigint</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1537 d144044e1540 d144044e1543 ">The total size of the work files on a
+                           segment.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1537 d144044e1540 d144044e1543 ">numflies</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1537 d144044e1540 d144044e1543 ">bigint</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1537 d144044e1540 d144044e1543 ">The number of files created.</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="checkingdatabaseobjectsizesanddiskspace">
+      <h2 class="title topictitle2">Checking Database Object Sizes and Disk Space</h2>
+
+      <div class="topic nested2" id="hawq_size_of_table_disk">
+         <h3 class="title topictitle3">hawq_size_of_table_disk</h3>
+
+         <div class="body">
+            <p class="p">This view shows the size of a table on disk. This view is accessible to all users,
+               however non-superusers will only be able to see tables that they have permissions to
+               access.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hawq_size_of_table_disk__table_mrm_fnz_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d144044e1615">Column</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e1618">Description</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1615 d144044e1618 ">sotdoid</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1615 d144044e1618 ">The object ID of the table.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1615 d144044e1618 ">sotdsize</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1615 d144044e1618 ">The total size of the table in bytes (main
+                           relation, plus oversized (toast) attributes, plus additional storage
+                           objects for AO tables. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1615 d144044e1618 ">sotdtoastsize</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1615 d144044e1618 ">The size of the TOAST table (oversized
+                           attribute storage), if there is one.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1615 d144044e1618 ">sotdadditionalsize</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1615 d144044e1618 ">Reflects the segment and block directory
+                           table sizes for append-only (AO) tables.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1615 d144044e1618 ">sotdschemaname</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1615 d144044e1618 ">The schema name.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1615 d144044e1618 ">sotdtablename</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1615 d144044e1618 ">The table name.</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hawq_size_of_table_uncompressed">
+         <h3 class="title topictitle3">hawq_size_of_table_uncompressed</h3>
+
+         <div class="body">
+            <p class="p">This view shows the uncompressed table size for append-only (AO) tables. Otherwise,
+               the table size on disk is shown. The use of this view requires superuser
+               permissions.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hawq_size_of_table_uncompressed__table_plm_fnz_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d144044e1703">Column</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e1706">Description</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1703 d144044e1706 ">sotuoid</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1703 d144044e1706 ">The object ID of the table.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1703 d144044e1706 ">sotusize</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1703 d144044e1706 ">The uncompressed size of the table in
+                           bytes if it is a compressed AO table. Otherwise, the table size on
+                           disk.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1703 d144044e1706 ">sotuschemaname</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1703 d144044e1706 ">The schema name.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1703 d144044e1706 ">sotutablename</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1703 d144044e1706 ">The table name.</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hawq_size_of_table_and_indexes_disk">
+         <h3 class="title topictitle3">hawq_size_of_table_and_indexes_disk</h3>
+
+         <div class="body">
+            <p class="p">This view shows the size on disk of tables and their indexes. This view is accessible
+               to all users, however non-superusers will only be able to see relations that they
+               have permissions to access.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hawq_size_of_table_and_indexes_disk__table_bgm_fnz_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d144044e1772">Column</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e1775">Description</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1772 d144044e1775 ">sotaidoid</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1772 d144044e1775 ">The object ID of the parent table.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1772 d144044e1775 ">sotaidtablesize</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1772 d144044e1775 ">The disk size of the table.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1772 d144044e1775 ">sotaididsize</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1772 d144044e1775 ">The total size of all indexes on the
+                           table.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1772 d144044e1775 ">sotaidschemaname</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1772 d144044e1775 ">The name of the schema.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1772 d144044e1775 ">sotaidtablename</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1772 d144044e1775 ">The name of the table.</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hawq_size_of_schema_disk">
+         <h3 class="title topictitle3">hawq_size_of_schema_disk</h3>
+
+         <div class="body">
+            <p class="p">This view shows schema sizes for the schemas in the current database. This view is
+               accessible to all users, however non-superusers will only be able to see schemas that
+               they have permissions to access.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hawq_size_of_schema_disk__table_y1m_fnz_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d144044e1850">Column</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e1853">Description</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1850 d144044e1853 ">sosdnsp</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1850 d144044e1853 ">The name of the schema.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1850 d144044e1853 ">sosdschematablesize</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1850 d144044e1853 ">The total size of tables in the schema in
+                           bytes.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1850 d144044e1853 ">sosdschemaidxsize</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1850 d144044e1853 ">The total size of indexes in the schema in
+                           bytes.</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hawq_size_of_table_and_indexes_licensing">
+         <h3 class="title topictitle3">hawq_size_of_table_and_indexes_licensing</h3>
+
+         <div class="body">
+            <p class="p">This view shows the total size of tables and their indexes for licensing purposes.
+               The use of this view requires superuser permissions.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hawq_size_of_table_and_indexes_licensing__table_cwl_fnz_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d144044e1911">Column</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e1914">Description</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1911 d144044e1914 ">sotailoid</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1911 d144044e1914 ">The object ID of the table.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1911 d144044e1914 ">sotailtablesizedisk</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1911 d144044e1914 ">The total disk size of the table.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1911 d144044e1914 ">sotailtablesizeuncompressed</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1911 d144044e1914 ">If the table is a compressed append-only
+                           table, shows the uncompressed table size in bytes. </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1911 d144044e1914 ">sotailindexessize</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1911 d144044e1914 ">The total size of all indexes in the
+                           table.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1911 d144044e1914 ">sotailschemaname</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1911 d144044e1914 ">The schema name.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1911 d144044e1914 ">sotailtablename</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e1911 d144044e1914 ">The table name.</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="hawq_size_of_database">
+         <h3 class="title topictitle3">hawq_size_of_database</h3>
+
+         <div class="body">
+            <p class="p">This view shows the total size of a database. This view is accessible to all users,
+               however non-superusers will only be able to see databases that they have permissions
+               to access.</p>
+
+            <div class="note note"><span class="notetitle">Note:</span> In HAWQ, the data of a database consists of data stored in the local storage of
+               the master, and data stored in HDFS. When the HDFS is online, the sodddatsize
+               includes the sizes of both two kinds of data; while the HDFS is offline, the
+               sodddatsize only includes the size of data stored in the local storage of the
+               master.</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="hawq_size_of_database__table_qrl_fnz_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d144044e2002">Column</th>
+
+                        <th class="entry confluenceTh" valign="top" id="d144044e2005">Description</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e2002 d144044e2005 ">sodddatname</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e2002 d144044e2005 ">The name of the database.</td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d144044e2002 d144044e2005 ">sodddatsize</td>
+
+                        <td class="entry confluenceTd" valign="top" headers="d144044e2002 d144044e2005 ">The size of the database in bytes.</td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../hawq-topics/HAWQAdministration.html" title="HAWQ Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Administration</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

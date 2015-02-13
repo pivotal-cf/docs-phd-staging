@@ -1,0 +1,234 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Exchanges SSH public keys between hosts. Synopsis gpssh-exkeys -f hostfile_exkeys | - h hostname [ -h hostname ...] [ -p &lt;password&gt; ] gpssh-exkeys -e hostfile_exkeys -x hostfile_gpexpand gpssh-exkeys ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="gpssh-exkeys"/><meta name="DC.Relation" scheme="URI" content="../hawq-topics/ManagementUtilityReference.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="topic1"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>gpssh-exkeys</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="topic1"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">linkToThis</a></div><div id="printlink"><a href="javascript:window.print();">printThisPage</a></div></td></tr><tr><td><div class="navheader">
+<span class="navparent"><a class="link" href="../hawq-topics/ManagementUtilityReference.html" title="Management Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Management Utility Reference</span></a></span>  </div></td><td width="75%"><a class="navheader_parent_path" href="../hawq-topics/../hawq-topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a> / <a class="navheader_parent_path" href="../hawq-topics/ManagementUtilityReference.html" title="Management Utility Reference">Management Utility Reference</a></td></tr></tbody></table>
+
+  <h1 class="title topictitle1">gpssh-exkeys</h1>
+
+  <div class="body">
+    <p class="p">Exchanges SSH public keys between hosts.</p>
+
+    <div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2>
+      
+      <pre class="pre codeblock"><strong class="ph b">gpssh-exkeys</strong> <strong class="ph b">-f</strong> <var class="keyword varname">hostfile_exkeys</var> | <strong class="ph b">- h</strong> <var class="keyword varname">hostname</var> [<strong class="ph b">-h</strong> <var class="keyword varname">hostname</var> ...] [<strong class="ph b">-p</strong> <var class="keyword varname">&lt;password&gt;</var>]
+
+<strong class="ph b">gpssh-exkeys</strong> <strong class="ph b">-e</strong> <var class="keyword varname">hostfile_exkeys</var> <strong class="ph b">-x</strong> <var class="keyword varname">hostfile_gpexpand</var>
+
+<strong class="ph b">gpssh-exkeys</strong> <strong class="ph b">-?</strong> 
+
+<strong class="ph b">gpssh-exkeys</strong> <strong class="ph b">--version</strong></pre>
+
+    </div>
+
+    <div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2>
+      
+      <p class="p">The <samp class="ph codeph">gpssh-exkeys</samp> utility exchanges SSH keys between the specified host
+        names (or host addresses). This allows SSH connections between HAWQ hosts and network
+        interfaces without a password prompt. The utility is used to initially prepare a HAWQ system
+        for password-free SSH access, and also to add additional ssh keys when expanding a HAWQ
+        system. </p>
+
+      <p class="p">To specify the hosts involved in an initial SSH key exchange, use the <samp class="ph codeph">-f</samp>
+        option to specify a file containing a list of host names (recommended), or use the
+          <samp class="ph codeph">-h</samp> option to name single host names on the command-line. At least one
+        host name (<samp class="ph codeph">-h</samp>) or a host file is required. Note that the local host is
+        included in the key exchange by default.</p>
+
+      <p class="p">To specify new expansion hosts to be added to an existing HAWQ system, use the
+          <samp class="ph codeph">-e</samp> and <samp class="ph codeph">-x</samp> options. The <samp class="ph codeph">-e</samp> option
+        specifies a file containing a list of existing hosts in the system that already have SSH
+        keys. The <samp class="ph codeph">-x</samp> option specifies a file containing a list of new hosts that
+        need to participate in the SSH key exchange. </p>
+
+      <p class="p">Keys are exchanged as the currently logged in user. Pivotal recommends performing the key
+        exchange process twice: once as <samp class="ph codeph">root</samp> and once as the
+          <samp class="ph codeph">gpadmin</samp> user (the user designated to own your HAWQ installation). The
+        HAWQ management utilities require that the same non-root user be created on all hosts in the
+        HAWQ system, and the utilities must be able to connect as that user to all hosts without a
+        password prompt.</p>
+
+      <p class="p">The <samp class="ph codeph">gpssh-exkeys</samp> utility performs key exchange using the following
+        steps:</p>
+
+      <ul class="ul">
+        <li class="li" id="topic1__jw140375">Creates an RSA identification key pair for the current user if one does
+          not already exist. The public key of this pair is added to the
+            <samp class="ph codeph">authorized_keys</samp> file of the current user.</li>
+
+        <li class="li" id="topic1__jw140376">Updates the <samp class="ph codeph">known_hosts</samp> file of the current user with the
+          host key of each host specified using the <samp class="ph codeph">-h</samp>, <samp class="ph codeph">-f</samp>,
+            <samp class="ph codeph">-e</samp>, and <samp class="ph codeph">-x</samp> options.</li>
+
+        <li class="li" id="topic1__jw140377">Connects to each host using <samp class="ph codeph">ssh</samp> and obtains the
+            <samp class="ph codeph">authorized_keys</samp>, <samp class="ph codeph">known_hosts</samp>, and
+            <samp class="ph codeph">id_rsa.pub</samp> files to set up password-free access.</li>
+
+        <li class="li" id="topic1__jw140378">Adds keys from the <samp class="ph codeph">id_rsa.pub</samp> files obtained from each
+          host to the <samp class="ph codeph">authorized_keys</samp> file of the current user.</li>
+
+        <li class="li" id="topic1__jw140379">Updates the <samp class="ph codeph">authorized_keys</samp>,
+          <samp class="ph codeph">known_hosts</samp>, and <samp class="ph codeph">id_rsa.pub</samp> files on all hosts with new
+          host information (if any).</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options</h2>
+      
+      <dl class="dl parml">
+        
+          <dt class="dt pt dlterm">-e <var class="keyword varname">hostfile_exkeys</var></dt>
+
+          <dd class="dd pd">When doing a system expansion, this is the name and location of a file containing all
+            configured host names and host addresses (interface names) for each host in your
+              <var class="keyword varname">current</var> HAWQ system (master, standby master and segments), one name
+            per line without blank lines or extra spaces. Hosts specified in this file cannot be
+            specified in the host file used with <samp class="ph codeph">-x</samp>. </dd>
+
+        
+        
+          <dt class="dt pt dlterm">-f <var class="keyword varname">hostfile_exkeys</var></dt>
+
+          <dd class="dd pd">Specifies the name and location of a file containing all configured host names and
+            host addresses (interface names) for each host in your HAWQ system (master, standby
+            master and segments), one name per line without blank lines or extra spaces.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-h <var class="keyword varname">hostname</var></dt>
+
+          <dd class="dd pd">Specifies a single host name (or host address) that will participate in the SSH key
+            exchange. You can use the <samp class="ph codeph">-h</samp> option multiple times to specify multiple
+            host names and host addresses.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-p <var class="keyword varname">password</var></dt>
+
+          <dd class="dd pd">Specifies the password used to login to the hosts. The hosts should share the same
+            password.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">--version</dt>
+
+          <dd class="dd pd">Displays the version of this utility.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-x <var class="keyword varname">hostfile_gpexpand</var></dt>
+
+          <dd class="dd pd">When doing a system expansion, this is the name and location of a file containing all
+            configured host names and host addresses (interface names) for each <var class="keyword varname">new segment
+              host</var> you are adding to your HAWQ system, one name per line without blank
+            lines or extra spaces. Hosts specified in this file cannot be specified in the host file
+            used with <samp class="ph codeph">-e</samp>.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-? (help)</dt>
+
+          <dd class="dd pd">Displays the online help.</dd>
+
+        
+      </dl>
+
+    </div>
+
+    <div class="section" id="topic1__section5"><h2 class="title sectiontitle">Examples</h2>
+      
+      <p class="p">Exchange SSH keys between all host names and addresses listed in the file
+          <samp class="ph codeph">hostfile_exkeys</samp>:</p>
+
+      <pre class="pre codeblock">$ gpssh-exkeys -f hostfile_exkeys</pre>
+
+      <p class="p">Exchange SSH keys between the hosts <samp class="ph codeph">sdw1</samp>, <samp class="ph codeph">sdw2</samp>, and
+          <samp class="ph codeph">sdw3</samp>:</p>
+
+      <pre class="pre codeblock">$ gpssh-exkeys -h sdw1 -h sdw2 -h sdw3</pre>
+
+      <p class="p">Exchange SSH keys between existing hosts <samp class="ph codeph">sdw1</samp>, <samp class="ph codeph">sdw2</samp>, and
+          <samp class="ph codeph">sdw3</samp>, and new hosts <samp class="ph codeph">sdw4</samp> and <samp class="ph codeph">sdw5</samp> as
+        part of a system expansion operation:</p>
+
+      <pre class="pre codeblock">$ cat hostfile_exkeys
+	mdw
+	mdw-1
+	mdw-2
+	smdw
+	smdw-1
+	smdw-2
+	sdw1
+	sdw1-1
+	sdw1-2
+	sdw2
+	sdw2-1
+	sdw2-2
+	sdw3
+	sdw3-1
+	sdw3-2
+$ cat hostfile_gpexpand
+	sdw4
+	sdw4-1
+	sdw4-2
+	sdw5
+	sdw5-1
+	sdw5-2
+$ gpssh-exkeys -e hostfile_exkeys -x hostfile_gpexpand</pre>
+
+    </div>
+
+    <div class="section" id="topic1__section6"><h2 class="title sectiontitle">See Also</h2>
+      
+      <p class="p"><samp class="ph codeph"><a class="xref" href="gpssh.html">gpssh</a></samp>, <samp class="ph codeph"><a class="xref" href="gpscp.html">gpscp</a></samp></p>
+
+    </div>
+
+  </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../hawq-topics/ManagementUtilityReference.html" title="Management Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Management Utility Reference</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

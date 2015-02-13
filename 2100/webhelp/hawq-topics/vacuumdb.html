@@ -1,0 +1,223 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Garbage-collects and analyzes a database. Synopsis vacuumdb [ connection-option ...] [--full | -f] [ -F ] [ --verbose | -v ] [ --analyze | -z ] [ --table | -t table [( column [,...] )] ] [ dbname ] ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="vacuumdb"/><meta name="DC.Relation" scheme="URI" content="../hawq-topics/ClientUtilityReference.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="topic1"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>vacuumdb</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="topic1"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">linkToThis</a></div><div id="printlink"><a href="javascript:window.print();">printThisPage</a></div></td></tr><tr><td><div class="navheader">
+<span class="navparent"><a class="link" href="../hawq-topics/ClientUtilityReference.html" title="Client Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Client Utility Reference</span></a></span>  </div></td><td width="75%"><a class="navheader_parent_path" href="../hawq-topics/../hawq-topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a> / <a class="navheader_parent_path" href="../hawq-topics/ClientUtilityReference.html" title="Client Utility Reference">Client Utility Reference</a></td></tr></tbody></table>
+
+  <h1 class="title topictitle1">vacuumdb</h1>
+
+  <div class="body">
+    <p class="p" id="topic1__client_util_desc">Garbage-collects and analyzes a database.</p>
+
+    <div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2>
+      
+      <pre class="pre codeblock" id="topic1__client_util_synopsis"><strong class="ph b">vacuumdb</strong> [<var class="keyword varname">connection-option</var>...] [--full | -f] [<strong class="ph b">-F</strong>] [<strong class="ph b">--verbose</strong> | <strong class="ph b">-v</strong>]
+    [<strong class="ph b">--analyze</strong> | <strong class="ph b">-z</strong>] [<strong class="ph b">--table</strong> | <strong class="ph b">-t</strong> <var class="keyword varname">table</var> [( <var class="keyword varname">column</var> [,...] )] ] [<var class="keyword varname">dbname</var>]
+
+<strong class="ph b">vacuumdb</strong> [<var class="keyword varname">connection-options</var>...] [<strong class="ph b">--all</strong> | <strong class="ph b">-a</strong>] [--full | -f] [<strong class="ph b">-F</strong>] 
+    [<strong class="ph b">--verbose</strong> | <strong class="ph b">-v</strong>] [<strong class="ph b">--analyze</strong> | <strong class="ph b">-z</strong>]
+
+<strong class="ph b">vacuumdb</strong> <strong class="ph b">--help</strong> 
+
+<strong class="ph b">vacuumdb</strong> <strong class="ph b">--version</strong></pre>
+
+    </div>
+
+    <div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2>
+      
+      <p class="p"><samp class="ph codeph">vacuumdb</samp> is a utility for cleaning a HAWQ database.
+          <samp class="ph codeph">vacuumdb</samp> will also generate internal statistics used by the legacy query
+        optimizer.</p>
+
+      <p class="p"><samp class="ph codeph">vacuumdb</samp> is a wrapper around the SQL command <samp class="ph codeph">VACUUM</samp>.
+        There is no effective difference between vacuuming databases via this utility and via other
+        methods for accessing the server. </p>
+
+    </div>
+
+    <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options</h2><dl class="dl parml">
+        
+          <dt class="dt pt dlterm">-a | --all</dt>
+
+          <dd class="dd pd">Vacuums all databases.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">[-d] <var class="keyword varname">dbname</var> | [--dbname] <var class="keyword varname">dbname</var></dt>
+
+          <dd class="dd pd">The name of the database to vacuum. If this is not specified and <samp class="ph codeph">-all</samp>
+            is not used, the database name is read from the environment variable
+              <samp class="ph codeph">PGDATABASE</samp>. If that is not set, the user name specified for the
+            connection is used.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-e | --echo</dt>
+
+          <dd class="dd pd">Echo the commands that <samp class="ph codeph">reindexdb</samp> generates and sends to the
+            server.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-f | --full</dt>
+
+          <dd class="dd pd">Selects a full vacuum, which may reclaim more space, but takes much longer and
+            exclusively locks the table. <div class="note warning"><span class="warningtitle">Warning:</span> A <samp class="ph codeph">VACUUM FULL</samp> is not
+              recommended in HAWQ.</div>
+</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-F | --freeze</dt>
+
+          <dd class="dd pd">Freeze row transaction information.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-q | --quiet</dt>
+
+          <dd class="dd pd">Do not display a response.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-t <var class="keyword varname">table</var> [(<var class="keyword varname">column</var>)] | --table
+              <var class="keyword varname">table</var> [(<var class="keyword varname">column</var>)]</dt>
+
+          <dd class="dd pd">Clean or analyze this table only. Column names may be specified only in conjunction
+            with the <samp class="ph codeph">--analyze</samp> option. If you specify columns, you have to escape
+            the parentheses from the shell.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-v | --verbose</dt>
+
+          <dd class="dd pd">Print detailed information during processing.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-z | --analyze</dt>
+
+          <dd class="dd pd">Collect statistics for use by the query planner. </dd>
+
+        
+      </dl>
+<div class="sectiondiv"><strong class="ph b">Connection Options</strong>
+        <dl class="dl parml">
+          
+            <dt class="dt pt dlterm">-h <var class="keyword varname">host</var> | --host <var class="keyword varname">host</var></dt>
+
+            <dd class="dd pd">The host name of the HAWQ master database server. If not specified, reads from the
+              environment variable <samp class="ph codeph">PGHOST</samp> or defaults to localhost.</dd>
+
+          
+          
+            <dt class="dt pt dlterm">-p <var class="keyword varname">port</var> | --port <var class="keyword varname">port</var></dt>
+
+            <dd class="dd pd">The TCP port where the HAWQ master database server listens for connections. If not
+              specified, reads from the environment variable <samp class="ph codeph">PGPORT</samp> or defaults to
+              5432.</dd>
+
+          
+          
+            <dt class="dt pt dlterm">-U <var class="keyword varname">username</var> | --username <var class="keyword varname">username</var></dt>
+
+            <dd class="dd pd">The database role name to connect as. If not specified, reads from the environment
+              variable <samp class="ph codeph">PGUSER</samp> or defaults to the current system user name.</dd>
+
+          
+          
+            <dt class="dt pt dlterm">-w | --no-password</dt>
+
+            <dd class="dd pd">Use this to run automated batch jobs and scripts. In general, if the server requires
+              password authentication ensure that it can be accessed through a
+                <samp class="ph codeph">.pgpass</samp> file. Otherwise the connection attempt will fail.</dd>
+
+          
+          
+            <dt class="dt pt dlterm">-W | --password</dt>
+
+            <dd class="dd pd">Force a password prompt.</dd>
+
+          
+        </dl>
+</div></div>
+
+    <div class="section" id="topic1__section6"><h2 class="title sectiontitle">Notes</h2>
+      
+      <p class="p"><samp class="ph codeph">vacuumdb</samp> might need to connect several times to the master server, asking
+        for a password each time. It is convenient to have a <samp class="ph codeph">~/.pgpass</samp> file in such
+        cases. </p>
+
+    </div>
+
+    <div class="section" id="topic1__section7"><h2 class="title sectiontitle">Examples</h2>
+      
+      <p class="p">Clean a database named <samp class="ph codeph">test</samp>:</p>
+
+      <pre class="pre codeblock">vacuumdb test</pre>
+
+      <p class="p">Clean and analyze a database named <samp class="ph codeph">bigdb</samp>:</p>
+
+      <pre class="pre codeblock">vacuumdb --analyze bigdb</pre>
+
+      <p class="p">Clean a single table <samp class="ph codeph">foo</samp> in a database named <samp class="ph codeph">mydb</samp>, and
+        analyze a single column <samp class="ph codeph">bar</samp> of the table. Note the quotes around the table
+        and column names to escape the parentheses from the shell:</p>
+
+      <pre class="pre codeblock">vacuumdb --analyze --verbose --table 'foo(bar)' mydb</pre>
+
+    </div>
+
+    <div class="section" id="topic1__section8"><h2 class="title sectiontitle">See Also</h2>
+      
+      <p class="p"><span class="ph"><samp class="ph codeph"><a class="xref" href="VACUUM.html">VACUUM</a></samp>, <samp class="ph codeph"><a class="xref" href="ANALYZE.html">ANALYZE</a></samp></span>
+      </p>
+
+    </div>
+
+  </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../hawq-topics/ClientUtilityReference.html" title="Client Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Client Utility Reference</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

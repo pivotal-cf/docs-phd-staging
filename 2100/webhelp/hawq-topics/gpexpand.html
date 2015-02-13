@@ -1,0 +1,302 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Expands an existing HAWQ database across new hosts in the array. Synopsis gpexpand [ -f hosts_file ]        | -i input_file [ -B batch_size ] [ -V ]       | { -d hh:mm:ss | -e ' YYYY-MM-DD hh:mm:ss '} ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="gpexpand"/><meta name="DC.Relation" scheme="URI" content="../hawq-topics/ManagementUtilityReference.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="topic1"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>gpexpand</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="topic1"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">linkToThis</a></div><div id="printlink"><a href="javascript:window.print();">printThisPage</a></div></td></tr><tr><td><div class="navheader">
+<span class="navparent"><a class="link" href="../hawq-topics/ManagementUtilityReference.html" title="Management Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Management Utility Reference</span></a></span>  </div></td><td width="75%"><a class="navheader_parent_path" href="../hawq-topics/../hawq-topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a> / <a class="navheader_parent_path" href="../hawq-topics/ManagementUtilityReference.html" title="Management Utility Reference">Management Utility Reference</a></td></tr></tbody></table>
+
+  <h1 class="title topictitle1">gpexpand</h1>
+
+  <div class="body">
+    <p class="p">Expands an existing HAWQ database across new hosts in the array.</p>
+
+    <div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2>
+      
+      <pre class="pre codeblock"><strong class="ph b">gpexpand</strong> [<strong class="ph b">-f</strong> <var class="keyword varname">hosts_file</var>]
+        | <strong class="ph b">-i</strong> <var class="keyword varname">input_file</var> [<strong class="ph b">-B</strong> <var class="keyword varname">batch_size</var>] [<strong class="ph b">-V</strong>] 
+        | {<strong class="ph b">-d</strong> <var class="keyword varname">hh:mm:ss</var> | <strong class="ph b">-e</strong> '<var class="keyword varname">YYYY-MM-DD hh:mm:ss</var>'} [<strong class="ph b">-analyze</strong>] 
+          [<strong class="ph b">-n </strong> <var class="keyword varname">parallel_processes</var>]
+        | <strong class="ph b">--rollback</strong>
+        | <strong class="ph b">--clean</strong>
+        [<strong class="ph b">-D</strong> <var class="keyword varname">database_name</var>] [<strong class="ph b">--verbose</strong>] [<strong class="ph b">--silent</strong>]
+
+<strong class="ph b">gpexpand -?</strong> | <strong class="ph b">-h</strong> | <strong class="ph b">--help</strong> 
+
+<strong class="ph b">gpexpand --version</strong></pre>
+
+    </div>
+
+    <div class="section" id="topic1__section3"><h2 class="title sectiontitle">Prerequisites</h2>
+      
+      <ul class="ul">
+        <li class="li" id="topic1__kt137989">You are logged in as the HAWQ superuser (<samp class="ph codeph">gpadmin</samp>).</li>
+
+        <li class="li" id="topic1__kt136978">The new segment hosts have been installed and configured as per the
+          existing segment hosts. This involves:<ul class="ul" id="topic1__ul_att_m1q_n4"><li class="li" id="topic1__kt138636">Configuring
+              the hardware and OS</li>
+<li class="li" id="topic1__kt138640">Installing the HAWQ software</li>
+<li class="li" id="topic1__kt138641">Creating the <samp class="ph codeph">gpadmin</samp> user account</li>
+<li class="li" id="topic1__kt138642">Exchanging SSH keys. </li>
+</ul>
+</li>
+
+        <li class="li" id="topic1__kt137052">Enough disk space on your segment hosts to temporarily hold a copy of your
+          largest table. </li>
+
+      </ul>
+
+    </div>
+
+    <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Description</h2>
+      
+      <p class="p">The <samp class="ph codeph">gpexpand</samp> utility performs system expansion in two phases: segment
+        initialization and then table redistribution. </p>
+
+      <p class="p">In the initialization phase, <samp class="ph codeph">gpexpand</samp> runs with an input file that
+        specifies data directories, <var class="keyword varname">dbid</var> values, and other characteristics of the
+        new segments. You can create the input file manually, or by following the prompts in an
+        interactive interview.</p>
+
+      <p class="p">If you choose to create the input file using the interactive interview, you can optionally
+        specify a file containing a list of expansion hosts. If your platform or command shell
+        limits the length of the list of hostnames that you can type when prompted in the interview,
+        specifying the hosts with <samp class="ph codeph">-f</samp> may be mandatory. </p>
+
+      <p class="p">In addition to initializing the segments, the initialization phase performs these
+        actions:</p>
+
+      <ul class="ul">
+        <li class="li" id="topic1__kt138259">Creates an expansion schema to store the status of the expansion
+          operation, including detailed status for tables.</li>
+
+        <li class="li" id="topic1__kt138260">Changes the distribution policy for all tables to <samp class="ph codeph">DISTRIBUTED
+            RANDOMLY</samp>. The original distribution policies are later restored in the
+          redistribution phase.</li>
+
+      </ul>
+
+      <p class="p">To begin the redistribution phase, you must run <samp class="ph codeph">gpexpand</samp> with either the
+          <samp class="ph codeph">-d</samp> (duration) or <samp class="ph codeph">-e</samp> (end time) options. Until the
+        specified end time or duration is reached, the utility will redistribute tables in the
+        expansion schema. Each table is reorganized using <samp class="ph codeph">ALTER TABLE</samp> commands to
+        rebalance the tables across new segments, and to set tables to their original distribution
+        policy. If <samp class="ph codeph">gpexpand</samp> completes the reorganization of all tables before the
+        specified duration, it displays a success message and ends.</p>
+
+    </div>
+
+    <div class="section" id="topic1__section5"><h2 class="title sectiontitle">Options</h2>
+      
+      <dl class="dl parml">
+        
+          <dt class="dt pt dlterm">-a | --analyze</dt>
+
+          <dd class="dd pd">Run <samp class="ph codeph">ANALYZE</samp> to update the table statistics after expansion. The
+            default is to not run <samp class="ph codeph">ANALYZE</samp>.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-B <var class="keyword varname">batch_size</var></dt>
+
+          <dd class="dd pd">Batch size of remote commands to send to a given host before making a one-second
+            pause. Default is <samp class="ph codeph">16</samp>. Valid values are 1-128.</dd>
+
+          <dd class="dd pd">The <samp class="ph codeph">gpexpand</samp> utility issues a number of setup commands that may
+            exceed the host's maximum threshold for authenticated connections as defined by
+              <samp class="ph codeph">MaxStartups</samp> in the SSH daemon configuration. The one-second pause
+            allows authentications to be completed before <samp class="ph codeph">gpexpand</samp> issues any more
+            commands. </dd>
+
+          <dd class="dd pd">The default value does not normally need to be changed. However, it may be necessary
+            to reduce the maximum number of commands if <samp class="ph codeph">gpexpand</samp> fails with
+            connection errors such as <samp class="ph codeph">'ssh_exchange_identification: Connection closed by
+              remote host.'</samp></dd>
+
+        
+        
+          <dt class="dt pt dlterm">-c | --clean</dt>
+
+          <dd class="dd pd">Remove the expansion schema.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-d | --duration <var class="keyword varname">hh:mm:ss</var></dt>
+
+          <dd class="dd pd">Duration of the expansion session from beginning to end.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-D <var class="keyword varname">database_name</var></dt>
+
+          <dd class="dd pd">Specifies the database in which to create the expansion schema and tables. If this
+            option is not given, the setting for the environment variable
+              <samp class="ph codeph">PGDATABASE</samp> is used. The database templates
+              <var class="keyword varname">template1</var> and <var class="keyword varname">template0</var> cannot be used.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-e | --end '<var class="keyword varname">YYYY-MM-DD hh:mm:ss</var>'</dt>
+
+          <dd class="dd pd">Ending date and time for the expansion session.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-f | --hosts-file <var class="keyword varname">filename</var></dt>
+
+          <dd class="dd pd">Specifies the name of a file that contains a list of new hosts for system expansion.
+            Each line of the file must contain a single host name. </dd>
+
+          <dd class="dd pd">This file can contain hostnames with or without network interfaces specified. The
+              <samp class="ph codeph">gpexpand</samp> utility handles either case, adding interface numbers to end
+            of the hostname if the original nodes are configured with multiple network
+            interfaces.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-i | --input <var class="keyword varname">input_file</var></dt>
+
+          <dd class="dd pd">Specifies the name of the expansion configuration file, which contains one line for
+            each segment to be added in the format of:</dd>
+
+          <dd class="dd pd">
+            <var class="keyword varname">hostname:address:port:fselocation:dbid:content:preferred_role:replication_port</var>
+          </dd>
+
+          <dd class="dd pd">If your system has filespaces, <samp class="ph codeph">gpexpand</samp> will expect a filespace
+            configuration file (<var class="keyword varname">input_file_name</var><samp class="ph codeph">.fs</samp>) to exist in
+            the same directory as your expansion configuration file. The filespace configuration
+            file is in the format of:</dd>
+
+          <dd class="dd pd">
+            <pre class="pre codeblock">filespaceOrder=<var class="keyword varname">filespace1_name</var>:<var class="keyword varname">filespace2_name</var>: ...
+dbid:<var class="keyword varname">/path/for/filespace1</var>:<var class="keyword varname">/path/for/filespace2</var>: ...
+dbid:<var class="keyword varname">/path/for/filespace1</var>:<var class="keyword varname">/path/for/filespace2</var>: ...
+...</pre>
+
+          </dd>
+
+        
+        
+          <dt class="dt pt dlterm">-n <var class="keyword varname">parallel_processes</var></dt>
+
+          <dd class="dd pd">The number of tables to redistribute simultaneously. Valid values are 1 - 16.</dd>
+
+          <dd class="dd pd">Each table redistribution process requires two database connections: one to alter the
+            table, and another to update the table's status in the expansion schema. Before
+            increasing <samp class="ph codeph">-n</samp>, check the current value of the server configuration
+            parameter <samp class="ph codeph">max_connections</samp> and make sure the maximum connection limit is
+            not exceeded.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-r | --rollback</dt>
+
+          <dd class="dd pd">Roll back a failed expansion setup operation. If the rollback command fails, attempt
+            again using the <samp class="ph codeph">-D</samp> option to specify the database that contains the
+            expansion schema for the operation that you want to roll back.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-s | --silent</dt>
+
+          <dd class="dd pd">Runs in silent mode. Does not prompt for confirmation to proceed on warnings.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-v | --verbose</dt>
+
+          <dd class="dd pd">Verbose debugging output. With this option, the utility will output all DDL and DML
+            used to expand the database.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">--version</dt>
+
+          <dd class="dd pd">Display the utility's version number and exit.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-V | --novacuum</dt>
+
+          <dd class="dd pd">Do not vacuum catalog tables before creating schema copy.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-? | -h | --help</dt>
+
+          <dd class="dd pd">Displays the online help.</dd>
+
+        
+      </dl>
+
+    </div>
+
+    <div class="section" id="topic1__section6"><h2 class="title sectiontitle">Examples</h2>
+      
+      <p class="p">Run <samp class="ph codeph">gpexpand</samp> with an input file to initialize new segments and create the
+        expansion schema in the default database:</p>
+
+      <pre class="pre codeblock">$ gpexpand -i input_file</pre>
+
+      <p class="p">Run <samp class="ph codeph">gpexpand</samp> for sixty hours maximum duration to redistribute tables to
+        new segments:</p>
+
+      <pre class="pre codeblock">$ gpexpand -d 60:00:00</pre>
+
+    </div>
+
+    <div class="section" id="topic1__section7"><h2 class="title sectiontitle">See Also</h2>
+      
+      <p class="p">
+        <samp class="ph codeph">
+          <a class="xref" href="gpssh-exkeys.html">gpssh-exkeys</a>
+        </samp>
+      </p>
+
+    </div>
+
+  </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../hawq-topics/ManagementUtilityReference.html" title="Management Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Management Utility Reference</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

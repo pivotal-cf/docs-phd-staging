@@ -1,0 +1,647 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Copies data between a file and a table. Synopsis COPY table [( column [, ...])] FROM {' file ' | STDIN}      [ [WITH]        [OIDS]        [HEADER]        [DELIMITER [ AS ] ' delimiter ']        [NULL ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="COPY"/><meta name="DC.Relation" scheme="URI" content="../hawq-topics/SQLCommandReference.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="topic1"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>COPY</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="topic1"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">linkToThis</a></div><div id="printlink"><a href="javascript:window.print();">printThisPage</a></div></td></tr><tr><td><div class="navheader">
+<span class="navparent"><a class="link" href="../hawq-topics/SQLCommandReference.html" title="SQL Command Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SQL Command Reference</span></a></span>  </div></td><td width="75%"><a class="navheader_parent_path" href="../hawq-topics/../hawq-topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a> / <a class="navheader_parent_path" href="../hawq-topics/SQLCommandReference.html" title="SQL Command Reference">SQL Command Reference</a></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">COPY</h1>
+
+   <div class="body">
+      <p class="p" id="topic1__sql_command_desc">Copies data between a file and a table.</p>
+
+      <div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2>
+         
+         <pre class="pre codeblock" id="topic1__sql_command_synopsis">COPY <var class="keyword varname">table</var> [(<var class="keyword varname">column</var> [, ...])] FROM {'<var class="keyword varname">file</var>' | STDIN}
+     [ [WITH] 
+       [OIDS]
+       [HEADER]
+       [DELIMITER [ AS ] '<var class="keyword varname">delimiter</var>']
+       [NULL [ AS ] '<var class="keyword varname">null string</var>']
+       [ESCAPE [ AS ] '<var class="keyword varname">escape</var>' | 'OFF']
+       [NEWLINE [ AS ] 'LF' | 'CR' | 'CRLF']
+       [CSV [QUOTE [ AS ] '<var class="keyword varname">quote</var>'] 
+            [FORCE NOT NULL <var class="keyword varname">column</var> [, ...]]
+       [FILL MISSING FIELDS]
+       [[LOG ERRORS [INTO <var class="keyword varname">error_table</var>] [KEEP] 
+       SEGMENT REJECT LIMIT <var class="keyword varname">count</var> [ROWS | PERCENT] ]
+
+COPY {table [(<var class="keyword varname">column</var> [, ...])] | (<var class="keyword varname">query</var>)} TO {'<var class="keyword varname">file</var>' | STDOUT}
+      [ [WITH] 
+        [OIDS]
+        [HEADER]
+        [DELIMITER [ AS ] '<var class="keyword varname">delimiter</var>']
+        [NULL [ AS ] '<var class="keyword varname">null string</var>']
+        [ESCAPE [ AS ] '<var class="keyword varname">escape</var>' | 'OFF']
+        [CSV [QUOTE [ AS ] '<var class="keyword varname">quote</var>'] 
+             [FORCE QUOTE <var class="keyword varname">column</var> [, ...]] ]</pre>
+
+      </div>
+
+      <div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description </h2>
+         
+         <p class="p">
+            <samp class="ph codeph">COPY</samp> moves data between
+        HAWQ tables and standard file-system files. <samp class="ph codeph">COPY TO</samp> copies the contents of
+        a table to a file, while <samp class="ph codeph">COPY FROM</samp> copies data from a file to a table
+        (appending the data to whatever is in the table already). <samp class="ph codeph">COPY TO</samp> can also
+        copy the results of a <samp class="ph codeph">SELECT</samp> query.  </p>
+
+         <p class="p">If a list of columns is
+        specified, <samp class="ph codeph">COPY</samp> will only copy the data in the specified columns to or from
+        the file. If there are any columns in the table that are not in the column list,
+          <samp class="ph codeph">COPY FROM</samp> will insert the default values for those columns.
+          </p>
+
+         <p class="p">
+            <samp class="ph codeph">COPY</samp> with a file name instructs the HAWQ master host to directly
+        read from or write to a file. The file must be accessible to the master host and the name
+        must be specified from the viewpoint of the master host. When <samp class="ph codeph">STDIN</samp> or
+          <samp class="ph codeph">STDOUT</samp> is specified, data is transmitted via the connection between the
+        client and the master. </p>
+
+         <p class="p">If <samp class="ph codeph">SEGMENT REJECT LIMIT</samp> is used, then a
+          <samp class="ph codeph">COPY FROM</samp> operation will operate in single row error isolation mode. In
+        this release, single row error isolation mode only applies to rows in the input file with
+        format errors — for example, extra or missing attributes, attributes of a wrong data type,
+        or invalid client encoding sequences. Constraint errors such as violation of a <samp class="ph codeph">NOT
+          NULL</samp>, <samp class="ph codeph">CHECK</samp>, or <samp class="ph codeph">UNIQUE</samp> constraint will still be
+        handled in 'all-or-nothing' input mode. The user can specify the number of error rows
+        acceptable (on a per-segment basis), after which the entire <samp class="ph codeph">COPY FROM</samp>
+        operation will be aborted and no rows will be loaded. Note that the count of error rows is
+        per-segment, not per entire load operation. If the per-segment reject limit is not reached,
+        then all rows not containing an error will be loaded. If the limit is not reached, all good
+        rows will be loaded and any error rows discarded. If you would like to keep error rows for
+        further examination, you can optionally declare an error table using the <samp class="ph codeph">LOG ERRORS
+          INTO</samp> clause. Any rows containing a format error would then be logged to the
+        specified error table. </p>
+
+         <div class="sectiondiv">
+            <strong class="ph b">Outputs</strong>
+            <p class="p">On successful completion, a <samp class="ph codeph">COPY</samp> command returns a command tag of the
+          form, where <var class="keyword varname">count</var> is the number of rows copied:
+          </p>
+
+            <pre class="pre codeblock">COPY <var class="keyword varname">count</var>
+            </pre>
+
+            <p class="p">If running a <samp class="ph codeph">COPY
+            FROM</samp> command in single row error isolation mode, the following notice message
+          will be returned if any rows were not loaded due to format errors, where
+            <var class="keyword varname">count</var> is the number of rows
+        rejected:</p>
+
+            <pre class="pre codeblock">NOTICE: Rejected <var class="keyword varname">count</var> badly formatted rows.</pre>
+
+         </div>
+      </div>
+
+      <div class="section" id="topic1__section5"><h2 class="title sectiontitle">Parameters</h2>
+         
+         <dl class="dl parml">
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">table</var>
+               </dt>
+
+               <dd class="dd pd">The name (optionally schema-qualified) of an existing table. </dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">column</var>
+               </dt>
+
+               <dd class="dd pd">An optional list of columns to be copied. If no column list is specified, all columns
+            of the table will be copied. </dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">query</var>
+               </dt>
+
+               <dd class="dd pd">A <samp class="ph codeph">SELECT</samp> or <samp class="ph codeph">VALUES</samp> command whose results are to be
+            copied. Note that parentheses are required around the query. </dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">file</var>
+               </dt>
+
+               <dd class="dd pd">The absolute path name of the input or output file.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">STDIN</dt>
+
+               <dd class="dd pd">Specifies that input comes from the client application.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">STDOUT</dt>
+
+               <dd class="dd pd">Specifies that output goes to the client application. </dd>
+
+            
+            
+               <dt class="dt pt dlterm">OIDS</dt>
+
+               <dd class="dd pd">Specifies copying the OID for each row. (An error is raised if OIDS is specified for a
+            table that does not have OIDs, or in the case of copying a query.) </dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">delimiter</var>
+               </dt>
+
+               <dd class="dd pd">The single ASCII character that separates columns within each row (line) of the file.
+            The default is a tab character in text mode, a comma in <samp class="ph codeph">CSV</samp> mode. </dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">null string</var>
+               </dt>
+
+               <dd class="dd pd">The string that represents a null value. The default is <samp class="ph codeph">\N</samp>
+            (backslash-N) in text mode, and a empty value with no quotes in <samp class="ph codeph">CSV</samp>
+            mode. You might prefer an empty string even in text mode for cases where you don't want
+            to distinguish nulls from empty strings. When using <samp class="ph codeph">COPY FROM</samp>, any data
+            item that matches this string will be stored as a null value, so you should make sure
+            that you use the same string as you used with <samp class="ph codeph">COPY TO</samp>. </dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">escape</var>
+               </dt>
+
+               <dd class="dd pd">Specifies the single character that is used for C escape sequences (such as
+              <samp class="ph codeph">\n</samp>,<samp class="ph codeph">\t</samp>,<samp class="ph codeph">\100</samp>, and so on) and for
+            quoting data characters that might otherwise be taken as row or column delimiters. Make
+            sure to choose an escape character that is not used anywhere in your actual column data.
+            The default escape character is <samp class="ph codeph">\</samp> (backslash) for text files or
+              <samp class="ph codeph">"</samp> (double quote) for CSV files, however it is possible to specify any
+            other character to represent an escape. It is also possible to disable escaping on
+            text-formatted files by specifying the value '<samp class="ph codeph">OFF'</samp> as the escape value.
+            This is very useful for data such as web log data that has many embedded backslashes
+            that are not intended to be escapes.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">NEWLINE</dt>
+
+               <dd class="dd pd">Specifies the newline used in your data files — <samp class="ph codeph">LF</samp> (Line feed, 0x0A),
+              <samp class="ph codeph">CR</samp> (Carriage return, 0x0D), or <samp class="ph codeph">CRLF</samp> (Carriage return
+            plus line feed, 0x0D 0x0A). If not specified, a HAWQ segment will detect the newline
+            type by looking at the first row of data it receives and using the first newline type
+            encountered.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">CSV</dt>
+
+               <dd class="dd pd">Selects Comma Separated Value (CSV) mode. </dd>
+
+            
+            
+               <dt class="dt pt dlterm">HEADER</dt>
+
+               <dd class="dd pd">Specifies that a file contains a header line with the names of each column in the
+            file. On output, the first line contains the column names from the table, and on input,
+            the first line is ignored. </dd>
+
+            
+            
+               <dt class="dt pt dlterm">
+                  <var class="keyword varname">quote</var>
+               </dt>
+
+               <dd class="dd pd">Specifies the quotation character in CSV mode. The default is double-quote. </dd>
+
+            
+            
+               <dt class="dt pt dlterm">FORCE QUOTE</dt>
+
+               <dd class="dd pd">In <samp class="ph codeph">CSV COPY TO</samp> mode, forces quoting to be used for all
+              non-<samp class="ph codeph">NULL</samp> values in each specified column. <samp class="ph codeph">NULL</samp>
+            output is never quoted.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">FORCE NOT NULL</dt>
+
+               <dd class="dd pd">In <samp class="ph codeph">CSV COPY FROM</samp> mode, process each specified column as though it
+            were quoted and hence not a <samp class="ph codeph">NULL</samp> value. For the default null string in
+              <samp class="ph codeph">CSV</samp> mode (nothing between two delimiters), this causes missing values
+            to be evaluated as zero-length strings.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">FILL MISSING FIELDS</dt>
+
+               <dd class="dd pd">In <samp class="ph codeph">COPY FROM</samp> more for both <samp class="ph codeph">TEXT</samp> and
+              <samp class="ph codeph">CSV</samp>, specifying <samp class="ph codeph">FILL MISSING FIELDS</samp> will set missing
+            trailing field values to <samp class="ph codeph">NULL</samp> (instead of reporting an error) when a
+            row of data has missing data fields at the end of a line or row. Blank rows, fields with
+            a <samp class="ph codeph">NOT NULL</samp> constraint, and trailing delimiters on a line will still
+            report an error.</dd>
+
+            
+            
+               <dt class="dt pt dlterm">LOG ERRORS [INTO <var class="keyword varname">error_table</var>] [KEEP]</dt>
+
+               <dd class="dd pd">This is an optional clause that can precede a <samp class="ph codeph">SEGMENT REJECT LIMIT</samp>
+            clause to log information about rows with formatting errors. The <samp class="ph codeph">INTO
+                <em class="ph i">error_table</em>
+                  </samp> clause specifies an error table where rows with
+            formatting errors will be logged when running in single row error isolation mode. You
+            can then examine this error table to see error rows that were not loaded (if any). If
+            the <var class="keyword varname">error_table</var> specified already exists, it will be used. If it does
+            not exist, it will be automatically generated. If the command auto-generates the error
+            table and no errors are produced, the default is to drop the error table after the
+            operation completes unless <samp class="ph codeph">KEEP</samp> is specified. If the table is
+            auto-generated and the error limit is exceeded, the entire transaction is rolled back
+            and no error data is saved. If you want the error table to persist in this case, create
+            the error table prior to running the <samp class="ph codeph">COPY</samp>. An error table is defined as
+            follows: </dd>
+
+               <dd class="dd pd">
+                  <pre class="pre codeblock">CREATE TABLE <em class="ph i">error_table_name</em> ( cmdtime timestamptz, relname text, 
+    filename text, linenum int, bytenum int, errmsg text, 
+    rawdata text, rawbytes bytea ) DISTRIBUTED RANDOMLY;</pre>
+
+               </dd>
+
+            
+            
+               <dt class="dt pt dlterm">SEGMENT REJECT LIMIT count [ROWS | PERCENT]</dt>
+
+               <dd class="dd pd">Runs a <samp class="ph codeph">COPY FROM</samp> operation in single row error isolation mode. If the
+            input rows have format errors they will be discarded provided that the reject limit
+            count is not reached on any HAWQ segment instance during the load operation. The reject
+            limit count can be specified as number of rows (the default) or percentage of total rows
+            (1-100). If <samp class="ph codeph">PERCENT</samp> is used, each segment starts calculating the bad
+            row percentage only after the number of rows specified by the parameter
+              <samp class="ph codeph">gp_reject_percent_threshold</samp> has been processed. The default for
+              <samp class="ph codeph">gp_reject_percent_threshold</samp> is 300 rows. Constraint errors such as
+            violation of a <samp class="ph codeph">NOT NULL</samp>, <samp class="ph codeph">CHECK</samp>, or
+              <samp class="ph codeph">UNIQUE</samp> constraint will still be handled in 'all-or-nothing' input
+            mode. If the limit is not reached, all good rows will be loaded and any error rows
+            discarded.</dd>
+
+            
+         </dl>
+
+      </div>
+
+      <div class="section" id="topic1__section6"><h2 class="title sectiontitle">Notes</h2>
+         
+         <p class="p">
+            <samp class="ph codeph">COPY</samp> can only be used with tables, not with views. However, you can write
+          <samp class="ph codeph">COPY (SELECT * FROM viewname) TO ...</samp>
+         </p>
+
+         <p class="p">The <samp class="ph codeph">BINARY</samp> key word causes all data to be stored/read as binary format
+        rather than as text. It is somewhat faster than the normal text mode, but a binary-format
+        file is less portable across machine architectures and HAWQ versions. Also, you cannot run
+          <samp class="ph codeph">COPY FROM</samp> in single row error isolation mode if the data is in binary
+        format.</p>
+
+         <p class="p">You must have <samp class="ph codeph">SELECT</samp> privilege on the table whose values are read by
+          <samp class="ph codeph">COPY TO</samp>, and insert privilege on the table into which values are inserted
+        by <samp class="ph codeph">COPY FROM</samp>. </p>
+
+         <p class="p">Files named in a <samp class="ph codeph">COPY</samp> command are read or written directly by the database
+        server, not by the client application. Therefore, they must reside on or be accessible to
+        the HAWQ master host machine, not the client. They must be accessible to and readable or
+        writable by the HAWQ system user (the user ID the server runs as), not the client.
+          <samp class="ph codeph">COPY</samp> naming a file is only allowed to database superusers, since it
+        allows reading or writing any file that the server has privileges to access.</p>
+
+         <p class="p">
+            <samp class="ph codeph">COPY FROM</samp> will invoke any check constraints on the
+        destination table. However, it will not invoke rewrite rules. Note that in this release,
+        violations of constraints are not evaluated for single row error isolation mode.</p>
+
+         <p class="p">
+            <samp class="ph codeph">COPY</samp> input and output is affected by <samp class="ph codeph">DateStyle</samp>. To ensure
+        portability to other HAWQ installations that might use non-default
+          <samp class="ph codeph">DateStyle</samp> settings, <samp class="ph codeph">DateStyle</samp> should be set to ISO
+        before using <samp class="ph codeph">COPY TO</samp>.</p>
+
+         <p class="p">By default, <samp class="ph codeph">COPY</samp> stops operation at the first error. This should not lead
+        to problems in the event of a <samp class="ph codeph">COPY TO</samp>, but the target table will already
+        have received earlier rows in a <samp class="ph codeph">COPY FROM</samp>. These rows will not be visible
+        or accessible, but they still occupy disk space. This may amount to a considerable amount of
+        wasted disk space if the failure happened well into a large <samp class="ph codeph">COPY FROM</samp>
+        operation. You may wish to invoke <samp class="ph codeph">VACUUM</samp> to recover the wasted space.
+        Another option would be to use single row error isolation mode to filter out error rows
+        while still loading good rows.</p>
+
+         <p class="p">COPY supports creating readable foreign tables with error tables. The default for
+        concurrently inserting into the error table is 127. You can use error tables with foreign
+        tables under the following circumstances:</p>
+
+         <ul class="ul" id="topic1__ul_i4r_24r_pp">
+            <li class="li">Multiple foreign tables can use different error tables</li>
+
+            <li class="li">Multiple foreign tables cannot use the same error table</li>
+
+         </ul>
+
+      </div>
+
+      <div class="section" id="topic1__section7"><h2 class="title sectiontitle">File Formats</h2>
+         
+         <p class="p">File formats supported by
+          <samp class="ph codeph">COPY</samp>. </p>
+
+         <div class="sectiondiv">
+            <strong class="ph b">Text Format</strong>
+            <p class="p">When <samp class="ph codeph">COPY</samp> is used without the <samp class="ph codeph">BINARY</samp> or
+            <samp class="ph codeph">CSV</samp> options, the data read or written is a text file with one line per
+          table row. Columns in a row are separated by the <var class="keyword varname">delimiter</var> character
+          (tab by default). The column values themselves are strings generated by the output
+          function, or acceptable to the input function, of each attribute's data type. The
+          specified null string is used in place of columns that are null. <samp class="ph codeph">COPY
+            FROM</samp> will raise an error if any line of the input file contains more or fewer
+          columns than are expected. If <samp class="ph codeph">OIDS</samp> is specified, the OID is read or
+          written as the first column, preceding the user data columns.</p>
+
+            <p class="p">The data file has two
+          reserved characters that have special meaning to <samp class="ph codeph">COPY</samp>:</p>
+
+            <ul class="ul">
+               <li class="li" id="topic1__bk138828">The designated delimiter character (tab by default), which is used to
+            separate fields in the data file. </li>
+
+               <li class="li" id="topic1__bk138829">A UNIX-style line feed (<samp class="ph codeph">\n</samp> or <samp class="ph codeph">0x0a</samp>),
+            which is used to designate a new row in the data file. It is strongly recommended that
+            applications generating <samp class="ph codeph">COPY</samp> data convert data line feeds to UNIX-style
+            line feeds rather than Microsoft Windows style carriage return line feeds
+              (<samp class="ph codeph">\r\n</samp> or <samp class="ph codeph">0x0a 0x0d</samp>). </li>
+
+            </ul>
+
+            <p class="p">If your data contains either of these characters, you must escape the character so
+            <samp class="ph codeph">COPY</samp> treats it as data and not as a field separator or new
+          row.</p>
+
+            <p class="p">By default, the escape character is a \ (backslash) for text-formatted files
+          and a <samp class="ph codeph">"</samp> (double quote) for csv-formatted files. If you want to use a
+          different escape character, you can do so using the <samp class="ph codeph">ESCAPE AS </samp>clause.
+          Make sure to choose an escape character that is not used anywhere in your data file as an
+          actual data value. You can also disable escaping in text-formatted files by using
+            <samp class="ph codeph">ESCAPE 'OFF'</samp>.</p>
+
+            <p class="p">For example, suppose you have a table with three
+          columns and you want to load the following three fields using COPY. </p>
+
+            <ul class="ul">
+               <li class="li" id="topic1__bk138844">percentage sign = %</li>
+
+               <li class="li" id="topic1__bk138845">vertical bar = |</li>
+
+               <li class="li" id="topic1__bk138887">backslash = \</li>
+
+            </ul>
+
+            <p class="p">Your designated <var class="keyword varname">delimiter</var> character is <samp class="ph codeph">|</samp> (pipe
+          character), and your designated <var class="keyword varname">escape</var> character is <samp class="ph codeph">*</samp>
+          (asterisk). The formatted row in your data file would look like
+          this:</p>
+
+            <pre class="pre codeblock">percentage sign = % | vertical bar = <strong class="ph b">*|</strong> | backslash = \</pre>
+
+            <p class="p">Notice
+          how the pipe character that is part of the data has been escaped using the asterisk
+          character (*). Also notice that we do not need to escape the backslash since we are using
+          an alternative escape character.</p>
+
+            <p class="p">The following characters must be preceded by the
+          escape character if they appear as part of a column value: the escape character itself,
+          newline, carriage return, and the current delimiter character. You can specify a different
+          escape character using the <samp class="ph codeph">ESCAPE AS</samp> clause.</p>
+
+         </div>
+         <div class="sectiondiv">
+            <strong class="ph b">CSV Format</strong>
+            <p class="p">This format is used for importing and exporting the Comma Separated Value (CSV) file
+          format used by many other programs, such as spreadsheets. Instead of the escaping used by
+          HAWQ standard text mode, it produces and recognizes the common CSV escaping mechanism.
+          </p>
+
+            <p class="p">The values in each record are separated by the <samp class="ph codeph">DELIMITER</samp>
+          character. If the value contains the delimiter character, the <samp class="ph codeph">QUOTE</samp>
+          character, the <samp class="ph codeph">ESCAPE</samp> character (which is double quote by default), the
+            <samp class="ph codeph">NULL</samp> string, a carriage return, or line feed character, then the whole
+          value is prefixed and suffixed by the <samp class="ph codeph">QUOTE</samp> character. You can also use
+            <samp class="ph codeph">FORCE QUOTE</samp> to force quotes when outputting non-<samp class="ph codeph">NULL</samp>
+          values in specific columns. </p>
+
+            <p class="p">The CSV format has no standard way to distinguish a
+            <samp class="ph codeph">NULL</samp> value from an empty string. HAWQ <samp class="ph codeph">COPY</samp> handles
+          this by quoting. A <samp class="ph codeph">NULL</samp> is output as the <samp class="ph codeph">NULL</samp> string and
+          is not quoted, while a data value matching the <samp class="ph codeph">NULL</samp> string is quoted.
+          Therefore, using the default settings, a <samp class="ph codeph">NULL</samp> is written as an unquoted
+          empty string, while an empty string is written with double quotes (""). Reading values
+          follows similar rules. You can use <samp class="ph codeph">FORCE NOT NULL</samp> to prevent
+            <samp class="ph codeph">NULL</samp> input comparisons for specific columns.</p>
+
+            <p class="p">Because backslash is
+          not a special character in the <samp class="ph codeph">CSV</samp> format, <samp class="ph codeph">\.</samp>, the
+          end-of-data marker, could also appear as a data value. To avoid any misinterpretation, a
+            <samp class="ph codeph">\.</samp> data value appearing as a lone entry on a line is automatically
+          quoted on output, and on input, if quoted, is not interpreted as the end-of-data marker.
+          If you are loading a file created by another application that has a single unquoted column
+          and might have a value of <samp class="ph codeph">\.</samp>, you might need to quote that value in the
+          input file.</p>
+
+            <div class="note note"><span class="notetitle">Note:</span> In <samp class="ph codeph">CSV</samp> mode, all characters are significant. A
+          quoted value surrounded by white space, or any characters other than
+            <samp class="ph codeph">DELIMITER</samp>, will include those characters. This can cause errors if you
+          import data from a system that pads CSV lines with white space out to some fixed width. If
+          such a situation arises you might need to preprocess the CSV file to remove the trailing
+          white space, before importing the data into HAWQ. </div>
+
+            <div class="note note"><span class="notetitle">Note:</span> 
+               <samp class="ph codeph">CSV</samp> mode
+          will both recognize and produce CSV files with quoted values containing embedded carriage
+          returns and line feeds. Thus the files are not strictly one line per table row like
+          text-mode files. </div>
+
+            <div class="note note"><span class="notetitle">Note:</span> Many programs produce strange and occasionally perverse CSV
+          files, so the file format is more a convention than a standard. Thus you might encounter
+          some files that cannot be imported using this mechanism, and <samp class="ph codeph">COPY</samp> might
+          produce files that other programs cannot process. </div>
+
+         </div>
+         <div class="sectiondiv">
+            <strong class="ph b">Binary Format</strong>
+            <p class="p">The <samp class="ph codeph">BINARY</samp> format consists of a file header, zero or more tuples
+          containing the row data, and a file trailer. Headers and data are in network byte order. </p>
+
+            <ul class="ul">
+               <li class="li" id="topic1__bk139298">
+                  <strong class="ph b">File Header</strong> — The file header consists of 15 bytes of fixed
+            fields, followed by a variable-length header extension area. The fixed fields are: <ul class="ul" id="topic1__ul_rn3_kwf_m4">
+                     <li class="li" id="topic1__bk139303">
+                        <strong class="ph b">Signature</strong> — 11-byte sequence PGCOPY\n\377\r\n\0 — note that
+                the zero byte is a required part of the signature. (The signature is designed to
+                allow easy identification of files that have been munged by a non-8-bit-clean
+                transfer. This signature will be changed by end-of-line-translation filters, dropped
+                zero bytes, dropped high bits, or parity changes.) </li>
+
+                     <li class="li" id="topic1__bk139306">
+                        <strong class="ph b">Flags field</strong> — 32-bit integer bit mask to denote important
+                aspects of the file format. Bits are numbered from 0 (LSB) to 31 (MSB). Note that
+                this field is stored in network byte order (most significant byte first), as are all
+                the integer fields used in the file format. Bits 16-31 are reserved to denote
+                critical file format issues; a reader should abort if it finds an unexpected bit set
+                in this range. Bits 0-15 are reserved to signal backwards-compatible format issues;
+                a reader should simply ignore any unexpected bits set in this range. Currently only
+                one flag is defined, and the rest must be zero (Bit 16: 1 if data has OIDs, 0 if
+                not).</li>
+
+                     <li class="li" id="topic1__bk139315">
+                        <strong class="ph b">Header extension area length</strong> — 32-bit integer, length in
+                bytes of remainder of header, not including self. Currently, this is zero, and the
+                first tuple follows immediately. Future changes to the format might allow additional
+                data to be present in the header. A reader should silently skip over any header
+                extension data it does not know what to do with. The header extension area is
+                envisioned to contain a sequence of self-identifying chunks. The flags field is not
+                intended to tell readers what is in the extension area. Specific design of header
+                extension contents is left for a later release. </li>
+
+                  </ul>
+
+               </li>
+
+               <li class="li" id="topic1__bk139323">
+                  <strong class="ph b">Tuples</strong> — Each tuple begins with a 16-bit integer count of the
+            number of fields in the tuple. (Presently, all tuples in a table will have the same
+            count, but that might not always be true.) Then, repeated for each field in the tuple,
+            there is a 32-bit length word followed by that many bytes of field data. (The length
+            word does not include itself, and can be zero.) As a special case, -1 indicates a NULL
+            field value. No value bytes follow in the NULL case. <p class="p">There is no alignment padding or
+              any other extra data between fields. </p>
+
+                  <p class="p">Presently, all data values in a COPY
+              BINARY file are assumed to be in binary format (format code one). It is anticipated
+              that a future extension may add a header field that allows per-column format codes to
+              be specified. </p>
+
+                  <p class="p">If OIDs are included in the file, the OID field immediately
+              follows the field-count word. It is a normal field except that it's not included in
+              the field-count. In particular it has a length word — this will allow handling of
+              4-byte vs. 8-byte OIDs without too much pain, and will allow OIDs to be shown as null
+              if that ever proves desirable. </p>
+
+               </li>
+
+               <li class="li" id="topic1__bk139334">
+                  <strong class="ph b">File Trailer</strong> — The file trailer consists of a 16-bit integer word
+            containing <samp class="ph codeph">-1</samp>. This is easily distinguished from a tuple's field-count
+            word. A reader should report an error if a field-count word is neither
+              <samp class="ph codeph">-1</samp> nor the expected number of columns. This provides an extra check
+            against somehow getting out of sync with the data.  </li>
+
+            </ul>
+
+         </div>
+      </div>
+
+      <div class="section" id="topic1__section11"><h2 class="title sectiontitle">Examples</h2>
+         
+         <p class="p">Copy a table to the client using the vertical bar (|) as the field delimiter:</p>
+
+         <pre class="pre codeblock">COPY country TO STDOUT WITH DELIMITER '|';</pre>
+
+         <p class="p">Copy data from a file into the <samp class="ph codeph">country</samp> table:</p>
+
+         <pre class="pre codeblock">COPY country FROM '/home/usr1/sql/country_data';</pre>
+
+         <p class="p">Copy into a file just the countries whose names start with 'A':</p>
+
+         <pre class="pre codeblock">COPY (SELECT * FROM country WHERE country_name LIKE 'A%') TO 
+'/home/usr1/sql/a_list_countries.copy';</pre>
+
+         <p class="p">Create an error table called <samp class="ph codeph">err_sales</samp> to use with single row error
+        isolation mode:</p>
+
+         <pre class="pre codeblock">CREATE TABLE err_sales ( cmdtime timestamptz, relname text, 
+filename text, linenum int, bytenum int, errmsg text, rawdata text, rawbytes bytea ) DISTRIBUTED RANDOMLY;</pre>
+
+         <p class="p">Copy data from a file into the <samp class="ph codeph">sales</samp> table using single row error
+        isolation mode:</p>
+
+         <pre class="pre codeblock">COPY sales FROM '/home/usr1/sql/sales_data' LOG ERRORS INTO 
+err_sales SEGMENT REJECT LIMIT 10 ROWS;</pre>
+
+      </div>
+
+      <div class="section" id="topic1__section12"><h2 class="title sectiontitle">Compatibility</h2>
+         
+         <p class="p">There is no <samp class="ph codeph">COPY</samp> statement in the SQL standard. </p>
+
+      </div>
+
+      <div class="section" id="topic1__section13"><h2 class="title sectiontitle">See Also</h2>
+         
+         <p class="p">
+            <samp class="ph codeph">
+               <a class="xref" href="CREATE-EXTERNAL-TABLE.html">CREATE EXTERNAL TABLE</a>
+            </samp>
+         </p>
+
+      </div>
+
+   </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../hawq-topics/SQLCommandReference.html" title="SQL Command Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">SQL Command Reference</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

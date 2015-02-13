@@ -1,0 +1,718 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="HAWQ has a rich set of native data types available to users. Users may also define new data types using the CREATE TYPE command. This reference shows all of the built-in data types. In addition to the ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="HAWQ Data Types"/><meta name="DC.Relation" scheme="URI" content="../hawq-topics/HAWQAdministration.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="hawqdatatypes"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>HAWQ Data Types</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="hawqdatatypes"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">linkToThis</a></div><div id="printlink"><a href="javascript:window.print();">printThisPage</a></div></td></tr><tr><td><div class="navheader">
+<span class="navparent"><a class="link" href="../hawq-topics/HAWQAdministration.html" title="HAWQ Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Administration</span></a></span>  </div></td><td width="75%"><a class="navheader_parent_path" href="../hawq-topics/../hawq-topics/PivotalHAWQ.html" title="Pivotal HAWQ">Pivotal HAWQ</a> / <a class="navheader_parent_path" href="../hawq-topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">HAWQ Data Types</h1>
+
+   <div class="body">
+      <p class="p">HAWQ has a rich set of native data types available to users. Users may also define new data
+         types using the <samp class="ph codeph">CREATE TYPE</samp> command. This reference shows all of the
+         built-in data types. In addition to the types listed here, there are also some
+         internally used data types, such as <strong class="ph b">oid</strong> (object identifier), but those are not
+         documented in this guide.</p>
+
+      <p class="p">The following data types are specified by SQL:</p>
+
+      <ul class="ul" id="hawqdatatypes__ul_g51_vlz_4p">
+         <li class="li">bit</li>
+
+         <li class="li">bit varying</li>
+
+         <li class="li">boolean</li>
+
+         <li class="li">character varying</li>
+
+         <li class="li">char</li>
+
+         <li class="li">character</li>
+
+         <li class="li">date</li>
+
+         <li class="li">decimal</li>
+
+         <li class="li">double precision</li>
+
+         <li class="li">integer</li>
+
+         <li class="li">interval</li>
+
+         <li class="li">numeric</li>
+
+         <li class="li">real</li>
+
+         <li class="li">smallint</li>
+
+         <li class="li">time (with or without time zone)</li>
+
+         <li class="li">timestamp (with or without time zone)</li>
+
+         <li class="li">varchar</li>
+
+      </ul>
+
+      <p class="p">Each data type has an external representation determined by its input and output functions.
+         Many of the built-in types have obvious external formats. However, several types are unique
+         to  HAWQ, such as geometric paths, or have several possibilities for formats, such as the
+         date and time types. Some of the input and output functions are not invertible. That is,
+         the result of an output function may lose accuracy when compared to the original input. </p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. HAWQ Built-in Data Types</span></caption>
+            <thead class="thead" align="left">
+               <tr class="row">
+                  <th class="entry confluenceTh" valign="top" id="d50304e104">Name</th>
+
+                  <th class="entry confluenceTh" valign="top" id="d50304e107">Alias</th>
+
+                  <th class="entry confluenceTh" valign="top" id="d50304e110">Size</th>
+
+                  <th class="entry confluenceTh" valign="top" id="d50304e113">Range</th>
+
+                  <th class="entry confluenceTh" valign="top" id="d50304e116">Description</th>
+
+               </tr>
+
+            </thead>
+
+            <tbody class="tbody">
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">bigint</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">int8</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">8 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">-9223372036854775808 to
+                     9223372036854775807</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">large range integer</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">bigserial</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">serial8</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">8 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">1 to 9223372036854775807</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">large autoincrementing integer</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">bit [ (n) ]</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">n bits</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">bit string constant</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">fixed-length bit string</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">bit varying [ (n) ]</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">varbit</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">actual number of bits</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">bit string constant</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">variable-length bit string</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">boolean</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">bool</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">1 byte</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">true/false, t/f, yes/no, y/n, 1/0</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">logical Boolean (true/false)</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">box</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">32 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">((x1,y1),(x2,y2))</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">rectangular box in the plane - not allowed in
+                     distribution key columns.</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">bytea</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">1 byte + binarystring</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">sequence of octets</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">variable-length binary string</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">character [ (n) ]</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">char  [ (n) ]</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">1 byte + n</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">strings up to n characters in length</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">fixed-length, blank padded</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">character varying [ (n) ]</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">varchar  [ (n) ]</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">1 byte + binarystring</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">strings up to n characters in length</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">variable-length  with limit</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">cidr</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">12 or 24 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">IPv4 networks</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">circle</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">24 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">&lt;(x,y),r&gt; (center and radius)</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">circle in the plane - not allowed in
+                     distribution key columns.</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">date</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">4 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">4713 BC - 294,277 AD</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> calendar date (year, month, day)</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">decimal [ (p, s) ]</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">numeric [ (p,s) ]</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">variable</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">no limit</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">user-specified, inexact</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">double precision</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">float8 float</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">8 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">15 decimal digits precision</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">variable-precision, inexact</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">inet</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">12 or 24 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> IPv4 hosts and networks</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">integer</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">int, int4</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">4 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">-2147483648 to +2147483647</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">usual choice for integer</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">interval [ (p) ]</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">12 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">-178000000 years - 178000000 years</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">time span</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">lseg</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">32 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">((x1,y1),(x2,y2))</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">line segment in the plane - not allowed in
+                     distribution key columns.</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">macaddr</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">6 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">MAC addresses</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">money</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">4 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">-21474836.48 to +21474836.47</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">currency amount</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">path</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">16+16n bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">[(x1,y1),...]</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">geometric path in the plane - not allowed in
+                     distribution key columns.</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">point</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">16 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">(x, y)</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">geometric path in the plane - not allowed in
+                     distribution key columns.</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">polygon</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">40+16n bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> [(x1,y1),...]</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">closed geometric path in the plane - not allowed
+                     in the distribution key columns.</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">real</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">float4</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">4 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">6 decimal digits precision</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> variable-precision, inexact</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">serial</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">serial4</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">4 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">1 to 2147483647</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">autoincrementing integer</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">smallint</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">int2</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">2 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">-32768 to +32767</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">small range integer</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">text</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">1 byte + string size</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">strings of any length</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">variable unlimited length</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">time [ (p) ] [ without time zone ]</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">8 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">00:00:00[.000000] - 24:00:00[.000000]</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">time of day only</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">time [ (p) ] with time zone</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">timetz</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">12 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">00:00:00+1359 - 24:00:00-1359</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">time of day only, with time zone</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">timestamp [ (p) ] [without time zone ]</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">8 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">4713 BC - 294,277 AD</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">both date and time</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">timestamp [ (p) ] with time zone</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">timestamptz</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">8 bytes</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">4713 BC - 294,277 AD</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">both date and time, with time zone</td>
+
+               </tr>
+
+               <tr class="row">
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">xml</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 "> </td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">1 byte + xml size</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">xml of any length</td>
+
+                  <td class="entry confluenceTd" valign="top" headers="d50304e104 d50304e107 d50304e110 d50304e113 d50304e116 ">variable unlimited length</td>
+
+               </tr>
+
+            </tbody>
+
+         </table>
+</div>
+
+      <p class="p">For variable length data types (such as char, varchar, text, xml, etc.) if the data is
+         greater than or equal to 127 bytes, the storage overhead is 4 bytes instead of 1.</p>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="timezones">
+      <h2 class="title topictitle2">Time Zones</h2>
+
+      <div class="body">
+         <p class="p"> Time zones, and time-zone conventions, are influenced by political decisions, not just
+            earth geometry. Time zones around the world became somewhat standardized during the
+            1900's, but continue to be prone to arbitrary changes, particularly with respect to
+            daylight-savings rules. HAWQ uses the widely-used zoneinfo time zone database for
+            information about historical time zone rules. For times in the future, the assumption is
+            that the latest known rules for a given time zone will continue to be observed
+            indefinitely far into the future.</p>
+
+         <p class="p">HAWQ is compatible with the SQL standard definitions for typical usage. However,
+            the SQL standard has an odd mix of date and time types and capabilities. Two obvious
+            problems are:</p>
+
+         <ul class="ul">
+            <li class="li">Although the date type cannot have an associated time zone, the time type can. Time
+               zones in the real world have little meaning unless associated with a date as well as
+               a time, since the offset can vary through the year with daylight-saving time
+               boundaries.</li>
+
+            <li class="li">The default time zone is specified as a constant numeric offset from UTC. It is
+               therefore impossible to adapt to daylight-saving time when doing date/time arithmetic
+               across DST boundaries.</li>
+
+         </ul>
+
+         <p class="p">To address these difficulties, Pivotal recommends using date/time types that contain
+            both date and time when using time zones. Pivotal recommends that you do not use the
+            type time with time zone (although HAWQ supports this for legacy applications and for
+            compliance with the SQL standard). HAWQ assumes your local time zone for any type
+            containing only date or time.</p>
+
+         <p class="p">All timezone-aware dates and times are stored internally in UTC. They are converted to
+            local time in the zone specified by the timezone configuration parameter before being
+            displayed to the client.</p>
+
+         <p class="p">HAWQ allows you to specify time zones in three different forms:</p>
+
+         <ul class="ul">
+            <li class="li">A full time zone name, for example America/New_York. HAWQ uses the
+               widely-used zoneinfo time zone data for this purpose, so the same names are also
+               recognized by much other software.</li>
+
+            <li class="li">A time zone abbreviation, for example PST. Such a specification merely defines a
+               particular offset from UTC, in contrast to full time zone names which can imply a set
+               of daylight savings transition-date rules as well. You cannot set the configuration
+               parameters timezone or log_timezone to a time zone abbreviation, but you can use
+               abbreviations in date/time input values and with the AT TIME ZONE operator.</li>
+
+            <li class="li">In addition to the timezone names and abbreviations, HAWQ accepts POSIX-style time
+               zone specifications of the form STDoffset or STDoffsetDST, whereSTD is a zone
+               abbreviation, offset is a numeric offset in hours west from UTC, and DST is an
+               optional daylight-savings zone abbreviation, assumed to stand for one hour ahead of
+               the given offset. For example, if EST5EDT were not already a recognized zone name, it
+               would be accepted and would be functionally equivalent to United States East Coast
+               time. When a daylight-savings zone name is present, it is assumed to be used
+               according to the same daylight-savings transition rules used in the zoneinfo time
+               zone database's posixrules entry. In a standard HAWQ installation, posixrules is the
+               same as US/Eastern, so that POSIX-style time zone specifications follow USA
+               daylight-savings rules. If needed, you can adjust this behavior by replacing
+               the posixrules file.</li>
+
+         </ul>
+
+         <p class="p">In short, this is the difference between abbreviations and full names: abbreviations
+            always represent a fixed offset from UTC, whereas most of the full names imply a local
+            daylight-savings time rule, and so have two possible UTC offsets.</p>
+
+         <p class="p">One should be wary that the POSIX-style time zone feature can lead to silently accepting
+            bogus input, since there is no check on the reasonableness of the zone abbreviations.
+            For example, SET TIMEZONE TO FOOBAR0 will work, leaving the system effectively using a
+            rather peculiar abbreviation for UTC. Another issue to keep in mind is that in POSIX
+            time zone names, positive offsets are used for locations west of Greenwich. Everywhere
+            else, PostgreSQL follows the ISO-8601 convention that positive timezone offsets
+            are east of Greenwich.</p>
+
+         <p class="p">In all cases, timezone names are recognized case-insensitively. </p>
+
+         <p class="p">Neither full names nor abbreviations are hard-wired into the server, see <a class="xref" href="#dateandtimeconfigurationfiles">Date and Time Configuration Files</a>.</p>
+
+         <p class="p">The timezone configuration parameter can be set in the file postgresql.conf. There are
+            also several special ways to set it:</p>
+
+         <ul class="ul">
+            <li class="li">If timezone is not specified in postgresql.conf or as a server command-line option,
+               the server attempts to use the value of the TZ environment variable as the default
+               time zone. If TZ is not defined or is not any of the time zone names known
+               to PostgreSQL, the server attempts to determine the operating system's default time
+               zone by checking the behavior of the C library function localtime(). The default time
+               zone is selected as the closest match from HAWQ's known time zones. </li>
+
+            <li class="li">The SQL command SET TIME ZONE sets the time zone for the session. This is an
+               alternative spelling of SET TIMEZONE TO with a more SQL-spec-compatible syntax.</li>
+
+            <li class="li">The PGTZ environment variable is used by libpq clients to send a SET TIME
+               ZONE command to the server upon connection.</li>
+
+         </ul>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="dateandtimeconfigurationfiles">
+      <h2 class="title topictitle2">Date and Time Configuration Files</h2>
+
+      <div class="body">
+         <p class="p">Since timezone abbreviations are not well standardized, HAWQ provides a means to
+            customize the set of abbreviations accepted by the server.
+            The timezone_abbreviations run-time parameter determines the active set of
+            abbreviations. While this parameter can be altered by any database user, the possible
+            values for it are under the control of the database administrator — they are in fact
+            names of configuration files stored in .../share/timezonesets/ of the installation
+            directory. By adding or altering files in that directory, the administrator can set
+            local policy for timezone abbreviations.</p>
+
+         <p class="p">timezone_abbreviations can be set to any file name found in .../share/timezonesets/, if
+            the file's name is entirely alphabetic. (The prohibition against non-alphabetic
+            characters in timezone_abbreviations prevents reading files outside the intended
+            directory, as well as reading editor backup files and other extraneous files.)</p>
+
+         <p class="p">A timezone abbreviation file can contain blank lines and comments beginning with #.
+            Non-comment lines must have one of these formats:</p>
+
+         <pre class="pre codeblock">time_zone_nameoffsettime_zone_nameoffset D
+@INCLUDE file_name
+@OVERRIDE</pre>
+
+         <p class="p">A time_zone_name is just the abbreviation being defined. The offset is the zone's offset
+            in seconds from UTC, positive being east from Greenwich and negative being west. For
+            example, -18000 would be five hours west of Greenwich, or North American east coast
+            standard time. D indicates that the zone name represents local daylight-savings time
+            rather than standard time. Since all known time zone offsets are on 15 minute
+            boundaries, the number of seconds has to be a multiple of 900.</p>
+
+         <p class="p">The @INCLUDE syntax allows inclusion of another file in
+            the .../share/timezonesets/ directory. Inclusion can be nested, to a limited depth.</p>
+
+         <p class="p">The @OVERRIDE syntax indicates that subsequent entries in the file can override previous
+            entries (i.e., entries obtained from included files). Without this, conflicting
+            definitions of the same timezone abbreviation are considered an error.</p>
+
+         <p class="p">In an unmodified installation, the file Default contains all the non-conflicting time
+            zone abbreviations for most of the world. Additional files Australia and India are
+            provided for those regions: these files first include the Default file and then add or
+            modify timezones as needed.</p>
+
+         <p class="p">For reference purposes, a standard installation also contains
+            files Africa.txt, America.txt, etc, containing information about every time zone
+            abbreviation known to be in use according to the zoneinfo timezone database. The zone
+            name definitions found in these files can be copied and pasted into a custom
+            configuration file as needed.</p>
+
+         <div class="note note"><span class="notetitle">Note:</span> These files cannot be directly referenced as timezone_abbreviations settings, because
+            of the dot embedded in their names.</div>
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../hawq-topics/HAWQAdministration.html" title="HAWQ Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Administration</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

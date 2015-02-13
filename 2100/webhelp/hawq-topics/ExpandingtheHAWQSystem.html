@@ -1,0 +1,1699 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="This chapter provides information on adding additional resources to an existing HAWQ system to scale performance. Planning Your HAWQ Expansion System Expansion Overview System Expansion Checklist ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Expanding the HAWQ System"/><meta name="DC.Relation" scheme="URI" content="../hawq-topics/HAWQAdministration.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="expandingthehawqsystem"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Expanding the HAWQ System</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="expandingthehawqsystem"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">linkToThis</a></div><div id="printlink"><a href="javascript:window.print();">printThisPage</a></div></td></tr><tr><td><div class="navheader">
+<span class="navparent"><a class="link" href="../hawq-topics/HAWQAdministration.html" title="HAWQ Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Administration</span></a></span>  </div></td><td width="75%"><a class="navheader_parent_path" href="../hawq-topics/../hawq-topics/PivotalHAWQ.html" title="Pivotal HAWQ">Pivotal HAWQ</a> / <a class="navheader_parent_path" href="../hawq-topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Expanding the HAWQ System</h1>
+
+   <div class="body">
+      <p class="p">This chapter provides information on adding additional resources to an existing HAWQ system
+         to scale performance.</p>
+
+      <ul class="ul">
+         <li class="li">
+            <a class="xref" href="#planningthehawqexpansion">Planning Your HAWQ Expansion</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#systemexpansionoverview">System Expansion Overview</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#systemexpansionchecklist">System Expansion Checklist</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#planningnewhardwareplatforms">Planning New Hardware Platforms</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#planninginitializationofnewsegments">Planning Initialization of New Segments</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#increasingsegmentsperhost">Increasing Segments Per Host</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#abouttheexpansionschema">About the Expansion Schema</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#planningtableredistribution">Planning Table Redistribution</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#redistributingappend-onlyandcompressedtables">Redistributing Append-Only and Compressed Tables</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#redistributingtableswithuser-defineddatatypes">Redistributing Tables with User-Defined Data Types</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#redistributingpartitionedtables">Redistributing Partitioned Tables</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#preparingandaddingnodes">Preparing and Adding Nodes</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#addingnewnodestothetrustedhostenvironment">Adding New Nodes to the Trusted Host Environment</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#verifyingossettings">Verifying OS Settings</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#validatingdiskioandmemorybandwidth">Validating Disk I/O and Memory Bandwidth</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#integratingnewhardwareintothesystem">Integrating New Hardware into the System</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#installinghawqcomponentsonthenewsegments">Installing HAWQ Components on the New Segments</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#installingplrandpgcryptoafterexpansion">Installing PL/R and pgcrypto after Expansion</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#installingpljavaafterexpansion">Installing PL/Java after Expansion</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#installingmadlibonnewlyaddednodes">Installing MADlib on Newly-Added Nodes</a>
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#initializingnewsegments">Initializing New Segments</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#creatinganinputfileforsystemexpansion">Creating an Input File for System Expansion</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#runninggpexpandtoinitializenewsegments">Running gpexpand to Initialize New Segments</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#rollingbackafailedexpansionsetup">Rolling Back a Failed Expansion Setup</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#redistributingtables">Redistributing Tables</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#monitoringtableredistribution">Monitoring Table Redistribution</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#removingtheexpansionschema">Removing the Expansion Schema</a>
+         </li>
+
+      </ul>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="planningthehawqexpansion">
+      <h2 class="title topictitle2">Planning Your HAWQ Expansion</h2>
+
+      <div class="body">
+         <p class="p">Careful planning is critical to the success of a system expansion operation. By
+            thoroughly preparing all new hardware and carefully planning all the steps of the
+            expansion procedure, you can minimize risk and down time for the HAWQ database. For
+            performance-related considerations when expanding large-scale systems, see <a class="xref" href="#planningtableredistribution">Planning Table Redistribution</a> later in
+            this section.</p>
+
+         <p class="p">This section provides an overview and a checklist for the system expansion process.</p>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="systemexpansionoverview">
+      <h2 class="title topictitle2">System Expansion Overview</h2>
+
+      <div class="body">
+         <p class="p">System expansion consists of three phases:</p>
+
+         <ul class="ul">
+            <li class="li">Adding and testing new hardware platforms</li>
+
+            <li class="li">Initializing new segments</li>
+
+            <li class="li">Redistributing tables</li>
+
+         </ul>
+
+         <div class="section"><h3 class="title sectiontitle">Adding and Testing New Hardware</h3>
+            
+            <p class="p">You can refer to the general considerations for deploying new hardware described in
+                  <a class="xref" href="#planningnewhardwareplatforms">Planning New Hardware Platforms</a>.
+               For more information on hardware platforms, consult the Pivotal platform engineers.
+               After the new hardware platforms are provisioned and networked, you must run
+               performance tests using Pivotal HAWQ utilities.</p>
+
+         </div>
+
+         <div class="section"><h3 class="title sectiontitle">Initializing New Segments</h3>Once the HAWQ binaries are installed on
+            new hardware, you must initialize the new segments using <samp class="ph codeph">gpexpand</samp> (not
+               <samp class="ph codeph">gpinitsystem</samp>). In this process, the utility creates a data and
+            metadata directory and copies all the metadata from the existing segments to the new
+            segments, capturing metadata for each user data table in an expansion schema, for status
+            tracking. After this process has completed successfully, the expansion operation is
+            committed, and cannot be reversed.<p class="p">These operations are performed with the system
+               offline. The <samp class="ph codeph">gpexpand</samp> utility will shut down the database during
+               initialization, if not already shut down.</p>
+</div>
+
+         <div class="section"><h3 class="title sectiontitle">Redistributing Tables</h3>As part of the initialization process,
+               <samp class="ph codeph">gpexpand</samp> nullifies hash distribution policies (except for the parent
+            tables of a partitioned table) and sets the distribution policy for all tables to random
+            distribution. This action is performed on all tables, in all existing databases in
+            the HAWQ instance.<div class="note note"><span class="notetitle">Note:</span> Nullifying original distribution policies marks the distribution
+               policies of all the user tables to Random. It does NOT involve any data movement or
+               distribution. Physical movement of the data happens only when the final
+               redistribution, according to the original policy, is performed.</div>
+</div>
+
+         <p class="p">Users can continue to access HAWQ after initialization is complete and the system is
+            back online, though they could experience some performance degradation on systems that
+            rely heavily on hash distribution of tables. During this process, normal operations such
+            as ETL jobs, user queries, and reporting can continue, although users might experience
+            slower response times.</p>
+
+         <p class="p">To complete system expansion, you must run gpexpand to redistribute data tables across
+            the newly added segments. Depending on the size and scale of your system, this might be
+            accomplished in a single session during low-use hours, or it might require you to divide
+            the process into batches over an extended period. Each table or partition will be
+            unavailable for read or write operations during the period in which it is being
+            redistributed. As each table is successfully redistributed across the new segments,
+            according to its distribution key (if any), the performance of the database should
+            incrementally improve until it equals and then exceeds pre-expansion performance
+            levels.</p>
+
+         <p class="p">In a typical operation, you will run the <samp class="ph codeph">gpexpand</samp> utility four times,
+            using different options, during the complete expansion process.</p>
+
+         <ul class="ul">
+            <li class="li">To interactively create an expansion input
+               file:<pre class="pre codeblock">gpexpand -f hosts_file </pre>
+</li>
+
+         </ul>
+
+         <ul class="ul">
+            <li class="li">To initialize segments and create expansion
+               schema:<pre class="pre codeblock">gpexpand -i input_file -D database_name </pre>
+</li>
+
+         </ul>
+
+         <ul class="ul">
+            <li class="li">To redistribute tables:<pre class="pre codeblock">gpexpand -d duration</pre>
+</li>
+
+         </ul>
+
+         <ul class="ul">
+            <li class="li">To remove the expansion schema:<pre class="pre codeblock">gpexpand -c </pre>
+</li>
+
+         </ul>
+
+         <p class="p">In systems whose large scale requires multiple redistribution sessions, you may need to
+            run <samp class="ph codeph">gpexpand</samp> several more times to complete the expansion. For more
+            information, see <a class="xref" href="#planningtableredistribution">Planning Table
+               Redistribution</a>.</p>
+
+      </div>
+
+      <div class="topic nested2" id="systemexpansionchecklist">
+         <h3 class="title topictitle3">System Expansion Checklist</h3>
+
+         <div class="body">
+            <p class="p">This checklist provides a quick overview of the steps required for a system
+               expansion.</p>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="systemexpansionchecklist__table_uh2_2zt_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d36499e398">Online Pre-Expansion Preparation (Perfrom
+                           these tasks when the system is up and available)</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d36499e398 ">
+                           <ul class="ul" id="systemexpansionchecklist__ul_rj2_2zt_4p">
+                              <li class="li">Devise and execute a plan for ordering, building, and networking
+                                 new hardware platforms.</li>
+
+                           </ul>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d36499e398 ">
+                           <ul class="ul" id="systemexpansionchecklist__ul_tj2_2zt_4p">
+                              <li class="li">Devise a database expansion plan. Map the number of segments per
+                                 host, schedule the offline period to test performance and create
+                                 the expansion schema, schedule the intervals for table
+                                 redistribution.</li>
+
+                           </ul>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d36499e398 ">
+                           <ul class="ul" id="systemexpansionchecklist__ul_vj2_2zt_4p">
+                              <li class="li">Install HAWQ database binaries on new hosts.</li>
+
+                           </ul>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d36499e398 ">
+                           <ul class="ul" id="systemexpansionchecklist__ul_wj2_2zt_4p">
+                              <li class="li">Copy SSH keys to the new hosts
+                                 (<samp class="ph codeph">gpssh-exkeys</samp>).</li>
+
+                           </ul>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d36499e398 ">
+                           <ul class="ul" id="systemexpansionchecklist__ul_yj2_2zt_4p">
+                              <li class="li">Validate the operating system environment of the new hardware
+                                    (<samp class="ph codeph">gpcheck</samp>).</li>
+
+                           </ul>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d36499e398 ">
+                           <ul class="ul" id="systemexpansionchecklist__ul_zj2_2zt_4p">
+                              <li class="li">Validate disk I/O and memory bandwidth of the new hardware
+                                    (<samp class="ph codeph">gpcheckperf</samp>)</li>
+
+                           </ul>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d36499e398 ">
+                           <ul class="ul" id="systemexpansionchecklist__ul_bk2_2zt_4p">
+                              <li class="li">Validate that the master data directory has no huge files under
+                                    <span class="ph filepath">pg_log</span> or
+                                    <span class="ph filepath">gpperfmon/data</span></li>
+
+                           </ul>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d36499e398 ">
+                           <ul class="ul" id="systemexpansionchecklist__ul_dk2_2zt_4p">
+                              <li class="li">Prepare an expansion input file (<samp class="ph codeph">gpexpand</samp>).</li>
+
+                           </ul>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="systemexpansionchecklist__table_ek2_2zt_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d36499e530">Offline Expansion Tasks</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d36499e530 ">
+                           <ul class="ul" id="systemexpansionchecklist__ul_bm2_2zt_4p">
+                              <li class="li">Validate the operating system environment of the combined existing
+                                 and new hardware (<samp class="ph codeph">gpcheck</samp>) </li>
+
+                           </ul>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d36499e530 ">
+                           <ul class="ul" id="systemexpansionchecklist__ul_dm2_2zt_4p">
+                              <li class="li">Validate disk I/O and memory bandwidth of the combined existing
+                                 and new hardware (<samp class="ph codeph">gpcheckperf</samp>) </li>
+
+                           </ul>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d36499e530 ">
+                           <ul class="ul" id="systemexpansionchecklist__ul_em2_2zt_4p">
+                              <li class="li">Reinstall HAWQ Components</li>
+
+                           </ul>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d36499e530 ">
+                           <ul class="ul" id="systemexpansionchecklist__ul_gm2_2zt_4p">
+                              <li class="li">Initialize new segments into the array and create an expansion
+                                 schema (<samp class="ph codeph">gpexpand -i input_file</samp>)</li>
+
+                           </ul>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d36499e530 ">
+                           <ul class="ul" id="systemexpansionchecklist__ul_hm2_2zt_4p">
+                              <li class="li">Stop any automated snapshot or other processes that consume disk
+                                 space. </li>
+
+                           </ul>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="systemexpansionchecklist__table_im2_2zt_4p" class="table" frame="border" border="1" rules="all">
+                  <thead class="thead" align="left">
+                     <tr class="row">
+                        <th class="entry confluenceTh" valign="top" id="d36499e617">Online Expansion Tasks</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody class="tbody">
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d36499e617 ">
+                           <ul class="ul" id="systemexpansionchecklist__ul_g42_2zt_4p">
+                              <li class="li">Redistribute the tables through the expanded system
+                                    (<samp class="ph codeph">gpexpand</samp>). </li>
+
+                           </ul>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d36499e617 ">
+                           <ul class="ul" id="systemexpansionchecklist__ul_i42_2zt_4p">
+                              <li class="li">Remove expansion schema (<samp class="ph codeph">gpexpand -c</samp>) </li>
+
+                           </ul>
+
+                        </td>
+
+                     </tr>
+
+                     <tr class="row">
+                        <td class="entry confluenceTd" valign="top" headers="d36499e617 ">
+                           <ul class="ul" id="systemexpansionchecklist__ul_j42_2zt_4p">
+                              <li class="li">Run analyze to update distribution statistics during the expansion
+                                 using <samp class="ph codeph">gpexpand a</samp>, or post-expansion using the
+                                    <samp class="ph codeph">ANALYZE</samp> SQL command.</li>
+
+                           </ul>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+</div>
+
+            <div class="note important"><span class="importanttitle">Important:</span>  If you encounter problems during new segment initialization, you
+               cannot use <samp class="ph codeph">gp_dump</samp> to restore the system. You can <em class="ph i">only</em> roll
+               back a failed expansion operation. Once a setup operation is complete and the
+               expansion is committed, you cannot roll back. </div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="planningnewhardwareplatforms">
+         <h3 class="title topictitle3">Planning New Hardware Platforms</h3>
+
+         <div class="body">
+            <p class="p">Careful preparation of new hardware for system expansion is extremely important.
+               Deliberate and thorough deployment of compatible hardware can greatly minimize the
+               risk of issues developing later in the system expansion process.</p>
+
+            <p class="p">Pivotal recommends the following:</p>
+
+            <ul class="ul" id="planningnewhardwareplatforms__ul_e12_2zt_4p">
+               <li class="li">All new segment hosts for the expanded HAWQ Database array should have hardware
+                  resources and configurations matching those of the existing hosts. </li>
+
+               <li class="li">You work with HAWQ Platform Engineering prior to making a hardware purchase
+                  decision to expand the HAWQ Database.</li>
+
+            </ul>
+
+            <p class="p">The steps to plan and set up new hardware platforms will vary greatly for each unique
+               deployment. Some of the possible considerations include:</p>
+
+            <ul class="ul" id="planningnewhardwareplatforms__ul_ab2_2zt_4p">
+               <li class="li">Preparing the physical space for the new hardware. Consider cooling, power
+                  supply, and other physical factors.</li>
+
+               <li class="li">Determining the physical networking and cabling required to connect the new and
+                  existing hardware.</li>
+
+               <li class="li">Mapping the existing IP address spaces and developing a networking plan for the
+                  expanded system.</li>
+
+               <li class="li">Capturing the system configuration (users, profiles, NICs, etc.) from existing
+                  hardware, to list it in detail for ordering the new hardware.</li>
+
+               <li class="li">Creating a custom build plan for deploying hardware with the desired
+                  configuration for the particular site and environment.</li>
+
+            </ul>
+
+            <p class="p">After selecting and adding new hardware to your network environment, make sure you
+               perform the burn-in tasks described in <a class="xref" href="#verifyingossettings">Verifying OS
+                  Settings</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="planninginitializationofnewsegments">
+         <h3 class="title topictitle3">Planning Initialization of New Segments</h3>
+
+         <div class="body">
+            <p class="p">Expanding the HAWQ Database requires a limited period of system down time. During
+               this time period, you must run gpexpand to initialize new segments into the array and
+               create an expansion schema.</p>
+
+            <p class="p">The time required will depend on the number of schema objects in the HAWQ system, as
+               well as other factors related to hardware performance.</p>
+
+            <p class="p title">Note</p>
+
+            <div class="note note"><span class="notetitle">Note:</span> After you begin initializing new segments, you can no longer restore the system
+               using <samp class="ph codeph">gp_dump</samp> files created for the per-expansion system. When
+               initialization is successfully completed, the expansion is committed and cannot be
+               rolled back.</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="increasingsegmentsperhost">
+         <h3 class="title topictitle3">Increasing Segments Per Host</h3>
+
+         <div class="body">
+            <p class="p">By default, new hosts are initialized with the same number of segments as existing
+               hosts. Optionally, you can increase the number of segments per host, or add new
+               segments only to existing hosts.</p>
+
+            <p class="p">For example, if existing hosts currently have two segments per host, you can use
+               gpexpand to initialize two additional segments on existing hosts (for a total of
+               four), and four new segments on new hosts.</p>
+
+            <div class="note note"><span class="notetitle">Note:</span> When you are adding new segments on existing nodes or hosts, you do not need to
+               perform pre-expansion tasks such as HAWQ binary deployment, copying ssh keys,and
+               other tasks, because these hosts have already been configured. You must make sure
+               that these hosts have enough resources such as OS resources, as well as memory to
+               manage new segments.</div>
+
+            <p class="p">The interactive process for creating an expansion input file prompts for this option,
+               and the input file format allows you to specify new segment directories manually as
+               well. For more information, see <a class="xref" href="#creatinganinputfileforsystemexpansion">Creating an Input File for System Expansion</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="abouttheexpansionschema">
+         <h3 class="title topictitle3">About the Expansion Schema</h3>
+
+         <div class="body">
+            <p class="p">At initialization time, gpexpand creates an expansion schema. If you do not specify a
+               particular database at initialization time (<samp class="ph codeph">gpexpand -D</samp>), the schema
+               is created in the database indicated by the <samp class="ph codeph">PGDATABASE</samp> environment
+               variable.</p>
+
+            <p class="p">The expansion schema stores metadata for each table in the system, so that its status
+               can be tracked throughout the expansion process. The expansion schema consists of two
+               tables and a view for tracking the progress of an expansion operation:</p>
+
+            <ul class="ul" id="abouttheexpansionschema__ul_zkd_2zt_4p">
+               <li class="li">
+                  <samp class="ph codeph">gpexpand.status</samp>
+               </li>
+
+               <li class="li">
+                  <samp class="ph codeph">gpexpand.status_detail</samp>
+               </li>
+
+               <li class="li">
+                  <samp class="ph codeph">gpexpand.expansion_progress</samp>
+               </li>
+
+            </ul>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="planningtableredistribution">
+         <h3 class="title topictitle3">Planning Table Redistribution</h3>
+
+         <div class="body">
+            <p class="p">The redistribution of tables is performed with the system online. For many HAWQ
+               systems, table redistribution can be completed in a single gpexpand session scheduled
+               during a low-use period. Larger systems may require you to plan multiple sessions and
+               set the order of table redistribution, so as to minimize the performance impact. </p>
+
+            <p class="p">Pivotal recommends completing the table redistribution in one session, if your
+               database size and design permit it.</p>
+
+            <div class="note important"><span class="importanttitle">Important:</span> HDFS manages the disk space on your HAWQ system. Therefore, to
+               perform table redistribution, verify that you have enough disk space on your Hadoop
+               cluster, taking into consideration that HDFS replication (whose default is 3x)
+               temporarily holds a copy of your largest table. Each table is unavailable for read
+               and write operations while gpexpand is redistributing it among the segments.</div>
+
+            <p class="p">The performance impact of table redistribution depends on the size, storage type, and
+               partitioning design of a table. Redistributing a table with <samp class="ph codeph">gpexpand</samp>
+               takes approximately as much time per table as a <samp class="ph codeph">CREATE TABLE AS
+                  SELECT</samp> operation would take. When redistributing a terabyte-scale fact
+               table, the expansion utility can use a significant portion of available system
+               resources, with resulting impact on the performance of queries or other database
+               workload items.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="redistributingappend-onlyandcompressedtables">
+         <h3 class="title topictitle3">Redistributing Append-Only and Compressed Tables</h3>
+
+         <div class="body">
+            <p class="p">Append-only and compressed append-only tables are redistributed by gpexpand at
+               different rates. The CPU capacity required to compress and decompress data tends to
+               increase the impact on system performance. For similar-sized tables with
+               similar-sized data, you may find overall performance differences, such as
+               zlib-compressed append-only tables expanding at a significantly slower rate than
+               uncompressed append-only tables (which can be potentially up to 80% slower).</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="redistributingtableswithuser-defineddatatypes">
+         <h3 class="title topictitle3">Redistributing Tables with User-Defined Data Types</h3>
+
+         <div class="body">
+            <p class="p">Certain sequences of alter operations on tables could render such tables unalterable
+               from a redistribution perspective. gpexpand does not support redistribution of
+               unalterable tables. For example, if you have a table initially created with a column
+               of user-defined types and the column is subsequently dropped, this table may qualify
+               as unalterable. If gpexpand reports a table as unalterable, you need to redistribute
+               the table manually. To do this, create a new table matching the schema of the
+               unalterable table and execute the following statement: </p>
+
+            <pre class="pre codeblock">INSERT INTO &lt;new_table&gt; 
+SELECT * FROM &lt;unalterable table&gt;;</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="redistributingpartitionedtables">
+         <h3 class="title topictitle3">Redistributing Partitioned Tables</h3>
+
+         <div class="body">
+            <p class="p">Because the expansion utility can process a large table partition-by-partition, an
+               efficient partition design reduces the performance impact of table redistribution.
+               Only the child tables of a partitioned table are set to a random distribution policy,
+               and only one child partition table is unavailable during redistribution.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="preparingandaddingnodes">
+      <h2 class="title topictitle2">Preparing and Adding Nodes</h2>
+
+      <div class="body">
+         <p class="p">To prepare new system nodes for expansion, install the HAWQ software binaries, exchange
+            the required SSH keys and run performance tests. Pivotal recommends running performance
+            tests at least twice: first on the new nodes only, and then on both the new and existing
+            nodes together. The second set of tests must be run with the system offline, to prevent
+            user activity from distorting test results.</p>
+
+         <p class="p">Beyond these general guidelines, Pivotal recommends running performance tests any time
+            that the networking of nodes is modified, or for any special conditions in the system
+            environment. For example, if you plan to run the expanded system on two network
+            clusters, run the performance tests on each cluster.</p>
+
+         <p class="p">This rest of this section describes how to run the HAWQ administrative utilities to
+            verify that your new nodes are ready for integration into the existing HAWQ system.</p>
+
+      </div>
+
+      <div class="topic nested2" id="addingnewnodestothetrustedhostenvironment">
+         <h3 class="title topictitle3">Adding New Nodes to the Trusted Host Environment</h3>
+
+         <div class="body">
+            <p class="p">New nodes must exchange SSH keys with the existing nodes to allow HAWQ administrative
+               utilities to connect to all segments without a password prompt.</p>
+
+            <p class="p">Pivotal recommends performing the key exchange process twice: once as root (for
+               administration convenience) and once as the gpadmin user (required for the HAWQ
+               management utilities). Perform the following tasks in this order:</p>
+
+            <ol class="ol" id="addingnewnodestothetrustedhostenvironment__ol_m4k_fzt_4p">
+               <li class="li">Exchange SSH keys as root.</li>
+
+               <li class="li">Create the gpadmin user.</li>
+
+               <li class="li">Exchange SSH keys as the gpadmin user.</li>
+
+            </ol>
+
+            <div class="section"><h4 class="title sectiontitle">Exchange SSH keys as root</h4>
+               
+               <ol class="ol" id="addingnewnodestothetrustedhostenvironment__ol_kpk_fzt_4p">
+                  <li class="li">Create two separate host list files:<ul class="ul" id="addingnewnodestothetrustedhostenvironment__ul_xl2_svs_zp">
+                        <li class="li">One that has all of the existing host names in your HAWQ array.</li>
+
+                        <li class="li">One that has all of the new expansion hosts. </li>
+
+                     </ul>
+<p class="p">For existing hosts, you can use the same host file that you used for
+                        the initial setup of SSH keys in the system.The files should include all
+                        hosts (master, backup master and segment hosts) and list one host name per
+                        line. If using a multi-NIC configuration, make sure to exchange SSH keys
+                        using all of the configured host names for a given host. Make sure there are
+                        no blank lines or extra spaces. For example:
+                     </p>
+<pre class="pre codeblock">mdw		OR		masterhost
+sdw1-1			seghost1
+sdw1-2			seghost2
+sdw1-3			seghost3 
+sdw1-4
+sdw2-1
+sdw2-2
+sdw2-3
+sdw2-4
+sdw3-1
+sdw3-2
+sdw3-3
+sdw3-4</pre>
+</li>
+
+                  <li class="li">Log in as <samp class="ph codeph">root</samp> on the master host, and source the
+                        <span class="ph filepath">greenplum_path.sh</span> file from your HAWQ installation.
+                     <pre class="pre codeblock">$ su -
+# source /usr/local/hawq/greenplum_path.sh</pre>
+</li>
+
+                  <li class="li">Run the <samp class="ph codeph">gpssh-exkeys</samp> utility, referencing the host list
+                     files. For example:
+                     <pre class="pre codeblock"># gpssh-exkeys -f /home/gpadmin/existing_hosts_file -x /home/gpadmin/new_hosts_file </pre>
+</li>
+
+                  <li class="li"><samp class="ph codeph">gpssh-exkeys</samp> will check the remote hosts and perform the key
+                     exchange between all hosts. Enter the <samp class="ph codeph">root</samp> user password when
+                     prompted. For example:
+                     <pre class="pre codeblock">***Enter password for root@hostname: &lt;root_password&gt;</pre>
+</li>
+
+               </ol>
+
+            </div>
+
+            <div class="section"><h4 class="title sectiontitle">Create the gpadmin user</h4>
+               
+               <ol class="ol" id="addingnewnodestothetrustedhostenvironment__ol_iqk_fzt_4p">
+                  <li class="li">Use <samp class="ph codeph">gpssh</samp> to create the <samp class="ph codeph">gpadmin</samp> user on all
+                     of the new segment hosts (if the <samp class="ph codeph">gpadmin</samp> user does not exist
+                     already). Use the list of new hosts that you created for the key exchange. For
+                     example:
+                     <pre class="pre codeblock"># gpssh -f new_hosts_file '/usr/sbin/useradd gpadmin -d /home/gpadmin -s /bin/bash' </pre>
+</li>
+
+                  <li class="li">Set the new <samp class="ph codeph">gpadmin</samp> user’s password. On Linux, you can do
+                     this on all segment hosts at once by using <samp class="ph codeph">gpssh</samp>. For example:
+                        <pre class="pre codeblock"># gpssh -f new_hosts_file 'echo gpadmin_password | passwd gpadmin --stdin'</pre>
+<p class="p">You
+                        must log in to each segment host and set the <samp class="ph codeph">gpadmin</samp> user’s
+                        password on each host. For
+                     example:</p>
+<pre class="pre codeblock"># ssh &lt;segment_hostname&gt;
+# passwd gpadmin
+# New password: &lt;gpadmin_password&gt;
+# Retype new password: &lt;gpadmin_password&gt;</pre>
+</li>
+
+                  <li class="li">Verify that the <samp class="ph codeph">gpadmin</samp> user has been created by searching
+                     for its home directory:
+                     <pre class="pre codeblock"># gpssh -f new_hosts_file ls -l /home</pre>
+</li>
+
+               </ol>
+
+            </div>
+
+            <div class="section"><h4 class="title sectiontitle">Exchange SSH keys as the gpadmin user</h4>
+               
+               <p class="p">Log in as <samp class="ph codeph">gpadmin</samp>, and run the <samp class="ph codeph">gpssh-exkeys</samp>
+                  utility, referencing the host list files. For example:</p>
+
+               <pre class="pre codeblock"># gpssh-exkeys -e /home/gpadmin/existing_hosts_file -x /home/gpadmin/new_hosts_file</pre>
+
+               <p class="p"><samp class="ph codeph">gpssh-exkeys</samp> will check the remote hosts and perform the key
+                  exchange between all hosts. Enter the <samp class="ph codeph">gpadmin</samp> user password when
+                  prompted. For example:</p>
+
+               <pre class="pre codeblock">***Enter password for gpadmin@hostname: &lt;gpadmin_password&gt;</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="verifyingossettings">
+         <h3 class="title topictitle3">Verifying OS Settings</h3>
+
+         <div class="body">
+            <p class="p">Use the <samp class="ph codeph">gpcheck</samp> utility to verify that all the new hosts in your
+               array have the correct OS settings for running the HAWQ software.</p>
+
+            <p class="p">
+               <strong class="ph b">To run gpcheck:</strong>
+            </p>
+
+            <ol class="ol" id="verifyingossettings__ol_djk_fzt_4p">
+               <li class="li">Log in on the master host as the user who will be running your HAWQ system (e.g.,
+                     <samp class="ph codeph">gpadmin</samp>):<pre class="pre codeblock">$ su - gpadmin</pre>
+</li>
+
+               <li class="li">Run the <samp class="ph codeph">gpcheck</samp> utility using your host file for new hosts. For
+                  example: </li>
+
+            </ol>
+
+            <pre class="pre codeblock">$ gpcheck -f new_hosts_file</pre>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="validatingdiskioandmemorybandwidth">
+         <h3 class="title topictitle3">Validating Disk I/O and Memory Bandwidth</h3>
+
+         <div class="body">
+            <p class="p">Use the <samp class="ph codeph">gpcheckperf</samp> utility to test disk I/O and memory
+               bandwidth.</p>
+
+            <p class="p">
+               <strong class="ph b">To run gpcheckperf:</strong>
+            </p>
+
+            <ol class="ol" id="validatingdiskioandmemorybandwidth__ol_d2k_fzt_4p">
+               <li class="li">Run the <samp class="ph codeph">gpcheckperf</samp> utility using the host file for new hosts.
+                  Use the <samp class="ph codeph">-d</samp> option to specify the file systems you want to test on
+                  each host (you must have write access to these directories). For example:
+                  <pre class="pre codeblock">$ gpcheckperf -f new_hosts_file -d /data1 -d /data2 -v </pre>
+</li>
+
+               <li class="li">The utility may take a while to perform the tests, as it is copying very large
+                  files between the hosts. When it is finished, you will see the summary results for
+                  the Disk Write, Disk Read, and Stream tests.</li>
+
+            </ol>
+
+            <p class="p">If your network is divided into subnets, repeat this procedure with a separate host
+               file for each subnet.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="integratingnewhardwareintothesystem">
+         <h3 class="title topictitle3">Integrating New Hardware into the System</h3>
+
+         <div class="body">
+            <p class="p">Before initializing the system with all new segments, repeat the performance tests on
+               all nodes in the system, new and existing. Shut down the system and run these same
+               tests using host files that include <em class="ph i">all</em> nodes, existing and new:</p>
+
+            <ul class="ul" id="integratingnewhardwareintothesystem__ul_qzj_fzt_4p">
+               <li class="li">Verifying OS Settings</li>
+
+               <li class="li">Validating Disk I/O and Memory Bandwidth</li>
+
+            </ul>
+
+            <p class="p">Because user activity may skew the results of these test, you must shut down HAWQ
+                  (<samp class="ph codeph">gpstop</samp>) before running them.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="installinghawqcomponentsonthenewsegments">
+      <h2 class="title topictitle2">Installing HAWQ Components on the New Segments</h2>
+
+      <div class="body">
+         <p class="p">This topic describes how to install the HAWQ components on the new segments created
+            after running <samp class="ph codeph">gpexpand</samp>.</p>
+
+      </div>
+
+      <div class="topic nested2" id="installingplrandpgcryptoafterexpansion">
+         <h3 class="title topictitle3">Installing PL/R and pgcrypto after Expansion</h3>
+
+         <div class="body">
+            <p class="p">If you have already installed the PL/R and pgcrypto packages on existing
+               segments, use the following instructions to install these packages on the expanded
+               segments:</p>
+
+            <ol class="ol" id="installingplrandpgcryptoafterexpansion__ol_lcg_hzt_4p">
+               <li class="li">Ensure that you have installed HAWQ binaries on all new segments.</li>
+
+               <li class="li">Run <samp class="ph codeph">gpssh-exkeys</samp> to set up password-less <samp class="ph codeph">ssh</samp> on
+                  the cluster.</li>
+
+               <li class="li">Untar the package if you are using the same versions of the packages installed on
+                  the existing cluster:<ul class="ul" id="installingplrandpgcryptoafterexpansion__ul_stv_fws_zp">
+                     <li class="li">For
+                        PL/R:<pre class="pre codeblock">mkdir plr  
+mv plr*.tgz plr  
+cd plr  
+tar -xzf plr*.tgz</pre>
+</li>
+
+                     <li class="li">For
+                        pgcrypto:<pre class="pre codeblock">mkdir pgcrypto  
+mv pgcrypto.tgz pgcrypto 
+cd pgcrypto  
+tar -xzf pgcrypto.tgz</pre>
+</li>
+
+                  </ul>
+</li>
+
+               <li class="li">Ensure that the hostfile only lists new hostnames, each on a new line.</li>
+
+               <li class="li">Run the install in expand mode:<ul class="ul" id="installingplrandpgcryptoafterexpansion__ul_ntf_3ws_zp">
+                     <li class="li">For PL/R:<pre class="pre codeblock">./plr_install.sh -f ~/hostfile -x</pre>
+</li>
+
+                     <li class="li">For
+                        pgcrypto:<pre class="pre codeblock">./pgcrypto_install.sh -f ~/hostfile -x</pre>
+</li>
+
+                  </ul>
+</li>
+
+            </ol>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="installingpljavaafterexpansion">
+         <h3 class="title topictitle3">Installing PL/Java after Expansion</h3>
+
+         <div class="body">
+            <p class="p">If you have already installed PL/Java on existing segments, use the
+               following instructions to install these packages on the expanded segments:</p>
+
+            <p class="p">These instructions assume that you have a precompiled build of PL/Java from
+               Pivotal.</p>
+
+            <div class="note note"><span class="notetitle">Note:</span> Before you install PL/Java:<ul class="ul" id="installingpljavaafterexpansion__ul_zvf_hzt_4p">
+                  <li class="li">PL/Java is bundled with the HAWQ package at the following
+                        location: <span class="ph filepath">/usr/local/hawq/share/postgresql/pljava/</span>.</li>
+
+                  <li class="li">Ensure that the <samp class="ph codeph">$JAVA_HOME</samp> variable is set to the same path
+                     on the master and all the segments.</li>
+
+                  <li class="li">Ensure that the <samp class="ph codeph">LD_LIBRARY_PATH</samp> variable also holds the path
+                     for <span class="ph filepath">libjvm.so</span> file. For example, if the
+                        <span class="ph filepath">libjvm.sois</span> at the location
+                        <span class="ph filepath">LD_LIBRARY_PATH=$GPHOME/lib:$GPHOME/ext/python/lib:$LD_LIBRARY_PATH:/usr/java/jdk1.7.0_45/jre/lib/amd64/server/</span>,
+                     change the <samp class="ph codeph">LD_LIBRARY_PATH</samp> variable in
+                        <span class="ph filepath">greenplum_path.sh</span> as
+                     follows:<pre class="pre codeblock">export LD_LIBRARY_PATH=$GPHOME/lib:$GPHOME/ext/python/lib:$LD_LIBRARY_PATH:/usr/java/jdk1.7.0_45/jre/lib/amd64/server/</pre>
+</li>
+
+                  <li class="li">PL/Java is compatible with JDK 1.6 and 1.7.</li>
+
+               </ul>
+</div>
+
+            <ol class="ol" id="installingpljavaafterexpansion__ol_exf_hzt_4p">
+               <li class="li">Run the installer:
+                        <pre class="pre codeblock">./pljava_install.sh -f ~/hosts.txt</pre>
+<p class="p">Where  <samp class="ph codeph">~/hosts.txt</samp>
+                     is a text file containing hostnames of segment hosts in HAWQ deployment that
+                     are currently active. The file must contain one hostname per line.</p>
+</li>
+
+               <li class="li">Restart HAWQ.
+                  <pre class="pre codeblock">source $GPHOME/greenplum_path.sh  
+gpstop -ar</pre>
+</li>
+
+               <li class="li">Add the PL/Java class of configuration variables:
+                     <pre class="pre codeblock">gpconfig -c custom_variable_classes -v \'pljava\'</pre>
+<p class="p"> If
+                     you have existing <samp class="ph codeph">custom_variable_classes</samp> defined, prefix them
+                     with <samp class="ph codeph">pljava</samp> in a comma-separated list.</p>
+</li>
+
+               <li class="li">Run the <samp class="ph codeph">CREATE LANGUAGE</samp> command:
+                  <pre class="pre codeblock">psql -d &lt;dbname&gt; -c "CREATE LANGUAGE pljava"</pre>
+Run this
+                  command for every database where you want to install PL/Java.</li>
+
+            </ol>
+
+         </div>
+
+         <div class="topic nested3" id="installingcustomjars">
+            <h4 class="title topictitle4">Installing Custom JARS</h4>
+
+            <div class="body">
+               <ol class="ol" id="installingcustomjars__ol_ipp_gzt_4p">
+                  <li class="li">Copy the jar file on the master host at
+                        <span class="ph filepath">$GPHOME/lib/postgresql/java</span>.</li>
+
+                  <li class="li">Use <samp class="ph codeph">gpscp</samp> to copy the jar file from the master to segments in
+                     the same location.
+                     <pre class="pre codeblock">cd $GPHOME/lib/postgresql/java  
+gpscp -f ~/hosts.txt myfunc.jar =:$GPHOME/lib/postgresql/java/</pre>
+</li>
+
+                  <li class="li">Set <samp class="ph codeph">pljava_classpath</samp> to include the newly-copied jar
+                     file.</li>
+
+                  <li class="li">From the <samp class="ph codeph">psql</samp> session, execute the following:
+                        <pre class="pre codeblock">set pljava_classpath='myfunc.jar';</pre>
+<div class="p">This setting
+                        will be in effect only for the <samp class="ph codeph">psql</samp> session. If you want it
+                        to affect all sessions,
+                        use:<pre class="pre codeblock">gpconfig -c pljava_classpath -v \'myfunc.jar\'</pre>
+</div>
+</li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="installingmadlibonnewlyaddednodes">
+      <h2 class="title topictitle2">Installing MADlib on Newly-Added Nodes</h2>
+
+      <div class="body">
+         <p class="p">The following steps assume that MADlib was installed and running before adding new
+            nodes. If MADlib was not installed, you can install it using the instructions provided
+            in <a class="xref" href="HAWQInstallationandUpgrade.html">HAWQ Installation and Upgrade</a>.</p>
+
+         <ol class="ol">
+            <li class="li">Download the MADlib RPM.</li>
+
+            <li class="li">Make sure that you have HAWQ binaries installed properly on all master and segment
+               nodes in your cluster.</li>
+
+            <li class="li">Make sure the <span class="ph filepath">hostfile</span> lists all the new segment nodes.</li>
+
+            <li class="li">Run the following command:
+               <pre class="pre codeblock">hawq_install.sh -r &lt;RPM_FILEPATH&gt; -f &lt;HOSTFILE&gt;</pre>
+</li>
+
+            <li class="li">Complete the process by initializing the new segments. For more information, see
+                  <a class="xref" href="#initializingnewsegments">Initializing New Segments</a>.</li>
+
+         </ol>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="initializingnewsegments">
+      <h2 class="title topictitle2">Initializing New Segments</h2>
+
+      <div class="body">
+         <p class="p">Use the <samp class="ph codeph">gpexpand</samp> utility to initialize the new segments, create the
+            expansion schema, and set a system-wide random distribution policy for the database. The
+            utility performs these tasks by default the first time you run it with a valid input
+            file on the HAWQ master. Subsequently, it will detect that an expansion schema has been
+            created, and perform table redistribution.</p>
+
+      </div>
+
+      <div class="topic nested2" id="creatinganinputfileforsystemexpansion">
+         <h3 class="title topictitle3">Creating an Input File for System Expansion</h3>
+
+         <div class="body">
+            <p class="p">To begin expansion, the gpexpand utility requires an input file containing
+               information about the new segments and hosts. If you run <samp class="ph codeph">gpexpand</samp>
+               without specifying an input file, the utility displays an interactive interview that
+               collects the required information and automatically creates an input file for
+               you.</p>
+
+            <p class="p">If you choose to create the input file by using the interactive interview, you can
+               optionally specify a file containing a list of expansion hosts. If your platform or
+               command shell limits the length of the list of hostnames you are allowed enter when
+               prompted in the interview, specifying the hosts with <samp class="ph codeph">gpexpand -f</samp> (as
+               shown below) could be mandatory.</p>
+
+         </div>
+
+         <div class="topic nested3" id="creatinganinputfileininteractivemode">
+            <h4 class="title topictitle4">Creating an input file in Interactive Mode</h4>
+
+            <div class="body">
+               <p class="p">Before running <samp class="ph codeph">gpexpand</samp> to create an input file in interactive
+                  mode, make sure you have the following required information:</p>
+
+               <ul class="ul" id="creatinganinputfileininteractivemode__ul_qk3_qzt_4p">
+                  <li class="li">Number of new hosts</li>
+
+                  <li class="li">New hostnames (or a hosts file)</li>
+
+                  <li class="li">Number of segments to add per host, if any</li>
+
+               </ul>
+
+               <p class="p">The utility automatically generates an input file based on this information and on
+                     the <samp class="ph codeph">dbid</samp>, <samp class="ph codeph">content</samp> ID, and data directory
+                  values stored in <samp class="ph codeph">gp_segment_configuration</samp> and
+                     <samp class="ph codeph">pg_filespace</samp>, then saves the file in the current
+                  directory.</p>
+
+               <p class="p">
+                  <strong class="ph b">To create an input file in interactive mode:</strong>
+               </p>
+
+               <ol class="ol" id="creatinganinputfileininteractivemode__ol_pl3_qzt_4p">
+                  <li class="li">Log in to the master host as the user who will be running your HAWQ system
+                     (for example, <samp class="ph codeph">gpadmin</samp>).</li>
+
+                  <li class="li">Run <samp class="ph codeph">gpexpand</samp>. The utility displays messages about preparing
+                     for an expansion operation and prompts you to quit or continue. Optionally, you
+                     can specify a hosts file using <samp class="ph codeph">-f</samp>. For example:
+                     <pre class="pre codeblock">$ gpexpand -f /home/gpadmin/new_hosts_file</pre>
+</li>
+
+                  <li class="li">At the prompt, select <samp class="ph codeph">Y</samp> to continue.</li>
+
+                  <li class="li">Enter a comma-separated list of the hostnames of the new expansion hosts. If
+                     you specified a hosts file using <samp class="ph codeph">-f</samp>, go to the next step. Your
+                     list should appear as follows:
+                        <pre class="pre codeblock">&gt; sdw5, sdw6, sdw7, sdw8 </pre>
+<div class="note note"><span class="notetitle">Note:</span> To add segments to
+                        existing hosts only, enter a blank line at this prompt. Do not specify
+                        localhost or any existing host name.</div>
+</li>
+
+                  <li class="li">Enter the number of new segments to add, if any. By default, the number of new
+                     hosts initialized corresponds to the number of existing segments. Optionally,
+                     you can increase the number of segments per host. For example, if existing
+                     hosts currently have two segments each, entering a value of 2 will initialize
+                     two additional segments on the existing hosts, and four new segments on new
+                     hosts.</li>
+
+                  <li class="li">If you are adding new segments, enter the metadata path for each new
+                        segment.<p class="p">After you have entered all required information, the utility
+                        generates an input file and saves it in the current directory. For
+                        example:</p>
+<pre class="pre codeblock">gpexpand_inputfile_yyyymmdd_145134</pre>
+<p class="p">If
+                        your system has shared filesystem filespaces, <samp class="ph codeph">gpexpand</samp>
+                        expects a filespace configuration file
+                              (<span class="ph filepath"><var class="keyword varname">input_file_name</var>.fs</span>) to exist
+                        in the same directory as your expansion configuration file. See <a class="xref" href="#user-definedfilespacesandgpexpand">User-defined Filespaces and
+                           gpexpand</a> for more information.</p>
+</li>
+
+               </ol>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="user-definedfilespacesandgpexpand">
+            <h4 class="title topictitle4">User-defined Filespaces and gpexpand</h4>
+
+            <div class="body">
+               <p class="p">This topic describes two scenarios:</p>
+
+               <ul class="ul" id="user-definedfilespacesandgpexpand__ul_yd3_qzt_4p">
+                  <li class="li">HAWQ with no User-defined Filespaces</li>
+
+                  <li class="li">HAWQ with a User-defined Filespace</li>
+
+               </ul>
+
+               <div class="section"><h5 class="title sectiontitle">HAWQ with no User-defined Filespaces</h5>
+                  
+                  <p class="p">When you initialize a new HAWQ cluster, it has 2 filespaces by default:
+                        <samp class="ph codeph">pg_system</samp> and <samp class="ph codeph">dfs_system</samp> (Lookup system
+                     tables <samp class="ph codeph">pg_filespace</samp> &amp;
+                     <samp class="ph codeph">pg_filespace_entry</samp>).</p>
+
+                  <ul class="ul" id="user-definedfilespacesandgpexpand__ul_q23_qzt_4p">
+                     <li class="li">
+                        <samp class="ph codeph">pg_system</samp> stores all the metadata used by the Master and
+                        the segments. This is a local filesystem path that corresponds to that
+                        segment.</li>
+
+                     <li class="li">
+                        <samp class="ph codeph">dfs_system</samp> stores all the user data. Unlike
+                           <samp class="ph codeph">pg_system</samp>, this is a shared filespace and is a path
+                        under HDFS.</li>
+
+                  </ul>
+
+                  <p class="p">Since HAWQ has these two default filespaces, the expansion utility expects
+                     corresponding filespaces for the new segments. <samp class="ph codeph">gpexpand</samp>
+                     requests local filesystem paths for <samp class="ph codeph">pg_system</samp> filespace, but
+                     auto-generates paths for shared filespace paths, to maintain consistency of
+                     paths between all the segment data directories</p>
+
+               </div>
+
+               <div class="section"><h5 class="title sectiontitle">HAWQ with a User-defined Filespace</h5>
+                  
+                  <p class="p">This means that one or more filespaces, other than the default, have been
+                     defined in the existing HAWQ system.</p>
+
+                  <p class="p">You can use the <samp class="ph codeph">gpfilespace</samp> utility to add filespaces to your
+                     HAWQ system. User-defined filespaces always have a shared path. </p>
+
+                  <p class="p">Therefore, if you have one or more user-defined filespaces in your HAWQ system,
+                        <samp class="ph codeph">gpexpand</samp> requests local filesystem paths for the
+                        <samp class="ph codeph">pg_system</samp> filespace, but auto-generates paths for shared
+                     filespace paths so that it can maintain consistency of paths between all the
+                     segment data directories.</p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="expansioninputfileformat">
+            <h4 class="title topictitle4">Expansion Input File Format</h4>
+
+            <div class="body">
+               <p class="p">You can create your own input file in the required format. Unless you have special
+                  needs for your expansion scenario, Pivotal recommends creating the input file
+                  using the interactive interview process.</p>
+
+               <p class="p">The format for the expansion <span class="ph filepath">input.fs</span> file is:</p>
+
+               <pre class="pre codeblock">filespaceOrder=filespace1_name :filespace2_name : ...
+dbid:/path/for/filespace1 :/path/for/filespace2 : ...
+dbid:/path/for/filespace1 :/path/for/filespace2 : ...
+...</pre>
+
+               <p class="p">An expansion input file in this format requires the following information for each
+                  new segment: </p>
+
+               
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="expansioninputfileformat__table_eyh_qzt_4p" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. Input file format</span></caption>
+                     <thead class="thead" align="left">
+                        <tr class="row">
+                           <th class="entry confluenceTh" valign="top" id="d36499e1722">Parameter</th>
+
+                           <th class="entry confluenceTh" valign="top" id="d36499e1725">Values</th>
+
+                           <th class="entry confluenceTh" valign="top" id="d36499e1728">Description</th>
+
+                        </tr>
+
+                     </thead>
+
+                     <tbody class="tbody">
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">hostname</td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">hostname</td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">Hostname for the segment host</td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">port</td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">An available port number</td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">Database listener port for the segment,
+                              incremented on the existing segment <strong class="ph b">port</strong> base number. </td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">fselocation</td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">Directory name</td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">The data directory (filespace) location
+                              for a segment as per the <samp class="ph codeph">pg_filespace_entry</samp> system
+                              catalog.  </td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">dbid</td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">Integer. <p class="p">Must not conflict with
+                                 existing <em class="ph i">dbid </em>values.</p>
+
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">Database ID for the segment. The values
+                              you enter should be incremented sequentially from existing<em class="ph i">dbid</em>
+                              values shown in the system catalog
+                                 <samp class="ph codeph">gp_segment_configuration</samp>. <p class="p">For example, to add
+                                 four nodes to an existing ten-segment array with <em class="ph i">dbid</em> values
+                                 of 1-10, list new <em class="ph i">dbid</em> values of 11, 12, 13 and 14.
+                              </p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">content</td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">Integer. <p class="p">Must not conflict with
+                                 existing <em class="ph i">content </em>.</p>
+
+                           </td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">The content ID of the segment. A
+                              primary segment and its mirror should have the same content ID,
+                              incremented sequentially from existing values. <p class="p">For more
+                                 information, see <strong class="ph b">content</strong> in the reference for
+                                    <samp class="ph codeph">gp_segment_configuration</samp>.</p>
+</td>
+
+                        </tr>
+
+                        <tr class="row">
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">preferred_role</td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">p</td>
+
+                           <td class="entry confluenceTd" valign="top" headers="d36499e1722 d36499e1725 d36499e1728 ">"p" (primary) is the only option.
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+</div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="runninggpexpandtoinitializenewsegments">
+         <h3 class="title topictitle3">Running gpexpand to Initialize New Segments</h3>
+
+         <div class="body">
+            <p class="p">After you have created an input file, run <samp class="ph codeph">gpexpand</samp> to initialize new
+               segments. The utility will automatically stop HAWQ for the time required to
+               initialize the segments, then restarts the system when finished.</p>
+
+            <p class="p">
+               <strong class="ph b">To run gpexpand with an input file:</strong>
+            </p>
+
+            <ol class="ol" id="runninggpexpandtoinitializenewsegments__ol_gfb_rzt_4p">
+               <li class="li">Log in to the master host as the user running your HAWQ system (for example,
+                     <samp class="ph codeph">gpadmin</samp>).</li>
+
+               <li class="li">Run the <samp class="ph codeph">gpexpand</samp> utility, specifying the input file with
+                     <samp class="ph codeph">-i</samp>.
+                     <pre class="pre codeblock">$ gpexpand -i input_file -D database1</pre>
+<p class="p">The utility
+                     detects if there is an existing expansion schema for the HAWQ system. If there
+                     is an existing schema, you must remove it with <samp class="ph codeph">gpexpand -c</samp>
+                     before beginning a new expansion operation. See <a class="xref" href="#removingtheexpansionschema">Removing the Expansion Schema</a>.
+                     When the new segments are initialized and the expansion schema is successfully
+                     created, the utility prints a success message and exits.</p>
+</li>
+
+            </ol>
+
+            <p class="p">When the initialization process is complete, you can connect to HAWQ and view the
+               expansion schema. The schema resides in the database you specified with
+                  <samp class="ph codeph">-D</samp>, or in the database specified by the
+                  <samp class="ph codeph">PGDATABASE</samp> environment variable. For more information, see <a class="xref" href="#abouttheexpansionschema">About the Expansion Schema</a>.</p>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="rollingbackafailedexpansionsetup">
+         <h3 class="title topictitle3">Rolling Back a Failed Expansion Setup</h3>
+
+         <div class="body">
+            <p class="p">You can roll back a failed expansion setup operation by using the command
+                  <samp class="ph codeph">gpexpand -r | --rollback</samp>. However, this command is only allowed
+               in a failure scenario. Once a setup operation has completed successfully, the
+               expansion is committed, and you cannot roll back.</p>
+
+            <p class="p">To roll back a failed expansion setup, use the following command, specifying the
+               database that contains the expansion schema:</p>
+
+            <pre class="pre codeblock">gpexpand --rollback -D database_name</pre>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="redistributingtables">
+      <h2 class="title topictitle2">Redistributing Tables</h2>
+
+      <div class="body">
+         <p class="p">After successfully creating an expansion schema, you can bring HAWQ back online and
+            redistribute tables across the entire array. You can redistribute tables with
+               <samp class="ph codeph">gpexpand</samp> at specified intervals, targeting low-use hours when the
+            utility’s CPU usage and table locks will have the least impact on database operations.
+            Also, you can rank tables to ensure that the largest or most critical tables are
+            redistributed in your preferred order.</p>
+
+         <p class="p">While the redistribution of tables is underway:</p>
+
+         <ul class="ul">
+            <li class="li">Any new tables or partitions created will be distributed across all segments exactly
+               as they would be under normal operating conditions.</li>
+
+            <li class="li">Queries will use all segments, even though the relevant data may not yet have been
+               redistributed to the tables on the new segments.</li>
+
+         </ul>
+
+         <p class="p">The table or partition currently being redistributed will be locked and unavailable for
+            read or write operations. When its redistribution is completed, normal operations
+            resume.</p>
+
+
+         <div class="note note"><span class="notetitle">Note:</span> <samp class="ph codeph">gpexpand</samp> does not support redistribution of unalterable tables. Some
+            sequences of alter operations on tables could render those tables unalterable for
+            redistribution. For example, if you createa table with a column of user-defined types,
+            then subsequently drop the column, this table may become unalterable. As a workaround,
+            if gpexpand reports a table as unalterable, you need to redistribute the table manually.
+            To do this, create a new table matching the schema of the unalterable table and execute
+            the following
+            command:<pre class="pre codeblock">insert into &lt;new_table&gt; select * from &lt;unalterable table&gt;;</pre>
+</div>
+
+         <p class="p">
+            <strong class="ph b">To redistribute tables with gpexpand:</strong>
+         </p>
+
+         <ol class="ol">
+            <li class="li">Log in to the master host as the user who will be running your HAWQ system (for
+               example, gpadmin).</li>
+
+            <li class="li">Run the <samp class="ph codeph">gpexpand</samp> utility. Optionally, you can use either the
+                  <samp class="ph codeph">-d</samp> or <samp class="ph codeph">-e</samp> option to define the time period for
+               the expansion session. For example, to run the utility for a maximum of 60
+               consecutive hours: <pre class="pre codeblock">$ gpexpand -d 60:00:00</pre>
+<p class="p">The utility
+                  redistributes tables until the last table in the schema is successfully marked
+                  completed, or until the specified duration or end time is reached. Each time a
+                  session is started or finished, the utility updates the status and updated time in
+                     <samp class="ph codeph">gpexpand.status</samp>.</p>
+</li>
+
+         </ol>
+
+      </div>
+
+      <div class="topic nested2" id="monitoringtableredistribution">
+         <h3 class="title topictitle3">Monitoring Table Redistribution</h3>
+
+         <div class="body">
+            <p class="p">At any time during the process of redistributing tables, you can query the expansion
+               schema. The view <samp class="ph codeph">gpexpand.expansion_progress</samp> provides a summary of
+               the current progress, including calculations of the estimated rate of table
+               redistribution and estimated time to completion. The table
+                  <samp class="ph codeph">gpexpand.status_detail</samp> can be queried for per-table status
+               information.</p>
+
+         </div>
+
+         <div class="topic nested3" id="viewingexpansionstatus">
+            <h4 class="title topictitle4">Viewing Expansion Status</h4>
+
+            <div class="body">
+               <p class="p">Because the estimates in <samp class="ph codeph">gpexpand.expansion_progress</samp> are based on
+                  the rates achieved for each table, the view cannot calculate an accurate estimate
+                  until the first table has completed. Calculations are restarted each time you
+                  re-run gpexpand to start a new table redistribution session.</p>
+
+               <div class="p">To monitor progress by querying <samp class="ph codeph">gpexpand.expansion_progress</samp>,
+                  connect to HAWQ using psql or another supported client. Query
+                     <samp class="ph codeph">gpexpand.expansion_progress</samp> with a command like the
+                  following:<pre class="pre codeblock">=# select * from gpexpand.expansion_progress; 
+name 				| 		value
+------------------------------+----------------------- 
+Bytes Left 			| 		5534842880 
+Bytes Done 			| 		142475264 
+Estimated Expansion Rate 	| 		680.75667095996092 MB/s 
+Estimated Time to Completion    | 		00:01:01.008047 
+Tables Expanded 		  |		 4 
+Tables Left 		      | 		4
+(6 rows)</pre>
+</div>
+
+            </div>
+
+         </div>
+
+         <div class="topic nested3" id="viewingtablestatus">
+            <h4 class="title topictitle4">Viewing Table Status</h4>
+
+            <div class="body">
+               <p class="p">The table <samp class="ph codeph">gpexpand.status_detail</samp> stores status, last updated
+                  time, and other useful information about each table in the schema. To monitor the
+                  status of a particular table by querying <samp class="ph codeph">gpexpand.status_detail</samp>,
+                  connect to HAWQ using psql or another supported client. Query
+                     <samp class="ph codeph">gpexpand.status_detail</samp> with a command similar to the
+                  following:</p>
+
+               <pre class="pre codeblock">=&gt; SELECT status, expansion_started, source_bytes FROM gpexpand.status_detail WHERE fq_name = ‘public.sales’;
+status 	   | 	expansion_started 		  | 	source_bytes
+-----------+----------------------------+------------------------------------ 
+COMPLETED 	| 	2009-02-20 10:54:10.043869 	| 	4929748992
+(1 row)</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="removingtheexpansionschema">
+      <h2 class="title topictitle2">Removing the Expansion Schema</h2>
+
+      <div class="body">
+         <p class="p">The expansion schema can safely be removed after the expansion operation is completed
+            and verified. To run another expansion operation on a HAWQ system, you must first remove
+            the existing expansion schema.</p>
+
+         <p class="p">
+            <strong class="ph b">To remove the expansion schema:</strong>
+         </p>
+
+         <ol class="ol">
+            <li class="li">Log in to the master host as the user who will be running your HAWQ system (for
+               example, <samp class="ph codeph">gpadmin</samp>).</li>
+
+            <li class="li">Run the <samp class="ph codeph">gpexpand</samp> utility with the <samp class="ph codeph">-c</samp> option. For
+               example:</li>
+
+         </ol>
+
+         <pre class="pre codeblock">$ gpexpand -c </pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../hawq-topics/HAWQAdministration.html" title="HAWQ Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Administration</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

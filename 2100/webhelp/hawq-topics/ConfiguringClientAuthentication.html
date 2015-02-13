@@ -1,0 +1,610 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="When HAWQ is first initialized, the system contains one predefined superuser  role. This role will have the same name as the operating system user who initialized the HAWQ Database system. This role ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="Configuring Client Authentication"/><meta name="DC.Relation" scheme="URI" content="../hawq-topics/HAWQAdministration.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="configuringclientauthentication"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>Configuring Client Authentication</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="configuringclientauthentication"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">linkToThis</a></div><div id="printlink"><a href="javascript:window.print();">printThisPage</a></div></td></tr><tr><td><div class="navheader">
+<span class="navparent"><a class="link" href="../hawq-topics/HAWQAdministration.html" title="HAWQ Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Administration</span></a></span>  </div></td><td width="75%"><a class="navheader_parent_path" href="../hawq-topics/../hawq-topics/PivotalHAWQ.html" title="Pivotal HAWQ">Pivotal HAWQ</a> / <a class="navheader_parent_path" href="../hawq-topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a></td></tr></tbody></table>
+
+   <h1 class="title topictitle1">Configuring Client Authentication</h1>
+
+   <div class="body">
+      <p class="p">When HAWQ is first initialized, the system contains one predefined <em class="ph i">superuser </em> role.
+         This role will have the same name as the operating system user who initialized the HAWQ
+         Database system. This role is referred to as gpadmin. By default, the system is configured
+         to only allow local connections to the database from the gpadmin role. If you want to allow
+         any other roles to connect to the database, or if you want to allow connections from remote
+         hosts, HAWQ must be configured to allow these connections.</p>
+
+      <p class="p">This chapter explains how to configure client connections and authentication to HAWQ
+         Database.</p>
+
+      <ul class="ul">
+         <li class="li">
+            <a class="xref" href="#allowingconnectionstohawq">Allowing Connections to HAWQ</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#thepghbaconffile">The pg_hba.conf File</a>
+               </li>
+
+               <li class="li">
+                  <a class="xref" href="#usernamemaps">Username Maps</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#limitingconcurrentconnections">Limiting Concurrent Connections</a>
+            <ul class="ul">
+               <li class="li">
+                  <a class="xref" href="#encryptingclient-serverconnections">Encrypting Client-Server
+                     Connections</a>
+               </li>
+
+            </ul>
+
+         </li>
+
+         <li class="li">
+            <a class="xref" href="#thepasswordfile">The Password File</a>
+         </li>
+
+      </ul>
+
+   </div>
+
+   <div class="related-links"/>
+<div class="topic nested1" id="allowingconnectionstohawq">
+      <h2 class="title topictitle2">Allowing Connections to HAWQ</h2>
+
+      <div class="body">
+         <div class="p">Client access and authentication is controlled by the configuration file, pg_hba.conf.
+            HBA stands for host-based authentication. The <span class="ph filepath">pg_hba.conf</span> file
+            stored in the master instance controls client access to and authentication for your HAWQ
+            system. HAWQ segments also have <span class="ph filepath">pg_hba.conf</span> files configured to
+            allow only client connections from the master host and to never accept client
+               connections.<div class="note important"><span class="importanttitle">Important:</span> Never alter the <span class="ph filepath">pg_hba.conf</span>
+               file on your segments.</div>
+</div>
+
+         <p class="p">The general format of the <span class="ph filepath">pg_hba.conf</span> file is a set of records, one
+            record per line. HAWQ ignores blank lines and any text after the <samp class="ph codeph">#</samp>
+            comment character. A record consists of a number of fields, separated by spaces and/or
+            tabs. Fields can contain white space if the field value is quoted. Records cannot be
+            continued across lines.</p>
+
+         <p class="p">Each remote client access record has the following format:</p>
+
+         <pre class="pre codeblock">host database role CIDR-address authentication-method</pre>
+
+         <p class="p">Each UNIX-domain socket access record has the following format:</p>
+
+         <pre class="pre codeblock">local database role authentication-method</pre>
+
+         <p class="p">The following table describes meaning of each field. </p>
+
+         
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. pg_hba.conf Fields</span></caption>
+               <thead class="thead" align="left">
+                  <tr class="row">
+                     <th class="entry confluenceTh" valign="top" id="d27428e148">Field</th>
+
+                     <th class="entry confluenceTh" valign="top" id="d27428e151">Description</th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody class="tbody">
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">local</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">Matches connection attempts using UNIX-domain
+                        sockets. Without a record of this type, UNIX-domain socket connections are
+                        disallowed.</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">host</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">Matches connection attempts made using
+                        TCP/IP. Remote TCP/IP connections will not be possible unless the server is
+                        started with an appropriate value for the listen_addresses server
+                        configuration parameter.</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">hostssl</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">Matches connection attempts made using
+                        TCP/IP, but only when the connection is made with SSL encryption. SSL must
+                        be enabled at server start time by setting the ssl configuration
+                        parameter</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">hostnossl</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">Matches connection attempts made over TCP/IP
+                        that do not use SSL.</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">database</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">Specifies which database names this record
+                        matches. Specify "all" to match all databases. Specify multiple database
+                        names by separating them with commas. A separate file containing database
+                        names can be specified by preceding the file name with @.</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">role</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">Specifies which database role names this
+                        record matches. The value "all" matches all roles. If the specified role is
+                        a group and you want all members of that group to be included, precede the
+                        role name with a +. Multiple role names can be supplied by separating them
+                        with commas. A separate file containing role names can be specified by
+                        preceding the file name with @.</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">CIDR-address</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">Specifies the client machine IP address range
+                        that this record matches. It contains an IP address in standard dotted
+                        decimal notation and a CIDR mask length. IP addresses can only be specified
+                        numerically, not as domain or host names. The mask length indicates the
+                        number of high-order bits of the client IP address that must match. Bits to
+                        the right of this must be zero in the specified IP address. There must not
+                        be any white space between the IP address, the /, and the CIDR mask
+                           length.<p class="p">Typical examples of a CIDR-address are 172.20.143.89/32 for a
+                           single host, or 172.20.143.0/24 for a small network, or 10.6.0.0/16 for a
+                           larger one. To specify a single host, use a CIDR mask of 32 for IPv4 or
+                           128 for IPv6. In a network address, do not omit trailing zeroes.</p>
+
+                     </td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">IP-address <p class="p">IP-mask</p>
+
+                     </td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">These fields can be used as an alternative to
+                        the CIDR-address notation. Instead of specifying the mask length, the actual
+                        mask is specified in a separate column. For example, 255.0.0.0 represents an
+                        IPv4 CIDR mask length of 8, and 255.255.255.255 represents a CIDR mask
+                        length of 32. These fields only apply to host, hostssl, and hostnossl
+                        records.</td>
+
+                  </tr>
+
+                  <tr class="row">
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">authentication method</td>
+
+                     <td class="entry confluenceTd" valign="top" headers="d27428e148 d27428e151 ">Specifies the authentication method to use
+                        when connecting. The choices are as follows: <ul class="ul">
+                           <li class="li"><strong class="ph b">trust</strong>: Allow the connection unconditionally. This method
+                              allows anyone that can connect to the HAWQ master to login without the
+                              need for a password.</li>
+
+                           <li class="li"><strong class="ph b">reject</strong>: Reject the connection unconditionally. This is useful
+                              for "filtering out" certain hosts from a group.</li>
+
+                           <li class="li"><strong class="ph b">md5</strong>: Require the client to supply an MD5-encrypted password
+                              for authentication.</li>
+
+                           <li class="li"><strong class="ph b">password</strong>: Require the client to supply an unencrypted password
+                              for authentication. Since the password is sent in clear text over the
+                              network, this should not be used on untrusted networks.</li>
+
+                           <li class="li"><strong class="ph b">gss</strong>: Use GSSAPI to authenticate the user. This is only
+                              available for TCP/IP connections.</li>
+
+                           <li class="li"><strong class="ph b">krb5</strong>: Use Kerberos to authenticate the user. This is only
+                              available for TCP/IP connections.</li>
+
+                           <li class="li"><strong class="ph b">ldap</strong>: Authenticate using an LDAP server.</li>
+
+                           <li class="li"><strong class="ph b">cert</strong>: Authenticate using SSL client certificates.</li>
+
+                        </ul>
+</td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+</div>
+
+      </div>
+
+      <div class="topic nested2" id="thepghbaconffile">
+         <h3 class="title topictitle3">The pg_hba.conf File</h3>
+
+         <div class="body">
+            <p class="p">This example shows how to edit the <span class="ph filepath">pg_hba.conf</span> file of the
+               master to allow remote client access to all databases from all roles using encrypted
+               password authentication.</p>
+
+            <div class="note note"><span class="notetitle">Note:</span> For a more secure system, consider removing all connections that use trust
+               authentication from your master <span class="ph filepath">pg_hba.conf</span>. Trust
+               authentication means the role is granted access without any authentication, therefore
+               bypassing all security. Replace trust entries with ident authentication if your
+               system has an ident service available.</div>
+
+            <p class="p">
+               <strong class="ph b">To edit the pg_hba.conf file:</strong>
+            </p>
+
+            <ol class="ol" id="thepghbaconffile__ol_qpz_gpt_4p">
+               <li class="li">Open the file <span class="ph filepath">$MASTER_DATA_DIRECTORY/pg_hba.conf</span> in a text
+                  editor.</li>
+
+               <li class="li">Add a line to the file for each type of connection you want to allow. Records are
+                  read sequentially, so the order of the records is significant. Typically, earlier
+                  records will have tight connection match parameters and weaker authentication
+                  methods, while later records will have looser match parameters and stronger
+                  authentication methods.<p class="p">For example:
+                  </p>
+<pre class="pre codeblock"># allow the gpadmin user local access to all databases
+# using ident authentication
+local all gpadmin ident sameuser
+host all gpadmin 127.0.0.1/32 ident
+host all gpadmin ::1/128 ident
+# allow the 'dba' role access to any database from any
+# host with IP address 192.168.x.x and use md5encrypted
+# passwords to authenticate the user
+# Note that to use SHA-256 encryption, replace md5 with
+# password in the line below host all dba192.168.0.0/32 md5
+# allow all roles access to any database from any
+# host and use ldap to authenticate the user. Greenplum role
+# names must match the LDAP common name.
+host all all 192.168.0.0/32 ldap ldapserver=usldap1
+ldapport=1389 ldapprefix="cn="
+ldapsuffix=",ou=People,dc=company,dc=com"</pre>
+</li>
+
+               <li class="li">When you have completed your entries, save and close the file.</li>
+
+               <li class="li">Reload the pg_hba.conf configuration file for your changes to take effect:</li>
+
+            </ol>
+
+            <pre class="pre codeblock">$ gpstop -u</pre>
+
+            <div class="note note"><span class="notetitle">Note:</span> You can also control database access by setting object privileges. The
+                  <span class="ph filepath">pg_hba.conf</span> file just controls who can initiate a database
+               session and how those connections are authenticated.</div>
+
+         </div>
+
+      </div>
+
+      <div class="topic nested2" id="usernamemaps">
+         <h3 class="title topictitle3">Username Maps</h3>
+
+         <div class="body">
+            <p class="p">When using an external authentication system like Ident or GSSAPI, the operating
+               system user initiating the connection might want to connect as a different database
+               user. You can set up a user name map that allows a user with an operating system
+               username to connect with a database username. Each connection may require a different
+               mapping using the <span class="ph filepath">pg_hba.conf</span> file which supports all
+               authentication methods that receive external usernames. Use the map-name parameter in
+               the options field of the <span class="ph filepath">pg_hba.conf</span> to indicate the map to use
+               for each individual connection.</p>
+
+            <p class="p">For example:</p>
+
+            <pre class="pre codeblock">map=map-name </pre>
+
+            <p class="p">Username maps are defined in the ident map file, which by default is
+                  named <span class="ph filepath">pg_ident.conf</span> and is stored in the cluster's data
+               directory. (It is possible to place the map file elsewhere, however; see the <a class="xref" href="http://www.postgresql.org/docs/8.4/static/runtime-config-file-locations.html#GUC-IDENT-FILE" target="_blank">ident_file</a> configuration parameter.) The ident map file
+               contains lines of the general form:</p>
+
+            <pre class="pre codeblock">map-name system-username database-username</pre>
+
+            <p class="p">Comments and whitespace are handled in the same way as
+                  in <span class="ph filepath">pg_hba.conf</span>. The map-name is an arbitrary name that will
+               be used to refer to this mapping in <span class="ph filepath">pg_hba.conf</span>. The other two
+               fields specify an operating system user name and a matching database user name. The
+               same map-name can be used repeatedly to specify multiple user-mappings within a
+               single map.</p>
+
+            <p class="p">There is no restriction regarding how many database users a given operating system
+               user can correspond to, nor vice versa. Thus, entries in a map should be thought of
+               as meaning "this operating system user is allowed to connect as this database user",
+               rather than implying that they are equivalent. The connection will be allowed if
+               there is any map entry that matches the user name obtained from the external
+               authentication system to the database user name that the user has requested to
+               connect as.</p>
+
+            <p class="p">If the system-username field starts with a slash (/), the remainder of the field is
+               treated as a regular expression. (See <a class="xref" href="http://www.postgresql.org/docs/8.4/static/functions-matching.html#POSIX-SYNTAX-DETAILS" target="_blank">Section 9.7.3.1</a> for details of PostgreSQL's regular
+               expression syntax. Regular expressions in username maps are always treated as
+               being "advanced" flavor.) The regular expression can include a single capture, or
+               parenthesized subexpression, which can then be referenced in
+               thedatabase-username field as \1 (backslash-one). This allows the mapping of multiple
+               usernames in a single line, which is particularly useful for simple syntax
+               substitutions.</p>
+
+            <p class="p">For example, these entries:</p>
+
+            <pre class="pre codeblock">mymap   /^(.*)@mydomain\.com$      \1
+mymap   /^(.*)@otherdomain\.com$   guest</pre>
+
+            <p class="p">will remove the domain part for users with system usernames that end
+               with @mydomain.com, and allow any user whose system name ends
+               with @otherdomain.com to log in as guest.</p>
+
+            <div class="note note"><span class="notetitle">Note:</span> Keep in mind that by default, a regular expression can match just part of a
+               string. It's usually wise to use <samp class="ph codeph">^</samp> and <samp class="ph codeph">$</samp>, as shown
+               in the above example, to force the match to be to the entire system username.</div>
+
+            <p class="p">The pg_ident.conf file is read on start-up and when the main server process receives
+               a SIGHUP signal. If you edit the file on an active system, you will need to signal
+               the server (using <samp class="ph codeph">pg_ctl reloador kill -HUP</samp>) to make it re-read the
+               file.</p>
+
+            <p class="p">A <span class="ph filepath">pg_ident.conf</span> file that could be used in conjunction with
+                  the <span class="ph filepath">pg_hba.conf</span> file in <a class="xref" href="http://www.postgresql.org/docs/8.4/static/auth-pg-hba-conf.html#EXAMPLE-PG-HBA.CONF" target="_blank">Example 19-1</a> is shown in <a class="xref" href="http://www.postgresql.org/docs/8.4/static/auth-username-maps.html#EXAMPLE-PG-IDENT.CONF" target="_blank">Example 19-2</a>. In this example setup, anyone logged in to a
+               machine on the 192.168 network that does not have the Unix
+                  username <samp class="ph codeph">bryanh</samp>, <samp class="ph codeph">ann</samp>,
+               or <samp class="ph codeph">robert</samp> would not be granted access. Unix
+                  user <samp class="ph codeph">robert</samp> would only be allowed access when he tries to connect
+                  as PostgreSQL user <samp class="ph codeph">bob</samp>, not as <samp class="ph codeph">robert</samp> or anyone
+               else. User <samp class="ph codeph">ann</samp> would only be allowed to connect
+                  as <samp class="ph codeph">ann</samp>. User <samp class="ph codeph">bryanh</samp> would be allowed to connect
+               as either <samp class="ph codeph">bryanh</samp> himself or as <samp class="ph codeph">guest1</samp>.</p>
+
+            <div class="section"><h4 class="title sectiontitle">Example - The pg_ident.conf File</h4>
+               
+               <pre class="pre codeblock"># MAPNAME     SYSTEM-USERNAME   PG-USERNAME
+
+omicron       bryanh            bryanh
+omicron       ann               ann
+# bob has user name robert on these machines
+omicron       robert            bob
+# bryanh can also connect as guest1
+omicron       bryanh            guest1</pre>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="limitingconcurrentconnections">
+      <h2 class="title topictitle2">Limiting Concurrent Connections</h2>
+
+      <div class="body">
+         <p class="p">To limit the number of active concurrent sessions to your HAWQ system, you can configure
+               the <samp class="ph codeph">max_connections</samp> server configuration parameter. This is a
+               <em class="ph i">local</em> parameter, meaning that you must set it in the
+               <span class="ph filepath">postgresql.conf</span> file of the master, the standby master, and each
+            segment instance (primary and mirror). The value of <samp class="ph codeph">max_connections</samp> on
+            segments must be 5-10 times the value on the master.</p>
+
+         <p class="p">When you set <samp class="ph codeph">max_connections</samp>, you must also set the dependent parameter
+               <samp class="ph codeph">max_prepared_transactions</samp>. This value must be at least as large as
+            the value of <samp class="ph codeph">max_connections</samp> on the master, and segment instances
+            should be set to the same value as the master.</p>
+
+         <p class="p">For example:</p>
+
+         <p class="p">In <span class="ph filepath">$MASTER_DATA_DIRECTORY/postgresql.conf</span> (including standby
+            master):</p>
+
+         <pre class="pre codeblock">max_connections=100
+max_prepared_transactions=100</pre>
+
+         <p class="p">In <span class="ph filepath"><var class="keyword varname">SEGMENT_DATA_DIRECTORY</var>/postgresql.conf</span> for
+            all segment instances:</p>
+
+         <pre class="pre codeblock">max_connections=500
+max_prepared_transactions=100</pre>
+
+
+         <p class="p"><strong class="ph b">To change the number of allowed connections:</strong>
+         </p>
+
+         <ol class="ol">
+            <li class="li">Stop your HAWQ system:</li>
+
+         </ol>
+
+         <pre class="pre codeblock">$ gpstop</pre>
+
+         <p class="p">2. On your master host, edit <span class="ph filepath">$MASTER_DATA_DIRECTORY/postgresql.conf</span>
+            and change the following two parameters:</p>
+
+         <pre class="pre codeblock">max_connections (the number of active user sessions you want to allow plus the number of superuser_reserved_connections) 
+max_prepared_transactions (must be greater than or equal to max_connections)</pre>
+
+         <p class="p">3. On each segment instance, edit
+               <span class="ph filepath"><var class="keyword varname">SEGMENT_DATA_DIRECTORY</var>/postgresql.conf</span> and
+            and change the following two parameters:</p>
+
+         <pre class="pre codeblock">max_connections (must be 5-10 times the value on the master)
+max_prepared_transactions (must be equal to the value on the master)</pre>
+
+         <p class="p">4. Restart your HAWQ system:</p>
+
+         <pre class="pre codeblock">$ gpstart</pre>
+
+         <div class="note note"><span class="notetitle">Note:</span> Raising the values of these parameters may cause HAWQ to request more shared memory.
+            To mitigate this effect, consider decreasing other memory-related parameters such as
+               <samp class="ph codeph">gp_cached_segworkers_threshold</samp>.</div>
+
+      </div>
+
+      <div class="topic nested2" id="encryptingclient-serverconnections">
+         <h3 class="title topictitle3">Encrypting Client-Server Connections</h3>
+
+         <div class="body">
+            <p class="p">HAWQ has native support for SSL connections between the client and the master server.
+               SSL connections prevent third parties from snooping on the packets, and also prevent
+               man-in-the-middle attacks. SSL should be used whenever the client connection goes
+               through an insecure link, and must be used whenever client certificate authentication
+               is used.</p>
+
+            <p class="p">To enable SSL requires that OpenSSL be installed on both the client and the master
+               server systems. HAWQ can be started with SSL enabled by setting the server
+               configuration parameter ssl=on in the master postgresql.conf. When starting in SSL
+               mode, the server will look for the files server.key (server private key) and
+               server.crt (server certificate) in the master data directory. These files must be set
+               up correctly before an SSL-enabled HAWQ system can start.</p>
+
+            <div class="note important"><span class="importanttitle">Important:</span> Do not protect the private key with a passphrase. The server does
+               not prompt for a passphrase for the private key, and the database startup fails with
+               an error if one is required.<p class="p">A self-signed certificate can be used for testing, but
+                  a certificate signed by a certificate authority (CA) should be used in production,
+                  so the client can verify the identity of the server. Either a global or local CA
+                  can be used. If all the clients are local to the organization, a local CA is
+                  recommended.</p>
+</div>
+
+            <p class="p"><strong class="ph b">To create a Self-signed Certificate without a Passphrase for Testing Only:</strong>
+            </p>
+
+            <ol class="ol" id="encryptingclient-serverconnections__ol_o2l_hqt_4p">
+               <li class="li">Use the following <samp class="ph codeph">OpenSSL</samp>
+                  command:<pre class="pre codeblock"># openssl req -new -text -out server.req </pre>
+</li>
+
+               <li class="li">Fill out the information that openssl asks for. Be sure to enter the local host
+                  name as Common Name. The challenge password can be left blank.<p class="p">The program will
+                     generate a key that is passphrase protected, and does not accept a passphrase
+                     that is less than four characters long.</p>
+</li>
+
+            </ol>
+
+            <p class="p"><strong class="ph b">To use the Self-signed Certificate with HAWQ:</strong>
+            </p>
+
+            <ol class="ol" id="encryptingclient-serverconnections__ol_lrk_hpt_4p">
+               <li class="li">Remove the passphrase with the following
+                  commands:<pre class="pre codeblock"># openssl rsa -in privkey.pem -out server.key
+# rm privkey.pem</pre>
+</li>
+
+               <li class="li">Enter the old passphrase when prompted to unlock the existing key.</li>
+
+               <li class="li">Enter the following command to change it into a self-signed certificate and to
+                  copy it with the key to a location where the server can find
+                  them:<pre class="pre codeblock"># openssl req -x509 -in server.req -text -key server.key -out server.crt</pre>
+</li>
+
+               <li class="li">Change the permissions on the key with the following command. The server will
+                  reject the file if the permissions are less restrictive than
+                  these.<pre class="pre codeblock"># chmod og-rwx server.key </pre>
+</li>
+
+            </ol>
+
+            <p class="p">For more details on how to create your server private key and certificate, refer to
+               the OpenSSL documentation.</p>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <div class="topic nested1" id="thepasswordfile">
+      <h2 class="title topictitle2">The Password File</h2>
+
+      <div class="body">
+         <p class="p">The file <span class="ph filepath">.pgpass</span> in a user's home directory or the file referenced
+               by <samp class="ph codeph">PGPASSFILE</samp> can contain passwords to be used if the connection
+            requires a password (and no password has been specified otherwise). On Microsoft
+            Windows, the file is
+               named <span class="ph filepath">%APPDATA%\postgresql\pgpass.conf</span> (where <span class="ph filepath">%APPDATA%</span> refers
+            to the Application Data subdirectory in the user's profile).</p>
+
+         <p class="p">This file should contain lines of the following format:</p>
+
+         <pre class="pre codeblock">hostname:port:database:username:password</pre>
+
+         <p class="p">Each of the first four fields can be a literal value, or *, which matches anything. The
+            password field from the first line that matches the current connection parameters will
+            be used. (Therefore, put more-specific entries first when you are using wildcards.) If
+            an entry needs to contain <samp class="ph codeph">:</samp> or <samp class="ph codeph">\</samp>, escape this
+            character with <samp class="ph codeph">\</samp>. A host name of localhost matches both TCP (host
+            name localhost) and Unix domain socket (pghost empty or the default socket directory)
+            connections coming from the local machine.</p>
+
+         <p class="p">On Unix systems, the permissions on <span class="ph filepath">.pgpass</span> must disallow any
+            access to world or group; achieve this by the command <samp class="ph codeph">chmod 0600
+               ~/.pgpass</samp>. If the permissions are less strict than this, the file will be
+            ignored. On Microsoft Windows, it is assumed that the file is stored in a directory that
+            is secure, so no special permissions check is made.</p>
+
+
+
+
+
+
+
+
+      </div>
+
+   </div>
+
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../hawq-topics/HAWQAdministration.html" title="HAWQ Administration"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">HAWQ Administration</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>

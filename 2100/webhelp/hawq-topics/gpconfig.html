@@ -1,0 +1,259 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Sets server configuration parameters on all segments within a HAWQ system. Synopsis gpconfig -c param_name -v value [ -m master_value | --masteronly ]        | -r param_name [ --masteronly | -l    [ ..."/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta name="copyright" content="(C) Copyright 2005"/><meta name="DC.rights.owner" content="(C) Copyright 2005"/><meta name="DC.Type" content="topic"/><meta name="DC.Title" content="gpconfig"/><meta name="DC.Relation" scheme="URI" content="../hawq-topics/ManagementUtilityReference.html"/><meta name="prodname" content=""/><meta name="version" content="2.1.0"/><meta name="release" content=""/><meta name="modification" content=""/><meta name="DC.Format" content="XHTML"/><meta name="DC.Identifier" content="topic1"/><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><title>gpconfig</title><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/commonltr.css"><!----></link><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><link rel="stylesheet" type="text/css" href="../oxygen-webhelp/resources/css/pivotal.css"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-1.8.2.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery.cookie.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script></head>
+<body onload="highlightSearchTerm()" id="topic1"><script xmlns="http://www.w3.org/1999/xhtml" src="//use.typekit.net/clb0qji.js" type="text/javascript"/><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  try {
+				  Typekit.load();
+			  } catch (e) {
+			  }
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			  document.domain = "pivotal.io";
+		  </script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript">
+			WebFontConfig = {
+			  google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+			};
+			(function() {
+			  var wf = document.createElement('script');
+			  wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			  wf.type = 'text/javascript';
+			  wf.async = 'true';
+			  var s = document.getElementsByTagName('script')[0];
+			  s.parentNode.insertBefore(wf, s);
+			})();
+		  </script>
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">linkToThis</a></div><div id="printlink"><a href="javascript:window.print();">printThisPage</a></div></td></tr><tr><td><div class="navheader">
+<span class="navparent"><a class="link" href="../hawq-topics/ManagementUtilityReference.html" title="Management Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Management Utility Reference</span></a></span>  </div></td><td width="75%"><a class="navheader_parent_path" href="../hawq-topics/../hawq-topics/HAWQAdministration.html" title="HAWQ Administration">HAWQ Administration</a> / <a class="navheader_parent_path" href="../hawq-topics/ManagementUtilityReference.html" title="Management Utility Reference">Management Utility Reference</a></td></tr></tbody></table>
+
+  <h1 class="title topictitle1">gpconfig</h1>
+
+  <div class="body">
+    <p class="p">Sets server configuration parameters on all segments within a HAWQ system.</p>
+
+    <div class="section" id="topic1__section2"><h2 class="title sectiontitle">Synopsis</h2>
+      
+      <pre class="pre codeblock"><strong class="ph b">gpconfig</strong> <strong class="ph b">-c</strong> <var class="keyword varname">param_name</var> <strong class="ph b">-v</strong> <var class="keyword varname">value</var> [<strong class="ph b">-m</strong> <var class="keyword varname">master_value</var> | <strong class="ph b">--masteronly</strong>]
+       | <strong class="ph b">-r</strong> <var class="keyword varname">param_name</var> [<strong class="ph b">--masteronly</strong> | <strong class="ph b">-l</strong>
+       [<strong class="ph b">--skipvalidation</strong>] [<strong class="ph b">--verbose</strong>] [<strong class="ph b">--debug</strong>]
+
+<strong class="ph b">gpconfig</strong> <strong class="ph b">-s</strong> <var class="keyword varname">param_name</var> [<strong class="ph b">--verbose</strong>] [<strong class="ph b">--debug</strong>]
+
+<strong class="ph b">gpconfig</strong> <strong class="ph b">--help</strong></pre>
+
+    </div>
+
+    <div class="section" id="topic1__section3"><h2 class="title sectiontitle">Description</h2>
+      
+      <p class="p">The <samp class="ph codeph">gpconfig</samp> utility allows you to set, unset, or view configuration
+        parameters from the <samp class="ph codeph">postgresql.conf</samp> files of all instances (master,
+        segments, and mirrors) in your HAWQ system. When setting a parameter, you can also specify a
+        different value for the master, if necessary. For example, parameters such as
+          <samp class="ph codeph">max_connections</samp> require a different setting on the master from what is
+        used for the segments. If you want to set or unset a global or master only parameter, use
+        the <samp class="ph codeph">--masteronly</samp> option.</p>
+
+      <p class="p"><samp class="ph codeph">gpconfig</samp> cannot change the configuration parameters if there are failed
+        segments in the system. gpconfig can only be used to manage certain parameters. For example,
+        you cannot use it to set parameters such as <samp class="ph codeph">port</samp>, which is required to be
+        distinct for every segment instance.</p>
+
+      <p class="p">Use the <samp class="ph codeph">-l (list)</samp> option to see a complete list of configuration
+        parameters supported by <samp class="ph codeph">gpconfig</samp>. When <samp class="ph codeph">gpconfig</samp> sets a
+        configuration parameter in a segment postgresql.conf file, the new parameter setting always
+        displays at the bottom of the file. When you use <samp class="ph codeph">gpconfig</samp> to remove a
+        configuration parameter setting, gpconfig comments out the parameter in all segment
+          <span class="ph filepath">postgresql.conf</span> files, thereby restoring the system default setting.
+        For example, if you use <samp class="ph codeph">gpconfig</samp> to remove (comment out) a parameter and
+        later add it back (set a new value), there will be two instances of the parameter; one that
+        is commented out, and one that is enabled and inserted at the bottom of the
+          <span class="ph filepath">postgresql.conf</span> file.</p>
+
+      <p class="p">After setting a parameter, you must restart your HAWQ system or reload the postgresql.conf
+        files for the change to take effect. Whether you require a restart or a reload depends on
+        the parameter. See the <a class="xref" href="HAWQServerConfigurationParameters.html#hawqserverconfigurationparameters">Server
+          Configuration Parameters</a> reference for more information about the server
+        configuration parameters.</p>
+
+      <p class="p">To show the currently set values for a parameter across the system, use the
+          <samp class="ph codeph">-s</samp> option.</p>
+
+      <p class="p"><samp class="ph codeph">gpconfig</samp> uses the following environment variables to connect to the HAWQ
+        master instance and obtain system configuration information: </p>
+
+      <ul class="ul">
+        <li class="li" id="topic1__kq141888">
+          <samp class="ph codeph">PGHOST</samp>
+        </li>
+
+        <li class="li" id="topic1__kq141742">
+          <samp class="ph codeph">PGPORT</samp>
+        </li>
+
+        <li class="li" id="topic1__kq141743">
+          <samp class="ph codeph">PGUSER</samp>
+        </li>
+
+        <li class="li" id="topic1__kq141744">
+          <samp class="ph codeph">PGPASSWORD</samp>
+        </li>
+
+        <li class="li" id="topic1__kq141745">
+          <samp class="ph codeph">PGDATABASE</samp>
+        </li>
+
+      </ul>
+
+    </div>
+
+    <div class="section" id="topic1__section4"><h2 class="title sectiontitle">Options</h2>
+      
+      <dl class="dl parml">
+        
+          <dt class="dt pt dlterm">-c | --change <var class="keyword varname">param_name</var></dt>
+
+          <dd class="dd pd">Changes a configuration parameter setting by adding the new setting to the bottom of
+            the <samp class="ph codeph">postgresql.conf</samp> files.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-v | --value <var class="keyword varname">value</var></dt>
+
+          <dd class="dd pd">The value to use for the configuration parameter you specified with the
+              <samp class="ph codeph">-c</samp> option. By default, this value is applied to all segments, their
+            mirrors, the master, and the standby master.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-m | --mastervalue <var class="keyword varname">master_value</var></dt>
+
+          <dd class="dd pd">The master value to use for the configuration parameter you specified with the
+              <samp class="ph codeph">-c</samp> option. If specified, this value only applies to the master and
+            standby master. This option can only be used with <samp class="ph codeph">-v</samp>. </dd>
+
+        
+        
+          <dt class="dt pt dlterm">--masteronly</dt>
+
+          <dd class="dd pd">When specified, <samp class="ph codeph">gpconfig</samp> will only edit the master
+              <samp class="ph codeph">postgresql.conf</samp> file.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-r | --remove <var class="keyword varname">param_name</var></dt>
+
+          <dd class="dd pd">Removes a configuration parameter setting by commenting out the entry in the
+              <samp class="ph codeph">postgresql.conf</samp> files.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-l | --list</dt>
+
+          <dd class="dd pd">Lists all configuration parameters supported by the <samp class="ph codeph">gpconfig</samp>
+            utility.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">-s | --show <var class="keyword varname">param_name</var></dt>
+
+          <dd class="dd pd">Shows the value for a configuration parameter used on all instances (master and
+            segments) in the HAWQ system. If there is a discrepancy in a parameter value between
+            segment instances, the <samp class="ph codeph">gpconfig</samp> utility displays an error message. Note
+            that the <samp class="ph codeph">gpconfig</samp> utility reads parameter values directly from the
+            database, and not the <samp class="ph codeph">postgresql.conf</samp> file. If you are using
+              <samp class="ph codeph">gpconfig</samp> to set configuration parameters across all segments, then
+            running <samp class="ph codeph">gpconfig -s</samp> to verify the changes, you might still see the
+            previous (old) values. You must reload the configuration files (<samp class="ph codeph">gpstop
+              -u</samp>) or restart the system (<samp class="ph codeph">gpstop -r</samp>) for changes to take
+            effect.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">--skipvalidation</dt>
+
+          <dd class="dd pd">Overrides the system validation checks of <samp class="ph codeph">gpconfig</samp> and allows you to
+            operate on any server configuration parameter, including hidden parameters and
+            restricted parameters that cannot be changed by <samp class="ph codeph">gpconfig</samp>. When used
+            with the <samp class="ph codeph">-l</samp> option (list), it shows the list of restricted parameters.
+            This option should only be used to set parameters when directed by Pivotal Support. </dd>
+
+        
+        
+          <dt class="dt pt dlterm">--verbose </dt>
+
+          <dd class="dd pd">Displays additional log information during <samp class="ph codeph">gpconfig</samp> command
+            execution.</dd>
+
+        
+        
+          <dt class="dt pt dlterm">--debug</dt>
+
+          <dd class="dd pd">Sets logging output to debug level. </dd>
+
+        
+        
+          <dt class="dt pt dlterm">-? | -h | --help</dt>
+
+          <dd class="dd pd">Displays the online help.</dd>
+
+        
+      </dl>
+
+    </div>
+
+    <div class="section" id="topic1__section5"><h2 class="title sectiontitle">Examples</h2>
+      
+      <p class="p">Set the <samp class="ph codeph">max_connections</samp> setting to 100 on all segments and 10 on the
+        master:</p>
+
+      <pre class="pre codeblock">gpconfig -c max_connections -v 100 -m 10</pre>
+
+      <p class="p">Comment out all instances of the <samp class="ph codeph">default_statistics_target</samp> configuration
+        parameter, and restore the system default:</p>
+
+      <pre class="pre codeblock">gpconfig -r default_statistics_target</pre>
+
+      <p class="p">List all configuration parameters supported by <samp class="ph codeph">gpconfig</samp>:</p>
+
+      <pre class="pre codeblock">gpconfig -l</pre>
+
+      <p class="p">Show the values of a particular configuration parameter across the system:</p>
+
+      <pre class="pre codeblock">gpconfig -s max_connections</pre>
+
+    </div>
+
+    <div class="section" id="topic1__section6"><h2 class="title sectiontitle">See Also</h2>
+      
+      <p class="p">
+        <samp class="ph codeph">
+          <a class="xref" href="gpstop.html">gpstop</a>
+        </samp>
+      </p>
+
+    </div>
+
+  </div>
+
+<div class="related-links"/>
+<div class="navfooter"><!---->
+<span class="navparent"><a class="link" href="../hawq-topics/ManagementUtilityReference.html" title="Management Utility Reference"><span class="navheader_label">Parent topic</span><span class="navheader_separator">: </span><span class="navheader_linktext">Management Utility Reference</span></a></span>  </div><div>
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href="http://docs.pivotal.io" target="_blank">Pivotal Documentation</a>
+      © 2014 <a href="http://www.pivotal.io/" target="_blank">Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.pivotal.io" target="_blank">Visit Support</a>
+   </div>
+  </footer>
+</div><!--end of container-->
+</div>
+</body>
+</html>
