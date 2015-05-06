@@ -1,0 +1,433 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Java MapReduce - First and Last order ID and date for customers |
+    Pivotal Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link href="/stylesheets/master.css" rel="stylesheet" type="text/css" media="screen,print" />
+  <link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+
+
+
+  <script type="text/javascript">
+    if (window.location.host === 'pivotalhd.docs.pivotal.io') {
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-39702075-1']);
+      _gaq.push(['_setDomainName', 'gopivotal.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    }
+  </script>
+</head>
+
+<body class="tutorial tutorial_getting-started tutorial_getting-started_map-reduce-java tutorial_getting-started_map-reduce-java_firstandlastorderiddate has-subnav">
+
+<div class="viewport">
+<div class='wrap'>
+  <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+  <script type="text/javascript">
+      try {
+          Typekit.load();
+      } catch (e) {
+      }
+  </script>
+  <script type="text/javascript">
+      document.domain = "gopivotal.com";
+  </script>
+
+  <script type="text/javascript">
+    WebFontConfig = {
+      google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
+
+    <header class="header header-layout">
+      <h1 class="logo">
+        <!-- <a href="/"> -->
+            <ul class="breadcrumbs"><li><a href="/tutorial/getting-started/map-reduce-java.html">MapReduce Java</a></li> <li class="active"><span>Java MapReduce - First and Last order ID and date for customers</span></li></ul>
+        <!-- </a> -->
+      <a href="/index.html">Pivotal HD Documentation</a></h1>
+      <div class="header-links js-bar-links">
+        <div class="btn-menu" data-behavior="MenuMobile"></div>
+        <div class="header-item">
+          <a href="http://docs.pivotal.io/index.html">Docs Home</a>
+        </div>
+        <!--
+        <div class="header-item">
+          <a href="http://support.gopivotal.com" target="_blank">Support</a>
+        </div>
+        -->
+         <div class="header-item">
+          <a href="http://ask.gopivotal.com/hc/en-us/categories/200072578-Pivotal-HD-Knowledge-Base" target="_blank">Knowledge Base</a>
+        </div>
+        <div class="header-item">
+          <a href="http://ask.gopivotal.com/hc/communities/public/topics/200053048-Pivotal-HD-General" target="_blank">Forum</a>
+        
+        
+        
+        <div class="header-item searchbar js-searchbar">
+          <a class="search-icon" data-behavior="Search"></a>
+          <div class="search-input">
+            <!-- Google CSE Search Box -->
+            <div class="search-input-inner" id="docs-search">
+                <gcse:search></gcse:search>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  <div class="container">
+
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+ <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+ <div class="nav-content">
+  <ul class="menu">
+              <!-- REPLACE <li/> NODES-->
+              
+
+        <li class="menu-item js-menu-item">            
+      <div class="menu-title js-menu-title">
+          	    <a id='home-nav-link' href="/tutorial/index.html">Getting Started with the Pivotal HD Tutorial </a>
+      </div> 
+         </li>
+              
+             <div class="menu-title js-menu-title">
+                <li class="menu-link">
+                  <a  href="/tutorial/getting-started-overview.html">Setting Up the Pivotal HD Tutorial</a>
+             </div>
+                  <ul >
+                    <li class="menu-link"><a href='/tutorial/getting-started/pivotalhd-vm.html'>Pivotal HD Virtual Machine</a></li>
+               
+                    <li class="menu-link"><a href='/tutorial/getting-started/dataset.html'>Loading the Retail Demo Dataset</a></li>
+					
+                  </UL>
+			    </li>
+			
+			  <div class="menu-title js-menu-title">
+				<li class="menu-item">
+				  <a  href="/tutorial/getting-started/overview.html">Tutorials Overview</a>
+				</div>
+				<ul >
+<div class="menu-title js-menu-title">
+                    <li class="menu-link"><a href='/tutorial/getting-started/map-reduce-java.html'>MapReduce Java</a>
+                    </div>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/map-reduce-java/summarization-postalcode-paidamount.html'>Summarization: PostalCode with Highest Revenue</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/map-reduce-java/firstandlastorderiddate.html'>Minimum/Maximum: Last and First order date</a></li>
+                      </ul>
+                    </li> <div class="menu-title">
+                    <li class="menu-item" ><a href='/tutorial/getting-started/hawq.html'>HAWQ</a>
+						</div>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/internal-tables.html'>HAWQ Internal Tables</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-external-tables.html'>PXF External Tables: HDFS</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-hbase-external-tables.html'>PXF External Tables: HBase</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-hbase-external-enable-filter-pushdown.html'>PXF External Tables Predicate Push-down: HBase</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-external-tables-statistics.html'>PXF External Tables: Statistics</a></li>
+                      </ul>
+                    </li><div class="menu-title">
+                    <li class="menu-item"><a href='/tutorial/getting-started/hive/hive-tables.html'>Hive</a></div>
+                     <ul >
+                        <li class="menu-item"><a href='/tutorial/getting-started/hive/hive-tables.html'>Hive Tables</a></li>
+                      </ul> 
+					
+                    </li>
+                     <div class="menu-title">
+                    <li class="menu-item"><a href='/tutorial/getting-started/pig.html'>Pig</a>
+                    </div>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/pig/summarization-postalcode-paidamount.html'>Top ten postal codes</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/pig/firstandlastorderiddate.html'>Last and First order date of all the customers</a></li>
+                      </ul>
+                    </li>
+				
+                   <!-- <li class="menu-link"><a href='/tutorial/getting-started/spring-data-hadoop.html'>Spring Data Hadoop</a>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/spring-data-hadoop/wordcount_with_spring_hadoop-gphd.html'>Word Count with Spring Data on Pivotal HD</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/spring-data-hadoop/wordcount_with_spring_hadoop.html'>Word Count with Spring Data on Hadoop 2.2.0</a></li>
+                      </ul>
+                    </li>-->
+                  </ul>
+                </li>
+			  <div class="menu-title js-menu-title">
+				 <li><a href="http://gemfirexd.docs.gopivotal.com/latest/userguide/index.html#getting_started/tutorial_chapter_intro.html" target="_blank">GemFire XD Quickstart</a></li>
+				 </div>
+			 </ul>
+                	</li>
+              </ul>
+           </div>   
+        </div><!--end of sub-nav-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+          <h1 class="title-container">
+            Java MapReduce - First and Last order ID and date for customers
+          </h1>
+            <div id="js-quick-links">
+              
+            </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>The demo dataset has information about customer orders. Each order record contains the customer ID of the customer. This is a simple example that demonstrates how to return every customer with their first order ID and date and their last order ID and date.</p>
+
+<h1>Prerequisites</h1>
+
+<ol>
+<li><p>Install the Pivotal HD Single-Node Virtual Machine and start the Pivotal HD services. See <a href="/tutorial/getting-started/pivotalhd-vm.html">Pivotal HD Single-Node VM</a>.</p></li>
+<li><p>Load the Retail Demo Dataset before following the steps in this section. See <a href="/tutorial/getting-started/dataset.html">Retail Demo Dataset</a>.</p></li>
+</ol>
+
+<h1>Working with the Tutorial</h1>
+
+<ol>
+<li>Use the shortcut on the desktop to launch the Spring Tool Suite (STS).</li>
+<li>Accept the default Workspace or enter a path. </li>
+        
+<li>Import the project to the Spring Tool Suite IDE:
+    <ol type="a">
+<li><strong>Select File->Import</strong> and select <strong>Maven > Existing Maven Projects</strong>
+<p><img src="../../images/gs/setup/import-maven.png" width="50%"/></p>
+</li>
+<li>Click <strong>Next</strong>.</li>
+<li>Click <strong>Browse</strong> and browse to the following directory where the source code is present:
+<pre class="terminal">/pivotal-samples/map-reduce-java/customer&#95;first&#95;and&#95;last&#95;order&#95;dates</pre>
+</li>
+<li>Click <strong>Finish</strong>. <p><img
+                                alt="Select Project"
+                                src="../../images/gs/setup/select-project.png"
+                                width="75%" /></p><p>STS imports the Maven project. Note the progress indicator in the lower-right portion of the application.</p></li>
+</ol>
+
+<p></li>
+            <li>Build the Project<ol>
+                    <li>Open the <strong>Package Explorer</strong></li>
+                    <li>Select the project.</li>
+                    <li>Right-click on the project and select <strong>Run As &gt; Maven install</strong>.<p>STS builds the project. Wait until the console operation terminates before continuing.</p></li>
+                </ol></li>
+            <li>Create a Run Configuration<ol>
+                    <li>Open the <strong>STS Main Menu Explorer</strong>.</li>
+                    <li> Click <strong>Run-&gt;Run Configurations</strong><p>The <strong>Run Configurations</strong> panel opens.</p>
+                    </li>
+                    <li>Select <strong>Java Application</strong> from the left panel. </li>
+                    <li>Click the <strong>New</strong> icon.</li>
+                    <li>In the <strong>Name</strong> box, enter a name for the project.</li>
+                    <li>Under Project:, click <strong>Browse</strong>. </li>
+                    <li>Select the <code>customer&#95;first&#95;and&#95;last&#95;order&#95;dates</code> project and click <strong>OK</strong>.</li>
+                    <li>Under Main class, enter <code>com.pivotal.hadoop.CustomerFirstLastOrderDateDriver</code>. </li>
+                    <li>Click <strong>Apply</strong>.</li>
+                    <li>Select the <strong>Arguments</strong> tab. </li>
+                    <li>Enter the following paths in the program arguments box:<p><code>/retail&#95;demo/orders/orders.tsv.gz hbase2&#95;output</code></p>
+                        <img
+                            alt=""
+                            src="../../images/gs/setup/main-class.png"
+                            width="75%" />
+                    </li>
+                </ol></li>
+            <li>Click <strong>Apply</strong>.</li>
+            <li>Click <strong>Run</strong>.<p>Messages that display in the console show that the MapReduce program is running. If there are issues, you can see exception messages in the console.  The output should be available on the output folder.</p></li>
+            <li>From the main menu, select <strong>Run As -&gt; Junit Test</strong> to run the unit tests. </li>
+            <li>Build the project. From the terminal, run the following commands:<pre class="terminal">$ cd  /pivotal-­samples/map­-reduce­-java/customer&#95;first&#95;and&#95;last&#95;order&#95;dates
+$ mvn clean compile
+$ mvn -DskipTests package</pre></li>
+            <li>Run Unit tests using the following commands:<pre class="terminal"> cd /pivotal-­samples/map­-reduce­-java/customer&#95;first&#95;and&#95;last&#95;order&#95;dates 
+$ mvn test</pre></li>
+        <li>Understand the data formats <p>Data header:</p>
+            <pre class="terminal">
+order&#95;id  | customer&#95;id | store&#95;id  |   order&#95;datetime       |ship&#95;completion&#95;datetime | 
+return&#95;datetime   |   refund&#95;datetime   | payment&#95;method&#95;code |total&#95;tax&#95;amount | 
+total&#95;paid&#95;amount | total&#95;item&#95;quantity | total&#95;discount&#95;amount |coupon&#95;code    | 
+coupon&#95;amount | order&#95;canceled&#95;flag | has&#95;returned&#95;items&#95;flag |has&#95;refunded&#95;items&#95;flag | 
+fraud&#95;code | fraud&#95;resolution&#95;code | billing&#95;address&#95;line1 |billing&#95;address&#95;line2 |
+billing&#95;address&#95;line3 | billing&#95;address&#95;city | billing&#95;address&#95;state |billing&#95;address&#95;postal&#95;code | 
+billing&#95;address&#95;country | billing&#95;phone&#95;number | customer&#95;name   |
+customer&#95;email&#95;address  | ordering&#95;session&#95;id  | website&#95;url
+</pre>
+            <p>The data is separated by <code>\t</code>, as shown below: </p><pre class="terminal">
+8180565407  49711957    69  2010-10-07 08:48:35 2010-10-10 03:01:47
+FreeReplacement 0.41300 5.90000 1   0.05000 None    0.00000 N   N   N
+7385 CLINTON    Apt 24      INDIANAPOLIS    IN  46201
+USA (105)037-5575   Casey Mahon <a href="mailto:Casey.Mahon@sitebilgi.net">Casey.Mahon@sitebilgi.net</a>
+OS22196-563554-06-11957 <a href="http://myretailsite.emc.com/product&amp;#95;detail">http://myretailsite.emc.com/product&amp;#95;detail</a>
+</pre>
+        </li>
+        <li> Decide on the input and output formats The data is in text format and the fields are separated by <code>\t</code>, which makes the data well-structured for processing. The code uses the <code>TextInputFormat</code> class, which is a subclass of <code>FileInputFormat</code> as the input format. By default, the map function retrieves one line at a time for processing. </li>
+        <li> Designing the Mapper: <p>We are interested in customer&#95;id ,order&#95;id and order&#95;datetime in every row. In the Mapper code. we will extract <code>customer&#95;id</code> as key and <code>order&#95;id</code> and <code>order&#95;datetime</code> as values. Since we are selecting two fields as values, we separate the fields using <code>,</code> as the separator. </p>
+            <p>Mapper code:</p>
+            <pre class="terminal">
+    @Override
+    protected void map(LongWritable offset, Text text, Context context)
+    throws IOException, InterruptedException {
+        String[] tokens = text.toString().split(&quot;\t&quot;);
+        String order&#95;id = tokens[0];
+        String customer&#95;id = tokens[1];
+        String order&#95;datetime = tokens[3];
+        key.set(Integer.parseInt(customer&#95;id));
+        val.set(order&#95;id + &quot;,&quot; + order&#95;datetime);
+        context.write(key, val);
+    }
+</pre>
+        </li>
+       <li> Designing the Reducer: <p>The Reducer is also a simple instance, similar to the classic word count example. In this case, we are finding the first and last date of orders for each customer, which is passed as a key.</p>
+<pre class="terminal">
+@Override
+public void reduce(IntWritable key, Iterable&lt;Text&gt; counts, Context context)
+throws IOException, InterruptedException {
+StringBuffer temp;
+Text result = new Text();
+StringBuffer lastOrderDate = null;
+StringBuffer firstOrderDate = null;
+try {
+        firstlastOrderDate = new StringBuffer(lastOrderDate(key, counts));
+    } 
+catch (ParseException e) {
+    e.printStackTrace();
+    }
+temp = new StringBuffer(key.toString());
+temp.append(&quot;\t&quot;);
+temp.append(firstlastOrderDate);
+result.set(temp.toString());
+context.write(NullWritable.get(), result);
+}
+public static String lastOrderDate(IntWritable key, Iterable&lt;Text&gt; counts) throws ParseException {
+........
+.......
+return valDate;
+}
+</pre>
+        </li>
+<li>Writing the MapReduce driver code: 
+<pre class="terminal">
+Job job = new Job(getConf());
+job.setJarByClass(CustomerFirstLastOrderDateDriver.class);</p>
+
+<p>FileInputFormat.setInputPaths(job, new Path(args[0]));
+Path outputPath = new Path(args[1]);
+outputPath.getFileSystem(job.getConfiguration()).delete(outputPath,true);</p>
+
+<p>job.setMapperClass(CustomerFirstLastOrderDateMapper.class);
+job.setReducerClass(CustomerFirstLastOrderDateReducer.class);</p>
+
+<p>FileOutputFormat.setOutputPath(job, new Path(args[1]));</p>
+
+<p>job.setMapOutputKeyClass(IntWritable.class);
+job.setMapOutputValueClass(Text.class);</p>
+
+<p>job.setOutputKeyClass(NullWritable. class);
+job.setOutputValueClass(Text.class);
+job.waitForCompletion(true);;</p>
+
+<p></pre>
+</li>
+    <li>Running the tutorial<p>The following instructions can be used to run the sample on the Pivotal Hd Virtual Machine.</p>
+    <ol
+                type="a">
+                <li>
+                    <p>Go to the project directory</p>
+                    <pre class="terminal">
+cd  pivotal-samples/map-reduce-java
+ls
+cd customer&#95;first&#95;and&#95;last&#95;order&#95;dates
+</pre>
+                </li>
+                <li>Submit the job using the following command:<pre class="terminal">
+hadoop jar target/customer&#95;first&#95;and&#95;last&#95;order&#95;dates-1.0.jar com.pivotal.hadoop.CustomerFirstLastOrderDateDriver /retail&#95;demo/orders/orders.tsv.gz /output-mr2
+</pre>
+                    </li>
+                <li>Check the output directory in Hadoop file system. The output directory should contain the <code>part-r-0000</code> file.</p>
+                        <p>View the output using the following command:</p>
+                        <pre class="terminal">
+hadoop fs -cat /output-mr2/part-r-00000|more</pre><p>(The output is piped to <code>more</code> because it is lengthy.) The first portion of the output looks like this: </p><pre class="terminal"></p>
+
+<p>137    8228753927    2010-10-02 09:26:40    6952760836    2010-10-10 23:46:16
+274    8228753207    2010-10-02 06:49:05    8038062167    2010-10-14 09:17:33
+411    8228659208    2010-10-02 02:45:08    6326675610    2010-10-11 11:32:28
+548    6734479225    2010-10-01 08:31:08    6953064348    2010-10-10 19:20:25
+1096    6734568190    2010-10-01 21:15:03    8181753531    2010-10-07 04:04:26
+1370    6734388086    2010-10-01 02:08:12    7412417661    2010-10-12 23:46:44
+1507    8456649021    2010-10-03 04:47:50    7412451029    2010-10-12 07:37:18
+1644    7136614975    2010-10-04 09:03:40    8038062935    2010-10-14 17:27:29
+2055    7570913900    2010-10-08 23:29:35    4877101631    2010-10-13 21:12:05
+2192    7136693581    2010-10-04 19:48:16    8037933831    2010-10-14 12:35:21
+...
+</pre>
+                    </li>
+            </ol>
+        </li>
+</ol></p>
+
+<p>You have successfully run the sample on Pivotal HD!</p>
+
+      </main><!--end of content-->
+
+  </div><!-- end of container -->
+
+  <script type="text/javascript">
+    (function() {
+      var didInit = false;
+      function initMunchkin() {
+        if(didInit === false) {
+          didInit = true;
+          Munchkin.init('625-IUJ-009');
+        }
+      }
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+      s.onreadystatechange = function() {
+        if (this.readyState == 'complete' || this.readyState == 'loaded') {
+          initMunchkin();
+        }
+      };
+      s.onload = initMunchkin;
+      document.getElementsByTagName('head')[0].appendChild(s);
+    })();
+  </script>
+</div><!--end of wrap-->
+</div><!--end of viewport-->
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href='/'>Pivotal Documentation</a>
+      &copy; 2015 <a href='http://gopivotal.com'>Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.gopivotal.com" target="_blank">Visit Support</a>
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

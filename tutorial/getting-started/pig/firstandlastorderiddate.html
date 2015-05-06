@@ -1,0 +1,461 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Pig - First and Last Order Date / Order Id for each Customer |
+    Pivotal Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link href="/stylesheets/master.css" rel="stylesheet" type="text/css" media="screen,print" />
+  <link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+
+
+
+  <script type="text/javascript">
+    if (window.location.host === 'pivotalhd.docs.pivotal.io') {
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-39702075-1']);
+      _gaq.push(['_setDomainName', 'gopivotal.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    }
+  </script>
+</head>
+
+<body class="tutorial tutorial_getting-started tutorial_getting-started_pig tutorial_getting-started_pig_firstandlastorderiddate has-subnav">
+
+<div class="viewport">
+<div class='wrap'>
+  <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+  <script type="text/javascript">
+      try {
+          Typekit.load();
+      } catch (e) {
+      }
+  </script>
+  <script type="text/javascript">
+      document.domain = "gopivotal.com";
+  </script>
+
+  <script type="text/javascript">
+    WebFontConfig = {
+      google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
+
+    <header class="header header-layout">
+      <h1 class="logo">
+        <!-- <a href="/"> -->
+            <ul class="breadcrumbs"><li><a href="/tutorial/getting-started/pig.html">Pig Getting Started</a></li> <li class="active"><span>Pig - First and Last Order Date / Order Id for each Customer</span></li></ul>
+        <!-- </a> -->
+      <a href="/index.html">Pivotal HD Documentation</a></h1>
+      <div class="header-links js-bar-links">
+        <div class="btn-menu" data-behavior="MenuMobile"></div>
+        <div class="header-item">
+          <a href="http://docs.pivotal.io/index.html">Docs Home</a>
+        </div>
+        <!--
+        <div class="header-item">
+          <a href="http://support.gopivotal.com" target="_blank">Support</a>
+        </div>
+        -->
+         <div class="header-item">
+          <a href="http://ask.gopivotal.com/hc/en-us/categories/200072578-Pivotal-HD-Knowledge-Base" target="_blank">Knowledge Base</a>
+        </div>
+        <div class="header-item">
+          <a href="http://ask.gopivotal.com/hc/communities/public/topics/200053048-Pivotal-HD-General" target="_blank">Forum</a>
+        
+        
+        
+        <div class="header-item searchbar js-searchbar">
+          <a class="search-icon" data-behavior="Search"></a>
+          <div class="search-input">
+            <!-- Google CSE Search Box -->
+            <div class="search-input-inner" id="docs-search">
+                <gcse:search></gcse:search>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  <div class="container">
+
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+ <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+ <div class="nav-content">
+  <ul class="menu">
+              <!-- REPLACE <li/> NODES-->
+              
+
+        <li class="menu-item js-menu-item">            
+      <div class="menu-title js-menu-title">
+          	    <a id='home-nav-link' href="/tutorial/index.html">Getting Started with the Pivotal HD Tutorial </a>
+      </div> 
+         </li>
+              
+             <div class="menu-title js-menu-title">
+                <li class="menu-link">
+                  <a  href="/tutorial/getting-started-overview.html">Setting Up the Pivotal HD Tutorial</a>
+             </div>
+                  <ul >
+                    <li class="menu-link"><a href='/tutorial/getting-started/pivotalhd-vm.html'>Pivotal HD Virtual Machine</a></li>
+               
+                    <li class="menu-link"><a href='/tutorial/getting-started/dataset.html'>Loading the Retail Demo Dataset</a></li>
+					
+                  </UL>
+			    </li>
+			
+			  <div class="menu-title js-menu-title">
+				<li class="menu-item">
+				  <a  href="/tutorial/getting-started/overview.html">Tutorials Overview</a>
+				</div>
+				<ul >
+<div class="menu-title js-menu-title">
+                    <li class="menu-link"><a href='/tutorial/getting-started/map-reduce-java.html'>MapReduce Java</a>
+                    </div>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/map-reduce-java/summarization-postalcode-paidamount.html'>Summarization: PostalCode with Highest Revenue</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/map-reduce-java/firstandlastorderiddate.html'>Minimum/Maximum: Last and First order date</a></li>
+                      </ul>
+                    </li> <div class="menu-title">
+                    <li class="menu-item" ><a href='/tutorial/getting-started/hawq.html'>HAWQ</a>
+						</div>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/internal-tables.html'>HAWQ Internal Tables</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-external-tables.html'>PXF External Tables: HDFS</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-hbase-external-tables.html'>PXF External Tables: HBase</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-hbase-external-enable-filter-pushdown.html'>PXF External Tables Predicate Push-down: HBase</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-external-tables-statistics.html'>PXF External Tables: Statistics</a></li>
+                      </ul>
+                    </li><div class="menu-title">
+                    <li class="menu-item"><a href='/tutorial/getting-started/hive/hive-tables.html'>Hive</a></div>
+                     <ul >
+                        <li class="menu-item"><a href='/tutorial/getting-started/hive/hive-tables.html'>Hive Tables</a></li>
+                      </ul> 
+					
+                    </li>
+                     <div class="menu-title">
+                    <li class="menu-item"><a href='/tutorial/getting-started/pig.html'>Pig</a>
+                    </div>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/pig/summarization-postalcode-paidamount.html'>Top ten postal codes</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/pig/firstandlastorderiddate.html'>Last and First order date of all the customers</a></li>
+                      </ul>
+                    </li>
+				
+                   <!-- <li class="menu-link"><a href='/tutorial/getting-started/spring-data-hadoop.html'>Spring Data Hadoop</a>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/spring-data-hadoop/wordcount_with_spring_hadoop-gphd.html'>Word Count with Spring Data on Pivotal HD</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/spring-data-hadoop/wordcount_with_spring_hadoop.html'>Word Count with Spring Data on Hadoop 2.2.0</a></li>
+                      </ul>
+                    </li>-->
+                  </ul>
+                </li>
+			  <div class="menu-title js-menu-title">
+				 <li><a href="http://gemfirexd.docs.gopivotal.com/latest/userguide/index.html#getting_started/tutorial_chapter_intro.html" target="_blank">GemFire XD Quickstart</a></li>
+				 </div>
+			 </ul>
+                	</li>
+              </ul>
+           </div>   
+        </div><!--end of sub-nav-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+          <h1 class="title-container">
+            Pig - First and Last Order Date / Order Id for each Customer
+          </h1>
+            <div id="js-quick-links">
+              
+            </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <h1>Overview</h1>
+
+<p>This example demonstrates using Pig to retrieve the first and last orders for all customers and display the customer&rsquo;s ID. The <code>retail_demo</code> dataset has information about the orders that includes the customer ID, ordered date, order ID, and other attributes.</p>
+
+<h1>Prerequisites</h1>
+
+<ol>
+<li><p>Install the Pivotal HD Single-Node Virtual Machine and start the Pivotal HD services. See <a href="/tutorial/getting-started/pivotalhd-vm.html">Pivotal HD Single-Node VM</a>.</p></li>
+<li><p>Load the Retail Demo Dataset before following the steps in this section. See <a href="/tutorial/getting-started/dataset.html">Retail Demo Dataset</a>.</p></li>
+</ol>
+
+<h1>Installation</h1>
+
+<p>Pig is included with the Pivotal HD distribution. You use the Pig service to upload and query the data.</p>
+
+<h1>Using Pig to Return the First and Last Order</h1>
+
+<ol>
+<li><p>Start the Pig interactive <code>grunt</code> shell by issuing the <code>pig</code> command:</p>
+
+<pre class="terminal">
+$ pig
+grunt> 
+</pre></li>
+<li><p>Verify that <code>orders.tsv.gz</code> is available in HDFS: </p>
+
+<pre class="terminal">
+grunt> fs -ls /retail_demo/orders;
+Found 1 items
+-rw-r--r--   3 gpadmin hadoop   72797064 2013-06-25 10:13 /retail_demo/orders/orders.tsv.gz
+</pre></li>
+<li><p>Create a relation named <code>orders</code> from <code>orders.tsv.tz</code>: </p>
+
+<pre class="terminal">
+grunt> orders = LOAD '/retail_demo/orders/orders.tsv.gz'
+USING PigStorage('\t') AS (
+order_id : long,
+customer_id : int,
+store_id : int,
+order_datetime : chararray,
+ship_completion_datetime : chararray,
+return_datetime : chararray,
+refund_datetime : chararray,
+payment_method_code : chararray,
+total_tax_amount :double,
+total_paid_amount : double,
+total_item_quantity : int,
+total_discount_amount : int,
+coupon_code : chararray,
+coupon_amount : int,
+order_canceled_flag : chararray,
+has_returned_items_flag : chararray,
+has_refunded_items_flag : chararray,
+fraud_code : chararray,
+fraud_resolution_code : chararray, 
+billing_address_line1 : chararray,
+billing_address_line2 : chararray,
+billing_address_line3 : chararray,
+billing_address_city : chararray,
+billing_address_state : chararray,
+billing_address_postal_code : int,
+billing_address_country : chararray,
+billing_phone_number : chararray,
+customer_name : chararray,
+customer_email_address :chararray,
+ordering_session_id : int,
+website_url : chararray
+);
+</pre>
+
+<p>Note that Pig can process a compressed file natively.</p></li>
+<li><p>Group records by <code>customer_id</code>:</p>
+
+<pre class="terminal">
+grunt> records_group = GROUP orders BY customer_id;
+</pre>
+
+<p>The <code>group</code> statement groups the records.</p></li>
+</ol>
+
+<h2>Finding the most-recent order date for the customer</h2>
+
+<ol>
+<li><p>Get the most recent order using the <code>max</code> function:</p>
+
+<pre class="terminal">
+grunt> recent_order_date = FOREACH records_group GENERATE 
+                   flatten(orders.customer_id) AS customer_id,
+                   flatten(orders.order_id) AS order_id,
+                   MAX(orders.order_datetime) AS order_datetime;
+</pre>
+
+<p>The <code>flatten</code> function is used to remove a level of nesting from a relation.</p></li>
+<li><p>Collect <code>distinct</code> records from the <code>recent_order_date</code> relation:</p>
+
+<pre class="terminal">
+grunt> distinct_order_date = distinct recent_order_date;
+</pre></li>
+<li><p>Join the <code>orders</code> and <code>distinct_order_date</code> relations by <code>customer_id</code>,<code>order_id</code>,<code>order_datetime</code>:</p>
+
+<pre class="terminal">
+grunt> rowOrder = join orders by (customer_id,order_id,order_datetime),
+      distinct_order_date by (customer_id,order_id,order_datetime);
+</pre></li>
+<li><p>Filter the records in the <code>rowOrder</code> relation:</p>
+
+<pre class="terminal">
+grunt> joined_recent_order_date = filter rowOrder by 
+                        orders::customer_id == distinct_order_date::customer_id and 
+                        orders::order_id == distinct_order_date::order_id and 
+                        orders::order_datetime == distinct_order_date::order_datetime;
+</pre></li>
+<li><p>Project the required fields from <code>joined_recent_order_date</code>:</p>
+
+<pre class="terminal">
+grunt> max_orders_result = FOREACH joined_recent_order_date GENERATE 
+   orders::customer_id,
+   orders::order_id ,
+   orders::order_datetime;
+</pre></li>
+</ol>
+
+<h2>Find the oldest order date for each customer</h2>
+
+<ol>
+<li><p>Get the oldest order date using the <code>min</code> function:</p>
+
+<pre class="terminal">
+grunt> old_order_date = FOREACH records_group GENERATE 
+            flatten(orders.customer_id) AS customer_id,
+                flatten(orders.order_id) as order_id,
+                MIN(orders.order_datetime) AS order_datetime;
+</pre></li>
+<li><p>Collect <code>distinct</code> records from <code>old_order_date</code>:</p>
+
+<pre class="terminal">
+grunt> dist_old_order_date = distinct old_order_date;
+</pre></li>
+<li><p>Join <code>orders</code> and <code>dist_old_order_date</code> by <code>customer_id</code>,<code>order_id</code>,<code>order_datetime</code>:</p>
+
+<pre class="terminal">
+grunt> min_order_list = join orders by (customer_id,order_id,order_datetime),
+        dist_old_order_date by (customer_id,order_id,order_datetime);
+</pre> </li>
+<li><p>Filter the records in <code>min_order_list</code>:</p>
+
+<pre class="terminal">
+grunt> joined_old_order_date = filter min_order_list by 
+                     orders::customer_id == dist_old_order_date::customer_id and 
+                     orders::order_id == dist_old_order_date::order_id and   
+                     orders::order_datetime == dist_old_order_date::order_datetime;
+</pre> </li>
+<li><p>Project the needed fields from <code>joined_old_order_date</code>:</p>
+
+<pre class="terminal">
+grunt> min_orders_result = FOREACH joined_old_order_date GENERATE 
+       orders::customer_id,
+       orders::order_id ,
+       orders::order_datetime;
+</pre></li>
+</ol>
+
+<h2>Join Old Date, Latest Date, and OrderId for every Customer</h2>
+
+<ol>
+<li><p>Join <code>max_orders_result</code> and <code>min_orders_result</code>:</p>
+
+<pre class="terminal">
+grunt> result = join min_orders_result by customer_id,
+    max_orders_result by customer_id; 
+</pre></li>
+<li><p>Get the first ten records:</p>
+
+<pre class="terminal">
+grunt> firstten = limit result 10;
+</pre>
+
+<p>The <code>limit</code> function returns no more than 10 records.</p></li>
+<li><p>Use <code>dump</code> to display the records:</p>
+
+<pre class="terminal">
+grunt> dump firstten;
+137    8228753927    2010-10-02 09:26:40    137    6952760836    2010-10-10 23:46:16
+274    8228753207    2010-10-02 06:49:05    274    8038062167    2010-10-14 09:17:33
+411    8228659208    2010-10-02 02:45:08    411    6326675610    2010-10-11 11:32:28
+548    6734479225    2010-10-01 08:31:08    548    6953064348    2010-10-10 19:20:25
+1096    6734568190    2010-10-01 21:15:03    1096    8181753531    2010-10-07 04:04:26
+1370    6734388086    2010-10-01 02:08:12    1370    7412417661    2010-10-12 23:46:44
+1507    8456649021    2010-10-03 04:47:50    1507    7412451029    2010-10-12 07:37:18
+1644    7136614975    2010-10-04 09:03:40    1644    8038062935    2010-10-14 17:27:29
+2055    7570913900    2010-10-08 23:29:35    2055    4877101631    2010-10-13 21:12:05
+2192    7136693581    2010-10-04 19:48:16    2192    8037933831    2010-10-14 12:35:21
+</pre></li>
+<li><p>Save the output to a file using <code>store</code>:</p>
+
+<pre class="terminal">
+grunt> store firstten into '/user/gpadmin/output2/';
+grunt> fs -cat /user/gpadmin/output2/part*;
+
+137    8228753927    2010-10-02 09:26:40    137    6952760836    2010-10-10 23:46:16
+274    8228753207    2010-10-02 06:49:05    274    8038062167    2010-10-14 09:17:33
+411    8228659208    2010-10-02 02:45:08    411    6326675610    2010-10-11 11:32:28
+548    6734479225    2010-10-01 08:31:08    548    6953064348    2010-10-10 19:20:25
+1096    6734568190    2010-10-01 21:15:03    1096    8181753531    2010-10-07 04:04:26
+1370    6734388086    2010-10-01 02:08:12    1370    7412417661    2010-10-12 23:46:44
+1507    8456649021    2010-10-03 04:47:50    1507    7412451029    2010-10-12 07:37:18
+1644    7136614975    2010-10-04 09:03:40    1644    8038062935    2010-10-14 17:27:29
+2055    7570913900    2010-10-08 23:29:35    2055    4877101631    2010-10-13 21:12:05
+2192    7136693581    2010-10-04 19:48:16    2192    8037933831    2010-10-14 12:35:21
+
+</pre></li>
+</ol>
+
+<h1>Conclusion</h1>
+
+<p>The example demonstrated using Pig to retrieve the first and last orders IDs of customers in a retail data base.</p>
+
+      </main><!--end of content-->
+
+  </div><!-- end of container -->
+
+  <script type="text/javascript">
+    (function() {
+      var didInit = false;
+      function initMunchkin() {
+        if(didInit === false) {
+          didInit = true;
+          Munchkin.init('625-IUJ-009');
+        }
+      }
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+      s.onreadystatechange = function() {
+        if (this.readyState == 'complete' || this.readyState == 'loaded') {
+          initMunchkin();
+        }
+      };
+      s.onload = initMunchkin;
+      document.getElementsByTagName('head')[0].appendChild(s);
+    })();
+  </script>
+</div><!--end of wrap-->
+</div><!--end of viewport-->
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href='/'>Pivotal Documentation</a>
+      &copy; 2015 <a href='http://gopivotal.com'>Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.gopivotal.com" target="_blank">Visit Support</a>
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

@@ -1,0 +1,718 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      HAWQ -- PXF External Tables - HBase |
+    Pivotal Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link href="/stylesheets/master.css" rel="stylesheet" type="text/css" media="screen,print" />
+  <link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+
+
+
+  <script type="text/javascript">
+    if (window.location.host === 'pivotalhd.docs.pivotal.io') {
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-39702075-1']);
+      _gaq.push(['_setDomainName', 'gopivotal.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    }
+  </script>
+</head>
+
+<body class="tutorial tutorial_getting-started tutorial_getting-started_hawq tutorial_getting-started_hawq_pxf-hbase-external-tables has-subnav">
+
+<div class="viewport">
+<div class='wrap'>
+  <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+  <script type="text/javascript">
+      try {
+          Typekit.load();
+      } catch (e) {
+      }
+  </script>
+  <script type="text/javascript">
+      document.domain = "gopivotal.com";
+  </script>
+
+  <script type="text/javascript">
+    WebFontConfig = {
+      google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
+
+    <header class="header header-layout">
+      <h1 class="logo">
+        <!-- <a href="/"> -->
+            <ul class="breadcrumbs"><li><a href="/tutorial/getting-started/hawq.html">HAWQ Getting Started</a></li> <li class="active"><span>HAWQ -- PXF External Tables - HBase</span></li></ul>
+        <!-- </a> -->
+      <a href="/index.html">Pivotal HD Documentation</a></h1>
+      <div class="header-links js-bar-links">
+        <div class="btn-menu" data-behavior="MenuMobile"></div>
+        <div class="header-item">
+          <a href="http://docs.pivotal.io/index.html">Docs Home</a>
+        </div>
+        <!--
+        <div class="header-item">
+          <a href="http://support.gopivotal.com" target="_blank">Support</a>
+        </div>
+        -->
+         <div class="header-item">
+          <a href="http://ask.gopivotal.com/hc/en-us/categories/200072578-Pivotal-HD-Knowledge-Base" target="_blank">Knowledge Base</a>
+        </div>
+        <div class="header-item">
+          <a href="http://ask.gopivotal.com/hc/communities/public/topics/200053048-Pivotal-HD-General" target="_blank">Forum</a>
+        
+        
+        
+        <div class="header-item searchbar js-searchbar">
+          <a class="search-icon" data-behavior="Search"></a>
+          <div class="search-input">
+            <!-- Google CSE Search Box -->
+            <div class="search-input-inner" id="docs-search">
+                <gcse:search></gcse:search>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  <div class="container">
+
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+ <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+ <div class="nav-content">
+  <ul class="menu">
+              <!-- REPLACE <li/> NODES-->
+              
+
+        <li class="menu-item js-menu-item">            
+      <div class="menu-title js-menu-title">
+          	    <a id='home-nav-link' href="/tutorial/index.html">Getting Started with the Pivotal HD Tutorial </a>
+      </div> 
+         </li>
+              
+             <div class="menu-title js-menu-title">
+                <li class="menu-link">
+                  <a  href="/tutorial/getting-started-overview.html">Setting Up the Pivotal HD Tutorial</a>
+             </div>
+                  <ul >
+                    <li class="menu-link"><a href='/tutorial/getting-started/pivotalhd-vm.html'>Pivotal HD Virtual Machine</a></li>
+               
+                    <li class="menu-link"><a href='/tutorial/getting-started/dataset.html'>Loading the Retail Demo Dataset</a></li>
+					
+                  </UL>
+			    </li>
+			
+			  <div class="menu-title js-menu-title">
+				<li class="menu-item">
+				  <a  href="/tutorial/getting-started/overview.html">Tutorials Overview</a>
+				</div>
+				<ul >
+<div class="menu-title js-menu-title">
+                    <li class="menu-link"><a href='/tutorial/getting-started/map-reduce-java.html'>MapReduce Java</a>
+                    </div>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/map-reduce-java/summarization-postalcode-paidamount.html'>Summarization: PostalCode with Highest Revenue</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/map-reduce-java/firstandlastorderiddate.html'>Minimum/Maximum: Last and First order date</a></li>
+                      </ul>
+                    </li> <div class="menu-title">
+                    <li class="menu-item" ><a href='/tutorial/getting-started/hawq.html'>HAWQ</a>
+						</div>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/internal-tables.html'>HAWQ Internal Tables</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-external-tables.html'>PXF External Tables: HDFS</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-hbase-external-tables.html'>PXF External Tables: HBase</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-hbase-external-enable-filter-pushdown.html'>PXF External Tables Predicate Push-down: HBase</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-external-tables-statistics.html'>PXF External Tables: Statistics</a></li>
+                      </ul>
+                    </li><div class="menu-title">
+                    <li class="menu-item"><a href='/tutorial/getting-started/hive/hive-tables.html'>Hive</a></div>
+                     <ul >
+                        <li class="menu-item"><a href='/tutorial/getting-started/hive/hive-tables.html'>Hive Tables</a></li>
+                      </ul> 
+					
+                    </li>
+                     <div class="menu-title">
+                    <li class="menu-item"><a href='/tutorial/getting-started/pig.html'>Pig</a>
+                    </div>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/pig/summarization-postalcode-paidamount.html'>Top ten postal codes</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/pig/firstandlastorderiddate.html'>Last and First order date of all the customers</a></li>
+                      </ul>
+                    </li>
+				
+                   <!-- <li class="menu-link"><a href='/tutorial/getting-started/spring-data-hadoop.html'>Spring Data Hadoop</a>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/spring-data-hadoop/wordcount_with_spring_hadoop-gphd.html'>Word Count with Spring Data on Pivotal HD</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/spring-data-hadoop/wordcount_with_spring_hadoop.html'>Word Count with Spring Data on Hadoop 2.2.0</a></li>
+                      </ul>
+                    </li>-->
+                  </ul>
+                </li>
+			  <div class="menu-title js-menu-title">
+				 <li><a href="http://gemfirexd.docs.gopivotal.com/latest/userguide/index.html#getting_started/tutorial_chapter_intro.html" target="_blank">GemFire XD Quickstart</a></li>
+				 </div>
+			 </ul>
+                	</li>
+              </ul>
+           </div>   
+        </div><!--end of sub-nav-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+          <h1 class="title-container">
+            HAWQ -- PXF External Tables - HBase
+          </h1>
+            <div id="js-quick-links">
+              
+            </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <h1>Overview</h1>
+
+<p>In this exercise you create PXF External tables on HBase.
+You use <code>HBaseDataFragmenter</code>,<code>HBaseAccessor</code> and <code>HBaseResolver</code> while specifying the <code>LOCATION</code> in the HAWQ <code>create</code> statement.</p>
+
+<h1>Prerequsities</h1>
+
+<ol>
+<li>Install the Pivotal HD Single-Node Virtual Machine and start the Pivotal HD services. See <a href="/tutorial/getting-started/pivotalhd-vm.html">Pivotal HD Single-Node VM</a>.</li>
+</ol>
+
+<p><strong>Important</strong>: These HBase examples may require that you modify the settings for the virtual machine. If the examples fail, it may be due to an unreported out-of-memory condition. If you experience unexplained failures, try changing the following settings in your VMware software. You must shutdown the virtual machine before making these changes:</p>
+
+<ul>
+<li>Change the number of processors from 1 to 2.</li>
+<li>Change the memory allocated to the virtual machine to 8 GB or higher. (A higher value may impact the performance of the host machine.)</li>
+</ul>
+
+<ol>
+<li>Load the Retail Demo Dataset before following the steps in this section.
+See <a href="/tutorial/getting-started/dataset.html">Retail Demo Dataset</a>.</li>
+</ol>
+
+<h1>Create PXF External Tables</h1>
+
+<p>To create PXF External tables on HBase, you use the <code>psql</code> utility to execute SQL commands that create the database and tables. After creating the tables, you create corresponding HBase tables using the HBase shell.</p>
+
+<ol>
+<li><p>Start the utility by entering the <code>psql</code> command at the command prompt. </p>
+
+<p>For example:</p>
+
+<pre class="terminal">[gpadmin@pivhdsne sample-data]$ psql
+    Timing is on.
+    psql (8.2.15)
+    Type "help" for help.
+
+ gpadmin=# CREATE SCHEMA retail_demo;   
+
+</pre></li>
+<li><p>Create the <code>retail_demo</code> Schema if it is not already created</p>
+
+<pre class="terminal">
+gpadmin=# CREATE SCHEMA retail_demo;
+</pre></li>
+<li><p>To create the tables, run each of the following SQL commands:</p>
+
+<p>Note: While issuing the SQL queries, make sure the line with the <code>LOCATION</code> keyword is all on one line.</p></li>
+</ol>
+
+<ul>
+<li><p>Create the table <code>retail_demo.categories_dim_hbase</code>:</p>
+
+<pre class="terminal">
+CREATE EXTERNAL TABLE retail_demo.categories_dim_hbase
+(
+--category_id integer,
+recordkey integer,
+"cf1:category_name" character(400)
+)
+LOCATION ('pxf://pivhdsne:50070/categories_dim?PROFILE=hbase')
+FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+
+    </pre></li>
+<li><p>Create the table <code>retail_demo.customers_dim_hbase</code>:</p>
+
+<pre class="terminal">
+CREATE EXTERNAL TABLE retail_demo.customers_dim_hbase
+(
+-- customer_id integer,
+recordkey integer,
+"cf1:first_name" TEXT,
+"cf1:last_name" TEXT,
+"cf1:gender" character(1)
+)
+LOCATION ('pxf://pivhdsne:50070/customers_dim?PROFILE=hbase')
+FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+
+</pre></li>
+<li><p>Create the table <code>retail_demo.order_lineitems_hbase</code>:</p>
+
+<pre class="terminal">
+CREATE  EXTERNAL TABLE retail_demo.order_lineitems_hbase
+(
+recordkey integer,
+"cf1:order_id" TEXT,
+"cf1:order_item_id" TEXT,
+"cf1:product_id" TEXT,
+"cf1:product_name" TEXT,
+"cf1:customer_id" TEXT,
+"cf1:store_id" TEXT,
+"cf1:item_shipment_status_code" TEXT,
+"cf1:order_datetime" TEXT,
+"cf1:ship_datetime" TEXT,
+"cf1:item_return_datetime" TEXT,
+"cf1:item_refund_datetime" TEXT,
+"cf1:product_category_id" TEXT,
+"cf1:product_category_name" TEXT,
+"cf1:payment_method_code" TEXT,
+"cf1:tax_amount" TEXT,
+"cf1:item_quantity" TEXT,
+"cf1:item_price" TEXT,
+"cf1:discount_amount" TEXT,
+"cf1:coupon_code" TEXT,
+"cf1:coupon_amount" TEXT,
+"cf1:ship_address_line1" TEXT,
+"cf1:ship_address_line2" TEXT,
+"cf1:ship_address_line3" TEXT,
+"cf1:ship_address_city" TEXT,
+"cf1:ship_address_state" TEXT,
+"cf1:ship_address_postal_code" TEXT,
+"cf1:ship_address_country" TEXT,
+"cf1:ship_phone_number" TEXT,
+"cf1:ship_customer_name" TEXT,
+"cf1:ship_customer_email_address" TEXT,
+"cf1:ordering_session_id" TEXT,
+"cf1:website_url" TEXT
+)
+LOCATION ('pxf://pivhdsne:50070/order_lineitems?PROFILE=hbase')
+FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+    </pre></li>
+<li><p>Create the table <code>retail_demo.orders_hbase</code>:</p>
+
+<pre class="terminal">
+CREATE EXTERNAL TABLE retail_demo.orders_hbase
+(
+-- order_id TEXT,
+recordkey integer,
+"cf1:order_id" TEXT,
+"cf1:customer_id" TEXT,
+"cf1:store_id" TEXT,
+"cf1:order_datetime" TEXT,
+"cf1:ship_completion_datetime" TEXT,
+"cf1:return_datetime" TEXT,
+"cf1:refund_datetime" TEXT,
+"cf1:payment_method_code" TEXT,
+"cf1:total_tax_amount" TEXT,
+"cf1:total_paid_amount" TEXT,
+"cf1:total_item_quantity" TEXT,
+"cf1:total_discount_amount" TEXT,
+"cf1:coupon_code" TEXT,
+"cf1:coupon_amount" TEXT,
+"cf1:order_canceled_flag" TEXT,
+"cf1:has_returned_items_flag" TEXT,
+"cf1:has_refunded_items_flag" TEXT,
+"cf1:fraud_code" TEXT,
+"cf1:fraud_resolution_code" TEXT,
+"cf1:billing_address_line1" TEXT,
+"cf1:billing_address_line2" TEXT,
+"cf1:billing_address_line3" TEXT,
+"cf1:billing_address_city" TEXT,
+"cf1:billing_address_state" TEXT,
+"cf1:billing_address_postal_code" TEXT,
+"cf1:billing_address_country" TEXT,
+"cf1:billing_phone_number" TEXT,
+"cf1:customer_name" TEXT,
+"cf1:customer_email_address" TEXT,
+"cf1:ordering_session_id" TEXT,
+"cf1:website_url" TEXT
+)
+LOCATION ('pxf://pivhdsne:50070/orders?PROFILE=hbase')
+FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+
+</pre></li>
+<li><p>Create the table <code>retail_demo.customer_addresses_dim_hbase</code>:</p>
+
+<pre class="terminal">
+CREATE EXTERNAL TABLE retail_demo.customer_addresses_dim_hbase
+(
+recordkey integer,
+"cf1:customer_id" integer,
+-- "cf1:valid_from_timestamp" timestamp without time zone,
+"cf1:valid_from_timestamp" TEXT,
+-- "cf1:valid_to_timestamp" timestamp without time zone,
+"cf1:valid_to_timestamp" TEXT,
+"cf1:house_number" TEXT,
+"cf1:street_name" TEXT,
+"cf1:appt_suite_no" TEXT,
+"cf1:city" TEXT,
+"cf1:state_code" TEXT,
+"cf1:zip_code" TEXT,
+"cf1:zip_plus_four" TEXT,
+"cf1:country" TEXT,
+"cf1:phone_number" TEXT
+)
+LOCATION ('pxf://pivhdsne:50070/customer_addresses_dim?PROFILE=hbase')
+FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+
+</pre></li>
+<li><p>Create the table <code>retail_demo.date_dim_hbase</code>:</p>
+
+<pre class="terminal">
+CREATE EXTERNAL TABLE retail_demo.date_dim_hbase
+(
+    recordkey integer,
+"cf1:calendar_day" TEXT,
+"cf1:reporting_year" integer,
+"cf1:reporting_quarter" integer,
+"cf1:reporting_month" integer,
+"cf1:reporting_week" integer,
+"cf1:reporting_dow" integer
+)
+LOCATION ('pxf://pivhdsne:50070/date_dim?PROFILE=hbase')
+FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+
+</pre></li>
+<li><p>Create the table <code>retail_demo.email_addresses_dim_hbase</code>:</p>
+
+<pre class="terminal">
+CREATE EXTERNAL TABLE retail_demo.email_addresses_dim_hbase
+(
+-- customer_id integer,
+recordkey integer,
+"cf1:email_address" TEXT
+)
+LOCATION ('pxf://pivhdsne:50070/email_addresses_dim?PROFILE=hbase')
+FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+
+</pre></li>
+<li><p>Create the table <code>retail_demo.payment_methods_hbase</code>:</p>
+
+<pre class="terminal">
+CREATE EXTERNAL TABLE retail_demo.payment_methods_hbase
+(
+--payment_method_id smallint,
+recordkey integer,
+"cf1:payment_method_code" character(20)
+)
+LOCATION ('pxf://pivhdsne:50070/payment_methods?PROFILE=hbase')
+FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+
+</pre></li>
+<li><p>Create the table <code>retail_demo.products_dim_hbase</code>:</p>
+
+<pre class="terminal">
+CREATE EXTERNAL TABLE retail_demo.products_dim_hbase
+(
+-- product_id integer,
+recordkey integer,
+"cf1:category_id" integer,
+-- "cf1:price" numeric(15,2),
+"cf1:price" TEXT,
+"cf1:product_name" TEXT
+)
+LOCATION ('pxf://pivhdsne:50070/products_dim?PROFILE=hbase')
+FORMAT 'CUSTOM' (formatter='pxfwritable_import');
+
+</pre></li>
+</ul>
+
+<h1>Verifying Table Creation</h1>
+
+<p>Execute the following command on HAWQ shell to verify all the <code>EXTERNAL</code>  HBase tables have been created</p>
+
+<pre class="terminal">
+gpadmin=# \dx retail_demo.*hbase
+</pre>
+
+<p>The following output should appear:</p>
+
+<pre class="terminal">
+                            List of relations
+Schema    |             Name             | Type  |  Owner  | Storage  
+-------------+------------------------------+-------+---------+----------
+retail_demo | categories_dim_hbase         | table | gpadmin | external
+retail_demo | customer_addresses_dim_hbase | table | gpadmin | external
+retail_demo | customers_dim_hbase          | table | gpadmin | external
+retail_demo | date_dim_hbase               | table | gpadmin | external
+retail_demo | email_addresses_dim_hbase    | table | gpadmin | external
+retail_demo | order_lineitems_hbase        | table | gpadmin | external
+retail_demo | orders_hbase                 | table | gpadmin | external
+retail_demo | payment_methods_hbase        | table | gpadmin | external
+retail_demo | products_dim_hbase           | table | gpadmin | external
+(9 rows)
+</pre>
+
+<h1>Create tables in HBase</h1>
+
+<p>Execute the following Perl script to create the corresponding PXF tables in HBase:</p>
+
+<pre class="terminal">/pivotal-samples/hawq/pxf_hbase_tables/create_hbase_tables.pl
+</pre>
+
+<p>The script does the following:</p>
+
+<ul>
+<li> Runs a foreach loop on <code>%tables</code> array</li>
+<li> For each element <code>$table</code> in <code>%tables</code>:
+
+<ul>
+<li>Opens HBase shell</li>
+<li>Executes <code>create $table</code> command </li>
+<li>Closes HBase shell</li>
+</ul></li>
+</ul>
+
+<pre class="terminal">
+#!/usr/bin/env perl
+my %tables = (
+ "customers_dim",       
+ "categories_dim",        
+ "customer_addresses_dim",
+ "email_addresses_dim",
+ "order_lineitems",
+ "orders",
+ "payment_methods",
+ "products_dim"
+ );
+foreach my $table (%tables){
+  print "$table\n";
+  print "Creating HBase table '$table' ...\n";
+  open HBASE, "| hbase shell" or die $!;
+  print HBASE "create '$table', 'cf1'\n";
+  close HBASE;
+}
+</pre>
+
+<h1>Load the Data into HBase</h1>
+
+<ol>
+<li><p>Open a terminal window and switch to the <code>gpadmin</code> home directory.</p></li>
+<li><p>Create a file called <code>hbase_path</code> with the following contents:</p>
+
+<pre class="terminal">
+    source /etc/gphd/hadoop/conf/hadoop-env.sh
+    export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:/usr/lib/gphd/hbase/lib/hbase-hadoop-compat.jar
+</pre></li>
+<li><p>Run the following command:</p>
+
+<pre class="terminal">
+    $ source hbase_path
+</pre></li>
+<li><p>In the remaining steps for loading data, you use the <code>importtsv</code> utility shipped with HBase to bulk import <code>.tsv.gz</code> data into HBase. Execute the following commands:</p></li>
+</ol>
+
+<ul>
+    <li>
+       <p>Import Data into <code>products_dim</code> HBase table</p>
+    <pre class="terminal">hadoop jar /usr/lib/gphd/hbase/lib/hbase-server.jar importtsv -libjars /usr/lib/gphd/hbase/lib/guava-12.0.1.jar -Dimporttsv.columns=HBASE_ROW_KEY,cf1:category_id,cf1:product_name products_dim /retail_demo/products_dim
+    </pre>
+    </li>
+       <li>
+       <p>Import Data into <code>email_addresses_dim</code> HBase table</p>
+    <pre class="terminal">hadoop jar /usr/lib/gphd/hbase/lib/hbase-server.jar importtsv -libjars /usr/lib/gphd/hbase/lib/guava-12.0.1.jar \
+            -Dimporttsv.columns=HBASE_ROW_KEY,cf1:email_address email_addresses_dim /retail_demo/email_addresses_dim
+    </pre>
+    </li>
+       <li>
+       <p>Import Data into <code>customer_addresses_dim</code> HBase table</p>
+    <pre class="terminal">hadoop jar /usr/lib/gphd/hbase/lib/hbase-server.jar importtsv -libjars /usr/lib/gphd/hbase/lib/guava-12.0.1.jar -Dimporttsv.columns=HBASE_ROW_KEY,cf1:customer_id,cf1:valid_from_timestamp,cf1:valid_to_timestamp,cf1:house_number,cf1:street_name,cf1:appt_suite_no,cf1:city,cf1:state_code,cf1:zip_code,cf1:zip_plus_four,cf1:country,cf1:phone_number customer_addresses_dim /retail_demo/customer_addresses_dim
+    </pre>
+    </li>
+        <li>
+       <p>Import Data into <code>customer_dim</code> HBase table:</p>
+    <pre class="terminal">hadoop jar /usr/lib/gphd/hbase/lib/hbase-server.jar importtsv -libjars /usr/lib/gphd/hbase/lib/guava-12.0.1.jar -Dimporttsv.columns=HBASE_ROW_KEY,cf1:first_name,cf1:last_name,cf1:gender customers_dim /retail_demo/customers_dim
+    </pre>
+    </li>
+
+       <li>
+       <p>Import Data into <code>orders</code> HBase table</p>
+    <pre class="terminal">
+hadoop jar /usr/lib/gphd/hbase/lib/hbase-server.jar importtsv -libjars /usr/lib/gphd/hbase/lib/guava-12.0.1.jar -Dimporttsv.columns=HBASE_ROW_KEY,cf1:customer_id,cf1:store_id,cf1:order_datetime,cf1:ship_completion_datetime,cf1:return_datetime,cf1:refund_datetime,cf1:payment_method_code,cf1:total_tax_amount,cf1:total_paid_amount,cf1:total_item_quantity,cf1:total_discount_amount,cf1:coupon_code,cf1:coupon_amount,cf1:order_canceled_flag,cf1:has_returned_items_flag,cf1:has_returned_items_flag,cf1:has_returned_items_flag,cf1:fraud_code,cf1:fraud_resolution_code,cf1:billing_address_line1,cf1:billing_address_line2,cf1:billing_address_city,cf1:billing_address_state,cf1:billing_address_postal_code,cf1:billing_address_country,cf1:billing_phone_number,cf1:customer_name,cf1:customer_email_address,cf1:ordering_session_id,cf1:website_url orders /retail_demo/orders/orders.tsv.gz
+    </pre>
+    </li>
+</ul>
+
+<h2>Verifying the Data is Loaded</h2>
+
+<p>Run the following commands on the psql shell to verify that the data has been successfully loaded:</p>
+
+<ul>
+<li>Count the number of rows in table <code>retail_demo.email_addresses_dim_hbase</code></li>
+</ul>
+
+<pre class="terminal">
+        
+    gpadmin=# select count(*) from retail_demo.email_addresses_dim_hbase;
+    
+    count   
+    
+    --------
+    401430
+    (1 row)
+</pre>
+
+<ul>
+<li>Count the number of rows in table <code>retail_demo.customer_addresses_dim_hbase</code>:</li>
+</ul>
+
+<pre class="terminal">
+        
+    gpadmin=# select count("cf1:customer_id") from retail_demo.customer_addresses_dim_hbase;
+    count  
+    
+    --------
+    1130639
+    (1 row)
+</pre>
+    
+
+<ul>
+<li>Count the number of rows in table <code>retail_demo.products_dim_hbase</code>:</li>
+</ul>
+
+<pre class="terminal">
+    gpadmin=# select count(*) from retail_demo.products_dim_hbase;
+    count  
+
+    --------
+    698911
+    (1 row)
+</pre>
+    
+
+<ul>
+<li>Count the number of rows in table <code>retail_demo.customers_dim_hbase</code>:</li>
+</ul>
+
+<pre class="terminal">
+    gpadmin=# select count(recordkey) from retail_demo.customers_dim_hbase;
+    count  
+    
+    --------
+    401430
+    (1 row)
+</pre>
+    
+
+<ul>
+<li>Count the number of rows in table <code>retail_demo.orders_hbase</code>:</li>
+</ul>
+
+<pre class="terminal">
+    gpadmin=# select count(recordkey) from retail_demo.orders_hbase;
+    count  
+    
+    --------
+    401430
+    (1 row)
+</pre>
+    
+
+<h1>Running HAWQ Queries</h1>
+
+<p>Query <code>retail_demo.orders_hbase</code> to show the  Orders placed and Tax collected based on <code>billing_address_postal_code</code> for 10 highest entries.</p>
+
+<pre class="terminal">
+gpadmin=# select "cf1:billing_address_postal_code", 
+               sum("cf1:total_paid_amount"::float8) as total, 
+               sum("cf1:total_tax_amount"::float8) as tax 
+         from  retail_demo.orders_hbase   
+               group by "cf1:billing_address_postal_code" 
+               order by total 
+               desc limit 10;
+</pre>
+
+<pre class="terminal">
+ cf1:billing_address_postal_code |   total   |    tax    
+---------------------------------+-----------+-----------
+ 48001                           | 111868.32 | 6712.0992
+ 15329                           | 107958.24 | 6477.4944
+ 42714                           | 103244.58 | 6194.6748
+ 41030                           |  101365.5 |   6081.93
+ 50223                           | 100511.64 | 6030.6984
+ 03106                           |  83566.41 |         0
+ 57104                           |  77383.63 | 3095.3452
+ 23002                           |  73673.66 |  3683.683
+ 25703                           |  68282.12 | 4096.9272
+ 26178                           |   66836.4 |  4010.184
+(10 rows)
+</pre>
+
+<p>This completes the PXF Hbase External Tables example. You created the HBase tables and used <code>importtsv</code> to import data from HDFS into HBase.</p>
+
+      </main><!--end of content-->
+
+  </div><!-- end of container -->
+
+  <script type="text/javascript">
+    (function() {
+      var didInit = false;
+      function initMunchkin() {
+        if(didInit === false) {
+          didInit = true;
+          Munchkin.init('625-IUJ-009');
+        }
+      }
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+      s.onreadystatechange = function() {
+        if (this.readyState == 'complete' || this.readyState == 'loaded') {
+          initMunchkin();
+        }
+      };
+      s.onload = initMunchkin;
+      document.getElementsByTagName('head')[0].appendChild(s);
+    })();
+  </script>
+</div><!--end of wrap-->
+</div><!--end of viewport-->
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href='/'>Pivotal Documentation</a>
+      &copy; 2015 <a href='http://gopivotal.com'>Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.gopivotal.com" target="_blank">Visit Support</a>
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

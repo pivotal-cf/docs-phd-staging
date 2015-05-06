@@ -1,0 +1,285 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      MapReduce Java |
+    Pivotal Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link href="/stylesheets/master.css" rel="stylesheet" type="text/css" media="screen,print" />
+  <link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+
+
+
+  <script type="text/javascript">
+    if (window.location.host === 'pivotalhd.docs.pivotal.io') {
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-39702075-1']);
+      _gaq.push(['_setDomainName', 'gopivotal.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    }
+  </script>
+</head>
+
+<body class="tutorial tutorial_getting-started tutorial_getting-started_map-reduce-java has-subnav">
+
+<div class="viewport">
+<div class='wrap'>
+  <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+  <script type="text/javascript">
+      try {
+          Typekit.load();
+      } catch (e) {
+      }
+  </script>
+  <script type="text/javascript">
+      document.domain = "gopivotal.com";
+  </script>
+
+  <script type="text/javascript">
+    WebFontConfig = {
+      google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
+
+    <header class="header header-layout">
+      <h1 class="logo">
+        <!-- <a href="/"> -->
+            
+        <!-- </a> -->
+      <a href="/index.html">Pivotal HD Documentation</a></h1>
+      <div class="header-links js-bar-links">
+        <div class="btn-menu" data-behavior="MenuMobile"></div>
+        <div class="header-item">
+          <a href="http://docs.pivotal.io/index.html">Docs Home</a>
+        </div>
+        <!--
+        <div class="header-item">
+          <a href="http://support.gopivotal.com" target="_blank">Support</a>
+        </div>
+        -->
+         <div class="header-item">
+          <a href="http://ask.gopivotal.com/hc/en-us/categories/200072578-Pivotal-HD-Knowledge-Base" target="_blank">Knowledge Base</a>
+        </div>
+        <div class="header-item">
+          <a href="http://ask.gopivotal.com/hc/communities/public/topics/200053048-Pivotal-HD-General" target="_blank">Forum</a>
+        
+        
+        
+        <div class="header-item searchbar js-searchbar">
+          <a class="search-icon" data-behavior="Search"></a>
+          <div class="search-input">
+            <!-- Google CSE Search Box -->
+            <div class="search-input-inner" id="docs-search">
+                <gcse:search></gcse:search>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  <div class="container">
+
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+ <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+ <div class="nav-content">
+  <ul class="menu">
+              <!-- REPLACE <li/> NODES-->
+              
+
+        <li class="menu-item js-menu-item">            
+      <div class="menu-title js-menu-title">
+          	    <a id='home-nav-link' href="/tutorial/index.html">Getting Started with the Pivotal HD Tutorial </a>
+      </div> 
+         </li>
+              
+             <div class="menu-title js-menu-title">
+                <li class="menu-link">
+                  <a  href="/tutorial/getting-started-overview.html">Setting Up the Pivotal HD Tutorial</a>
+             </div>
+                  <ul >
+                    <li class="menu-link"><a href='/tutorial/getting-started/pivotalhd-vm.html'>Pivotal HD Virtual Machine</a></li>
+               
+                    <li class="menu-link"><a href='/tutorial/getting-started/dataset.html'>Loading the Retail Demo Dataset</a></li>
+					
+                  </UL>
+			    </li>
+			
+			  <div class="menu-title js-menu-title">
+				<li class="menu-item">
+				  <a  href="/tutorial/getting-started/overview.html">Tutorials Overview</a>
+				</div>
+				<ul >
+<div class="menu-title js-menu-title">
+                    <li class="menu-link"><a href='/tutorial/getting-started/map-reduce-java.html'>MapReduce Java</a>
+                    </div>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/map-reduce-java/summarization-postalcode-paidamount.html'>Summarization: PostalCode with Highest Revenue</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/map-reduce-java/firstandlastorderiddate.html'>Minimum/Maximum: Last and First order date</a></li>
+                      </ul>
+                    </li> <div class="menu-title">
+                    <li class="menu-item" ><a href='/tutorial/getting-started/hawq.html'>HAWQ</a>
+						</div>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/internal-tables.html'>HAWQ Internal Tables</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-external-tables.html'>PXF External Tables: HDFS</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-hbase-external-tables.html'>PXF External Tables: HBase</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-hbase-external-enable-filter-pushdown.html'>PXF External Tables Predicate Push-down: HBase</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-external-tables-statistics.html'>PXF External Tables: Statistics</a></li>
+                      </ul>
+                    </li><div class="menu-title">
+                    <li class="menu-item"><a href='/tutorial/getting-started/hive/hive-tables.html'>Hive</a></div>
+                     <ul >
+                        <li class="menu-item"><a href='/tutorial/getting-started/hive/hive-tables.html'>Hive Tables</a></li>
+                      </ul> 
+					
+                    </li>
+                     <div class="menu-title">
+                    <li class="menu-item"><a href='/tutorial/getting-started/pig.html'>Pig</a>
+                    </div>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/pig/summarization-postalcode-paidamount.html'>Top ten postal codes</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/pig/firstandlastorderiddate.html'>Last and First order date of all the customers</a></li>
+                      </ul>
+                    </li>
+				
+                   <!-- <li class="menu-link"><a href='/tutorial/getting-started/spring-data-hadoop.html'>Spring Data Hadoop</a>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/spring-data-hadoop/wordcount_with_spring_hadoop-gphd.html'>Word Count with Spring Data on Pivotal HD</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/spring-data-hadoop/wordcount_with_spring_hadoop.html'>Word Count with Spring Data on Hadoop 2.2.0</a></li>
+                      </ul>
+                    </li>-->
+                  </ul>
+                </li>
+			  <div class="menu-title js-menu-title">
+				 <li><a href="http://gemfirexd.docs.gopivotal.com/latest/userguide/index.html#getting_started/tutorial_chapter_intro.html" target="_blank">GemFire XD Quickstart</a></li>
+				 </div>
+			 </ul>
+                	</li>
+              </ul>
+           </div>   
+        </div><!--end of sub-nav-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+          <h1 class="title-container">
+            MapReduce Java
+          </h1>
+            <div id="js-quick-links">
+              
+            </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <p>This guide provides a step-by-step tutorial on how to design, build and run MapReduce Applications on the Pivotal HD 2.0 distribution.</p>
+
+<p>The tutorials are organized into several groups with specific tasks. Each task is accompanied with a code sample.</p>
+
+<p>If you are new to Pivotal HD or Hadoop, you should complete these tutorials in order.</p>
+
+<ol class="class-list">
+<li>
+      <h1>Summarization Pattern</h1>
+      <span></span>
+   
+        This example provides instructions on how to run a Java MapReduce program for a summarization Pattern.  The example returns the top ten postal codes by highest revenue.
+        </p>
+        <ul>
+    <li>
+        <a href="/tutorial/getting-started/map-reduce-java/summarization-postalcode-paidamount.html">
+            Top ten postal codes by highest revenue 
+            </a>
+    </li>
+    </ul>
+
+</li>
+
+
+<li>
+     
+   <h1>Minimum Maximum Pattern</h1>
+        This example provides instructions on how to run a Java MapReduce program for a minimum/maximum pattern. The example returns every customer with their first order ID/date and last order ID/date.
+        </p>
+        <ul>
+    <li>
+        <a href="/tutorial/getting-started/map-reduce-java/firstandlastorderiddate.html">
+            First and Last Order ID/date of every customer
+            </a>
+    </li>
+    </ul>
+
+</li>
+<li></li>
+</ol>
+
+      </main><!--end of content-->
+
+  </div><!-- end of container -->
+
+  <script type="text/javascript">
+    (function() {
+      var didInit = false;
+      function initMunchkin() {
+        if(didInit === false) {
+          didInit = true;
+          Munchkin.init('625-IUJ-009');
+        }
+      }
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+      s.onreadystatechange = function() {
+        if (this.readyState == 'complete' || this.readyState == 'loaded') {
+          initMunchkin();
+        }
+      };
+      s.onload = initMunchkin;
+      document.getElementsByTagName('head')[0].appendChild(s);
+    })();
+  </script>
+</div><!--end of wrap-->
+</div><!--end of viewport-->
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href='/'>Pivotal Documentation</a>
+      &copy; 2015 <a href='http://gopivotal.com'>Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.gopivotal.com" target="_blank">Visit Support</a>
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

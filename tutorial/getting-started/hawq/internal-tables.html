@@ -1,0 +1,537 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      HAWQ - Internal Tables |
+    Pivotal Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link href="/stylesheets/master.css" rel="stylesheet" type="text/css" media="screen,print" />
+  <link href="/stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+  <link href='http://www.gopivotal.com/misc/favicon.ico' rel='shortcut icon'>
+
+  <script src="/javascripts/all.js" type="text/javascript"></script>
+
+
+
+  <script type="text/javascript">
+    if (window.location.host === 'pivotalhd.docs.pivotal.io') {
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-39702075-1']);
+      _gaq.push(['_setDomainName', 'gopivotal.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    }
+  </script>
+</head>
+
+<body class="tutorial tutorial_getting-started tutorial_getting-started_hawq tutorial_getting-started_hawq_internal-tables has-subnav">
+
+<div class="viewport">
+<div class='wrap'>
+  <script src="//use.typekit.net/clb0qji.js" type="text/javascript"></script>
+  <script type="text/javascript">
+      try {
+          Typekit.load();
+      } catch (e) {
+      }
+  </script>
+  <script type="text/javascript">
+      document.domain = "gopivotal.com";
+  </script>
+
+  <script type="text/javascript">
+    WebFontConfig = {
+      google: { families: [ 'Source+Sans+Pro:300italic,400italic,300,400,600:latin' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })();
+  </script>
+
+    <header class="header header-layout">
+      <h1 class="logo">
+        <!-- <a href="/"> -->
+            <ul class="breadcrumbs"><li><a href="/tutorial/getting-started/hawq.html">HAWQ Getting Started</a></li> <li class="active"><span>HAWQ - Internal Tables</span></li></ul>
+        <!-- </a> -->
+      <a href="/index.html">Pivotal HD Documentation</a></h1>
+      <div class="header-links js-bar-links">
+        <div class="btn-menu" data-behavior="MenuMobile"></div>
+        <div class="header-item">
+          <a href="http://docs.pivotal.io/index.html">Docs Home</a>
+        </div>
+        <!--
+        <div class="header-item">
+          <a href="http://support.gopivotal.com" target="_blank">Support</a>
+        </div>
+        -->
+         <div class="header-item">
+          <a href="http://ask.gopivotal.com/hc/en-us/categories/200072578-Pivotal-HD-Knowledge-Base" target="_blank">Knowledge Base</a>
+        </div>
+        <div class="header-item">
+          <a href="http://ask.gopivotal.com/hc/communities/public/topics/200053048-Pivotal-HD-General" target="_blank">Forum</a>
+        
+        
+        
+        <div class="header-item searchbar js-searchbar">
+          <a class="search-icon" data-behavior="Search"></a>
+          <div class="search-input">
+            <!-- Google CSE Search Box -->
+            <div class="search-input-inner" id="docs-search">
+                <gcse:search></gcse:search>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  <div class="container">
+
+      <div id="sub-nav" class="js-sidenav nav-container" role="navigation">
+ <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+ <div class="nav-content">
+  <ul class="menu">
+              <!-- REPLACE <li/> NODES-->
+              
+
+        <li class="menu-item js-menu-item">            
+      <div class="menu-title js-menu-title">
+          	    <a id='home-nav-link' href="/tutorial/index.html">Getting Started with the Pivotal HD Tutorial </a>
+      </div> 
+         </li>
+              
+             <div class="menu-title js-menu-title">
+                <li class="menu-link">
+                  <a  href="/tutorial/getting-started-overview.html">Setting Up the Pivotal HD Tutorial</a>
+             </div>
+                  <ul >
+                    <li class="menu-link"><a href='/tutorial/getting-started/pivotalhd-vm.html'>Pivotal HD Virtual Machine</a></li>
+               
+                    <li class="menu-link"><a href='/tutorial/getting-started/dataset.html'>Loading the Retail Demo Dataset</a></li>
+					
+                  </UL>
+			    </li>
+			
+			  <div class="menu-title js-menu-title">
+				<li class="menu-item">
+				  <a  href="/tutorial/getting-started/overview.html">Tutorials Overview</a>
+				</div>
+				<ul >
+<div class="menu-title js-menu-title">
+                    <li class="menu-link"><a href='/tutorial/getting-started/map-reduce-java.html'>MapReduce Java</a>
+                    </div>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/map-reduce-java/summarization-postalcode-paidamount.html'>Summarization: PostalCode with Highest Revenue</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/map-reduce-java/firstandlastorderiddate.html'>Minimum/Maximum: Last and First order date</a></li>
+                      </ul>
+                    </li> <div class="menu-title">
+                    <li class="menu-item" ><a href='/tutorial/getting-started/hawq.html'>HAWQ</a>
+						</div>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/internal-tables.html'>HAWQ Internal Tables</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-external-tables.html'>PXF External Tables: HDFS</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-hbase-external-tables.html'>PXF External Tables: HBase</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-hbase-external-enable-filter-pushdown.html'>PXF External Tables Predicate Push-down: HBase</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/hawq/pxf-external-tables-statistics.html'>PXF External Tables: Statistics</a></li>
+                      </ul>
+                    </li><div class="menu-title">
+                    <li class="menu-item"><a href='/tutorial/getting-started/hive/hive-tables.html'>Hive</a></div>
+                     <ul >
+                        <li class="menu-item"><a href='/tutorial/getting-started/hive/hive-tables.html'>Hive Tables</a></li>
+                      </ul> 
+					
+                    </li>
+                     <div class="menu-title">
+                    <li class="menu-item"><a href='/tutorial/getting-started/pig.html'>Pig</a>
+                    </div>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/pig/summarization-postalcode-paidamount.html'>Top ten postal codes</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/pig/firstandlastorderiddate.html'>Last and First order date of all the customers</a></li>
+                      </ul>
+                    </li>
+				
+                   <!-- <li class="menu-link"><a href='/tutorial/getting-started/spring-data-hadoop.html'>Spring Data Hadoop</a>
+                      <ul >
+                        <li class="menu-link"><a href='/tutorial/getting-started/spring-data-hadoop/wordcount_with_spring_hadoop-gphd.html'>Word Count with Spring Data on Pivotal HD</a></li>
+                        <li class="menu-link"><a href='/tutorial/getting-started/spring-data-hadoop/wordcount_with_spring_hadoop.html'>Word Count with Spring Data on Hadoop 2.2.0</a></li>
+                      </ul>
+                    </li>-->
+                  </ul>
+                </li>
+			  <div class="menu-title js-menu-title">
+				 <li><a href="http://gemfirexd.docs.gopivotal.com/latest/userguide/index.html#getting_started/tutorial_chapter_intro.html" target="_blank">GemFire XD Quickstart</a></li>
+				 </div>
+			 </ul>
+                	</li>
+              </ul>
+           </div>   
+        </div><!--end of sub-nav-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+          <h1 class="title-container">
+            HAWQ - Internal Tables
+          </h1>
+            <div id="js-quick-links">
+              
+            </div>
+        <div class="to-top" id="js-to-top">
+          <a href="#top" title="back to top"></a>
+        </div>
+        <h1>Overview</h1>
+
+<p>In this exercise, you create HAWQ tables and load data into the tables using the <code>COPY</code> command.</p>
+
+<h1>Prerequisites</h1>
+
+<ol>
+<li><p>Install the Pivotal HD Single-Node Virtual Machine and start the Pivotal HD services. See <a href="/tutorial/getting-started/pivotalhd-vm.html">Pivotal HD Single-Node VM</a>.</p></li>
+<li><p>Load the Retail Demo Dataset before following the steps in this section. See <a href="/tutorial/getting-started/dataset.html">Retail Demo Dataset</a>.</p></li>
+</ol>
+
+<h1>Create Internal HAWQ tables</h1>
+
+<p>To create HAWQ tables, you use the <code>psql</code> utility to execute SQL commands that create the database and tables in HAWQ. </p>
+
+<ol>
+<li><p>Start the utility by entering the <code>psql</code> command at the command prompt. </p>
+
+<p>For example:</p>
+
+<pre class="terminal">[gpadmin@pivhdsne sample-data]$ psql
+    Timing is on.
+    psql (8.2.15)
+    Type "help" for help.
+
+gpadmin=# </pre></li>
+<li><p>Create the <code>retail_demo</code> schema</p>
+
+<pre class="terminal">
+CREATE SCHEMA retail_demo;
+</pre></li>
+<li><p>To create the tables, you can run the following script that contains all of the SQL statements to create the tables:</p>
+
+<pre class="terminal">pivotal-samples/hawq/hawq_tables/create_hawq_tables.sql
+</pre>  
+
+<p>For example:</p>
+
+<pre class="terminal">
+gpadmin=#\i /pivotal-samples/hawq/hawq_tables/create_hawq_tables.sql
+</pre>  
+
+<p>or you can enter each SQL command separately by entering the following SQL commands:</p></li>
+</ol>
+
+<ul>
+<li><p>To create the table  <code>retail_demo.categories_dim_hawq</code>:</p>
+
+<pre class="terminal">
+CREATE TABLE retail_demo.categories_dim_hawq
+(
+    category_id integer NOT NULL,
+    category_name character varying(400) NOT NULL
+)
+WITH (appendonly=true, compresstype=quicklz) DISTRIBUTED RANDOMLY;
+</pre></li>
+<li><p>To create the table <code>retail_demo.customers_dim_hawq</code>:</p>
+
+<pre class="terminal">
+CREATE TABLE retail_demo.customers_dim_hawq
+(
+    customer_id TEXT,
+    first_name TEXT,
+    last_name TEXT,
+    gender TEXT
+)
+WITH (appendonly=true, compresstype=quicklz) DISTRIBUTED RANDOMLY;
+</pre></li>
+<li><p>To create the table <code>retail_demo.order_lineitems_hawq</code>:</p>
+
+<pre class="terminal">
+CREATE  TABLE retail_demo.order_lineitems_hawq
+(
+    order_id TEXT,
+    order_item_id TEXT,
+    product_id TEXT,
+    product_name TEXT,
+    customer_id TEXT,
+    store_id TEXT,
+    item_shipment_status_code TEXT,
+    order_datetime TEXT,
+    ship_datetime TEXT,
+    item_return_datetime TEXT,
+    item_refund_datetime TEXT,
+    product_category_id TEXT,
+    product_category_name TEXT,
+    payment_method_code TEXT,
+    tax_amount TEXT,
+    item_quantity TEXT,
+    item_price TEXT,
+    discount_amount TEXT,
+    coupon_code TEXT,
+    coupon_amount TEXT,
+    ship_address_line1 TEXT,
+    ship_address_line2 TEXT,
+    ship_address_line3 TEXT,
+    ship_address_city TEXT,
+    ship_address_state TEXT,
+    ship_address_postal_code TEXT,
+    ship_address_country TEXT,
+    ship_phone_number TEXT,
+    ship_customer_name TEXT,
+    ship_customer_email_address TEXT,
+    ordering_session_id TEXT,
+    website_url TEXT
+)
+WITH (appendonly=true, compresstype=quicklz) DISTRIBUTED RANDOMLY;
+</pre></li>
+<li><p>To create the table <code>retail_demo.orders_hawq</code>:</p>
+
+<pre class="terminal">
+CREATE TABLE retail_demo.orders_hawq
+(
+    order_id TEXT,
+    customer_id TEXT,
+    store_id TEXT,
+    order_datetime TEXT,
+    ship_completion_datetime TEXT,
+    return_datetime TEXT,
+    refund_datetime TEXT,
+    payment_method_code TEXT,
+    total_tax_amount TEXT,
+    total_paid_amount TEXT,
+    total_item_quantity TEXT,
+    total_discount_amount TEXT,
+    coupon_code TEXT,
+    coupon_amount TEXT,
+    order_canceled_flag TEXT,
+    has_returned_items_flag TEXT,
+    has_refunded_items_flag TEXT,
+    fraud_code TEXT,
+    fraud_resolution_code TEXT,
+    billing_address_line1 TEXT,
+    billing_address_line2 TEXT,
+    billing_address_line3 TEXT,
+    billing_address_city TEXT,
+    billing_address_state TEXT,
+    billing_address_postal_code TEXT,
+    billing_address_country TEXT,
+    billing_phone_number TEXT,
+    customer_name TEXT,
+    customer_email_address TEXT,
+    ordering_session_id TEXT,
+    website_url TEXT
+)
+WITH (appendonly=true, compresstype=quicklz) DISTRIBUTED RANDOMLY;
+</pre></li>
+<li><p>To create the table <code>retail_demo.customer_addresses_dim_hawq</code>:</p>
+
+<pre class="terminal">
+CREATE TABLE retail_demo.customer_addresses_dim_hawq
+(
+    customer_address_id TEXT,
+    customer_id TEXT,
+    valid_from_timestamp TEXT,
+    valid_to_timestamp TEXT,
+    house_number TEXT,
+    street_name TEXT,
+    appt_suite_no TEXT,
+    city TEXT,
+    state_code TEXT,
+    zip_code TEXT,
+    zip_plus_four TEXT,
+    country TEXT,
+    phone_number TEXT
+)
+WITH (appendonly=true, compresstype=quicklz) DISTRIBUTED RANDOMLY;
+</pre></li>
+<li><p>To create the table <code>retail_demo.date_dim_hawq</code>:</p>
+
+<pre class="terminal">
+CREATE TABLE retail_demo.date_dim_hawq
+(
+  calendar_day date,
+  reporting_year smallint,
+  reporting_quarter smallint,
+  reporting_month smallint,
+  reporting_week smallint,
+  reporting_dow smallint
+)
+WITH (appendonly=true) DISTRIBUTED RANDOMLY;
+</pre></li>
+<li><p>To create the table <code>retail_demo.email_addresses_dim_hawq</code>:</p>
+
+<pre class="terminal">
+CREATE TABLE retail_demo.email_addresses_dim_hawq
+(
+    customer_id TEXT,
+    email_address TEXT
+)
+WITH (appendonly=true, compresstype=quicklz) DISTRIBUTED RANDOMLY;
+</pre></li>
+<li><p>To create the table <code>retail_demo.payment_methods_hawq</code>:</p>
+
+<pre class="terminal">
+CREATE TABLE retail_demo.payment_methods_hawq
+(
+    payment_method_id smallint,
+    payment_method_code character varying(20)
+)
+WITH (appendonly=true, compresstype=quicklz) DISTRIBUTED RANDOMLY;
+ALTER TABLE retail_demo.payment_methods_hawq OWNER TO gpadmin;
+</pre></li>
+<li><p>To create the table <code>retail_demo.products_dim_hawq</code>:</p>
+
+<pre class="terminal">
+CREATE TABLE retail_demo.products_dim_hawq
+(
+    product_id TEXT,
+    category_id TEXT,
+    price TEXT,
+    product_name TEXT
+)
+WITH (appendonly=true, compresstype=quicklz) DISTRIBUTED RANDOMLY;
+</pre></li>
+</ul>
+
+<h2>Load the data into HAWQ tables</h2>
+
+<p>In these steps, you data into the tables you just created. </p>
+
+<ol>
+<li>In a terminal session, cd to the <code>/retail_demo</code> directory.</li>
+<li><p>To load the data, copy and paste the following commands into the command window:</p>
+
+<pre class="terminal">
+zcat customers_dim/customers_dim.tsv.gz | psql -c "COPY retail_demo.customers_dim_hawq FROM STDIN DELIMITER E'\t' NULL E'';"
+zcat categories_dim/categories_dim.tsv.gz | psql -c "COPY retail_demo.categories_dim_hawq FROM STDIN DELIMITER E'\t' NULL E'';"
+zcat order_lineitems/order_lineitems.tsv.gz | psql -c "COPY retail_demo.order_lineitems_hawq FROM STDIN DELIMITER E'\t' NULL E'';"
+zcat orders/orders.tsv.gz | psql -c "COPY retail_demo.orders_hawq FROM STDIN DELIMITER E'\t' NULL E'';"
+zcat customer_addresses_dim/customer_addresses_dim.tsv.gz | psql -c "COPY retail_demo.customer_addresses_dim_hawq FROM STDIN DELIMITER E'\t' NULL E'';"
+zcat email_addresses_dim/email_addresses_dim.tsv.gz | psql -c "COPY retail_demo.email_addresses_dim_hawq FROM STDIN DELIMITER E'\t' NULL E'';"
+zcat products_dim/products_dim.tsv.gz | psql -c "COPY retail_demo.products_dim_hawq FROM STDIN DELIMITER E'\t' NULL E'';"
+zcat payment_methods/payment_methods.tsv.gz | psql -c "COPY retail_demo.payment_methods_hawq FROM STDIN DELIMITER E'\t' NULL E'';"
+zcat date_dim/date_dim.tsv.gz | psql -c "COPY retail_demo.date_dim_hawq FROM STDIN DELIMITER E'\t' NULL E'';"
+
+</pre></li>
+</ol>
+
+<h1>Verifying the data loaded</h1>
+
+<p>Run the following script to check the row count of the tables in the <code>retail_demo</code> schema:</p>
+
+<pre class="terminal">pivotal-samples/hawq/hawq_tables/verify_load_hawq_tables.sh   </pre>
+
+<p>The output of the script should look like the following:</p>
+
+<pre class="terminal">
+[gpadmin@pivhdsne hawq_tables]$ ./verify_load_hawq_tables.sh                                
+        Table Name           |    Count 
+-----------------------------+------------------------
+ customers_dim_hawq          |   401430  
+ categories_dim_hawq         |   56 
+ customer_addresses_dim_hawq |   1130639
+ email_addresses_dim_hawq    |   401430
+ order_lineitems_hawq        |   1024158
+ orders_hawq                 |   512071
+ payment_methods_hawq        |   5
+ products_dim_hawq           |   698911
+-----------------------------+------------------------
+</pre>
+
+<h1>Running HAWQ Queries</h1>
+
+<p>Use the <code>psql</code> utility to run the following query on the <code>retail_demo.orders_hawq</code> table. The query returns the top ten postal codes by revenue:</p>
+
+<pre class="terminal">
+select billing_address_postal_code, sum(total_paid_amount::float8) as total, 
+sum(total_tax_amount::float8) as tax
+from retail_demo.orders_hawq
+group by billing_address_postal_code
+order by total desc limit 10;
+</pre>
+
+<p>The output should look like the following:</p>
+
+<pre class="terminal">
+ billing_address_postal_code |   total   |    tax    
+-----------------------------+-----------+-----------
+ 48001                       | 111868.32 | 6712.0992
+ 15329                       | 107958.24 | 6477.4944
+ 42714                       | 103244.58 | 6194.6748
+ 41030                       |  101365.5 |   6081.93
+ 50223                       | 100511.64 | 6030.6984
+ 03106                       |  83566.41 |         0
+ 57104                       |  77383.63 | 3095.3452
+ 23002                       |  73673.66 |  3683.683
+ 25703                       |  68282.12 | 4096.9272
+ 26178                       |   66836.4 |  4010.184
+(10 rows)
+Time: 2120.214 ms
+</pre>
+
+      </main><!--end of content-->
+
+  </div><!-- end of container -->
+
+  <script type="text/javascript">
+    (function() {
+      var didInit = false;
+      function initMunchkin() {
+        if(didInit === false) {
+          didInit = true;
+          Munchkin.init('625-IUJ-009');
+        }
+      }
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = document.location.protocol + '//munchkin.marketo.net/munchkin.js';
+      s.onreadystatechange = function() {
+        if (this.readyState == 'complete' || this.readyState == 'loaded') {
+          initMunchkin();
+        }
+      };
+      s.onload = initMunchkin;
+      document.getElementsByTagName('head')[0].appendChild(s);
+    })();
+  </script>
+</div><!--end of wrap-->
+</div><!--end of viewport-->
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    <div class="copyright">
+      <a href='/'>Pivotal Documentation</a>
+      &copy; 2015 <a href='http://gopivotal.com'>Pivotal Software</a>, Inc. All Rights Reserved.
+  </div>
+  <div class="support">
+    Need help? <a href="http://support.gopivotal.com" target="_blank">Visit Support</a>
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>
